@@ -11,16 +11,26 @@
  */
 ?>
 
-		</div><!-- #main -->
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<?php get_sidebar( 'main' ); ?>
-
-			<div class="site-info">
-				<?php do_action( 'twentythirteen_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentythirteen' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentythirteen' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentythirteen' ), 'WordPress' ); ?></a>
-			</div><!-- .site-info -->
-		</footer><!-- #colophon -->
-	</div><!-- #page -->
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span3">
+					<p><img src="img/logo-fau-inverse.png"></p>
+				</div>
+				<div class="span3">
+					<p>
+						Friedrich-Alexander-Universität<br>
+						Erlangen-Nürnberg<br>
+						Schlossplatz 4<br>
+						91054 Erlangen
+					</p>
+				</div>
+				<div class="span6">
+					<?php wp_nav_menu( array( 'theme_location' => 'meta-nav', 'container' => false, 'items_wrap' => '<ul id="footer-nav" class="%2$s">%3$s</ul>' ) ); ?>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<?php wp_footer(); ?>
 </body>
