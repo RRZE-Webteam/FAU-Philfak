@@ -53,7 +53,8 @@ function fau_setup() {
 //	) );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'meta-nav', __( 'Meta-Navigation', 'fau' ) );
+	register_nav_menu( 'meta', __( 'Meta', 'fau' ) );
+	register_nav_menu( 'main-menu', __( 'Main Menu', 'fau' ) );
 	
 	/*
 	 * This theme uses a custom image size for featured images, displayed on
@@ -115,3 +116,75 @@ function fau_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
+
+
+
+
+
+
+/**
+ * Navigation Menu template functions
+ *
+ * @package WordPress
+ * @subpackage FAU
+ * @since FAU 1.0
+ */
+
+class Walker_Main_Menu extends Walker_Nav_Menu
+{
+
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$level = $depth + 2;
+		$output .= "\n$indent<div class=\"nav-flyout\"><div class=\"container\"><div class=\"row\"><div class=\"span4\"><ul class=\"sub-menu level".$level."\">\n";
+	}
+	
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</ul></div></div></div></div>\n";
+	}
+	
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+		$level = $depth + 1;
+
+		$class_names = $value = '';
+
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+		$classes[] = 'level' . $level;
+
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+		$output .= $indent . '<li' . $id . $value . $class_names .'>';
+
+		$atts = array();
+		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+
+		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
+
+		$attributes = '';
+		foreach ( $atts as $attr => $value ) {
+			if ( ! empty( $value ) ) {
+				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$attributes .= ' ' . $attr . '="' . $value . '"';
+			}
+		}
+
+		$item_output = $args->before;
+		$item_output .= '<a'. $attributes .'>';
+		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= '</a>';
+		$item_output .= $args->after;
+
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+}
+

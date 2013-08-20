@@ -21,7 +21,7 @@
 
 	<div id="meta">
 		<div class="container">
-			<?php wp_nav_menu( array( 'theme_location' => 'meta-nav', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
 		</div>
 	</div>
 	<div id="header">
@@ -32,7 +32,7 @@
 				<div></div>
 				<div></div>
 			</a>			
-			<?php wp_page_menu( array( 'depth' => 2 ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); ?>
 		</div>
 	</div>
 
