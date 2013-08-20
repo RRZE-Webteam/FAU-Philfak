@@ -78,8 +78,11 @@ add_action( 'after_setup_theme', 'fau_setup' );
  */
 function fau_scripts_styles() {
 	
-	// Loads our main stylesheet.
 	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), '2013-08-19' );
+	
+	wp_enqueue_script( 'fau-libs-jquery', get_template_directory_uri() . '/js/libs/jquery-1.8.2.min.js', array(), '1.0', true );
+	wp_enqueue_script( 'fau-libs-plugins', get_template_directory_uri() . '/js/libs/plugins.js', array(), '1.0', true );
+	wp_enqueue_script( 'fau-scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
@@ -118,7 +121,100 @@ function fau_wp_title( $title, $sep ) {
 add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
 
 
+/**
+ * Sets up the WordPress core custom header arguments and settings.
+ *
+ * @uses add_theme_support() to register support for 3.4 and up.
+ * @uses twentythirteen_header_style() to style front-end.
+ * @uses register_default_headers() to set up the bundled header images.
+ *
+ * @since FAU 1.0
+ */
+function fau_custom_header_setup() {
+	$args = array(
+		// Text color and image (empty to use none).
+		'default-image'          => '%s/images/headers/circle.png',
 
+		// Set height and width, with a maximum value for the width.
+		'height'                 => 85,
+		'width'                  => 315,
+
+		// Callbacks for styling the header and the admin preview.
+	'admin-head-callback'    => 'fau_admin_header_style',
+	);
+
+	add_theme_support( 'custom-header', $args );
+
+	/*
+	 * Default custom headers packaged with the theme.
+	 * %s is a placeholder for the theme template directory URI.
+	 */
+	register_default_headers( array(
+		'fau' => array(
+			'url'           => '%s/img/logo-fau.png',
+			'thumbnail_url' => '%s/img/logo-fau.png',
+			'description'   => _x( 'FAU', 'header image description', 'fau' )
+		),
+		'fak-med' => array(
+			'url'           => '%s/img/logo-fak-med.png',
+			'thumbnail_url' => '%s/img/logo-fak-med.png',
+			'description'   => _x( 'FAKMED', 'header image description', 'fau' )
+		),
+		'fak-nat' => array(
+			'url'           => '%s/img/logo-fak-nat.png',
+			'thumbnail_url' => '%s/img/logo-fak-nat.png',
+			'description'   => _x( 'FAKNAT', 'header image description', 'fau' )
+		),
+		'fak-phil' => array(
+			'url'           => '%s/img/logo-fak-phil.png',
+			'thumbnail_url' => '%s/img/logo-fak-phil.png',
+			'description'   => _x( 'FAKPHIL', 'header image description', 'fau' )
+		),
+		'fak-rechtswiwi' => array(
+			'url'           => '%s/img/logo-fak-rechtswiwi.png',
+			'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
+			'description'   => _x( 'FAKRECHTSWIWI', 'header image description', 'fau' )
+		),
+		'fak-tech' => array(
+			'url'           => '%s/img/logo-fak-tech.png',
+			'thumbnail_url' => '%s/img/logo-fak-tech.png',
+			'description'   => _x( 'FAKTECH', 'header image description', 'fau' )
+		),
+	) );
+}
+add_action( 'after_setup_theme', 'fau_custom_header_setup' );
+
+
+/**
+ * Styles the header image displayed on the Appearance > Header admin panel.
+ *
+ * @since Twenty Thirteen 1.0
+ */
+function fau_admin_header_style() {
+	$header_image = get_header_image();
+?>
+	<style type="text/css" id="twentythirteen-admin-header-css">
+	#headimg .home-link {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
+		margin: 0 auto;
+		max-width: 1040px;
+		<?php
+		if ( ! empty( $header_image ) || display_header_text() ) {
+			echo 'min-height: 230px;';
+		} ?>
+		width: 100%;
+	}
+	#headimg h1,
+	#headimg h2,
+	.displaying-header-text {
+		display: none
+	}
+	
+	</style>
+<?php
+}
 
 
 

@@ -5986,7 +5986,7 @@ a.badge:focus {
 /* styles FAU */
 
 
-li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('../img/list-arrow.png') no-repeat left 2px;}
+li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
 
 #meta	{ background: #e3e6e8;}
 
@@ -5999,11 +5999,12 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}
 #nav li.level1	{ display: inline-block; margin: 0; padding: 0; margin-right: 10px;}
 #nav li.level1 a {display: inline-block; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
-#nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('../img/caret-down.png') no-repeat right 12px;}
+#nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px;}
 #nav li.level1 a:hover, #nav li.active a, #nav li.level1:hover a	{ background-color: #003366; color: #fff; }
 #nav li.has-sub a:hover, #nav li.has-sub.active, #nav li.has-sub:hover a { background-position: right -28px;}
 
 #nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 150px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
+body.admin-bar #nav .nav-flyout { top: 168px;}
 #nav li.level1:hover .nav-flyout	{ display: block;}
 
 #nav ul.level2	{ list-style: none; margin: 0; padding:0; -webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px;}
@@ -6014,7 +6015,7 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 #nav-toggle	{ position: absolute; top: 45px; right: 15px; width: 25px;}
 #nav-toggle div	{ height: 3px; background: #003366; margin-bottom: 3px; }
 
-#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('../img/hero-back-blue.jpg') no-repeat center top;}
+#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0;}
 #hero a		{ color: #fff;}
@@ -6032,7 +6033,7 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 .flex-direction-nav li { background: none; padding: 0; margin: 0;}
 .flex-pauseplay { position: absolute; z-index: 21; bottom: 62px; right: 30px;}
 
-.flex-direction-nav a, .flex-pauseplay a { display: block; background-color: #fff; background-color: rgba(255,255,255,0.5); background-image: url('../img/play-pause.png'); background-repeat: no-repeat; height: 32px; width: 32px; text-indent: -9999em;}
+.flex-direction-nav a, .flex-pauseplay a { display: block; background-color: #fff; background-color: rgba(255,255,255,0.5); background-image: url('img/play-pause.png'); background-repeat: no-repeat; height: 32px; width: 32px; text-indent: -9999em;}
 
 .flex-prev		{ position: absolute; top: 0; right: 68px;}
 .flex-next		{ position: absolute; top: 0; right: 0;}
@@ -6066,6 +6067,8 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 	#nav { margin: 10px 0;}
 	
 	#nav .nav-flyout { top: 190px;}
+	body.admin-bar #nav .nav-flyout { top: 218px;}
+	
 }
 
 @media (max-width: 767px) {
@@ -6098,6 +6101,7 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 	#nav li.level2 a {padding: 5px 0 !important;}
 	#nav li.level2 a:hover {background: #336699;}
 	#nav .nav-flyout { position: relative; top: 0; left: 0; right: 0; padding: 10px 0;}
+	body.admin-bar #nav .nav-flyout { top: 0;}
 	#nav ul.level2	{ -webkit-column-count: 1; -webkit-column-gap: 0; -moz-column-count: 1; -moz-column-gap: 0; column-count: 1; column-gap: 0; margin: 0 !important;}
 	
 	#footer-nav li {display: block;}

@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="span3">
-					<p><img src="img/logo-fau-inverse.png"></p>
+					<p><img src="<?php bloginfo('template_directory'); ?>/img/logo-fau-inverse.png"></p>
 				</div>
 				<div class="span3">
 					<p>
