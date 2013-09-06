@@ -5985,6 +5985,15 @@ a.badge:focus {
 
 /* styles FAU */
 
+a { color: #003366;}
+a:hover { color: #225588;}
+
+
+
+h2		{ margin: 0; padding: 30px 0 20px 0;}
+h2.small {font-size: 20px;}
+
+p		{ margin: 0; padding: 4px 0 8px 0;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
 
@@ -6004,7 +6013,7 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 #nav li.has-sub a:hover, #nav li.has-sub.active, #nav li.has-sub:hover a { background-position: right -28px;}
 
 #nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 150px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
-body.admin-bar #nav .nav-flyout { top: 168px;}
+body.admin-bar #nav .nav-flyout { top: 178px;}
 #nav li.level1:hover .nav-flyout	{ display: block;}
 
 #nav ul.level2	{ list-style: none; margin: 0; padding:0; -webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px;}
@@ -6015,7 +6024,12 @@ body.admin-bar #nav .nav-flyout { top: 168px;}
 #nav-toggle	{ position: absolute; top: 45px; right: 15px; width: 25px;}
 #nav-toggle div	{ height: 3px; background: #003366; margin-bottom: 3px; }
 
+.breadcrumbs { color: #fff; padding: 10px 0;}
+.breadcrumbs span { padding: 0 5px;}
+
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
+#hero.hero-small	{ background-position: center center;}
+.hero-small h1	{ padding: 30px 0 10px 0;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0;}
 #hero a		{ color: #fff;}
@@ -6067,7 +6081,7 @@ body.admin-bar #nav .nav-flyout { top: 168px;}
 	#nav { margin: 10px 0;}
 	
 	#nav .nav-flyout { top: 190px;}
-	body.admin-bar #nav .nav-flyout { top: 218px;}
+	body.admin-bar #nav .nav-flyout { top: 228px;}
 	
 }
 

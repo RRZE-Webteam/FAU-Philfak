@@ -53,15 +53,19 @@ function fau_setup() {
 //	) );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'meta', __( 'Meta', 'fau' ) );
-	register_nav_menu( 'main-menu', __( 'Main Menu', 'fau' ) );
+	register_nav_menu( 'meta', __( 'Meta-Navigation', 'fau' ) );
+	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
+	register_nav_menu( 'quicklinks-1', __( 'Quicklinks 1', 'fau' ) );
+	register_nav_menu( 'quicklinks-2', __( 'Quicklinks 2', 'fau' ) );
+	register_nav_menu( 'quicklinks-3', __( 'Quicklinks 3', 'fau' ) );
+	register_nav_menu( 'quicklinks-4', __( 'Quicklinks 4', 'fau' ) );
 	
 	/*
 	 * This theme uses a custom image size for featured images, displayed on
 	 * "standard" posts and pages.
 	 */
-//	add_theme_support( 'post-thumbnails' );
-//	set_post_thumbnail_size( 604, 270, true );
+	add_theme_support( 'post-thumbnails' );
+//	set_post_thumbnail_size( 300, 150, false );
 
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -219,12 +223,48 @@ function fau_admin_header_style() {
 
 
 /**
+ * Registers our main widget area and the front page widget areas.
+ *
+ * @since FAU 1.0
+ */
+function fau_widgets_init() {
+	register_sidebar( array(
+		'name' => __( 'Startseite rechts', 'fau' ),
+		'id' => 'sidebar-front-right',
+		'description' => __( 'Erscheint auf der Startseite rechts neben den News', 'fau' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+}
+add_action( 'widgets_init', 'fau_widgets_init' );
+
+
+/**
  * Navigation Menu template functions
  *
  * @package WordPress
  * @subpackage FAU
  * @since FAU 1.0
  */
+
+
+function add_has_children_to_nav_items( $items )
+{
+    $parents = wp_list_pluck( $items, 'menu_item_parent');
+    $out     = array ();
+
+    foreach ( $items as $item )
+    {
+        in_array( $item->ID, $parents ) && $item->classes[] = 'has-sub';
+        $out[] = $item;
+    }
+    return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
+
 
 class Walker_Main_Menu extends Walker_Nav_Menu
 {
@@ -249,6 +289,8 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
 		$classes[] = 'level' . $level;
+	
+	//	if($level == 1) $classes[] = 'has-sub';
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
@@ -284,3 +326,10 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 	}
 }
 
+
+function fau_get_menu_name($location){
+	if(!has_nav_menu($location)) return false;
+	$menus = get_nav_menu_locations();
+	$menu_title = wp_get_nav_menu_object($menus[$location])->name;
+	return $menu_title;
+}

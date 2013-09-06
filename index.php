@@ -16,21 +16,50 @@
 
 get_header(); ?>
 
+	<?php get_template_part('hero', 'category'); ?>
+
 	<div id="content">
 		<div class="container">
-		<?php if ( have_posts() ) : ?>
+		
+			<div class="row">
+				<div class="span8">
+					
+					<?php while ( have_posts() ) : the_post(); ?>
+						<?php if($i > 0): ?>
+							<h2 class="small">
+						<?php else: ?>
+							<h2>
+						<?php endif; ?>
+							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</h2>
+					  	
+						<div class="row">
+							<?php if(has_post_thumbnail( $post->ID )): ?>
+							<div class="span3">
+								<?php the_post_thumbnail(array(300,150)); ?>
+							</div>
+							<div class="span5">
+							<?php else: ?>
+							<div class="span8">
+							<?php endif; ?>
+								<?php the_content(); ?>
+							</div>
+						</div>
+					
+						<?php $i++; ?>
+					<?php endwhile; ?>
+					
+				</div>
+				<div class="span4">
 
-			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+				</div>
+			</div>
+			
 
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
 
 		</div>
 	</div>
+
 
 <?php get_footer(); ?>
