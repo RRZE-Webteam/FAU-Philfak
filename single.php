@@ -21,7 +21,7 @@ get_header(); ?>
 				<div class="span8">
 					
 					<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
-						<?php the_post_thumbnail( array(770, 385) ); ?>
+						<div class="news-image"><?php the_post_thumbnail( array(770, 385) ); ?></div>
 					<?php endif; ?>
 
 					<?php the_content(); ?>

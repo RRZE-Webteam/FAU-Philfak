@@ -5993,9 +5993,13 @@ a:hover { color: #225588;}
 h2		{ margin: 0; padding: 30px 0 20px 0;}
 h2.small {font-size: 20px;}
 
+h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
+
 p		{ margin: 0; padding: 4px 0 8px 0;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
+
+hr		{ height: 59px; display: block; border: none; background: #fff url('img/hr.png') no-repeat center center; background-size: 100%; margin: 20px 0 0 0;}
 
 #meta	{ background: #e3e6e8;}
 
@@ -6004,6 +6008,17 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 #meta-nav li a	{ padding: 10px 0; display: inline-block; color: #003366; font-size: 13px;}
 
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
+
+.menu-faculties {}
+.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; line-height: 14px;}
+.menu-faculties li a {display:block; border-left:8px solid #fff; padding: 5px 0 5px 10px; }
+
+.menu-faculties li.menu-item-142 a { border-color: #ad841f;}
+.menu-faculties li.menu-item-143 a { border-color: #801429;}
+.menu-faculties li.menu-item-144 a { border-color: #00b1c6;}
+.menu-faculties li.menu-item-145 a { border-color: #009775;}
+.menu-faculties li.menu-item-146 a { border-color: #a3acb2;}
+
 
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}
 #nav li.level1	{ display: inline-block; margin: 0; padding: 0; margin-right: 10px;}
@@ -6027,13 +6042,18 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .breadcrumbs { color: #fff; padding: 10px 0;}
 .breadcrumbs span { padding: 0 5px;}
 
-#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
-#hero.hero-small	{ background-position: center center;}
-.hero-small h1	{ padding: 30px 0 10px 0;}
+.subpage-item h3	{ padding: 10px 0 0 0; height: 50px;}
 
-#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0;}
+.news-image	{ margin-bottom: 20px;}
+
+#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
+
+#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0; padding: 0;}
 #hero a		{ color: #fff;}
 #hero ul	{ margin: 0; padding: 0; list-style: none;}
+
+#hero.hero-small	{ background-position: center center;}
+.hero-small h1	{ padding: 30px 0 10px 0 !important;}
 
 .flyout-toggled #hero	{ opacity: 0.3;}
 

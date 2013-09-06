@@ -32,7 +32,7 @@ get_header(); ?>
 				<div class="span3">
 					<?php if(has_nav_menu('quicklinks-1')): ?>
 						<h3><?php echo fau_get_menu_name('quicklinks-1'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-1', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-1', 'container' => false, 'items_wrap' => '<ul class="menu-faculties %2$s">%3$s</ul>' ) ); ?>
 					<?php endif; ?>
 				</div>
 				<div class="span3">

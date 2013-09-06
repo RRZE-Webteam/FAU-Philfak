@@ -5,6 +5,9 @@
  * @since FAU 1.0
  */
 
+require_once('functions-bootstrap.php');
+require_once('functions-shortcodes.php');
+
 /**
  * Sets up theme defaults and registers the various WordPress features that
  * Twenty Thirteen supports.
@@ -268,16 +271,28 @@ add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
 
 class Walker_Main_Menu extends Walker_Nav_Menu
 {
+	private $currentID;
 
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
-		$level = $depth + 2;
-		$output .= "\n$indent<div class=\"nav-flyout\"><div class=\"container\"><div class=\"row\"><div class=\"span4\"><ul class=\"sub-menu level".$level."\">\n";
+		$level = $depth + 2;		
+		$output .= $indent.'<div class="nav-flyout"><div class="container"><div class="row"><div class="span4"><ul class="sub-menu level'.$level.'">';
 	}
 	
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</ul></div></div></div></div>\n";
+		$output .= $indent.'</ul></div>';
+				
+		$output .= '<div class="span4">';
+			$quote = get_post_custom_values("Navigation Zitat", $this->currentID);
+			$output .= $quote[0];
+		$output .= '</div>';
+		
+		$output .= '<div class="span4">';
+			$output .= get_the_post_thumbnail($this->currentID, array(370,185));
+		$output .= '</div>';	
+		
+		$output .= '</div></div></div>';
 	}
 	
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
@@ -290,13 +305,13 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$classes[] = 'menu-item-' . $item->ID;
 		$classes[] = 'level' . $level;
 	
-	//	if($level == 1) $classes[] = 'has-sub';
-
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
 		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+		
+
 
 		$output .= $indent . '<li' . $id . $value . $class_names .'>';
 
@@ -308,6 +323,8 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 
 		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
 
+		if($level == 1) $this->currentID = $item->object_id;		
+		
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
