@@ -25,6 +25,10 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
 			</div>
 			<div class="pull-right">
+				<?php if ( is_active_sidebar( 'language-switcher' ) ) : ?>
+					<?php dynamic_sidebar( 'language-switcher' ); ?>
+				<?php endif; ?>
+			
 				<?php get_search_form();?>
 			</div>
 		</div>

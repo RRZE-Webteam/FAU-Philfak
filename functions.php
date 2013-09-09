@@ -241,6 +241,16 @@ function fau_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
+	
+	register_sidebar( array(
+		'name' => __( 'Sprachwechsler', 'fau' ),
+		'id' => 'language-switcher',
+		'description' => __( 'Sprachwechsler im Header der Seite', 'fau' ),
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '',
+		'after_title' => '',
+	) );
 
 }
 add_action( 'widgets_init', 'fau_widgets_init' );
