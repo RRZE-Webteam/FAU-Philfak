@@ -83,7 +83,7 @@ get_header(); ?>
 							<?php else: ?>
 							<div class="span8">
 							<?php endif; ?>
-								<?php the_content(); ?>
+								<?php the_excerpt(); ?>
 							</div>
 						</div>
 					

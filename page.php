@@ -21,6 +21,8 @@ get_header(); ?>
 		<div class="container">
 
 			<?php the_content(); ?>
+			
+			<?php contutto_pdfbutton(); ?>
 
 		</div>
 	</div>

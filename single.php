@@ -21,6 +21,7 @@ get_header(); ?>
 				<div class="span8">
 					
 					<?php get_template_part('content', 'news-single'); ?>
+					<?php contutto_pdfbutton(); ?>
 					
 				</div>
 			</div>
