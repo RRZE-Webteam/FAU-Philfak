@@ -97,7 +97,7 @@ get_header(); ?>
 					<?php endif; ?>
 				</div>
 			</div>
-			<hr>
+			<div class="hr"><hr></div>
 			
 
 			<?php while ( have_posts() ) : the_post(); ?>

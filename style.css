@@ -1,13 +1,13 @@
 /*
 Theme Name: FAU
-Theme URI: 
+Theme URI: www.fau.de
 Author: medienreaktor GmbH
 Author URI: http://www.medienreaktor.de
 Description: Friedrich-Alexander-Universität Erlangen-Nürnberg
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: 
+Tags: blue
 Text Domain: 
 */
 
@@ -5992,15 +5992,16 @@ p		{ margin: 0; padding: 4px 0 8px 0;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
 
-hr		{ height: 59px; display: block; border: none; background: #fff url('img/hr.png') no-repeat center center; background-size: 100%; margin: 20px 0 0 0;}
+.hr		{ height: 59px; display: block; border: 0px !important; background: #fff url('img/hr.png') no-repeat center center; outline: none; background-size: 100%; margin: 20px 0 0 0;}
+.hr hr {display:none;}
 
 blockquote	{ padding: 0; margin: 0; border: none;}
 
 #meta	{ background: #e3e6e8;}
 
 #meta-nav	{ list-style: none; margin: 0; padding: 5px 0;}
-#meta-nav li	{margin: 0; padding: 0; display: inline-block; margin-right: 8px; background: none;}
-#meta-nav li a	{ padding: 10px 0; display: inline-block; color: #003366; font-size: 13px;}
+#meta-nav li	{margin: 0; padding: 0; display: inline-block; *display:inline; *zoom:1; margin-right: 8px; background: none;}
+#meta-nav li a	{ padding: 10px 0; display: inline-block; *display:inline; *zoom:1; color: #003366; font-size: 13px;}
 
 #meta .searchform	{ padding-top: 10px; margin-bottom: 0; float: right;}
 #meta .searchform label { display:none;}
@@ -6030,7 +6031,7 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 .mlp_language_box ul { margin: 0; padding: 0; position: absolute; z-index: 10; top: 0; right: 0; }
 .mlp_language_box ul li { margin: 0; padding: 0; background: none; display: none; }
 .mlp_language_box ul li.current {display: block;}
-.mlp_language_box ul:hover {-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2);}
+.mlp_language_box ul:hover {-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2); }
 .mlp_language_box ul:hover li {display:block;}
 .mlp_language_box ul li a	{ display: block; text-align: left; text-decoration: none; font-size: 13px; line-height: 20px; height: 20px;padding: 5px 10px; width: 100px; }
 .mlp_language_box ul:hover li a {background:#fff;}
@@ -6051,9 +6052,9 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}
-#nav li.level1	{ display: inline-block; margin: 0; padding: 0; margin-right: 10px;}
-#nav li.level1 a {display: inline-block; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
-#nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px;}
+#nav li.level1	{ display: inline-block; *display:inline; *zoom:1; margin: 0; padding: 0; margin-right: 10px;}
+#nav li.level1 a {display: inline-block; *display:inline; *zoom:1; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-bottom: 10px;}
+#nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px; margin-bottom: 0;}
 #nav li.level1 a:hover, #nav li.active a, #nav li.level1:hover a	{ background-color: #003366; color: #fff; }
 #nav li.has-sub a:hover, #nav li.has-sub.active, #nav li.has-sub:hover a { background-position: right -28px;}
 
@@ -6102,11 +6103,11 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 
 #hero-slides	{ position: relative; top: -20px; margin: 0 auto 0 auto; margin-bottom: -15px; height: 350px; background: #fff; max-width: 1260px; overflow:hidden; -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.5); -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
 #hero-slides .hero-slide img		{ height: 350px; max-width: 1260px; width: 1260px; left: 50%; margin-left: -630px; position:relative; z-index: 5; top: 0; }
-#hero-slides .hero-slide-text { position: absolute; bottom: 30px; z-index: 10; width: 100%;}
-#hero-slides .hero-slide h2	{ color: #fff; background: #003366; display: inline-block; padding: 0 3px; margin: 0; max-width: 600px;}
-#hero-slides .hero-slide p	{ color: #fff; background: #003366; display: inline-block; padding: 0 3px; margin: 2px 0; font-size: 18px; max-width: 600px;}
+#hero-slides .hero-slide-text { position: absolute; bottom: 30px; left: 0; right: 0; z-index: 10; width: 100%;}
+#hero-slides .hero-slide h2	{ color: #fff; background: #003366; display: inline-block; *display:inline; *zoom:1;  padding: 0 3px; margin: 0; max-width: 600px;}
+#hero-slides .hero-slide p	{ color: #fff; background: #003366; display: inline-block; *display:inline; *zoom:1; padding: 0 3px; margin: 2px 0; font-size: 18px; max-width: 600px;}
 
-.flex-direction-nav	{ position: absolute; z-index: 20; bottom: 62px; right: 30px;}
+.flex-direction-nav	{ position: absolute; z-index: 20; bottom: 62px; right: 30px; *bottom: 30px;}
 .flex-direction-nav li { background: none; padding: 0; margin: 0;}
 .flex-pauseplay { position: absolute; z-index: 21; bottom: 62px; right: 30px;}
 
@@ -6134,6 +6135,17 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 #footer-nav		{ list-style:none; margin: 0; padding: 0; text-align:right;}
 #footer-nav li	{ display: inline; margin-left: 8px; background: none; padding-left: 0;}
 #footer-nav li a {color: #fff;}
+
+
+.wp-caption 		{}
+.wp-caption-text 	{}
+.sticky				{}
+.gallery-caption	{}
+.bypostauthor 		{}
+
+.alignright			{text-align:right;}
+.aligncenter		{text-align:center;}
+.alignleft			{text-align:left;}
 
 .hide-desktop	{display:none;}
 
@@ -6173,7 +6185,7 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	#nav	{ margin: 10px 0 0 0 !important; display:none;}
 	#nav.toggled	{ display: block;}
 	#nav li.level1 {display: block; margin: 0; border-bottom: 1px solid #ccc;}
-	#nav li.level1 a { display:block; -webkit-border-radius: 0; padding: 10px 15px !important;}
+	#nav li.level1 a { display:block; -webkit-border-radius: 0; padding: 10px 15px !important; margin-bottom: 0;}
 	#nav li.level2 {background-position: left 6px; margin-left: 20px;}
 	#nav li.level2 a {padding: 5px 0 !important;}
 	#nav li.level2 a:hover {background: #336699;}

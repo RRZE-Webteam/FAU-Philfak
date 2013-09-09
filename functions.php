@@ -11,7 +11,7 @@ require_once('functions-shortcodes.php');
 
 /**
  * Sets up theme defaults and registers the various WordPress features that
- * Twenty Thirteen supports.
+ * FAU supports.
  *
  * @uses load_theme_textdomain() For translation/localization support.
  * @uses add_editor_style() To add Visual Editor stylesheets.
@@ -20,10 +20,17 @@ require_once('functions-shortcodes.php');
  * @uses register_nav_menu() To add support for a navigation menu.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @since Twenty Thirteen 1.0
+ * @since FAU 1.0
  *
  * @return void
  */
+
+/**
+ * Sets up the content width value based on the theme's design.
+ */
+if ( ! isset( $content_width ) )
+	$content_width = 770;
+
 function fau_setup() {
 	/*
 	 * Makes Twenty Thirteen available for translation.
@@ -42,7 +49,7 @@ function fau_setup() {
 //	add_editor_style( array( 'css/editor-style.css', 'fonts/genericons.css', twentythirteen_fonts_url() ) );
 
 	// Adds RSS feed links to <head> for posts and comments.
-//	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'automatic-feed-links' );
 
 	// Switches default core markup for search form, comment form, and comments
 	// to output valid HTML5.
@@ -302,7 +309,7 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 			{
 				$output .= '<blockquote>';
 					$output .= '<p><span class="quote"></span>'.$quote.'</p>';
-					if($author) $output .= '<p class="cite"> – '.$author.'</p>';
+					if($author) $output .= '<p class="cite"> &mdash; '.$author.'</p>';
 				$output .= '</blockquote>';
 			}
 

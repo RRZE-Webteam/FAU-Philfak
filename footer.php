@@ -19,8 +19,8 @@
 				</div>
 				<div class="span3">
 					<p>
-						Friedrich-Alexander-Universität<br>
-						Erlangen-Nürnberg<br>
+						Friedrich-Alexander-Universit&auml;t<br>
+						Erlangen-N&uuml;rnberg<br>
 						Schlossplatz 4<br>
 						91054 Erlangen
 					</p>
