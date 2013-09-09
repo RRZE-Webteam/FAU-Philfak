@@ -8,6 +8,7 @@
 require_once('functions-bootstrap.php');
 require_once('functions-shortcodes.php');
 
+
 /**
  * Sets up theme defaults and registers the various WordPress features that
  * Twenty Thirteen supports.
@@ -32,7 +33,7 @@ function fau_setup() {
 	 * replace to change 'twentythirteen' to the name of your theme in all
 	 * template files.
 	 */
-//	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 
 	/*
 	 * This theme styles the visual editor to resemble the theme style,

@@ -20,11 +20,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="span8">
 					
-					<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
-						<div class="news-image"><?php the_post_thumbnail( array(770, 385) ); ?></div>
-					<?php endif; ?>
-
-					<?php the_content(); ?>
+					<?php get_template_part('content', 'news-single'); ?>
 					
 				</div>
 			</div>

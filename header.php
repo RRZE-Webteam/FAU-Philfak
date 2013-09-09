@@ -21,7 +21,12 @@
 
 	<div id="meta">
 		<div class="container">
-			<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
+			<div class="pull-left">
+				<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
+			</div>
+			<div class="pull-right">
+				<?php get_search_form();?>
+			</div>
 		</div>
 	</div>
 	<div id="header">

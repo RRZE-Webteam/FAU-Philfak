@@ -921,14 +921,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: rgba(82, 168, 236, 0.8);
-  outline: 0;
-  outline: thin dotted \9;
-  /* IE6-9 */
 
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
 input[type="radio"],
@@ -6005,9 +5998,33 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 #meta	{ background: #e3e6e8;}
 
-#meta-nav	{ list-style: none; margin: 0; padding: 0;}
+#meta-nav	{ list-style: none; margin: 0; padding: 5px 0;}
 #meta-nav li	{margin: 0; padding: 0; display: inline-block; margin-right: 8px; background: none;}
 #meta-nav li a	{ padding: 10px 0; display: inline-block; color: #003366; font-size: 13px;}
+
+#meta .searchform	{ padding-top: 10px; margin-bottom: 0;}
+#meta .searchform label { display:none;}
+#meta .searchform input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 5px 10px; width: 150px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #003466; border: none; outline: none; color: #fff;}
+#meta .searchform input[type="text"]:focus { background: #164d82;}
+
+#meta .searchform input[type="submit"] {display:none;}
+
+#meta ::-webkit-input-placeholder,
+#hero ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #c3d5e8;
+}
+#meta :-moz-placeholder,
+#hero :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #c3d5e8;
+}
+#meta ::-moz-placeholder,
+#hero ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #c3d5e8;
+}
+#meta :-ms-input-placeholder,
+#hero :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #c3d5e8;
+}
 
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
@@ -6064,6 +6081,13 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .hero-small h1	{ padding: 30px 0 10px 0 !important;}
 
 .flyout-toggled #hero	{ opacity: 0.3;}
+
+#hero .searchform	{ padding-top: 35px; margin-bottom: 0;}
+#hero .searchform label { color: #fff;}
+#hero .searchform input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 10px; width: 300px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #5586b6; border: none; outline: none; color: #fff;}
+#hero .searchform input[type="text"]:focus { background: #5e91c3;}
+
+#hero .searchform input[type="submit"] {-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 10px 15px; display:block; box-sizing: content-box; height: 20px; color: #444;}
 
 #hero-slides	{ position: relative; top: -20px; margin: 0 auto 0 auto; margin-bottom: -15px; height: 350px; background: #fff; max-width: 1260px; overflow:hidden; -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.5); -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
 #hero-slides .hero-slide img		{ height: 350px; max-width: 1260px; width: 1260px; left: 50%; margin-left: -630px; position:relative; z-index: 5; top: 0; }

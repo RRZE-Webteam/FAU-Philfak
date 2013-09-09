@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#. Text in echo
+#: hero-search.php:19 hero-search.php:25
+msgid "Search"
+msgstr "Search"
+
+#. Text in echo
+#: searchform.php:13
+msgid "Find"
+msgstr "Find"
+
+#. Text in echo
+#: searchform.php:12
+msgid "Searchterm"
+msgstr "Search for …"
