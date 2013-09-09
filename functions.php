@@ -283,12 +283,21 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$indent = str_repeat("\t", $depth);
 		$output .= $indent.'</ul></div>';
 				
-		$output .= '<div class="span4">';
-			$quote = get_post_custom_values("Navigation Zitat", $this->currentID);
-			$output .= $quote[0];
+		$output .= '<div class="span4 hide-mobile">';
+			$quote = get_field('zitat_text', $this->currentID);
+			$author = get_field('zitat_autor', $this->currentID);
+			
+			if($quote)
+			{
+				$output .= '<blockquote>';
+					$output .= '<p><span class="quote"></span>'.$quote.'</p>';
+					if($author) $output .= '<p class="cite"> – '.$author.'</p>';
+				$output .= '</blockquote>';
+			}
+
 		$output .= '</div>';
 		
-		$output .= '<div class="span4">';
+		$output .= '<div class="span4 hide-mobile">';
 			$output .= get_the_post_thumbnail($this->currentID, array(370,185));
 		$output .= '</div>';	
 		
