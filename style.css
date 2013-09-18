@@ -6032,6 +6032,16 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 
 .news-image	{ margin-bottom: 20px;}
 
+#subnav { list-style: none; margin: 0; padding: 0;}
+#subnav li { margin: 0; padding: 0; display: block; margin-bottom: 2px;}
+#subnav ul { list-style: none; margin: 0; padding: 0; display: none;}
+#subnav .current_page_item ul, #subnav .current_page_ancestor ul { display: block;}
+#subnav a { display: block; background: #e3e6e8; padding: 10px 15px; font-size: 15px;}
+#subnav .current_page_item a, #subnav .current_page_ancestor a {background: #003366; color: #fff;}
+#subnav ul li { margin-bottom: 0;}
+#subnav ul li a {padding: 5px 15px; font-size: 13px;}
+#subnav ul .current_page_item a {background: #042343;}
+
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0; padding: 0;}
@@ -6118,6 +6128,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	h1, h2, h3, h4, h5, h6, p, ul, ol { margin-left: 15px !important; margin-right: 15px !important;}
 	
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
+	#content p img {margin: 0;}
+	.news-image img { margin: 0 !important;}
 	
 	#meta {display:none;}
 	
@@ -6128,6 +6140,9 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	#hero-slides .hero-slide img	{ height: 220px; width: 780px; left: 50%; margin-left: -390px;}
 	#hero-slides .hero-slide-text 	{ width: 100%; bottom: 15px;}
 	#hero-slides .hero-slide p		{ display:none;}
+	
+	.breadcrumbs { padding-left: 15px; padding-right: 15px;}
+	
 	
 	.flex-direction-nav, .flex-pauseplay {display:none;}
 	
@@ -6143,6 +6158,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	#nav .nav-flyout { position: relative; top: 0; left: 0; right: 0; padding: 10px 0;}
 	body.admin-bar #nav .nav-flyout { top: 0;}
 	#nav ul.level2	{ -webkit-column-count: 1; -webkit-column-gap: 0; -moz-column-count: 1; -moz-column-gap: 0; column-count: 1; column-gap: 0; margin: 0 !important;}
+	
+	#subnav {display:none;}
 	
 	#footer-nav li {display: block;}
 }
@@ -6161,7 +6178,7 @@ body { padding: 20px 50px;}
 	#hero {background:none; display:none;}
 	#hero.hero-small {display:block;}
 	#hero * { color: #003366 !important;}
-	
+		
 	.container,
 	.navbar-static-top .container,
 	.navbar-fixed-top .container,

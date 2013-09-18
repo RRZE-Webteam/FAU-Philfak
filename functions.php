@@ -377,3 +377,28 @@ function fau_get_menu_name($location){
 	$menu_title = wp_get_nav_menu_object($menus[$location])->name;
 	return $menu_title;
 }
+
+
+
+function get_top_parent_page_id() {
+ 
+    global $post;
+ 
+    $ancestors = $post->ancestors;
+ 
+    // Check if page is a child page (any level)
+    if ($ancestors) {
+ 
+		array_pop($ancestors);
+
+        //  Grab the ID of top-level page from the tree
+        return end($ancestors);
+ 
+    } else {
+ 
+        // Page is the top level, so use  it's own id
+        return $post->ID;
+ 
+    }
+ 
+}
