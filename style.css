@@ -172,57 +172,6 @@ textarea {
   vertical-align: top;
 }
 
-@media print {
-  * {
-    color: #000 !important;
-    text-shadow: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-  thead {
-    display: table-header-group;
-  }
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-  img {
-    max-width: 100% !important;
-  }
-  @page  {
-    margin: 0.5cm;
-  }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
-}
 
 body {
   margin: 0;
@@ -6168,6 +6117,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	
 	h1, h2, h3, h4, h5, h6, p, ul, ol { margin-left: 15px !important; margin-right: 15px !important;}
 	
+	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
+	
 	#meta {display:none;}
 	
 	#logo	{ margin: 15px 15px 0 15px; width: 210px;}
@@ -6194,4 +6145,64 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 	#nav ul.level2	{ -webkit-column-count: 1; -webkit-column-gap: 0; -moz-column-count: 1; -moz-column-gap: 0; column-count: 1; column-gap: 0; margin: 0 !important;}
 	
 	#footer-nav li {display: block;}
+}
+
+
+@media print {
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+body { padding: 20px 50px;}
+
+	#meta, #footer, #nav {display: none;}
+	
+	#hero {background:none; display:none;}
+	#hero.hero-small {display:block;}
+	#hero * { color: #003366 !important;}
+	
+	.container,
+	.navbar-static-top .container,
+	.navbar-fixed-top .container,
+	.navbar-fixed-bottom .container {
+	  width: 940px;
+	}
+	
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
