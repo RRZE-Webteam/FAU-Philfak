@@ -5993,11 +5993,16 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 .menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; line-height: 14px;}
 .menu-faculties li a {display:block; border-left:8px solid #fff; padding: 5px 0 5px 10px; }
 
-.menu-faculties li.menu-item-142 a { border-color: #ad841f;}
-.menu-faculties li.menu-item-143 a { border-color: #801429;}
-.menu-faculties li.menu-item-144 a { border-color: #00b1c6;}
-.menu-faculties li.menu-item-145 a { border-color: #009775;}
-.menu-faculties li.menu-item-146 a { border-color: #a3acb2;}
+.menu-faculties li.menu-item-142 a,
+.menu-faculties li.menu-item-20852 a { border-color: #ad841f;}
+.menu-faculties li.menu-item-143 a,
+.menu-faculties li.menu-item-20853 a { border-color: #801429;}
+.menu-faculties li.menu-item-144 a,
+.menu-faculties li.menu-item-20854 a { border-color: #00b1c6;}
+.menu-faculties li.menu-item-145 a,
+.menu-faculties li.menu-item-20855 a { border-color: #009775;}
+.menu-faculties li.menu-item-146 a,
+.menu-faculties li.menu-item-20856 a { border-color: #a3acb2;}
 
 
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}

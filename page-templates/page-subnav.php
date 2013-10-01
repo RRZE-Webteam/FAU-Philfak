@@ -28,8 +28,6 @@ get_header(); ?>
 				</div>
 				<div class="span9">
 					<?php the_content(); ?>
-
-					<?php contutto_pdfbutton(); ?>
 				</div>
 			</div>
 
