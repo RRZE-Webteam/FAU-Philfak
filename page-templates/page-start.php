@@ -9,10 +9,12 @@
 
 get_header(); ?>
 
+<?php $options = get_option('fau_theme_options', array('start_header_count' => 5, 'start_news_count' => 3)); ?>
+
 	<div id="hero">
 		<div id="hero-slides">
 			
-			<?php $hero_query = new WP_Query('category_name=header&posts_per_page=5'); ?>
+			<?php $hero_query = new WP_Query('category_name=header&posts_per_page='.$options['start_header_count']); ?>
 
 			<?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
 				<div class="hero-slide">
@@ -63,7 +65,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="span8">
 					
-					<?php $news_query = new WP_Query('category_name=news&posts_per_page=3'); ?>
+					<?php $news_query = new WP_Query('tag=startseite&posts_per_page='.$options['start_news_count']); ?>
 					<?php $i = 0; ?>
 					<?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
 						<?php if($i > 0): ?>
