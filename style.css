@@ -5937,7 +5937,7 @@ h2.small {font-size: 20px;}
 
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
 
-p		{ margin: 0; padding: 4px 0 8px 0;}
+p		{ margin: 0; padding: 4px 0 8px 0; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
 
