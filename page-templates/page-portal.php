@@ -39,6 +39,7 @@ get_header(); ?>
 					<div class="span3">
 						<a class="subpage-item" href="<?php the_permalink(); ?>">
 						
+							<?php $id = get_the_ID(); ?>
 							<?php if(has_post_thumbnail($id)): ?>
 								<?php echo get_the_post_thumbnail($id, array(300,150)); ?>
 							<?php endif; ?>
