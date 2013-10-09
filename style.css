@@ -5943,7 +5943,7 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3p
 
 p a, li a {text-decoration:underline;}
 
-#meta .ext-link, #footer .ext-link, #hero .ext-link, #nav .ext-link {padding-right: 0 !important; background: none !important;}
+#meta .pull-left .ext-link, #footer .ext-link, #hero .ext-link, #nav .ext-link {padding-right: 0 !important; background: none !important;}
 
 .hr		{ height: 59px; display: block; border: 0px !important; background: #fff url('img/hr.png') no-repeat center center; outline: none; background-size: 100%; margin: 20px 0 0 0;}
 .hr hr {display:none;}
