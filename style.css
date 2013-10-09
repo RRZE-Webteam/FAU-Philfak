@@ -5941,6 +5941,10 @@ p		{ margin: 0; padding: 4px 0 8px 0; -moz-hyphens: auto; -o-hyphens: auto; -web
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow.png') no-repeat left 2px;}
 
+p a, li a {text-decoration:underline;}
+
+#meta .ext-link, #footer .ext-link, #hero .ext-link, #nav .ext-link {padding-right: 0 !important; background: none !important;}
+
 .hr		{ height: 59px; display: block; border: 0px !important; background: #fff url('img/hr.png') no-repeat center center; outline: none; background-size: 100%; margin: 20px 0 0 0;}
 .hr hr {display:none;}
 
@@ -5950,7 +5954,8 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 #meta-nav	{ list-style: none; margin: 0; padding: 5px 0;}
 #meta-nav li	{margin: 0; padding: 0; display: inline-block; *display:inline; *zoom:1; margin-right: 8px; background: none;}
-#meta-nav li a	{ padding: 10px 0; display: inline-block; *display:inline; *zoom:1; color: #003366; font-size: 13px;}
+#meta-nav li a	{ padding: 10px 0; display: inline-block; *display:inline; *zoom:1; color: #003366; font-size: 13px; text-decoration:none;}
+#meta-nav li a:hover {text-decoration:underline;}
 
 #meta .searchform	{ padding-top: 10px; margin-bottom: 0; float: right;}
 #meta .searchform label { display:none;}
@@ -6098,7 +6103,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 #footer p		{ color: #fff;}
 #footer-nav		{ list-style:none; margin: 0; padding: 0; text-align:right;}
 #footer-nav li	{ display: inline; margin-left: 8px; background: none; padding-left: 0;}
-#footer-nav li a {color: #fff;}
+#footer-nav li a {color: #fff;text-decoration:none;}
+#footer-nav li a:hover {text-decoration: underline;}
 
 
 .wp-caption 		{}
