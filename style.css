@@ -5988,8 +5988,8 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 .mlp_language_box ul:hover {-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2); }
 .mlp_language_box ul:hover li {display:block;}
 .mlp_language_box ul li a	{ display: block; text-align: left; text-decoration: none; font-size: 13px; line-height: 20px; height: 20px;padding: 5px 10px; width: 100px; }
-.mlp_language_box ul:hover li a {background:#fff;}
-.mlp_language_box ul li a:hover { background: #eff1f3;}
+.mlp_language_box ul:hover li a {background:#fff !important;}
+.mlp_language_box ul li a:hover { background: #eff1f3 !important;}
 .mlp_language_box ul li a img {margin-top: -4px;}
 
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
