@@ -6107,6 +6107,15 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 #footer-nav li a:hover {text-decoration: underline;}
 
 
+.widget_rss ul {list-style:none; margin: 0; padding: 0;}
+.widget_rss li {list-style: none; margin: 0; padding: 5px 0;}
+.widget_rss li a {font-weight:bold; text-decoration: none;}
+.widget_rss li a:hover {text-decoration:underline;}
+.widget_rss .rss-date {display:block;}
+.widget_rss .rssSummary {padding: 5px 0; color: #003366;}
+.widget_rss cite {color: #888;}
+
+
 .wp-caption 		{}
 .wp-caption-text 	{}
 .sticky				{}
