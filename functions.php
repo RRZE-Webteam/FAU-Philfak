@@ -334,6 +334,36 @@ function fau_widgets_init() {
 	));
 	
 	register_sidebar( array(
+		'name' => __( 'Bannerbereich', 'fau' ),
+		'id' => 'banner-area',
+		'description' => __( 'Der Bannerbereich unterhalb des Portal-Menüs auf der Startseite', 'fau' ),
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '',
+		'after_title' => '',
+	));
+	
+	register_sidebar( array(
+		'name' => __( 'Social-Media', 'fau' ),
+		'id' => 'social-media',
+		'description' => __( 'Der Social-Media-Bereich', 'fau' ),
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '',
+		'after_title' => '',
+	));
+	
+	register_sidebar( array(
+		'name' => __( 'Bannerwerbung rechts', 'fau' ),
+		'id' => 'banner-ad-right',
+		'description' => __( 'Das Werbebanner rechts', 'fau' ),
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '',
+		'after_title' => '',
+	));
+	
+	register_sidebar( array(
 		'name' => __( 'Sprachwechsler', 'fau' ),
 		'id' => 'language-switcher',
 		'description' => __( 'Sprachwechsler im Header der Seite', 'fau' ),

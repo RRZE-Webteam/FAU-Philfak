@@ -61,7 +61,13 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
-		
+			
+			<?php if ( is_active_sidebar( 'banner-ad-right' ) ) : ?>
+				<div class="banner-ad-right banner-ad">
+					<?php dynamic_sidebar( 'banner-ad-right' ); ?>
+				</div>
+			<?php endif; ?>
+			
 			<div class="row">
 				<div class="span8">
 					
@@ -99,18 +105,26 @@ get_header(); ?>
 					<?php endif; ?>
 				</div>
 			</div>
-			<div class="hr"><hr></div>
-			
 			
 			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
+				<div class="hr"><hr></div>
 				<?php dynamic_sidebar( 'menu-subpages' ); ?>
 			<?php endif; ?>
-
-			<?php /* while ( have_posts() ) : the_post(); ?>
-				
-				<?php the_content(); ?>
-
-			<?php endwhile; // end of the loop. */ ?>
+			
+			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
+				<div class="hr"><hr></div>
+				<?php dynamic_sidebar( 'banner-area' ); ?>
+			<?php endif; ?>
+			
+			<?php if ( is_active_sidebar( 'social-media' ) ) : ?>
+				</div>
+				<div id="social">
+					<div class="container">
+						<?php dynamic_sidebar( 'social-media' ); ?>
+					</div>
+				</div>
+				<div class="container">
+			<?php endif; ?>
 
 		</div>
 	</div>

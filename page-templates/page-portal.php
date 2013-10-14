@@ -23,11 +23,9 @@ get_header(); ?>
 			</div>
 
 <?php endwhile; ?>
-
-			
-			<div class="hr"><hr></div>
 			
 			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
+				<div class="hr"><hr></div>
 				<?php dynamic_sidebar( 'menu-subpages' ); ?>
 			<?php endif; ?>
 
