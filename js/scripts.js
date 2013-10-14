@@ -1,7 +1,7 @@
 $(document).ready(function()
 {	
 	
-	$('.has-sub').hover(function() {
+	$('#header .has-sub').hover(function() {
 		$('body').addClass('flyout-toggled');
 	}, function() {
 		$('body').removeClass('flyout-toggled');

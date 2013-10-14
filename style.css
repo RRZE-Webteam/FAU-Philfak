@@ -6056,17 +6056,6 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .news-meta-categories li a {display:inline-block; background: #eee; text-decoration:none; padding: 3px 5px 2px 5px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
 .news-meta-categories li a:hover, .news-meta-categories li a:focus {color: #fff; background: #003366;}
 
-
-#subnav { list-style: none; margin: 0; padding: 0;}
-#subnav li { margin: 0; padding: 0; display: block; margin-bottom: 2px;}
-#subnav ul { list-style: none; margin: 0; padding: 0; display: none;}
-#subnav .current_page_item ul, #subnav .current_page_ancestor ul { display: block;}
-#subnav a { display: block; background: #e3e6e8; padding: 10px 15px; font-size: 15px;}
-#subnav .current_page_item a, #subnav .current_page_ancestor a {background: #003366; color: #fff;}
-#subnav ul li { margin-bottom: 0;}
-#subnav ul li a {padding: 5px 15px; font-size: 13px;}
-#subnav ul .current_page_item a {background: #042343;}
-
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0; padding: 0;}
@@ -6111,6 +6100,35 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .flex-control-paging { display:none;}
 
 #content		{ padding: 20px 0;}
+
+#content ul.menu, #content ul.menu ul, #content ul.menu li {list-style: none; margin: 0; padding: 0;}
+#content ul.menu a {text-decoration: none; display: block; height: 18px; line-height: 18px; padding: 6px 0; background: #e3e6e8; border-bottom: 1px solid #fff; padding-left: 15px; padding-right: 15px;}
+#content ul.menu a:hover { background: #fff;}
+#content ul.menu ul { display: none;}
+#content ul.menu .current_page_item a, #content ul.menu .current_page_ancestor a {background: #003366; color: #fff; border: none;}
+#content ul.menu .current_page_item a:hover, #content ul.menu .current_page_ancestor a:hover {background: #0a2948;}
+#content ul.menu .current_page_item > ul, #content ul.menu .current_page_ancestor > ul { display: block;}
+#content ul.menu .current_page_item > a, #content ul.menu .current_page_ancestor > a {font-weight:bold;}
+
+#content ul.menu li li a {padding-left: 25px;}
+#content ul.menu li li li a {padding-left: 35px;}
+
+#content ul.menu li .current_page_item > a { background: #0a2948;}
+
+/*
+#content ul.menu { list-style: none; margin: 0; padding: 0;}
+#content ul.menu li { margin: 0; padding: 0; display: block; margin-bottom: 2px;}
+#content ul.menu ul { list-style: none; margin: 0; padding: 0; display: none;}
+#content ul.menu .current_page_item > ul, #content ul.menu .current_page_ancestor > ul { display: block;}
+#content ul.menu a { display: block; background: #e3e6e8; padding: 10px 15px; font-size: 15px; text-decoration: none;}
+#content ul.menu .current_page_item a, #content ul.menu .current_page_ancestor a {background: #003366; color: #fff;}
+#content ul.menu .current_page_item > a, #content ul.menu .current_page_ancestor > a {font-weight:bold;}
+#content ul.menu li { margin-bottom: 0;}
+#content ul.menu li a {padding: 5px 15px; font-size: 13px;}
+#content ul.menu li li a {padding-left: 25px;}
+#content ul.menu li li li a {padding-left: 35px;}
+#content ul.menu .current_page_item a {background: #003366;}
+*/
 
 #social			{ background: #f0f0f0; padding: 20px 0; margin-bottom: -30px; margin-top: 30px;}
 
