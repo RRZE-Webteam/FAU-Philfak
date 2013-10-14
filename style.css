@@ -6132,8 +6132,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .widget_rss cite {color: #888;}
 
 .person h2 { padding-bottom: 10px;}
-.person h3 { padding-bottom: 0; padding-top: 10px;}
-.person h4 {padding-top: 5px;}
+.person h3 { padding-bottom: 0; padding-top: 10px; font-weight:bold;}
+.person h4 {padding-top: 5px; font-weight: normal;}
 
 .person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
 .person-info-phone {background-image: url('img/icon-phone.png');}

@@ -17,6 +17,10 @@ get_header(); ?>
 		<div class="container">
 
 			<div class="row">
+			
+				<?php $content_span = 12; ?>
+				<?php if ( is_active_sidebar( 'menu-subnav' ) ) $content_span -= 3; ?>
+				<?php if ( is_active_sidebar( 'sidebar-right' ) ) $content_span -= 3; ?>
 				
 				<?php if ( is_active_sidebar( 'menu-subnav' ) ) : ?>
 					<div class="span3">
@@ -24,9 +28,15 @@ get_header(); ?>
 					</div>
 				<?php endif; ?>
 				
-				<div class="span9">
+				<div class="span<?php echo $content_span; ?>">
 					<?php the_content(); ?>
 				</div>
+				
+				<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
+					<div class="span3">
+						<?php dynamic_sidebar( 'sidebar-right' ); ?>
+					</div>
+				<?php endif; ?>
 			</div>
 
 		</div>

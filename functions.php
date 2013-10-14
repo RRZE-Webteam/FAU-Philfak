@@ -299,9 +299,9 @@ function fau_admin_header_style() {
  */
 function fau_widgets_init() {
 	register_sidebar( array(
-		'name' => __( 'Startseite rechts', 'fau' ),
-		'id' => 'sidebar-front-right',
-		'description' => __( 'Erscheint auf der Startseite rechts neben den News', 'fau' ),
+		'name' => __( 'Sidebar rechts', 'fau' ),
+		'id' => 'sidebar-right',
+		'description' => __( 'Erscheint allen Seiten rechts', 'fau' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
@@ -319,7 +319,7 @@ function fau_widgets_init() {
 	));
 	
 	register_sidebar( array(
-		'name' => __( 'Subnavigation', 'fau' ),
+		'name' => __( 'Subnavigation links', 'fau' ),
 		'id' => 'menu-subnav',
 		'description' => __( 'Die Subnavigation im linken Bereich der Seite', 'fau' ),
 		'before_widget' => '',
