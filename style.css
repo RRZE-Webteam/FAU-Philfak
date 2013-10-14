@@ -5938,6 +5938,7 @@ h2		{ margin: 0; padding: 30px 0 20px 0;}
 h2.small {font-size: 20px;}
 
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
+h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 14px; line-height: 18px;}
 
 p		{ margin: 0; padding: 4px 0 8px 0; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
@@ -6130,6 +6131,14 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .widget_rss .rssSummary {padding: 5px 0; color: #003366;}
 .widget_rss cite {color: #888;}
 
+.person h2 { padding-bottom: 10px;}
+.person h3 { padding-bottom: 0; padding-top: 10px;}
+.person h4 {padding-top: 5px;}
+
+.person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
+.person-info-phone {background-image: url('img/icon-phone.png');}
+.person-info-fax {background-image: url('img/icon-fax.png');}
+.person-info-email {background-image: url('img/icon-email.png');}
 
 .wp-caption 		{}
 .wp-caption-text 	{}
