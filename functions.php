@@ -11,7 +11,6 @@ require_once('functions/menu-helpers.php');
 require_once('functions/menu-main.php');
 
 
-
 /**
  * Sets up theme defaults and registers the various WordPress features that
  * FAU supports.
@@ -36,12 +35,8 @@ if ( ! isset( $content_width ) )
 
 function fau_setup() {
 	/*
-	 * Makes Twenty Thirteen available for translation.
+	 * Makes FAU available for translation.
 	 *
-	 * Translations can be added to the /languages/ directory.
-	 * If you're building a theme based on Twenty Thirteen, use a find and
-	 * replace to change 'twentythirteen' to the name of your theme in all
-	 * template files.
 	 */
 	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 
