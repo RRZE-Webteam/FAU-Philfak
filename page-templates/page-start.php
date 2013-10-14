@@ -101,12 +101,16 @@ get_header(); ?>
 			</div>
 			<div class="hr"><hr></div>
 			
+			
+			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
+				<?php dynamic_sidebar( 'menu-subpages' ); ?>
+			<?php endif; ?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php /* while ( have_posts() ) : the_post(); ?>
 				
 				<?php the_content(); ?>
 
-			<?php endwhile; // end of the loop. ?>
+			<?php endwhile; // end of the loop. */ ?>
 
 		</div>
 	</div>

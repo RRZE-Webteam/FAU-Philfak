@@ -27,33 +27,9 @@ get_header(); ?>
 			
 			<div class="hr"><hr></div>
 			
-			<div class="row">
-			
-			<?php 
-				$subpages = get_field('unterseiten'); 
-				
-				if($subpages):
-				
-					foreach($subpages as $post):
-					?>
-					<div class="span3">
-						<a class="subpage-item" href="<?php the_permalink(); ?>">
-						
-							<?php $id = get_the_ID(); ?>
-							<?php if(has_post_thumbnail($id)): ?>
-								<?php echo get_the_post_thumbnail($id, array(300,150)); ?>
-							<?php endif; ?>
-							<h3><?php the_title(); ?></h3>
-						</a>
-					</div>					
-					<?php
-					
-					endforeach;
-				
-				endif;
-			?>
-			
-			</div>
+			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
+				<?php dynamic_sidebar( 'menu-subpages' ); ?>
+			<?php endif; ?>
 
 		</div>
 	</div>
