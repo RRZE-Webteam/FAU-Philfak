@@ -5929,7 +5929,7 @@ a.badge:focus {
 
 body, html {overflow-x:hidden;}
 
-.container {position: relative; }
+#content .container {position: relative; }
 
 a { color: #003366;}
 a:hover { color: #225588;}
@@ -6046,6 +6046,15 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .subpage-item h3	{ padding: 10px 0 0 0; height: 50px;}
 
 .news-image	{ margin-bottom: 20px;}
+
+.news-meta {border-top: 1px solid #eee; padding: 5px 0; color: #888; text-align: right;}
+.news-meta-date {display:inline-block; margin-right: 10px;}
+.news-meta-categories {display:inline-block;}
+.news-meta-categories ul {list-style:none; margin: 0; padding: 0;}
+.news-meta-categories li {margin: 0 0 2px 0; padding: 0;}
+.news-meta-categories li a {display:inline-block; background: #eee; text-decoration:none; padding: 3px 5px 2px 5px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.news-meta-categories li a:hover, .news-meta-categories li a:focus {color: #fff; background: #003366;}
+
 
 #subnav { list-style: none; margin: 0; padding: 0;}
 #subnav li { margin: 0; padding: 0; display: block; margin-bottom: 2px;}
