@@ -74,8 +74,10 @@ function fau_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
-//	set_post_thumbnail_size( 300, 150, false );
+	set_post_thumbnail_size( 300, 150, false );
 
+	add_image_size( 'teaser-thumb', $options['teaser-thumbnail_width'], $options['teaser-thumbnail_height'], $options['teaser-thumbnail_crop'] ); //300 pixels wide (and unlimited height)
+	
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
 }
