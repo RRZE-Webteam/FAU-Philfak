@@ -5275,7 +5275,7 @@ a.badge:focus {
 }
 
 
-
+/*
 @media (min-width: 1200px) {
   .row {
     margin-left: -30px;
@@ -5451,7 +5451,7 @@ a.badge:focus {
     margin-left: 0;
   }
 }
-
+*/
 @media (min-width: 768px) and (max-width: 979px) {
   .row {
     margin-left: -20px;
@@ -6139,7 +6139,7 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 #footer-nav li a {color: #fff;text-decoration:none;}
 #footer-nav li a:hover {text-decoration: underline;}
 
-.banner-ad-right { background: #ef7d00; width: 120px; height: 600px; position: absolute; top: 30px; right: -120px;}
+.banner-ad-right { background: #ef7d00; width: 120px; height: 600px; position: absolute; top: 30px; right: -140px;}
 
 .widget_rss ul {list-style:none; margin: 0; padding: 0;}
 .widget_rss li {list-style: none; margin: 0; padding: 5px 0;}
