@@ -6101,6 +6101,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 
 #content		{ padding: 20px 0;}
 
+#content img	{-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 1px 2px rgba(0,0,0,0.3);}
+
 #content ul.menu, #content ul.menu ul, #content ul.menu li {list-style: none; margin: 0; padding: 0;}
 #content ul.menu a {text-decoration: none; display: block; height: 18px; line-height: 18px; padding: 6px 0; background: #e3e6e8; border-bottom: 1px solid #fff; padding-left: 15px; padding-right: 15px;}
 #content ul.menu a:hover { background: #fff;}
