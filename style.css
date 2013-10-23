@@ -6017,7 +6017,7 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}
-#nav li.level1	{ display: inline-block; *display:inline; *zoom:1; margin: 0; padding: 0; margin-right: 10px;}
+#nav li.level1	{ display: inline-block; *display:inline; *zoom:1; margin: 0; padding: 0; margin-right: 0;}
 #nav li.level1 a {display: inline-block; *display:inline; *zoom:1; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-bottom: 10px;}
 #nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px; margin-bottom: 0;}
 #nav li.level1 a:hover, #nav li.active a, #nav li.level1:hover a	{ background-color: #003366; color: #fff; }
@@ -6044,7 +6044,11 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .breadcrumbs { color: #fff; padding: 10px 0;}
 .breadcrumbs span { padding: 0 5px;}
 
-.subpage-item h3	{ padding: 10px 0 0 0; height: 50px;}
+.subpages-menu .sub-menu { list-style:none; margin: 0 0 20px 0; padding: 0;}
+.subpages-menu .sub-menu li {font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow-blue.png') no-repeat left 2px;}
+.subpages-menu .sub-menu a { text-decoration: none;}
+.subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: underline;}
+.subpage-item h3	{ padding: 10px 0 10px 0; }
 
 .news-image	{ margin-bottom: 20px;}
 
