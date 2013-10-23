@@ -62,7 +62,8 @@ function fau_setup() {
 //	) );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'meta', __( 'Meta-Navigation', 'fau' ) );
+	register_nav_menu( 'meta', __( 'Meta-Navigation oben', 'fau' ) );
+	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
 	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
 	register_nav_menu( 'quicklinks-1', __( 'Quicklinks 1', 'fau' ) );
 	register_nav_menu( 'quicklinks-2', __( 'Quicklinks 2', 'fau' ) );

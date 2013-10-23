@@ -26,7 +26,7 @@
 					</p>
 				</div>
 				<div class="span6">
-					<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="footer-nav" class="%2$s">%3$s</ul>' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'meta-footer', 'container' => false, 'items_wrap' => '<ul id="footer-nav" class="%2$s">%3$s</ul>' ) ); ?>
 				</div>
 			</div>
 		</div>
