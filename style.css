@@ -6048,7 +6048,10 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .subpages-menu .sub-menu li {font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow-blue.png') no-repeat left 2px;}
 .subpages-menu .sub-menu a { text-decoration: none;}
 .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: underline;}
+.subpages-menu .ext-link h3 {display:inline-block; *display:inline; *zoom:1;background: url('img/ext-icon-19.png') no-repeat 100% 50%; padding-right: 15px;}
+.subpages-menu .ext-link h3:hover {text-decoration: underline;}
 .subpage-item h3	{ padding: 10px 0 10px 0; }
+
 
 .news-image	{ margin-bottom: 20px;}
 
