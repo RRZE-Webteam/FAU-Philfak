@@ -5935,7 +5935,7 @@ a { color: #003366;}
 a:hover { color: #225588;}
 
 h2		{ margin: 0; padding: 30px 0 20px 0;}
-h2.small {font-size: 20px;}
+h2.small {font-size: 20px; line-height: 24px;}
 
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
 h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 14px; line-height: 18px;}
@@ -6001,33 +6001,34 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
 .menu-faculties {}
-.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; line-height: 14px;}
-.menu-faculties li a {display:block; border-left:8px solid #fff; padding: 5px 0 5px 10px; }
+.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 11px; height: 40px; line-height: 40px; border-left:8px solid #fff; vertical-align: center;}
+.menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 5px 0 5px 10px; line-height: 14px; vertical-align: center; }
 
-.menu-faculties li.menu-item-142 a,
-.menu-faculties li.menu-item-20852 a { border-color: #ad841f;}
-.menu-faculties li.menu-item-143 a,
-.menu-faculties li.menu-item-20853 a { border-color: #801429;}
-.menu-faculties li.menu-item-144 a,
-.menu-faculties li.menu-item-20854 a { border-color: #00b1c6;}
-.menu-faculties li.menu-item-145 a,
-.menu-faculties li.menu-item-20855 a { border-color: #009775;}
-.menu-faculties li.menu-item-146 a,
-.menu-faculties li.menu-item-20856 a { border-color: #a3acb2;}
+.menu-faculties li.menu-item-142,
+.menu-faculties li.menu-item-20852 { border-color: #ad841f;}
+.menu-faculties li.menu-item-143,
+.menu-faculties li.menu-item-20853 { border-color: #801429;}
+.menu-faculties li.menu-item-144,
+.menu-faculties li.menu-item-20854 { border-color: #00b1c6;}
+.menu-faculties li.menu-item-145,
+.menu-faculties li.menu-item-20855 { border-color: #009775;}
+.menu-faculties li.menu-item-146,
+.menu-faculties li.menu-item-20856 { border-color: #a3acb2;}
 
 
 #nav	{ margin: 66px 0 0 0; padding: 0; list-style: none;}
 #nav li.level1	{ display: inline-block; *display:inline; *zoom:1; margin: 0; padding: 0; margin-right: 0;}
 #nav li.level1 a {display: inline-block; *display:inline; *zoom:1; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-bottom: 10px;}
 #nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px; margin-bottom: 0;}
-#nav li.level1 a:hover, #nav li.active a, #nav li.level1:hover a	{ background-color: #003366; color: #fff; }
+#nav li.level1:hover a, #nav li.active a	{ background-color: #003366; color: #d6dde4; }
+#nav li.level1 a:hover  {background-color: #003366; color: #fff; }
 #nav li.has-sub a:hover, #nav li.has-sub.active, #nav li.has-sub:hover a { background-position: right -28px;}
 
 #nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 150px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
 body.admin-bar #nav .nav-flyout { top: 178px;}
 #nav li.level1:hover .nav-flyout	{ display: block;}
 
-#nav ul.level2	{ list-style: none; margin: 0; padding:0; -webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px;}
+#nav ul.level2	{ list-style: none; margin: 0; padding:0; /*-webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px;*/}
 #nav li.level2	{ margin: 0; padding: 0; padding-left: 20px; padding-bottom: 3px;}
 #nav li.level2 a	{ margin: 0; padding: 0; font-weight: normal; font-size: 15px; background: none !important; font-size: 13px;}
 #nav li.level2 a:hover	{ text-decoration: underline;}
@@ -6044,8 +6045,10 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .breadcrumbs { color: #fff; padding: 10px 0;}
 .breadcrumbs span { padding: 0 5px;}
 
-.subpages-menu .sub-menu { list-style:none; margin: 0 0 20px 0; padding: 0;}
+.subpages-menu {margin-bottom: 20px;}
+.subpages-menu .sub-menu { list-style:none; margin: 0 0 0 0; padding: 0;}
 .subpages-menu .sub-menu li {font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 3px; background: url('img/list-arrow-blue.png') no-repeat left 2px;}
+.subpages-menu .sub-menu li.more {background-image: none; padding-left: 0;}
 .subpages-menu .sub-menu a { text-decoration: none;}
 .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: underline;}
 .subpages-menu .ext-link h3 {display:inline-block; *display:inline; *zoom:1;background: url('img/ext-icon-19.png') no-repeat 100% 50%; padding-right: 15px;}
@@ -6090,6 +6093,7 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .flex-direction-nav	{ position: absolute; z-index: 20; bottom: 62px; right: 30px; *bottom: 30px;}
 .flex-direction-nav li { background: none; padding: 0; margin: 0;}
 .flex-pauseplay { position: absolute; z-index: 21; bottom: 62px; right: 30px;}
+.flex-direction-nav * {outline: none !important;}
 
 .flex-direction-nav a, .flex-pauseplay a { display: block; background-color: #fff; background-color: rgba(255,255,255,0.5); background-image: url('img/play-pause.png'); background-repeat: no-repeat; height: 32px; width: 32px; text-indent: -9999em;}
 
@@ -6159,8 +6163,8 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .widget_rss cite {color: #888;}
 
 .person h2 { padding-bottom: 10px;}
-.person h3 { padding-bottom: 0; padding-top: 10px; font-weight:bold;}
-.person h4 {padding-top: 5px; font-weight: normal;}
+.person h3 { padding-bottom: 5px; padding-top: 10px; font-weight:bold;}
+.person h4 {padding-top: 0; font-weight: normal;}
 
 .person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
 .person-info-phone {background-image: url('img/icon-phone.png');}
