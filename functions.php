@@ -307,8 +307,8 @@ function fau_widgets_init() {
 		'description' => __( 'Erscheint allen Seiten rechts', 'fau' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
 	) );
 	
 	register_sidebar( array(
