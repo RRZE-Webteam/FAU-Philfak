@@ -25,6 +25,11 @@ get_header(); ?>
 				<div class="span8">
 					
 					<?php while ( have_posts() ) : the_post(); ?>
+					
+						<div class="news-meta">
+							<div class="news-meta-date"><?php echo get_the_date(); ?></div>
+							<div class="news-meta-categories"><?php echo get_the_category_list(); ?></div>
+						</div>
 						<?php if($i > 0): ?>
 							<h2 class="small">
 						<?php else: ?>
@@ -32,11 +37,6 @@ get_header(); ?>
 						<?php endif; ?>
 							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h2>
-						
-						<div class="news-meta">
-							<div class="news-meta-date"><?php echo get_the_date(); ?></div>
-							<div class="news-meta-categories"><?php echo get_the_category_list(); ?></div>
-						</div>
 					  	
 						<div class="row">
 							<?php if(has_post_thumbnail( $post->ID )): ?>
