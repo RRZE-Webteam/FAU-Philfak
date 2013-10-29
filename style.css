@@ -5996,9 +5996,10 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 .mlp_language_box ul:hover li {display:block;}
 .mlp_language_box ul li a	{ display: block; text-align: left; text-decoration: none; font-size: 13px; line-height: 20px; height: 20px;padding: 5px 10px; width: 40px; text-transform: uppercase; font-weight: bold; }
 .mlp_language_box ul:hover li a {background-color:#fff !important;}
-.mlp_language_box ul li.current a {background-image: url('img/icon-globe.png'); background-repeat:no-repeat; background-position: 34px center;}
+.mlp_language_box ul li.current a {background-image: url('img/icon-globe.png') !important; background-repeat:no-repeat; background-position: 34px center;}
 .mlp_language_box ul li a:hover { background-color: #eff1f3 !important;}
 .mlp_language_box ul li a img {margin-top: -4px;}
+.mlp_language_box ul li a.ext-link { background-image: none;}
 
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
@@ -6146,6 +6147,9 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 #content ul.menu li li li a {padding-left: 35px;}
 #content ul.menu .current_page_item a {background: #003366;}
 */
+
+#content blockquote { font-style: italic; background: url('img/quote-blue.png') no-repeat left top; margin: 10px 50px; padding-left: 60px; min-height: 50px;}
+#content blockquote p { color: #003366;}
 
 #social			{ background: #f0f0f0; padding: 20px 0; margin-bottom: -30px; margin-top: 30px;}
 
