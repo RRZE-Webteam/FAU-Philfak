@@ -6180,6 +6180,18 @@ body.admin-bar #nav .nav-flyout { top: 178px;}
 .person-info-fax {background-image: url('img/icon-fax.png');}
 .person-info-email {background-image: url('img/icon-email.png');}
 
+.widget_event_widget ul {list-style: none; margin: 0; padding: 0;}
+.widget_event_widget ul li {margin: 0; padding: 10px 0 0 0;}
+.widget_event_widget .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
+.widget_event_widget .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
+.widget_event_widget .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
+.widget_event_widget .event-info { margin-left: 70px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #ddd;}
+.widget_event_widget .event-title	{ font-weight: bold; }
+.widget_event_widget .event-time { color: #003366;}
+.widget_event_widget .event-location {color: #888;}
+.widget_event_widget a {text-decoration:none;}
+.widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
+
 .wp-caption 		{}
 .wp-caption-text 	{}
 .sticky				{}
