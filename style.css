@@ -6004,7 +6004,7 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
 .menu-faculties {}
-.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 11px; height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center;}
+.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center;}
 .menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 14px; vertical-align: center; }
 
 .menu-faculties li.menu-item-142,
