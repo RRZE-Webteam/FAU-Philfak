@@ -19,7 +19,7 @@
 <div class="row">
 	<?php if(has_post_thumbnail( $post->ID )): ?>
 	<div class="span3">
-		<?php the_post_thumbnail(array(300,150)); ?>
+		<?php the_post_thumbnail('post-thumb'); ?>
 	</div>
 	<div class="span5">
 	<?php else: ?>

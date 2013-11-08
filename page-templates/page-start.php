@@ -18,7 +18,7 @@ get_header(); ?>
 
 			<?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
 				<div class="hero-slide">
-					<?php the_post_thumbnail( array(1260,350)); ?>
+					<?php the_post_thumbnail('hero'); ?>
 					<div class="hero-slide-text">
 						<div class="container">
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><br>
@@ -85,7 +85,7 @@ get_header(); ?>
 						<div class="row">
 							<?php if(has_post_thumbnail( $post->ID )): ?>
 							<div class="span3">
-								<?php the_post_thumbnail(array(300,150)); ?>
+								<?php the_post_thumbnail('post-thumb'); ?>
 							</div>
 							<div class="span5">
 							<?php else: ?>
@@ -100,6 +100,29 @@ get_header(); ?>
 					
 				</div>
 				<div class="span4">
+					
+					<?php $topevent_query = new WP_Query('tag=top&posts_per_page=1'); ?>
+					<?php while ($topevent_query->have_posts()) : $topevent_query->the_post(); ?>
+						<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $post->ID); ?></a></h2>
+						<div class="row">
+							<?php if(get_field('topevent_image', $post->ID)): ?>
+								<div class="span2">
+									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $post->ID), 'topevent-thumb'); ?>
+									<img src="<?php echo $image[0]; ?>">
+								</div>
+								<div class="span2">
+							<?php else: ?>
+								<div class="span4">
+							<?php endif; ?>
+								<?php
+									$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
+								?>
+								<div class="topevent-date"><?php echo $date->format('d. M Y'); ?></div>
+								<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
+								</div>
+						</div>
+					<?php endwhile; ?>
+					
 					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
 						<?php dynamic_sidebar( 'sidebar-right' ); ?>
 					<?php endif; ?>
