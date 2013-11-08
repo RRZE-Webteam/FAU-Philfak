@@ -108,7 +108,7 @@ get_header(); ?>
 							<?php if(get_field('topevent_image', $post->ID)): ?>
 								<div class="span2">
 									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $post->ID), 'topevent-thumb'); ?>
-									<img src="<?php echo $image[0]; ?>">
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo $image[0]; ?>"></a>
 								</div>
 								<div class="span2">
 							<?php else: ?>
@@ -117,7 +117,7 @@ get_header(); ?>
 								<?php
 									$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
 								?>
-								<div class="topevent-date"><?php echo $date->format('d. M Y'); ?></div>
+								<div class="topevent-date"><?php echo $date->format('j. F Y'); ?></div>
 								<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
 								</div>
 						</div>
