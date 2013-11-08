@@ -36,7 +36,13 @@ get_header(); ?>
 			
 			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
 				<div class="hr"><hr></div>
-				<?php dynamic_sidebar( 'menu-subpages' ); ?>
+				<?php
+					$widgets = wp_get_sidebars_widgets();
+					$count = count($widgets['menu-subpages']);
+				?>
+				<div class="portal-subpages<?php if($count > 1) echo ' portal-subpages-tabs'; ?>">
+					<?php dynamic_sidebar( 'menu-subpages' ); ?>
+				</div>
 			<?php endif; ?>
 
 		</div>

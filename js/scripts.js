@@ -18,6 +18,31 @@ $(document).ready(function()
 		$('#nav').toggleClass('toggled');
 	});
 	
+	$('.portal-subpages-tabs').each(function() {
+		var tabMenu = '';
+		var $tabs = $(this).find('.portal-subpages-item-title');
+		
+		tabMenu += '<ul class="portal-subpages-tab-menu">';
+		$tabs.each(function()
+		{
+			tabMenu += '<li><a href="'+$(this).attr('href')+'">'+$(this).html()+'</a></li>';
+		});
+		tabMenu += '</ul>';
+		
+		$(this).prepend(tabMenu);
+		
+		$(this).find('.portal-subpages-tab-menu a').bind('click', function(event) {
+			event.preventDefault();
+			$(this).parents('.portal-subpages-tabs').find('.portal-subpages-item').removeClass('portal-subpages-tabs-active').hide();
+			$($(this).attr('href')).addClass('portal-subpages-tabs-active').show();
+			$(this).parents('ul').find('li').removeClass('active');
+			$(this).parents('li').addClass('active');
+		});
+		
+		$(this).find('.portal-subpages-tab-menu li:first-child').addClass('active');
+		$(this).find('.portal-subpages-item:first').addClass('portal-subpages-item-active');
+	});
+	
 	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
 	var mobile = windowWidth < 767;
