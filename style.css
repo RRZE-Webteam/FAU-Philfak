@@ -11,13 +11,15 @@ Tags: blue
 Text Domain: 
 */
 
+
+/*
 @font-face {
     font-family: 'Open Sans';
-    src: url('fonts/OpenSans-Regular-webfont.eot');
-    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
-         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    src: url('fonts/opensans/OpenSans-Regular-webfont.eot');
+    src: url('fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -25,11 +27,11 @@ Text Domain:
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('fonts/OpenSans-Bold-webfont.eot');
-    src: url('fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-Bold-webfont.woff') format('woff'),
-         url('fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    src: url('fonts/opensans/OpenSans-Bold-webfont.eot');
+    src: url('fonts/opensans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-Bold-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
     font-weight: bold;
     font-style: normal;
 
@@ -37,11 +39,11 @@ Text Domain:
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('fonts/OpenSans-BoldItalic-webfont.eot');
-    src: url('fonts/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-BoldItalic-webfont.woff') format('woff'),
-         url('fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
+    src: url('fonts/opensans/OpenSans-BoldItalic-webfont.eot');
+    src: url('fonts/opensans/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-BoldItalic-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
     font-weight: bold;
     font-style: italic;
 
@@ -49,11 +51,11 @@ Text Domain:
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('fonts/OpenSans-Italic-webfont.eot');
-    src: url('fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-Italic-webfont.woff') format('woff'),
-         url('fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    src: url('fonts/opensans/OpenSans-Italic-webfont.eot');
+    src: url('fonts/opensans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-Italic-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
     font-weight: normal;
     font-style: italic;
 
@@ -61,11 +63,11 @@ Text Domain:
 
 @font-face {
     font-family: 'Open Sans Light';
-    src: url('fonts/OpenSans-Light-webfont.eot');
-    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-Light-webfont.woff') format('woff'),
-         url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    src: url('fonts/opensans/OpenSans-Light-webfont.eot');
+    src: url('fonts/opensans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-Light-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -73,15 +75,78 @@ Text Domain:
 
 @font-face {
     font-family: 'Open Sans Light';
-    src: url('fonts/OpenSans-LightItalic-webfont.eot');
-    src: url('fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
-         url('fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
-         url('fonts/OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
+    src: url('fonts/opensans/OpenSans-LightItalic-webfont.eot');
+    src: url('fonts/opensans/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('fonts/opensans/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('fonts/opensans/OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
     font-weight: normal;
     font-style: italic;
 
 }
+*/
+
+
+@font-face {
+    font-family: 'roboto';
+    src: url('fonts/roboto/Roboto-Bold-webfont.eot');
+    src: url('fonts/roboto/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto/Roboto-Bold-webfont.woff') format('woff'),
+         url('fonts/roboto/Roboto-Bold-webfont.ttf') format('truetype'),
+         url('fonts/roboto/Roboto-Bold-webfont.svg#robotobold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}	
+
+@font-face {
+    font-family: 'roboto';
+    src: url('fonts/roboto/Roboto-BoldItalic-webfont.eot');
+    src: url('fonts/roboto/Roboto-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto/Roboto-BoldItalic-webfont.woff') format('woff'),
+         url('fonts/roboto/Roboto-BoldItalic-webfont.ttf') format('truetype'),
+         url('fonts/roboto/Roboto-BoldItalic-webfont.svg#robotobold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('fonts/roboto/Roboto-Italic-webfont.eot');
+    src: url('fonts/roboto/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto/Roboto-Italic-webfont.woff') format('woff'),
+         url('fonts/roboto/Roboto-Italic-webfont.ttf') format('truetype'),
+         url('fonts/roboto/Roboto-Italic-webfont.svg#robotoitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('fonts/roboto/Roboto-Regular-webfont.eot');
+    src: url('fonts/roboto/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto/Roboto-Regular-webfont.woff') format('woff'),
+         url('fonts/roboto/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('fonts/roboto/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'roboto-light';
+    src: url('fonts/roboto/Roboto-Light-webfont.eot');
+    src: url('fonts/roboto/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto/Roboto-Light-webfont.woff') format('woff'),
+         url('fonts/roboto/Roboto-Light-webfont.ttf') format('truetype'),
+         url('fonts/roboto/Roboto-Light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 
@@ -247,7 +312,7 @@ textarea {
 }
 
 html, body, textarea, input {
-	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -6149,7 +6214,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
 
-#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ color: #fff; margin: 10px 0; padding: 0;}
+#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-family: 'roboto-light'; font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
 #hero a		{ color: #fff;}
 #hero ul	{ margin: 0; padding: 0; list-style: none;}
 
@@ -6245,7 +6310,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #logos-menu-prev {position: absolute; z-index: 10; top: 0; left: -40px; display: block; width: 40px; height: 110px; background: #fff url('img/prev-next.png') no-repeat -32px center; text-indent: -9999em; }
 #logos-menu-next {position: absolute; z-index: 10; top: 0; right: -20px; display: block; width: 30px; height: 110px; background: #fff url('img/prev-next.png') no-repeat left center; text-indent: -9999em; }
 
-.banner-ad-right { width: 120px; height: 600px; position: absolute; top: 30px; right: -110px;}
+.banner-ad-right { width: 120px; height: 600px; position: absolute; top: 30px; right: -140px;}
 
 .widget_rss ul {list-style:none; margin: 0; padding: 0;}
 .widget_rss li {list-style: none; margin: 0; padding: 5px 0;}
