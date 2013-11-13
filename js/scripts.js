@@ -44,14 +44,11 @@ $(document).ready(function()
 	});
 	
 	
-	$('#nav').touchMenuHover({
-
-	});
-	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
-	var mobile = windowWidth < 767;
+	var isMobile = windowWidth < 767;
+	var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
-	if( ! mobile )
+	if( ! isMobile )
 	{
 		$('.logos-menu').carouFredSel({
 			responsive: true,
@@ -71,6 +68,24 @@ $(document).ready(function()
 				button: '#logos-menu-next',
 				key: 'next'
 			}
+		});
+	}
+	
+	
+	if(isTouch)
+	{
+		$('#nav > li > a').click(function() {		
+			if($(this).hasClass('clicked-once'))
+			{
+				return true;
+			}
+			else
+			{
+				$('#nav > li > a').removeClass('clicked-once');
+				$(this).addClass('clicked-once');
+				return false;
+			}
+
 		});
 	}
 	
