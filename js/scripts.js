@@ -55,9 +55,17 @@ $(document).ready(function()
 			scroll: 1,
 			padding: 20,
 			items: {
-				width: 220,
+				width: 140,
 			//	height: '30%',	//	optionally resize item-height
-				visible: 4
+				visible: 6
+			},
+			prev: {
+				button: '#logos-menu-prev',
+				key: 'left'
+			},
+			next: {
+				button: '#logos-menu-next',
+				key: 'next'
 			}
 		});
 	}

@@ -81,7 +81,8 @@ function fau_setup() {
 	add_image_size( 'page-thumb', 220, 110, true);
 	add_image_size( 'post-thumb', 220, 110, true);
 	add_image_size( 'person-thumb', 300, 150, true);
-	add_image_size( 'topevent-thumb', 140, 90, true ); 
+	add_image_size( 'topevent-thumb', 140, 90, true); 
+	add_image_size( 'logo-thumb', 140, 110, true);
 	
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
