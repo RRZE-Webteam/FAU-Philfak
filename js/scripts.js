@@ -45,12 +45,7 @@ $(document).ready(function()
 	
 	
 	$('#nav').touchMenuHover({
-<<<<<<< HEAD
 
-=======
-	    'childTag': 'div',
-	    'closeElement': '#nav'
->>>>>>> d0de4e9e21ebba8047a8a09806d31a0b7f674ff7
 	});
 	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
