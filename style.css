@@ -6309,6 +6309,10 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	#nav .nav-flyout { top: 210px;}
 	body.admin-bar #nav .nav-flyout { top: 248px;}
 	
+	#logos-menu-prev { height: 80px; }
+	#logos-menu-next { height: 80px;}
+	
+	
 }
 
 @media (max-width: 767px) {
@@ -6320,11 +6324,25 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	.hide-desktop	{display: block;}
 	
 	h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important;}
-	ul, ol { margin-left: 40px !important; margin-right: 15px !important;}
+	ul, ol { margin-left: 15px !important; margin-right: 15px !important;}
 	
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
 	#content p img {margin: 0;}
 	.news-image img { margin: 0 !important;}
+	
+	#content .subpages-menu .menu-item { margin-bottom: 15px;}
+	#content .subpages-menu .ext-link h3 {display:block;}
+	#content .subpages-menu .subpage-item img {margin-bottom: 0; margin-right: 0;}
+	#content .subpages-menu a.subpage-item {position: relative; display: inline-block;}
+	
+	.person-info,
+	.textwidget,
+	.topevent-date,
+	.topevent-description { margin-left: 15px; margin-right: 15px;}
+	
+	#content .widget_event_widget .event-info {margin-left: 60px;}
+	
+	.logos-menu-nav {display:none;}
 	
 	#meta {display:none;}
 	
@@ -6337,7 +6355,6 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	#hero-slides .hero-slide p		{ display:none;}
 	
 	.breadcrumbs { padding-left: 15px; padding-right: 15px;}
-	
 	
 	.flex-direction-nav, .flex-pauseplay {display:none;}
 	
