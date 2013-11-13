@@ -6391,6 +6391,8 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important;}
 	ul, ol { margin-left: 15px !important; margin-right: 15px !important;}
 	
+	body.admin-bar #nav-toggle {top:85px !important;}
+	
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
 	#content p img {margin: 0;}
 	.news-image img { margin: 0 !important;}
