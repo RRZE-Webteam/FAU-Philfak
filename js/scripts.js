@@ -44,6 +44,10 @@ $(document).ready(function()
 	});
 	
 	
+	$('#nav').touchMenuHover({
+
+	});
+	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
 	var mobile = windowWidth < 767;
 
