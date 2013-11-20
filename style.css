@@ -12,7 +12,7 @@ Text Domain:
 */
 
 
-/*
+
 @font-face {
     font-family: 'Open Sans';
     src: url('fonts/opensans/OpenSans-Regular-webfont.eot');
@@ -84,9 +84,9 @@ Text Domain:
     font-style: italic;
 
 }
-*/
 
 
+/*
 @font-face {
     font-family: 'roboto';
     src: url('fonts/roboto/Roboto-Bold-webfont.eot');
@@ -146,7 +146,7 @@ Text Domain:
     font-style: normal;
 
 }
-
+*/
 
 
 
@@ -312,7 +312,7 @@ textarea {
 }
 
 html, body, textarea, input {
-	font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -920,7 +920,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 label {
@@ -6214,7 +6214,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
 
-#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-family: 'roboto-light'; font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
+#hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
 #hero a		{ color: #fff;}
 #hero ul	{ margin: 0; padding: 0; list-style: none;}
 
