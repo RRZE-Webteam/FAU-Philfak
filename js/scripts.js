@@ -53,11 +53,12 @@ $(document).ready(function()
 		$('.logos-menu').carouFredSel({
 			responsive: true,
 			width: '100%',
-			height: '110px',
+			height: 110,
 			scroll: 1,
 			padding: 20,
 			items: {
 				width: 140,
+				height: 110,
 			//	height: '30%',	//	optionally resize item-height
 				visible: 6
 			},
