@@ -53,6 +53,7 @@ $(document).ready(function()
 		$('.logos-menu').carouFredSel({
 			responsive: true,
 			width: '100%',
+			height: '110px',
 			scroll: 1,
 			padding: 20,
 			items: {
