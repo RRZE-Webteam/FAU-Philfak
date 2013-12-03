@@ -6202,7 +6202,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #content .subpage-item h3	{ padding: 10px 0 10px 0; }
 #content .subpages-menu .ext-icon {position: absolute; top: 0; right: 0; z-index:10; height: 20px; width: 20px; background: #003366 url('img/ext-icon-19-white.png') no-repeat 50% 50%;}
 
-.news-image	{ margin-bottom: 20px;}
+.post-image	{ float:right; margin-bottom: 20px; margin-left: 20px;}
 
 .news-meta {border-bottom: 1px solid #eee; padding: 5px 0; margin-top: 30px; margin-bottom: -20px; color: #888; text-align: right;}
 .news-meta-date {display:inline-block; margin-right: 10px;}
@@ -6372,7 +6372,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	#nav { margin: 10px 0;}
 	
 	#nav .nav-flyout { top: 210px;}
-	body.admin-bar #nav .nav-flyout { top: 248px;}
+	body.admin-bar #nav .nav-flyout { top: 238px;}
 	
 	#logos-menu-prev { height: 80px; }
 	#logos-menu-next { height: 80px;}
@@ -6395,7 +6395,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
 	#content p img {margin: 0;}
-	.news-image img { margin: 0 !important;}
+	.post-image { margin: 0 !important; float: none !important;}
 	
 	#content .subpages-menu .menu-item { margin-bottom: 15px;}
 	#content .subpages-menu .ext-link h3 {display:block;}
