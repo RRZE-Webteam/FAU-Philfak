@@ -91,5 +91,12 @@ $(document).ready(function()
 		});
 	}
 	
+
+	
+	
+	/* responsive tables */
+	
+	$("#content table").wrap('<div class="table-wrapper" />').wrap('<div class="scrollable" />');
+
 }
 );

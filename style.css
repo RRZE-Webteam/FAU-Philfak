@@ -6097,7 +6097,7 @@ p a, li a {text-decoration:underline;}
 blockquote	{ padding: 0; margin: 0; border: none;}
 
 table, table tbody, table tr, table th, table td  {border:0;}
-table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd}
+table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 20px 0; width:100%;}
 table th {background:#eef1f6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
 table th, table td {padding: 5px 10px;}
 table tr:nth-child(odd) td {background:#eef1f6;}
@@ -6399,6 +6399,9 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	
 	body.admin-bar #nav-toggle {top:85px !important;}
 	
+	div.table-wrapper { position: relative; margin-bottom: 20px; overflow: hidden; border-right: 1px solid #ccc; }
+	div.table-wrapper div.scrollable { overflow: scroll; overflow-y: hidden; }
+		
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
 	#content p img {margin: 0;}
 	.post-image { margin: 0 !important; float: none !important;}
@@ -6508,3 +6511,6 @@ body { padding: 20px 50px;}
     page-break-after: avoid;
   }
 }
+
+
+
