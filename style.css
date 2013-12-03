@@ -6084,6 +6084,8 @@ h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 14px; line-height: 18px;}
 p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
 #content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
+#content h2, #content h3, #content h4, #content h5, #content h6 {clear:both;}
+
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
 #content li { margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
 
@@ -6369,6 +6371,10 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .aligncenter		{text-align:center;}
 .alignleft			{text-align:left;}
 
+img.alignleft {float:left; margin-right: 20px; margin-bottom: 20px;}
+img.alignright {float:right; margin-left: 20px; margin-bottom: 20px;}
+img.aligncenter {margin-bottom: 10px;}
+
 .hide-desktop	{display:none;}
 .hidden {display:none;}
 
@@ -6395,7 +6401,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	.hide-desktop	{display: block;}
 	
 	h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important;}
-	ul, ol { margin-left: 15px !important; margin-right: 15px !important;}
+	ul, ol { margin-left: 15px !important; margin-right: 15px !important; padding-left: 25px !important;}
 	
 	body.admin-bar #nav-toggle {top:85px !important;}
 	
@@ -6450,6 +6456,9 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 	#subnav {display:none;}
 	
 	#footer-nav li {display: block;}
+	
+	img.alignleft, img.alignright {float:none; margin: 0;}
+	
 }
 
 
