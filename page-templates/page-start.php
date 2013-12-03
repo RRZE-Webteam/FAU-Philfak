@@ -63,7 +63,7 @@ get_header(); ?>
 		<div class="container">
 			
 			<?php if ( is_active_sidebar( 'banner-ad-right' ) ) : ?>
-				<div class="banner-ad-right banner-ad">
+				<div class="banner-ad-right">
 					<?php dynamic_sidebar( 'banner-ad-right' ); ?>
 				</div>
 			<?php endif; ?>
