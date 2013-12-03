@@ -6379,6 +6379,98 @@ img.aligncenter {margin-bottom: 10px;}
 .hidden {display:none;}
 
 
+
+#content select, #content textarea, #content input[type="text"], #content input[type="password"], #content input[type="datetime"], #content input[type="datetime-local"], #content input[type="date"], #content input[type="month"], #content input[type="time"], #content input[type="week"], #content input[type="number"], #content input[type="email"], #content input[type="url"], #content input[type="search"], #content input[type="tel"], #content input[type="color"] 
+{ width: 290px; padding: 5px 10px;}
+
+#content textarea { height: 100px;}
+
+#content form { border: 1px solid #e2e2e2; padding: 20px;}
+#content label {display:block; float: left; width: 240px; text-align: left; clear:left; padding-top: 5px; margin-right: 20px;}
+
+#content input[type="submit"] {display: inline-block; *display:inline; *zoom: 1; border:none; height: 30px; line-height: 30px; padding: 5px 20px; box-sizing: content-box; -webkit-border-radius: 20px; -moz-border-radius: 20px; -ms-border-radius: 20px; border-radius: 20px; background: #003366; color: #fff; font-weight: bold;}
+
+#content input[type="submit"]:hover, #content input[type="submit"]:focus {background: #195da1;}
+#content input[type="submit"]:active {background:#031f3c;}
+
+div.wpcf7 {
+	margin: 0;
+	padding: 0;
+}
+
+div.wpcf7-response-output {
+	margin: 2em 0.5em 1em;
+	padding: 0.2em 1em;
+}
+
+div.wpcf7-mail-sent-ok {
+	border: 2px solid #398f14;
+}
+
+div.wpcf7-mail-sent-ng {
+	border: 2px solid #ff0000;
+}
+
+div.wpcf7-spam-blocked {
+	border: 2px solid #ffa500;
+}
+
+div.wpcf7-validation-errors {
+	border: 2px solid #f7e700;
+}
+
+span.wpcf7-form-control-wrap {
+	position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	z-index: 100;
+	background: #fff;
+	border: 1px solid #ff0000;
+	font-size: 10pt;
+	width: 280px;
+	padding: 2px;
+}
+
+span.wpcf7-not-valid-tip-no-ajax {
+	color: #f00;
+	font-size: 10pt;
+	display: block;
+}
+
+span.wpcf7-list-item {
+	margin: 5px 20px 0 0; display:inline-block;
+}
+
+#content span.wpcf7-list-item label {float: none; display:inline; width: auto; margin: 0;}
+
+span.wpcf7-list-item input[type="radio"] {
+	margin-top: 2px;
+	vertical-align: top;
+}
+
+.wpcf7-display-none {
+	display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+	border: none;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+div.wpcf7 div.ajax-error {
+	display: none;
+}
+
+div.wpcf7 .placeheld {
+	color: #888;
+}
+
+
 @media (max-width: 979px) {
 	#logo { float: none; }
 	#nav { margin: 10px 0;}
@@ -6458,6 +6550,8 @@ img.aligncenter {margin-bottom: 10px;}
 	#footer-nav li {display: block;}
 	
 	img.alignleft, img.alignright {float:none; margin: 0;}
+	
+	#content form { border: none; padding: 0;}
 	
 }
 
