@@ -6096,6 +6096,12 @@ p a, li a {text-decoration:underline;}
 
 blockquote	{ padding: 0; margin: 0; border: none;}
 
+table, table tbody, table tr, table th, table td  {border:0;}
+table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd}
+table th {background:#eef1f6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
+table th, table td {padding: 5px 10px;}
+table tr:nth-child(odd) td {background:#eef1f6;}
+
 #meta	{ background: #e3e6e8;}
 
 #meta-nav	{ list-style: none; margin: 0; padding: 5px 0;}
