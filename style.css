@@ -6078,8 +6078,8 @@ a:hover { color: #225588;}
 h2		{ font-size: 26px; line-height: 32px; margin: 0; padding: 20px 0 20px 0;}
 h2.small {font-size: 20px; line-height: 24px;}
 
-h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
-h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 14px; line-height: 18px;}
+h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 19px; line-height: 20px;}
+h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 16px; line-height: 18px; font-weight: normal;}
 
 p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
 #content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
@@ -6374,7 +6374,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #content .widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
 
 .wp-caption 		{}
-.wp-caption-text 	{ font-size: 13px;color: #003366;}
+.wp-caption-text 	{ font-size: 13px;color: #003366; padding-left: 10px; padding-right: 10px;}
 .sticky				{}
 .gallery-caption	{}
 .bypostauthor 		{}
