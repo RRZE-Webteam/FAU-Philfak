@@ -6088,6 +6088,10 @@ p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color:
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
 #content li { margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
+#content li strong {color: #003366;}
+#content ul {list-style: circle;}
+#content ul ul {list-style: disc;}
+#content ul ul ul {list-style: square;}
 
 p a, li a {text-decoration:underline;}
 
