@@ -6075,7 +6075,7 @@ body, html {overflow-x:hidden;}
 a { color: #003366;}
 a:hover { color: #225588;}
 
-h2		{ font-size: 26px; line-height: 32px; margin: 0; padding: 30px 0 20px 0;}
+h2		{ font-size: 26px; line-height: 32px; margin: 0; padding: 20px 0 20px 0;}
 h2.small {font-size: 20px; line-height: 24px;}
 
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 16px; line-height: 20px;}
@@ -6085,6 +6085,7 @@ p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color:
 #content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
+
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
 #content li { margin: 0; padding: 4px 0 8px 20px; font-size: 14px; line-height: 22px; color: #444;}
@@ -6272,7 +6273,8 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 
 .flex-control-paging { display:none;}
 
-#content		{ padding: 20px 0;}
+#content		{ padding: 30px 0 20px 0;}
+#content .span3 .widget, #content .span4 .widget { margin-top: 6px;}
 
 #content img	{-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 1px 2px rgba(0,0,0,0.3);}
 

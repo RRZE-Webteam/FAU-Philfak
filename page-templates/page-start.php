@@ -103,24 +103,26 @@ get_header(); ?>
 					
 					<?php $topevent_query = new WP_Query('tag=top&posts_per_page=1'); ?>
 					<?php while ($topevent_query->have_posts()) : $topevent_query->the_post(); ?>
-						<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $post->ID); ?></a></h2>
-						<div class="row">
-							<?php if(get_field('topevent_image', $post->ID)): ?>
-								<div class="span2">
-									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $post->ID), 'topevent-thumb'); ?>
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo $image[0]; ?>"></a>
-								</div>
-								<div class="span2">
-							<?php else: ?>
-								<div class="span4">
-							<?php endif; ?>
-								<?php
-									$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
-									$timestamp = $date->format('U');
-								?>
-								<div class="topevent-date"><?php echo date_i18n('j. F Y', $timestamp); ?></div>
-								<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
-								</div>
+						<div class="widget">
+							<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $post->ID); ?></a></h2>
+							<div class="row">
+								<?php if(get_field('topevent_image', $post->ID)): ?>
+									<div class="span2">
+										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $post->ID), 'topevent-thumb'); ?>
+										<a href="<?php the_permalink(); ?>"><img src="<?php echo $image[0]; ?>"></a>
+									</div>
+									<div class="span2">
+								<?php else: ?>
+									<div class="span4">
+								<?php endif; ?>
+									<?php
+										$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
+										$timestamp = $date->format('U');
+									?>
+									<div class="topevent-date"><?php echo date_i18n('j. F Y', $timestamp); ?></div>
+									<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
+									</div>
+							</div>
 						</div>
 					<?php endwhile; ?>
 					
