@@ -6087,11 +6087,11 @@ p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color:
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
-#content li { margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
+#content li { margin: 0; padding: 4px 0 8px 20px; font-size: 14px; line-height: 22px; color: #444;}
 #content li strong {color: #003366;}
-#content ul {list-style: circle;}
-#content ul ul {list-style: disc;}
-#content ul ul ul {list-style: square;}
+#content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
+#content ul li {background: url('img/li-circle.png') no-repeat left 10px; }
+#content ul ul {margin-left: 20px;}
 
 p a, li a {text-decoration:underline;}
 
@@ -6360,7 +6360,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #content .portal-subpages-tab-menu li.active a { background:#003366; color: #fff;}
 
 #content .widget_event_widget ul {list-style: none; margin: 0; padding: 0 !important;}
-#content .widget_event_widget ul li {margin: 0; padding: 10px 0 0 0; font-size: 12px; line-height: 18px;}
+#content .widget_event_widget ul li {margin: 0; padding: 10px 0 0 0; font-size: 12px; line-height: 18px; background-image: none;}
 #content .widget_event_widget .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
 #content .widget_event_widget .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
 #content .widget_event_widget .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
@@ -6503,7 +6503,9 @@ div.wpcf7 .placeheld {
 	.hide-desktop	{display: block;}
 	
 	h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important;}
-	ul, ol { margin-left: 15px !important; margin-right: 15px !important; padding-left: 25px !important;}
+	ul, ol { margin-left: 15px !important; margin-right: 15px !important; }
+	ul.menu { margin-bottom: 10px !important;}
+	ul.menu, ul.menu ul { margin-left: 0 !important; margin-right: 0 !important;}
 	
 	body.admin-bar #nav-toggle {top:85px !important;}
 	
@@ -6518,6 +6520,8 @@ div.wpcf7 .placeheld {
 	#content .subpages-menu .ext-link h3 {display:block;}
 	#content .subpages-menu .subpage-item img {margin-bottom: 0; margin-right: 0;}
 	#content .subpages-menu a.subpage-item {position: relative; display: inline-block;}
+	
+	table td, table th { padding-left: 15px; padding-right: 15px;}
 	
 	.person-info,
 	.textwidget,
