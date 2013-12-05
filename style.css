@@ -6606,6 +6606,7 @@ body { padding: 40px 80px;}
 
   .container, .row, .span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {width:auto;}
 	
+	.menu {display:none !important;}
 	
   abbr[title]:after {
     content: " (" attr(title) ")";
@@ -6617,9 +6618,13 @@ body { padding: 40px 80px;}
   }
   pre,
   blockquote {
-    border: 1px solid #999;
     page-break-inside: avoid;
+ padding: 10px 70px;
   }
+  blockquote, blockquote p {
+	color: #003366;
+	font-style: italic;
+}
   thead {
     display: table-header-group;
   }
