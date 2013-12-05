@@ -41,6 +41,7 @@ get_header(); ?>
 						<?php dynamic_sidebar( 'sidebar-right' ); ?>
 					</div>
 				<?php endif; ?>
+				
 			</div>
 
 		</div>

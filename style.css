@@ -6081,6 +6081,9 @@ h2.small {font-size: 20px; line-height: 24px;}
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 19px; line-height: 20px;}
 h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 16px; line-height: 18px; font-weight: normal;}
 
+#content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 17px; font-weight:normal;}
+#content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
+
 p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
 #content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
@@ -6580,20 +6583,29 @@ div.wpcf7 .placeheld {
     box-shadow: none !important;
   }
 
-body { padding: 20px 50px;}
+@page  {
+    margin: 2.0cm 2.4cm 2.0cm 2.4cm;
+  }
+
+body { padding: 40px 80px;}
 
 	#meta, #footer, #nav {display: none;}
 	
 	#hero {background:none; display:none;}
 	#hero.hero-small {display:block;}
 	#hero * { color: #003366 !important;}
+	
+	#logo {margin-top: 0;}
 		
 	.container,
 	.navbar-static-top .container,
 	.navbar-fixed-top .container,
 	.navbar-fixed-bottom .container {
-	  width: 940px;
+	  
 	}
+
+  .container, .row, .span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {width:auto;}
+	
 	
   abbr[title]:after {
     content: " (" attr(title) ")";
@@ -6618,9 +6630,7 @@ body { padding: 20px 50px;}
   img {
     max-width: 100% !important;
   }
-  @page  {
-    margin: 0.5cm;
-  }
+  
   p,
   h2,
   h3 {
