@@ -6084,7 +6084,7 @@ h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 14px; line-height: 18px;}
 p		{ margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
 #content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
-#content h2, #content h3, #content h4, #content h5, #content h6 {clear:both;}
+#content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
 li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
 #content li { margin: 0; padding: 4px 0 8px 0; font-size: 14px; line-height: 22px; color: #444;}
@@ -6101,8 +6101,11 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 table, table tbody, table tr, table th, table td  {border:0;}
 table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 20px 0; width:100%;}
 table th {background:#eef1f6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
-table th, table td {padding: 5px 10px;}
+table th, table td {padding: 5px 10px; color: #003366;}
+table td {border-right: 1px solid #fff;}
 table tr:nth-child(odd) td {background:#eef1f6;}
+table a {text-decoration:underline;}
+table a:hover, table a:focus {text-decoration: none;}
 
 #meta	{ background: #e3e6e8;}
 
@@ -6365,7 +6368,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #content .widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
 
 .wp-caption 		{}
-.wp-caption-text 	{}
+.wp-caption-text 	{ font-size: 13px;color: #003366;}
 .sticky				{}
 .gallery-caption	{}
 .bypostauthor 		{}
@@ -6374,9 +6377,9 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .aligncenter		{text-align:center;}
 .alignleft			{text-align:left;}
 
-img.alignleft {float:left; margin-right: 20px; margin-bottom: 20px;}
-img.alignright {float:right; margin-left: 20px; margin-bottom: 20px;}
-img.aligncenter {margin-bottom: 10px;}
+img.alignleft, div.alignleft {float:left; margin-right: 20px; margin-bottom: 20px;}
+img.alignright, div.alignright {float:right; margin-left: 20px; margin-bottom: 20px;}
+img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 
 .hide-desktop	{display:none;}
 .hidden {display:none;}
