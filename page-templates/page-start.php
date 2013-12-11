@@ -148,15 +148,43 @@ get_header(); ?>
 				<?php dynamic_sidebar( 'banner-area' ); ?>
 			<?php endif; ?>
 			
-			<?php if ( is_active_sidebar( 'social-media' ) ) : ?>
-				</div>
-				<div id="social">
-					<div class="container">
-						<?php dynamic_sidebar( 'social-media' ); ?>
+			
+			</div>
+			<div id="social">
+				<div class="container">
+					<div class="row">
+						<?php if($options['socialmedia']): ?>
+							<div class="span3">
+								<h2 class="small"><strong>FAU</strong>Social</h2>
+								<ul class="social">
+									<?php if($options['socialmedia_facebook']): ?>
+										<li class="social social-facebook"><a href="<?php echo $options['socialmedia_facebook']; ?>" target="_blank"><?php echo $options['socialmedia_facebook_text']; ?></a></li>
+									<?php endif; ?>
+									<?php if($options['socialmedia_twitter']): ?>
+										<li class="social social-twitter"><a href="<?php echo $options['socialmedia_twitter']; ?>" target="_blank"><?php echo $options['socialmedia_twitter_text']; ?></a></li>
+									<?php endif; ?>
+									<?php if($options['socialmedia_gplus']): ?>
+										<li class="social social-gplus"><a href="<?php echo $options['socialmedia_gplus']; ?>" target="_blank"><?php echo $options['socialmedia_gplus_text']; ?></a></li>
+									<?php endif; ?>
+									<?php if($options['socialmedia_youtube']): ?>
+										<li class="social social-youtube"><a href="<?php echo $options['socialmedia_youtube']; ?>" target="_blank"><?php echo $options['socialmedia_youtube_text']; ?></a></li>
+									<?php endif; ?>
+									<?php if($options['socialmedia_vimeo']): ?>
+										<li class="social social-vimeo"><a href="<?php echo $options['socialmedia_vimeo']; ?>" target="_blank"><?php echo $options['socialmedia_vimeo_text']; ?></a></li>
+									<?php endif; ?>
+								</ul>
+							</div>
+						<?php endif; ?>
+						<div class="span9">
+							<?php if ( is_active_sidebar( 'social-media' ) ) : ?>
+								<?php dynamic_sidebar( 'social-media' ); ?>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
-				<div class="container">
-			<?php endif; ?>
+			</div>
+			<div class="container">
+			
 
 		</div>
 	</div>

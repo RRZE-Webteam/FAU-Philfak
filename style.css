@@ -6398,7 +6398,18 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 .hide-desktop	{display:none;}
 .hidden {display:none;}
 
-
+#social 		{}
+#social h2		{ color: #a1aab1; padding-top: 0;}
+#social ul.social		{ list-style:none; margin: 0 0 10px 5px; padding: 0;}
+#social ul.social li	{ margin: 0; padding: 0; background: none !important;}
+#social ul.social li a 	{ display:inline-block; *display:inline; *zoom:1; color: #a1aab1; text-decoration:none; height: 20px; line-height: 20px; padding: 5px 0px 5px 30px; background-position: left top;}
+#social ul.social li a:hover, #social ul.social li a:focus {background-position: left bottom; color: #003366;}
+#social ul.social li.social-facebook a 		{background-image: url('img/social-facebook.png');}
+#social ul.social li.social-twitter a 		{background-image: url('img/social-twitter.png');}
+#social ul.social li.social-gplus a 		{background-image: url('img/social-gplus.png');}
+#social ul.social li.social-youtube a 		{background-image: url('img/social-youtube.png');}
+#social ul.social li.social-vimeo a 		{background-image: url('img/social-vimeo.png');}
+#social ul.social li.social-flickr a 		{background-image: url('img/social-flickr.png');}
 
 #content select, #content textarea, #content input[type="text"], #content input[type="password"], #content input[type="datetime"], #content input[type="datetime-local"], #content input[type="date"], #content input[type="month"], #content input[type="time"], #content input[type="week"], #content input[type="number"], #content input[type="email"], #content input[type="url"], #content input[type="search"], #content input[type="tel"], #content input[type="color"] 
 { width: 290px; padding: 5px 10px;}

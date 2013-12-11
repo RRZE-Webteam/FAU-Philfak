@@ -147,14 +147,58 @@ function fau_theme_options_page() {
 		<?php settings_fields( 'fau_options' ); ?>
 	<?php $options = get_option( 'fau_theme_options' ); ?>
 
+	<h3>Startseite</h3>
 	<table class="form-table">
 		<tr valign="top">
-			<th scope="row">Startseite: Anzahl der Slides im Header</th>
+			<th scope="row">Anzahl der Slides im Header</th>
 			<td><input id="fau_theme_options[start_header_count]" class="regular-text" type="text" name="fau_theme_options[start_header_count]" value="<?php esc_attr_e( $options['start_header_count'] ); ?>" /></td>
 		</tr>  
 		<tr valign="top">
-			<th scope="row">Startseite: Anzahl der News</th>
+			<th scope="row">Anzahl der News</th>
 			<td><input id="fau_theme_options[start_news_count]" class="regular-text" type="text" name="fau_theme_options[start_news_count]" value="<?php esc_attr_e( $options['start_news_count'] ); ?>" /></td>
+		</tr>
+	</table>
+	
+	<h3>Social Media</h3>
+	<table class="form-table">
+		<tr valign="top">
+			<th scope="row">Social Media-Links anzeigen</th>
+			<td><input id="fau_theme_options[socialmedia]" class="" type="checkbox" name="fau_theme_options[socialmedia]" value="1" <?php if($options['socialmedia']) echo "checked"; ?> /></td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">Facebook-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_facebook]" class="regular-text" type="text" name="fau_theme_options[socialmedia_facebook]" value="<?php esc_attr_e( $options['socialmedia_facebook'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_facebook_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_facebook_text]" value="<?php esc_attr_e( $options['socialmedia_facebook_text'] ); ?>" />
+			</td>
+		</tr>  
+		<tr valign="top">
+			<th scope="row">Twitter-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_twitter]" class="regular-text" type="text" name="fau_theme_options[socialmedia_twitter]" value="<?php esc_attr_e( $options['socialmedia_twitter'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_twitter_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_twitter_text]" value="<?php esc_attr_e( $options['socialmedia_twitter_text'] ); ?>" />
+			</td>
+		</tr>		
+		<tr valign="top">
+			<th scope="row">Google+-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_gplus]" class="regular-text" type="text" name="fau_theme_options[socialmedia_gplus]" value="<?php esc_attr_e( $options['socialmedia_gplus'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_gplus_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_gplus_text]" value="<?php esc_attr_e( $options['socialmedia_gplus_text'] ); ?>" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">YouTube-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_youtube]" class="regular-text" type="text" name="fau_theme_options[socialmedia_youtube]" value="<?php esc_attr_e( $options['socialmedia_youtube'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_youtube_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_youtube_text]" value="<?php esc_attr_e( $options['socialmedia_youtube_text'] ); ?>" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">Vimeo-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_vimeo]" class="regular-text" type="text" name="fau_theme_options[socialmedia_vimeo]" value="<?php esc_attr_e( $options['socialmedia_vimeo'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_vimeo_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_vimeo_text]" value="<?php esc_attr_e( $options['socialmedia_vimeo_text'] ); ?>" />
+			</td>
 		</tr>
 	</table>
 
