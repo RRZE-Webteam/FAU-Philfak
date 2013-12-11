@@ -6510,7 +6510,7 @@ div.wpcf7 .placeheld {
 	h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important;}
 	ul, ol { margin-left: 15px !important; margin-right: 15px !important; }
 	ul.menu { margin-bottom: 10px !important;}
-	ul.menu, ul.menu ul { margin-left: 0 !important; margin-right: 0 !important;}
+	#content ul.menu, #content ul.menu ul { margin-left: 0 !important; margin-right: 0 !important;}
 	
 	body.admin-bar #nav-toggle {top:85px !important;}
 	
