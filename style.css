@@ -6334,6 +6334,11 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .logos-menu-nav {position: relative;}
 #logos-menu-prev {position: absolute; z-index: 10; top: 0; left: -40px; display: block; width: 40px; height: 110px; background: #fff url('img/prev-next.png') no-repeat -32px center; text-indent: -9999em; }
 #logos-menu-next {position: absolute; z-index: 10; top: 0; right: -20px; display: block; width: 30px; height: 110px; background: #fff url('img/prev-next.png') no-repeat left center; text-indent: -9999em; }
+#logos-menu-playpause	{ display:inline-block; *display:inline; *zoom: 1; background: url('img/play-pause.png') no-repeat left -64px; height: 32px; line-height: 32px; padding-left: 32px;}
+#logos-menu-playpause.paused {background-position: left -96px;}
+#logos-menu-playpause .play {display:none;}
+#logos-menu-playpause.paused .pause {display:none;}
+#logos-menu-playpause.paused .play {display: inline;}
 
 .banner-ad { margin: 0 auto; text-align: center;margin-bottom: 10px;}
 
@@ -6551,7 +6556,7 @@ div.wpcf7 .placeheld {
 	
 	#content .widget_event_widget .event-info {margin-left: 60px;}
 	
-	.logos-menu-nav {display:none;}
+	.logos-menu-nav, #logos-menu-playpause {display:none;}
 	
 	#meta {display:none;}
 	

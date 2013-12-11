@@ -69,6 +69,9 @@ $(document).ready(function()
 			next: {
 				button: '#logos-menu-next',
 				key: 'next'
+			},
+			auto: {
+				button: '#logos-menu-playpause'
 			}
 		});
 	}
