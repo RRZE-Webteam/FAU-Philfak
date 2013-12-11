@@ -308,6 +308,16 @@ function fau_admin_header_style() {
  */
 function fau_widgets_init() {
 	register_sidebar( array(
+		'name' => __( 'Über dem Inhalt', 'fau' ),
+		'id' => 'sidebar-top',
+		'description' => __( 'Erscheint allen Seiten überhalb des Inhalts', 'fau' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
+	) );
+	
+	register_sidebar( array(
 		'name' => __( 'Sidebar rechts', 'fau' ),
 		'id' => 'sidebar-right',
 		'description' => __( 'Erscheint allen Seiten rechts', 'fau' ),

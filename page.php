@@ -19,6 +19,14 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
+		
+			<?php if ( is_active_sidebar( 'sidebar-top' ) ) : ?>
+				<div class="row">	
+					<div class="span12">
+						<?php dynamic_sidebar( 'sidebar-top' ); ?>
+					</div>
+				</div>
+			<?php endif; ?>
 
 			<div class="row">
 			
