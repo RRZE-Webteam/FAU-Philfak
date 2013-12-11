@@ -6166,7 +6166,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
 .menu-faculties {}
-.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; min-height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 .menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 14px; vertical-align: center; }
 
 .menu-faculties li.menu-item-142,
@@ -6231,7 +6231,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .news-meta-categories li a {display:inline-block; background: #eee; text-decoration:none; padding: 3px 5px 2px 5px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
 .news-meta-categories li a:hover, .news-meta-categories li a:focus {color: #fff; background: #003366;}
 
-#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat center top;}
+#hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat right top;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
 #hero a		{ color: #fff;}
