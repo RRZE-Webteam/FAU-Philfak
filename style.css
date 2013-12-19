@@ -6320,7 +6320,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 
 #content ul.tagcloud { list-style: none; margin: 0; padding: 0;}
 #content ul.tagcloud li {list-style: none; background: none; margin: 0 5px 5px 0 !important; padding: 0; display:inline-block; *display:inline; *zoom: 1;}
-#content ul.tagcloud li a {display: inline-block; *display:inline; *zoom: 1; background: #97a5b2 url('img/tags.png') no-repeat 5px center; color: #fff; text-decoration: none; padding: 3px 7px 3px 24px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; font-size:13px;}
+#content ul.tagcloud li a {display: inline-block; *display:inline; *zoom: 1; background: #97a5b2; /*background: #97a5b2 url('img/tags.png') no-repeat 5px center; */color: #fff; text-decoration: none; padding: 2px 7px 2px 7px; /*padding: 3px 7px 3px 24px; */ -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; font-size:13px;}
 #content ul.tagcloud li a:hover, #content ul.tagcloud li a:focus {background-color:#003366; color: #fff;}
 
 #content blockquote { font-style: italic; background: url('img/quote-blue.png') no-repeat left top; margin: 10px 50px; padding-left: 60px; min-height: 50px;}
