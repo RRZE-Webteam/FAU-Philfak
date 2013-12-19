@@ -6076,7 +6076,7 @@ a { color: #003366;}
 a:hover { color: #225588;}
 
 h2		{ font-size: 26px; line-height: 32px; margin: 0; padding: 20px 0 20px 0;}
-h2.small {font-size: 20px; line-height: 24px;}
+h2.small {font-size: 20px; line-height: 24px; padding-top: 26px;}
 
 h3		{ margin: 0; padding: 20px 0 10px 0; font-size: 19px; line-height: 20px;}
 h4		{ margin: 0; padding: 10px 0 10px 0; font-size: 16px; line-height: 18px; font-weight: normal;}
@@ -6096,6 +6096,8 @@ li		{ font-size: 13px; line-height: 20px; padding-left: 20px; padding-bottom: 5p
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
 #content ul li {background: url('img/li-circle.png') no-repeat left 10px; }
 #content ul ul {margin-left: 20px;}
+
+#content .widget li {padding: 2px 0 2px 20px;}
 
 p a, li a {text-decoration:underline;}
 
@@ -6224,12 +6226,14 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .post-image	{ float:right; margin-bottom: 20px; margin-left: 20px;}
 
 .news-meta {border-bottom: 1px solid #eee; padding: 5px 0; margin-top: 30px; margin-bottom: -20px; color: #888; text-align: right;}
-.news-meta-date {display:inline-block; margin-right: 10px;}
+.news-meta-date {display:block; margin: -10px 0 10px 0; color: #003366;}
 .news-meta-categories {display:inline-block;}
 .news-meta-categories ul {list-style:none; margin: 0; padding: 0; display:inline-block;}
 .news-meta-categories li {margin: 0 0 2px 0; padding: 0; display:inline-block;}
 .news-meta-categories li a {display:inline-block; background: #eee; text-decoration:none; padding: 3px 5px 2px 5px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
 .news-meta-categories li a:hover, .news-meta-categories li a:focus {color: #fff; background: #003366;}
+
+.read-more {text-align: right;}
 
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat right top;}
 
@@ -6277,7 +6281,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .flex-control-paging { display:none;}
 
 #content		{ padding: 30px 0 20px 0;}
-#content .span3 .widget, #content .span4 .widget { margin-top: 6px;}
+#content .span3 .widget, #content .span4 .widget { margin-bottom: 6px;}
 
 #content img	{-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 1px 2px rgba(0,0,0,0.3);}
 

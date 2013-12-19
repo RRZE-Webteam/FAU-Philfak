@@ -431,6 +431,16 @@ function fau_widgets_init() {
 		'after_title' => '',
 	) );
 
+	register_sidebar( array(
+		'name' => __( 'News Sidebar', 'fau' ),
+		'id' => 'news-sidebar',
+		'description' => __( 'Sidebar auf der News-Kategorieseite', 'fau' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
+	) );
+
 }
 add_action( 'widgets_init', 'fau_widgets_init' );
 
