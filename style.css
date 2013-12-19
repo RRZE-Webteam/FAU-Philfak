@@ -6345,13 +6345,21 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 .banner-ad-right { width: 120px; height: 600px; position: absolute; top: 30px; right: -140px;}
 .banner-ad-right .banner-ad { margin: 0;}
 
-.widget_rss ul {list-style:none; margin: 0; padding: 0;}
-.widget_rss li {list-style: none; margin: 0; padding: 5px 0;}
-.widget_rss li a {font-weight:bold; text-decoration: none;}
-.widget_rss li a:hover {text-decoration:underline;}
-.widget_rss .rss-date {display:block;}
-.widget_rss .rssSummary {padding: 5px 0; color: #003366;}
-.widget_rss cite {color: #888;}
+#content .widget_rss ul {list-style:none; margin: 0; padding: 0;}
+#content .widget_rss li {list-style: none; margin: 0; padding: 5px 0; background: none;}
+#content .widget_rss li a {font-weight:bold; text-decoration: none;}
+#content .widget_rss li a:hover {text-decoration:underline;}
+#content .widget_rss .rss-date {display:block;}
+#content .widget_rss .rssSummary {padding: 5px 0; color: #003366;}
+#content .widget_rss cite {color: #888;}
+
+#content .rss-shortcode ul {list-style:none; margin: 0; padding: 0;}
+#content .rss-shortcode li {list-style: none; margin: 0; padding: 5px 0; background: none;}
+#content .rss-shortcode li a {font-weight:bold; text-decoration: none;}
+#content .rss-shortcode li a:hover {text-decoration:underline;}
+#content .rss-shortcode .rss-date {display:block;}
+#content .rss-shortcode .rss-description {padding: 5px 0; color: #003366;}
+#content .rss-shortcode h4 {font-size: 20px;line-height: 24px;margin: 0;padding: 20px 0 20px 0;}
 
 .widget h2.small { padding-bottom: 10px;}
 
