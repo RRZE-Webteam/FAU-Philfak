@@ -51,6 +51,11 @@ get_header(); ?>
 				<?php endif; ?>
 				
 			</div>
+			
+			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
+				<div class="hr"><hr></div>
+				<?php dynamic_sidebar( 'banner-area' ); ?>
+			<?php endif; ?>
 
 		</div>
 	</div>

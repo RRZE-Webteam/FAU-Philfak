@@ -52,6 +52,11 @@ get_header(); ?>
 					<?php dynamic_sidebar( 'menu-subpages' ); ?>
 				</div>
 			<?php endif; ?>
+			
+			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
+				<div class="hr"><hr></div>
+				<?php dynamic_sidebar( 'banner-area' ); ?>
+			<?php endif; ?>
 
 		</div>
 	</div>
