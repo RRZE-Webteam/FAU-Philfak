@@ -116,6 +116,27 @@ $(document).ready(function()
 	/* responsive tables */
 	
 	$("#content table").wrap('<div class="table-wrapper" />').wrap('<div class="scrollable" />');
+	
+	
+	
+	if( ! isMobile )
+	{
+		$(window).scroll(function () {
+			if ($(window).scrollTop() > 30) {
+				$('body').addClass('nav-scrolled');
+			} else {
+				$('body').removeClass('nav-scrolled');
+			}
+
+			if ($(window).scrollTop() > 50) {
+				$('body').addClass('nav-fixed');
+			} else {
+				$('body').removeClass('nav-fixed');
+			}
+		});
+	}
+	
+	
 
 }
 );
