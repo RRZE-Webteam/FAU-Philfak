@@ -6391,7 +6391,7 @@ body.admin-bar #nav .nav-flyout { top: 188px;}
 #content .widget_event_widget .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
 #content .widget_event_widget .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
 #content .widget_event_widget .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
-#content .widget_event_widget .event-info { margin-left: 70px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #ddd;}
+#content .widget_event_widget .event-info { margin-left: 80px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #ddd;}
 #content .widget_event_widget .event-title	{ font-weight: bold; }
 #content .widget_event_widget .event-time { color: #003366;}
 #content .widget_event_widget .event-location {color: #888;}
