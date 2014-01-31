@@ -90,6 +90,10 @@ $(document).ready(function()
 				visible: 2
 			}
 		});
+		
+		var sidebar = $('.sidebar-inline').html();
+		$('.sidebar-inline').remove();
+		$('#content .container').append(sidebar);
 	}
 	
 	
