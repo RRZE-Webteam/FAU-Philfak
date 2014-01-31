@@ -6538,10 +6538,14 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#logo { float: none; }
 	#nav { margin: 10px 0;}
 	
-	#nav .nav-flyout { top: 210px;}
+	#nav .nav-flyout { top: 200px;}
 	.nav-fixed #nav .nav-flyout {top: 160px;}
 	body.admin-bar #nav .nav-flyout { top: 238px;}
 	body.admin-bar.nav-fixed #nav .nav-flyout {top: 150px;}
+	
+	body.nav-fixed {padding-top: 210px;}
+	.nav-fixed #nav .nav-flyout {top: 150px;}
+	
 	
 	#logos-menu-prev { height: 80px; }
 	#logos-menu-next { height: 80px;}
