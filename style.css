@@ -6519,6 +6519,11 @@ div.wpcf7 .placeheld {
 }
 
 
+.pdfprnt-bottom-left {float:left; margin-right: 20px;}
+.pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
+.likebutton-dynamic,  .tweetbutton-dynamic	{	float: left; margin-right: 20px; margin-top:10px;}
+
+
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
 .nav-fixed #header {position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);}
 .nav-scrolled #header #logo img { height: 45px; width: 167px; margin-top: 38px;}
