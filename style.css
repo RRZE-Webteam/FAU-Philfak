@@ -6398,6 +6398,8 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .widget_event_widget a {text-decoration:none;}
 #content .widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
 
+p.attention {display:block; color: #894d06; background-color: #fff6db;padding: 10px 15px; margin: 20px 0; border: 1px solid #f0dfac; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; }
+
 .wp-caption 		{}
 .wp-caption-text 	{ font-size: 13px;color: #003366; padding-left: 10px; padding-right: 10px;}
 .sticky				{}
