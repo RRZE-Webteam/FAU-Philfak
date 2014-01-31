@@ -6408,8 +6408,8 @@ table a:hover, table a:focus {text-decoration: none;}
 .aligncenter		{text-align:center;}
 .alignleft			{text-align:left;}
 
-img.alignleft, div.alignleft {float:left; margin-right: 20px; margin-bottom: 20px;}
-img.alignright, div.alignright {float:right; margin-left: 20px; margin-bottom: 20px;}
+img.alignleft, div.alignleft {float:left; clear:both; margin-right: 20px; margin-bottom: 20px;}
+img.alignright, div.alignright {float:right; clear:both; margin-left: 20px; margin-bottom: 20px;}
 img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 
 .hide-desktop	{display:none;}
