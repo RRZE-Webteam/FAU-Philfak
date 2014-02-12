@@ -6655,6 +6655,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#hero-slides .hero-slide img	{ height: 220px; width: 780px; left: 50%; margin-left: -390px;}
 	#hero-slides .hero-slide-text 	{ width: 100%; bottom: 15px;}
 	#hero-slides .hero-slide p		{ display:none;}
+	#hero-slides .hero-slide h2		{display: inline-block; *display:inline; *zoom: 1;}
 	
 	.breadcrumbs { padding-left: 15px; padding-right: 15px;}
 	
