@@ -214,7 +214,6 @@ function fau_validate_options($input) {
 }
 
 
-
 /**
  * Creates a nicely formatted and more specific title element text for output
  * in head of document, based on current view.

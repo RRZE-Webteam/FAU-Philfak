@@ -27,17 +27,22 @@ get_header(); ?>
 			<div class="row">
 			
 				<?php $content_span = 12; ?>
-				<?php if ( is_active_sidebar( 'sidebar-right' ) ) $content_span -= 3; ?>
 				
 				<div class="span<?php echo $content_span; ?>">
+					<h2><?php the_field('headline'); ?></h2>
+					<?php if( get_field('abstract') != ''): ?>
+						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
+					<?php endif; ?>
+					
+					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
+						<div class="sidebar-inline">
+							<?php dynamic_sidebar( 'sidebar-right' ); ?>
+						</div>
+					<?php endif; ?>
+					
 					<?php the_content(); ?>
 				</div>
 				
-				<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-					<div class="span3">
-						<?php dynamic_sidebar( 'sidebar-right' ); ?>
-					</div>
-				<?php endif; ?>
 			</div>
 
 <?php endwhile; ?>

@@ -1,10 +1,6 @@
 <?php
 /**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that other
- * 'pages' on your WordPress site will use a different template.
+ * Template Name: Seite mit Subnavigation
  *
  * @package WordPress
  * @subpackage FAU
@@ -29,8 +25,28 @@ get_header(); ?>
 			<?php endif; ?>
 
 			<div class="row">
+			
+				<?php $content_span = 9; ?>
+				<?php /*if ( is_active_sidebar( 'menu-subnav' ) ) $content_span -= 3;*/ ?>
+				<?php /*if ( is_active_sidebar( 'sidebar-right' ) ) $content_span -= 3; */?>
 				
-				<div class="span12">
+				<?php/* if ( is_active_sidebar( 'menu-subnav' ) ) : ?>
+					<div class="span3">
+						<?php dynamic_sidebar( 'menu-subnav' ); ?>
+					</div>
+				<?php endif; */?>
+				
+				<div class="span3">
+					<?php /*wp_list_pages(array('sort_column' => 'menu_order', 'child_of' => $id)); */ ?>
+					<?php $parent_page = get_top_parent_page_id(); ?>
+
+					<ul id="subnav">
+					<?php wp_list_pages("child_of=$parent_page&title_li="); ?>
+					</ul>
+				
+				</div>
+				
+				<div class="span<?php echo $content_span; ?>">
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
