@@ -6260,7 +6260,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #hero-slides	{ position: relative; top: -20px; margin: 0 auto 0 auto; margin-bottom: -15px; height: 350px; background: #fff; max-width: 1260px; overflow:hidden; -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.5); -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
 #hero-slides .hero-slide img		{ height: 350px; max-width: 1260px; width: 1260px; left: 50%; margin-left: -630px; position:relative; z-index: 5; top: 0; }
 #hero-slides .hero-slide-text { position: absolute; bottom: 30px; left: 0; right: 0; z-index: 10; width: 100%;}
-#hero-slides .hero-slide h2	{ color: #fff; background: #003366; display: inline-block; *display:inline; *zoom:1;  padding: 0 3px; margin: 0; max-width: 600px;}
+#hero-slides .hero-slide h2	{ color: #fff; background: #003366; display: inline; padding: 0 3px; margin: 0; }
 #hero-slides .hero-slide p	{ color: #fff; background: #003366; display: inline-block; *display:inline; *zoom:1; padding: 0 3px; margin: 2px 0; font-size: 18px; max-width: 600px;}
 
 .flex-direction-nav	{ position: absolute; z-index: 20; bottom: 62px; right: 30px; *bottom: 30px;}
