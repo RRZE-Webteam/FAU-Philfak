@@ -38,7 +38,7 @@ get_header(); ?>
 				
 				<div class="span3">
 					<?php /*wp_list_pages(array('sort_column' => 'menu_order', 'child_of' => $id)); */ ?>
-					<?php $parent_page = get_top_parent_page_id(); ?>
+					<?php $parent_page = get_top_parent_page_id($id); ?>
 
 					<ul id="subnav">
 					<?php wp_list_pages("child_of=$parent_page&title_li="); ?>

@@ -39,9 +39,9 @@ function fau_get_menu_name($location){
 
 
 
-function get_top_parent_page_id() {
+function get_top_parent_page_id($id) {
  
-    global $post;
+    $post = get_post($id);
  
     $ancestors = $post->ancestors;
  
