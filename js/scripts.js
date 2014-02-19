@@ -43,6 +43,13 @@ $(document).ready(function()
 		$(this).find('.portal-subpages-item:first').addClass('portal-subpages-item-active');
 	});
 	
+	$('.accordion-toggle').bind('click', function(event) {
+		event.preventDefault();
+		var accordion = $(this).attr('href');
+		$(this).toggleClass('active');
+		$(accordion).slideToggle();
+	});
+	
 	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
 	var isMobile = windowWidth < 767;

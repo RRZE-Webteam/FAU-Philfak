@@ -2416,6 +2416,8 @@ table th[class*="span"],
   height: auto;
 }
 
+.accordion-body {display:none;}
+
 .close {
   float: right;
   font-size: 20px;
@@ -6564,6 +6566,13 @@ div.wpcf7 .placeheld {
 	color: #888;
 }
 
+.accordion {margin: 10px 0 30px 0;}
+
+.accordion-group {border:none;margin-bottom: 5px;}
+.accordion-toggle {background: #ccd6e0 url('img/caret-accordion.png') no-repeat right top; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;text-decoration:none; font-size: 16px;}
+.accordion-toggle:hover, .accordion-toggle:focus {background-color:#e3e8ed; text-decoration: none;}
+.accordion-toggle.active, .accordion-toggle.active:hover, .accordion-toggle.active:focus {background-color: #003466; background-position: right -41px; color: #fff;}
+.accordion-inner {border: none; background: #f8f9fb;}
 
 .pdfprnt-bottom-left {float:left; margin-right: 20px;}
 .pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
