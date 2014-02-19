@@ -14,36 +14,23 @@ class FAUShortcodes {
 	}
 
 	function add_shortcodes() {
-		add_shortcode('subpages', array( $this, 'fau_subpages' ));    
-		add_shortcode('subpages_item', array( $this, 'fau_subpages_item' ));
+		add_shortcode('synonym', array( $this, 'fau_synonym' ));    
 	}
 
 	function fau_subpages( $atts, $content = null ) {
 		return '<div class="row">' . do_shortcode( $content ) . '</div>';
 	}
 	
-	function fau_subpages_item( $atts, $content = null) {
+	function fau_synonym( $atts, $content = null) {
 		extract(shortcode_atts(array(
-			"id" => 'id'
+			"slug" => 'slug'
 			), $atts));
 			
-		$post = get_post($id);
+		$post = get_posts(array('name' => $slug, 'post_type' => 'synonym', 'post_status' => 'publish', 'numberposts' => 1));
+		$id = $post[0]->ID;
 		
-		$return = '';
+		$return = get_field('synonym', $id);
 		
-		$return .= '<div class="span3">';
-			$return .= '<a class="subpage-item" href="'.get_permalink($id).'">';
-			
-				if(has_post_thumbnail($id))
-				{
-					$return .= get_the_post_thumbnail($id, array(300,150));
-				}
-				
-				$return .= '<h3>'.$post->post_title.'</h3>';
-				
-			$return .= '</a>';
-		$return .= '</div>';
-
 		return $return;
 	}
 }
