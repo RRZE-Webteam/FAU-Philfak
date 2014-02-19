@@ -6574,6 +6574,32 @@ div.wpcf7 .placeheld {
 .accordion-toggle.active, .accordion-toggle.active:hover, .accordion-toggle.active:focus {background-color: #003466; background-position: right -41px; color: #fff;}
 .accordion-inner {border: none; background: #f8f9fb;}
 
+.gold .accordion-toggle {background-color: #f6e5ba;}
+.gold .accordion-toggle:hover, .gold .accordion-toggle:focus {background-color:#faeed0; }
+.gold .accordion-toggle.active, .gold .accordion-toggle.active:hover, .gold .accordion-toggle.active:focus {background-color: #ad841f; }
+.gold .accordion-inner {background:#fef8e8;}
+
+.red .accordion-toggle {background-color: #f4d6dc;}
+.red .accordion-toggle:hover, .red .accordion-toggle:focus {background-color:#f5e7e9; }
+.red .accordion-toggle.active, .red .accordion-toggle.active:hover, .red .accordion-toggle.active:focus {background-color: #801429; }
+.red .accordion-inner {background:#f5e7e9;}
+
+.blue .accordion-toggle {background-color: #c3ecf3;}
+.blue .accordion-toggle:hover, .blue .accordion-toggle:focus {background-color:#def4f8; }
+.blue .accordion-toggle.active, .blue .accordion-toggle.active:hover, .blue .accordion-toggle.active:focus {background-color: #00b1c6; }
+.blue .accordion-inner {background:#ebf8fa;}
+
+.green .accordion-toggle {background-color: #c4ebe2;}
+.green .accordion-toggle:hover, .green .accordion-toggle:focus {background-color:#ddf4ef; }
+.green .accordion-toggle.active, .green .accordion-toggle.active:hover, .green .accordion-toggle.active:focus {background-color: #009775; }
+.green .accordion-inner {background:#e9f8f5;}
+
+.grey .accordion-toggle {background-color: #d5dce0;}
+.grey .accordion-toggle:hover, .grey .accordion-toggle:focus {background-color:#e7ecef; }
+.grey .accordion-toggle.active, .grey .accordion-toggle.active:hover, .grey .accordion-toggle.active:focus {background-color: #a3acb2; }
+.grey .accordion-inner {background:#eff3f5;}
+
+
 .pdfprnt-bottom-left {float:left; margin-right: 20px;}
 .pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
 .likebutton-dynamic,  .tweetbutton-dynamic	{	float: left; margin-right: 20px; margin-top:10px;}
