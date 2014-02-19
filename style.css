@@ -6090,7 +6090,8 @@ h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 16px; line-height: 22px; fon
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
 
 p		{ margin: 0; padding: 0 0 11px 0; font-size: 14px; line-height: 22px; color: #444;}
-#content p {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+#content p, .menu-item {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+
 
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
