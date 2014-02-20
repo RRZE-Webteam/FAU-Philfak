@@ -17,16 +17,14 @@
 <div class="row">
 	<?php if(has_post_thumbnail( $post->ID )): ?>
 	<div class="span3">
-		<?php the_post_thumbnail('post-thumb'); ?>
+		<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('post-thumb'); ?></a>
 	</div>
 	<div class="span5">
 	<?php else: ?>
 	<div class="span8">
 	<?php endif; ?>
-		<?php the_excerpt(); ?>
-		<div class="read-more">
-			<a href="<?php the_permalink(); ?>"><?php _e('Weiterlesen', 'fau'); ?></a>
-		</div>
+		<?php the_field('abstract'); ?>
+		<a href="<?php the_permalink(); ?>">[…]</a>
 	</div>
 </div>
 
