@@ -85,7 +85,7 @@ get_header(); ?>
 						<div class="row">
 							<?php if(has_post_thumbnail( $post->ID )): ?>
 							<div class="span3">
-								<?php the_post_thumbnail('post-thumb'); ?>
+								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('post-thumb'); ?></a>
 							</div>
 							<div class="span5">
 							<?php else: ?>
