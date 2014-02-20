@@ -6453,18 +6453,19 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 */
 
 #content ul#subnav, #content ul#subnav ul, #content ul#subnav li {list-style: none; margin: 0; padding: 0;}
-#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #e3e6e8; border-bottom: 1px solid #fff; padding-left: 15px; padding-right: 15px;}
-#content ul#subnav a:hover { background: #fff;}
+#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #e3e6e8; padding-left: 15px; padding-right: 15px;}
+#content ul#subnav a:hover { background: #f4f5f5;}
 #content ul#subnav ul { display: none;}
-#content ul#subnav .current_page_item a, #content ul#subnav .current_page_ancestor a {background: #003366; color: #fff; border: none;}
-#content ul#subnav .current_page_item a:hover, #content ul#subnav .current_page_ancestor a:hover {background: #0a2948;}
+#content ul#subnav>li {border-bottom: 1px solid #fff;}
+#content ul#subnav .current_page_item a, #content ul#subnav .current_page_ancestor a {background: #c1cad1; border: none;}
+#content ul#subnav .current_page_item a:hover, #content ul#subnav .current_page_ancestor a:hover {background: #a0afb9; color:#003366;}
 #content ul#subnav .current_page_item > ul, #content ul#subnav .current_page_ancestor > ul { display: block;}
 #content ul#subnav .current_page_item > a, #content ul#subnav .current_page_ancestor > a {font-weight:bold;}
 
 #content ul#subnav li li a {padding-left: 25px;}
 #content ul#subnav li li li a {padding-left: 35px;}
 
-#content ul#subnav li .current_page_item > a { background: #0a2948;}
+#content ul#subnav li .current_page_item > a { background: #a0afb9;}
 
 
 
