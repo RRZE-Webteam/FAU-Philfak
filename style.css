@@ -6106,6 +6106,7 @@ li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5p
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
 #content ul li {background: url('img/li-circle.png') no-repeat left 10px; }
 #content ul ul {margin-left: 20px;}
+#content ol li {padding-left: 0;}
 
 #content .widget li {padding: 0 0 0 20px;}
 
