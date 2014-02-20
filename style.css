@@ -6386,7 +6386,7 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .widget h2.small { padding-bottom: 11px; font-size: 18px;}
 
-#content .person h3 { padding-bottom: 0; padding-top: 10px; font-weight:bold; font-size: 15px;}
+#content .person h3 { padding-bottom: 0; padding-top: 0; font-weight:bold; font-size: 15px;}
 #content .person h4 {padding-top: 0; font-weight: normal;}
 
 .person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
