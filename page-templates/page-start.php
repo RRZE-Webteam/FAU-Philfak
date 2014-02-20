@@ -116,10 +116,12 @@ get_header(); ?>
 									<div class="span4">
 								<?php endif; ?>
 									<?php
+									/*
 										$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
 										$timestamp = $date->format('U');
+										<div class="topevent-date"><?php echo date_i18n('j. F Y', $timestamp); ?></div>
+										*/
 									?>
-									<div class="topevent-date"><?php echo date_i18n('j. F Y', $timestamp); ?></div>
 									<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
 									</div>
 							</div>
