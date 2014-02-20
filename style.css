@@ -6121,9 +6121,10 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 table, table tbody, table tr, table th, table td  {border:0;}
 table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 20px 0; width:100%;}
-table th {background:#eef1f6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
-table th, table td {padding: 5px 10px; color: #003366;}
+table th {background:#dee4ee; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
+table th, table td {padding: 7px 10px; color: #003366;}
 table td {border-right: 1px solid #fff;}
+table tr {border-left: 1px solid #eef1f6; border-right: 1px solid #eef1f6;}
 table tr:nth-child(odd) td {background:#eef1f6;}
 table a {text-decoration:underline;}
 table a:hover, table a:focus {text-decoration: none;}
