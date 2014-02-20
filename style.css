@@ -6121,7 +6121,7 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 
 table, table tbody, table tr, table th, table td  {border:0;}
 table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 20px 0; width:100%;}
-table th {background:#dee4ee; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
+table th {background:#d0d8e6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
 table th, table td {padding: 7px 10px; color: #003366;}
 table td {border-right: 1px solid #fff;}
 table tr {border-left: 1px solid #eef1f6; border-right: 1px solid #eef1f6;}
@@ -6455,19 +6455,19 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 */
 
 #content ul#subnav, #content ul#subnav ul, #content ul#subnav li {list-style: none; margin: 0; padding: 0;}
-#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #e3e6e8; padding-left: 15px; padding-right: 15px;}
-#content ul#subnav a:hover { background: #f4f5f5;}
+#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #eef1f6; padding-left: 15px; padding-right: 15px;}
+#content ul#subnav a:hover { background: #e5e9f0;}
 #content ul#subnav ul { display: none;}
 #content ul#subnav>li {border-bottom: 1px solid #fff;}
-#content ul#subnav .current_page_item a, #content ul#subnav .current_page_ancestor a {background: #c1cad1; border: none;}
-#content ul#subnav .current_page_item a:hover, #content ul#subnav .current_page_ancestor a:hover {background: #a0afb9; color:#003366;}
+#content ul#subnav .current_page_item a, #content ul#subnav .current_page_ancestor a {background: #d0d8e6; border: none;}
+#content ul#subnav .current_page_item a:hover, #content ul#subnav .current_page_ancestor a:hover {background: #b9c4d6; color:#003366;}
 #content ul#subnav .current_page_item > ul, #content ul#subnav .current_page_ancestor > ul { display: block;}
 #content ul#subnav .current_page_item > a, #content ul#subnav .current_page_ancestor > a {font-weight:bold;}
 
 #content ul#subnav li li a {padding-left: 25px;}
 #content ul#subnav li li li a {padding-left: 35px;}
 
-#content ul#subnav li .current_page_item > a { background: #a0afb9;}
+#content ul#subnav li .current_page_item > a { background: #b9c4d6;}
 
 
 
