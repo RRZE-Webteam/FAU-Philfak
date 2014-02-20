@@ -91,7 +91,7 @@ get_header(); ?>
 							<?php else: ?>
 							<div class="span8">
 							<?php endif; ?>
-								<?php the_field('abstract'); ?>
+								<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>">[…]</a></p>
 							</div>
 						</div>
 					
