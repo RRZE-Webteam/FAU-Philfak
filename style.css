@@ -6085,8 +6085,8 @@ h2		{ font-size: 32px; line-height: 44px; margin: 0; padding: 0 0 22px 0;}
 h2.small {font-size: 20px; line-height: 22px; padding-top: 15px;}
 .sidebar-inline h2.small { padding-top: 0;}
 
-h3		{ margin: 0; padding: 0 0 22px 0; font-size: 18px; line-height: 22px;}
-h3.abstract {font-size: 18px; line-height: 22px;}
+h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 18px; line-height: 22px;}
+h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
 
 h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 16px; line-height: 22px; font-weight: normal;}
 
@@ -6610,6 +6610,8 @@ div.wpcf7 .placeheld {
 .pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
 .likebutton-dynamic,  .tweetbutton-dynamic	{	float: left; margin-right: 20px; margin-top:10px;}
 
+
+.mtli_attachment {background-position: left center !important;}
 
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
 .nav-fixed #header {position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3); box-shadow: 0 1px 3px rgba(0,0,0,0.3);}
