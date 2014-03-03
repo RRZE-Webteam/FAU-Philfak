@@ -200,6 +200,13 @@ function fau_theme_options_page() {
 				<input id="fau_theme_options[socialmedia_vimeo_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_vimeo_text]" value="<?php esc_attr_e( $options['socialmedia_vimeo_text'] ); ?>" />
 			</td>
 		</tr>
+		<tr valign="top">
+			<th scope="row">Xing-Link und -Text</th>
+			<td>
+				<input id="fau_theme_options[socialmedia_xing]" class="regular-text" type="text" name="fau_theme_options[socialmedia_xing]" value="<?php esc_attr_e( $options['socialmedia_xing'] ); ?>" /><br>
+				<input id="fau_theme_options[socialmedia_xing_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_xing_text]" value="<?php esc_attr_e( $options['socialmedia_xing_text'] ); ?>" />
+			</td>
+		</tr>
 	</table>
 
 	<!-- submit -->

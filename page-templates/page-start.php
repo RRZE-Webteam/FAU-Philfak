@@ -174,6 +174,9 @@ get_header(); ?>
 									<?php if($options['socialmedia_vimeo']): ?>
 										<li class="social social-vimeo"><a href="<?php echo $options['socialmedia_vimeo']; ?>" target="_blank"><?php echo $options['socialmedia_vimeo_text']; ?></a></li>
 									<?php endif; ?>
+									<?php if($options['socialmedia_xing']): ?>
+										<li class="social social-xing"><a href="<?php echo $options['socialmedia_xing']; ?>" target="_blank"><?php echo $options['socialmedia_xing_text']; ?></a></li>
+									<?php endif; ?>
 								</ul>
 							</div>
 						<?php endif; ?>

@@ -6457,6 +6457,7 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 #social ul.social li.social-youtube a 		{background-image: url('img/social-youtube.png');}
 #social ul.social li.social-vimeo a 		{background-image: url('img/social-vimeo.png');}
 #social ul.social li.social-flickr a 		{background-image: url('img/social-flickr.png');}
+#social ul.social li.social-xing a 		{background-image: url('img/social-xing.png');}
 
 #content select, #content textarea, #content input[type="text"], #content input[type="password"], #content input[type="datetime"], #content input[type="datetime-local"], #content input[type="date"], #content input[type="month"], #content input[type="time"], #content input[type="week"], #content input[type="number"], #content input[type="email"], #content input[type="url"], #content input[type="search"], #content input[type="tel"], #content input[type="color"] 
 { width: 290px; padding: 5px 10px;}
