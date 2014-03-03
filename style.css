@@ -11,10 +11,13 @@ Tags: blue
 Text Domain: 
 */
 
-
+/*
 @import url("http://fonts.googleapis.com/css?family=Archivo+Narrow:400,700,400italic,700italic");
 @import url("http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic");
+*/
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic");
 
+/*
 @font-face {
     font-family: 'Open Sans';
     src: url('fonts/opensans/OpenSans-Regular-webfont.eot');
@@ -86,6 +89,8 @@ Text Domain:
     font-style: italic;
 
 }
+
+*/
 
 
 /*
@@ -314,13 +319,13 @@ textarea {
 }
 
 html, body, textarea, input {
-	font-family: 'Archivo Narrow', 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 li {font-size: 15px !important; line-height: 22px !important;}
 h3 {font-size: 22px !important;}
 
-#content p {font-family: 'Noto Serif', serif;}
+#content p {font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif}
 
 body {
   margin: 0;
