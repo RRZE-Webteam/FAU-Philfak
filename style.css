@@ -6101,7 +6101,7 @@ h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 16px; line-height: 22px; fon
 #content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 16px; font-weight:normal;}
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
 
-p		{ margin: 0; padding: 0 0 11px 0; font-size: 14px; line-height: 22px; color: #444;}
+p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: #444;}
 #content p, .menu-item {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 
 
@@ -6109,7 +6109,7 @@ p		{ margin: 0; padding: 0 0 11px 0; font-size: 14px; line-height: 22px; color: 
 
 
 li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 2px;}
-#content li { margin: 0; padding: 0 0 11px 20px; font-size: 14px; line-height: 22px; color: #444;}
+#content li { margin: 0; padding: 0 0 11px 20px; font-size: 15px; line-height: 22px; color: #444;}
 #content li strong {color: #003366;}
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
 #content ul li {background: url('img/li-circle.png') no-repeat left 10px; }
@@ -6188,8 +6188,8 @@ table a:hover, table a:focus {text-decoration: none;}
 #logo	{ display: block; float: left; margin: 20px 10px 10px 0;}
 
 .menu-faculties {}
-.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 12px; min-height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
-.menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 14px; vertical-align: center; }
+.menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 13px; min-height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+.menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 16px; vertical-align: center; }
 
 .menu-faculties li.menu-item-142,
 .menu-faculties li.menu-item-20852 { border-color: #ad841f;}
