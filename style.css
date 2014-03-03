@@ -6389,7 +6389,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .widget_event_widget a {text-decoration:none;}
 #content .widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
 
-.sidebar-inline {float:right;width: 300px;margin-left: 30px; padding-left: 20px; margin-bottom: 11px; border-left: 2px solid #ddd;}
+.sidebar-inline {float:right;width: 220px;margin-left: 30px; padding-left: 18px; margin-bottom: 11px; border-left: 2px solid #ddd;}
 .sidebar-inline .widget:last-child {margin-bottom: 0 !important;}
 
 p.attention {display:block; color: #a71c18; background: #ffe2db url('img/attention.png') no-repeat 10px 7px; padding: 10px 15px 10px 45px; margin: 20px 0; width: 400px; border: 1px solid #f1c4b8; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; }
@@ -6605,7 +6605,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 
 
 @media (min-width: 1200px) {
-	.sidebar-inline {margin-right: -120px;}
+
 }
 
 @media (max-width: 979px) {
