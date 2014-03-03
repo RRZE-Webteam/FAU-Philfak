@@ -6365,6 +6365,7 @@ table a:hover, table a:focus {text-decoration: none;}
 .person-info-phone {background-image: url('img/icon-phone.png');}
 .person-info-fax {background-image: url('img/icon-fax.png');}
 .person-info-email {background-image: url('img/icon-email.png');}
+.person-info-address {margin-top: 10px;}
 
 .topevent-date { color: #003366; font-weight: bold; margin-bottom: 5px;}
 .topevent-description { color: #003366}
