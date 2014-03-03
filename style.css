@@ -6552,12 +6552,20 @@ div.wpcf7 .placeheld {
 .accordion {margin: 10px 0 30px 0;}
 
 .accordion-group {border:none;margin-bottom: 5px;}
-.accordion-toggle {background: #ccd6e0 url('img/caret-accordion.png') no-repeat right top; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;text-decoration:none; font-size: 16px;}
-.accordion-toggle:hover, .accordion-toggle:focus {background-color:#e3e8ed; text-decoration: none;}
-.accordion-toggle.active, .accordion-toggle.active:hover, .accordion-toggle.active:focus {background-color: #003466; background-position: right -41px; color: #fff;}
-.accordion-inner {border: none; background: #f8f9fb;}
+.accordion-heading .accordion-toggle {border-left: 8px solid #003466; background: #003466 url('img/caret-accordion.png') no-repeat right top; color: #fff; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;text-decoration:none; font-size: 16px; padding-left: 12px;}
+.accordion-heading .accordion-toggle:hover, .accordion-heading .accordion-toggle:focus {background-color:#074887; text-decoration: none;}
+.accordion-heading .accordion-toggle.active, .accordion-heading .accordion-toggle.active:hover, .accordion-heading .accordion-toggle.active:focus {background-color: #003466; background-position: right -41px; color: #fff;}
+.accordion-inner {border: none; background: #f8f9fb; padding: 15px 20px;}
 
-.gold .accordion-toggle {background-color: #f6e5ba;}
+.gold .accordion-toggle { border-color: #ad841f;}
+.red .accordion-toggle {border-color: #801429;}
+.blue .accordion-toggle {border-color: #00b1c6;}
+.green .accordion-toggle {border-color: #009775;}
+.grey .accordion-toggle {border-color: #a3acb2;}
+
+
+/*
+.gold .accordion-toggle { border-left: 8px solid #ad841f;}
 .gold .accordion-toggle:hover, .gold .accordion-toggle:focus {background-color:#faeed0; }
 .gold .accordion-toggle.active, .gold .accordion-toggle.active:hover, .gold .accordion-toggle.active:focus {background-color: #ad841f; }
 .gold .accordion-inner {background:#fef8e8;}
@@ -6581,7 +6589,7 @@ div.wpcf7 .placeheld {
 .grey .accordion-toggle:hover, .grey .accordion-toggle:focus {background-color:#e7ecef; }
 .grey .accordion-toggle.active, .grey .accordion-toggle.active:hover, .grey .accordion-toggle.active:focus {background-color: #a3acb2; }
 .grey .accordion-inner {background:#eff3f5;}
-
+*/
 
 .pdfprnt-bottom-left {float:left; margin-right: 20px;}
 .pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
@@ -6737,6 +6745,8 @@ body { padding: 40px 80px;}
   .container, .row, .span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 {width:auto;}
 	
 	.menu {display:none !important;}
+	
+	.accordion-body {display:block !important;}
 	
   abbr[title]:after {
     content: " (" attr(title) ")";
