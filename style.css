@@ -321,10 +321,10 @@ textarea {
 html, body, textarea, input {
 	font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
-li {font-size: 15px !important; line-height: 22px !important;}
+/*
+li {font-size: 13px !important; line-height: 22px !important;}
 h3 {font-size: 22px !important;}
-
+*/
 #content p {font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif}
 
 body {
