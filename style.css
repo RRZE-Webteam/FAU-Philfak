@@ -6090,8 +6090,9 @@ a { color: #003366;}
 a:hover { color: #225588;}
 
 h2		{ font-size: 32px; line-height: 44px; margin: 0; padding: 0 0 22px 0;}
-h2.small {font-size: 20px; line-height: 22px; padding-top: 15px;}
-.sidebar-inline h2.small { padding-top: 0;}
+#content h2 {font-size: 28px; line-height: 34px;}
+#content h2.small {font-size: 20px; line-height: 22px; padding-top: 22px;}
+#content .sidebar-inline h2.small { padding-top: 0;}
 
 h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 18px; line-height: 22px;}
 h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
@@ -6103,7 +6104,6 @@ h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 16px; line-height: 22px; fon
 
 p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: #444;}
 #content p, .menu-item {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
-
 
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
