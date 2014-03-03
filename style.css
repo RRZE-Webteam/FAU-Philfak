@@ -6362,6 +6362,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .person h4 {padding-top: 0; font-weight: normal;}
 
 .person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
+.person-info p {color: #003366; font-size: 13px; line-height: 20px;}
 .person-info-phone {background-image: url('img/icon-phone.png');}
 .person-info-fax {background-image: url('img/icon-fax.png');}
 .person-info-email {background-image: url('img/icon-email.png');}
