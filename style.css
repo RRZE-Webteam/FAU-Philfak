@@ -14,9 +14,9 @@ Text Domain:
 /*
 @import url("http://fonts.googleapis.com/css?family=Archivo+Narrow:400,700,400italic,700italic");
 @import url("http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic");
-*/
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic");
 
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic");
+*/
 /*
 @font-face {
     font-family: 'Open Sans';
@@ -93,7 +93,7 @@ Text Domain:
 */
 
 
-/*
+
 @font-face {
     font-family: 'roboto';
     src: url('fonts/roboto/Roboto-Bold-webfont.eot');
@@ -153,7 +153,7 @@ Text Domain:
     font-style: normal;
 
 }
-*/
+
 
 
 
@@ -319,13 +319,13 @@ textarea {
 }
 
 html, body, textarea, input {
-	font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 /*
 li {font-size: 13px !important; line-height: 22px !important;}
 h3 {font-size: 22px !important;}
 */
-#content p {font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif}
+#content p {font-family: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif}
 
 body {
   margin: 0;
@@ -6214,15 +6214,18 @@ table a:hover, table a:focus {text-decoration: none;}
 /*body.admin-bar #nav .nav-flyout { top: 188px;}*/
 #nav li.level1:hover .nav-flyout	{ display: block;}
 
-#nav ul.level2	{ list-style: none; margin: 20px 0; padding:0; -webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px; -moz-hyphens: manual !important; -o-hyphens: manual !important; -webkit-hyphens: manual !important; -ms-hyphens: manual !important; hyphens: manual !important;}
-#nav li.level2	{ float: none; margin: 0; padding: 0; padding-left: 20px; margin-bottom: 10px;}
-#nav li.level2 a	{ float: none; margin: 0; padding: 0; font-weight: normal; font-size: 15px; background: none !important;}
-#nav li.level2 a:hover	{ text-decoration: underline;}
+#nav ul.level2	{ list-style: none; margin: 0 0 15px 0; padding:0; /*-webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px; -moz-hyphens: manual !important; -o-hyphens: manual !important; -webkit-hyphens: manual !important; -ms-hyphens: manual !important; hyphens: manual !important;*/}
+#nav li.level2	{ float: none; margin: 0; padding: 0; background: none;}
+#nav li.level2 a	{ float: none; margin: 0; padding: 0; font-weight: normal; font-size: 15px; background: transparent url('img/list-arrow.png') no-repeat left center !important; display: block; padding: 7px 20px 7px 20px; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; border-bottom: 1px solid #22517c;} 
+#nav li.level2 a:hover	{ text-decoration: none; background-color: #22517c !important;}
+
+#nav li.level1 .nav-flyout a.button-portal {display: inline-block; background: #22517c; padding: 13px 20px; font-size: 18px; line-height: 18px;}
+#nav li.level1 .nav-flyout a.button-portal:hover, #nav li.level1 .nav-flyout a.button-portal:focus {background: #346693;}
 
 #nav-toggle	{ position: absolute; top: 45px; right: 15px; width: 25px;}
 #nav-toggle div	{ height: 3px; background: #003366; margin-bottom: 3px; }
  
-#nav blockquote		{ border-top: 1px solid #fff; border-bottom: 1px solid #fff; padding: 20px; opacity: 0.7; min-height: 40px;}
+#nav blockquote		{ /*border-top: 1px solid #fff; border-bottom: 1px solid #fff; */padding: 20px; opacity: 0.7; min-height: 40px;}
 #nav blockquote p { color: #fff; font-size: 18px; line-height: 24px; font-style: italic; padding: 0; margin: 0;}
 #nav blockquote p.cite { font-style: normal; font-size: 15px; font-weight: bold; padding: 10px 0;}
 
@@ -6320,7 +6323,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #social			{ background: #f0f0f0; padding: 20px 0; margin-bottom: -30px; margin-top: 30px;}
 
 #footer			{ background: #003366; color: #fff; padding: 20px 0;}
-#footer p		{ color: #fff;}
+#footer p		{ color: #fff; font-size: 13px; line-height: 18px; }
 #footer-nav		{ list-style:none; margin: 0; padding: 0; text-align:right;}
 #footer-nav li	{ display: inline; margin-left: 8px; background: none; padding-left: 0;}
 #footer-nav li a {color: #fff;text-decoration:none;}
@@ -6449,7 +6452,7 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 
 
 #social 		{}
-#social h2		{ color: #a1aab1; padding-top: 0;}
+#social h2		{ color: #a1aab1; padding-top: 0 !important;}
 #social ul.social		{ list-style:none; margin: 0 0 10px 5px; padding: 0;}
 #social ul.social li	{ margin: 0; padding: 0; background: none !important;}
 #social ul.social li a 	{ display:inline-block; *display:inline; *zoom:1; color: #a1aab1; text-decoration:none; height: 20px; line-height: 20px; padding: 5px 0px 5px 30px; background-position: left top;}
@@ -6698,13 +6701,13 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#nav.toggled	{ display: block;}
 	#nav li.level1 {display: block; float: none; margin: 0; border-bottom: 1px solid #ccc;}
 	#nav li.level1 a { display:block; float: none; -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; border-radius: 0; padding: 10px 15px !important; margin-bottom: 0;}
-	#nav li.level2 {background-position: left 6px; margin-left: 20px;}
-	#nav li.level2 a {padding: 5px 0 !important;}
+	#nav li.level2 {background-position: left 6px; /* margin-left: 20px;*/}
+/*	#nav li.level2 a {padding: 5px 0 !important;}
 	#nav li.level2 a:hover {background: #336699;}
-	#nav .nav-flyout { position: relative; top: 0; left: 0; right: 0; padding: 10px 0;}
+*/	#nav .nav-flyout { position: relative; top: 0; left: 0; right: 0; padding: 10px 0;}
 	body.admin-bar #nav .nav-flyout { top: 0;}
-	#nav ul.level2	{ -webkit-column-count: 1; -webkit-column-gap: 0; -moz-column-count: 1; -moz-column-gap: 0; column-count: 1; column-gap: 0; margin: 0 !important;}
-	
+/*	#nav ul.level2	{ -webkit-column-count: 1; -webkit-column-gap: 0; -moz-column-count: 1; -moz-column-gap: 0; column-count: 1; column-gap: 0; margin: 0 !important;}
+*/	
 	#subnav {display:none;}
 	
 	#footer-nav li {display: block;}

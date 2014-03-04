@@ -18,7 +18,9 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 	
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
-		$output .= $indent.'</ul></div>';
+		$output .= $indent.'</ul>';
+		$output .= '<a href="'.get_permalink($this->currentID).'" class="button-portal">Portal '.get_the_title($this->currentID).'</a>';
+		$output .= '</div>';
 				
 		$output .= '<div class="span4 hide-mobile">';
 			$quote = get_field('zitat_text', $this->currentID);
