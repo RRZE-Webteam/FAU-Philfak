@@ -6210,6 +6210,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #nav li.level1 a:hover  {background-color: #003366; color: #fff; }
 #nav li.has-sub a:hover, #nav li.has-sub.active, #nav li.has-sub:hover a { background-position: right -28px;}
 
+
 #nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 160px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
 /*body.admin-bar #nav .nav-flyout { top: 188px;}*/
 #nav li.level1:hover .nav-flyout	{ display: block;}
@@ -6270,6 +6271,9 @@ table a:hover, table a:focus {text-decoration: none;}
 
 #hero.hero-small	{ background-position: center center;}
 .hero-small h1	{ padding: 30px 0 10px 0 !important;}
+
+#hero .container {position: relative;}
+#hero .hero-meta-portal {position: absolute; bottom: 20px; right: 0; color: #3177bf;font-size: 50px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
 
 #hero { -webkit-transition: 0.5s all; -moz-transition: 0.5s all; -ms-transition: 0.5s all; transition: 0.5s all;}
 .flyout-toggled #hero	{ opacity: 0.3;}
