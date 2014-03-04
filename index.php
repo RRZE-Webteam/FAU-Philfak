@@ -16,7 +16,11 @@
 
 get_header(); ?>
 
-	<?php get_template_part('hero', 'category'); ?>
+	<?php if(get_post_type() == 'event'): ?>
+		<?php get_template_part('hero', 'events'); ?>
+	<?php else: ?>
+		<?php get_template_part('hero', 'category'); ?>
+	<?php endif; ?>
 
 	<div id="content">
 		<div class="container">

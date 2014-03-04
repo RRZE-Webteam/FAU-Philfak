@@ -98,6 +98,15 @@ get_header(); ?>
 						<?php $i++; ?>
 					<?php endwhile; ?>
 					
+					<?php
+						$category = get_category_by_slug('news');
+					?>
+					
+					<div class="news-more-links">
+						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>">Mehr Meldungen</a>
+						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
+					</div>
+					
 				</div>
 				<div class="span4">
 					
