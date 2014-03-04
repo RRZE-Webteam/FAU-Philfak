@@ -6237,10 +6237,10 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .subpages-menu {margin-bottom: 20px;}
 #content .subpages-menu .menu-item {position: relative;}
 #content .subpages-menu .sub-menu { list-style:none; margin: 0 0 0 0; padding: 0;}
-#content .subpages-menu .sub-menu li {font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 3px; padding-top: 0; margin: 0; background: url('img/list-arrow-blue.png') no-repeat left 4px;}
+#content .subpages-menu .sub-menu li { padding: 0; margin: 0; background:none;}
 #content .subpages-menu .sub-menu li.more {background-image: none; padding-left: 0;}
-#content .subpages-menu .sub-menu a { text-decoration: none;}
-#content .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: underline;}
+#content .subpages-menu .sub-menu a { text-decoration: none; background: url('img/list-arrow-blue.png') no-repeat left center; display: block; padding: 7px 20px; border-bottom: 1px solid #eee; font-size: 15px; line-height: 22px;}
+#content .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: none; background-color: #eee;}
 #content .subpages-menu .ext-link h3 {display:inline-block; *display:inline; *zoom:1;background: url('img/ext-icon-19.png') no-repeat 100% 50%; padding-right: 15px;}
 #content .subpages-menu .ext-link h3:hover {text-decoration: underline;}
 #content .subpage-item h3	{ padding: 10px 0 10px 0; }
