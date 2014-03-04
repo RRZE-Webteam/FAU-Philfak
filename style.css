@@ -6273,7 +6273,7 @@ table a:hover, table a:focus {text-decoration: none;}
 .hero-small h1	{ padding: 30px 0 10px 0 !important;}
 
 #hero .container {position: relative;}
-#hero .hero-meta-portal {position: absolute; bottom: 20px; right: 0; color: #3177bf;font-size: 50px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
+#hero .hero-meta-portal {position: absolute; bottom: 20px; right: 15px; color: #3177bf;font-size: 50px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
 
 #hero { -webkit-transition: 0.5s all; -moz-transition: 0.5s all; -ms-transition: 0.5s all; transition: 0.5s all;}
 .flyout-toggled #hero	{ opacity: 0.3;}
@@ -6367,7 +6367,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .rss-shortcode .rss-description {padding: 5px 0; color: #003366;}
 #content .rss-shortcode h4 {font-size: 20px;line-height: 24px;margin: 0;padding: 20px 0 20px 0;}
 
-.widget h2.small { padding-bottom: 11px; font-size: 18px;}
+.widget h2.small { padding-bottom: 11px; padding-top: 11px !important; font-size: 18px;}
 
 #content .person h3 { padding-bottom: 0; padding-top: 5px; font-weight:bold; font-size: 15px;}
 #content .person h4 {padding-top: 0; font-weight: normal;}
