@@ -6627,6 +6627,15 @@ div.wpcf7 .placeheld {
 .likebutton-dynamic,  .tweetbutton-dynamic	{	float: left; margin-right: 20px; margin-top:10px;}
 
 
+.assistant-tab-pane {display:none;}
+.assistant-tab-pane-active {display:block;}
+
+#content ul.assistant-tabs-nav {list-style: none; margin: 0 0 15px 0; padding: 0;}
+#content ul.assistant-tabs-nav li {list-style: none; margin: 0; padding: 0; background: none; display: inline; margin-right: 8px;}
+#content ul.assistant-tabs-nav li a {text-decoration: none;}
+#content ul.assistant-tabs-nav li a:hover, #content ul.assistant-tabs-nav li a:focus {text-decoration:underline;}
+#content ul.assistant-tabs-nav li a.active {font-weight: bold;}
+
 .mtli_attachment {background-position: left center !important;}
 
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
@@ -6777,7 +6786,7 @@ body { padding: 40px 80px;}
 	
 	.menu {display:none !important;}
 	
-	.accordion-body {display:block !important;}
+	.accordion-body, .assistant-tab-pane {display:block !important;}
 	
   abbr[title]:after {
     content: " (" attr(title) ")";
