@@ -6246,7 +6246,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: none; background-color: #eee;}
 #content .subpages-menu .ext-link h3 {display:inline-block; *display:inline; *zoom:1;background: url('img/ext-icon-19.png') no-repeat 100% 50%; padding-right: 15px;}
 #content .subpages-menu .ext-link h3:hover {text-decoration: underline;}
-#content .subpage-item h3	{ padding: 10px 0 10px 0; }
+#content .subpage-item h3	{ padding: 10px 0 10px 0; font-weight:bold;}
 #content .subpages-menu .ext-icon {position: absolute; top: 0; right: 0; z-index:10; height: 20px; width: 20px; background: #003366 url('img/ext-icon-19-white.png') no-repeat 50% 50%;}
 
 .post-image	{ float:right; margin-bottom: 20px; margin-left: 20px;}
