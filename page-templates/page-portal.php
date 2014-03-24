@@ -34,11 +34,22 @@ get_header(); ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					
-					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-						<div class="sidebar-inline">
+					<div class="sidebar-inline">
+						<ul class="page-print-actions">
+							<li>
+								<?php
+									$permalink = add_query_arg( 'print' , 'pdf' , get_permalink( $post->ID ) );
+									echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank">PDF dieser Seite</a>';
+								?>
+							</li>
+							<li>
+								<a href="javascript:window.print()" class="page-print">Seite drucken</a>
+							</li>
+						</ul>
+						<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
 							<?php dynamic_sidebar( 'sidebar-right' ); ?>
-						</div>
-					<?php endif; ?>
+						<?php endif; ?>
+					</div>
 					
 					<?php the_content(); ?>
 				</div>

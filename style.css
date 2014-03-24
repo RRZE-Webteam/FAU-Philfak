@@ -6390,6 +6390,12 @@ table a:hover, table a:focus {text-decoration: none;}
 .person-info-address {margin-top: 10px;}
 .person-info-description {margin-top:10px;}
 
+#content ul.page-print-actions {margin: 0; padding: 0; list-style:none;}
+#content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px;}
+#content ul.page-print-actions li a {text-decoration: none;}
+#content ul.page-print-actions li a:hover, #content ul.page-print-actions li a:focus {text-decoration:underline;}
+#content ul.page-print-actions li a.page-print-pdf {background: url('img/pdf-icon-16x16.gif') no-repeat left center; padding-left: 20px; display:block;;}
+
 .topevent-date { color: #003366; font-weight: bold; margin-bottom: 5px;}
 .topevent-description { color: #003366}
 
