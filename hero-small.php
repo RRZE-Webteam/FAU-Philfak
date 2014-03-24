@@ -22,12 +22,15 @@
 				
 				<div class="hero-meta-portal">
 					<?php
-						$parent = array_reverse(get_post_ancestors(get_the_ID()));
-						$first_parent = get_page($parent[0]);
-
-					//	if($first_parent->ID != get_the_ID()) 
+						if(get_post_type() == 'page')
 						{
-							echo $first_parent->post_title;
+							$parent = array_reverse(get_post_ancestors(get_the_ID()));
+							$first_parent = get_page($parent[0]);
+
+						//	if($first_parent->ID != get_the_ID()) 
+							{
+								echo $first_parent->post_title;
+							}
 						}
 					?>
 				</div>
