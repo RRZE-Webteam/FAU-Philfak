@@ -6114,7 +6114,9 @@ li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5p
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
 #content ul li {background: url('img/li-circle.png') no-repeat left 7px; }
 #content ul ul {margin-left: 20px;}
+#content ul ol li {padding-left: 0;}
 #content ol li {padding-left: 0;}
+#content ol ul li {padding-left: 20px;}
 
 #content .widget li {padding: 0 0 0 20px;}
 
@@ -6262,6 +6264,8 @@ table a:hover, table a:focus {text-decoration: none;}
 .news-more-links { padding: 20px 0 20px 0;}
 .news-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-right: 15px;}
 .news-more-links .news-rss {background: url('img/rss.png') no-repeat left center; padding-left: 20px;}
+.news-more-links .news-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
+.news-more-links .news-more:hover, .news-more-links .news-more:focus {background:#d0d8e6;}
 
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat right top;}
 
@@ -6311,7 +6315,7 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .flex-control-paging { display:none;}
 
-#content		{ padding: 30px 0 20px 0;}
+#content		{ padding: 20px 0 20px 0;}
 #content .widget { margin-bottom: 7px;}
 #content .sidebar-inline .widget {margin-bottom: 22px;}
 
@@ -6367,7 +6371,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .rss-shortcode .rss-description {padding: 5px 0; color: #003366;}
 #content .rss-shortcode h4 {font-size: 20px;line-height: 24px;margin: 0;padding: 20px 0 20px 0;}
 
-.widget h2.small { padding-bottom: 11px; padding-top: 11px !important; font-size: 18px;}
+.widget h2.small { padding-bottom: 11px;/* padding-top: 11px !important;*/ font-size: 18px;}
 
 #content .person h3 { padding-bottom: 0; padding-top: 5px; font-weight:bold; font-size: 15px;}
 #content .person h4 {padding-top: 0; font-weight: normal;}

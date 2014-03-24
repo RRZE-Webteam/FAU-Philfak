@@ -77,7 +77,7 @@ get_header(); ?>
 						<?php if($i > 0): ?>
 							<h2 class="small">
 						<?php else: ?>
-							<h2>
+							<h2 class="small">
 						<?php endif; ?>
 							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h2>
