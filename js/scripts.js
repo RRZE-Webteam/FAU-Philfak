@@ -7,6 +7,25 @@ $(document).ready(function()
 		$('body').removeClass('flyout-toggled');
 	});
 	
+	
+	/*
+	$('#nav').menuAim({
+		activate: activateSubmenu,
+		deactivate: deactivateSubmenu,
+		submenuDirection: 'below',
+		rowSelector: "> li.has-sub",
+	});
+	
+	function activateSubmenu(row) {
+		$(row).find('.nav-flyout').show();
+		$('body').addClass('flyout-toggled');
+	}
+	
+	function deactivateSubmenu(row) {
+		$(row).find('.nav-flyout').hide();
+		$('body').removeClass('flyout-toggled');
+	}*/
+	
 	$('#hero-slides').flexslider({
 		'selector': '.hero-slide',
 		directionNav: true,

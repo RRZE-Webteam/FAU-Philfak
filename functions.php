@@ -413,8 +413,8 @@ function fau_widgets_init() {
 		'description' => __( 'Der Social-Media-Bereich', 'fau' ),
 		'before_widget' => '',
 		'after_widget' => '',
-		'before_title' => '',
-		'after_title' => '',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
 	));
 	
 	register_sidebar( array(
@@ -453,9 +453,15 @@ add_action( 'widgets_init', 'fau_widgets_init' );
 
 
 
+add_filter( 'widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
+add_filter( 'widget_text', array( $wp_embed, 'autoembed'), 8 );
 
 
 
+function add_video_embed_note($html, $url, $attr) {
+	return '<div class="oembed">'.$html.'</div>';
+}
+add_filter('embed_oembed_html', 'add_video_embed_note', 10, 3);
 
 
 add_action( 'contextual_help', 'wptuts_screen_help', 10, 3 );

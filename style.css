@@ -6279,7 +6279,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #hero .container {position: relative;}
 #hero .hero-meta-portal {position: absolute; bottom: 23px; right: 75px; text-align: right; color: #3177bf;font-size: 60px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
 
-#hero { -webkit-transition: 0.5s all; -moz-transition: 0.5s all; -ms-transition: 0.5s all; transition: 0.5s all;}
+#hero { -webkit-transition: 1.0s all; -moz-transition: 1.0s all; -ms-transition: 1.0s all; transition: 1.0s all;}
 .flyout-toggled #hero	{ opacity: 0.3;}
 
 #hero .searchform	{ padding-top: 35px; margin-bottom: 0;}
@@ -6333,6 +6333,8 @@ table a:hover, table a:focus {text-decoration: none;}
 #content blockquote p { color: #003366;}
 
 #social			{ background: #f0f0f0; padding: 20px 0; margin-bottom: -30px; margin-top: 30px;}
+
+#social .textwidget .oembed {width: 220px !important; height: 130px !important;}
 
 #footer			{ background: #003366; color: #fff; padding: 20px 0;}
 #footer p		{ color: #fff; font-size: 13px; line-height: 18px; }
