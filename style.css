@@ -6322,6 +6322,18 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .flex-control-paging { display:none;}
 
+.image-gallery-slider .slides li {text-align: center;}
+.image-gallery-slider .slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
+
+.image-gallery-carousel {position: relative;}
+.image-gallery-carousel .slides li {cursor: pointer; opacity: 0.3;}
+.image-gallery-carousel .slides li:hover, .image-gallery-carousel .slides li:focus {opacity: 1.0;}
+.image-gallery-carousel .slides li.flex-active-slide {opacity: 1.0;}
+
+.image-gallery-carousel .flex-direction-nav {top: -32px; left: 0; right: 0; bottom: auto;}
+.image-gallery-carousel .flex-prev		{ top: 60px; left: 0;}
+.image-gallery-carousel .flex-next		{ top: 60px; right: 0;}
+
 #content		{ padding: 20px 0 20px 0;}
 #content .widget { margin-bottom: 7px;}
 #content .sidebar-inline .widget {margin-bottom: 22px; margin-top: 22px;}
@@ -6700,6 +6712,8 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#logos-menu-next { height: 80px;}
 	
 	.sidebar-inline {width: 240px;}
+	
+	.image-gallery-slider .flex-viewport {max-height: 360px; overflow: hidden;}
 }
 
 @media (max-width: 767px) {
@@ -6757,6 +6771,15 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	
 	.flex-direction-nav, .flex-pauseplay {display:none;}
 	
+	.image-gallery-slider .slides {margin: 0 !important; padding: 0 !important;}
+	.image-gallery-slider .slides li {margin: 0; padding: 0;}
+	.image-gallery-slider .slides li img {margin: 0 !important;}
+	
+	.image-gallery-carousel .slides {margin: 0 !important; padding: 0 !important;}
+	.image-gallery-carousel .slides li {margin: 0; padding: 0;}
+	.image-gallery-carousel .slides li img {margin: 0;}
+	
+	
 	#header	{ padding-bottom: 15px;}
 	
 	#nav	{ margin: 10px 0 0 0 !important; display:none;}
@@ -6780,6 +6803,11 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	
 	.logos-menu .span2 { float:left;}
 	
+}
+
+
+@media (max-width: 480px) {
+	.image-gallery-slider .flex-viewport {max-height: 200px; overflow: hidden;}
 }
 
 

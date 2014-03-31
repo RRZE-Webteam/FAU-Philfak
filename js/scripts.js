@@ -26,8 +26,29 @@ $(document).ready(function()
 		$('body').removeClass('flyout-toggled');
 	}*/
 	
+	$('.image-gallery-slider').flexslider({
+		selector: 'ul > li',
+		animation: 'slide',
+		directionNav: false,
+		controlNav: false,
+		pausePlay: false,
+		slideshow: false,
+		sync: '.image-gallery-carousel'
+	});
+	
+	$('.image-gallery-carousel').flexslider({
+		selector: 'ul > li',
+		animation: 'slide',
+		directionNav: true,
+		pausePlay: false,
+		slideshow: false,
+		asNavFor: '.image-gallery-slider',
+		itemWidth: 125,
+		itemMargin: 5,
+	});
+	
 	$('#hero-slides').flexslider({
-		'selector': '.hero-slide',
+		selector: '.hero-slide',
 		directionNav: true,
 		pausePlay: true
 	});
