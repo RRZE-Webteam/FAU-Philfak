@@ -450,6 +450,15 @@ function fau_widgets_init() {
 		'after_title' => '</h2>',
 	) );
 
+	register_sidebar( array(
+		'name' => __( 'Suche Sidebar', 'fau' ),
+		'id' => 'search-sidebar',
+		'description' => __( 'Sidebar auf der Such-Ergebnisseite links', 'fau' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'fau_widgets_init' );
 

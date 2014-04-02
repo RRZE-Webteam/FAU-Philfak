@@ -6093,6 +6093,7 @@ h2		{ font-size: 32px; line-height: 44px; margin: 0; padding: 0 0 22px 0;}
 #content h2 {font-size: 28px; line-height: 34px;}
 #content h2.small {font-size: 20px; line-height: 22px; padding-top: 22px;}
 #content .sidebar-inline h2.small { padding-top: 0;}
+#content .search-sidebar h2.small {padding-top:8px;}
 
 h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 18px; line-height: 22px;}
 h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
@@ -6295,6 +6296,9 @@ table a:hover, table a:focus {text-decoration: none;}
 #hero .searchform input[type="text"]:focus { background-color: #5e91c3;}
 
 #hero .searchform input[type="submit"] {-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 10px 15px; display:block; box-sizing: content-box; height: 20px; color: #444;}
+
+#hero .searchform .search-radio-label { float:left; margin-right: 20px;}
+#hero .searchform .search-radio-label input {margin-top: -4px; margin-right: 3px;}
 
 #hero-slides	{ position: relative; top: -20px; margin: 0 auto 0 auto; margin-bottom: -15px; height: 350px; background: #fff; max-width: 1260px; overflow:hidden; -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.5); -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
 #hero-slides .hero-slide img		{ height: 350px; max-width: 1260px; width: 1260px; left: 50%; margin-left: -630px; position:relative; z-index: 5; top: 0; }
