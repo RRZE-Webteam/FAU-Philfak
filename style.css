@@ -6333,7 +6333,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .image-gallery-carousel ul.slides li:hover, #content .image-gallery-carousel ul.slides li:focus {opacity: 1.0;}
 #content .image-gallery-carousel ul.slides li.flex-active-slide {opacity: 1.0;}
 
-#content .image-gallery-carousel .flex-direction-nav {top: -32px; left: 0; right: 0; bottom: auto;}
+#content .image-gallery-carousel ul.flex-direction-nav {top: -32px; left: 0; right: 0; bottom: auto; margin: 0; padding: 0; list-style: none;}
 #content .image-gallery-carousel .flex-prev		{ top: 60px; left: 0;}
 #content .image-gallery-carousel .flex-next		{ top: 60px; right: 0;}
 
