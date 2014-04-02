@@ -6110,7 +6110,7 @@ p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: 
 
 
 li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 4px;}
-#content li { margin: 0; padding: 0 0 11px 20px; font-size: 15px; line-height: 22px; color: #444;}
+#content li { margin: 0; padding: 0 0 7px 20px; font-size: 15px; line-height: 22px; color: #444;}
 #content li strong {color: #003366;}
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
 #content ul li {background: url('img/li-circle.png') no-repeat left 7px; }
@@ -6131,7 +6131,7 @@ p a, li a {text-decoration:underline;}
 blockquote	{ padding: 0; margin: 0; border: none;}
 
 table, table tbody, table tr, table th, table td  {border:0;}
-table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 20px 0; width:100%;}
+table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 5px 0 20px 0; width:100%;}
 table th {background:#d0d8e6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
 table th, table td {padding: 7px 10px; color: #003366;}
 table td {border-right: 1px solid #fff;}
