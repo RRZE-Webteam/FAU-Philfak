@@ -6324,13 +6324,13 @@ table a:hover, table a:focus {text-decoration: none;}
 
 #content .image-gallery-slider {clear:both; margin: 20px 0;}
 
-#content .image-gallery-slider .slides li {text-align: center;}
-#content .image-gallery-slider .slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
+#content .image-gallery-slider ul.slides li {text-align: center;}
+#content .image-gallery-slider ul.slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
 
 #content .image-gallery-carousel {position: relative;}
-#content .image-gallery-carousel .slides li {cursor: pointer; opacity: 0.3;}
-#content .image-gallery-carousel .slides li:hover, #content .image-gallery-carousel .slides li:focus {opacity: 1.0;}
-#content .image-gallery-carousel .slides li.flex-active-slide {opacity: 1.0;}
+#content .image-gallery-carousel ul.slides li {cursor: pointer; opacity: 0.3;}
+#content .image-gallery-carousel ul.slides li:hover, #content .image-gallery-carousel ul.slides li:focus {opacity: 1.0;}
+#content .image-gallery-carousel ul.slides li.flex-active-slide {opacity: 1.0;}
 
 #content .image-gallery-carousel .flex-direction-nav {top: -32px; left: 0; right: 0; bottom: auto;}
 #content .image-gallery-carousel .flex-prev		{ top: 60px; left: 0;}
