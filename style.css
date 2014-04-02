@@ -6275,6 +6275,12 @@ table a:hover, table a:focus {text-decoration: none;}
 .news-more-links .news-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
 .news-more-links .news-more:hover, .news-more-links .news-more:focus {background:#e5e9f0;}
 
+.events-more-links { padding: 20px 0 20px 0; text-align: right;}
+.events-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-left: 15px;}
+.events-more-links .events-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
+.events-more-links .events-more:hover, .events-more-links .events-more:focus {background:#e5e9f0; text-decoration: none !important;}
+
+
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat right top;}
 
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
