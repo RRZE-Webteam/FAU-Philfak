@@ -6323,12 +6323,13 @@ table a:hover, table a:focus {text-decoration: none;}
 .flex-control-paging { display:none;}
 
 #content .image-gallery-slider {clear:both; margin: 20px 0;}
-
-#content .image-gallery-slider ul.slides li {text-align: center;}
+#content .image-gallery-slider ul.slides {margin: 0; padding: 0; background: none; list-style:none;}
+#content .image-gallery-slider ul.slides li {text-align: center;margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-slider ul.slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
 
 #content .image-gallery-carousel {position: relative;}
-#content .image-gallery-carousel ul.slides li {cursor: pointer; opacity: 0.3;}
+#content .image-gallery-carousel ul.slides {margin: 0; padding: 0; background: none; list-style:none;}
+#content .image-gallery-carousel ul.slides li {cursor: pointer; opacity: 0.3;margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-carousel ul.slides li:hover, #content .image-gallery-carousel ul.slides li:focus {opacity: 1.0;}
 #content .image-gallery-carousel ul.slides li.flex-active-slide {opacity: 1.0;}
 
