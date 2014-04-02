@@ -6322,7 +6322,7 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .flex-control-paging { display:none;}
 
-#content .image-gallery-slider {clear:both; margin: 20px 0;}
+#content .image-gallery-slider {clear:both; margin: 20px 0; padding: 10px 0;}
 #content .image-gallery-slider ul.slides {margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-slider ul.slides li {text-align: center;margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-slider ul.slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
