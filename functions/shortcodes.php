@@ -16,6 +16,25 @@ class FAUShortcodes {
 	function add_shortcodes() {
 		add_shortcode('synonym', array( $this, 'fau_synonym' ));
 		add_shortcode('assistant', array( $this, 'fau_assistant' ));
+		add_shortcode('glossary', array( $this, 'fau_glossary' ));
+	}
+	
+	function fau_glossary( $atts, $content = null ) {
+		extract(shortcode_atts(array(
+			"category" => 'category'
+			), $atts));
+		
+		$posts = get_posts(array('post_type' => 'glossary', 'post_status' => 'publish', 'numberposts' => 100000, 'orderby' => 'title', 'order' => 'ASC', 'category' => $category));
+		
+		$return = '';
+		
+		foreach($posts as $post)
+		{
+			$return .= '<h3>'.get_the_title($post->ID).'</h3>';
+			$return .= get_field('description', $post->ID);
+		}
+		
+		return $return;
 	}
 
 	function fau_subpages( $atts, $content = null ) {
