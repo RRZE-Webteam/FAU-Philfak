@@ -6513,7 +6513,7 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 
 
 #content ul#subnav, #content ul#subnav ul, #content ul#subnav li {list-style: none; margin: 0; padding: 0;}
-#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #eef1f6; padding-left: 15px; padding-right: 15px;}
+#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; padding: 6px 15px; background: #eef1f6; padding-left: 15px; padding-right: 15px; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 #content ul#subnav a:hover { background: #e5e9f0;}
 #content ul#subnav ul { display: none;}
 #content ul#subnav>li {border-bottom: 1px solid #fff;}
