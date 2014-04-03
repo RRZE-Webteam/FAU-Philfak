@@ -6709,6 +6709,9 @@ body.admin-bar #meta {top: 32px;}
 body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 
 
+.mejs-container {width:auto !important; background: transparent !important;}
+
+
 @media (min-width: 1200px) {
 
 }
