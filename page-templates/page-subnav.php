@@ -28,6 +28,10 @@ get_header(); ?>
 			
 				<div class="span3">
 					<?php $parent_page = get_top_parent_page_id($id); ?>
+					<?php
+						$parent = get_page($parent_page);
+					?>
+					<h2 class="small"><?php echo $parent->post_title; ?></h2>
 					<ul id="subnav">
 					<?php wp_list_pages("child_of=$parent_page&title_li="); ?>
 					</ul>
