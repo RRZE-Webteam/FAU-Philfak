@@ -6708,7 +6708,7 @@ body.admin-bar.nav-fixed #header {top: 32px;}
 body.admin-bar #meta {top: 32px;}
 body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 
-
+.wp-video {width: auto !important; max-width: auto !important;}
 .mejs-container {width:auto !important; background: transparent !important;}
 
 
