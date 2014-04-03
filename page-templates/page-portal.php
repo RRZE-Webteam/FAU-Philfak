@@ -30,7 +30,7 @@ get_header(); ?>
 				
 				<div class="span<?php echo $content_span; ?>">
 					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-						<div class="sidebar-inline">
+						<div class="sidebar-inline sidebar-inline-portal">
 							<?php dynamic_sidebar( 'sidebar-right' ); ?>
 						</div>
 					<?php endif; ?>
