@@ -69,9 +69,9 @@ class FAUShortcodes {
 		{
 			$return .= '<div class="accordion-group">';
 				$return .= '<div class="accordion-heading">';
-					$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$i.'">'.$page->post_title.'</a>';
+					$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$page->ID.'-'.$i.'">'.$page->post_title.'</a>';
 				$return .= '</div>';
-				$return .= '<div id="collapse-'.$i.'" class="accordion-body">';
+				$return .= '<div id="collapse-'.$page->ID.'-'.$i.'" class="accordion-body">';
 					$return .= '<div class="accordion-inner">';
 						
 						$return .= '<div class="assistant-tabs">';
@@ -86,7 +86,7 @@ class FAUShortcodes {
 								if($j == 0) $class = 'active';
 								else $class = '';
 								
-								$return .= '<li><a href="#accordion-'.$i.'-tab-'.$j.'" class="'.$class.'">'.$subpage->post_title.'</a></li>';
+								$return .= '<li><a href="#accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'" class="'.$class.'">'.$subpage->post_title.'</a></li>';
 								$j++;
 							}
 						
@@ -98,7 +98,7 @@ class FAUShortcodes {
 								if($j == 0) $class = 'assistant-tab-pane-active';
 								else $class = '';
 								
-								$return .= '<div class="assistant-tab-pane '.$class.'" id="accordion-'.$i.'-tab-'.$j.'">';
+								$return .= '<div class="assistant-tab-pane '.$class.'" id="accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'">';
 									$return .= '<p>'.$subpage->post_content.'</p>';
 								$return .= '</div>';
 								
