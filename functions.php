@@ -575,9 +575,12 @@ function fau_post_gallery($output, $attr) {
 //      $img = wp_get_attachment_image_src($id, 'medium');
 //      $img = wp_get_attachment_image_src($id, 'my-custom-image-size');
         $img = wp_get_attachment_image_src($id, 'gallery-full');
+		$meta = get_post($id);
+
 
         $output .= "<li>\n";
         	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+			if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
         $output .= "</li>\n";
     }
 

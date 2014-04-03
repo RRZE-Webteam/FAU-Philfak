@@ -6334,12 +6334,12 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .flex-control-paging { display:none;}
 
-#content .image-gallery-slider {clear:both; margin: 20px 0; padding: 10px 0;}
+#content .image-gallery-slider {clear:both; margin: 22px 0; padding: 10px 0;}
 #content .image-gallery-slider ul.slides {margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-slider ul.slides li {text-align: center;margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-slider ul.slides img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; -ms-box-shadow: none !important; box-shadow: none !important;}
 
-#content .image-gallery-carousel {position: relative;}
+#content .image-gallery-carousel {position: relative; margin-bottom: 44px;}
 #content .image-gallery-carousel ul.slides {margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-carousel ul.slides li {cursor: pointer; opacity: 0.3;margin: 0; padding: 0; background: none; list-style:none;}
 #content .image-gallery-carousel ul.slides li:hover, #content .image-gallery-carousel ul.slides li:focus {opacity: 1.0;}
@@ -6732,7 +6732,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	
 	.sidebar-inline {width: 240px;}
 	
-	.image-gallery-slider .flex-viewport {max-height: 360px; overflow: hidden;}
+	.image-gallery-slider .flex-viewport {max-height: 400px; overflow: hidden;}
 }
 
 @media (max-width: 767px) {
