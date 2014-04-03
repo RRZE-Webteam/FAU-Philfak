@@ -6089,9 +6089,9 @@ body, html {overflow-x:hidden;}
 a { color: #003366;}
 a:hover { color: #225588;}
 
-h2		{ font-size: 32px; line-height: 44px; margin: 0; padding: 0 0 22px 0;}
-#content h2 {font-size: 28px; line-height: 34px;}
-#content h2.small {font-size: 20px; line-height: 22px; padding-top: 22px;}
+h2		{ font-size: 24px; line-height: 33px; margin: 0; padding: 18px 0 22px 0;}
+#content h2 {font-size: 24px; line-height: 28px;}
+#content h2.small {font-size: 18px; line-height: 22px; padding-top: 22px;}
 #content .sidebar-inline h2.small { padding-top: 0;}
 #content .search-sidebar h2.small {padding-top:8px;}
 
@@ -6258,6 +6258,8 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .subpages-menu .ext-icon {position: absolute; top: 0; right: 0; z-index:10; height: 20px; width: 20px; background: #003366 url('img/ext-icon-19-white.png') no-repeat 50% 50%;}
 
 .post-image	{ float:right; margin-bottom: 20px; margin-left: 20px;}
+
+.news-item {margin-bottom: 11px;}
 
 .news-meta {border-bottom: 1px solid #eee; padding: 5px 0; margin-top: 30px; margin-bottom: -20px; color: #888; text-align: right;}
 .news-meta-date {display:block; margin: -10px 0 10px 0; color: #003366;}

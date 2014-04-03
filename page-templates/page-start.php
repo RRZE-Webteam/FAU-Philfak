@@ -74,24 +74,29 @@ get_header(); ?>
 					<?php $news_query = new WP_Query('tag=startseite&posts_per_page='.$options['start_news_count']); ?>
 					<?php $i = 0; ?>
 					<?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
+						
+						<div class="news-item">
+					
 						<?php if($i > 0): ?>
-							<h2 class="small">
+							<h2>
 						<?php else: ?>
-							<h2 class="small">
+							<h2>
 						<?php endif; ?>
 							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h2>
 						
-						<div class="row">
-							<?php if(has_post_thumbnail( $post->ID )): ?>
-							<div class="span3">
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('post-thumb'); ?></a>
-							</div>
-							<div class="span5">
-							<?php else: ?>
-							<div class="span8">
-							<?php endif; ?>
-								<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>">[…]</a></p>
+						
+							<div class="row">
+								<?php if(has_post_thumbnail( $post->ID )): ?>
+								<div class="span3">
+									<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('post-thumb'); ?></a>
+								</div>
+								<div class="span5">
+								<?php else: ?>
+								<div class="span8">
+								<?php endif; ?>
+									<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>">[…]</a></p>
+								</div>
 							</div>
 						</div>
 					
