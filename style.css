@@ -6133,12 +6133,16 @@ blockquote	{ padding: 0; margin: 0; border: none;}
 table, table tbody, table tr, table th, table td  {border:0;}
 table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 5px 0 20px 0; width:100%;}
 table th {background:#d0d8e6; color: #003366; font-weight:bold; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; text-align: left;}
-table th, table td {padding: 7px 10px; color: #003366;}
+table th, table td {padding: 7px 10px; color: #003366; font-size: 13px; line-height: 18px;}
 table td {border-right: 1px solid #fff;}
 table tr {border-left: 1px solid #eef1f6; border-right: 1px solid #eef1f6;}
 table tr:nth-child(odd) td {background:#eef1f6;}
 table a {text-decoration:underline;}
 table a:hover, table a:focus {text-decoration: none;}
+
+#content table ul {}
+#content table ul li {color: #003366; font-size: 13px; line-height: 18px; background-position: left 5px;}
+
 
 #meta	{ background: #e3e6e8;}
 
