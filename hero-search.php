@@ -35,7 +35,7 @@
 						$post_type = get_query_var('post_type');
 					?>
 
-					<br>
+					<br style="clear:both">
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="any"<?php if( ! $post_type || $post_type == '' || $post_type == 'any') echo " checked"; ?>>
 						Alle Inhalte

@@ -6308,7 +6308,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #hero .searchform input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 10px 10px 10px 40px; width: 300px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #5586b6 url('img/icon-search.png') no-repeat 15px center; border: none; outline: none; color: #fff;}
 #hero .searchform input[type="text"]:focus { background-color: #5e91c3;}
 
-#hero .searchform input[type="submit"] {-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 10px 15px; display:block; box-sizing: content-box; height: 20px; color: #444;}
+#hero .searchform input[type="submit"] {-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 10px 15px; display:block; box-sizing: padding-box; height: 40px; color: #444;}
 
 #hero .searchform .search-radio-label { float:left; margin-right: 20px;}
 #hero .searchform .search-radio-label input {margin-top: -4px; margin-right: 3px;}
