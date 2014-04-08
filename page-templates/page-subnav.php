@@ -61,7 +61,7 @@ get_header(); ?>
 
 		</div>
 		
-		<?php if( ! get_field('hide_pdf_button')): ?>
+		<?php if( ! get_field('hide_pdf_button') && $post->post_password == ''): ?>
 		<ul class="page-print-actions">
 			<li>
 				<?php

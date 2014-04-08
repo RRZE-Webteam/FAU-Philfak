@@ -476,6 +476,17 @@ function add_video_embed_note($html, $url, $attr) {
 add_filter('embed_oembed_html', 'add_video_embed_note', 10, 3);
 
 
+
+function fau_protected_attribute ($classes, $item) {
+	if($item->post_password != '')
+	{
+		$classes[] = 'protected-page';
+	}
+	return $classes;
+}
+add_filter('page_css_class', 'fau_protected_attribute', 10, 3);
+
+
 add_action( 'contextual_help', 'wptuts_screen_help', 10, 3 );
 function wptuts_screen_help( $contextual_help, $screen_id, $screen ) {
  
