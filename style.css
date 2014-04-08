@@ -6558,6 +6558,18 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 #content ul#subnav li.protected-page a {padding-right: 40px; background-image: url('img/protected-page.png'); background-repeat:no-repeat; background-position: right center;}
 
 
+#content ul#organigram {list-style: none; margin: 20px 0; padding: 0;}
+#content ul#organigram ul,
+#content ul#organigram li {list-style: none; margin: 0; padding: 0;}
+#content ul#organigram li { background: none;}
+#content ul#organigram a {text-decoration: none;}
+#content ul#organigram a:hover, #content ul#organigram a:focus {text-decoration: underline;}
+
+#content ul#organigram ul {margin-bottom: 20px; border-left: 2px solid #ddd; margin-left: 10px;}
+#content ul#organigram li { font-size: 19px; margin-bottom: 20px; margin-top: 5px; }
+#content ul#organigram li li {font-size: 15px; padding-left: 10px; margin-bottom: 0;}
+#content ul#organigram li li li {font-size: 13px;}
+
 #social 		{}
 #social h2		{ color: #a1aab1; padding-top: 0 !important;}
 #social ul.social		{ list-style:none; margin: 0 0 10px 5px; padding: 0;}

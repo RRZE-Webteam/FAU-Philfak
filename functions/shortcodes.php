@@ -18,6 +18,15 @@ class FAUShortcodes {
 		add_shortcode('assistant', array( $this, 'fau_assistant' ));
 		add_shortcode('glossary', array( $this, 'fau_glossary' ));
 		add_shortcode('person', array( $this, 'fau_person' ));
+		add_shortcode('organigram', array( $this, 'fau_organigram'));
+	}
+	
+	function fau_organigram( $atts, $content = null) {
+		extract(shortcode_atts(array(
+			"menu" => 'menu'
+			), $atts));
+			
+		return wp_nav_menu( array('menu' => $menu, 'container' => false, 'menu_id' => 'organigram', 'menu_class' => 'organigram', 'echo' => 0));
 	}
 	
 	function fau_glossary( $atts, $content = null ) {
