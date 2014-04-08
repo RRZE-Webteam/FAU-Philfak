@@ -6109,7 +6109,9 @@ p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: 
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
 
-li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 4px; list-style: none !important;}
+li		{ font-size: 13px; line-height: 22px; padding-left: 20px; padding-bottom: 5px; background: url('img/list-arrow.png') no-repeat left 4px; }
+ul li {list-style: none !important;}
+ol li {list-style: decimal !important}
 #content li { margin: 0; padding: 0 0 7px 20px; font-size: 15px; line-height: 22px; color: #444;}
 #content li strong {color: #003366;}
 #content ul {list-style: none; list-style-position: inside; margin-left: 10px;}
