@@ -6095,10 +6095,10 @@ h2		{ font-size: 24px; line-height: 33px; margin: 0; padding: 18px 0 22px 0;}
 #content .sidebar-inline h2.small { padding-top: 0;}
 #content .search-sidebar h2.small {padding-top:8px;}
 
-h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 18px; line-height: 22px;}
+h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 19px; line-height: 22px;}
 h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
 
-h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 16px; line-height: 22px; font-weight: normal;}
+h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 15px; line-height: 22px; font-weight: bold;}
 
 #content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 16px; font-weight:normal;}
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
