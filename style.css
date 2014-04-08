@@ -6584,7 +6584,7 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 #content input[type="submit"]:hover, #content input[type="submit"]:focus {background: #195da1;}
 #content input[type="submit"]:active {background:#031f3c;}
 
-#content .post-password-form label {display:none;}
+#content .post-password-form label {float: none; margin-bottom: 5px; color: #003366;}
 #content .post-password-form input[type="password"] {width:220px;}
 
 div.wpcf7 {
