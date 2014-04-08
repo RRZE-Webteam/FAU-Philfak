@@ -43,22 +43,11 @@ get_header(); ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					
-					<div class="sidebar-inline">
-						<ul class="page-print-actions">
-							<li>
-								<?php
-									$permalink = add_query_arg( 'print' , 'pdf' , get_permalink( $post->ID ) );
-									echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank">PDF dieser Seite</a>';
-								?>
-							</li>
-							<li>
-								<a href="javascript:window.print()" class="page-print">Seite drucken</a>
-							</li>
-						</ul>
-						<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
+					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
+						<div class="sidebar-inline">
 							<?php dynamic_sidebar( 'sidebar-right' ); ?>
-						<?php endif; ?>
-					</div>
+						</div>
+					<?php endif; ?>
 
 					<?php the_content(); ?>
 				</div>
@@ -71,7 +60,22 @@ get_header(); ?>
 			<?php endif; ?>
 
 		</div>
+		
+		<?php if( ! get_field('hide_pdf_button')): ?>
+		<ul class="page-print-actions">
+			<li>
+				<?php
+					$permalink = add_query_arg( 'print' , 'pdf' , get_permalink( $post->ID ) );
+					echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank">PDF dieser Seite</a>';
+				?>
+			</li>
+			<li>
+				<a href="javascript:window.print()" class="page-print">Seite drucken</a>
+			</li>
+		</ul>
+		<?php endif; ?>
 	</div>
+	
 	
 <?php endwhile; ?>
 

@@ -6433,11 +6433,16 @@ table a:hover, table a:focus {text-decoration: none;}
 .person-info-address {margin-top: 10px;}
 .person-info-description {margin-top:10px;}
 
-#content ul.page-print-actions {margin: 0; padding: 0; list-style:none;}
-#content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px;}
-#content ul.page-print-actions li a {text-decoration: none;}
-#content ul.page-print-actions li a:hover, #content ul.page-print-actions li a:focus {text-decoration:underline;}
-#content ul.page-print-actions li a.page-print-pdf {background: url('img/pdf-icon-16x16.gif') no-repeat left center; padding-left: 20px; display:block;;}
+#content ul.page-print-actions {margin: 0; padding: 0; list-style:none; position: fixed; top: 400px; right: 0;}
+#content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px; display: block; margin-bottom: 2px;} 
+#content ul.page-print-actions li a {text-decoration: none; display: block; text-indent: -9999em; height: 34px; width: 34px; background: #eef1f6 url('img/page-print-actions.png') no-repeat left top;}
+#content ul.page-print-actions li a.page-print { background-position: left bottom;}
+#content ul.page-print-actions li a.page-print-pdf {}
+#content ul.page-print-actions li a:hover, #content ul.page-print-actions li a:focus {text-decoration:none; background-color: #e5e9f0;}
+#content ul.page-print-actions li a.page-print:hover, #content ul.page-print-actions li a.page-print:focus {background-position: right bottom;}
+#content ul.page-print-actions li a.page-print-pdf:hover, #content ul.page-print-actions li a.page-print-pdf:focus { background-position: right top;}
+
+/*#content ul.page-print-actions li a.page-print-pdf {background: url('img/pdf-icon-16x16.gif') no-repeat left center; padding-left: 20px; display:block;;} */
 
 .topevent-date { color: #003366; font-weight: bold; margin-bottom: 5px;}
 .topevent-description { color: #003366}
@@ -6734,7 +6739,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 
 @media (max-width: 979px) {
 	#logo { float: none; }
-	#nav { margin: 10px 0;}
+	#nav { margin: 10px 0 10px -10px;}
 	
 	#nav .nav-flyout { top: 200px;}
 	.nav-fixed #nav .nav-flyout {top: 160px;}
@@ -6750,6 +6755,8 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#logos-menu-next { height: 80px;}
 	
 	.sidebar-inline {width: 240px;}
+	
+	#content ul.page-print-actions {top: 440px;}
 	
 	.image-gallery-slider .flex-viewport {max-height: 400px; overflow: hidden;}
 }
@@ -6775,6 +6782,8 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
 	#content p img {margin: 0;}
 	.post-image { margin: 0 !important; float: none !important;}
+	
+	#content ul.page-print-actions {display:none;}
 	
 	#content .subpages-menu .menu-item { margin-bottom: 15px;}
 	#content .subpages-menu .ext-link h3 {display:block;}
