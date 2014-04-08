@@ -17,6 +17,7 @@ class FAUShortcodes {
 		add_shortcode('synonym', array( $this, 'fau_synonym' ));
 		add_shortcode('assistant', array( $this, 'fau_assistant' ));
 		add_shortcode('glossary', array( $this, 'fau_glossary' ));
+		add_shortcode('person', array( $this, 'fau_person' ));
 	}
 	
 	function fau_glossary( $atts, $content = null ) {
@@ -52,6 +53,49 @@ class FAUShortcodes {
 		$return = get_field('synonym', $id);
 		
 		return $return;
+	}
+	
+	function fau_person( $atts, $content = null) {
+		extract(shortcode_atts(array(
+			"slug" => 'slug'
+			), $atts));
+			
+		$posts = get_posts(array('name' => $slug, 'post_type' => 'person', 'post_status' => 'publish'));
+		$post = $posts[0];
+		$id = $post->ID;
+
+		$content = '<div class="person content-person">';			
+			$content .= '<div class="row">';
+			
+				if(has_post_thumbnail($id))
+				{
+					$content .= '<div class="span1">';
+						$content .= get_the_post_thumbnail($id, 'person-thumb');
+					$content .= '</div>';
+				}
+				
+				$content .= '<div class="span3">';
+					$content .= '<h3>';
+						if(get_field('title', $id)) 	$content .= get_field('title', $id).' ';
+						if(get_field('firstname', $id)) 	$content .= get_field('firstname', $id).' ';
+						if(get_field('lastname', $id)) 		$content .= get_field('lastname', $id);
+					$content .= '</h3>';
+					if(get_field('position', $id)) 		$content .= '<h4>'.get_field('position', $id).'</h4>';
+					if(get_field('institution', $id))			$content .= '<div class="person-info person-info-institution">'.get_field('institution', $id).'</div>';
+					if(get_field('phone', $id))			$content .= '<div class="person-info person-info-phone">'.get_field('phone', $id).'</div>';
+					if(get_field('fax', $id))			$content .= '<div class="person-info person-info-fax">'.get_field('fax', $id).'</div>';
+					if(get_field('email', $id))			$content .= '<div class="person-info person-info-email"><a href="mailto:'.get_field('email', $id).'">'.get_field('email', $id).'</a></div>';
+					if(get_field('webseite', $id))		$content .= '<div class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></div>';
+					if(get_field('adresse', $id))		$content .= '<div class="person-info person-info-address">'.get_field('adresse', $id).'</div>';
+					if(get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
+					if(get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
+					
+				$content .= '</div>';
+			$content .= '</div>';
+		
+		$content .= '</div>';
+		
+		return $content;
 	}
 	
 	function fau_assistant( $atts, $content = null) {
