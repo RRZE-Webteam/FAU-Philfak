@@ -33,6 +33,7 @@
 					
 					<?php
 						$post_type = get_query_var('post_type');
+						print_r($post_type);
 						$post_type_single = $post_type[0];
 					?>
 
