@@ -19,6 +19,11 @@ class FAUShortcodes {
 		add_shortcode('glossary', array( $this, 'fau_glossary' ));
 		add_shortcode('person', array( $this, 'fau_person' ));
 		add_shortcode('organigram', array( $this, 'fau_organigram'));
+		add_shortcode('hr', array( $this, 'fau_hr'));
+	}
+	
+	function fau_hr ( $atts, $content = null) {
+		return '<div class="hr"><hr></div>';
 	}
 	
 	function fau_organigram( $atts, $content = null) {
