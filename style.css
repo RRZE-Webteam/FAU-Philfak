@@ -6278,7 +6278,7 @@ table a:hover, table a:focus {text-decoration: none;}
 .news-meta-categories li a:hover, .news-meta-categories li a:focus {color: #fff; background: #003366;}
 
 .read-more {text-align: right;}
-.read-more-arrow {text-decoration: none; padding-right: 3px; padding-left: 2px;}
+.read-more-arrow {text-decoration: none; padding-right: 3px; padding-left: 2px; font-size: 22px; line-height: 16px;}
 .read-more-arrow:hover, .read-more-arrow:focus {text-decoration: none; padding-left: 5px; padding-right: 0;}
 
 .news-more-links { padding: 20px 0 20px 0; text-align: left;}
