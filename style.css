@@ -6285,8 +6285,8 @@ table a:hover, table a:focus {text-decoration: none;}
 .news-more-links .news-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
 .news-more-links .news-more:hover, .news-more-links .news-more:focus {background:#e5e9f0;}
 
-.events-more-links { padding: 20px 0 20px 0; text-align: right;}
-.events-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-left: 15px;}
+.events-more-links { padding: 0 0 20px 0; text-align: left;}
+.events-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-left: 60px;}
 .events-more-links .events-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
 .events-more-links .events-more:hover, .events-more-links .events-more:focus {background:#e5e9f0; text-decoration: none !important;}
 
@@ -6468,7 +6468,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .widget_event_widget .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
 #content .widget_event_widget .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
 #content .widget_event_widget .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
-#content .widget_event_widget .event-info { margin-left: 80px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #ddd;}
+#content .widget_event_widget .event-info { margin-left: 60px; margin-bottom: 10px; padding-bottom: 5px; }
 #content .widget_event_widget .event-title	{ font-weight: bold; }
 #content .widget_event_widget .event-time { color: #003366;}
 #content .widget_event_widget .event-location {color: #888;}
