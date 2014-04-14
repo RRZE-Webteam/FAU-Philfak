@@ -6300,7 +6300,7 @@ table a:hover, table a:focus {text-decoration: none;}
 .hero-small h1	{ padding: 30px 0 10px 0 !important;}
 
 #hero .container {position: relative;}
-#hero .hero-meta-portal {position: absolute; bottom: 23px; right: 75px; text-align: right; color: #3177bf;font-size: 60px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
+#hero .hero-meta-portal {position: absolute; bottom: 23px; right: 100px; text-align: right; color: #0155ab;font-size: 60px;line-height: 50px;/* font-family: 'roboto-light', Helvetica, Arial, sans-serif;*/}
 
 #hero { -webkit-transition: 1.0s all; -moz-transition: 1.0s all; -ms-transition: 1.0s all; transition: 1.0s all;}
 .flyout-toggled #hero	{ opacity: 0.3;}
