@@ -31,7 +31,7 @@ get_header(); ?>
 					<?php
 						$parent = get_page($parent_page);
 					?>
-					<h2 class="small"><?php echo $parent->post_title; ?></h2>
+					<h2 class="small menu-header"><?php echo $parent->post_title; ?></h2>
 					<ul id="subnav">
 					<?php wp_list_pages("child_of=$parent_page&title_li="); ?>
 					</ul>
