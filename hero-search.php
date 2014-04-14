@@ -15,7 +15,7 @@
 			<div class="span8">
 
 			    <div class="breadcrumbs">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Start</a><span>/</span>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">fau.de</a><span>/</span>
 					<?php _e('Search','fau'); ?>
 				</div>
 			</div>

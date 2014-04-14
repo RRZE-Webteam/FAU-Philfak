@@ -15,7 +15,7 @@
 			<div class="span12">
 				<?php if(function_exists('bcn_display')): ?>
 					<div class="breadcrumbs">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Start</a><span>/</span>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">fau.de</a><span>/</span>
 						<?php bcn_display(); ?>
 					</div>
 				<?php endif; ?>
