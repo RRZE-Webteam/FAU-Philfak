@@ -6433,7 +6433,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .person h3 { padding-bottom: 0; padding-top: 5px; font-weight:bold; font-size: 15px;}
 #content .person h4 {padding-top: 0; font-weight: normal;}
 
-#content .content-person {margin: 10px 0;}
+#content .content-person {margin: 10px 0; border-bottom: 1px solid #eee;}
 
 .person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
 .person-info p {color: #003366; font-size: 13px; line-height: 20px;}
