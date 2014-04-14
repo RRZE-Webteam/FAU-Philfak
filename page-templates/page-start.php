@@ -191,6 +191,9 @@ get_header(); ?>
 									<?php if($options['socialmedia_xing']): ?>
 										<li class="social social-xing"><a href="<?php echo $options['socialmedia_xing']; ?>" target="_blank"><?php echo $options['socialmedia_xing_text']; ?></a></li>
 									<?php endif; ?>
+									<?php if($options['socialmedia_pinterest']): ?>
+										<li class="social social-pinterest"><a href="<?php echo $options['socialmedia_pinterest']; ?>" target="_blank"><?php echo $options['socialmedia_pinterest_text']; ?></a></li>
+									<?php endif; ?>
 								</ul>
 							</div>
 						<?php endif; ?>
