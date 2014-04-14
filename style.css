@@ -6479,7 +6479,7 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .widget_event_widget .event-location {color: #888;}
 
 #content .widget_event_widget .event-info a,
-#content .widget_event_widget .event-info-time {color: #444;}
+#content .widget_event_widget .event-info .event-time {color: #444;}
 
 /*#content .widget_event_widget .event-category-techfak a,
 #content .widget_event_widget .event-category-techfak .event-time,
