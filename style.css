@@ -6287,12 +6287,12 @@ table a:hover, table a:focus {text-decoration: none;}
 .news-more-links { padding: 20px 0 20px 0; text-align: left;}
 .news-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-right: 15px;}
 .news-more-links .news-rss {background: url('img/rss.png') no-repeat left center; padding-left: 23px;}
-.news-more-links .news-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
+.news-more-links .news-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 14px;}
 .news-more-links .news-more:hover, .news-more-links .news-more:focus {background:#e5e9f0;}
 
 .events-more-links { padding: 0 0 20px 0; text-align: left;}
 .events-more-links a {display: inline-block; height: 20px; line-height: 20px; margin-left: 60px;}
-.events-more-links .events-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px;}
+.events-more-links .events-more {background: #eef1f6; padding: 6px 10px; text-decoration:none;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 14px;}
 .events-more-links .events-more:hover, .events-more-links .events-more:focus {background:#e5e9f0; text-decoration: none !important;}
 
 
