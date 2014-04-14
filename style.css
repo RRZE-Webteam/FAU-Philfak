@@ -6559,7 +6559,12 @@ img.aligncenter, div.aligncenter {margin-bottom: 10px;}
 #content ul#subnav li li a {padding-left: 25px;}
 #content ul#subnav li li li a {padding-left: 35px;}
 
-#content ul#subnav li .current_page_item > a { background: #b9c4d6;}
+#content ul#subnav li .current_page_item a,
+#content ul#subnav li .current_page_parent a { background: #b9c4d6;}
+
+#content ul#subnav li .current_page_parent .current_page_item a {background:#9da9bd;}
+#content ul#subnav li li li a {font-size: 13px;}
+#content ul#subnav li .current_page_item li a:hover {background:#9da9bd;}
 
 #content ul#subnav li.protected-page a {padding-right: 40px; background-image: url('img/protected-page.png'); background-repeat:no-repeat; background-position: right center;}
 
