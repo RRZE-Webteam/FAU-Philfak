@@ -25,7 +25,7 @@
 		<div class="span8">
 		<?php endif; ?>
 			<?php the_field('abstract'); ?>
-			<a href="<?php the_permalink(); ?>" class="read-more-arrow">→</a>
+			<a href="<?php the_permalink(); ?>" class="read-more-arrow">›</a>
 		</div>
 	</div>
 </div>
