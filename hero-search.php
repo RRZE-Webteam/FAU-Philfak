@@ -33,6 +33,7 @@
 					
 					<?php
 						$post_type = get_query_var('post_type');
+						print_r($post_type);
 					?>
 
 					<br style="clear:both">
