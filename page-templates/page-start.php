@@ -95,7 +95,7 @@ get_header(); ?>
 								<?php else: ?>
 								<div class="span8">
 								<?php endif; ?>
-									<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>">[…]</a></p>
+									<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>" class="read-more-arrow">→</a></p>
 								</div>
 							</div>
 						</div>
