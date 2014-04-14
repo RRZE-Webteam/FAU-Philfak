@@ -34,11 +34,12 @@
 					<?php
 						$post_type = get_query_var('post_type');
 						print_r($post_type);
+						$post_type = $post_type[0];
 					?>
 
 					<br style="clear:both">
 					<label class="search-radio-label">
-						<input type="radio" name="post_type" value="any"<?php if( ! $post_type || $post_type == '' || $post_type == 'any') echo " checked"; ?>>
+						<input type="radio" name="post_type" value="page,post,event,person"<?php if( ! $post_type || $post_type == '' || $post_type == 'any') echo " checked"; ?>>
 						Alle Inhalte
 					</label>
 					<label class="search-radio-label">
