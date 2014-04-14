@@ -6696,8 +6696,8 @@ div.wpcf7 .placeheld {
 .accordion {margin: 10px 0 30px 0;}
 
 .accordion-group {border:none;margin-bottom: 5px;}
-.accordion-heading .accordion-toggle {border-left: 8px solid #003466; background: #003466 url('img/caret-accordion.png') no-repeat right top; color: #fff; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;text-decoration:none; font-size: 16px; padding-left: 12px;}
-.accordion-heading .accordion-toggle:hover, .accordion-heading .accordion-toggle:focus {background-color:#074887; text-decoration: none;}
+.accordion-heading .accordion-toggle {border-left: 8px solid #003466; background: #105292 url('img/caret-accordion.png') no-repeat right top; color: #fff; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;text-decoration:none; font-size: 16px; padding-left: 12px;}
+.accordion-heading .accordion-toggle:hover, .accordion-heading .accordion-toggle:focus {background-color:#003466; text-decoration: none;}
 .accordion-heading .accordion-toggle.active, .accordion-heading .accordion-toggle.active:hover, .accordion-heading .accordion-toggle.active:focus {background-color: #003466; background-position: right -41px; color: #fff;}
 .accordion-inner {border: none; background: #f8f9fb; padding: 15px 20px;}
 
