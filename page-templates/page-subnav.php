@@ -66,11 +66,11 @@ get_header(); ?>
 			<li>
 				<?php
 					$permalink = add_query_arg( 'print' , 'pdf' , get_permalink( $post->ID ) );
-					echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank">PDF dieser Seite</a>';
+					echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank"><div class="icon"></div><div class="text">PDF dieser Seite</div></a>';
 				?>
 			</li>
 			<li>
-				<a href="javascript:window.print()" class="page-print">Seite drucken</a>
+				<a href="javascript:window.print()" class="page-print"><div class="icon"></div><div class="text">Seite drucken</div></a>
 			</li>
 		</ul>
 		<?php endif; ?>

@@ -6440,12 +6440,15 @@ table a:hover, table a:focus {text-decoration: none;}
 
 #content ul.page-print-actions {margin: 0; padding: 0; list-style:none; position: fixed; top: 400px; right: 0;}
 #content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px; display: block; margin-bottom: 2px;} 
-#content ul.page-print-actions li a {text-decoration: none; display: block; text-indent: -9999em; height: 34px; width: 34px; background: #eef1f6 url('img/page-print-actions.png') no-repeat left top;}
-#content ul.page-print-actions li a.page-print { background-position: left bottom;}
+#content ul.page-print-actions li a {text-decoration: none; display: block; background: #eef1f6; height: 34px;}
+#content ul.page-print-actions li a .icon {height: 34px; width: 34px; background: transparent url('img/page-print-actions.png') no-repeat left top; display: block; float: left;}
+#content ul.page-print-actions li a .text {display: none; height: 34px; line-height: 34px; padding: 0 15px 0 2px; float: left;}
+#content ul.page-print-actions li a.page-print .icon { background-position: left bottom;}
 #content ul.page-print-actions li a.page-print-pdf {}
 #content ul.page-print-actions li a:hover, #content ul.page-print-actions li a:focus {text-decoration:none; background-color: #e5e9f0;}
-#content ul.page-print-actions li a.page-print:hover, #content ul.page-print-actions li a.page-print:focus {background-position: right bottom;}
-#content ul.page-print-actions li a.page-print-pdf:hover, #content ul.page-print-actions li a.page-print-pdf:focus { background-position: right top;}
+#content ul.page-print-actions:hover .text, #content ul.page-print-actions:focus .text {display: block;}
+#content ul.page-print-actions li a.page-print:hover .icon, #content ul.page-print-actions li a.page-print:focus .icon {background-position: right bottom;}
+#content ul.page-print-actions li a.page-print-pdf:hover .icon, #content ul.page-print-actions li a.page-print-pdf:focus .icon { background-position: right top;}
 
 /*#content ul.page-print-actions li a.page-print-pdf {background: url('img/pdf-icon-16x16.gif') no-repeat left center; padding-left: 20px; display:block;;} */
 
