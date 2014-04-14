@@ -33,7 +33,6 @@
 					
 					<?php
 						$post_type = get_query_var('post_type');
-						print_r($post_type);
 						$post_type_single = $post_type[0];
 					?>
 
@@ -43,19 +42,19 @@
 						Alle Inhalte
 					</label>
 					<label class="search-radio-label">
-						<input type="radio" name="post_type" value="page"<?php if($post_type_single == 'page') echo " checked"; ?>>
+						<input type="radio" name="post_type" value="page"<?php if( count($post_type) == 1 && $post_type_single == 'page') echo " checked"; ?>>
 						Seiten
 					</label>
 					<label class="search-radio-label">
-						<input type="radio" name="post_type" value="post"<?php if($post_type_single == 'post') echo " checked"; ?>>
+						<input type="radio" name="post_type" value="post"<?php if( count($post_type) == 1 && $post_type_single == 'post') echo " checked"; ?>>
 						Nachrichten
 					</label>
 					<label class="search-radio-label">
-						<input type="radio" name="post_type" value="event"<?php if($post_type_single == 'event') echo " checked"; ?>>
+						<input type="radio" name="post_type" value="event"<?php if( count($post_type) == 1 && $post_type_single == 'event') echo " checked"; ?>>
 						Veranstaltungen
 					</label>
 					<label class="search-radio-label">
-						<input type="radio" name="post_type" value="person"<?php if($post_type_single == 'person') echo " checked"; ?>>
+						<input type="radio" name="post_type" value="person"<?php if( count($post_type) == 1 && $post_type_single == 'person') echo " checked"; ?>>
 						Personen
 					</label>
 				</form>
