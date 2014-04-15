@@ -6304,6 +6304,7 @@ table a:hover, table a:focus {text-decoration: none;}
 
 #hero	{ margin-top: 20px; padding-bottom: 10px; background: #003366 url('img/hero-back-blue.jpg') no-repeat right top;}
 
+#hero h1 {max-width:50%;}
 #hero h1, #hero h2, #hero h3, #hero h4, #hero p	{ font-weight: normal; color: #fff; margin: 10px 0; padding: 0;}
 #hero a		{ color: #fff;}
 #hero ul	{ margin: 0; padding: 0; list-style: none;}
@@ -6861,6 +6862,9 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	
 	#logo	{ margin: 15px 15px 0 15px; width: 210px;}
 	#logo img {max-width:100%;}
+	
+	#hero h1 {max-width:100%;}
+	
 	
 	#hero-slides {max-width:100%; height: auto; min-height: 200px;}
 	#hero-slides .hero-slide img	{ height: 220px; width: 780px; left: 50%; margin-left: -390px;}
