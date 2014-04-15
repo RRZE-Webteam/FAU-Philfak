@@ -71,7 +71,8 @@ class FAUShortcodes {
 	
 	function fau_person( $atts, $content = null) {
 		extract(shortcode_atts(array(
-			"slug" => 'slug'
+			"slug" => 'slug',
+			"showlink" => FALSE
 			), $atts));
 			
 		$posts = get_posts(array('name' => $slug, 'post_type' => 'person', 'post_status' => 'publish'));
@@ -102,6 +103,8 @@ class FAUShortcodes {
 					if(get_field('webseite', $id))		$content .= '<div class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></div>';
 					if(get_field('adresse', $id))		$content .= '<div class="person-info person-info-address">'.get_field('adresse', $id).'</div>';
 					if(get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
+					
+					if($showlink && get_field('link', $id))			$content .= '<div class="person-info person-info-more"><a class="person-read-more" href="'.get_field('link', $id).'">Mehr ›</a></div>';
 					
 				$content .= '</div>';
 				$content .= '<div class="span3">';
