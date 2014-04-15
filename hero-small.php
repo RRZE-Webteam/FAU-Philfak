@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="span8">
+			<div class="span6">
 
 				<h1><?php the_title(); ?></h1>
 				
