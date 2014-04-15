@@ -22,7 +22,7 @@ get_header(); ?>
 					<div class="hero-slide-text">
 						<div class="container">
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><br>
-							<?php the_excerpt(); ?>
+							<?php the_field('abstract'); ?>
 						</div>
 					</div>
 				</div>
