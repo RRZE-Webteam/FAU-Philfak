@@ -83,8 +83,8 @@ class FAUShortcodes {
 			
 				if(has_post_thumbnail($id))
 				{
-					$content .= '<div class="span1">';
-						$content .= get_the_post_thumbnail($id, 'person-thumb');
+					$content .= '<div class="span1 span-small">';
+						$content .= get_the_post_thumbnail($id, 'person-thumb-bigger');
 					$content .= '</div>';
 				}
 				
@@ -104,7 +104,7 @@ class FAUShortcodes {
 					if(get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
 					
 				$content .= '</div>';
-				$content .= '<div class="span4">';
+				$content .= '<div class="span3">';
 					if(get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
 				$content .= '</div>';
 			$content .= '</div>';

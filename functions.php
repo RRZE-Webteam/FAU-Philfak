@@ -82,6 +82,7 @@ function fau_setup() {
 	add_image_size( 'post-thumb', 220, 147, true); // 3:2
 	add_image_size( 'post', 300, 200, true);
 	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
+	add_image_size( 'person-thumb-bigger', 90, 120, true);
 	add_image_size( 'topevent-thumb', 140, 90, true); 
 	add_image_size( 'logo-thumb', 140, 110, true);
 	
