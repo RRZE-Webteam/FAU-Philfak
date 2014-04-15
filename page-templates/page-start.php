@@ -13,20 +13,20 @@ get_header(); ?>
 
 	<div id="hero">
 		<div id="hero-slides">
-						
-			<?php $hero_query = get_posts(array('category' => 'header', 'post_status' => 'publish', 'posts_per_page' => $options['start_header_count'])); ?>
+			
+			<?php $hero_query = new WP_Query('category_name=header&posts_per_page='.$options['start_header_count']); ?>
 
-			<?php foreach($hero_query as $hero): ?>
+			<?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
 				<div class="hero-slide">
-					<?php echo get_the_post_thumbnail($hero->ID, 'hero'); ?>
+					<?php the_post_thumbnail('hero'); ?>
 					<div class="hero-slide-text">
 						<div class="container">
-							<h2><a href="<?php echo get_permalink($hero->ID); ?>"><?php echo get_the_title($hero->ID); ?></a></h2><br>
-							<p><?php echo $hero->post_excerpt; ?></p>
+							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><br>
+							<?php the_excerpt(); ?>
 						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
+			<?php endwhile; ?>
 		
 		</div>
 		<div class="container">
@@ -70,7 +70,7 @@ get_header(); ?>
 			
 			<div class="row">
 				<div class="span8">
-										
+					
 					<?php $news_query = new WP_Query('tag=startseite&posts_per_page='.$options['start_news_count']); ?>
 					<?php $i = 0; ?>
 					<?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
