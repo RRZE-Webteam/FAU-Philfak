@@ -6724,6 +6724,9 @@ div.wpcf7 .placeheld {
 .green .accordion-toggle {border-color: #009775;}
 .grey .accordion-toggle {border-color: #a3acb2;}
 
+.white .accordion-toggle {background: #eef1f6; color: #003466;}
+.white .accordion-heading .accordion-toggle:hover, .white .accordion-heading .accordion-toggle:focus {background:#e5e9f0;}
+.white .accordion-heading .accordion-toggle.active, .white .accordion-heading .accordion-toggle.active:hover, .white .accordion-heading .accordion-toggle.active:focus {background:#e5e9f0; color: #003466}
 
 /*
 .gold .accordion-toggle { border-left: 8px solid #ad841f;}

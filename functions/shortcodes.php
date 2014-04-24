@@ -43,12 +43,31 @@ class FAUShortcodes {
 		
 		$return = '';
 		
+		$return .= '<div class="accordion">';
+
+		$i = 0;
 		foreach($posts as $post)
 		{
-			$return .= '<h3>'.get_the_title($post->ID).'</h3>';
-			$return .= get_field('description', $post->ID);
+			$return .= '<div class="accordion-group white">';
+				$return .= '<div class="accordion-heading">';
+					$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$post->ID.'-'.$i.'">'.get_the_title($post->ID).'</a>';
+				$return .= '</div>';
+				$return .= '<div id="collapse-'.$post->ID.'-'.$i.'" class="accordion-body">';
+					$return .= '<div class="accordion-inner">';
+						
+						$return .= get_field('description', $post->ID);
+						
+					$return .= '</div>';
+				$return .= '</div>';
+			$return .= '</div>';
+			
+			$i++;
 		}
 		
+		
+		$return .= '</div>';
+		
+
 		return $return;
 	}
 
