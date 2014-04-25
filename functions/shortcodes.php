@@ -39,8 +39,16 @@ class FAUShortcodes {
 			"category" => 'category'
 			), $atts));
 		
-		$posts = get_posts(array('post_type' => 'glossary', 'post_status' => 'publish', 'numberposts' => 100000, 'orderby' => 'title', 'order' => 'ASC', 'category' => $category));
-		
+		$category = get_term_by('slug', $category, 'glossary_category');
+
+		$posts = get_posts(array('post_type' => 'glossary', 'post_status' => 'publish', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
+			array(
+				'taxonomy' => 'glossary_category',
+				'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+				'terms' => $category->term_id
+				)
+			), 'suppress_filters' => false));
+
 		$return = '';
 		
 		$return .= '<div class="accordion">';
