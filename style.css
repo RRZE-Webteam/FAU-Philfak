@@ -6106,6 +6106,8 @@ h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
 h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 15px; line-height: 22px; font-weight: bold;}
 h5		{ margin: 0; padding: 11px 0 11px 0; font-size: 15px; line-height: 22px; font-weight: normal;}
 
+h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {font-style: normal !important;}
+
 #content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 16px; font-weight:normal;}
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
 
