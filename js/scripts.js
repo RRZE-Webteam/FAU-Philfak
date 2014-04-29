@@ -119,6 +119,7 @@ $(document).ready(function()
 	});
 	
 	$('#studienangebot *').change(function() {
+		console.log("TEST");
 		$.post($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
 			$('#studienangebot-result').parent().html($(data).find('#studienangebot-result'));
 		});
