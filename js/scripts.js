@@ -124,6 +124,12 @@ $(document).ready(function()
 			$('#studienangebot-result').replaceWith($(data).find('#studienangebot-result'));
 		});
 	});
+	$('#studienangebot').bind('submit', function() {
+		$('#studienangebot-result').fadeTo(300, 0.5);
+		$.get($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
+			$('#studienangebot-result').replaceWith($(data).find('#studienangebot-result'));
+		});
+	});
 	
 	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
