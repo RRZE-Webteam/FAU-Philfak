@@ -6772,6 +6772,12 @@ div.wpcf7 .placeheld {
 #content ul.assistant-tabs-nav li a:hover, #content ul.assistant-tabs-nav li a:focus {text-decoration:underline;}
 #content ul.assistant-tabs-nav li a.active {font-weight: bold;}
 
+form#studienangebot {border: none; margin: 0; padding: 0;}
+form#studienangebot select {max-width: 220px;}
+form#studienangebot input[type="checkbox"] { margin-top: -4px;}
+form#studienangebot label { font-size: 12px; line-height: 15px;}
+form#studienangebot p { line-height: 15px;}
+
 .mtli_attachment {background-position: left center !important;}
 
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
