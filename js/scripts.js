@@ -119,7 +119,7 @@ $(document).ready(function()
 	});
 	
 	$('#studienangebot *').change(function() {
-		('#studienangebot-result').fadeTo(300, 0.5);
+		$('#studienangebot-result').fadeTo(300, 0.5);
 		$.get($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
 			$('#studienangebot-result').replaceWith($(data).find('#studienangebot-result'));
 		});
