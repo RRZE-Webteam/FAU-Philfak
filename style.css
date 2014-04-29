@@ -6776,7 +6776,7 @@ form#studienangebot {border: none; margin: 0; padding: 0;}
 form#studienangebot select {max-width: 220px;}
 form#studienangebot input[type="checkbox"] { margin-top: -4px;}
 form#studienangebot label { font-size: 12px; line-height: 15px;}
-form#studienangebot p { line-height: 15px;}
+form#studienangebot p { line-height: 15px; margin-bottom: 5px;}
 
 .mtli_attachment {background-position: left center !important;}
 

@@ -118,6 +118,12 @@ $(document).ready(function()
 		$(accordion).slideToggle();
 	});
 	
+	$('#studienangebot *').change(function() {
+		$.post($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
+			$('#studienangebot-result').parent().html($(data).find('#studienangebot-result'));
+		});
+	});
+	
 	
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
 	var isMobile = windowWidth < 767;
