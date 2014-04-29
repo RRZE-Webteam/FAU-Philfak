@@ -119,9 +119,8 @@ $(document).ready(function()
 	});
 	
 	$('#studienangebot *').change(function() {
-		console.log("TEST");
+		('#studienangebot-result').fadeTo(0.5);
 		$.get($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
-			console.log(data);
 			$('#studienangebot-result').replaceWith($(data).find('#studienangebot-result'));
 		});
 	});
