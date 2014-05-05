@@ -6132,6 +6132,9 @@ ol li {list-style: decimal !important}
 
 #content .widget li {padding: 0 0 0 20px;}
 
+.oembed {margin: 10px 0 20px 0;}
+#social .oembed {margin: 0;}
+
 p a, li a {text-decoration:underline;}
 
 #meta .pull-left .ext-link, #footer .ext-link, #hero .ext-link, #nav .ext-link {padding-right: 0 !important; background-image: none !important;}
