@@ -6139,8 +6139,8 @@ p a, li a {text-decoration:underline;}
 .hr		{ height: 59px; display: block; border: 0px !important; background: #fff url('img/hr.png') no-repeat center center; outline: none; background-size: 100%; margin: 20px 0 0 0;}
 .hr hr {display:none;}
 
-blockquote	{ padding: 0; margin: 0; border: none;}
-blockquote p {font-family: Georgia, serif;}
+blockquote	{ padding: 0; margin: 0; border: none; font-family: Georgia, serif;}
+blockquote p, #content blockquote p {font-family: Georgia, serif;}
 
 table, table tbody, table tr, table th, table td  {border:0;}
 table {background:transparent; border-top: 1px solid #c8d0dd; border-bottom: 1px solid #c8d0dd; margin: 5px 0 20px 0; width:100%;}
