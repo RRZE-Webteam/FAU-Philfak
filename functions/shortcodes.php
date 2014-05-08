@@ -178,7 +178,7 @@ class FAUShortcodes {
 								if($j == 0) $class = 'active';
 								else $class = '';
 								
-								$return .= '<li><a href="#accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'" class="'.$class.'">'.$subpage->post_title.'</a></li>';
+								$return .= '<li><a href="#accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'" class="accordion-tabs-nav-toggle '.$class.'">'.$subpage->post_title.'</a></li>';
 								$j++;
 							}
 						
