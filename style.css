@@ -6418,8 +6418,8 @@ table a:hover, table a:focus {text-decoration: none;}
 .banner-ad-right .banner-ad { margin: 0;}
 
 #content .widget_rss ul {list-style:none; margin: 0; padding: 0;}
-#content .widget_rss li {list-style: none; margin: 0; padding: 5px 0; background: none;}
-#content .widget_rss li a {font-weight:bold; text-decoration: none;}
+#content .widget_rss li {list-style: none; margin: 0; padding: 5px 0; background: none; line-height: 18px;}
+#content .widget_rss li a {font-weight:normal; text-decoration: none; font-size: 13px;}
 #content .widget_rss li a:hover {text-decoration:underline;}
 #content .widget_rss .rss-date {display:block;}
 #content .widget_rss .rssSummary {padding: 5px 0; color: #003366;}
