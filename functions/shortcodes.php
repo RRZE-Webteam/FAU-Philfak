@@ -203,7 +203,7 @@ class FAUShortcodes {
 						}
 						else
 						{
-							$return .= '<p>'.$post->post_content.'</p>';
+							$return .= '<p>'.$page->post_content.'</p>';
 						}
 						
 						
