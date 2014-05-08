@@ -166,38 +166,46 @@ class FAUShortcodes {
 				$return .= '<div id="collapse-'.$page->ID.'-'.$i.'" class="accordion-body">';
 					$return .= '<div class="accordion-inner">';
 						
-						$return .= '<div class="assistant-tabs">';
+						$subpages = get_pages(array('sort_order' => 'ASC', 'sort_column' => 'menu_order', 'parent' => $page->ID, 'hierarchical' => 0));
 						
-							$subpages = get_pages(array('sort_order' => 'ASC', 'sort_column' => 'menu_order', 'parent' => $page->ID, 'hierarchical' => 0));
-							
-							$return .= '<ul class="assistant-tabs-nav">';
+						if(count($subpages) > 0)
+						{
+							$return .= '<div class="assistant-tabs">';
+
+								$return .= '<ul class="assistant-tabs-nav">';
+
+								$j = 0;
+								foreach($subpages as $subpage)
+								{
+									if($j == 0) $class = 'active';
+									else $class = '';
+
+									$return .= '<li><a href="#accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'" class="accordion-tabs-nav-toggle '.$class.'">'.$subpage->post_title.'</a></li>';
+									$j++;
+								}
+
+								$return .= '</ul>';
+
+								$j = 0;
+								foreach($subpages as $subpage)
+								{
+									if($j == 0) $class = 'assistant-tab-pane-active';
+									else $class = '';
+
+									$return .= '<div class="assistant-tab-pane '.$class.'" id="accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'">';
+										$return .= '<p>'.$subpage->post_content.'</p>';
+									$return .= '</div>';
+
+									$j++;
+								}
+
+							$return .= '</div>';
+						}
+						else
+						{
+							$return .= '<p>'.$post->post_content.'</p>';
+						}
 						
-							$j = 0;
-							foreach($subpages as $subpage)
-							{
-								if($j == 0) $class = 'active';
-								else $class = '';
-								
-								$return .= '<li><a href="#accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'" class="accordion-tabs-nav-toggle '.$class.'">'.$subpage->post_title.'</a></li>';
-								$j++;
-							}
-						
-							$return .= '</ul>';
-						
-							$j = 0;
-							foreach($subpages as $subpage)
-							{
-								if($j == 0) $class = 'assistant-tab-pane-active';
-								else $class = '';
-								
-								$return .= '<div class="assistant-tab-pane '.$class.'" id="accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'">';
-									$return .= '<p>'.$subpage->post_content.'</p>';
-								$return .= '</div>';
-								
-								$j++;
-							}
-							
-						$return .= '</div>';
 						
 					$return .= '</div>';
 				$return .= '</div>';
