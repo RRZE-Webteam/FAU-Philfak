@@ -6524,9 +6524,12 @@ table a:hover, table a:focus {text-decoration: none;}
 
 .sidebar-inline {float:right;width: 220px;margin-left: 30px; padding-left: 18px; margin-bottom: 11px; border-left: 2px solid #ddd;}
 .sidebar-inline .widget:last-child {margin-bottom: 0 !important;}
+.sidebar-inline .widget:first-child {margin-top: 0 !important;}
 
 .sidebar-inline-portal {margin-top: 22px;}
 .sidebar-inline-portal .widget:first-child {margin-top: 0 !important;}
+
+.sidebar-inline-old {background: red !important;}
 
 p.attention {display:block; color: #a71c18; background: transparent url('img/attention.png') no-repeat 0 7px; padding: 10px 0 10px 35px; margin: 20px 0; border-top: 1px solid #a71c18; border-bottom: 1px solid #a71c18; font-weight:bold; }
 

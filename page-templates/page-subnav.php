@@ -45,11 +45,7 @@ get_header(); ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					
-					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-						<div class="sidebar-inline">
-							<?php dynamic_sidebar( 'sidebar-right' ); ?>
-						</div>
-					<?php endif; ?>
+					<?php get_template_part('sidebar'); ?>
 
 					<?php the_content(); ?>
 				</div>

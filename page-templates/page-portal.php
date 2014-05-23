@@ -25,15 +25,9 @@ get_header(); ?>
 			<?php endif; ?>
 
 			<div class="row">
-			
-				<?php $content_span = 12; ?>
-				
-				<div class="span<?php echo $content_span; ?>">
-					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-						<div class="sidebar-inline sidebar-inline-portal">
-							<?php dynamic_sidebar( 'sidebar-right' ); ?>
-						</div>
-					<?php endif; ?>
+							
+				<div class="span12">
+					<?php get_template_part('sidebar'); ?>
 				
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
@@ -47,16 +41,8 @@ get_header(); ?>
 
 <?php endwhile; ?>
 			
-			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php
-					$widgets = wp_get_sidebars_widgets();
-					$count = count($widgets['menu-subpages']);
-				?>
-				<div class="portal-subpages<?php if($count > 1) echo ' portal-subpages-tabs'; ?>">
-					<?php dynamic_sidebar( 'menu-subpages' ); ?>
-				</div>
-			<?php endif; ?>
+			<div class="hr"><hr></div>
+			<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
 			
 			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
 				<div class="hr"><hr></div>
