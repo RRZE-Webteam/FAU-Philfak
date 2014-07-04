@@ -13,7 +13,7 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<div id="content">
+	<div id="content" class="content-portal">
 		<div class="container">
 		
 			<?php if ( is_active_sidebar( 'sidebar-top' ) ) : ?>

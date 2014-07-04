@@ -6526,7 +6526,7 @@ table a:hover, table a:focus {text-decoration: none;}
 .sidebar-inline .widget:last-child {margin-bottom: 0 !important;}
 .sidebar-inline .widget:first-child {margin-top: 0 !important;}
 
-.sidebar-inline-portal {margin-top: 22px;}
+.content-portal .sidebar-inline {margin-top: 22px;}
 .sidebar-inline-portal .widget:first-child {margin-top: 0 !important;}
 
 .sidebar-inline-old {background: red !important;}
