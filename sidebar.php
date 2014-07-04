@@ -46,7 +46,7 @@
 						<li class="tag"><a href="<?php echo get_permalink($quicklink->ID); ?>"><?php echo get_the_title($quicklink->ID); ?></a></li>
 					<?php endforeach; ?>
 					<?php while(has_sub_field('sidebar_quicklinks_external')): ?>
-						<li class="tag"><a href="http://<?php the_sub_field('sidebar_quicklinks_external_link'); ?>"><?php the_sub_field('sidebar_quicklinks_external_text');?></a></li>
+						<li class="tag"><a href="<?php the_sub_field('sidebar_quicklinks_external_link'); ?>"><?php the_sub_field('sidebar_quicklinks_external_text');?></a></li>
 					<?php endwhile; ?>
 				</ul>
 			</aside>
