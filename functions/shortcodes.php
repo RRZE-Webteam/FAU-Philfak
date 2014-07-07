@@ -136,7 +136,7 @@ class FAUShortcodes {
 				$content .= '<div class="span3">';
 					if(get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
 					
-					if($showlink && get_field('link', $id))			$content .= '<div class="person-info person-info-more"><a class="person-read-more" href="'.get_field('link', $id).'">Mehr zur Person ›</a></div>';
+					if($showlink && get_field('link', $id))			$content .= '<div class="person-info person-info-more"><a class="person-read-more" href="'.get_field('link', $id).'">Mehr ›</a></div>';
 					
 				$content .= '</div>';
 			$content .= '</div>';
