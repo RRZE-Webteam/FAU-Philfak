@@ -27,6 +27,14 @@ get_header(); ?>
 					<?php the_content(); ?>
 					
 				</div>
+				
+				<?php if(get_post_type() == 'post'): ?>
+					<?php if ( is_active_sidebar( 'news-sidebar' ) ) : ?>
+						<div class="span4">
+							<?php dynamic_sidebar( 'news-sidebar' ); ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
 			</div>
 
 		</div>
