@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Seite mit Subnavigation
+ * Template Name: Inhaltsseite mit Navi
  *
  * @package WordPress
  * @subpackage FAU
