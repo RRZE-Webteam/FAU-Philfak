@@ -121,6 +121,7 @@ class FAUShortcodes {
 						if(get_field('title', $id)) 	$content .= get_field('title', $id).' ';
 						if(get_field('firstname', $id)) 	$content .= get_field('firstname', $id).' ';
 						if(get_field('lastname', $id)) 		$content .= get_field('lastname', $id);
+						if(get_field('title_suffix', $id)) 	$content .= ' '.get_field('title_suffix', $id);
 					$content .= '</h3>';
 					if(get_field('position', $id)) 		$content .= '<h4>'.get_field('position', $id).'</h4>';
 					if(get_field('institution', $id))			$content .= '<div class="person-info person-info-institution">'.get_field('institution', $id).'</div>';
