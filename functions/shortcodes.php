@@ -204,7 +204,7 @@ class FAUShortcodes {
 						}
 						else
 						{
-							$return .= '<p>'.$page->post_content.'</p>';
+							$return .= '<p>'.do_shortcode($page->post_content).'</p>';
 						}
 						
 						
