@@ -194,7 +194,7 @@ class FAUShortcodes {
 									else $class = '';
 
 									$return .= '<div class="assistant-tab-pane '.$class.'" id="accordion-'.$page->ID.'-'.$i.'-tab-'.$j.'">';
-										$return .= '<p>'.$subpage->post_content.'</p>';
+										$return .= '<p>'.do_shortcode($subpage->post_content).'</p>';
 									$return .= '</div>';
 
 									$j++;

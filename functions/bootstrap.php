@@ -452,7 +452,7 @@ class BoostrapShortcodes {
       $state = 'in';
 
     return '
-    <div class="accordion-group '.$color.'"><div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $GLOBALS['collapsibles_count'] . '" href="#collapse_' . $GLOBALS['current_collapse'] . '_'. sanitize_title( $title ) .'">' . $title . '</a></div><div id="collapse_' . $GLOBALS['current_collapse'] . '_'. sanitize_title( $title ) .'" class="accordion-body ' . $state . '"><div class="accordion-inner">'.$content.'</div></div></div>';
+    <div class="accordion-group '.$color.'"><div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $GLOBALS['collapsibles_count'] . '" href="#collapse_' . $GLOBALS['current_collapse'] . '_'. sanitize_title( $title ) .'">' . $title . '</a></div><div id="collapse_' . $GLOBALS['current_collapse'] . '_'. sanitize_title( $title ) .'" class="accordion-body ' . $state . '"><div class="accordion-inner">'.do_shortcode($content).'</div></div></div>';
   }
 
 
