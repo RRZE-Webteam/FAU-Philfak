@@ -6894,6 +6894,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	.image-gallery-carousel .slides li {margin: 0; padding: 0;}
 	.image-gallery-carousel .slides li img {margin: 0;}
 	
+	#content .news-image {background: none; text-align: left; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; box-shadow: none;}
 	
 	#header	{ padding-bottom: 15px;}
 	
