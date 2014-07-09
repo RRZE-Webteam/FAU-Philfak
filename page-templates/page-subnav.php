@@ -26,7 +26,7 @@ get_header(); ?>
 
 			<div class="row">
 			
-				<div class="span3">
+				<div class="span3 span-sm-4">
 					<?php $parent_page = get_top_parent_page_id($id); ?>
 					<?php
 						$parent = get_page($parent_page);
@@ -39,7 +39,7 @@ get_header(); ?>
 					</ul>
 				</div>
 				
-				<div class="span9">
+				<div class="span9 span-sm-8">
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>

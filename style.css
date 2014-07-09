@@ -5668,6 +5668,13 @@ a.badge:focus {
   .span1 {
     width: 42px;
   }
+  .span-sm-4 {
+    width: 220px;
+  }
+  .span-sm-8 {
+	width: 484px;
+  }
+
   .offset12 {
     margin-left: 764px;
   }
