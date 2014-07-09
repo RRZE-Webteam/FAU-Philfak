@@ -79,7 +79,7 @@ function fau_setup() {
 
 	add_image_size( 'hero', 1260, 350, true);
 	add_image_size( 'page-thumb', 220, 110, true); 
-	add_image_size( 'post-thumb', 220, 147, true); // 3:2
+	add_image_size( 'post-thumb', 220, 147, false); // 3:2
 	add_image_size( 'post', 300, 200, true);
 	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
 	add_image_size( 'person-thumb-bigger', 90, 120, true);
