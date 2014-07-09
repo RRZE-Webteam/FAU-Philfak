@@ -6482,45 +6482,47 @@ table a:hover, table a:focus {text-decoration: none;}
 
 #content .widget_event_widget ul {list-style: none; margin: 0; padding: 0 !important;}
 #content .widget_event_widget ul li {margin: 0; padding: 10px 0 0 0; font-size: 12px; line-height: 18px; background-image: none;}
-#content .widget_event_widget .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
-#content .widget_event_widget .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
-#content .widget_event_widget .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
-#content .widget_event_widget .event-info { margin-left: 60px; margin-bottom: 10px; padding-bottom: 5px; }
-#content .widget_event_widget .event-title	{ font-weight: bold; }
-#content .widget_event_widget .event-time { color: #003366;}
-#content .widget_event_widget .event-location {color: #888;}
+#content .event-date {float: left; display: block; background: #003366; color: #fff; padding: 5px; width: 30px; text-align: center;}
+#content .event-date-month { font-size: 9px; line-height: 10px; text-transform: uppercase; font-weight: bold;}
+#content .event-date-day	{ font-size: 20px; line-height: 20px; font-weight: bold;}
+#content .event-info { margin-left: 60px; margin-bottom: 10px; padding-bottom: 5px; }
+#content .event-title	{ font-weight: bold; }
+#content .event-time { color: #003366;}
+#content .event-location {color: #888;}
 
-#content .widget_event_widget .event-info a,
-#content .widget_event_widget .event-info .event-time {color: #444;}
+#content .event-info a,
+#content .event-info .event-time {color: #444;}
 
 /*#content .widget_event_widget .event-category-techfak a,
 #content .widget_event_widget .event-category-techfak .event-time,
 #content .widget_event_widget .event-category-techfak .event-title {color: #6a7882 !important;}
 #content .widget_event_widget .event-category-techfak .event-location {color: #828d95 !important}*/
-#content .widget_event_widget .event-category-techfak .event-date {background: #6a7882 !important;}
+#content .event-category-techfak .event-date {background: #6a7882 !important;}
 
 /*#content .widget_event_widget .event-category-rwww a,
 #content .widget_event_widget .event-category-rwww .event-time,
 #content .widget_event_widget .event-category-rwww .event-title {color: #801429 !important;}*/
-#content .widget_event_widget .event-category-rwww .event-date {background: #801429 !important}
+#content .event-category-rwww .event-date {background: #801429 !important}
 
 /*#content .widget_event_widget .event-category-philfak a,
 #content .widget_event_widget .event-category-philfak .event-time,
 #content .widget_event_widget .event-category-philfak .event-title {color: #ad841f !important;}*/
-#content .widget_event_widget .event-category-philfak .event-date {background: #ad841f !important}
+#content .event-category-philfak .event-date {background: #ad841f !important}
 
 /*#content .widget_event_widget .event-category-natfak a,
 #content .widget_event_widget .event-category-natfak .event-time,
 #content .widget_event_widget .event-category-natfak .event-title {color: #009775 !important;}*/
-#content .widget_event_widget .event-category-natfak .event-date {background: #009775 !important}
+#content .event-category-natfak .event-date {background: #009775 !important}
 
 /*#content .widget_event_widget .event-category-medfak a,
 #content .widget_event_widget .event-category-medfak .event-time,
 #content .widget_event_widget .event-category-medfak .event-title {color: #00b1c6 !important;}*/
-#content .widget_event_widget .event-category-medfak .event-date {background: #00b1c6 !important;}
+#content .event-category-medfak .event-date {background: #00b1c6 !important;}
 
 #content .widget_event_widget a {text-decoration:none;}
 #content .widget_event_widget a:hover, .widget_event_widget a:focus { text-decoration: underline;}
+
+#content .events-list ul, #content .events-list li {list-style: none; margin: 0; padding: 0;}
 
 .sidebar-inline {float:right;width: 220px;margin-left: 30px; padding-left: 18px; margin-bottom: 11px; border-left: 2px solid #ddd;}
 .sidebar-inline .widget:last-child {margin-bottom: 0 !important;}
