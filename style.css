@@ -5671,7 +5671,7 @@ a.badge:focus {
   .span-sm-4 {
     width: 220px;
   }
-  .span-sm-8 {
+  .span-sm-8, .span-sm-8 .span9 {
 	width: 484px;
   }
 
