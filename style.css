@@ -6789,8 +6789,10 @@ div.wpcf7 .placeheld {
 form#studienangebot {border: none; margin: 0; padding: 0;}
 form#studienangebot select {max-width: 220px;}
 form#studienangebot input[type="checkbox"] { margin-top: -4px;}
-form#studienangebot label { font-size: 12px; line-height: 15px;}
-form#studienangebot p { line-height: 15px; margin-bottom: 5px;}
+form#studienangebot label { font-size: 12px; line-height: 15px; padding-left: 3px;}
+form#studienangebot p { line-height: 15px; margin-bottom: 0; padding-bottom: 5px; -webkit-hyphens: none; -moz-hyphens: none; -ms-hyphens: none; -o-hyphens: none; hyphens: none;}
+form#studienangebot h4 { padding: 6px 0;}
+form#studienangebot .submit-button {margin-top: 20px;}
 
 .mtli_attachment {background-position: left center !important;}
 
