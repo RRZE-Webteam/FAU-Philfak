@@ -6794,6 +6794,10 @@ form#studienangebot p { line-height: 15px; margin-bottom: 0; padding-bottom: 5px
 form#studienangebot h4 { padding: 6px 0;}
 form#studienangebot .submit-button {margin-top: 20px;}
 
+#loading { display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000; }
+#loading-background { background: #000; opacity: 0.5; position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: 1010;}
+#loading-spinner {background: transparent url('img/ajax-loader.gif') no-repeat center center;position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: 1020; }
+
 .mtli_attachment {background-position: left center !important;}
 
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
