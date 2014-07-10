@@ -25,7 +25,7 @@
 						if(get_post_type() == 'page')
 						{
 							$parent = array_reverse(get_post_ancestors(get_the_ID()));
-							if(isset($parent) && is_array($parent))
+							if(isset($parent) && is_array($parent) && isset($parent[0]))
 							{
 								$first_parent = get_page($parent[0]);
 							}
