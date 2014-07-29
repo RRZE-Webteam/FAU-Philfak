@@ -6798,7 +6798,7 @@ form#studienangebot .submit-button {margin-top: 20px;}
 #loading-background { background: #000; opacity: 0.5; position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: 1010;}
 #loading-spinner {background: transparent url('img/ajax-loader.gif') no-repeat center center;position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: 1020; }
 
-.mtli_attachment {background-position: left center !important;}
+.mtli_attachment {background-position: left center !important; display: inline !important;}
 
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
 .nav-fixed #header {position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3); box-shadow: 0 1px 3px rgba(0,0,0,0.3);}
