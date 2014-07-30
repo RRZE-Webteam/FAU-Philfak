@@ -18,6 +18,7 @@ class FAUShortcodes {
 		add_shortcode('assistant', array( $this, 'fau_assistant' ));
 		add_shortcode('glossary', array( $this, 'fau_glossary' ));
 		add_shortcode('person', array( $this, 'fau_person' ));
+		add_shortcode('persons', array( $this, 'fau_persons'));
 		add_shortcode('organigram', array( $this, 'fau_organigram'));
 		add_shortcode('hr', array( $this, 'fau_hr'));
 	}
@@ -106,6 +107,37 @@ class FAUShortcodes {
 		$post = $posts[0];
 		$id = $post->ID;
 
+		return $this->fau_person_markup($id, $showlink);
+	}
+	
+	function fau_persons( $atts, $content = null) {
+		extract(shortcode_atts(array(
+			"category" => 'category',
+			"showlink" => FALSE
+			), $atts));
+			
+		$category = get_term_by('slug', $category, 'persons_category');
+
+		$posts = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
+			array(
+				'taxonomy' => 'persons_category',
+				'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+				'terms' => $category->term_id
+				)
+			), 'suppress_filters' => false));
+					
+		$content = '';
+		
+		foreach($posts as $post)
+		{
+			$content .= $this->fau_person_markup($post->ID, $showlink);
+		}
+			
+		return $content;
+	}
+	
+	function fau_person_markup($id, $showlink)
+	{
 		$content = '<div class="person content-person">';			
 			$content .= '<div class="row">';
 			
