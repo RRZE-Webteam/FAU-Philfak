@@ -144,26 +144,18 @@ get_header(); ?>
 						</div>
 					<?php endwhile; ?>
 					
-					<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-						<?php dynamic_sidebar( 'sidebar-right' ); ?>
-					<?php endif; ?>
+					<?php get_template_part('sidebar'); ?>
 				</div>
 			</div>
 			
-			<?php if ( is_active_sidebar( 'menu-subpages' ) ) : ?>
+			<?php if ( get_field( 'portalmenu-slug' ) ) : ?>
 				<div class="hr"><hr></div>
-				<?php
-					$widgets = wp_get_sidebars_widgets();
-					$count = count($widgets['menu-subpages']);
-				?>
-				<div class="portal-subpages<?php if($count > 1) echo ' portal-subpages-tabs'; ?>">
-					<?php dynamic_sidebar( 'menu-subpages' ); ?>
-				</div>
+				<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
 			<?php endif; ?>
 			
-			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
+			<?php if ( get_field( 'werbebanner_unten' ) ) : ?>
 				<div class="hr"><hr></div>
-				<?php dynamic_sidebar( 'banner-area' ); ?>
+				<?php the_widget('FAUAdWidget', array('id' => get_field( 'werbebanner_unten' ))); ?>
 			<?php endif; ?>
 			
 			
@@ -200,8 +192,12 @@ get_header(); ?>
 							</div>
 						<?php endif; ?>
 						<div class="span9">
-							<?php if ( is_active_sidebar( 'social-media' ) ) : ?>
-								<?php dynamic_sidebar( 'social-media' ); ?>
+							<?php if(get_field('videos')): ?>
+								<div class="row">
+									<?php while(has_sub_field('videos')): ?>
+										<?php echo do_shortcode(the_sub_field('video-links')); ?>
+									<?php endwhile; ?>
+								</div>
 							<?php endif; ?>
 						</div>
 					</div>
