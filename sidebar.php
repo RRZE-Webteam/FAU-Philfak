@@ -63,9 +63,3 @@
 		
 	</div>
 <?php endif; ?>
-
-	<?php if ( is_active_sidebar( 'sidebar-right' ) ) : ?>
-		<div class="sidebar-inline sidebar-inline-old">
-			<?php dynamic_sidebar( 'sidebar-right' ); ?>
-		</div>
-	<?php endif; ?>

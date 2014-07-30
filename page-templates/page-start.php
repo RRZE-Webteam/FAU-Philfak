@@ -14,19 +14,32 @@ get_header(); ?>
 	<div id="hero">
 		<div id="hero-slides">
 			
-			<?php $hero_query = new WP_Query('category_name=header&posts_per_page='.$options['start_header_count']); ?>
+			<?php  
+			
+				$category = get_term_by('slug', 'header', 'category');
+				$hero_posts = get_posts(array(
+					'numberposts' => $options['start_header_count'],
+					'tax_query' => array(
+					array(
+						'taxonomy' => 'category',
+						'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+						'terms' => $category->term_id
+						)
+					))); 
+			
+			?>
 
-			<?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
+			<?php foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
-					<?php the_post_thumbnail('hero'); ?>
+					<?php echo get_the_post_thumbnail($hero->ID, 'hero'); ?>
 					<div class="hero-slide-text">
 						<div class="container">
-							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><br>
-							<p><?php the_field('abstract'); ?></p>
+							<h2><a href="<?php echo get_permalink($hero->ID); ?>"><?php echo get_the_title($hero->ID); ?></a></h2><br>
+							<p><?php echo get_field('abstract', $hero->ID); ?></p>
 						</div>
 					</div>
 				</div>
-			<?php endwhile; ?>
+			<?php endforeach; ?>
 		
 		</div>
 		<div class="container">
@@ -73,9 +86,9 @@ get_header(); ?>
 			<div class="row">
 				<div class="span8">
 					
-					<?php $news_query = new WP_Query('tag=startseite&posts_per_page='.$options['start_news_count']); ?>
+					<?php $news_posts = get_posts(array('tag' => 'startseite', 'numberposts' => $options['start_news_count'])); ?>
 					<?php $i = 0; ?>
-					<?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
+					<?php foreach($news_posts as $news): ?>
 						
 						<div class="news-item">
 					
@@ -84,26 +97,26 @@ get_header(); ?>
 						<?php else: ?>
 							<h2>
 						<?php endif; ?>
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+							<a href="<?php echo get_permalink($news->ID); ?>"><?php echo get_the_title($news->ID); ?></a>
 						</h2>
 						
 						
 							<div class="row">
-								<?php if(has_post_thumbnail( $post->ID )): ?>
+								<?php if(has_post_thumbnail( $news->ID )): ?>
 								<div class="span3">
-									<a href="<?php the_permalink(); ?>" class="news-image"><?php the_post_thumbnail('post-thumb'); ?></a>
+									<a href="<?php echo get_permalink($news->ID); ?>" class="news-image"><?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
 								</div>
 								<div class="span5">
 								<?php else: ?>
 								<div class="span8">
 								<?php endif; ?>
-									<p><?php the_field('abstract'); ?> <a href="<?php the_permalink(); ?>" class="read-more-arrow">›</a></p>
+									<p><?php get_field('abstract', $news->ID); ?> <a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">›</a></p>
 								</div>
 							</div>
 						</div>
 					
 						<?php $i++; ?>
-					<?php endwhile; ?>
+					<?php endforeach; ?>
 					
 					<?php
 						$category = get_category_by_slug('news');
@@ -117,32 +130,25 @@ get_header(); ?>
 				</div>
 				<div class="span4">
 					
-					<?php $topevent_query = new WP_Query('tag=top&posts_per_page=1'); ?>
-					<?php while ($topevent_query->have_posts()) : $topevent_query->the_post(); ?>
+					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
+					<?php foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
-							<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $post->ID); ?></a></h2>
+							<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
 							<div class="row">
-								<?php if(get_field('topevent_image', $post->ID)): ?>
+								<?php if(get_field('topevent_image', $topevent->ID)): ?>
 									<div class="span2">
-										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $post->ID), 'topevent-thumb'); ?>
+										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
 										<a href="<?php the_permalink(); ?>"><img src="<?php echo $image[0]; ?>"></a>
 									</div>
 									<div class="span2">
 								<?php else: ?>
 									<div class="span4">
 								<?php endif; ?>
-									<?php
-									/*
-										$date = DateTime::createFromFormat('Ymd', get_field('topevent_date', $post->ID)); 
-										$timestamp = $date->format('U');
-										<div class="topevent-date"><?php echo date_i18n('j. F Y', $timestamp); ?></div>
-										*/
-									?>
-									<div class="topevent-description"><?php the_field('topevent_description', $post->ID); ?></div>
+									<div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
 									</div>
 							</div>
 						</div>
-					<?php endwhile; ?>
+					<?php endforeach; ?>
 					
 					<?php get_template_part('sidebar'); ?>
 				</div>
@@ -195,7 +201,9 @@ get_header(); ?>
 							<?php if(get_field('videos')): ?>
 								<div class="row">
 									<?php while(has_sub_field('videos')): ?>
-										<?php echo do_shortcode(the_sub_field('video-links')); ?>
+										<div class="span3">
+											<?php echo do_shortcode(the_sub_field('video-links')); ?>
+										</div>
 									<?php endwhile; ?>
 								</div>
 							<?php endif; ?>
