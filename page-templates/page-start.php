@@ -79,7 +79,10 @@ get_header(); ?>
 			
 			<?php if ( get_field( 'werbebanner_seitlich' ) ) : ?>
 				<div class="banner-ad-right">
-					<?php the_widget('FAUAdWidget', array('id' => get_field( 'werbebanner_seitlich' ))); ?>
+					<?php $ads = get_field('werbebanner_seitlich');?>
+					<?php foreach($ads as $ad): ?>
+						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 			
@@ -161,7 +164,10 @@ get_header(); ?>
 			
 			<?php if ( get_field( 'werbebanner_unten' ) ) : ?>
 				<div class="hr"><hr></div>
-				<?php the_widget('FAUAdWidget', array('id' => get_field( 'werbebanner_unten' ))); ?>
+				<?php $ads = get_field('werbebanner_unten');?>
+				<?php foreach($ads as $ad): ?>
+					<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
+				<?php endforeach; ?>
 			<?php endif; ?>
 			
 			
