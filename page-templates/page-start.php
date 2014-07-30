@@ -62,9 +62,11 @@ get_header(); ?>
 	<div id="content">
 		<div class="container">
 			
-			<?php if ( is_active_sidebar( 'banner-ad-right' ) ) : ?>
+			
+			
+			<?php if ( get_field( 'werbebanner_seitlich' ) ) : ?>
 				<div class="banner-ad-right">
-					<?php dynamic_sidebar( 'banner-ad-right' ); ?>
+					<?php the_widget('FAUAdWidget', array('id' => get_field( 'werbebanner_seitlich' ))); ?>
 				</div>
 			<?php endif; ?>
 			
