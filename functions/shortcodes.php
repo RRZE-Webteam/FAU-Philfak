@@ -62,7 +62,8 @@ class FAUShortcodes {
 		foreach($posts as $post)
 		{
 			$letter = get_the_title($post->ID);
-			$letter = mb_strtoupper($letter[0], 'UTF-8');
+			$letter = mb_substr($letter, 0, 1);
+			$letter = mb_strtoupper($letter, 'UTF-8');
 
 			if($i == 0 || $letter != $current)
 			{
