@@ -62,13 +62,14 @@ class FAUShortcodes {
 		foreach($posts as $post)
 		{
 			$letter = get_the_title($post->ID);
-			$letter = strtoupper($letter[0]);
+			$letter = mb_strtoupper($letter[0], 'UTF-8');
 
 			if($i == 0 || $letter != $current)
 			{
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>';
 				$current = $letter;
-				$letters[$letter] = 1;
+				
+				$letters[] = $letter;
 			}
 			
 			$accordion .= '<div class="accordion-group white">';
@@ -90,12 +91,12 @@ class FAUShortcodes {
 		$accordion .= '</div>';
 		
 		$return .= '<ul class="letters">';
-		foreach($letters as $key => $value)
+		foreach($letters as $l)
 		{
-			$return .= '<li><a href="#letter-'.$key.'">'.$key.'</a></li>';
+			$return .= '<li><a href="#letter-'.$l.'">'.$l.'</a></li>';
 		}
 		$return .= '</ul>';
-		
+
 		$return .= $accordion;
 
 		return $return;
