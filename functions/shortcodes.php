@@ -52,30 +52,51 @@ class FAUShortcodes {
 
 		$return = '';
 		
-		$return .= '<div class="accordion">';
+		$current = "A";
+		$letters = array();
+		
+		
+		$accordion = '<div class="accordion">';
 
 		$i = 0;
 		foreach($posts as $post)
 		{
-			$return .= '<div class="accordion-group white">';
-				$return .= '<div class="accordion-heading">';
-					$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$post->ID.'-'.$i.'">'.get_the_title($post->ID).'</a>';
-				$return .= '</div>';
-				$return .= '<div id="collapse-'.$post->ID.'-'.$i.'" class="accordion-body">';
-					$return .= '<div class="accordion-inner">';
+			$letter = get_the_title($post->ID);
+			$letter = strtoupper($letter[0]);
+
+			if($i == 0 || $letter != $current)
+			{
+				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>';
+				$current = $letter;
+				$letters[$letter] = 1;
+			}
+			
+			$accordion .= '<div class="accordion-group white">';
+				$accordion .= '<div class="accordion-heading">';
+					$accordion .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$post->ID.'-'.$i.'">'.get_the_title($post->ID).'</a>';
+				$accordion .= '</div>';
+				$accordion .= '<div id="collapse-'.$post->ID.'-'.$i.'" class="accordion-body">';
+					$accordion .= '<div class="accordion-inner">';
 						
-						$return .= get_field('description', $post->ID);
+						$accordion .= get_field('description', $post->ID);
 						
-					$return .= '</div>';
-				$return .= '</div>';
-			$return .= '</div>';
+					$accordion .= '</div>';
+				$accordion .= '</div>';
+			$accordion .= '</div>';
 			
 			$i++;
 		}
+	
+		$accordion .= '</div>';
 		
+		$return .= '<ul class="letters">';
+		foreach($letters as $key => $value)
+		{
+			$return .= '<li><a href="#letter-'.$key.'">'.$key.'</a></li>';
+		}
+		$return .= '</ul>';
 		
-		$return .= '</div>';
-		
+		$return .= $accordion;
 
 		return $return;
 	}
