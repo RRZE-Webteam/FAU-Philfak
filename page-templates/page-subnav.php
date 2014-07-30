@@ -15,14 +15,6 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
-		
-			<?php if ( is_active_sidebar( 'sidebar-top' ) ) : ?>
-				<div class="row">	
-					<div class="span12">
-						<?php dynamic_sidebar( 'sidebar-top' ); ?>
-					</div>
-				</div>
-			<?php endif; ?>
 
 			<div class="row">
 			
@@ -45,33 +37,13 @@ get_header(); ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					
-					<?php get_template_part('sidebar'); ?>
+					<?php get_template_part('sidebar', 'inline'); ?>
 
 					<?php the_content(); ?>
 				</div>
 				
 			</div>
-			
-			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php dynamic_sidebar( 'banner-area' ); ?>
-			<?php endif; ?>
-
 		</div>
-		
-		<?php if( ! get_field('hide_pdf_button') && $post->post_password == ''): ?>
-		<ul class="page-print-actions">
-			<li>
-				<?php
-					$permalink = add_query_arg( 'print' , 'pdf' , get_permalink( $post->ID ) );
-					echo '<a href="' . $permalink . '" class="page-print-pdf" target="_blank"><div class="icon"></div><div class="text">PDF dieser Seite</div></a>';
-				?>
-			</li>
-			<li>
-				<a href="javascript:window.print()" class="page-print"><div class="icon"></div><div class="text">Seite drucken</div></a>
-			</li>
-		</ul>
-		<?php endif; ?>
 	</div>
 	
 	

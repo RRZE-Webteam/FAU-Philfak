@@ -36,7 +36,7 @@ get_header(); ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					
-					<?php get_template_part('sidebar'); ?>
+					<?php get_template_part('sidebar', 'inline'); ?>
 					
 					<?php the_content(); ?>
 				</div>

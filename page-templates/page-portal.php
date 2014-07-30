@@ -15,19 +15,11 @@ get_header(); ?>
 
 	<div id="content" class="content-portal">
 		<div class="container">
-		
-			<?php if ( is_active_sidebar( 'sidebar-top' ) ) : ?>
-				<div class="row">	
-					<div class="span12">
-						<?php dynamic_sidebar( 'sidebar-top' ); ?>
-					</div>
-				</div>
-			<?php endif; ?>
 
 			<div class="row">
 							
 				<div class="span12">
-					<?php get_template_part('sidebar'); ?>
+					<?php get_template_part('sidebar', 'inline'); ?>
 				
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
@@ -43,15 +35,8 @@ get_header(); ?>
 			
 			<div class="hr"><hr></div>
 			<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
-			
-			<?php if ( is_active_sidebar( 'banner-area' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php dynamic_sidebar( 'banner-area' ); ?>
-			<?php endif; ?>
 
 		</div>
 	</div>
-	
-
 
 <?php get_footer(); ?>
