@@ -113,7 +113,7 @@ get_header(); ?>
 								<?php else: ?>
 								<div class="span8">
 								<?php endif; ?>
-									<p><?php get_field('abstract', $news->ID); ?> <a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">›</a></p>
+									<p><?php echo get_field('abstract', $news->ID); ?> <a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">›</a></p>
 								</div>
 							</div>
 						</div>
