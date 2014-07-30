@@ -208,7 +208,7 @@ get_header(); ?>
 								<div class="row">
 									<?php while(has_sub_field('videos')): ?>
 										<div class="span3">
-											<?php echo do_shortcode(the_sub_field('video-links')); ?>
+											<?php echo wp_oembed_get(the_sub_field('video-links')); ?>
 										</div>
 									<?php endwhile; ?>
 								</div>
