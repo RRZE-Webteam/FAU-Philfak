@@ -88,6 +88,7 @@ function fau_setup() {
 	
 	add_image_size( 'gallery-full', 940, 470);
 	add_image_size( 'gallery-thumb', 120, 80, true);
+	add_image_size( 'gallery-grid', 165, 120, false);
 	
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -497,7 +498,9 @@ function fau_post_gallery($output, $attr) {
         'columns' => 3,
         'size' => 'thumbnail',
         'include' => '',
-        'exclude' => ''
+        'exclude' => '',
+		'type' => NULL,
+		'lightbox' => FALSE
     ), $attr));
 
     $id = intval($id);
@@ -515,45 +518,71 @@ function fau_post_gallery($output, $attr) {
 
     if (empty($attachments)) return '';
 
-    // Here's your actual output, you may customize it to your need
-    $output = "<div class=\"image-gallery-slider\">\n";
-    $output .= "<ul class=\"slides\">\n";
+	$output = '';
+	
+	switch($attr['type'])
+	{
+		case "grid":
+			{
+				$output .= "<div class=\"image-gallery-grid clearfix\">\n";
+			    $output .= "<ul class=\"grid\">\n";
+			
+				foreach ($attachments as $id => $attachment) {
+			        $img = wp_get_attachment_image_src($id, 'gallery-grid');
+					$meta = get_post($id);
+					
+					$img_full = wp_get_attachment_image_src($id, 'gallery-full');
 
-    // Now you loop through each attachment
-    foreach ($attachments as $id => $attachment) {
-        // Fetch the thumbnail (or full image, it's up to you)
-//      $img = wp_get_attachment_image_src($id, 'medium');
-//      $img = wp_get_attachment_image_src($id, 'my-custom-image-size');
-        $img = wp_get_attachment_image_src($id, 'gallery-full');
-		$meta = get_post($id);
+			        $output .= "<li>\n";
+							if($attr['lightbox']) $output .= '<a href="'.$img_full[0].'" class="lightbox">';
+			        			$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+							if($attr['lightbox']) $output .= '</a>';
+						if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
+			        $output .= "</li>\n";
+			    }
+			
+				$output .= "</ul>\n";
+			    $output .= "</div>\n";
+				
+				break;
+			}
+			
+		default:
+			{
+				$output .= "<div class=\"image-gallery-slider\">\n";
+			    $output .= "<ul class=\"slides\">\n";
+
+			    foreach ($attachments as $id => $attachment) {
+			        $img = wp_get_attachment_image_src($id, 'gallery-full');
+					$meta = get_post($id);
 
 
-        $output .= "<li>\n";
-        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-			if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
-        $output .= "</li>\n";
-    }
+			        $output .= "<li>\n";
+			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+						if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
+			        $output .= "</li>\n";
+			    }
 
-    $output .= "</ul>\n";
-    $output .= "</div>\n";
+			    $output .= "</ul>\n";
+			    $output .= "</div>\n";
 
-	$output .= "<div class=\"image-gallery-carousel\">\n";
-    $output .= "<ul class=\"slides\">\n";
+				$output .= "<div class=\"image-gallery-carousel\">\n";
+			    $output .= "<ul class=\"slides\">\n";
 
-    // Now you loop through each attachment
-    foreach ($attachments as $id => $attachment) {
-        // Fetch the thumbnail (or full image, it's up to you)
-//      $img = wp_get_attachment_image_src($id, 'medium');
-//      $img = wp_get_attachment_image_src($id, 'my-custom-image-size');
-        $img = wp_get_attachment_image_src($id, 'gallery-thumb');
+			    foreach ($attachments as $id => $attachment) {
+			        $img = wp_get_attachment_image_src($id, 'gallery-thumb');
 
-        $output .= "<li>\n";
-        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-        $output .= "</li>\n";
-    }
+			        $output .= "<li>\n";
+			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+			        $output .= "</li>\n";
+			    }
 
-    $output .= "</ul>\n";
-    $output .= "</div>\n";
+			    $output .= "</ul>\n";
+			    $output .= "</div>\n";
+			}
+	}
+
+    
 
     return $output;
 }

@@ -22,6 +22,10 @@ $(document).ready(function()
 	});
 	
 	
+	
+	$('a.lightbox').fluidbox();
+	
+	
 	/*
 	$('#nav').menuAim({
 		activate: activateSubmenu,

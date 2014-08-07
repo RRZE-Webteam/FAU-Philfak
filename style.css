@@ -6382,6 +6382,11 @@ table a:hover, table a:focus {text-decoration: none;}
 #content .image-gallery-carousel .flex-prev		{ top: 60px; left: 0;}
 #content .image-gallery-carousel .flex-next		{ top: 60px; right: 0;}
 
+#content .image-gallery-grid { margin: 10px 0 20px 0;}
+#content .image-gallery-grid ul { list-style: none; margin: 0; padding: 0;}
+#content .image-gallery-grid ul li {background: none; margin: 0; padding: 0; display: block; float: left; height: 130px; width: 170px; line-height: 125px;vertical-align: middle; text-align: center; border: 1px solid #eee; margin: 0 15px 15px 0;}
+#content .image-gallery-grid ul li img { vertical-align: middle; }
+
 #content		{ padding: 20px 0 20px 0;}
 #content .widget { margin-bottom: 7px;}
 #content .sidebar-inline .widget {margin-bottom: 22px; margin-top: 22px;}
@@ -6823,6 +6828,47 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 #content ul.letters li a:hover, #content ul.letters li a:focus {text-decoration: underline;}
 
 
+.fluidbox {
+	outline: none;
+}
+.fluidbox-overlay {
+	cursor: pointer;
+	cursor: -webkit-zoom-out;
+	cursor: -moz-zoom-out;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition: all .25s ease-in-out;
+}
+.fluidbox-wrap {
+	background-position: center center;
+	background-size: cover;
+	margin: 0 auto;
+	position: relative;
+	transition: all .25s ease-in-out;
+}
+.fluidbox-ghost {
+	background-size: cover;
+	background-position: center center;
+	position: absolute;
+	transition: all .25s ease-in-out;
+}
+	.fluidbox-closed .fluidbox-ghost {
+		-webkit-transition-property: top, left, opacity, -webkit-transform;
+		-moz-transition-property: top, left, opacity, -moz-transform;
+		-o-transition-property: top, left, opacity, -o-transform;
+		transition-property: top, left, opacity, transform;
+		transition-delay: 0, 0, .25s, 0;
+	}
+	.fluidbox-closed .fluidbox-wrap img {
+		transition-property: opacity;
+		transition-delay: .25s;
+		transition-duration: 0s;
+	}
+
 
 @media (min-width: 1200px) {
 
@@ -6871,6 +6917,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 	div.table-wrapper div.scrollable { overflow: scroll; overflow-y: hidden; }
 		
 	#content img {margin-left: 15px; margin-right: 15px; margin-bottom: 15px;}
+	#content .image-gallery-grid ul li img {margin: 0;}
 	#content p img {margin: 0;}
 	.post-image { margin: 0 !important; float: none !important;}
 	
