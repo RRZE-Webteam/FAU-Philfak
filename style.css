@@ -6739,11 +6739,24 @@ div.wpcf7 .placeheld {
 .accordion-heading .accordion-toggle.active, .accordion-heading .accordion-toggle.active:hover, .accordion-heading .accordion-toggle.active:focus {background-color: #e5e9f0; background-position: right -41px; color: #003466;}
 .accordion-inner {border: none; background: #f8f9fb; padding: 15px 20px;}
 
+.accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner { background: #fefeff;}
+
+.accordion .accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
+.accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner { background: #f8f9fb;}
+
 .gold .accordion-toggle { border-color: #ad841f;}
 .red .accordion-toggle {border-color: #801429;}
 .blue .accordion-toggle {border-color: #00b1c6;}
 .green .accordion-toggle {border-color: #009775;}
 .grey .accordion-toggle {border-color: #a3acb2;}
+
+.accordion .accordion .accordion-heading .accordion-toggle { border-left: 0;}
+
 /*
 .white .accordion-toggle {background: #eef1f6; color: #003466;}
 .white .accordion-heading .accordion-toggle:hover, .white .accordion-heading .accordion-toggle:focus {background:#e5e9f0;}
@@ -6827,6 +6840,8 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 #content ul.letters li a {display: inline-block; text-decoration: none; }
 #content ul.letters li a:hover, #content ul.letters li a:focus {text-decoration: underline;}
 
+#content ul.files {list-style: none; margin: 0; }
+#content ul.files li { background: none; padding-left: 0;}
 
 .fluidbox {
 	outline: none;

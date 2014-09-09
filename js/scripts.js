@@ -116,8 +116,8 @@ $(document).ready(function()
 	$('.accordion-toggle').bind('click', function(event) {
 		event.preventDefault();
 		var accordion = $(this).attr('href');
-		$(this).parents('.accordion').find('.accordion-toggle').not($(this)).removeClass('active');
-		$(this).parents('.accordion').find('.accordion-body').not(accordion).slideUp();
+		$(this).closest('.accordion').find('.accordion-toggle').not($(this)).removeClass('active');
+		$(this).closest('.accordion').find('.accordion-body').not(accordion).slideUp();
 		$(this).toggleClass('active');
 		$(accordion).slideToggle();
 	});
