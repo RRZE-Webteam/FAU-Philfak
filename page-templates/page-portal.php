@@ -19,7 +19,6 @@ get_header(); ?>
 			<div class="row">
 							
 				<div class="span8">
-				
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
@@ -30,7 +29,6 @@ get_header(); ?>
 				
 				<div class="span4">
 					<?php get_template_part('sidebar'); ?>
-
 				</div>
 				
 			</div>
