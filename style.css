@@ -7301,11 +7301,14 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
     box-shadow: none !important;
   }
 
-@page  {
-    margin: 2.0cm 2.4cm 2.0cm 2.4cm;
-  }
+body { padding: 30px 60px !important;}
 
-body { padding: 40px 80px;}
+#nav .nav-flyout {top: 0 !important;}
+.nav-fixed #header {position: relative; top: 0; left: 0; right: 0; z-index: 100;}
+body.admin-bar.nav-fixed #header { top: 0;}
+#header #logo img { height: 45px; width: 167px; margin-top: 0;}
+
+.nav-fixed #nav .nav-flyout {top: 0;}
 
 	#meta, #footer, #nav {display: none;}
 	
@@ -7313,7 +7316,7 @@ body { padding: 40px 80px;}
 	#hero.hero-small {display:block;}
 	#hero * { color: #003366 !important;}
 	
-	#logo {margin-top: 0;}
+	#logo {margin-top: 0 !important;}
 		
 	.container,
 	.navbar-static-top .container,
