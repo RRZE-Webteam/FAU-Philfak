@@ -23,7 +23,8 @@ $(document).ready(function()
 	
 	
 	
-	$('a.lightbox').fluidbox();
+//	$('a.lightbox').fluidbox();
+	$('a.lightbox').fancybox({ helpers: { title: { type: 'outside'}}});
 	
 	
 	/*

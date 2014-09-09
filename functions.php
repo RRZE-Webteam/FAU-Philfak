@@ -524,6 +524,8 @@ function fau_post_gallery($output, $attr) {
 	{
 		case "grid":
 			{
+				$rand = rand();
+				
 				$output .= "<div class=\"image-gallery-grid clearfix\">\n";
 			    $output .= "<ul class=\"grid\">\n";
 			
@@ -534,10 +536,15 @@ function fau_post_gallery($output, $attr) {
 					$img_full = wp_get_attachment_image_src($id, 'gallery-full');
 
 			        $output .= "<li>\n";
-							if($attr['lightbox']) $output .= '<a href="'.$img_full[0].'" class="lightbox">';
+							if($attr['lightbox']) 
+							{
+								$output .= '<a href="'.$img_full[0].'" class="lightbox"';
+									if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
+								$output .= ' rel="lightbox-'.$rand.'">';
+							}
+							
 			        			$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
 							if($attr['lightbox']) $output .= '</a>';
-						if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
 			        $output .= "</li>\n";
 			    }
 			
