@@ -75,10 +75,12 @@ class FAUShortcodes {
 							$return .= $this->fau_downloads_recursive($category->term_id);
 
 							$files = get_posts(array('post_type' => 'attachment', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
-									'taxonomy' => 'attachment_document',
-									'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
-									'terms' => $category->term_id,
-									'include_children' => false
+									 array(
+										'taxonomy' => 'attachment_document',
+										'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+										'terms' => $category->term_id,
+										'include_children' => false
+										)
 									), 
 								'suppress_filters' => false));
 
