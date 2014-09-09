@@ -18,8 +18,7 @@ get_header(); ?>
 
 			<div class="row">
 							
-				<div class="span12">
-					<?php get_template_part('sidebar', 'inline'); ?>
+				<div class="span8">
 				
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
@@ -27,6 +26,11 @@ get_header(); ?>
 					<?php endif; ?>
 							
 					<?php the_content(); ?>
+				</div>
+				
+				<div class="span4">
+					<?php get_template_part('sidebar'); ?>
+
 				</div>
 				
 			</div>
