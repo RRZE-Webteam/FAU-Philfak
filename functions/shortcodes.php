@@ -82,7 +82,7 @@ class FAUShortcodes {
 										'include_children' => false
 										)
 									), 
-								'suppress_filters' => false));
+								'suppress_filters' => true));
 
 							if($files)
 							{
