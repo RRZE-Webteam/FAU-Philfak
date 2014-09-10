@@ -6562,6 +6562,7 @@ p.attention {display:block; color: #a71c18; background: transparent url('img/att
 img.alignleft, div.alignleft {float:left; clear:both; margin-right: 20px; margin-bottom: 20px;}
 img.alignright, div.alignright {float:right; clear:both; margin-left: 20px; margin-bottom: 20px;}
 img.aligncenter, div.aligncenter {margin-bottom: 10px;}
+img.aligncenter { display: block; margin: 0 auto 10px auto;}
 
 .hide-desktop	{display:none;}
 .hidden {display:none;}
