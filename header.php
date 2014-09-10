@@ -33,6 +33,16 @@
 			</div>
 		</div>
 	</div>
+	<noscript>
+		<div id="no-script">
+			<div class="container">
+				<div class="notice">
+					<?php _e('JavaScript deaktiviert 1','fau'); ?><br>
+					<?php _e('JavaScript deaktiviert 2','fau'); ?>
+				</div>
+			</div>
+		</div>
+	</noscript>
 	<div id="header">
 		<div class="container">
 			<?php $header_image = get_header_image();

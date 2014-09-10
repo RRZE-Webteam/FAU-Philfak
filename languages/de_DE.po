@@ -8,7 +8,8 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.9\n"
+"Language: de_DE\n"
 
 #. Text in echo
 #: hero-search.php:19 hero-search.php:25
@@ -24,3 +25,17 @@ msgstr "Finden"
 #: searchform.php:12
 msgid "Searchterm"
 msgstr "Suchen nach …"
+
+#. Text in echo
+#: header.php:40
+msgid "JavaScript deaktiviert 1"
+msgstr ""
+"Sie haben JavaScript in Ihrem Browser deaktiviert oder Ihr Browser "
+"unterstützt kein JavaScript."
+
+#. Text in echo
+#: header.php:41
+msgid "JavaScript deaktiviert 2"
+msgstr ""
+"Möglicherweise können Sie diese Website daher nur mit Einschränkungen "
+"bedienen."
