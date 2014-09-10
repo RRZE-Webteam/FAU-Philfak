@@ -6838,7 +6838,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 .wp-video {width: auto !important; max-width: auto !important;}
 .mejs-container {width:auto !important; background: transparent !important;}
 
-#no-script	{ background: #d52727; }
+#no-script	{ background: #d52727; position: fixed; top: 50px; left: 0; right: 0; z-index: 1000;}
 #no-script .notice { text-align: center; color: #fff; padding: 10px 20px;}
 
 #content ul.letters	{list-style: none; margin: 20px 0 10px 0; padding: 0;}
