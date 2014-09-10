@@ -88,7 +88,7 @@ function fau_setup() {
 	
 	add_image_size( 'gallery-full', 940, 470);
 	add_image_size( 'gallery-thumb', 120, 80, true);
-	add_image_size( 'gallery-grid', 165, 120, false);
+	add_image_size( 'gallery-grid', 145, 120, false);
 	
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -500,7 +500,8 @@ function fau_post_gallery($output, $attr) {
         'include' => '',
         'exclude' => '',
 		'type' => NULL,
-		'lightbox' => FALSE
+		'lightbox' => FALSE,
+		'captions' => FALSE
     ), $attr));
 
     $id = intval($id);
@@ -534,8 +535,15 @@ function fau_post_gallery($output, $attr) {
 					$meta = get_post($id);
 					
 					$img_full = wp_get_attachment_image_src($id, 'gallery-full');
-
-			        $output .= "<li>\n";
+					
+					if($attr['captions'])
+					{
+						$output .= "<li class=\"has-caption\">\n";
+					}
+			        else
+					{
+						$output .= "<li>\n";
+					}
 							if($attr['lightbox']) 
 							{
 								$output .= '<a href="'.$img_full[0].'" class="lightbox"';
@@ -545,6 +553,7 @@ function fau_post_gallery($output, $attr) {
 							
 			        			$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
 							if($attr['lightbox']) $output .= '</a>';
+							if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 			        $output .= "</li>\n";
 			    }
 			
