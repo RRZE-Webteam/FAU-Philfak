@@ -281,8 +281,8 @@ function fau_custom_header_setup() {
 		'default-image'          => '%s/images/headers/circle.png',
 
 		// Set height and width, with a maximum value for the width.
-		'height'                 => 85,
-		'width'                  => 315,
+		'height'                 => 65,
+		'width'                  => 240,
 
 		// Callbacks for styling the header and the admin preview.
 	'admin-head-callback'    => 'fau_admin_header_style',

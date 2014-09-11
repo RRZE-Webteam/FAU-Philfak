@@ -222,7 +222,7 @@ $(document).ready(function()
 				$('body').removeClass('nav-scrolled');
 			}
 
-			if ($(window).scrollTop() > 50) {
+			if ($(window).scrollTop() > 60) {
 				$('body').addClass('nav-fixed');
 			} else {
 				$('body').removeClass('nav-fixed');
