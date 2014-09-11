@@ -77,6 +77,7 @@ $(document).ready(function()
 		$('#nav').toggleClass('toggled');
 	});
 	
+	
 	/*
 	$('.portal-subpages-tabs').each(function() {
 		var tabMenu = '';

@@ -107,7 +107,7 @@ function fau_scripts_styles() {
 	
 	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), '2013-08-19' );
 	
-	wp_enqueue_script( 'fau-libs-jquery', get_template_directory_uri() . '/js/libs/jquery-1.8.2.min.js', array(), '1.0', true );
+	wp_enqueue_script( 'fau-libs-jquery', get_template_directory_uri() . '/js/libs/jquery-1.11.1.min.js', array(), '1.0', true );
 	wp_enqueue_script( 'fau-libs-plugins', get_template_directory_uri() . '/js/libs/plugins.js', array(), '1.0', true );
 	wp_enqueue_script( 'fau-scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true );
 
