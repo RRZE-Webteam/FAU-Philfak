@@ -5,7 +5,7 @@
 		<?php if($i == 0): ?>
 			<?php the_widget('FAUPersonWidget', array('id' => $person->ID, 'title' => get_field('sidebar_title_personen'))); ?>
 		<?php else: ?>
-			<?php the_widget('FAUPersonWidget', array('id' => $person->ID)); ?>
+			<?php the_widget('FAUPersonWidget', array('id' => $person->ID)); $i++; ?>
 		<?php endif; ?>
 	<?php endforeach; ?>
 <?php endif; ?>

@@ -230,7 +230,8 @@ class FAUShortcodes {
 	function fau_persons( $atts, $content = null) {
 		extract(shortcode_atts(array(
 			"category" => 'category',
-			"showlink" => FALSE
+			"showlink" => FALSE,
+			"extended" => FALSE
 			), $atts));
 			
 		$category = get_term_by('slug', $category, 'persons_category');
@@ -247,13 +248,13 @@ class FAUShortcodes {
 		
 		foreach($posts as $post)
 		{
-			$content .= $this->fau_person_markup($post->ID, $showlink);
+			$content .= $this->fau_person_markup($post->ID, $showlink, $extended);
 		}
 			
 		return $content;
 	}
 	
-	function fau_person_markup($id, $showlink)
+	function fau_person_markup($id, $showlink, $extended)
 	{
 		$content = '<div class="person content-person">';			
 			$content .= '<div class="row">';
@@ -275,16 +276,16 @@ class FAUShortcodes {
 					if(get_field('position', $id)) 		$content .= '<h4>'.get_field('position', $id).'</h4>';
 					if(get_field('institution', $id))			$content .= '<div class="person-info person-info-institution">'.get_field('institution', $id).'</div>';
 					if(get_field('phone', $id))			$content .= '<div class="person-info person-info-phone">'.get_field('phone', $id).'</div>';
-					if(get_field('fax', $id))			$content .= '<div class="person-info person-info-fax">'.get_field('fax', $id).'</div>';
+					if($extended && get_field('fax', $id))			$content .= '<div class="person-info person-info-fax">'.get_field('fax', $id).'</div>';
 					if(get_field('email', $id))			$content .= '<div class="person-info person-info-email"><a href="mailto:'.get_field('email', $id).'">'.get_field('email', $id).'</a></div>';
-					if(get_field('webseite', $id))		$content .= '<div class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></div>';
-					if(get_field('adresse', $id))		$content .= '<div class="person-info person-info-address">'.get_field('adresse', $id).'</div>';
-					if(get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
+					if($extended && get_field('webseite', $id))		$content .= '<div class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></div>';
+					if($extended && get_field('adresse', $id))		$content .= '<div class="person-info person-info-address">'.get_field('adresse', $id).'</div>';
+					if($extended && get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
 					
 					
 				$content .= '</div>';
 				$content .= '<div class="span3">';
-					if(get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
+					if($extended && get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
 					
 					if($showlink && get_field('link', $id))			$content .= '<div class="person-info person-info-more"><a class="person-read-more" href="'.get_field('link', $id).'">Mehr ›</a></div>';
 					
