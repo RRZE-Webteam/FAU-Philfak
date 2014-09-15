@@ -15,35 +15,16 @@ $(document).ready(function()
 		});
 
 
-	$('#header .has-sub').hover(function() {
-		$('body').addClass('flyout-toggled');
-	}, function() {
-		$('body').removeClass('flyout-toggled');
-	});
-	
-	
-	
-//	$('a.lightbox').fluidbox();
 	$('a.lightbox').fancybox({ helpers: { title: { type: 'outside'}}});
 	
-	
-	/*
-	$('#nav').menuAim({
-		activate: activateSubmenu,
-		deactivate: deactivateSubmenu,
-		submenuDirection: 'below',
-		rowSelector: "> li.has-sub",
+	$('li > a').focus(function() {
+		$(this).parents('li').addClass('focus');
 	});
 	
-	function activateSubmenu(row) {
-		$(row).find('.nav-flyout').show();
-		$('body').addClass('flyout-toggled');
-	}
-	
-	function deactivateSubmenu(row) {
-		$(row).find('.nav-flyout').hide();
-		$('body').removeClass('flyout-toggled');
-	}*/
+	$('li > a').blur(function() {
+		$(this).parents('li').removeClass('focus');
+	});
+
 	
 	$('.image-gallery-slider').flexslider({
 		selector: 'ul > li',
@@ -78,35 +59,16 @@ $(document).ready(function()
 	});
 	
 	
-	/*
-	$('.portal-subpages-tabs').each(function() {
-		var tabMenu = '';
-		var $tabs = $(this).find('.portal-subpages-item-title');
-		
-		tabMenu += '<ul class="portal-subpages-tab-menu">';
-		$tabs.each(function()
-		{
-			tabMenu += '<li><a href="'+$(this).attr('href')+'">'+$(this).html()+'</a></li>';
-		});
-		tabMenu += '</ul>';
-		
-		$(this).prepend(tabMenu);
-		
-		$(this).find('.portal-subpages-tab-menu a').bind('click', function(event) {
-			event.preventDefault();
-			$(this).parents('.portal-subpages-tabs').find('.portal-subpages-item').removeClass('portal-subpages-tabs-active').hide();
-			$($(this).attr('href')).addClass('portal-subpages-tabs-active').show();
-			$(this).parents('ul').find('li').removeClass('active');
-			$(this).parents('li').addClass('active');
-		});
-		
-		$(this).find('.portal-subpages-tab-menu li:first-child').addClass('active');
-		$(this).find('.portal-subpages-item:first').addClass('portal-subpages-item-active');
-	});
-	*/
-	
-	
 	$('.assistant-tabs-nav a').bind('click', function(event) {
+		event.preventDefault();
+		var pane = $(this).attr('href');
+		$(this).parents('ul').find('a').removeClass('active');
+		$(this).addClass('active');
+		$(this).parents('.assistant-tabs').find('.assistant-tab-pane').removeClass('assistant-tab-pane-active');
+		$(pane).addClass('assistant-tab-pane-active');
+	});
+	
+	$('.assistant-tabs-nav a').focus(function(event) {
 		event.preventDefault();
 		var pane = $(this).attr('href');
 		$(this).parents('ul').find('a').removeClass('active');
@@ -124,6 +86,16 @@ $(document).ready(function()
 		$(accordion).slideToggle();
 	});
 	
+	$('.accordion-toggle').focus(function(event) {
+		event.preventDefault();
+		var accordion = $(this).attr('href');
+		$(this).closest('.accordion').find('.accordion-toggle').not($(this)).removeClass('active');
+		$(this).closest('.accordion').find('.accordion-body').not(accordion).slideUp();
+		$(this).toggleClass('active');
+		$(accordion).slideToggle();
+	});
+	
+
 	$('#studienangebot *').change(function() {
 		//$('#studienangebot-result').fadeTo(300, 0.3);
 		$('#loading').fadeIn(300);
@@ -203,15 +175,10 @@ $(document).ready(function()
 
 		});
 	}
-	
 
 	
-	
 	/* responsive tables */
-	
 	$("#content table").wrap('<div class="table-wrapper" />').wrap('<div class="scrollable" />');
-	
-	
 	
 	if( ! isMobile )
 	{
@@ -229,8 +196,6 @@ $(document).ready(function()
 			}
 		});
 	}
-	
-	
 
 }
 );
