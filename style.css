@@ -6100,14 +6100,14 @@ a:hover, a:focus { color: #225588;}
 
 h2		{ font-size: 24px; line-height: 33px; margin: 0; padding: 18px 0 22px 0;}
 #content h2 {font-size: 24px; line-height: 28px;}
-#content h2.small {font-size: 18px; line-height: 22px; padding-top: 22px;}
+#content h2.small {font-size: 18px; line-height: 22px; padding-top: 22px; font-weight: bold;}
 #content .sidebar-inline h2.small { padding-top: 0;}
 #content .search-sidebar h2.small {padding-top:8px;}
 
 #content h2.menu-header {padding: 11px 15px 11px 15px; margin-top: 10px; border-top: 1px solid #eee;}
 
 
-h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 19px; line-height: 22px;}
+h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 19px; line-height: 22px; font-weight: bold;}
 h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
 
 h4		{ margin: 0; padding: 11px 0 11px 0; font-size: 15px; line-height: 22px; font-weight: bold;}
