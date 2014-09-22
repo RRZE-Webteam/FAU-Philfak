@@ -161,6 +161,14 @@ function fau_theme_options_page() {
 		<?php settings_fields( 'fau_options' ); ?>
 	<?php $options = get_option( 'fau_theme_options' ); ?>
 
+	<h3>Allgemein</h3>
+	<table class="form-table">
+		<tr valign="top">
+			<th scope="row">Breadcrumb-Wurzelname</th>
+			<td><input id="fau_theme_options[breadcrumb_root]" class="regular-text" type="text" name="fau_theme_options[breadcrumb_root]" value="<?php esc_attr_e( $options['breadcrumb_root'] ); ?>" /></td>
+		</tr>  
+	</table>
+	
 	<h3>Startseite</h3>
 	<table class="form-table">
 		<tr valign="top">

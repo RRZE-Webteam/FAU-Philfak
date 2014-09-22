@@ -9,12 +9,14 @@
 
 get_header(); ?>
 
+<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
+
 	<div id="hero" class="hero-small">
 		<div class="container">
 			<div class="row">
 				<div class="span12">
 					<div class="breadcrumbs">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>">fau.de</a>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a>
 					</div>
 
 					<div class="hero-meta-portal">
