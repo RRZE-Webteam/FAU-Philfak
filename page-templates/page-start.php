@@ -34,7 +34,15 @@ get_header(); ?>
 					<?php echo get_the_post_thumbnail($hero->ID, 'hero'); ?>
 					<div class="hero-slide-text">
 						<div class="container">
-							<h2><a href="<?php echo get_permalink($hero->ID); ?>"><?php echo get_the_title($hero->ID); ?></a></h2><br>
+							<h2>
+								<?php if(get_field('external_link')): ?>
+									<a href="<?php echo get_field('external_link');?>">
+								<?php else: ?>
+									<a href="<?php echo get_permalink($hero->ID); ?>">
+								<?php endif; ?>
+								
+								<?php echo get_the_title($hero->ID); ?></a>
+							</h2><br>
 							<p><?php echo get_field('abstract', $hero->ID); ?></p>
 						</div>
 					</div>
@@ -94,26 +102,40 @@ get_header(); ?>
 					<?php foreach($news_posts as $news): ?>
 						
 						<div class="news-item">
-					
-						<?php if($i > 0): ?>
-							<h2>
-						<?php else: ?>
-							<h2>
-						<?php endif; ?>
-							<a href="<?php echo get_permalink($news->ID); ?>"><?php echo get_the_title($news->ID); ?></a>
+						
+						<h2>
+							<?php if(get_field('external_link')): ?>
+								<a href="<?php echo get_field('external_link');?>">
+							<?php else: ?>
+								<a href="<?php echo get_permalink($news->ID); ?>">
+							<?php endif; ?>
+							<?php echo get_the_title($news->ID); ?></a>
 						</h2>
 						
 						
 							<div class="row">
 								<?php if(has_post_thumbnail( $news->ID )): ?>
 								<div class="span3">
-									<a href="<?php echo get_permalink($news->ID); ?>" class="news-image"><?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
+									<?php if(get_field('external_link')): ?>
+										<a href="<?php echo get_field('external_link');?>" class="news-image">
+									<?php else: ?>
+										<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
+									<?php endif; ?>
+									<?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
 								</div>
 								<div class="span5">
 								<?php else: ?>
 								<div class="span8">
 								<?php endif; ?>
-									<p><?php echo get_field('abstract', $news->ID); ?> <a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">›</a></p>
+									<p>
+										<?php echo get_field('abstract', $news->ID); ?> 
+										<?php if(get_field('external_link')): ?>
+											<a href="<?php echo get_field('external_link');?>" class="read-more-arrow">
+										<?php else: ?>
+											<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
+										<?php endif; ?>
+										›</a>
+									</p>
 								</div>
 							</div>
 						</div>
