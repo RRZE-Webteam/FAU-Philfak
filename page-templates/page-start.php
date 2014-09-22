@@ -184,6 +184,11 @@ get_header(); ?>
 				<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
 			<?php endif; ?>
 			
+			<?php if ( get_field( 'logo-slider-slug' ) ) : ?>
+				<div class="hr"><hr></div>
+				<?php the_widget('FAUMenuLogosWidget', array('menu-slug' => get_field('logo-slider-slug'))); ?>
+			<?php endif; ?>
+			
 			<?php if ( get_field( 'werbebanner_unten' ) ) : ?>
 				<div class="hr"><hr></div>
 				<?php $ads = get_field('werbebanner_unten');?>
