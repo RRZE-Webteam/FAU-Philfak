@@ -6122,6 +6122,8 @@ p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: 
 #content p, .menu-item {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 #content .textwidget p {font-size:13px;}
 
+#content .span4 .widget p {font-size: 13px;line-height: 22px;}
+
 #content h2, #content h3, #content h4, #content h5, #content h6 {clear:left;}
 
 
