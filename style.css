@@ -6469,6 +6469,7 @@ body.admin-bar #nav .nav-flyout { top: 176px;}
 .person-info-phone {background-image: url('img/icon-phone.png');}
 .person-info-fax {background-image: url('img/icon-fax.png');}
 .person-info-email {background-image: url('img/icon-email.png');}
+.person-info-institution {background-image: url('img/icon-home.png');}
 .person-info-address {margin-top: 10px;}
 .person-info-description {margin-top:10px;}
 
