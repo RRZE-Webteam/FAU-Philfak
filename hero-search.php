@@ -39,23 +39,23 @@
 					<br style="clear:both">
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="page,post,event,person"<?php if( count($post_type) > 1) echo " checked"; ?>>
-						Alle Inhalte
+						<?php _e('Alle Inhalte','fau'); ?>
 					</label>
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="page"<?php if( count($post_type) == 1 && $post_type_single == 'page') echo " checked"; ?>>
-						Seiten
+						<?php _e('Seiten','fau'); ?>
 					</label>
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="post"<?php if( count($post_type) == 1 && $post_type_single == 'post') echo " checked"; ?>>
-						Nachrichten
+						<?php _e('Nachrichten','fau'); ?>
 					</label>
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="event"<?php if( count($post_type) == 1 && $post_type_single == 'event') echo " checked"; ?>>
-						Veranstaltungen
+						<?php _e('Veranstaltungen','fau'); ?>
 					</label>
 					<label class="search-radio-label">
 						<input type="radio" name="post_type" value="person"<?php if( count($post_type) == 1 && $post_type_single == 'person') echo " checked"; ?>>
-						Personen
+						<?php _e('Personen','fau'); ?>
 					</label>
 				</form>
 				

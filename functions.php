@@ -65,10 +65,16 @@ function fau_setup() {
 	register_nav_menu( 'meta', __( 'Meta-Navigation oben', 'fau' ) );
 	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
 	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
+	
 	register_nav_menu( 'quicklinks-1', __( 'Quicklinks 1', 'fau' ) );
 	register_nav_menu( 'quicklinks-2', __( 'Quicklinks 2', 'fau' ) );
 	register_nav_menu( 'quicklinks-3', __( 'Quicklinks 3', 'fau' ) );
 	register_nav_menu( 'quicklinks-4', __( 'Quicklinks 4', 'fau' ) );
+	
+	register_nav_menu( 'error-1', __( 'Fehler 1', 'fau' ) );
+	register_nav_menu( 'error-2', __( 'Fehler 2', 'fau' ) );
+	register_nav_menu( 'error-3', __( 'Fehler 3', 'fau' ) );
+	register_nav_menu( 'error-4', __( 'Fehler 4', 'fau' ) );
 	
 	/*
 	 * This theme uses a custom image size for featured images, displayed on

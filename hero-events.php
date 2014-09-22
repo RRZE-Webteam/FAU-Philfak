@@ -21,7 +21,7 @@
 					</div>
 				<?php endif; ?>
 
-				<h1>Veranstaltungskalender</h1>
+				<h1><?php _e('Veranstaltungskalender','fau'); ?></h1>
 			</div>
 		</div>
 	</div>

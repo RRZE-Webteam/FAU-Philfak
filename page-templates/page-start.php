@@ -126,7 +126,7 @@ get_header(); ?>
 					?>
 					
 					<div class="news-more-links">
-						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>">Mehr Meldungen</a>
+						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>"><?php _e('Mehr Meldungen','fau'); ?></a>
 						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
 					</div>
 					

@@ -23,7 +23,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="span9">
-					<h2 style="padding-top:4px">Suchergebnisse</h2>
+					<h2 style="padding-top:4px"><?php _e('Suchergebnisse','fau'); ?></h2>
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<div class="search-result">
