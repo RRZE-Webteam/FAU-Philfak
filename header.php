@@ -19,6 +19,13 @@
 
 <body <?php body_class(); ?>>
 
+	<ul class="jumplinks">
+		<li><a href="#content"><?php _e('Zum Inhalt springen','fau'); ?></a></li>
+		<li><a href="#s"><?php _e('Zur Suche springen','fau'); ?></a></li>
+		<li><a href="#nav"><?php _e('Zum Hauptmenü springen','fau'); ?></a></li>
+		<li><a href="#subnav"><?php _e('Zum Seitenmenü springen','fau'); ?></a></li>
+	</ul>
+
 	<div id="meta">
 		<div class="container">
 			<div class="pull-left">
