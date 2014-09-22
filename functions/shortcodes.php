@@ -273,7 +273,7 @@ class FAUShortcodes {
 						if(get_field('lastname', $id)) 		$content .= get_field('lastname', $id);
 						if(get_field('title_suffix', $id)) 	$content .= ' '.get_field('title_suffix', $id);
 					$content .= '</h3>';
-					if(get_field('position', $id)) 		$content .= '<h4>'.get_field('position', $id).'</h4>';
+					if(get_field('position', $id)) 		$content .= '<div class="person-info person-info-position"><strong>'.get_field('position', $id).'</strong></div>';
 					if(get_field('institution', $id))			$content .= '<div class="person-info person-info-institution">'.get_field('institution', $id).'</div>';
 					if(get_field('phone', $id))			$content .= '<div class="person-info person-info-phone">'.get_field('phone', $id).'</div>';
 					if($extended && get_field('fax', $id))			$content .= '<div class="person-info person-info-fax">'.get_field('fax', $id).'</div>';
