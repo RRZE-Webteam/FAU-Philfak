@@ -89,7 +89,10 @@ function fau_setup() {
 	add_image_size( 'gallery-full', 940, 470);
 	add_image_size( 'gallery-thumb', 120, 80, true);
 	add_image_size( 'gallery-grid', 145, 120, false);
-	
+
+	add_image_size( 'image-2-col', 300, 200, true);
+	add_image_size( 'image-4-col', 140, 70, true);	
+		
 	// This theme uses its own gallery styles.
 //	add_filter( 'use_default_gallery_style', '__return_false' );
 }
@@ -563,6 +566,68 @@ function fau_post_gallery($output, $attr) {
 				break;
 			}
 			
+		case "2cols":
+			{
+				$rand = rand();
+				
+				$output .= '<div class="row">';
+				$i = 0;
+				
+				foreach ($attachments as $id => $attachment) {
+					$img = wp_get_attachment_image_src($id, 'image-2-col');
+					$meta = get_post($id);
+					
+					$output .= '<div class="span4">';
+
+		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+						
+					$output .= '</div>';
+					
+					$i++;
+					
+					if($i % 2 == 0)
+					{
+						$output .= '</div><div class="row">';
+					}
+				}
+					
+				$output .= '</div>';
+				
+				break;
+			}
+		
+		case "4cols":
+			{
+				$rand = rand();
+
+				$output .= '<div class="row">';
+				$i = 0;
+
+				foreach ($attachments as $id => $attachment) {
+					$img = wp_get_attachment_image_src($id, 'image-4-col');
+					$meta = get_post($id);
+
+					$output .= '<div class="span2">';
+
+		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+
+					$output .= '</div>';
+
+					$i++;
+
+					if($i % 3 == 0)
+					{
+						$output .= '</div><div class="row">';
+					}
+				}
+
+				$output .= '</div>';
+
+				break;
+			}
+					
 		default:
 			{
 				$output .= "<div class=\"image-gallery-slider\">\n";

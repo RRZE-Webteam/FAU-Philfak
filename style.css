@@ -6832,6 +6832,8 @@ form#studienangebot .submit-button {margin-top: 20px;}
 body.admin-bar.nav-fixed #header {top: 22px;}
 body.admin-bar.nav-fixed #nav .nav-flyout {top: 90px;}
 
+.content-image-cols { margin-bottom: 20px;}
+
 /*
 #meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
 
