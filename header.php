@@ -47,7 +47,7 @@
 		<div class="container">
 			<?php $header_image = get_header_image();
 			if ( ! empty( $header_image ) ) : ?>
-				<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
+				<a id="logo" title="Friedrich-Alexander Universität Erlangen-Nürnberg" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="Friedrich-Alexander Universität Erlangen-Nürnberg" /></a>
 			<?php endif; ?>
 			<a href="#" id="nav-toggle" class="hide-desktop">
 				<div></div>
