@@ -6468,15 +6468,15 @@ body.admin-bar #nav .nav-flyout { top: 176px;}
 #content .content-person {margin: 10px 0; padding-bottom: 10px;/*border-bottom: 1px solid #eee;*/}
 #content .content-person li {font-size: 13px; line-height: 20px; background-position: left 5px;}
 
-.person-info {padding-left: 20px; min-height:20px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
-.person-info p {color: #003366; font-size: 13px; line-height: 20px;}
-.person-info-phone {background-image: url('img/icon-phone.png');}
-.person-info-fax {background-image: url('img/icon-fax.png');}
-.person-info-email {background-image: url('img/icon-email.png');}
-.person-info-institution {background-image: url('img/icon-home.png');}
-.person-info-address {margin-top: 10px;}
-.person-info-description {margin-top:10px;}
-.person-info-position { padding-left: 0;}
+#content ul.person-info { padding: 0; margin: 0; list-style: none;}
+#content ul li.person-info { list-style: none; background-image: none; margin: 0; padding: 0; padding-left: 20px; min-height:20px; font-size: 13px; line-height: 20px; background-repeat: no-repeat; background-position: left center; color: #003366;}
+#content ul li.person-info-phone {background-image: url('img/icon-phone.png');}
+#content ul li.person-info-fax {background-image: url('img/icon-fax.png');}
+#content ul li.person-info-email {background-image: url('img/icon-email.png');}
+#content ul li.person-info-institution {background-image: url('img/icon-home.png');}
+#content ul li.person-info-address {margin-top: 10px;}
+#content ul li.person-info-description {margin-top:10px;}
+#content ul li.person-info-position { padding-left: 0;}
 
 #content ul.page-print-actions {margin: 0; padding: 0; list-style:none; position: fixed; top: 400px; right: 0;}
 #content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px; display: block; margin-bottom: 2px;} 

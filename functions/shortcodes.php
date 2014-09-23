@@ -283,15 +283,16 @@ class FAUShortcodes {
 						if(get_field('lastname', $id)) 		$content .= get_field('lastname', $id);
 						if(get_field('title_suffix', $id)) 	$content .= ' '.get_field('title_suffix', $id);
 					$content .= '</h3>';
-					if(get_field('position', $id)) 		$content .= '<div class="person-info person-info-position"><strong>'.get_field('position', $id).'</strong></div>';
-					if(get_field('institution', $id))			$content .= '<div class="person-info person-info-institution">'.get_field('institution', $id).'</div>';
-					if(get_field('phone', $id))			$content .= '<div class="person-info person-info-phone">'.get_field('phone', $id).'</div>';
-					if($extended && get_field('fax', $id))			$content .= '<div class="person-info person-info-fax">'.get_field('fax', $id).'</div>';
-					if(get_field('email', $id))			$content .= '<div class="person-info person-info-email"><a href="mailto:'.get_field('email', $id).'">'.get_field('email', $id).'</a></div>';
-					if($extended && get_field('webseite', $id))		$content .= '<div class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></div>';
-					if($extended && get_field('adresse', $id))		$content .= '<div class="person-info person-info-address">'.get_field('adresse', $id).'</div>';
-					if($extended && get_field('raum', $id))			$content .= '<div class="person-info person-info-room">Raum '.get_field('raum', $id).'</div>';
-					
+					$content .= '<ul class="person-info">';
+						if(get_field('position', $id)) 				$content .= '<li class="person-info person-info-position"><strong>'.get_field('position', $id).'</strong></li>';
+						if(get_field('institution', $id))			$content .= '<li class="person-info person-info-institution">'.get_field('institution', $id).'</li>';
+						if(get_field('phone', $id))					$content .= '<li class="person-info person-info-phone">'.get_field('phone', $id).'</li>';
+						if($extended && get_field('fax', $id))		$content .= '<li class="person-info person-info-fax">'.get_field('fax', $id).'</li>';
+						if(get_field('email', $id))					$content .= '<li class="person-info person-info-email"><a href="mailto:'.get_field('email', $id).'">'.get_field('email', $id).'</a></li>';
+						if($extended && get_field('webseite', $id))	$content .= '<li class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></li>';
+						if($extended && get_field('adresse', $id))	$content .= '<li class="person-info person-info-address">'.get_field('adresse', $id).'</li>';
+						if($extended && get_field('raum', $id))		$content .= '<li class="person-info person-info-room">Raum '.get_field('raum', $id).'</li>';
+					$content .= '</ul>';
 					
 				$content .= '</div>';
 				$content .= '<div class="span3">';
