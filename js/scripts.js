@@ -252,7 +252,7 @@ $(document).ready(function()
 				top = $(this).offset().top + $(this).height();
 			}
 
-			var offset = 10;
+			var offset = 11;
 			if($('body').hasClass('nav-fixed')) { offset += 0;}
 			$('.nav-flyout').css({'top': top-offset});
 		})
