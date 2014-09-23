@@ -6353,6 +6353,11 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #hero .searchform .search-radio-label { float:left; margin-right: 20px;}
 #hero .searchform .search-radio-label input {margin-top: -4px; margin-right: 3px;}
 
+#content .searchform-content { border: none; padding-top: 40px;}
+#content .searchform-content h3 { font-weight: normal;}
+#content .searchform-content input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 10px 10px 10px 40px; width: 200px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #5586b6 url('img/icon-search.png') no-repeat 15px center; border: none; outline: none; color: #fff;}
+#content .searchform-content input[type="text"]:focus { background-color: #5e91c3;}
+
 #hero-slides	{ position: relative; top: -20px; margin: 0 auto 0 auto; margin-bottom: -15px; height: 350px; background: #fff; max-width: 1260px; overflow:hidden; -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.5); -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
 #hero-slides .hero-slide {position: relative;}
 #hero-slides .hero-slide img		{ height: 350px; max-width: 1260px; width: 1260px; left: 50%; margin-left: -630px; position:relative; z-index: 5; top: 0; }
@@ -6410,6 +6415,8 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 
 #content img	{-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 1px 2px rgba(0,0,0,0.3);}
 #content .news-image img, #content .logos-menu img { -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; box-shadow: none;}
+
+#content img.error-404-persons { -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; box-shadow: none; margin: 0 auto -22px auto; display: block;}
 
 #content .news-image { display:block; text-align: center; background: #f9f9f9; padding: 4px; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3); -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.3); box-shadow: 0 1px 2px rgba(0,0,0,0.3);}
 
@@ -6580,6 +6587,8 @@ img.aligncenter { display: block; margin: 0 auto 10px auto;}
 
 .hide-desktop	{display:none;}
 .hidden {display:none;}
+
+
 
 #content ul.menu, #content ul.menu ul, #content ul.menu li {list-style: none; margin: 0; padding: 0;}
 #content ul.menu a {text-decoration: none; display: block; line-height: 18px; padding: 6px 0; background-color: #eef1f6; border-bottom: 1px solid #fff; padding-left: 15px; padding-right: 15px;}

@@ -37,9 +37,16 @@ get_header(); ?>
 		<div class="container">
 		
 			<div class="row">
-				<div class="span8">
-					<h2><?php _e('Leider konnte die gewünschte Seite nicht gefunden werden.','fau'); ?></h2>
-					
+				<div class="span6">
+					<h2>
+						<strong><?php _e('Es tut uns leid.','fau'); ?></strong><br>
+						<?php _e('Leider konnte die gewünschte Seite nicht gefunden werden.','fau'); ?>
+					</h2>
+					<div class="row">
+						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="Friedrich Alexander" class="error-404-persons"></div>
+					</div>
+				</div>
+				<div class="span6">
 					<form role="search" method="get" class="searchform searchform-content" action="http://localhost/wordpress/">
 						<h3><?php _e('Vielleicht hilft Ihnen die Suche:','fau'); ?></h3>
 						<?php
@@ -51,9 +58,6 @@ get_header(); ?>
 						<input type="text" value="<?php echo $uri ?>" name="s" id="s" placeholder="<?php _e('Searchterm','fau'); ?>">
 						<input type="submit" id="searchsubmit" value="<?php _e('Find','fau'); ?>">
 					</form>
-				</div>
-				<div class="span4">
-
 				</div>
 			</div>
 
