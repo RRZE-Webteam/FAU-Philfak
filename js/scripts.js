@@ -1,5 +1,6 @@
 $(document).ready(function()
 {	
+	$('html').removeClass('no-js').addClass('js');
 
 	$('a[href*=#]:not([href=#]):not(.accordion-toggle):not(.accordion-tabs-nav-toggle)').click(function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -21,7 +22,14 @@ $(document).ready(function()
 		$('#nav > li').removeClass('focus');
 		
 	});
-
+	
+	$('#nav').hoverIntent({
+		over: function() {$(this).addClass('focus')},
+		out: function() {$(this).removeClass('focus')},
+		selector: 'li',
+		timeout: 250
+	});
+	
 	$('#nav > li > a').focus(function() {
 		$('#nav > li').removeClass('focus');
 		$(this).parents('li').addClass('focus');

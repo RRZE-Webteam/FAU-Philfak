@@ -6251,15 +6251,18 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 #nav	{ margin: 50px 0 0 0; padding: 0; list-style: none;}
 #nav li.level1	{ display: block; float: left; margin: 0; padding: 0; margin-right: 0;}
 #nav li.level1 a {display: block; float: left; font-weight: bold; color: #003366; text-decoration: none; padding: 10px 10px 10px 10px; font-size: 17px; line-height: 17px; -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-bottom: 10px;}
-#nav li.has-sub a {padding-bottom: 20px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px; margin-bottom: 0;}
+#nav li.has-sub a {padding-bottom: 10px; padding-right: 30px; background: url('img/caret-down.png') no-repeat right 12px; margin-bottom: 10px;}
+
+#nav li.level1.focus.has-sub > a,
+.no-js #nav li.has-sub > a { -webkit-border-bottom-left-radius: 0;-webkit-border-bottom-right-radius: 0;-moz-border-radius-bottomleft: 0;-moz-border-radius-bottomright: 0;border-bottom-left-radius: 0;border-bottom-right-radius: 0;}
 #nav li.level1:hover a, #nav li.active a, #nav li.level1:focus a, #nav li.focus a	{ background-color: #003366; color: #d6dde4; }
 #nav li.level1 a:hover, #nav li.level1 a:focus  {background-color: #003366; color: #fff; }
 #nav li.has-sub a:hover, #nav li.has-sub a:focus, #nav li.has-sub.active, #nav li.has-sub:hover a, #nav li.has-sub:focus a, #nav li.has-sub.focus a { background-position: right -28px;}
 
 
-#nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 144px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
-body.admin-bar #nav .nav-flyout { top: 176px;}
-#nav li.level1:hover .nav-flyout, #nav li.level1:focus .nav-flyout, #nav li.focus .nav-flyout	{ display: block;}
+#nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 139px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
+body.admin-bar #nav .nav-flyout { top: 171px;}
+.no-js #nav li.level1:hover .nav-flyout, .no-js #nav li.level1:focus .nav-flyout, #nav li.focus .nav-flyout	{ display: block;}
 
 #nav ul.level2	{ list-style: none; margin: 0 0 15px 0; padding:0; /*-webkit-column-count: 2; -webkit-column-gap: 20px; -moz-column-count: 2; -moz-column-gap: 20px; column-count: 2; column-gap: 20px; -moz-hyphens: manual !important; -o-hyphens: manual !important; -webkit-hyphens: manual !important; -ms-hyphens: manual !important; hyphens: manual !important;*/}
 #nav li.level2	{ float: none; margin: 0; padding: 0; background: none;}
@@ -6839,40 +6842,18 @@ form#studienangebot .submit-button {margin-top: 20px;}
 .nav-fixed { padding-top: 95px;}
 .nav-fixed #header { position: fixed; top: -10px; left: 0; right: 0; background: #fff; z-index: 200; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3); box-shadow: 0 1px 3px rgba(0,0,0,0.3);}
 
-.nav-fixed #nav .nav-flyout { top: 90px;}
+.nav-fixed #nav .nav-flyout { top: 85px;}
 
 body.admin-bar.nav-fixed #header {top: 22px;}
-body.admin-bar.nav-fixed #nav .nav-flyout {top: 90px;}
+body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 
 .content-image-cols { margin-bottom: 20px;}
 
-/*
-#meta {position: fixed; top: 0; left: 0; right: 0; z-index: 200;}
 
-
-body {padding-top: 50px;}
-*/
-/*
-.nav-fixed #header {position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3); -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.3); box-shadow: 0 1px 3px rgba(0,0,0,0.3);}
-/*.nav-scrolled #header #logo img { height: 45px; width: 167px; margin-top: 38px;}*//*
-
-/*body.nav-scrolled #nav  { margin-top: 70px;}*//*
-body.nav-fixed {padding-top: 165px;}
-
-/*.nav-scrolled #nav .nav-flyout {top: 160px;}*//*
-.nav-fixed #nav .nav-flyout {top: 110px;}
-
-body.admin-bar #nav .nav-flyout {top: 208px;}
-body.admin-bar {padding-top: 52px;}
-body.admin-bar.nav-fixed {padding-top: 165px;}
-body.admin-bar.nav-fixed #header {top: 32px;}
-body.admin-bar #meta {top: 32px;}
-body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
-*/
 .wp-video {width: auto !important; max-width: auto !important;}
 .mejs-container {width:auto !important; background: transparent !important;}
 
-#no-script	{ background: #d52727; position: fixed; top: 50px; left: 0; right: 0; z-index: 1000;}
+#no-script	{ background: #d52727; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;}
 #no-script .notice { text-align: center; color: #fff; padding: 10px 20px;}
 
 #content ul.letters	{list-style: none; margin: 20px 0 10px 0; padding: 0;}
