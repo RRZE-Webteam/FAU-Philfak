@@ -227,20 +227,30 @@ class FAUShortcodes {
 	function fau_person( $atts, $content = null) {
 		extract(shortcode_atts(array(
 			"slug" => 'slug',
-			"showlink" => FALSE
+			"showlink" => FALSE,
+			"showfax" => FALSE,
+			"showwebsite" => FALSE,
+			"showaddress" => FALSE,
+			"showroom" => FALSE,
+			"showdescription" => FALSE,
 			), $atts));
 			
 		$posts = get_posts(array('name' => $slug, 'post_type' => 'person', 'post_status' => 'publish'));
 		$post = $posts[0];
 		$id = $post->ID;
 
-		return $this->fau_person_markup($id, $showlink);
+		return $this->fau_person_markup($id, FALSE, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
 	}
 	
 	function fau_persons( $atts, $content = null) {
 		extract(shortcode_atts(array(
 			"category" => 'category',
 			"showlink" => FALSE,
+			"showfax" => FALSE,
+			"showwebsite" => FALSE,
+			"showaddress" => FALSE,
+			"showroom" => FALSE,
+			"showdescription" => FALSE,
 			"extended" => FALSE
 			), $atts));
 			
@@ -258,13 +268,13 @@ class FAUShortcodes {
 		
 		foreach($posts as $post)
 		{
-			$content .= $this->fau_person_markup($post->ID, $showlink, $extended);
+			$content .= $this->fau_person_markup($post->ID, $extended, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
 		}
 			
 		return $content;
 	}
 	
-	function fau_person_markup($id, $showlink, $extended)
+	function fau_person_markup($id, $extended, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription)
 	{
 		$content = '<div class="person content-person">';			
 			$content .= '<div class="row">';
@@ -287,16 +297,16 @@ class FAUShortcodes {
 						if(get_field('position', $id)) 				$content .= '<li class="person-info person-info-position"><strong>'.get_field('position', $id).'</strong></li>';
 						if(get_field('institution', $id))			$content .= '<li class="person-info person-info-institution">'.get_field('institution', $id).'</li>';
 						if(get_field('phone', $id))					$content .= '<li class="person-info person-info-phone">'.get_field('phone', $id).'</li>';
-						if($extended && get_field('fax', $id))		$content .= '<li class="person-info person-info-fax">'.get_field('fax', $id).'</li>';
+						if(($extended || $showfax) && get_field('fax', $id))		$content .= '<li class="person-info person-info-fax">'.get_field('fax', $id).'</li>';
 						if(get_field('email', $id))					$content .= '<li class="person-info person-info-email"><a href="mailto:'.get_field('email', $id).'">'.get_field('email', $id).'</a></li>';
-						if($extended && get_field('webseite', $id))	$content .= '<li class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></li>';
-						if($extended && get_field('adresse', $id))	$content .= '<li class="person-info person-info-address">'.get_field('adresse', $id).'</li>';
-						if($extended && get_field('raum', $id))		$content .= '<li class="person-info person-info-room">Raum '.get_field('raum', $id).'</li>';
+						if(($extended || $showwebsite) && get_field('webseite', $id))	$content .= '<li class="person-info person-info-www"><a href="http://'.get_field('webseite', $id).'">'.get_field('webseite', $id).'</a></li>';
+						if(($extended || $showaddress) && get_field('adresse', $id))	$content .= '<li class="person-info person-info-address">'.get_field('adresse', $id).'</li>';
+						if(($extended || $showroom) && get_field('raum', $id))		$content .= '<li class="person-info person-info-room">Raum '.get_field('raum', $id).'</li>';
 					$content .= '</ul>';
 					
 				$content .= '</div>';
 				$content .= '<div class="span3">';
-					if($extended && get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
+					if(($extended || $showdescription) && get_field('freitext', $id))		$content .= '<div class="person-info person-info-description">'.get_field('freitext', $id).'</div>';
 					
 					if($showlink && get_field('link', $id))			$content .= '<div class="person-info person-info-more"><a class="person-read-more" href="'.get_field('link', $id).'">Mehr ›</a></div>';
 					
