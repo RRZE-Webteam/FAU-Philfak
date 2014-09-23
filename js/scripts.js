@@ -27,7 +27,7 @@ $(document).ready(function()
 		over: function() {$(this).addClass('focus')},
 		out: function() {$(this).removeClass('focus')},
 		selector: 'li',
-		timeout: 250
+		timeout: 150
 	});
 	
 	$('#nav > li > a').focus(function() {
