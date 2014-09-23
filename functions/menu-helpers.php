@@ -39,8 +39,15 @@ function fau_get_menu_name($location){
 
 
 
-function get_top_parent_page_id($id) {
- 
+function get_top_parent_page_id($id, $offset = FALSE) {
+
+	if( ! $offset) $offset = 1;
+
+	$parents = get_post_ancestors( $id );
+	return ($parents) ? $parents[count($parents)-$offset]: $id;
+	
+	
+/*
     $post = get_post($id);
  
     $ancestors = $post->ancestors;
@@ -59,7 +66,7 @@ function get_top_parent_page_id($id) {
         return $post->ID;
  
     }
- 
+ */
 }
 
 ?>
