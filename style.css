@@ -155,7 +155,7 @@ Text Domain:
 }
 
 
-
+.clear { clear: both;}
 
 .clearfix {
   *zoom: 1;
