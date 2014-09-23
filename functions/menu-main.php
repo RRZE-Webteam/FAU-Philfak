@@ -29,8 +29,8 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 			if($quote)
 			{
 				$output .= '<blockquote>';
-					$output .= '<p><span class="quote"></span>'.$quote.'</p>';
-					if($author) $output .= '<p class="cite"> &mdash; '.$author.'</p>';
+					$output .= '<p class="quote">'.$quote.'</p>';
+					if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
 				$output .= '</blockquote>';
 			}
 

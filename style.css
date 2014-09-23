@@ -6274,9 +6274,10 @@ body.admin-bar #nav .nav-flyout { top: 176px;}
  
 #nav blockquote		{ /*border-top: 1px solid #fff; border-bottom: 1px solid #fff; */padding: 20px; opacity: 0.7; min-height: 40px;}
 #nav blockquote p { color: #fff; font-size: 18px; line-height: 24px; font-style: italic; padding: 0; margin: 0;}
-#nav blockquote p.cite { font-style: normal; font-size: 15px; font-weight: bold; padding: 10px 0;}
+#nav blockquote p.author { font-style: normal; font-size: 15px; font-weight: bold; padding: 10px 0;}
 
-.quote	{width: 42px; height: 37px; background: url('img/quote.png') no-repeat center center; display: block; float: left; margin-right: 20px;}
+
+#nav blockquote p.quote:before	{ content:''; width: 42px; height: 37px; background: url('img/quote.png') no-repeat center center; display: block; float: left; margin-right: 20px;}
 
 .breadcrumbs { color: #fff; padding: 10px 0;}
 .breadcrumbs span { padding: 0 5px;}
