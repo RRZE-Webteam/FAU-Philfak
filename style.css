@@ -6544,8 +6544,8 @@ body.admin-bar #nav .nav-flyout { top: 176px;}
 #content .events-list ul, #content .events-list li {list-style: none; margin: 0; padding: 0;}
 
 #content .event-detail-item { margin-bottom: 20px;}
-#content .event-detail-item .event-info { margin-left: 90px; font-size: 15px; line-height: 20px;}
-#content .event-detail-item .event-date	{ width: 60px;}
+#content .event-detail-item .event-info { margin-left: 80px; font-size: 15px; line-height: 20px;}
+#content .event-detail-item .event-date	{ width: 50px;}
 #content .event-detail-item .event-date-month {font-size: 14px; line-height: 18px;}
 #content .event-detail-item .event-date-day { font-size: 28px; line-height: 28px;}
 

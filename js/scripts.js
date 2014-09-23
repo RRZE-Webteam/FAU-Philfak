@@ -24,7 +24,21 @@ $(document).ready(function()
 	$('li > a').blur(function() {
 		$(this).parents('li').removeClass('focus');
 	});
-
+	
+	$('.jumplink-search').bind('click', function(event) {
+		event.preventDefault();
+		$('#s').focus();
+	});
+	
+	$('.jumplink-nav').bind('click', function(event) {
+		event.preventDefault();
+		$('#nav a').eq(0).focus();
+	});
+	
+	$('.jumplink-subnav').bind('click', function(event) {
+		event.preventDefault();
+		$('#subnav li a').eq(0).focus();
+	});
 	
 	$('.image-gallery-slider').flexslider({
 		selector: 'ul > li',
