@@ -17,14 +17,32 @@ $(document).ready(function()
 
 	$('a.lightbox').fancybox({ helpers: { title: { type: 'outside'}}});
 	
-	$('li > a').focus(function() {
+	$('a').not($('#nav > li div a')).focus(function() {
+		$('#nav > li').removeClass('focus');
+		
+	});
+
+	$('#nav > li > a').focus(function() {
+		$('#nav > li').removeClass('focus');
 		$(this).parents('li').addClass('focus');
 	});
 	
-	$('li > a').blur(function() {
-		$(this).parents('li').removeClass('focus');
+	$('#meta-nav > li > a').focus(function() {
+		$('#meta-nav > li').removeClass('focus');
+		$(this).parents('li').addClass('focus');
 	});
 	
+	$('.mlp_language_box ul li a').focus(function() {
+		$(this).parents('ul').addClass('focus');
+	});
+	
+/*	$('#nav > li > a').blur(function() {
+		$(this).parents('li').removeClass('focus');
+	});
+*/	
+
+	
+
 	$('.jumplink-search').bind('click', function(event) {
 		event.preventDefault();
 		$('#s').focus();
