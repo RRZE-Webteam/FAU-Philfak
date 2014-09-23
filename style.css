@@ -6115,7 +6115,7 @@ h5		{ margin: 0; padding: 11px 0 11px 0; font-size: 15px; line-height: 22px; fon
 
 h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {font-style: normal !important;}
 
-#content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 16px; font-weight:normal;}
+#content .span3 h3, #content .span4 h3, #content .subpages-menu h3 { font-size: 16px; font-weight:normal; }
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
 
 p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: #444;}
@@ -6293,7 +6293,8 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #content .subpages-menu .sub-menu a:hover, .subpages-menu .sub-menu a:focus { text-decoration: none; background-color: #eee;}
 #content .subpages-menu .ext-link h3 {display:inline-block; *display:inline; *zoom:1;background: url('img/ext-icon-19.png') no-repeat 100% 50%; padding-right: 15px;}
 #content .subpages-menu .ext-link h3:hover, #content .subpages-menu .ext-link h3:focus {text-decoration: underline;}
-#content .subpage-item h3	{ padding: 10px 0 10px 0; font-weight:bold;}
+#content .subpage-item {text-decoration: none !important;}
+#content .subpage-item h3	{ padding: 10px 0 10px 0; font-weight:bold; text-decoration: none !important;}
 #content .subpages-menu .ext-icon {position: absolute; top: 0; right: 0; z-index:10; height: 20px; width: 20px; background: #003366 url('img/ext-icon-19-white.png') no-repeat 50% 50%;}
 
 .post-image	{ float:right; margin-bottom: 20px; margin-left: 20px;}
