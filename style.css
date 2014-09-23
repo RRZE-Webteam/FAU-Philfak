@@ -6119,7 +6119,7 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {font-style: normal !important;}
 #content .span3 h4, #content .span4 h4 { font-weight: bold; font-size: 14px;}
 
 p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: #444;}
-#content p, .menu-item {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+#content p  {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 #content .textwidget p {font-size:13px;}
 
 #content .span4 .widget p,
@@ -6593,7 +6593,7 @@ img.aligncenter { display: block; margin: 0 auto 10px auto;}
 
 
 #content ul#subnav, #content ul#subnav ul, #content ul#subnav li {list-style: none; margin: 0; padding: 0;}
-#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; font-size: 14px; padding: 6px 15px; background: #eef1f6; padding-left: 15px; padding-right: 15px; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
+#content ul#subnav a {text-decoration: none; display: block; line-height: 18px; font-size: 14px; padding: 6px 15px; background: #eef1f6; padding-left: 15px; padding-right: 15px; /*-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;*/}
 #content ul#subnav a:hover, #content ul#subnav a:focus { background-color: #e5e9f0;}
 #content ul#subnav ul { display: none;}
 #content ul#subnav>li {border-bottom: 1px solid #fff;}
