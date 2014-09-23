@@ -186,10 +186,20 @@ class FAUShortcodes {
 		$accordion .= '</div>';
 		
 		$return .= '<ul class="letters">';
-		foreach($letters as $l)
+		
+		$alphabet = range('A', 'Z');
+		foreach($alphabet as $a)
 		{
-			$return .= '<li><a href="#letter-'.$l.'">'.$l.'</a></li>';
+			if(in_array($a, $letters))
+			{
+				$return .= '<li><a href="#letter-'.$a.'">'.$a.'</a></li>';
+			}
+			else
+			{
+				$return .= '<li>'.$a.'</li>';
+			}
 		}
+
 		$return .= '</ul>';
 
 		$return .= $accordion;

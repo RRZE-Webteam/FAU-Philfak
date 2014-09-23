@@ -6874,7 +6874,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 110px;}
 #no-script .notice { text-align: center; color: #fff; padding: 10px 20px;}
 
 #content ul.letters	{list-style: none; margin: 20px 0 10px 0; padding: 0;}
-#content ul.letters li {list-style: none; margin: 0; padding: 0; background: none; display: inline-block; margin-right: 2px;}
+#content ul.letters li {list-style: none; margin: 0; padding: 0; background: none; display: inline-block; margin-right: 2px; color: #ccc;}
 #content ul.letters li a {display: inline-block; text-decoration: none; }
 #content ul.letters li a:hover, #content ul.letters li a:focus {text-decoration: underline;}
 
