@@ -6476,6 +6476,7 @@ body.admin-bar #nav .nav-flyout { top: 176px;}
 .person-info-institution {background-image: url('img/icon-home.png');}
 .person-info-address {margin-top: 10px;}
 .person-info-description {margin-top:10px;}
+.person-info-position { padding-left: 0;}
 
 #content ul.page-print-actions {margin: 0; padding: 0; list-style:none; position: fixed; top: 400px; right: 0;}
 #content ul.page-print-actions li { margin: 0; padding: 0; background: none; font-size: 13px; display: block; margin-bottom: 2px;} 
