@@ -19,8 +19,17 @@ get_header(); ?>
 			<div class="row">
 			
 				<div class="span4 span-sm-4">
-					<?php $parent_page = get_top_parent_page_id($id); ?>
-					<?php
+					<?php 
+						if(get_field('menu-level'))
+						{
+							$offset = get_field('menu-level');
+						}
+						else
+						{
+							$offset = 2;
+						}
+					
+						$parent_page = get_top_parent_page_id($id, $offset);
 						$parent = get_page($parent_page);
 					?>
 					<h2 class="small menu-header">
