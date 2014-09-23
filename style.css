@@ -6257,9 +6257,9 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 
 #nav li.level1.focus.has-sub > a,
 .no-js #nav li.has-sub > a { -webkit-border-bottom-left-radius: 0;-webkit-border-bottom-right-radius: 0;-moz-border-radius-bottomleft: 0;-moz-border-radius-bottomright: 0;border-bottom-left-radius: 0;border-bottom-right-radius: 0;}
-#nav li.level1:hover a, #nav li.active a, #nav li.level1:focus a, #nav li.focus a	{ background-color: #003366; color: #d6dde4; }
-#nav li.level1 a:hover, #nav li.level1 a:focus  {background-color: #003366; color: #fff; }
-#nav li.has-sub a:hover, #nav li.has-sub a:focus, #nav li.has-sub.active, #nav li.has-sub:hover a, #nav li.has-sub:focus a, #nav li.has-sub.focus a { background-position: right -28px;}
+.no-js #nav li.level1:hover a, .no-js #nav li.active a, .no-js #nav li.level1:focus a, #nav li.focus a	{ background-color: #003366; color: #d6dde4; }
+.no-js #nav li.level1 a:hover, .no-js #nav li.level1 a:focus  {background-color: #003366; color: #fff; }
+.no-js #nav li.has-sub a:hover, .no-js #nav li.has-sub a:focus, .no-js #nav li.has-sub.active, .no-js #nav li.has-sub:hover a, .no-js #nav li.has-sub:focus a, #nav li.has-sub.focus a { background-position: right -28px;}
 
 
 #nav .nav-flyout	{ display: none; position: absolute; z-index: 20; top: 139px; left: 0; right: 0; background: #003366; padding: 20px 0; -webkit-box-shadow: 0 10px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0 10px 10px rgba(0,0,0,0.3); box-shadow: 0 10px 10px rgba(0,0,0,0.3)}
