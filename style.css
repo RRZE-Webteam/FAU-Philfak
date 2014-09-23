@@ -6165,6 +6165,8 @@ table tr:nth-child(odd) td {background:#eef1f6;}
 table a {text-decoration:underline;}
 table a:hover, table a:focus {text-decoration: none;}
 
+#studienangebot-result table tr th { width: 120px; vertical-align: top;}
+
 #content table ul {}
 #content table ul li {color: #003366; font-size: 13px; line-height: 18px; background-position: left 5px;}
 
