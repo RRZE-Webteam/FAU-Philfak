@@ -117,6 +117,16 @@ $(document).ready(function()
 		$(pane).addClass('assistant-tab-pane-active');
 	});
 	*/
+	$('.assistant-tabs-nav a').keydown('click', function(event) {
+		if(event.keyCode == 32) 
+		{
+			var pane = $(this).attr('href');
+			$(this).parents('ul').find('a').removeClass('active');
+			$(this).addClass('active');
+			$(this).parents('.assistant-tabs').find('.assistant-tab-pane').removeClass('assistant-tab-pane-active');
+			$(pane).addClass('assistant-tab-pane-active');
+		}
+	});
 	$('.accordion-toggle').bind('click', function(event) {
 		event.preventDefault();
 		var accordion = $(this).attr('href');
@@ -135,6 +145,17 @@ $(document).ready(function()
 		$(accordion).slideToggle();
 	});
 	*/
+	$('.accordion-toggle').keydown(function(event) {
+		if(event.keyCode == 32)
+		{
+			var accordion = $(this).attr('href');
+			$(this).closest('.accordion').find('.accordion-toggle').not($(this)).removeClass('active');
+			$(this).closest('.accordion').find('.accordion-body').not(accordion).slideUp();
+			$(this).toggleClass('active');
+			$(accordion).slideToggle();
+		}
+		
+	});
 
 	$('#studienangebot *').change(function() {
 		//$('#studienangebot-result').fadeTo(300, 0.3);
