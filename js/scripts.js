@@ -249,7 +249,7 @@ $(document).ready(function()
 			}
 			else
 			{
-				top = $(this).offset().top + $(this).height() - $(window).scrollTop();
+				top = $(this).offset().top + $(this).height();
 			}
 
 			var offset = 10;
