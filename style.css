@@ -6170,7 +6170,7 @@ table a:hover, table a:focus {text-decoration: none;}
 
 ul.jumplinks	{ list-style: none; margin: 0; padding: 0;}
 ul.jumplinks li { list-style: none; margin: 0; padding: 0;}
-ul.jumplinks li a { display: block; position: fixed; top: 20px; left: -300px; z-index: 10000;}
+ul.jumplinks li a { display: block; position: fixed; top: 20px; left: -1000px; z-index: 10000;}
 ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; background: #fff; }
 
 #meta	{ background: #e3e6e8;}
