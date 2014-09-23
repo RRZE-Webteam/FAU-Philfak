@@ -7332,6 +7332,14 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 
 body { padding: 30px 60px !important;}
 
+h1	{ font-size: 26px !important; line-height: 28px !important; padding: 10px 0;}
+h2	{ font-size: 16px !important; line-height: 20px !important;}
+h3	{ font-size: 15px !important; line-height: 18px !important;}
+h4	{ font-size: 14px !important; line-height: 18px !important;}
+h5	{ font-size: 13px !important; line-height: 18px !important;}
+
+p, li { font-size: 12px; line-height: 17px; color: #000;}
+
 #nav .nav-flyout {top: 0 !important;}
 .nav-fixed #header {position: relative; top: 0; left: 0; right: 0; z-index: 100;}
 body.admin-bar.nav-fixed #header { top: 0;}
@@ -7339,9 +7347,9 @@ body.admin-bar.nav-fixed #header { top: 0;}
 
 .nav-fixed #nav .nav-flyout {top: 0;}
 
-	#meta, #footer, #nav {display: none;}
+	#meta, #footer, #nav, #subnav, .breadcrumbs, .hero-meta-portal, .menu-header, ul.letters, .hr, .FAUMenuSubpagesWidget, .FAUAdWidget, #social {display: none;}
 	
-	#hero {background:none; display:none;}
+	#hero {background:none; display:none; margin: 0; padding: 0;}
 	#hero.hero-small {display:block;}
 	#hero * { color: #003366 !important;}
 	
