@@ -158,12 +158,12 @@ get_header(); ?>
 					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
 					<?php foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
-							<h2 class="small"><a href="<?php the_permalink(); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
+							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
 							<div class="row">
 								<?php if(get_field('topevent_image', $topevent->ID)): ?>
 									<div class="span2">
 										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
-										<a href="<?php the_permalink(); ?>"><img src="<?php echo $image[0]; ?>"></a>
+										<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
 									</div>
 									<div class="span2">
 								<?php else: ?>
