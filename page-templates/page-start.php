@@ -234,9 +234,26 @@ get_header(); ?>
 							<?php if(get_field('videos')): ?>
 								<div class="row">
 									<?php while(has_sub_field('videos')): ?>
-										<div class="span3">
-											<?php echo wp_oembed_get(get_sub_field('video-links')); ?>
-										</div>
+				                                        <?php
+				                                        $args = '';
+				                                        $video_link = get_sub_field('video-links');
+				                                        if($video_link):
+				                                            $video_height = get_sub_field('video-height');
+				                                            $video_width = get_sub_field('video-width');
+				                                            if($video_height) :
+				                                                $args['height'] = $video_height;
+				                                            endif;
+				                                            if($video_width) :
+				                                                $args['width'] = $video_width;
+				                                            endif;
+				                                            $wp_oembed_get = wp_oembed_get($video_link, $args);
+				                                        ?>
+				                                        <?php if($wp_oembed_get !== false) : ?>
+									<div class="span3">
+										<?php echo $wp_oembed_get; ?>
+									</div>
+				                                        <?php endif; ?>
+				                                        <?php endif; ?>
 									<?php endwhile; ?>
 								</div>
 							<?php endif; ?>
