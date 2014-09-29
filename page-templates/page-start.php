@@ -234,30 +234,29 @@ get_header(); ?>
 							<?php if(get_field('videos')): ?>
 								<div class="row">
 									<?php while(has_sub_field('videos')): ?>
-				                                        <?php
-				                                        $args = '';
-				                                        $video_link = get_sub_field('video-links');
-				                                        if($video_link):
-				                                            $video_height = get_sub_field('video-height');
-				                                            $video_width = get_sub_field('video-width');
-				                                            if($video_height) :
-				                                                $args['height'] = $video_height;
-				                                            endif;
-				                                            if($video_width) :
-				                                                $args['width'] = $video_width;
-				                                            endif;
-				                                            $wp_oembed_get = wp_oembed_get($video_link, $args);
-				                                        ?>
-				                                        <?php if($wp_oembed_get !== false) : ?>
+                                    <?php
+                                    $args = '';
+                                    $video_link = get_sub_field('video-links');
+                                    if($video_link):
+                                        $video_height = get_sub_field('video-height');
+                                    	$video_height = $video_height ? $video_height : '';
+                                        $video_width = get_sub_field('video-width');
+                                        $video_width = $video_width ? $video_width : '';
+                                        $video_poster = get_sub_field('video-poster');
+                                        $video_poster = $video_poster ? $video_poster : '';
+                                        $wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
+                                        $wp_oembed_get = do_shortcode($wp_oembed_get);
+                                    ?>
+                                    <?php if($wp_oembed_get !== false) : ?>
 									<div class="span3">
 										<?php echo $wp_oembed_get; ?>
 									</div>
-				                                        <?php endif; ?>
-				                                        <?php endif; ?>
+				                    <?php endif; ?>
+				                    <?php endif; ?>
 									<?php endwhile; ?>
 								</div>
 							<?php endif; ?>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div>
