@@ -6196,7 +6196,7 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 #meta .searchform input[type="submit"] {display:block; position: relative; z-index: 100; margin-right: 20px; height: 30px; padding: 0 12px; font-weight: bold; border: none; outline: none; color: #003366; background: #fff; font-size: 13px; line-height: 15px; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; display: inline-block;}
 #meta .searchform input[type="submit"]:hover, #meta .searchform input[type="submit"]:focus { background: #eff1f3; -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2);}
 
-#meta .searchform label { display: none;}
+#meta .searchform label { display: none !important;}
 #search-widget .searchform label { display: none;}
 
 #meta ::-webkit-input-placeholder,
