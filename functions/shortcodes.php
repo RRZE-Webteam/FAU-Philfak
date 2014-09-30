@@ -233,13 +233,14 @@ class FAUShortcodes {
 			"showaddress" => FALSE,
 			"showroom" => FALSE,
 			"showdescription" => FALSE,
+			"extended" => FALSE,
 			), $atts));
 			
 		$posts = get_posts(array('name' => $slug, 'post_type' => 'person', 'post_status' => 'publish'));
 		$post = $posts[0];
 		$id = $post->ID;
 
-		return $this->fau_person_markup($id, FALSE, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
+		return $this->fau_person_markup($id, $extended, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
 	}
 	
 	function fau_persons( $atts, $content = null) {
