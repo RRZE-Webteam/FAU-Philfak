@@ -23,15 +23,26 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="span9">
-					<h2 style="padding-top:4px"><?php _e('Suchergebnisse','fau'); ?></h2>
-					<?php while ( have_posts() ) : the_post(); ?>
-
-						<div class="search-result">
-							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<?php the_excerpt(); ?>
-						</div>
-
-					<?php endwhile; ?>
+					<?php if(count(get_search_query()) > 0): ?>
+						
+						<?php if(have_posts()): ?>
+							
+							<h2 style="padding-top: 4px"><?php _e('Suchergebnisse','fau'); ?></h2>
+							<?php while ( have_posts() ) : the_post(); ?>
+								<div class="search-result">
+									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+									<?php the_excerpt(); ?>
+								</div>
+							<?php endwhile; ?>
+							
+						<?php else: ?>
+							<h2 style="padding-top: 4px"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.','fau'); ?></h2>
+						<?php endif; ?>
+						
+					<?php else: ?>
+						<h2 style="padding-top: 4px"><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
+					<?php endif; ?>
+					
 				</div>
 			</div>
 
