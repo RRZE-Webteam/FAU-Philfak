@@ -28,13 +28,7 @@ get_header(); ?>
 					
 				</div>
 				
-				<?php if(get_post_type() == 'post'): ?>
-					<?php if ( is_active_sidebar( 'news-sidebar' ) ) : ?>
-						<div class="span4">
-							<?php dynamic_sidebar( 'news-sidebar' ); ?>
-						</div>
-					<?php endif; ?>
-				<?php endif; ?>
+				<?php get_template_part('sidebar', 'news'); ?>
 			</div>
 
 		</div>

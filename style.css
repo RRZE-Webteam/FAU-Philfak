@@ -6190,7 +6190,6 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 #meta-nav li:hover ul.sub-menu, #meta-nav li.focus ul.sub-menu {display:block;}
 
 #meta .searchform	{ padding-top: 10px; margin-bottom: 0; float: right;}
-#meta .searchform label { display:none;}
 #meta .searchform input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 5px 35px 5px 35px; width: 150px; font-size: 13px; line-height: 15px; float: left; background: #003466 url('img/icon-search.png') no-repeat 10px center; border: none; outline: none; color: #fff; height: 20px; display: inline-block; margin-right: -25px;}
 #meta .searchform input[type="text"]:focus { background-color: #164d82;}
 
@@ -6198,6 +6197,7 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 #meta .searchform input[type="submit"]:hover, #meta .searchform input[type="submit"]:focus { background: #eff1f3; -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2);}
 
 #meta .searchform label { display: none;}
+#search-widget .searchform label { display: none;}
 
 #meta ::-webkit-input-placeholder,
 #hero ::-webkit-input-placeholder { /* WebKit browsers */
