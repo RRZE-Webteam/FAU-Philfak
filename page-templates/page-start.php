@@ -111,8 +111,8 @@ get_header(); ?>
 								<div class="news-item">
 
 								<h2>
-									<?php if(get_field('external_link')): ?>
-										<a href="<?php echo get_field('external_link');?>">
+									<?php if(get_field('external_link', $news->ID)): ?>
+										<a href="<?php echo get_field('external_link', $news->ID);?>">
 									<?php else: ?>
 										<a href="<?php echo get_permalink($news->ID); ?>">
 									<?php endif; ?>
@@ -123,8 +123,8 @@ get_header(); ?>
 									<div class="row">
 										<?php if(has_post_thumbnail( $news->ID )): ?>
 										<div class="span3">
-											<?php if(get_field('external_link')): ?>
-												<a href="<?php echo get_field('external_link');?>" class="news-image">
+											<?php if(get_field('external_link', $news->ID)): ?>
+												<a href="<?php echo get_field('external_link', $news->ID);?>" class="news-image">
 											<?php else: ?>
 												<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
 											<?php endif; ?>
@@ -136,8 +136,8 @@ get_header(); ?>
 										<?php endif; ?>
 											<p>
 												<?php echo get_field('abstract', $news->ID); ?> 
-												<?php if(get_field('external_link')): ?>
-													<a href="<?php echo get_field('external_link');?>" class="read-more-arrow">
+												<?php if(get_field('external_link', $news->ID)): ?>
+													<a href="<?php echo get_field('external_link', $news->ID);?>" class="read-more-arrow">
 												<?php else: ?>
 													<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
 												<?php endif; ?>

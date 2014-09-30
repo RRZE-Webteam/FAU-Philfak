@@ -18,14 +18,23 @@
 	<div class="row">
 		<?php if(has_post_thumbnail( $post->ID )): ?>
 		<div class="span3">
-			<a href="<?php the_permalink(); ?>" class="news-image"><?php the_post_thumbnail('post-thumb'); ?></a>
+			<?php if(get_field('external_link')): ?>
+				<a href="<?php echo get_field('external_link', $post->ID);?>" class="news-image">
+			<?php else: ?>
+				<a href="<?php echo get_permalink($post->ID); ?>" class="news-image">
+			<?php endif; ?>
+			<?php the_post_thumbnail('post-thumb'); ?></a>
 		</div>
 		<div class="span5">
 		<?php else: ?>
 		<div class="span8">
 		<?php endif; ?>
 			<?php the_field('abstract'); ?>
-			<a href="<?php the_permalink(); ?>" class="read-more-arrow">›</a>
+			<?php if(get_field('external_link')): ?>
+				<a href="<?php echo get_field('external_link', $post->ID);?>" class="read-more-arrow">›</a>
+			<?php else: ?>
+				<a href="<?php echo get_permalink($post->ID); ?>" class="read-more-arrow">›</a>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>
