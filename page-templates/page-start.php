@@ -97,52 +97,62 @@ get_header(); ?>
 			<div class="row">
 				<div class="span8">
 					
-					<?php $news_posts = get_posts(array('tag' => 'startseite', 'numberposts' => $options['start_news_count'])); ?>
-					<?php $i = 0; ?>
-					<?php foreach($news_posts as $news): ?>
-						
-						<div class="news-item">
-						
-						<h2>
-							<?php if(get_field('external_link')): ?>
-								<a href="<?php echo get_field('external_link');?>">
-							<?php else: ?>
-								<a href="<?php echo get_permalink($news->ID); ?>">
-							<?php endif; ?>
-							<?php echo get_the_title($news->ID); ?></a>
-						</h2>
-						
-						
-							<div class="row">
-								<?php if(has_post_thumbnail( $news->ID )): ?>
-								<div class="span3">
+					<?php
+
+						for($j = 1; $j <= 5; $j++)
+						{
+							$news_posts = get_posts(array('tag' => 'startseite'.$j, 'numberposts' => 1));
+							$i = 0;
+							
+							foreach($news_posts as $news):
+							
+							?>
+								
+								<div class="news-item">
+
+								<h2>
 									<?php if(get_field('external_link')): ?>
-										<a href="<?php echo get_field('external_link');?>" class="news-image">
+										<a href="<?php echo get_field('external_link');?>">
 									<?php else: ?>
-										<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
+										<a href="<?php echo get_permalink($news->ID); ?>">
 									<?php endif; ?>
-									<?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
-								</div>
-								<div class="span5">
-								<?php else: ?>
-								<div class="span8">
-								<?php endif; ?>
-									<p>
-										<?php echo get_field('abstract', $news->ID); ?> 
-										<?php if(get_field('external_link')): ?>
-											<a href="<?php echo get_field('external_link');?>" class="read-more-arrow">
+									<?php echo get_the_title($news->ID); ?></a>
+								</h2>
+
+
+									<div class="row">
+										<?php if(has_post_thumbnail( $news->ID )): ?>
+										<div class="span3">
+											<?php if(get_field('external_link')): ?>
+												<a href="<?php echo get_field('external_link');?>" class="news-image">
+											<?php else: ?>
+												<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
+											<?php endif; ?>
+											<?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
+										</div>
+										<div class="span5">
 										<?php else: ?>
-											<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
+										<div class="span8">
 										<?php endif; ?>
-										›</a>
-									</p>
+											<p>
+												<?php echo get_field('abstract', $news->ID); ?> 
+												<?php if(get_field('external_link')): ?>
+													<a href="<?php echo get_field('external_link');?>" class="read-more-arrow">
+												<?php else: ?>
+													<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
+												<?php endif; ?>
+												›</a>
+											</p>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-					
-						<?php $i++; ?>
-					<?php endforeach; ?>
-					
+							
+							<?php
+								$i++;
+							endforeach;
+						}
+					?>
+
 					<?php
 						$category = get_category_by_slug('news');
 					?>

@@ -175,10 +175,12 @@ function fau_theme_options_page() {
 			<th scope="row">Anzahl der Slides im Header</th>
 			<td><input id="fau_theme_options[start_header_count]" class="regular-text" type="text" name="fau_theme_options[start_header_count]" value="<?php esc_attr_e( $options['start_header_count'] ); ?>" /></td>
 		</tr>  
+		<!--
 		<tr valign="top">
 			<th scope="row">Anzahl der News</th>
 			<td><input id="fau_theme_options[start_news_count]" class="regular-text" type="text" name="fau_theme_options[start_news_count]" value="<?php esc_attr_e( $options['start_news_count'] ); ?>" /></td>
 		</tr>
+		-->
 	</table>
 	
 	<h3>Social Media</h3>
