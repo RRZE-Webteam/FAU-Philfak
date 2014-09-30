@@ -6670,6 +6670,8 @@ img.aligncenter { display: block; margin: 0 auto 10px auto;}
 
 #social iframe { width: 220px !important; height: 160px !important;}
 
+.link-all-videos { padding-top: 10px;}
+
 #content select, #content textarea, #content input[type="text"], #content input[type="password"], #content input[type="datetime"], #content input[type="datetime-local"], #content input[type="date"], #content input[type="month"], #content input[type="time"], #content input[type="week"], #content input[type="number"], #content input[type="email"], #content input[type="url"], #content input[type="search"], #content input[type="tel"], #content input[type="color"] 
 { width: 290px; padding: 5px 10px;}
 

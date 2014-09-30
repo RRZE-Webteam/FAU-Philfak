@@ -255,7 +255,11 @@ get_header(); ?>
 				                    <?php endif; ?>
 									<?php endwhile; ?>
 								</div>
+								<div class="pull-right link-all-videos">
+									<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
+								</div>
 							<?php endif; ?>
+							
 						</div>						
 					</div>
 				</div>
