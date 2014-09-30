@@ -32,6 +32,9 @@ get_header(); ?>
 					<?php get_template_part( 'post', get_post_type() ); ?>
 					<?php endwhile; ?>
 					
+					<div class="pagination">
+						<?php echo posts_nav_link(); ?>
+					</div>
 				</div>
 				
 				<?php get_template_part('sidebar', 'news'); ?>
