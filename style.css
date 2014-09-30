@@ -6409,7 +6409,7 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #content .image-gallery-grid ul li img { vertical-align: middle; }
 #content .image-gallery-grid ul li.has-caption { height: 180px;}
 #content .image-gallery-grid ul li .gallery-image-caption { line-height: 20px;}
-#content .image-gallery-grid ul li .caption { line-height: 20px;}
+#content .image-gallery-grid ul li .caption { line-height: 18px; font-size: 13px; padding: 0 5px;}
 
 #content		{ padding: 20px 0 20px 0;}
 #content .widget { margin-bottom: 7px;}
