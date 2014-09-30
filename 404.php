@@ -63,6 +63,7 @@ get_header(); ?>
 
 			<div class="hr"><hr></div>
 
+			<h2><?php _e('Folgende Inhalte könnten Ihnen auch helfen:','fau'); ?></h2>
 			<div class="row subpages-menu">
 				<div class="span3">
 					<?php if(has_nav_menu('error-1')): ?>
