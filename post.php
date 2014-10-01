@@ -18,7 +18,7 @@
 	<div class="row">
 		<?php if(has_post_thumbnail( $post->ID )): ?>
 		<div class="span3">
-			<?php if(get_field('external_link')): ?>
+			<?php if(get_field('external_link', $post->ID)): ?>
 				<a href="<?php echo get_field('external_link', $post->ID);?>" class="news-image">
 			<?php else: ?>
 				<a href="<?php echo get_permalink($post->ID); ?>" class="news-image">
@@ -30,7 +30,7 @@
 		<div class="span8">
 		<?php endif; ?>
 			<?php the_field('abstract'); ?>
-			<?php if(get_field('external_link')): ?>
+			<?php if(get_field('external_link', $post->ID)): ?>
 				<a href="<?php echo get_field('external_link', $post->ID);?>" class="read-more-arrow">›</a>
 			<?php else: ?>
 				<a href="<?php echo get_permalink($post->ID); ?>" class="read-more-arrow">›</a>
