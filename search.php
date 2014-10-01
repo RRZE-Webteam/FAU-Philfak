@@ -23,7 +23,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="span9">
-					<?php if(count(get_search_query()) > 0): ?>
+					<?php if(strlen(get_search_query()) > 0): ?>
 						
 						<?php if(have_posts()): ?>
 							
