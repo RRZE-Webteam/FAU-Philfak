@@ -6240,15 +6240,24 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 .menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 16px; vertical-align: center; }
 
 .menu-faculties li.menu-item-142,
-.menu-faculties li.menu-item-20852 { border-color: #ad841f;}
+.menu-faculties li.menu-item-20852,
+.menu-faculties li.menu-item-782275 { border-color: #ad841f;}
+
 .menu-faculties li.menu-item-143,
-.menu-faculties li.menu-item-20853 { border-color: #801429;}
+.menu-faculties li.menu-item-20853,
+.menu-faculties li.menu-item-782276 { border-color: #801429;}
+
 .menu-faculties li.menu-item-144,
-.menu-faculties li.menu-item-20854 { border-color: #00b1c6;}
+.menu-faculties li.menu-item-20854,
+.menu-faculties li.menu-item-782277 { border-color: #00b1c6;}
+
 .menu-faculties li.menu-item-145,
-.menu-faculties li.menu-item-20855 { border-color: #009775;}
+.menu-faculties li.menu-item-20855,
+.menu-faculties li.menu-item-782278 { border-color: #009775;}
+
 .menu-faculties li.menu-item-146,
-.menu-faculties li.menu-item-20856 { border-color: #a3acb2;}
+.menu-faculties li.menu-item-20856,
+.menu-faculties li.menu-item-782279 { border-color: #a3acb2;}
 
 #nav	{ margin: 50px 0 0 0; padding: 0; list-style: none;}
 #nav li.level1	{ display: block; float: left; margin: 0; padding: 0; margin-right: 0;}
