@@ -7288,7 +7288,10 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 	
 	.hero-meta-portal {display:none;}
 	
-	#meta {display:none;}
+/*	#meta {display:none;}*/
+	#meta { padding-top: 6px;}
+	#meta-nav {display: none;}
+	#meta .searchform input[type="text"] { width: 100px;}
 	
 	#logo	{ margin: 15px 15px 0 15px; width: 210px;}
 	#logo img {max-width:100%;}	
