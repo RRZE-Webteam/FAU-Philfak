@@ -259,6 +259,12 @@ get_header(); ?>
                                     ?>
                                     <?php if($wp_oembed_get !== false) : ?>
 									<div class="span3">
+										<?php
+											$video_titel = get_sub_field('video-titel');
+											if($video_titel):
+												echo '<h2 class="small">'.$video_titel.'</h2>';
+											endif; 
+										?>	
 										<?php echo $wp_oembed_get; ?>
 									</div>
 				                    <?php endif; ?>
