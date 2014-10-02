@@ -24,9 +24,8 @@ get_header(); ?>
 				</div>
 				<div class="span9">
 					<?php if(strlen(get_search_query()) > 0): ?>
-						
-						<?php if(have_posts()): ?>
-							
+                    
+						<?php if(have_posts()): ?>							
 							<h2 style="padding-top: 4px"><?php _e('Suchergebnisse','fau'); ?></h2>
 							<?php while ( have_posts() ) : the_post(); ?>
 								<div class="search-result">
@@ -34,7 +33,46 @@ get_header(); ?>
 									<?php the_excerpt(); ?>
 								</div>
 							<?php endwhile; ?>
-							
+							<?php
+                            global $wp_query, $wp_rewrite;
+                            
+                            if ( $wp_query->max_num_pages > 1 ) {
+                                $paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+                                $pagenum_link = html_entity_decode( get_pagenum_link() );
+                                $query_args   = array();
+                                $url_parts    = explode( '?', $pagenum_link );
+
+                                if ( isset( $url_parts[1] ) ) {
+                                    wp_parse_str( $url_parts[1], $query_args );
+                                }
+
+                                $pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+                                $pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
+
+                                $format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
+                                $format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
+
+                                $links = paginate_links( array(
+                                    'base'     => $pagenum_link,
+                                    'format'   => $format,
+                                    'total'    => $wp_query->max_num_pages,
+                                    'current'  => $paged,
+                                    'mid_size' => 1,
+                                    'add_args' => array_map( 'urlencode', $query_args ),
+                                    'prev_text' => __( '<span class="meta-nav">&larr;</span> Zurück', 'fau' ),
+                                    'next_text' => __( 'Weiter <span class="meta-nav">&rarr;</span>', 'fau' ),
+                                ) );
+                                ?>
+                                <?php if ( $links ) : ?>
+                                    <nav id="nav-pages" class="navigation paging-navigation" role="navigation">
+                                        <h3 class="screen-reader-text"><?php _e( 'Suchergebnissenavigation', 'fau' ); ?></h1>
+                                        <div class="nav-links">
+                                            <?php echo $links; ?>
+                                        </div>
+                                    </nav>
+                                <?php endif;
+                            } ?>
+                            
 						<?php else: ?>
 							<h2 style="padding-top: 4px"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.','fau'); ?></h2>
 						<?php endif; ?>
