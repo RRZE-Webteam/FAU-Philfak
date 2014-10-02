@@ -7291,6 +7291,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 	
 /*	#meta {display:none;}*/
 	#meta { padding-top: 6px;}
+	#meta ul {margin: 0 !important;}
 	#meta-nav {display: none;}
 	#meta .searchform input[type="text"] { width: 100px;}
 	
