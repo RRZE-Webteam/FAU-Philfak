@@ -6841,6 +6841,10 @@ div.wpcf7 .placeheld {
 .pdfprnt-bottom-left img {-webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
 .likebutton-dynamic,  .tweetbutton-dynamic	{	float: left; margin-right: 20px; margin-top:10px;}
 
+.screen-reader-text {display: none !important;}
+
+.nav-links { margin: 20px 0;}
+.nav-links span, .nav-links a { margin-right: 4px;}
 
 .assistant-tab-pane {display:none;}
 .assistant-tab-pane-active {display:block;}
