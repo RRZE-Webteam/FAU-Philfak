@@ -98,21 +98,21 @@ get_header();
                             )
                         );
                         ?>
-                        <?php foreach ($posts as $post): setup_postdata($post); ?>
-                            <h2 style="padding-top:4px"><?php _e('Suchergebnisse', 'fau'); ?></h2>                
-                            <div class="search-result">                
-                                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                <?php $position = get_field('position'); ?>
-                                <?php if ($position): ?>
-                                    <p><?php echo $position; ?></p>
-                                <?php endif; ?>
-                            </div>
+                        <h2 style="padding-top:4px"><?php _e('Suchergebnisse', 'fau'); ?></h2>                
+                        <div class="search-result">                
+                        <?php foreach ($posts as $post): setup_postdata($post); ?>                
+                            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                            <?php $position = get_field('position'); ?>
+                            <?php if ($position): ?>
+                                <p><?php echo $position; ?></p>
+                            <?php endif; ?>
                         <?php endforeach; ?>
+                        </div>
                         <?php wp_reset_postdata(); ?>
                         <!-- begin pagination -->
                         <?php if($total_pages > 1) : ?>
                             <nav id="nav-pages" class="navigation paging-navigation" role="navigation">
-                                <h3 class="screen-reader-text ym-skip"><?php _e('Suchergebnissenavigation', '_rrze'); ?></h3>
+                                <h3 class="screen-reader-text"><?php _e('Suchergebnissenavigation', '_rrze'); ?></h3>
                                 <div class="nav-links">
                                     <?php echo $paginate_links; ?>
                                 </div>
