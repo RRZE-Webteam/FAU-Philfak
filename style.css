@@ -7298,6 +7298,8 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 	#logo	{ margin: 15px 15px 0 15px; width: 210px;}
 	#logo img {max-width:100%;}	
 	
+	#hero.hero-small { margin-top: 0 !important;}
+	
 	#hero-slides {max-width:100%; height: auto; min-height: 200px;}
 	#hero-slides .hero-slide img	{ height: 220px; width: 780px; left: 50%; margin-left: -390px;}
 	#hero-slides .hero-slide-text 	{ width: 100%; bottom: 15px;}
