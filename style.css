@@ -7230,6 +7230,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 	body.admin-bar #nav .nav-flyout { top: 216px;}
 	body.admin-bar.nav-fixed #nav .nav-flyout {top: 132px;}
 	
+		#meta .searchform input[type="text"] { width: 100px;}
 
 	#social iframe { width: 165px !important; height: 120px !important;}
 	
