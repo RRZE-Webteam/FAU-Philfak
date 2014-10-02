@@ -6106,6 +6106,8 @@ h2		{ font-size: 24px; line-height: 33px; margin: 0; padding: 18px 0 22px 0;}
 
 #content h2.menu-header {padding: 11px 15px 11px 15px; margin-top: 10px; border-top: 1px solid #eee;}
 
+#social h2 { font-weight: normal !important;}
+#social h2 strong {font-weight: bold !important;}
 
 h3		{ margin: 0; padding: 11px 0 11px 0; font-size: 19px; line-height: 22px; font-weight: bold;}
 h3.abstract {font-size: 18px; line-height: 22px; padding: 0 0 22px 0;}
