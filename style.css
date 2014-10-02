@@ -6197,7 +6197,7 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 #meta .searchform input[type="submit"]:hover, #meta .searchform input[type="submit"]:focus { background: #eff1f3; -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2);}
 
 #meta .searchform label { display: none !important;}
-#search-widget .searchform label { display: none;}
+.widget_search .searchform label { display: none !important;}
 
 #meta ::-webkit-input-placeholder,
 #hero ::-webkit-input-placeholder { /* WebKit browsers */
