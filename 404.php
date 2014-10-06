@@ -47,7 +47,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="span6">
-					<form role="search" method="get" class="searchform searchform-content" action="http://localhost/wordpress/">
+					<form role="search" method="get" class="searchform searchform-content" action="<?php echo home_url( '/' )?>">
 						<h3><?php _e('Vielleicht hilft Ihnen die Suche:','fau'); ?></h3>
 						<?php
 							
