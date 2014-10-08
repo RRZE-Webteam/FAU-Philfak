@@ -77,6 +77,7 @@ get_header(); ?>
 					<?php endif; ?>
 				</div>
 			</div>
+			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
 		</div>
 	</div>
 

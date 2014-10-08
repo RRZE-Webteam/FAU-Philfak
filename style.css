@@ -6366,6 +6366,8 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #hero .searchform .search-radio-label { float:left; margin-right: 20px;}
 #hero .searchform .search-radio-label input {margin-top: -4px; margin-right: 3px;}
 
+#hero .hero-jumplink-content	{ position: absolute; left: 300px; right: 300px; bottom: 0; text-indent: -9999em; display: none; height: 15px; background: url('img/caret-down-white.png') no-repeat center center;}
+
 #content .searchform-content { border: none; padding-top: 40px;}
 #content .searchform-content h3 { font-weight: normal;}
 #content .searchform-content input[type="text"] { -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; padding: 10px 10px 10px 40px; width: 200px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #5586b6 url('img/icon-search.png') no-repeat 15px center; border: none; outline: none; color: #fff;}
@@ -7355,6 +7357,10 @@ body.admin-bar.nav-fixed #nav .nav-flyout {top: 85px;}
 	
 	.logos-menu .span2 { float:left;}
 	
+}
+
+@media (min-width: 768px) and (min-height: 700px) and (max-height: 900px) {
+	#hero .hero-jumplink-content { display: block; }
 }
 
 
