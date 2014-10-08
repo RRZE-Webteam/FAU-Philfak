@@ -6467,6 +6467,7 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #logos-menu-playpause.paused .play {display: inline;}
 
 .banner-ad { margin: 0 auto; text-align: center;margin-bottom: 10px;}
+.banner-ad-notice { display: block; text-align: left; padding-bottom: 4px;}
 
 .banner-ad-right { width: 120px; height: 600px; position: absolute; top: 30px; right: -140px;}
 .banner-ad-right .banner-ad { margin: 0;}
