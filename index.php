@@ -32,8 +32,9 @@ get_header(); ?>
 					<?php get_template_part( 'post', get_post_type() ); ?>
 					<?php endwhile; ?>
 					
-					<div class="pagination">
-						<?php echo posts_nav_link(); ?>
+					<div class="navigation">
+						<div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Neuere Beiträge', 'fau')); ?></div>
+						<div class="nav-next"><?php next_posts_link(__('Ältere Beiträge <span class="meta-nav">&raquo;</span>', 'fau'), '' ); ?></div>
 					</div>
 				</div>
 				
