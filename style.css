@@ -4235,6 +4235,21 @@ input[type="submit"].btn.btn-mini {
   color: #999999;
 }
 
+.navigation {
+  margin: 40px 0;
+}
+
+.nav-previous {
+    float: left;
+    width: 50%;
+}
+
+.nav-next {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+
 .pagination {
   margin: 20px 0;
 }
