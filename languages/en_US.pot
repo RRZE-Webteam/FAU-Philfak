@@ -1,0 +1,266 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FAU-Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-04 12:24+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: RRZE-Webteam\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;esc_attr__;esc_attr_e;_n:1,2;"
+"_nx:4c,1,2;_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../401.php:29
+msgid "Anmeldung fehlgeschlagen"
+msgstr "Login failed"
+
+#: ../401.php:42 ../403.php:42 ../404.php:42
+msgid "Es tut uns leid."
+msgstr "Sorry"
+
+#: ../401.php:43
+msgid "Leider ist Ihre Anmeldung fehlgeschlagen."
+msgstr "Unfortunately your login was unsuccessful."
+
+#: ../403.php:29
+msgid "Zugriff nicht gestattet"
+msgstr "Unauthorised"
+
+#: ../403.php:43
+msgid "Leider dürfen Sie auf diese Seite nicht zugreifen."
+msgstr "You are not authorised to access this page."
+
+#: ../404.php:29
+msgid "Seite nicht gefunden"
+msgstr "Page not found"
+
+#: ../404.php:43
+msgid "Leider konnte die gewünschte Seite nicht gefunden werden."
+msgstr "We could not find the page you are looking for."
+
+#: ../404.php:51
+msgid "Vielleicht hilft Ihnen die Suche:"
+msgstr "You could try searching our website:"
+
+#: ../404.php:58 ../hero-search.php:32 ../page-templates/search_event.php:39
+#: ../page-templates/search_person.php:39 ../page-templates/search_post.php:39
+#: ../searchform.php:12 ../searchform.php:13
+msgid "Searchterm"
+msgstr "Search term"
+
+#: ../404.php:59 ../hero-search.php:33 ../page-templates/search_event.php:40
+#: ../page-templates/search_person.php:40 ../page-templates/search_post.php:40
+#: ../searchform.php:14
+msgid "Find"
+msgstr "Find"
+
+#: ../404.php:66
+msgid "Folgende Inhalte könnten Ihnen auch helfen:"
+msgstr "You might find these pages useful:"
+
+#: ../functions.php:65
+msgid "Meta-Navigation oben"
+msgstr "Meta navigation top"
+
+#: ../functions.php:66
+msgid "Meta-Navigation unten"
+msgstr "Meta navigation bottom"
+
+#: ../functions.php:67
+msgid "Haupt-Navigation"
+msgstr "Main navigation"
+
+#: ../functions.php:69
+msgid "Quicklinks 1"
+msgstr "Quicklinks 1"
+
+#: ../functions.php:70
+msgid "Quicklinks 2"
+msgstr "Quicklinks 2"
+
+#: ../functions.php:71
+msgid "Quicklinks 3"
+msgstr "Quicklinks 3"
+
+#: ../functions.php:72
+msgid "Quicklinks 4"
+msgstr "Quicklinks 4"
+
+#: ../functions.php:74
+msgid "Fehler 1"
+msgstr "Error 1"
+
+#: ../functions.php:75
+msgid "Fehler 2"
+msgstr "Error 2"
+
+#: ../functions.php:76
+msgid "Fehler 3"
+msgstr "Error 3"
+
+#: ../functions.php:77
+msgid "Fehler 4"
+msgstr "Error 4"
+
+#: ../functions.php:281
+#, php-format
+msgid "Page %s"
+msgstr "Page %s"
+
+#: ../functions.php:320
+msgctxt "header image description"
+msgid "FAU"
+msgstr "FAU"
+
+#: ../functions.php:325
+msgctxt "header image description"
+msgid "FAKMED"
+msgstr "FAKMED"
+
+#: ../functions.php:330
+msgctxt "header image description"
+msgid "FAKNAT"
+msgstr "FAKNAT"
+
+#: ../functions.php:335
+msgctxt "header image description"
+msgid "FAKPHIL"
+msgstr "FAKPHIL"
+
+#: ../functions.php:340
+msgctxt "header image description"
+msgid "FAKRECHTSWIWI"
+msgstr "FAKRECHTSWIWI"
+
+#: ../functions.php:345
+msgctxt "header image description"
+msgid "FAKTECH"
+msgstr "FAKTECH"
+
+#: ../functions.php:393
+msgid "Sprachwechsler"
+msgstr "Language switcher"
+
+#: ../functions.php:395
+msgid "Sprachwechsler im Header der Seite"
+msgstr "Language switcher in header"
+
+#: ../functions.php:403
+msgid "News Sidebar"
+msgstr "News Sidebar"
+
+#: ../functions.php:405
+msgid "Sidebar auf der News-Kategorieseite"
+msgstr "Sidebar on the news category page"
+
+#: ../functions.php:413
+msgid "Suche Sidebar"
+msgstr "Search Sidebar"
+
+#: ../functions.php:415
+msgid "Sidebar auf der Such-Ergebnisseite links"
+msgstr "Sidebar on left of search results page"
+
+#: ../header.php:24 ../page-templates/page-start.php:80
+msgid "Zum Inhalt springen"
+msgstr "Skip to content"
+
+#: ../header.php:25
+msgid "Zur Suche springen"
+msgstr "Skip to search"
+
+#: ../header.php:26
+msgid "Zum Hauptmenü springen"
+msgstr "Skip to main menu"
+
+#: ../header.php:27
+msgid "Zum Seitenmenü springen"
+msgstr "Skip to page menu"
+
+#: ../header.php:48
+msgid "JavaScript deaktiviert 1"
+msgstr "JavaScript deactivated 1"
+
+#: ../header.php:49
+msgid "JavaScript deaktiviert 2"
+msgstr "JavaScript deactivated 2"
+
+#: ../hero-events.php:25
+msgid "Veranstaltungskalender"
+msgstr "Events"
+
+#: ../hero-search.php:20 ../hero-search.php:26
+msgid "Search"
+msgstr "Search"
+
+#: ../index.php:36
+msgid "<span class=\"meta-nav\">&laquo;</span> Neuere Beiträge"
+msgstr "<span class=\"meta-nav\">&laquo;</span> Newer posts"
+
+#: ../index.php:37
+msgid "Ältere Beiträge <span class=\"meta-nav\">&raquo;</span>"
+msgstr "Older posts <span class=\"meta-nav\">&raquo;</span>"
+
+#: ../page-templates/page-start.php:162
+msgid "Mehr Meldungen"
+msgstr "More news"
+
+#: ../page-templates/page-start.php:276
+msgid "Alle Videos"
+msgstr "All videos"
+
+#: ../page-templates/search_event.php:34
+msgid "Veranstaltungen"
+msgstr "Events"
+
+#: ../page-templates/search_event.php:96
+#: ../page-templates/search_person.php:96 ../page-templates/search_post.php:96
+#: ../search.php:62
+msgid "<span class=\"meta-nav\">&larr;</span> Zurück"
+msgstr "<span class=\"meta-nav\">&larr;</span> Previous"
+
+#: ../page-templates/search_event.php:97
+#: ../page-templates/search_person.php:97 ../page-templates/search_post.php:97
+#: ../search.php:63
+msgid "Weiter <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Next <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../page-templates/search_event.php:101
+#: ../page-templates/search_person.php:101
+#: ../page-templates/search_post.php:101 ../search.php:29
+msgid "Suchergebnisse"
+msgstr "Search results"
+
+#: ../page-templates/search_event.php:112
+#: ../page-templates/search_person.php:115
+#: ../page-templates/search_post.php:112 ../search.php:68
+msgid "Suchergebnissenavigation"
+msgstr "Search results navigation"
+
+#: ../page-templates/search_event.php:120
+#: ../page-templates/search_person.php:123
+#: ../page-templates/search_post.php:120 ../search.php:77
+msgid "Leider konnte für Ihre Suche nichts gefunden werden."
+msgstr "Unfortunately, no results were found."
+
+#: ../page-templates/search_event.php:123
+#: ../page-templates/search_person.php:126
+#: ../page-templates/search_post.php:123 ../search.php:81
+msgid "Bitte geben Sie einen Suchbegriff in das Suchfeld ein."
+msgstr "Please enter a search term in the search box."
+
+#: ../page-templates/search_person.php:34
+msgid "Personen"
+msgstr "People"
+
+#: ../page-templates/search_post.php:34
+msgid "Nachrichten"
+msgstr "News"
