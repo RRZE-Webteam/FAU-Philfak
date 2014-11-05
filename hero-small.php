@@ -31,8 +31,7 @@
 								$first_parent = get_page($parent[0]);
 							}
 
-						//	if($first_parent->ID != get_the_ID()) 
-							{
+							if (isset($first_parent)) { //  && ($first_parent->ID != get_the_ID())) {
 								echo $first_parent->post_title;
 							}
 						}
