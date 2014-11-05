@@ -237,10 +237,13 @@ class FAUShortcodes {
 			), $atts));
 			
 		$posts = get_posts(array('name' => $slug, 'post_type' => 'person', 'post_status' => 'publish'));
-		$post = $posts[0];
-		$id = $post->ID;
-
-		return $this->fau_person_markup($id, $extended, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
+		if ($posts) {
+		    $post = $posts[0];
+		    $id = $post->ID;		    
+		    return $this->fau_person_markup($id, $extended, $showlink, $showfax, $showwebsite, $showaddress, $showroom, $showdescription);
+		} else {
+		    return __('Es konnte kein Kontakteintrag mit der angegebenen ID "'.$slug.'" gefunden werden.','fau');
+		}
 	}
 	
 	function fau_persons( $atts, $content = null) {
