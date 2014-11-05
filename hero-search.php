@@ -17,20 +17,20 @@
 
 			    <div class="breadcrumbs">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
-					<?php _e('Search','fau'); ?>
+					<?php _e('Suche','fau'); ?>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="span3">
-				<h1><?php _e('Search','fau'); ?></h1>
+				<h1><?php _e('Suche','fau'); ?></h1>
 			</div>
 			<div class="span9">
 				<?php /* get_search_form(); */ ?>
 				
 				<form role="search" method="get" class="searchform" action="<?php echo home_url( '/' )?>">
-					<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" placeholder="<?php _e('Searchterm','fau'); ?>">
-					<input type="submit" id="searchsubmit" value="<?php _e('Find','fau'); ?>">
+					<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
+					<input type="submit" id="searchsubmit" value="<?php _e('Finden','fau'); ?>">
 				</form>
 				
 			</div>
