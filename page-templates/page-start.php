@@ -35,7 +35,7 @@ get_header(); ?>
 					<div class="hero-slide-text">
 						<div class="container">
 							<h2>
-								<?php if(get_field('external_link')): ?>
+								<?php if(function_exists('get_field') && get_field('external_link')): ?>
 									<a href="<?php echo get_field('external_link');?>">
 								<?php else: ?>
 									<a href="<?php echo get_permalink($hero->ID); ?>">
@@ -43,7 +43,9 @@ get_header(); ?>
 								
 								<?php echo get_the_title($hero->ID); ?></a>
 							</h2><br>
+							<?php if (function_exists('get_field') &&  get_field('abstract', $hero->ID)) { ?>
 							<p><?php echo get_field('abstract', $hero->ID); ?></p>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -86,14 +88,17 @@ get_header(); ?>
 			
 			
 			
-			<?php if ( get_field( 'werbebanner_seitlich' ) ) : ?>
+			<?php 
+			if ( function_exists('get_field') ) {
+			  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
 				<div class="banner-ad-right">
 					<?php $ads = get_field('werbebanner_seitlich');?>
 					<?php foreach($ads as $ad): ?>
 						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
 					<?php endforeach; ?>
 				</div>
-			<?php endif; ?>
+			<?php endif; 
+			} ?>
 			
 			<div class="row">
 				<div class="span8">
@@ -112,7 +117,7 @@ get_header(); ?>
 								<div class="news-item">
 
 								<h2>
-									<?php if(get_field('external_link', $news->ID)): ?>
+									<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
 										<a href="<?php echo get_field('external_link', $news->ID);?>">
 									<?php else: ?>
 										<a href="<?php echo get_permalink($news->ID); ?>">
@@ -124,7 +129,7 @@ get_header(); ?>
 									<div class="row">
 										<?php if(has_post_thumbnail( $news->ID )): ?>
 										<div class="span3">
-											<?php if(get_field('external_link', $news->ID)): ?>
+											<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
 												<a href="<?php echo get_field('external_link', $news->ID);?>" class="news-image">
 											<?php else: ?>
 												<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
@@ -136,8 +141,10 @@ get_header(); ?>
 										<div class="span8">
 										<?php endif; ?>
 											<p>
-												<?php echo get_field('abstract', $news->ID); ?> 
-												<?php if(get_field('external_link', $news->ID)): ?>
+												<?php if (function_exists('get_field')) {
+												     echo get_field('abstract', $news->ID);											  
+												} ?> 
+												<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
 													<a href="<?php echo get_field('external_link', $news->ID);?>" class="read-more-arrow">
 												<?php else: ?>
 													<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
@@ -169,9 +176,11 @@ get_header(); ?>
 					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
 					<?php foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
+							<?php if (function_exists('get_field') && get_field('topevent_title', $topevent->ID)) { ?>
 							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
+							<?php } ?>
 							<div class="row">
-								<?php if(get_field('topevent_image', $topevent->ID)): ?>
+								<?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
 									<div class="span2">
 										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
 										<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
@@ -180,8 +189,11 @@ get_header(); ?>
 								<?php else: ?>
 									<div class="span4">
 								<?php endif; ?>
+									 <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
 									<div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
+									 <?php } ?>   
 									</div>
+									
 							</div>
 						</div>
 					<?php endforeach; ?>
@@ -189,7 +201,8 @@ get_header(); ?>
 					<?php get_template_part('sidebar'); ?>
 				</div>
 			</div>
-			
+			<?php  if ( function_exists('get_field') ) { ?>
+
 			<?php if ( get_field( 'portalmenu-slug' ) ) : ?>
 				<div class="hr"><hr></div>
 				<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
@@ -207,13 +220,13 @@ get_header(); ?>
 					<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
 				<?php endforeach; ?>
 			<?php endif; ?>
-			
+			<?php  } ?>
 			
 			</div>
 			<div id="social">
 				<div class="container">
 					<div class="row">
-						<?php if($options['socialmedia']): ?>
+						<?php if (isset($options['socialmedia'])): ?>
 							<div class="span3">
 								<h2 class="small"><strong>FAU</strong>Social</h2>
 								<ul class="social">
@@ -242,7 +255,10 @@ get_header(); ?>
 							</div>
 						<?php endif; ?>
 						<div class="span9">
-							<?php if(get_field('videos')): ?>
+							<?php 
+							if ( function_exists('get_field') ) {
+
+							if(get_field('videos')): ?>
 								<div class="row">
 									<?php while(has_sub_field('videos')): ?>
                                     <?php
@@ -275,7 +291,8 @@ get_header(); ?>
 								<div class="pull-right link-all-videos">
 									<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
 								</div>
-							<?php endif; ?>
+							<?php endif;  							
+							} ?>
 							
 						</div>						
 					</div>

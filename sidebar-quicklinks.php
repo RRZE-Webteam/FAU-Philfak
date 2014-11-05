@@ -1,4 +1,7 @@
-<?php if(get_field('sidebar_quicklinks') || get_field('sidebar_quicklinks_external')): ?>
+<?php 
+ if ( function_exists('get_field') ) {
+
+if(get_field('sidebar_quicklinks') || get_field('sidebar_quicklinks_external')): ?>
 	<aside class="widget">
 		<?php if(get_field('sidebar_title_quicklinks')): ?>
 			<h2 class="small"><?php echo get_field('sidebar_title_quicklinks'); ?></h2>
@@ -13,4 +16,6 @@
 			<?php endwhile; ?>
 		</ul>
 	</aside>
-<?php endif; ?>
+ <?php
+ endif; 
+  } ?>

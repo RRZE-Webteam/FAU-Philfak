@@ -1,4 +1,6 @@
-<?php if(get_field('sidebar_personen')): ?>
+<?php 
+ if ( function_exists('get_field') ) {
+     if(get_field('sidebar_personen')): ?>
 	<?php $persons = get_field('sidebar_personen'); ?>
 	<?php $i = 0; ?>
 	<?php foreach($persons as $person): ?>
@@ -8,4 +10,5 @@
 			<?php the_widget('FAUPersonWidget', array('id' => $person->ID)); $i++; ?>
 		<?php endif; ?>
 	<?php endforeach; ?>
-<?php endif; ?>
+<?php endif; 
+ } ?>

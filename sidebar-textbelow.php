@@ -1,4 +1,7 @@
-<?php if(get_field('sidebar_text_below')): ?>
+<?php 
+ if ( function_exists('get_field') ) {
+
+    if(get_field('sidebar_text_below')): ?>
 	<aside class="widget">
 		<?php if(get_field('sidebar_title_below')): ?>
 			<h2 class="small"><?php echo get_field('sidebar_title_below'); ?></h2>
@@ -14,4 +17,6 @@
 			}
  		?>
 	</aside>
-<?php endif; ?>
+<?php endif; 
+ }
+ ?>
