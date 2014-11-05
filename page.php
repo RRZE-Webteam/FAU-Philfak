@@ -23,14 +23,14 @@ get_header(); ?>
 			<div class="row">
 				
 				<div class="span12">
-					<h2><?php the_field('headline'); ?></h2>
-					<?php if( get_field('abstract') != ''): ?>
-						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
-					<?php endif; ?>
-					
-					<?php get_template_part('sidebar', 'inline'); ?>
-					
-					<?php the_content(); ?>
+					<?php if ( function_exists('the_field') ) {
+						echo "<h2>".the_field('headline')."</h2>\n";
+						if( get_field('abstract') != '') {
+						     echo "<h3>".the_field('abstract')."</h3>\n";
+						}
+					}
+					get_template_part('sidebar', 'inline'); 
+					the_content(); ?>
 				</div>
 				
 			</div>
