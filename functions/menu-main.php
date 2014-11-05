@@ -23,16 +23,17 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$output .= '</div>';
 				
 		$output .= '<div class="span4 hide-mobile">';
+		    if ( function_exists('get_field') ) {
 			$quote = get_field('zitat_text', $this->currentID);
 			$author = get_field('zitat_autor', $this->currentID);
 			
-			if($quote)
-			{
+			if($quote) {
 				$output .= '<blockquote>';
 					$output .= '<p class="quote">'.$quote.'</p>';
 					if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
 				$output .= '</blockquote>';
 			}
+		    }
 
 		$output .= '</div>';
 		
