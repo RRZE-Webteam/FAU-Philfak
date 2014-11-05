@@ -4,93 +4,13 @@ Theme URI: www.fau.de
 Author: medienreaktor GmbH
 Author URI: http://www.medienreaktor.de
 Description: Friedrich-Alexander-Universität Erlangen-Nürnberg
-Version: 1.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue
 Text Domain: 
 */
 
-/*
-@import url("http://fonts.googleapis.com/css?family=Archivo+Narrow:400,700,400italic,700italic");
-@import url("http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic");
-
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic");
-*/
-/*
-@font-face {
-    font-family: 'Open Sans';
-    src: url('fonts/opensans/OpenSans-Regular-webfont.eot');
-    src: url('fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-Regular-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    src: url('fonts/opensans/OpenSans-Bold-webfont.eot');
-    src: url('fonts/opensans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-Bold-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-Bold-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    src: url('fonts/opensans/OpenSans-BoldItalic-webfont.eot');
-    src: url('fonts/opensans/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-BoldItalic-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
-    font-weight: bold;
-    font-style: italic;
-
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    src: url('fonts/opensans/OpenSans-Italic-webfont.eot');
-    src: url('fonts/opensans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-Italic-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-Italic-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
-    font-weight: normal;
-    font-style: italic;
-
-}
-
-@font-face {
-    font-family: 'Open Sans Light';
-    src: url('fonts/opensans/OpenSans-Light-webfont.eot');
-    src: url('fonts/opensans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-Light-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-Light-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'Open Sans Light';
-    src: url('fonts/opensans/OpenSans-LightItalic-webfont.eot');
-    src: url('fonts/opensans/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opensans/OpenSans-LightItalic-webfont.woff') format('woff'),
-         url('fonts/opensans/OpenSans-LightItalic-webfont.ttf') format('truetype'),
-         url('fonts/opensans/OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
-    font-weight: normal;
-    font-style: italic;
-
-}
-
-*/
 
 
 
