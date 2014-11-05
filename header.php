@@ -30,7 +30,11 @@
 	<div id="meta">
 		<div class="container">
 			<div class="pull-left">
-				<?php wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) ); ?>
+				<?php
+				if ( has_nav_menu( 'meta' ) ) {
+				    wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) );
+				}
+				?>
 			</div>
 			<div class="pull-right">
 				<?php if ( is_active_sidebar( 'language-switcher' ) ) : ?>
@@ -53,10 +57,19 @@
 	</noscript>
 	<div id="header">
 		<div class="container">
+		    
 			<?php $header_image = get_header_image();
-			if ( ! empty( $header_image ) ) : ?>
-				<a id="logo" title="Friedrich-Alexander Universität Erlangen-Nürnberg" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="Friedrich-Alexander Universität Erlangen-Nürnberg" /></a>
-			<?php endif; ?>
+			if ( ! empty( $header_image ) ) {	
+			    echo '<div class="branding" id="logo" role="banner" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">';
+			    if ( ! is_front_page() ) { 
+				echo '<a itemprop="url" rel="home" href="'.esc_url( home_url( '/' ) ).'">';	
+			    } 
+			    echo '<img src="'.esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
+			    if ( ! is_front_page() ) {  
+				echo "</a>"; 			    
+			    }
+			    echo "</div>\n";
+			} ?>
 			<a href="#" id="nav-toggle" class="hide-desktop">
 				<div></div>
 				<div></div>
