@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FAU-Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-04 12:24+0100\n"
+"POT-Creation-Date: 2014-11-05 15:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam\n"
@@ -50,15 +50,13 @@ msgstr "We could not find the page you are looking for."
 msgid "Vielleicht hilft Ihnen die Suche:"
 msgstr "You could try searching our website:"
 
-#: ../404.php:58 ../hero-search.php:32 ../page-templates/search_event.php:39
+#: ../404.php:58 ../page-templates/search_event.php:39
 #: ../page-templates/search_person.php:39 ../page-templates/search_post.php:39
-#: ../searchform.php:12 ../searchform.php:13
 msgid "Searchterm"
 msgstr "Search term"
 
-#: ../404.php:59 ../hero-search.php:33 ../page-templates/search_event.php:40
+#: ../404.php:59 ../page-templates/search_event.php:40
 #: ../page-templates/search_person.php:40 ../page-templates/search_post.php:40
-#: ../searchform.php:14
 msgid "Find"
 msgstr "Find"
 
@@ -198,8 +196,16 @@ msgid "Veranstaltungskalender"
 msgstr "Events"
 
 #: ../hero-search.php:20 ../hero-search.php:26
-msgid "Search"
+msgid "Suche"
 msgstr "Search"
+
+#: ../hero-search.php:32 ../searchform.php:12 ../searchform.php:13
+msgid "Suchen nach..."
+msgstr "Search for..."
+
+#: ../hero-search.php:33 ../searchform.php:14
+msgid "Finden"
+msgstr "Find"
 
 #: ../index.php:36
 msgid "<span class=\"meta-nav\">&laquo;</span> Neuere Beiträge"
@@ -264,3 +270,6 @@ msgstr "People"
 #: ../page-templates/search_post.php:34
 msgid "Nachrichten"
 msgstr "News"
+
+#~ msgid "Search"
+#~ msgstr "Search"
