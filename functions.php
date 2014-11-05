@@ -297,7 +297,7 @@ add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
 function fau_custom_header_setup() {
 	$args = array(
 		// Text color and image (empty to use none).
-		'default-image'          => '%s/images/headers/circle.png',
+		'default-image'          => '%s/img/logo-fau.png',
 
 		// Set height and width, with a maximum value for the width.
 		'height'                 => 65,
