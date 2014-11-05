@@ -19,7 +19,6 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
-
 			<div class="row">
 				
 				<div class="span12">
@@ -34,7 +33,6 @@ get_header(); ?>
 				</div>
 				
 			</div>
-
 		</div>
 	</div>
 	
