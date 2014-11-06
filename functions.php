@@ -286,6 +286,25 @@ add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
 
 
 /**
+ * Resets the Excerpt More
+ */
+
+function fau_excerpt_more( $more ) {
+	return '...';
+}
+add_filter('excerpt_more', 'fau_excerpt_more');
+
+/**
+ * Resets the Excerpt More
+ */
+function fau_excerpt_length( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'fau_excerpt_length', 999 );
+
+
+
+/**
  * Sets up the WordPress core custom header arguments and settings.
  *
  * @uses add_theme_support() to register support for 3.4 and up.

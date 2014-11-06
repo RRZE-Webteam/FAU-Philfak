@@ -104,37 +104,38 @@ get_header(); ?>
 				<div class="span8">
 					
 					<?php
-
-						for($j = 1; $j <= 5; $j++)
-						{
-							$news_posts = get_posts(array('tag' => 'startseite'.$j, 'numberposts' => 1));
+						$max = 1;
+						for($j = 1; $j <= 5; $j++) {
 							$i = 0;
-							
-							foreach($news_posts as $news):
-							
-							?>
-								
+							    
+							$query = new WP_Query( 'tag=startseite'.$j );
+							 while ($query->have_posts() && $i<$max) { 
+								$query->the_post();
+							 
+								?>
 								<div class="news-item">
 
-								<h2>
-									<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
-										<a href="<?php echo get_field('external_link', $news->ID);?>">
+								<h2> 
+									<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
+										<a href="<?php echo get_field('external_link', $post->ID);?>">
 									<?php else: ?>
-										<a href="<?php echo get_permalink($news->ID); ?>">
+										<a href="<?php echo get_permalink($post->ID); ?>">
 									<?php endif; ?>
-									<?php echo get_the_title($news->ID); ?></a>
+									<?php echo get_the_title(); ?></a>
 								</h2>
 
 
 									<div class="row">
-										<?php if(has_post_thumbnail( $news->ID )): ?>
+									    
+									  
+										<?php if(has_post_thumbnail( $post->ID )): ?>
 										<div class="span3">
-											<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
-												<a href="<?php echo get_field('external_link', $news->ID);?>" class="news-image">
+											<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
+												<a href="<?php echo get_field('external_link', $post->ID);?>" class="news-image">
 											<?php else: ?>
-												<a href="<?php echo get_permalink($news->ID); ?>" class="news-image">
+												<a href="<?php echo get_permalink($post->ID); ?>" class="news-image">
 											<?php endif; ?>
-											<?php echo get_the_post_thumbnail($news->ID, 'post-thumb'); ?></a>
+											<?php echo get_the_post_thumbnail($post->ID, 'post-thumb'); ?></a>
 										</div>
 										<div class="span5">
 										<?php else: ?>
@@ -142,12 +143,15 @@ get_header(); ?>
 										<?php endif; ?>
 											<p>
 												<?php if (function_exists('get_field')) {
-												     echo get_field('abstract', $news->ID);											  
-												} ?> 
-												<?php if(function_exists('get_field') && get_field('external_link', $news->ID)): ?>
-													<a href="<?php echo get_field('external_link', $news->ID);?>" class="read-more-arrow">
+												     echo get_field('abstract', $post->ID);											  
+												} else {
+												      the_excerpt();
+												}
+												?> 
+												<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
+													<a href="<?php echo get_field('external_link', $post->ID);?>" class="read-more-arrow">
 												<?php else: ?>
-													<a href="<?php echo get_permalink($news->ID); ?>" class="read-more-arrow">
+													<a href="<?php echo get_permalink($post->ID); ?>" class="read-more-arrow">
 												<?php endif; ?>
 												›</a>
 											</p>
@@ -157,18 +161,21 @@ get_header(); ?>
 							
 							<?php
 								$i++;
-							endforeach;
+								wp_reset_postdata();
+							}
 						}
 					?>
 
 					<?php
 						$category = get_category_by_slug('news');
+						if ($category) {
 					?>
 					
 					<div class="news-more-links">
 						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>"><?php _e('Mehr Meldungen','fau'); ?></a>
 						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
 					</div>
+					<?php } ?>			    
 					
 				</div>
 				<div class="span4">
