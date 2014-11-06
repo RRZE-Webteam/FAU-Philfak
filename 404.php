@@ -40,7 +40,7 @@ get_header(); ?>
 				<div class="span6">
 					<h2>
 						<strong><?php _e('Es tut uns leid.','fau'); ?></strong><br>
-						<?php _e('Leider konnte die gewünschte Seite nicht gefunden werden.','fau'); ?>
+						<?php _e('Die von Ihnen aufgerufene Seite existiert nicht oder ihre Adresse hat sich durch die Erneuerung der FAU-Webseiten geändert.','fau'); ?>
 					</h2>
 					<div class="row">
 						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="Friedrich Alexander" class="error-404-persons"></div>
@@ -55,8 +55,8 @@ get_header(); ?>
 							$uri = str_replace('/', ' ', $uri);
 
 						?>
-						<input type="text" value="<?php echo $uri ?>" name="s" id="s" placeholder="<?php _e('Searchterm','fau'); ?>">
-						<input type="submit" id="searchsubmit" value="<?php _e('Find','fau'); ?>">
+						<input type="text" value="<?php echo $uri ?>" name="s" id="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
+						<input type="submit" id="searchsubmit" value="<?php _e('Finden','fau'); ?>">
 					</form>
 				</div>
 			</div>
