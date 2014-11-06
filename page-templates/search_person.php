@@ -36,8 +36,8 @@ get_header();
             <div class="span9">
                 <form role="search" method="get" class="searchform" action="">
                     <input type="hidden" name="" id="" value="">
-                    <input type="text" value="<?php echo esc_attr($query); ?>" name="sq" id="sq" placeholder="<?php _e('Searchterm', 'fau'); ?>">
-                    <input type="submit" id="searchsubmit" value="<?php _e('Find', 'fau'); ?>">					
+                    <input type="text" value="<?php echo esc_attr($query); ?>" name="sq" id="sq" placeholder="<?php _e('Suchen nach...', 'fau'); ?>">
+                    <input type="submit" id="searchsubmit" value="<?php _e('Finden', 'fau'); ?>">					
                 </form>
 
             </div>
@@ -93,8 +93,8 @@ get_header();
                                 'total' => $total_pages,                        
                                 'current' => $current_page,
                                 'prev_next'    => true,
-                                'prev_text'    => __('<span class="meta-nav">&larr;</span> Zurück', '_rrze'),
-                                'next_text'    => __('Weiter <span class="meta-nav">&rarr;</span>', '_rrze'),                        
+                                'prev_text'    => __('<span class="meta-nav">&larr;</span> Zurück', 'fau'),
+                                'next_text'    => __('Weiter <span class="meta-nav">&rarr;</span>', 'fau'),                        
                             )
                         );
                         ?>
@@ -112,7 +112,7 @@ get_header();
                         <!-- begin pagination -->
                         <?php if($total_pages > 1) : ?>
                             <nav id="nav-pages" class="navigation paging-navigation" role="navigation">
-                                <h3 class="screen-reader-text"><?php _e('Suchergebnissenavigation', '_rrze'); ?></h3>
+                                <h3 class="screen-reader-text"><?php _e('Weitere Suchergebnisse', 'fau'); ?></h3>
                                 <div class="nav-links">
                                     <?php echo $paginate_links; ?>
                                 </div>
