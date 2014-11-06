@@ -217,11 +217,12 @@ class FAUShortcodes {
 			), $atts));
 			
 		$post = get_posts(array('name' => $slug, 'post_type' => 'synonym', 'post_status' => 'publish', 'numberposts' => 1));
-		$id = $post[0]->ID;
+		if ($post && function_exists('get_field'))  {
+		    $id = $post[0]->ID;		
+		    $return = get_field('synonym', $id);
 		
-		$return = get_field('synonym', $id);
-		
-		return $return;
+		    return $return;
+		}    
 	}
 	
 	function fau_person( $atts, $content = null) {

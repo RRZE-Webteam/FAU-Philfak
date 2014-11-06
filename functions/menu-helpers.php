@@ -41,10 +41,17 @@ function fau_get_menu_name($location){
 
 function get_top_parent_page_id($id, $offset = FALSE) {
 
-	if( ! $offset) $offset = 2;
 
-	$parents = get_post_ancestors( $id );
+	if( ! $offset) $offset = 2;
 	return ($parents) ? $parents[count($parents)-$offset]: $id;
+/*
+	$parents = get_post_ancestors( $id );
+	if ($parents)  {	    
+	    return $parents;  
+	} else {
+	    return $id;
+	}
+	*/
 	
 	
 /*

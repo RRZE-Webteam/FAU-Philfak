@@ -20,12 +20,9 @@ get_header(); ?>
 			
 				<div class="span4 span-sm-4">
 					<?php 
-						if(get_field('menu-level'))
-						{
+						if (function_exists('get_field') && get_field('menu-level')) {
 							$offset = get_field('menu-level');
-						}
-						else
-						{
+						} else	{
 							$offset = 2;
 						}
 					
@@ -41,8 +38,10 @@ get_header(); ?>
 				</div>
 				
 				<div class="span8 span-sm-8">
+					 <?php if (function_exists('get_field')) { ?>
 					<h2><?php the_field('headline'); ?></h2>
-					<?php if( get_field('abstract') != ''): ?>
+					 <?php } 
+					    if(function_exists('get_field') && get_field('abstract') != ''): ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
 					<?php endif; ?>
 					

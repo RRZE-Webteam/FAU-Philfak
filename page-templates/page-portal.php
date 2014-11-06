@@ -19,10 +19,11 @@ get_header(); ?>
 			<div class="row">
 							
 				<div class="span8">
+				    <?php if (function_exists('get_field')) { ?>
 					<h2><?php the_field('headline'); ?></h2>
 					<?php if( get_field('abstract') != ''): ?>
 						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
-					<?php endif; ?>
+				    <?php endif; } ?>
 							
 					<?php the_content(); ?>
 				</div>
@@ -36,7 +37,11 @@ get_header(); ?>
 <?php endwhile; ?>
 			
 			<div class="hr"><hr></div>
-			<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
+			
+			<?php  if (function_exists('get_field')) {
+			    the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug')));
+			  }
+			?>
 
 		</div>
 	</div>
