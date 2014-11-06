@@ -23,7 +23,7 @@ get_header(); ?>
 					<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 						<div class="post-image">
 							<?php the_post_thumbnail( 'post' ); ?>
-							<?php if(get_post(get_post_thumbnail_id())->post_excerpt != ''): ?>
+							<?php if(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != ''): ?>
 								<div class="post-image-caption"><?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?></div>
 							<?php endif; ?>
 						</div>
