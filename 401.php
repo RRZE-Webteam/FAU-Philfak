@@ -43,7 +43,7 @@ get_header(); ?>
 						<?php _e('Leider ist Ihre Anmeldung fehlgeschlagen.','fau'); ?>
 					</h2>
 					<div class="row">
-						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="Friedrich Alexander" class="error-404-persons"></div>
+						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
 					</div>
 				</div>
 			</div>

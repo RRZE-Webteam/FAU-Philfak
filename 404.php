@@ -43,7 +43,7 @@ get_header(); ?>
 						<?php _e('Die von Ihnen aufgerufene Seite existiert nicht oder ihre Adresse hat sich durch die Erneuerung der FAU-Webseiten geändert.','fau'); ?>
 					</h2>
 					<div class="row">
-						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="Friedrich Alexander" class="error-404-persons"></div>
+						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
 					</div>
 				</div>
 				<div class="span6">
