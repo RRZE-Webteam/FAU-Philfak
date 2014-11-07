@@ -5,6 +5,9 @@
  * @since FAU 1.0
  */
 
+
+require( get_template_directory() . '/functions/constants.php' );
+$options = fau_initoptions();
 require_once('functions/bootstrap.php');
 require_once('functions/shortcodes.php');
 require_once('functions/menu-helpers.php');
@@ -27,19 +30,17 @@ require_once('functions/menu-main.php');
  * @return void
  */
 
-/**
- * Sets up the content width value based on the theme's design.
- */
-if ( ! isset( $content_width ) )
-	$content_width = 770;
 
 function fau_setup() {
+	global $options;
+	
 	/*
 	 * Makes FAU available for translation.
 	 *
 	 */
 	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 
+	if ( ! isset( $content_width ) ) $content_width = $options['content-width'];
 	/*
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
@@ -103,6 +104,13 @@ function fau_setup() {
 //	add_filter( 'use_default_gallery_style', '__return_false' );
 }
 add_action( 'after_setup_theme', 'fau_setup' );
+
+function fau_initoptions() {
+    global $defaultoptions;
+
+   return get_option('fau_theme_options', $defaultoptions);
+}
+
 
 
 /**
@@ -366,6 +374,7 @@ function fau_custom_header_setup() {
 	) );
 }
 add_action( 'after_setup_theme', 'fau_custom_header_setup' );
+
 
 
 /**
