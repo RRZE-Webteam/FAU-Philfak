@@ -6038,8 +6038,8 @@ h2		{ font-size: 24px; line-height: 33px; margin: 0; padding: 18px 0 22px 0;}
 #content h2.small {font-size: 18px; line-height: 22px; padding-top: 22px; font-weight: bold;}
 #content .sidebar-inline h2.small { padding-top: 0;}
 #content .search-sidebar h2.small {padding-top:8px;}
-
 #content h2.menu-header {padding: 11px 15px 11px 15px; margin-top: 10px; border-top: 1px solid #eee;}
+.search #content h2 {padding-top: 4px;}
 
 #social h2 { font-weight: normal !important;}
 #social h2 strong {font-weight: bold !important;}
@@ -6058,7 +6058,7 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {font-style: normal !important;}
 p		{ margin: 0; padding: 0 0 11px 0; font-size: 15px; line-height: 22px; color: #444;}
 #content p  {-moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 #content .textwidget p {font-size:13px;}
-
+p.searchnotice {font-size: 24px; line-height: 28px; padding: 4px 0 22px 0;}
 #content .span4 .widget p,
 #content .sidebar-inline .widget p {font-size: 13px;line-height: 22px;}
 
@@ -6251,6 +6251,7 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 
 .news-meta {border-bottom: 1px solid #eee; padding: 5px 0; margin-top: 30px; margin-bottom: -20px; color: #888; text-align: right;}
 .news-meta-date {display:block; margin: -14px 0 14px 0; color: #003366;}
+.search-result .news-meta-date {margin-top: 0px;}
 .news-meta-categories {display:inline-block;}
 .news-meta-categories ul {list-style:none; margin: 0; padding: 0; display:inline-block;}
 .news-meta-categories li {margin: 0 0 2px 0; padding: 0; display:inline-block;}
