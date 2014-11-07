@@ -26,10 +26,11 @@ get_header(); ?>
 					<?php if(strlen(get_search_query()) > 0): ?>
                     
 						<?php if(have_posts()): ?>							
-							<h2 style="padding-top: 4px"><?php _e('Suchergebnisse','fau'); ?></h2>
+							<h2><?php _e('Suchergebnisse','fau'); ?></h2>
 							<?php while ( have_posts() ) : the_post(); ?>
 								<div class="search-result">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+									<div class="news-meta-date"><?php echo get_the_date(); ?></div>
 									<?php the_excerpt(); ?>
 								</div>
 							<?php endwhile; ?>
@@ -65,7 +66,7 @@ get_header(); ?>
                                 ?>
                                 <?php if ( $links ) : ?>
                                     <nav id="nav-pages" class="navigation paging-navigation" role="navigation">
-                                        <h3 class="screen-reader-text"><?php _e( 'Suchergebnissenavigation', 'fau' ); ?></h1>
+                                        <h3 class="screen-reader-text"><?php _e( 'Weitere Sucheergebnisse', 'fau' ); ?></h1>
                                         <div class="nav-links">
                                             <?php echo $links; ?>
                                         </div>
@@ -74,11 +75,11 @@ get_header(); ?>
                             } ?>
                             
 						<?php else: ?>
-							<h2 style="padding-top: 4px"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.','fau'); ?></h2>
+							<p class="searchnotice"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.','fau'); ?></p>
 						<?php endif; ?>
 						
 					<?php else: ?>
-						<h2 style="padding-top: 4px"><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
+						<p class="searchnotice"><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></p>
 					<?php endif; ?>
 					
 				</div>
