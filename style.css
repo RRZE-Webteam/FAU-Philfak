@@ -6611,7 +6611,7 @@ img.aligncenter { display: block; margin: 0 auto 10px auto;}
 #social h2		{ color: #a1aab1; padding-top: 0 !important;}
 #social ul.social		{ list-style:none; margin: 0 0 10px 5px; padding: 0;}
 #social ul.social li	{ margin: 0; padding: 0; background: none !important;}
-#social ul.social li a 	{ display:inline-block; *display:inline; *zoom:1; color: #a1aab1; text-decoration:none; height: 20px; line-height: 20px; padding: 5px 0px 5px 30px; background-position: left top;}
+#social ul.social li a 	{ display:inline-block; *display:inline; *zoom:1; color: #a1aab1; text-decoration:none; height: 20px; line-height: 20px; padding: 5px 0px 5px 30px; background-position: left top; background-repeat: no-repeat;}
 #social ul.social li a:hover, #social ul.social li a:focus {background-position: left bottom; color: #003366;}
 #social ul.social li.social-facebook a 		{background-image: url('img/social-facebook.png');}
 #social ul.social li.social-twitter a 		{background-image: url('img/social-twitter.png');}
