@@ -29,7 +29,7 @@ get_header(); ?>
 						</div>
 						
 					<?php endif; ?>
-
+					<div class="news-meta-date"><?php echo get_the_date(); ?></div>   
 					<?php the_content(); ?>
 					
 				</div>

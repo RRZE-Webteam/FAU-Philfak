@@ -102,6 +102,7 @@ get_header();
                         <div class="search-result">                
                         <?php foreach ($posts as $post): setup_postdata($post); ?>
                             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+			    <div class="news-meta-date"><?php echo get_the_date(); ?></div>
                             <?php the_excerpt(); ?>
                         <?php endforeach; ?>
                         </div>                                
