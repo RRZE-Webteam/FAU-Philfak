@@ -7,16 +7,16 @@
  * @since FAU 1.0
  */
 
-get_header(); ?>
-
-<?php $options = get_option('fau_theme_options', array('start_header_count' => 5, 'start_news_count' => 3)); ?>
+get_header();
+global $options;
+?>
 
 	<div id="hero">
 		<div id="hero-slides">
 			
 			<?php  
 			
-				$category = get_term_by('slug', 'header', 'category');
+				$category = get_term_by('slug', $options['slider-category'], 'category');
 				$hero_posts = get_posts(array(
 					'numberposts' => $options['start_header_count'],
 					'tax_query' => array(
@@ -31,7 +31,20 @@ get_header(); ?>
 
 			<?php foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
-					<?php echo get_the_post_thumbnail($hero->ID, 'hero'); ?>
+					<?php 
+					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+					$sliderimage = '';
+					if ($post_thumbnail_id) {
+					    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+					}
+					// $sliderimage = get_the_post_thumbnail($hero->ID, 'hero');
+					if (!$sliderimage || empty($sliderimage[0])) {  
+					    $slidersrc = '<img src="'.$options['src-fallback-slider-image'].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
+					} else {
+					    $slidersrc = '<img src="'.$sliderimage[0].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+					}
+					echo $slidersrc; 
+					?>
 					<div class="hero-slide-text">
 						<div class="container">
 							<h2>
