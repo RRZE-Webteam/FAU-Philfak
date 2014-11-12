@@ -7,17 +7,22 @@
  * @since FAU 1.0
  */
 
-get_header(); ?>
-
-<?php $options = get_option('fau_theme_options', array('start_header_count' => 5, 'start_news_count' => 3)); ?>
+get_header();
+global $options;
+?>
 
 	<div id="hero">
 		<div id="hero-slides">
 			
 			<?php  
-			
-				$category = get_term_by('slug', 'header', 'category');
-				$hero_posts = get_posts(array(
+			 
+			 
+			    if (isset($options['slider-catid']) && $options['slider-catid']>0) {
+				query_posts( array( 'cat' => "$cat", 'posts_per_page' => $options['start_header_count']) );
+			    } else {							    
+				$category = get_term_by('slug', $options['slider-category'], 'category');
+				// $hero_posts = get_posts
+				query_posts(array(
 					'numberposts' => $options['start_header_count'],
 					'tax_query' => array(
 					array(
@@ -25,13 +30,26 @@ get_header(); ?>
 						'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
 						'terms' => $category->term_id
 						)
-					))); 
-			
-			?>
-
-			<?php foreach($hero_posts as $hero): ?>
+				))); 
+			    }
+			    if ( have_posts() ) while ( have_posts() ) : the_post();
+				$hero = $post;
+			    // foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
-					<?php echo get_the_post_thumbnail($hero->ID, 'hero'); ?>
+					<?php 
+					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+					$sliderimage = '';
+					if ($post_thumbnail_id) {
+					    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+					}
+					// $sliderimage = get_the_post_thumbnail($hero->ID, 'hero');
+					if (!$sliderimage || empty($sliderimage[0])) {  
+					    $slidersrc = '<img src="'.$options['src-fallback-slider-image'].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
+					} else {
+					    $slidersrc = '<img src="'.$sliderimage[0].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+					}
+					echo $slidersrc; 
+					?>
 					<div class="hero-slide-text">
 						<div class="container">
 							<h2>
@@ -49,7 +67,11 @@ get_header(); ?>
 						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
+			<?php
+			    endwhile;
+			// endforeach; 
+			 wp_reset_query(); 
+			?>
 		
 		</div>
 		<div class="container">
@@ -236,76 +258,85 @@ get_header(); ?>
 						<?php if (isset($options['socialmedia'])): ?>
 							<div class="span3">
 								<h2 class="small"><strong>FAU</strong>Social</h2>
-								<ul class="social">
-									<?php if($options['socialmedia_facebook']): ?>
-										<li class="social social-facebook"><a href="<?php echo $options['socialmedia_facebook']; ?>" target="_blank"><?php echo $options['socialmedia_facebook_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_twitter']): ?>
-										<li class="social social-twitter"><a href="<?php echo $options['socialmedia_twitter']; ?>" target="_blank"><?php echo $options['socialmedia_twitter_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_gplus']): ?>
-										<li class="social social-gplus"><a href="<?php echo $options['socialmedia_gplus']; ?>" target="_blank"><?php echo $options['socialmedia_gplus_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_youtube']): ?>
-										<li class="social social-youtube"><a href="<?php echo $options['socialmedia_youtube']; ?>" target="_blank"><?php echo $options['socialmedia_youtube_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_vimeo']): ?>
-										<li class="social social-vimeo"><a href="<?php echo $options['socialmedia_vimeo']; ?>" target="_blank"><?php echo $options['socialmedia_vimeo_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_xing']): ?>
-										<li class="social social-xing"><a href="<?php echo $options['socialmedia_xing']; ?>" target="_blank"><?php echo $options['socialmedia_xing_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_pinterest']): ?>
-										<li class="social social-pinterest"><a href="<?php echo $options['socialmedia_pinterest']; ?>" target="_blank"><?php echo $options['socialmedia_pinterest_text']; ?></a></li>
-									<?php endif; ?>
-								</ul>
+								<?php 
+								global $default_socialmedia_liste;
+								
+								echo '<nav id="socialmedia" aria-label="'.__('Social Media','fau').'">';
+								echo '<ul class="social">';       
+								    foreach ( $default_socialmedia_liste as $entry => $listdata ) {        
+
+									$value = '';
+									$active = 0;
+									if (isset($options['sm-list'][$entry]['content'])) {
+										$value = $options['sm-list'][$entry]['content'];
+										if (isset($options['sm-list'][$entry]['active'])) {
+										    $active = $options['sm-list'][$entry]['active'];
+										} 
+									} else {
+										$value = $default_socialmedia_liste[$entry]['content'];
+										$active = $default_socialmedia_liste[$entry]['active'];
+									 }
+
+									if (($active ==1) && ($value)) {
+									    echo '<li class="social-'.$entry.'"><a href="'.$value.'">';
+									    echo $listdata['name'].'</a></li>';
+									}
+								    }
+								    echo '</ul>';
+								    echo '</nav>';
+								?>
+
 							</div>
 						<?php endif; ?>
 						<div class="span9">
 							<?php 
 							if ( function_exists('get_field') ) {
-
+							   
 							if(get_field('videos')): ?>
 								<div class="row">
-									<?php while(has_sub_field('videos')): ?>
-                                    <?php
-                                    $args = '';
-                                    $video_link = get_sub_field('video-links');
-                                    if($video_link):
-                                        $video_height = get_sub_field('video-height');
-                                    	$video_height = $video_height ? $video_height : '';
-                                        $video_width = get_sub_field('video-width');
-                                        $video_width = $video_width ? $video_width : '';
-                                        $video_poster = get_sub_field('video-poster');
-                                        $video_poster = $video_poster ? $video_poster : '';
-                                        $wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
-                                        $wp_oembed_get = do_shortcode($wp_oembed_get);
-                                    ?>
-                                    <?php if($wp_oembed_get !== false) : ?>
+								    <?php
+								     $foundvids = 0;
+								    while(has_sub_field('videos')): 
+
+								    $args = '';
+								    $video_link = get_sub_field('video-links');
+								    if($video_link):
+									$video_height = get_sub_field('video-height');
+									$video_height = $video_height ? $video_height : '';
+									$video_width = get_sub_field('video-width');
+									$video_width = $video_width ? $video_width : '';
+									$video_poster = get_sub_field('video-poster');
+									$video_poster = $video_poster ? $video_poster : '';
+									$wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
+									$wp_oembed_get = do_shortcode($wp_oembed_get);
+									    if($wp_oembed_get !== false) : ?>
 									<div class="span3">
 										<?php
 											$video_titel = get_sub_field('video-titel');
 											if($video_titel):
 												echo '<h2 class="small">'.$video_titel.'</h2>';
 											endif; 
+											 $foundvids = 1;
 										?>	
 										<?php echo $wp_oembed_get; ?>
 									</div>
-				                    <?php endif; ?>
-				                    <?php endif; ?>
+									    <?php endif; ?>
+									<?php endif; ?>
 									<?php endwhile; ?>
 								</div>
+								<?php if ( $foundvids==1) { ?>
 								<div class="pull-right link-all-videos">
 									<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
 								</div>
-							<?php endif;  							
+								<?php }    
+							     endif;  							
 							} ?>
 							
 						</div>						
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			
 			
 
 		</div>
