@@ -19,6 +19,12 @@ $defaultoptions = array(
     'menu_pretitle_portal'	=> __('Portal', 'fau'),
     'menu_aftertitle_portal'	=> '',
     
+   'contact_address_name'	=> __('Friedrich-Alexander-Universität', 'fau'),
+   'contact_address_name2'	=> __('Erlangen-Nürnberg', 'fau'),
+   'contact_address_street'	=> __('Schlossplatz 4', 'fau'),
+   'contact_address_plz'	=> __('91054', 'fau'),
+   'contact_address_ort'	=> __('Erlangen', 'fau'),
+   'contact_address_country'	=> '',
 ); 
 
 
@@ -261,6 +267,59 @@ $setoptions = array(
                   'title'   => __( 'Menü Portal-Button (Nachtitel)', 'fau' ),
                   'label'   => __( 'Begriff nach dem Titel des gewählten Menüs', 'fau' ),               
                   'default' => $defaultoptions['menu_aftertitle_portal'],
+              ),  
+	     
+   
+          )
+       ),
+       'contact'   => array(
+           'tabtitle'   => __('Kontaktdaten', 'fau'),
+           'fields' => array(
+               'pubadresse'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Öffemtliche Adresse im Fußteil', 'fau' ),                      
+              ),
+              'contact_address_name' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Adressat', 'fau' ),
+                  'label'   => __( 'Erste Zeile der Adresse', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_name'],
+		  'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_name2' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Adressat (Zusatz)', 'fau' ),
+                  'label'   => __( 'Zweite Zeile der Adresse', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_name2'],
+		    'parent'  => 'pubadresse'
+              ),  
+	      'contact_address_strasse' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Strasse', 'fau' ),
+                  'label'   => __( 'Strasse inkl. Hausnummer', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_street'],
+		   'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_plz' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'PLZ', 'fau' ),
+                  'label'   => __( 'Postleitzahl', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_plz'],
+		    'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_ort' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Ort', 'fau' ),
+                  'label'   => __( 'Ortsname', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_ort'],
+		    'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_country' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Land', 'fau' ),
+                  'label'   => __( 'Optionale Landesangabe', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_country'],
+		  'parent'  => 'pubadresse'
               ),  
 	     
    
