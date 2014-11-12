@@ -18,7 +18,7 @@ global $options;
 			 
 			 
 			    if (isset($options['slider-catid']) && $options['slider-catid']>0) {
-				$hero_posts = get_posts( array( 'cat' => "$cat", 'posts_per_page' => $options['start_header_count']) );
+				$hero_posts = get_posts( array( 'cat' => $options['slider-catid'], 'posts_per_page' => $options['start_header_count']) );
 			    } else {							    
 				$category = get_term_by('slug', $options['slider-category'], 'category');
 				// $hero_posts = get_posts
