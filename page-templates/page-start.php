@@ -18,11 +18,11 @@ global $options;
 			 
 			 
 			    if (isset($options['slider-catid']) && $options['slider-catid']>0) {
-				query_posts( array( 'cat' => "$cat", 'posts_per_page' => $options['start_header_count']) );
+				$hero_posts = get_posts( array( 'cat' => "$cat", 'posts_per_page' => $options['start_header_count']) );
 			    } else {							    
 				$category = get_term_by('slug', $options['slider-category'], 'category');
 				// $hero_posts = get_posts
-				query_posts(array(
+				$hero_posts = get_posts(array(
 					'numberposts' => $options['start_header_count'],
 					'tax_query' => array(
 					array(
@@ -32,9 +32,7 @@ global $options;
 						)
 				))); 
 			    }
-			    if ( have_posts() ) while ( have_posts() ) : the_post();
-				$hero = $post;
-			    // foreach($hero_posts as $hero): ?>
+			    foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
 					<?php 
 					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
@@ -68,8 +66,8 @@ global $options;
 					</div>
 				</div>
 			<?php
-			    endwhile;
-			// endforeach; 
+			 //   endwhile;
+			  endforeach; 
 			 wp_reset_query(); 
 			?>
 		
