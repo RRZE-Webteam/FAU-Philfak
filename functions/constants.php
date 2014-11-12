@@ -16,7 +16,8 @@ $defaultoptions = array(
     'start_news_count'		=> 3,
     'breadcrumb_root'		=> 'fau.de',
     'socialmedia'		=> 1,
-    
+    'menu_pretitle_portal'	=> __('Portal', 'fau'),
+    'menu_aftertitle_portal'	=> '',
     
 ); 
 
@@ -245,7 +246,26 @@ $setoptions = array(
 	                      
           )
        ),
-       
+       'allgemeines'   => array(
+           'tabtitle'   => __('Allgemeine Einstellungen', 'fau'),
+           'fields' => array(
+              
+              'menu_pretitle_portal' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Menü Portal-Button (Vortitel)', 'fau' ),
+                  'label'   => __( 'Begriff vor dem Titel des gewählten Menüs', 'fau' ),               
+                  'default' => $defaultoptions['menu_pretitle_portal'],
+              ),  
+	        'menu_aftertitle_portal' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Menü Portal-Button (Nachtitel)', 'fau' ),
+                  'label'   => __( 'Begriff nach dem Titel des gewählten Menüs', 'fau' ),               
+                  'default' => $defaultoptions['menu_aftertitle_portal'],
+              ),  
+	     
+   
+          )
+       ),
     )
 );
 	       
