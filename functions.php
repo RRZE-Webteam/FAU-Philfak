@@ -8,10 +8,11 @@
 
 require( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
-require_once('functions/bootstrap.php');
-require_once('functions/shortcodes.php');
-require_once('functions/menu-helpers.php');
-require_once('functions/menu-main.php');
+require_once ( get_template_directory() . '/functions/theme-options.php' );     
+require_once(get_template_directory() .'/functions/bootstrap.php');
+require_once(get_template_directory() .'/functions/shortcodes.php');
+require_once(get_template_directory() .'/functions/menu-helpers.php');
+require_once(get_template_directory() .'/functions/menu-main.php');
 
 
 /**
@@ -134,133 +135,6 @@ add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
 
 
 /**
- * Add theme options page
- *
- * @since FAU 1.0
- *
- * @return void
- */ 
-function theme_options_init() {
-	register_setting('fau_options', 'fau_theme_options', 'fau_validate_options');
-}
-add_action( 'admin_init', 'theme_options_init');
-
-function theme_options_add_page() {
-	add_theme_page('Optionen', 'Optionen', 'edit_theme_options', 'theme-optionen', 'fau_theme_options_page' );
-}
-add_action( 'admin_menu', 'theme_options_add_page');
-
-function fau_theme_options_page() {
-	global $select_options, $radio_options;
-	
-	if ( ! isset( $_REQUEST['settings-updated'] ) )
-		$_REQUEST['settings-updated'] = false; ?>
-
-	<div class="wrap"> 
-	<?php screen_icon(); ?><h2>Theme-Optionen für <?php bloginfo('name'); ?></h2> 
-
-	<?php if ( false !== $_REQUEST['settings-updated'] ) : ?> 
-		<div class="updated fade">
-		<p><strong>Einstellungen gespeichert!</strong></p>
-		</div>
-	<?php endif; ?>
-
-	<form method="post" action="options.php">
-		<?php settings_fields( 'fau_options' ); ?>
-	<?php $options = get_option( 'fau_theme_options' ); ?>
-
-	<h3>Allgemein</h3>
-	<table class="form-table">
-		<tr valign="top">
-			<th scope="row">Breadcrumb-Wurzelname</th>
-			<td><input id="fau_theme_options[breadcrumb_root]" class="regular-text" type="text" name="fau_theme_options[breadcrumb_root]" value="<?php esc_attr_e( $options['breadcrumb_root'] ); ?>" /></td>
-		</tr>  
-	</table>
-	
-	<h3>Startseite</h3>
-	<table class="form-table">
-		<tr valign="top">
-			<th scope="row">Anzahl der Slides im Header</th>
-			<td><input id="fau_theme_options[start_header_count]" class="regular-text" type="text" name="fau_theme_options[start_header_count]" value="<?php esc_attr_e( $options['start_header_count'] ); ?>" /></td>
-		</tr>  
-		<!--
-		<tr valign="top">
-			<th scope="row">Anzahl der News</th>
-			<td><input id="fau_theme_options[start_news_count]" class="regular-text" type="text" name="fau_theme_options[start_news_count]" value="<?php esc_attr_e( $options['start_news_count'] ); ?>" /></td>
-		</tr>
-		-->
-	</table>
-	
-	<h3>Social Media</h3>
-	<table class="form-table">
-		<tr valign="top">
-			<th scope="row">Social Media-Links anzeigen</th>
-			<td><input id="fau_theme_options[socialmedia]" class="" type="checkbox" name="fau_theme_options[socialmedia]" value="1" <?php if($options['socialmedia']) echo "checked"; ?> /></td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">Facebook-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_facebook]" class="regular-text" type="text" name="fau_theme_options[socialmedia_facebook]" value="<?php esc_attr_e( $options['socialmedia_facebook'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_facebook_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_facebook_text]" value="<?php esc_attr_e( $options['socialmedia_facebook_text'] ); ?>" />
-			</td>
-		</tr>  
-		<tr valign="top">
-			<th scope="row">Twitter-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_twitter]" class="regular-text" type="text" name="fau_theme_options[socialmedia_twitter]" value="<?php esc_attr_e( $options['socialmedia_twitter'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_twitter_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_twitter_text]" value="<?php esc_attr_e( $options['socialmedia_twitter_text'] ); ?>" />
-			</td>
-		</tr>		
-		<tr valign="top">
-			<th scope="row">Google+-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_gplus]" class="regular-text" type="text" name="fau_theme_options[socialmedia_gplus]" value="<?php esc_attr_e( $options['socialmedia_gplus'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_gplus_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_gplus_text]" value="<?php esc_attr_e( $options['socialmedia_gplus_text'] ); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">YouTube-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_youtube]" class="regular-text" type="text" name="fau_theme_options[socialmedia_youtube]" value="<?php esc_attr_e( $options['socialmedia_youtube'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_youtube_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_youtube_text]" value="<?php esc_attr_e( $options['socialmedia_youtube_text'] ); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">Vimeo-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_vimeo]" class="regular-text" type="text" name="fau_theme_options[socialmedia_vimeo]" value="<?php esc_attr_e( $options['socialmedia_vimeo'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_vimeo_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_vimeo_text]" value="<?php esc_attr_e( $options['socialmedia_vimeo_text'] ); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">Xing-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_xing]" class="regular-text" type="text" name="fau_theme_options[socialmedia_xing]" value="<?php esc_attr_e( $options['socialmedia_xing'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_xing_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_xing_text]" value="<?php esc_attr_e( $options['socialmedia_xing_text'] ); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">Pinterest-Link und -Text</th>
-			<td>
-				<input id="fau_theme_options[socialmedia_pinterest]" class="regular-text" type="text" name="fau_theme_options[socialmedia_pinterest]" value="<?php esc_attr_e( $options['socialmedia_pinterest'] ); ?>" /><br>
-				<input id="fau_theme_options[socialmedia_pinterest_text]" class="regular-text" type="text" name="fau_theme_options[socialmedia_pinterest_text]" value="<?php esc_attr_e( $options['socialmedia_pinterest_text'] ); ?>" />
-			</td>
-		</tr>
-	</table>
-
-	<!-- submit -->
-	<p class="submit"><input type="submit" class="button-primary" value="Einstellungen speichern" /></p>
-	</form>
-	</div>
-	<?php
-}
-
-function fau_validate_options($input) {
-	return $input;
-}
-
-
-/**
  * Creates a nicely formatted and more specific title element text for output
  * in head of document, based on current view.
  *
@@ -377,38 +251,14 @@ add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 
 
 
-/**
- * Styles the header image displayed on the Appearance > Header admin panel.
- *
- * @since Twenty Thirteen 1.0
- */
-function fau_admin_header_style() {
-	$header_image = get_header_image();
-?>
-	<style type="text/css" id="twentythirteen-admin-header-css">
-	#headimg .home-link {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing:    border-box;
-		box-sizing:         border-box;
-		margin: 0 auto;
-		max-width: 1040px;
-		<?php
-		if ( ! empty( $header_image ) || display_header_text() ) {
-			echo 'min-height: 230px;';
-		} ?>
-		width: 100%;
-	}
-	#headimg h1,
-	#headimg h2,
-	.displaying-header-text {
-		display: none
-	}
-	
-	</style>
-<?php
+function fau_admin_style() {
+    wp_register_style( 'themeadminstyle', get_template_directory_uri().'/css/admin.css' );	   
+    wp_enqueue_style( 'themeadminstyle' );	
+    wp_enqueue_media();
+    wp_register_script('themeadminscripts', get_template_directory_uri().'/js/admin.js', array('jquery'));    
+    wp_enqueue_script('themeadminscripts');	   
 }
-
-
+add_action( 'admin_enqueue_scripts', 'fau_admin_style' );
 
 /**
  * Registers our main widget area and the front page widget areas.

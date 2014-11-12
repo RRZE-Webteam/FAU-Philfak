@@ -15,9 +15,14 @@ global $options;
 		<div id="hero-slides">
 			
 			<?php  
-			
+			 
+			 
+			    if (isset($options['slider-catid']) && $options['slider-catid']>0) {
+				query_posts( array( 'cat' => "$cat", 'posts_per_page' => $options['start_header_count']) );
+			    } else {							    
 				$category = get_term_by('slug', $options['slider-category'], 'category');
-				$hero_posts = get_posts(array(
+				// $hero_posts = get_posts
+				query_posts(array(
 					'numberposts' => $options['start_header_count'],
 					'tax_query' => array(
 					array(
@@ -25,11 +30,11 @@ global $options;
 						'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
 						'terms' => $category->term_id
 						)
-					))); 
-			
-			?>
-
-			<?php foreach($hero_posts as $hero): ?>
+				))); 
+			    }
+			    if ( have_posts() ) while ( have_posts() ) : the_post();
+				$hero = $post;
+			    // foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
 					<?php 
 					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
@@ -62,7 +67,11 @@ global $options;
 						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
+			<?php
+			    endwhile;
+			// endforeach; 
+			 wp_reset_query(); 
+			?>
 		
 		</div>
 		<div class="container">
@@ -249,29 +258,34 @@ global $options;
 						<?php if (isset($options['socialmedia'])): ?>
 							<div class="span3">
 								<h2 class="small"><strong>FAU</strong>Social</h2>
-								<ul class="social">
-									<?php if($options['socialmedia_facebook']): ?>
-										<li class="social social-facebook"><a href="<?php echo $options['socialmedia_facebook']; ?>" target="_blank"><?php echo $options['socialmedia_facebook_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_twitter']): ?>
-										<li class="social social-twitter"><a href="<?php echo $options['socialmedia_twitter']; ?>" target="_blank"><?php echo $options['socialmedia_twitter_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_gplus']): ?>
-										<li class="social social-gplus"><a href="<?php echo $options['socialmedia_gplus']; ?>" target="_blank"><?php echo $options['socialmedia_gplus_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_youtube']): ?>
-										<li class="social social-youtube"><a href="<?php echo $options['socialmedia_youtube']; ?>" target="_blank"><?php echo $options['socialmedia_youtube_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_vimeo']): ?>
-										<li class="social social-vimeo"><a href="<?php echo $options['socialmedia_vimeo']; ?>" target="_blank"><?php echo $options['socialmedia_vimeo_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_xing']): ?>
-										<li class="social social-xing"><a href="<?php echo $options['socialmedia_xing']; ?>" target="_blank"><?php echo $options['socialmedia_xing_text']; ?></a></li>
-									<?php endif; ?>
-									<?php if($options['socialmedia_pinterest']): ?>
-										<li class="social social-pinterest"><a href="<?php echo $options['socialmedia_pinterest']; ?>" target="_blank"><?php echo $options['socialmedia_pinterest_text']; ?></a></li>
-									<?php endif; ?>
-								</ul>
+								<?php 
+								global $default_socialmedia_liste;
+								
+								echo '<nav id="socialmedia" aria-label="'.__('Social Media','fau').'">';
+								echo '<ul class="social">';       
+								    foreach ( $default_socialmedia_liste as $entry => $listdata ) {        
+
+									$value = '';
+									$active = 0;
+									if (isset($options['sm-list'][$entry]['content'])) {
+										$value = $options['sm-list'][$entry]['content'];
+										if (isset($options['sm-list'][$entry]['active'])) {
+										    $active = $options['sm-list'][$entry]['active'];
+										} 
+									} else {
+										$value = $default_socialmedia_liste[$entry]['content'];
+										$active = $default_socialmedia_liste[$entry]['active'];
+									 }
+
+									if (($active ==1) && ($value)) {
+									    echo '<li class="social-'.$entry.'"><a href="'.$value.'">';
+									    echo $listdata['name'].'</a></li>';
+									}
+								    }
+								    echo '</ul>';
+								    echo '</nav>';
+								?>
+
 							</div>
 						<?php endif; ?>
 						<div class="span9">
