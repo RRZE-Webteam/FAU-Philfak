@@ -14,25 +14,31 @@ global $options;
 	<div id="hero">
 		<div id="hero-slides">
 			
-			<?php  
-			 
-			 
-			    if (isset($options['slider-catid']) && $options['slider-catid']>0) {
-				$hero_posts = get_posts( array( 'cat' => $options['slider-catid'], 'posts_per_page' => $options['start_header_count']) );
-			    } else {							    
-				$category = get_term_by('slug', $options['slider-category'], 'category');
-				// $hero_posts = get_posts
-				$hero_posts = get_posts(array(
-					'numberposts' => $options['start_header_count'],
-					'tax_query' => array(
-					array(
-						'taxonomy' => 'category',
-						'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
-						'terms' => $category->term_id
-						)
-				))); 
-			    }
-			    foreach($hero_posts as $hero): ?>
+			<?php			 
+            if (isset($options['slider-catid']) && $options['slider-catid'] > 0) {
+                $hero_posts = get_posts( array( 'cat' => $options['slider-catid'], 'posts_per_page' => $options['start_header_count']) );
+            } else {							    
+                $category = get_term_by('slug', $options['slider-category'], 'category');
+                if($category) {
+                    $query = array(
+                        'numberposts' => $options['start_header_count'],
+                        'tax_query' => array(
+                        array(
+                            'taxonomy' => 'category',
+                            'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+                            'terms' => $category->term_id
+                            )
+                        )
+                    );
+                } else {
+                    $query = array(
+                        'numberposts' => $options['start_header_count']
+                    );                    
+                }
+                $hero_posts = get_posts($query); 
+            }
+            ?>
+			<?php foreach($hero_posts as $hero): ?>
 				<div class="hero-slide">
 					<?php 
 					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
@@ -59,17 +65,14 @@ global $options;
 								
 								<?php echo get_the_title($hero->ID); ?></a>
 							</h2><br>
-							<?php if (function_exists('get_field') &&  get_field('abstract', $hero->ID)) { ?>
+							<?php if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
 							<p><?php echo get_field('abstract', $hero->ID); ?></p>
-							<?php } ?>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
-			<?php
-			 //   endwhile;
-			  endforeach; 
-			 wp_reset_query(); 
-			?>
+			<?php endforeach; ?>
+            <?php wp_reset_query(); ?>
 		
 		</div>
 		<div class="container">
