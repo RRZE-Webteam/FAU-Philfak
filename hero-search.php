@@ -8,7 +8,9 @@
  */
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
+<?php
+global $options;
+?>
 
 <div id="hero" class="hero-small">
 	<div class="container">
@@ -29,7 +31,7 @@
 				<?php /* get_search_form(); */ ?>
 				
 				<form role="search" method="get" class="searchform" action="<?php echo home_url( '/' )?>">
-					<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
+					<input type="text" value="<?php the_search_query(); ?>" name="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
 					<input type="submit" id="searchsubmit" value="<?php _e('Finden','fau'); ?>">
 				</form>
 				

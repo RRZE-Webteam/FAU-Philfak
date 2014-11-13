@@ -8,7 +8,9 @@
  */
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
+<?php 
+global $options; 
+?>
 
 <div id="hero" class="hero-small">
 	<div class="container">
