@@ -24,7 +24,10 @@ $defaultoptions = array(
    'contact_address_street'	=> __('Schlossplatz 4', 'fau'),
    'contact_address_plz'	=> __('91054', 'fau'),
    'contact_address_ort'	=> __('Erlangen', 'fau'),
-   'contact_address_country'	=> '',
+   
+    'contact_address_country'	=> '',
+    'display_nojs_notice'	=> 1,
+    'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
 ); 
 
 

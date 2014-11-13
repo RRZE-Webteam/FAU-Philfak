@@ -6,7 +6,7 @@
  */
 
 
-require( get_template_directory() . '/functions/constants.php' );
+require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
 require_once(get_template_directory() .'/functions/bootstrap.php');
@@ -106,9 +106,15 @@ function fau_setup() {
 add_action( 'after_setup_theme', 'fau_setup' );
 
 function fau_initoptions() {
-    global $defaultoptions;
-
-   return get_option('fau_theme_options', $defaultoptions);
+   global $defaultoptions;
+    
+    $oldoptions = get_option('fau_theme_options');
+    if (isset($oldoptions) && (is_array($oldoptions))) {
+        $newoptions = array_merge($defaultoptions,$oldoptions);	  
+    } else {
+        $newoptions = $defaultoptions;
+    }    
+    return $newoptions;
 }
 
 
@@ -130,6 +136,33 @@ function fau_scripts_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
+
+
+function fau_addmetatags() {
+    global $options;
+
+    $output = "";
+    $output .= '<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'" />'."\n";
+    $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
+    $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";    
+    
+    // $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">'."\n";    
+
+    
+    if ((isset( $options['google-site-verification'] )) && ( strlen(trim($options['google-site-verification']))>1 )) {
+        $output .= '<meta name="google-site-verification" content="'.$options['google-site-verification'].'">'."\n";
+    }
+	
+    if ((isset($options['favicon-file'])) && ($options['favicon-file_id']>0 )) {	 
+        $output .=  '<link rel="shortcut icon" href="'.$options['favicon-file'].'">'."\n";
+    } else {
+    //    $output .=  '<link rel="apple-touch-icon" href="'.get_template_directory_uri().'/apple-touch-icon.png">'."\n";
+        $output .=  '<link rel="shortcut icon" href="'.get_template_directory_uri().'/favicon.ico">'."\n";
+    }
+    echo $output;
+}
+
+add_action('wp_head', 'fau_addmetatags',1);
 
 
 
