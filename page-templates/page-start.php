@@ -62,7 +62,7 @@ global $options;
 						} else {
 						    echo get_permalink($hero->ID);
 						}
-						echo '">'.get_the_title($hero->ID).'</a></h2><br>'."\n";					
+						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
 	
 					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
 						<p><?php echo get_field('abstract', $hero->ID); ?></p>
