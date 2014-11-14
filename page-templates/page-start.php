@@ -65,7 +65,7 @@ global $options;
 						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
 	
 					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-						<p><?php echo get_field('abstract', $hero->ID); ?></p>
+						<br><p><?php echo get_field('abstract', $hero->ID); ?></p>
 					    <?php endif; ?>
 				</div>
 			    </div>
@@ -148,38 +148,51 @@ global $options;
 								</h2>
 
 
-									<div class="row">
-									    
-									  
-										<?php if(has_post_thumbnail( $post->ID )): ?>
-										<div class="span3">
-											<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-												<a href="<?php echo get_field('external_link', $post->ID);?>" class="news-image">
-											<?php else: ?>
-												<a href="<?php echo get_permalink($post->ID); ?>" class="news-image">
-											<?php endif; ?>
-											<?php echo get_the_post_thumbnail($post->ID, 'post-thumb'); ?></a>
-										</div>
-										<div class="span5">
-										<?php else: ?>
-										<div class="span8">
-										<?php endif; ?>
-											<p>
-												<?php if (function_exists('get_field')) {
-												     echo get_field('abstract', $post->ID);											  
-												} else {
-												      the_excerpt();
-												}
-												?> 
-												<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-													<a href="<?php echo get_field('external_link', $post->ID);?>" class="read-more-arrow">
-												<?php else: ?>
-													<a href="<?php echo get_permalink($post->ID); ?>" class="read-more-arrow">
-												<?php endif; ?>
-												›</a>
-											</p>
-										</div>
+								<div class="row">
+								    <?php if(has_post_thumbnail( $post->ID )): ?>
+									<div class="span3">
+										<?php
+										echo '<a href="';
+										if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+										    echo get_field('external_link', $post->ID);
+										} else {
+										    echo get_permalink($post->ID);
+										}
+										echo '" class="news-image">';
+
+										$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+										$sliderimage = '';
+										if ($post_thumbnail_id) {
+										    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+										}
+										if ($sliderimage && !empty($sliderimage[0])) {  
+										    $slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+										}
+										echo $slidersrc;
+										echo '</a>';
+										?>
 									</div>
+									<div class="span5">
+								    <?php else: ?>
+									<div class="span8">
+								    <?php endif; ?>
+									    <p>
+										    <?php if (function_exists('get_field')) {
+											 echo get_field('abstract', $post->ID);											  
+										    } else {
+											  the_excerpt();
+										    }
+
+										    echo '<a href="';
+										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+											    echo get_field('external_link', $post->ID);
+										    } else {
+											    echo get_permalink($post->ID);
+										    }
+										    echo '" class="read-more-arrow">›</a>'; ?>
+									    </p>
+									</div>
+								    </div>
 								</div>
 							
 							<?php
