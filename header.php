@@ -88,8 +88,7 @@ global $options;
                                     'echo'        => 1,
                                     'show_home'   => 1 ) ); ?>          
                                     </ul>
-			   <?php }
-			    ?>
+			   <?php } ?>
 		</div>
 	</div>
 
