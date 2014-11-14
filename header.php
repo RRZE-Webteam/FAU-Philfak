@@ -76,7 +76,20 @@ global $options;
 				<div></div>
 				<div></div>
 			</a>			
-			<?php if(class_exists('Walker_Main_Menu', false)) wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); ?>
+			<?php
+			    if ( has_nav_menu( 'main-menu' ) ) {
+				if(class_exists('Walker_Main_Menu', false)) 
+					wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
+			    } else { ?>
+                                    <ul role="navigation" aria-label="<?php _e("Navigation", "fau"); ?>" id="nav">     
+                                        <?php  wp_page_menu( array(
+                                            'menu_class'  => '',
+                                    'sort_column' => 'menu_order, post_title',
+                                    'echo'        => 1,
+                                    'show_home'   => 1 ) ); ?>          
+                                    </ul>
+			   <?php }
+			    ?>
 		</div>
 	</div>
 
