@@ -63,9 +63,9 @@ global $options;
 			if ( ! empty( $header_image ) ) {	
 			    echo '<div class="branding" id="logo" role="banner" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">';
 			    if ( ! is_front_page() ) { 
-				echo '<a itemprop="url" rel="home" href="'.esc_url( home_url( '/' ) ).'">';	
+				echo '<a itemprop="url" rel="home" href="'.fau_esc_url(home_url( '/' ) ).'">';	
 			    } 
-			    echo '<img src="'.esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
+			    echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
 			    if ( ! is_front_page() ) {  
 				echo "</a>"; 			    
 			    }

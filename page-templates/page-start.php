@@ -38,41 +38,41 @@ global $options;
                 $hero_posts = get_posts($query); 
             }
             ?>
-			<?php foreach($hero_posts as $hero): ?>
-				<div class="hero-slide">
-					<?php 
-					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
-					$sliderimage = '';
-					if ($post_thumbnail_id) {
-					    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
-					}
-					// $sliderimage = get_the_post_thumbnail($hero->ID, 'hero');
-					if (!$sliderimage || empty($sliderimage[0])) {  
-					    $slidersrc = '<img src="'.$options['src-fallback-slider-image'].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
-					} else {
-					    $slidersrc = '<img src="'.$sliderimage[0].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
-					}
-					echo $slidersrc; 
-					?>
-					<div class="hero-slide-text">
-						<div class="container">
-							<h2>
-								<?php if(function_exists('get_field') && get_field('external_link')): ?>
-									<a href="<?php echo get_field('external_link');?>">
-								<?php else: ?>
-									<a href="<?php echo get_permalink($hero->ID); ?>">
-								<?php endif; ?>
-								
-								<?php echo get_the_title($hero->ID); ?></a>
-							</h2><br>
-							<?php if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-							<p><?php echo get_field('abstract', $hero->ID); ?></p>
-							<?php endif; ?>
-						</div>
-					</div>
+	    <?php foreach($hero_posts as $hero): ?>
+		<div class="hero-slide">
+			    <?php 
+			    $post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+			    $sliderimage = '';
+			    if ($post_thumbnail_id) {
+				$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+			    }
+			    if (!$sliderimage || empty($sliderimage[0])) {  
+				$slidersrc = '<img src="'.fau_esc_url($options['src-fallback-slider-image']).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
+			    } else {
+				$slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+			    }
+			    echo $slidersrc."\n"; 
+			    ?>
+			    <div class="hero-slide-text">
+				<div class="container">
+					    <?php
+						echo '<h2><a href="';
+						if (function_exists('get_field') && get_field('external_link')) {
+						    echo get_field('external_link');
+						} else {
+						    echo get_permalink($hero->ID);
+						}
+						echo '">'.get_the_title($hero->ID).'</a></h2><br>'."\n";					
+	
+					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
+						<p><?php echo get_field('abstract', $hero->ID); ?></p>
+					    <?php endif; ?>
 				</div>
-			<?php endforeach; ?>
-            <?php wp_reset_query(); ?>
+			    </div>
+		    </div>
+	    <?php endforeach; 
+              wp_reset_query();
+	      ?>
 		
 		</div>
 		<div class="container">

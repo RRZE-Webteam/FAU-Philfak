@@ -127,13 +127,11 @@ function fau_initoptions() {
  * @return void
  */
 function fau_scripts_styles() {
-	
-	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), '2013-08-19' );
-	
-	wp_enqueue_script( 'fau-libs-jquery', get_template_directory_uri() . '/js/libs/jquery-1.11.1.min.js', array(), '1.0', true );
-	wp_enqueue_script( 'fau-libs-plugins', get_template_directory_uri() . '/js/libs/plugins.js', array(), '1.0', true );
-	wp_enqueue_script( 'fau-scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true );
-
+	global $options;
+	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
+	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.js', array(), $options['js-version'], true );
 }
 add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
 
@@ -156,8 +154,8 @@ function fau_addmetatags() {
     if ((isset($options['favicon-file'])) && ($options['favicon-file_id']>0 )) {	 
         $output .=  '<link rel="shortcut icon" href="'.$options['favicon-file'].'">'."\n";
     } else {
-    //    $output .=  '<link rel="apple-touch-icon" href="'.get_template_directory_uri().'/apple-touch-icon.png">'."\n";
-        $output .=  '<link rel="shortcut icon" href="'.get_template_directory_uri().'/favicon.ico">'."\n";
+        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/apple-touch-icon.png">'."\n";
+        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/favicon.ico">'."\n";
     }
     echo $output;
 }
@@ -284,10 +282,10 @@ add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 
 
 function fau_admin_style() {
-    wp_register_style( 'themeadminstyle', get_template_directory_uri().'/css/admin.css' );	   
+    wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
-    wp_register_script('themeadminscripts', get_template_directory_uri().'/js/admin.js', array('jquery'));    
+    wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
 add_action( 'admin_enqueue_scripts', 'fau_admin_style' );
@@ -664,3 +662,72 @@ function fau_post_gallery($output, $attr) {
     return $output;
 }
 
+/*
+ * Make URLs relative; Several functions
+ */
+function fau_relativeurl($content){
+        return preg_replace_callback('/<a[^>]+/', 'fau_relativeurl_callback', $content);
+}
+function fau_relativeurl_callback($matches) {
+        $link = $matches[0];
+        $site_link =  wp_make_link_relative(home_url());  
+        $link = preg_replace("%href=\"$site_link%i", 'href="', $link);                 
+        return $link;
+    }
+ add_filter('the_content', 'fau_relativeurl');
+ 
+ function fau_relativeimgurl($content){
+        return preg_replace_callback('/<img[^>]+/', 'fau_relativeimgurl_callback', $content);
+}
+function fau_relativeimgurl_callback($matches) {
+        $link = $matches[0];
+        $site_link =  wp_make_link_relative(home_url());  
+        $link = preg_replace("%src=\"$site_link%i", 'src="', $link);                 
+        return $link;
+    }
+ add_filter('the_content', 'fau_relativeimgurl');
+ 
+ /*
+  * Replaces esc_url, but also makes URL relative
+  */
+ function fau_esc_url( $url) {
+     if (!isset($url)) {
+	 $url = home_url("/");
+     }
+     return wp_make_link_relative(esc_url($url));
+ }
+ 
+ function get_fau_template_uri () {
+     return wp_make_link_relative(get_template_directory_uri());
+ }
+ 
+ 
+ add_action( 'template_redirect', 'rw_relative_urls' );
+function rw_relative_urls() {
+    // Don't do anything if:
+    // - In feed
+    // - In sitemap by WordPress SEO plugin
+    if ( is_admin() || is_feed() || get_query_var( 'sitemap' ) )
+        return;
+    $filters = array(
+        'post_link',
+        'post_type_link',
+        'page_link',
+        'attachment_link',
+        'get_shortlink',
+        'post_type_archive_link',
+        'get_pagenum_link',
+        'get_comments_pagenum_link',
+        'term_link',
+        'search_link',
+        'day_link',
+        'month_link',
+        'year_link',
+	'script_loader_src',
+	'style_loader_src',
+
+    );
+    foreach ( $filters as $filter ) {
+        add_filter( $filter, 'wp_make_link_relative' );
+    }
+}
