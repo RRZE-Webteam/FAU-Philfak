@@ -75,7 +75,7 @@ global $options;
 	      ?>
 		
 		</div>
-	</div>
+	
 		<div class="container">
 			<div class="row">
 				<div class="span3">
@@ -105,7 +105,7 @@ global $options;
 			</div>
 			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
 		</div>
-	</div>
+	</div> <!-- /hero -->
 
 	<div id="content">
 		<div class="container">
@@ -180,7 +180,7 @@ global $options;
 											  the_excerpt();
 										    }
 
-										    echo '<a href="';
+										    echo ' <a href="';
 										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
 											    echo get_field('external_link', $post->ID);
 										    } else {
