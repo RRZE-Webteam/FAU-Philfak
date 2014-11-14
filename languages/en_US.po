@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: FAU v1.0.4\n"
+"Project-Id-Version: FAU v1.1.3 Dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-05 15:05+0100\n"
-"PO-Revision-Date: 2014-11-07 09:00:54+0000\n"
+"PO-Revision-Date: 2014-11-14 16:15:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Textdomain-Support: yes"
 
-#: index.php:36
+#: index.php:29
 #@ fau
 msgid "<span class=\"meta-nav\">&laquo;</span> Neuere Beiträge"
 msgstr "<span class=\"meta-nav\">&laquo;</span> Newer posts"
@@ -33,7 +33,7 @@ msgstr "<span class=\"meta-nav\">&laquo;</span> Newer posts"
 msgid "<span class=\"meta-nav\">&larr;</span> Zurück"
 msgstr "<span class=\"meta-nav\">&larr;</span> Previous"
 
-#: page-templates/page-start.php:299
+#: page-templates/page-start.php:343
 #@ fau
 msgid "Alle Videos"
 msgstr "All videos"
@@ -58,28 +58,28 @@ msgstr "Please enter a search term in the search box."
 msgid "Es tut uns leid."
 msgstr "Sorry"
 
-#: functions.php:74
+#: functions.php:75
 #@ fau
 msgid "Fehler 1"
 msgstr "Error 1"
 
-#: functions.php:75
+#: functions.php:76
 #@ fau
 msgid "Fehler 2"
 msgstr "Error 2"
 
-#: functions.php:76
+#: functions.php:77
 #@ fau
 msgid "Fehler 3"
 msgstr "Error 3"
 
-#: functions.php:77
+#: functions.php:78
 #@ fau
 msgid "Fehler 4"
 msgstr "Error 4"
 
 #: 404.php:59
-#: hero-search.php:33
+#: hero-search.php:35
 #: page-templates/search_event.php:40
 #: page-templates/search_person.php:40
 #: page-templates/search_post.php:40
@@ -93,20 +93,10 @@ msgstr "Find"
 msgid "Folgende Inhalte könnten Ihnen auch helfen:"
 msgstr "You might find these pages useful:"
 
-#: functions.php:67
+#: functions.php:68
 #@ fau
 msgid "Haupt-Navigation"
 msgstr "Main navigation"
-
-#: header.php:52
-#@ fau
-msgid "JavaScript deaktiviert 1"
-msgstr "JavaScript deactivated 1"
-
-#: header.php:53
-#@ fau
-msgid "JavaScript deaktiviert 2"
-msgstr "JavaScript deactivated 2"
 
 #: 403.php:43
 #@ fau
@@ -126,17 +116,17 @@ msgstr "Unfortunately your login was unsuccessful."
 msgid "Leider konnte für Ihre Suche nichts gefunden werden."
 msgstr "Unfortunately, no results were found."
 
-#: page-templates/page-start.php:175
+#: page-templates/page-start.php:211
 #@ fau
 msgid "Mehr Meldungen"
 msgstr "More news"
 
-#: functions.php:65
+#: functions.php:66
 #@ fau
 msgid "Meta-Navigation oben"
 msgstr "Meta navigation top"
 
-#: functions.php:66
+#: functions.php:67
 #@ fau
 msgid "Meta-Navigation unten"
 msgstr "Meta navigation bottom"
@@ -146,7 +136,7 @@ msgstr "Meta navigation bottom"
 msgid "Nachrichten"
 msgstr "News"
 
-#: functions.php:414
+#: functions.php:315
 #@ fau
 msgid "News Sidebar"
 msgstr "News Sidebar"
@@ -156,22 +146,22 @@ msgstr "News Sidebar"
 msgid "Personen"
 msgstr "People"
 
-#: functions.php:69
+#: functions.php:70
 #@ fau
 msgid "Quicklinks 1"
 msgstr "Quicklinks 1"
 
-#: functions.php:70
+#: functions.php:71
 #@ fau
 msgid "Quicklinks 2"
 msgstr "Quicklinks 2"
 
-#: functions.php:71
+#: functions.php:72
 #@ fau
 msgid "Quicklinks 3"
 msgstr "Quicklinks 3"
 
-#: functions.php:72
+#: functions.php:73
 #@ fau
 msgid "Quicklinks 4"
 msgstr "Quicklinks 4"
@@ -181,39 +171,39 @@ msgstr "Quicklinks 4"
 msgid "Seite nicht gefunden"
 msgstr "Page not found"
 
-#: functions.php:416
+#: functions.php:317
 #@ fau
 msgid "Sidebar auf der News-Kategorieseite"
 msgstr "Sidebar on the news category page"
 
-#: functions.php:426
+#: functions.php:327
 #@ fau
 msgid "Sidebar auf der Such-Ergebnisseite links"
 msgstr "Sidebar on left of search results page"
 
-#: functions.php:436
+#: functions.php:337
 #@ fau
 msgid "Sprachwechsler"
 msgstr "Language switcher"
 
-#: functions.php:438
+#: functions.php:339
 #@ fau
 msgid "Sprachwechsler im Header der Seite"
 msgstr "Language switcher in header"
 
-#: hero-search.php:20
-#: hero-search.php:26
+#: hero-search.php:22
+#: hero-search.php:28
 #@ fau
 msgid "Suche"
 msgstr "Search"
 
-#: functions.php:424
+#: functions.php:325
 #@ fau
 msgid "Suche Sidebar"
 msgstr "Search Sidebar"
 
 #: 404.php:58
-#: hero-search.php:32
+#: hero-search.php:34
 #: page-templates/search_event.php:39
 #: page-templates/search_person.php:39
 #: page-templates/search_post.php:39
@@ -236,7 +226,7 @@ msgstr "Search results"
 msgid "Veranstaltungen"
 msgstr "Events"
 
-#: hero-events.php:25
+#: hero-events.php:27
 #@ fau
 msgid "Veranstaltungskalender"
 msgstr "Events"
@@ -265,7 +255,7 @@ msgid "Zum Hauptmenü springen"
 msgstr "Skip to main menu"
 
 #: header.php:24
-#: page-templates/page-start.php:82
+#: page-templates/page-start.php:105
 #@ fau
 msgid "Zum Inhalt springen"
 msgstr "Skip to content"
@@ -280,48 +270,48 @@ msgstr "Skip to page menu"
 msgid "Zur Suche springen"
 msgstr "Skip to search"
 
-#: functions.php:344
+#: functions.php:268
 #@ fau
 msgctxt "header image description"
 msgid "FAKMED"
 msgstr "FAKMED"
 
-#: functions.php:349
+#: functions.php:273
 #@ fau
 msgctxt "header image description"
 msgid "FAKNAT"
 msgstr "FAKNAT"
 
-#: functions.php:354
+#: functions.php:278
 #@ fau
 msgctxt "header image description"
 msgid "FAKPHIL"
 msgstr "FAKPHIL"
 
-#: functions.php:359
+#: functions.php:283
 #@ fau
 msgctxt "header image description"
 msgid "FAKRECHTSWIWI"
 msgstr "FAKRECHTSWIWI"
 
-#: functions.php:364
+#: functions.php:288
 #@ fau
 msgctxt "header image description"
 msgid "FAKTECH"
 msgstr "FAKTECH"
 
-#: functions.php:339
+#: functions.php:263
 #@ fau
 msgctxt "header image description"
 msgid "FAU"
 msgstr "FAU"
 
-#: index.php:37
+#: index.php:30
 #@ fau
 msgid "Ältere Beiträge <span class=\"meta-nav\">&raquo;</span>"
 msgstr "Older posts <span class=\"meta-nav\">&raquo;</span>"
 
-#: functions/menu-main.php:22
+#: functions/constants.php:19
 #@ fau
 msgid "Portal"
 msgstr "Portal"
@@ -331,91 +321,6 @@ msgstr "Portal"
 msgid "Es konnte kein Kontakteintrag mit der angegebenen ID \"\" gefunden werden."
 msgstr "We could not find any entry with the given search term."
 
-#: functions.php:168
-#@ default
-msgid "breadcrumb_root"
-msgstr ""
-
-#: functions.php:176
-#@ default
-msgid "start_header_count"
-msgstr ""
-
-#: functions.php:181
-#@ default
-msgid "start_news_count"
-msgstr ""
-
-#: functions.php:195
-#@ default
-msgid "socialmedia_facebook"
-msgstr ""
-
-#: functions.php:196
-#@ default
-msgid "socialmedia_facebook_text"
-msgstr ""
-
-#: functions.php:202
-#@ default
-msgid "socialmedia_twitter"
-msgstr ""
-
-#: functions.php:203
-#@ default
-msgid "socialmedia_twitter_text"
-msgstr ""
-
-#: functions.php:209
-#@ default
-msgid "socialmedia_gplus"
-msgstr ""
-
-#: functions.php:210
-#@ default
-msgid "socialmedia_gplus_text"
-msgstr ""
-
-#: functions.php:216
-#@ default
-msgid "socialmedia_youtube"
-msgstr ""
-
-#: functions.php:217
-#@ default
-msgid "socialmedia_youtube_text"
-msgstr ""
-
-#: functions.php:223
-#@ default
-msgid "socialmedia_vimeo"
-msgstr ""
-
-#: functions.php:224
-#@ default
-msgid "socialmedia_vimeo_text"
-msgstr ""
-
-#: functions.php:230
-#@ default
-msgid "socialmedia_xing"
-msgstr ""
-
-#: functions.php:231
-#@ default
-msgid "socialmedia_xing_text"
-msgstr ""
-
-#: functions.php:237
-#@ default
-msgid "socialmedia_pinterest"
-msgstr ""
-
-#: functions.php:238
-#@ default
-msgid "socialmedia_pinterest_text"
-msgstr ""
-
 #: page-templates/search_event.php:112
 #: page-templates/search_person.php:115
 #: page-templates/search_post.php:113
@@ -423,7 +328,7 @@ msgstr ""
 msgid "Weitere Suchergebnisse"
 msgstr "More results"
 
-#: functions.php:281
+#: functions.php:205
 #, php-format
 #@ fau
 msgid "Seite %s"
@@ -437,5 +342,299 @@ msgstr "We cannot find the page you were looking for. The address may have chang
 #: search.php:69
 #@ fau
 msgid "Weitere Sucheergebnisse"
+msgstr "More results"
+
+#: functions/constants.php:22
+#@ fau
+msgid "Friedrich-Alexander-Universität"
+msgstr ""
+
+#: functions/constants.php:23
+#@ fau
+msgid "Erlangen-Nürnberg"
+msgstr ""
+
+#: functions/constants.php:24
+#@ fau
+msgid "Schlossplatz 4"
+msgstr ""
+
+#: functions/constants.php:25
+#@ fau
+msgid "91054"
+msgstr ""
+
+#: functions/constants.php:26
+#@ fau
+msgid "Erlangen"
+msgstr ""
+
+#: functions/constants.php:30
+#@ fau
+msgid "JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher."
+msgstr "JavaScript was deactivated. You can still read all content, but with JavaScript you would get a better user expirience."
+
+#: functions/constants.php:137
+#@ fau
+msgid "UnivIS"
+msgstr "UnivIS"
+
+#: functions/constants.php:142
+#@ fau
+msgid "Lageplan"
+msgstr "Map"
+
+#: functions/constants.php:147
+#@ fau
+msgid "Universitätsklinikum"
+msgstr ""
+
+#: functions/constants.php:159
+#@ fau
+msgid "Philosophische Fakultät und Fachbereich Theologie"
+msgstr ""
+
+#: functions/constants.php:164
+#@ fau
+msgid "Rechts- und Wirtschaftswissenschaftliche Fakultät"
+msgstr ""
+
+#: functions/constants.php:169
+#@ fau
+msgid "Medizinische Fakultät"
+msgstr ""
+
+#: functions/constants.php:174
+#@ fau
+msgid "Naturwissenschaftliche Fakultät"
+msgstr ""
+
+#: functions/constants.php:179
+#@ fau
+msgid "Technische Fakultät"
+msgstr ""
+
+#: functions/constants.php:189
+#@ fau
+msgid "Einträge"
+msgstr "Entries"
+
+#: functions/constants.php:198
+#@ fau
+msgid "Startseite"
+msgstr "Start page"
+
+#: functions/constants.php:204
+#@ fau
+msgid "Zahl der News"
+msgstr "Number of News"
+
+#: functions/constants.php:205
+#@ fau
+msgid "Anzahl der News auf der Startseite unterhalb des Sliders"
+msgstr ""
+
+#: functions/constants.php:212
+#@ piratenkleider
+msgid "Slider"
+msgstr ""
+
+#: functions/constants.php:217
+#@ fau
+msgid "Zahl der Slides"
+msgstr ""
+
+#: functions/constants.php:218
+#@ fau
+msgid "Anzahl der Slides von verlinkten Top-Artikeln"
+msgstr ""
+
+#: functions/constants.php:227
+#@ piratenkleider
+msgid "Kategorie"
+msgstr ""
+
+#: functions/constants.php:228
+#@ fau
+msgid "Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen."
+msgstr ""
+
+#: functions/constants.php:240
+#: page-templates/page-start.php:278
+#@ fau
+msgid "Social Media"
+msgstr ""
+
+#: functions/constants.php:245
+#@ fau
+msgid "Buttons anzeigen"
+msgstr ""
+
+#: functions/constants.php:246
+#@ fau
+msgid "Welche Social Media Buttons sollen auf der Startseite angezeigt werden."
+msgstr ""
+
+#: functions/constants.php:252
+#@ fau
+msgid "Social Media Portale"
+msgstr ""
+
+#: functions/constants.php:259
+#@ fau
+msgid "Allgemeine Einstellungen"
+msgstr ""
+
+#: functions/constants.php:264
+#@ fau
+msgid "Menü Portal-Button (Vortitel)"
+msgstr ""
+
+#: functions/constants.php:265
+#@ fau
+msgid "Begriff vor dem Titel des gewählten Menüs"
+msgstr ""
+
+#: functions/constants.php:270
+#@ fau
+msgid "Menü Portal-Button (Nachtitel)"
+msgstr ""
+
+#: functions/constants.php:271
+#@ fau
+msgid "Begriff nach dem Titel des gewählten Menüs"
+msgstr ""
+
+#: functions/constants.php:279
+#@ fau
+msgid "Kontaktdaten"
+msgstr ""
+
+#: functions/constants.php:283
+#@ fau
+msgid "Öffemtliche Adresse im Fußteil"
+msgstr ""
+
+#: functions/constants.php:287
+#@ fau
+msgid "Adressat"
+msgstr ""
+
+#: functions/constants.php:288
+#@ fau
+msgid "Erste Zeile der Adresse"
+msgstr ""
+
+#: functions/constants.php:294
+#@ fau
+msgid "Adressat (Zusatz)"
+msgstr ""
+
+#: functions/constants.php:295
+#@ fau
+msgid "Zweite Zeile der Adresse"
+msgstr ""
+
+#: functions/constants.php:301
+#@ fau
+msgid "Strasse"
+msgstr ""
+
+#: functions/constants.php:302
+#@ fau
+msgid "Strasse inkl. Hausnummer"
+msgstr ""
+
+#: functions/constants.php:308
+#@ fau
+msgid "PLZ"
+msgstr ""
+
+#: functions/constants.php:309
+#@ fau
+msgid "Postleitzahl"
+msgstr ""
+
+#: functions/constants.php:315
+#@ fau
+msgid "Ort"
+msgstr ""
+
+#: functions/constants.php:316
+#@ fau
+msgid "Ortsname"
+msgstr ""
+
+#: functions/constants.php:322
+#@ fau
+msgid "Land"
+msgstr ""
+
+#: functions/constants.php:323
+#@ fau
+msgid "Optionale Landesangabe"
+msgstr ""
+
+#: functions/theme-options.php:19
+#: functions/theme-options.php:20
+#@ fau
+msgid "Theme Options"
+msgstr ""
+
+#: functions/theme-options.php:41
+#@ fau
+msgid "Konfiguration ändern"
+msgstr ""
+
+#: functions/theme-options.php:44
+#@ fau
+msgid "Neue Konfiguration gespeichert."
+msgstr ""
+
+#: functions/theme-options.php:176
+#@ fau
+msgid "Add file"
+msgstr ""
+
+#: functions/theme-options.php:177
+#@ fau
+msgid "Remove file"
+msgstr ""
+
+#: functions/theme-options.php:218
+#: functions/theme-options.php:251
+#@ fau
+msgid "No Image selected"
+msgstr ""
+
+#: functions/theme-options.php:226
+#@ fau
+msgid "Add Image"
+msgstr ""
+
+#: functions/theme-options.php:227
+#@ fau
+msgid "Remove image"
+msgstr ""
+
+#: functions/theme-options.php:229
+#@ fau
+msgid "Reset to default"
+msgstr ""
+
+#: functions/theme-options.php:530
+#@ fau
+msgid "Option nicht definiert."
+msgstr ""
+
+#: functions/theme-options.php:539
+#@ fau
+msgid "Update"
+msgstr ""
+
+#: header.php:82
+#: header.php:84
+#@ fau
+msgid "Navigation"
 msgstr ""
 

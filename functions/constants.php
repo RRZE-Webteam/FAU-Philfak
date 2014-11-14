@@ -26,7 +26,7 @@ $defaultoptions = array(
    'contact_address_ort'	=> __('Erlangen', 'fau'),
    
     'contact_address_country'	=> '',
-    'display_nojs_notice'	=> 1,
+    'display_nojs_notice'	=> 0,
     'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
 ); 
 
@@ -209,7 +209,7 @@ $setoptions = array(
 	       
               'sliderpars'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Slider', 'piratenkleider' ),                      
+                  'title'   => __( 'Slider', 'fau' ),                      
               ),
               
 	     'start_header_count'=> array(
