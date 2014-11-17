@@ -28,6 +28,8 @@ $defaultoptions = array(
     'contact_address_country'	=> '',
     'display_nojs_notice'	=> 1,
     'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
+    'google-site-verification'	=> '',
+    
 ); 
 
 
@@ -271,7 +273,12 @@ $setoptions = array(
                   'label'   => __( 'Begriff nach dem Titel des gewählten Menüs', 'fau' ),               
                   'default' => $defaultoptions['menu_aftertitle_portal'],
               ),  
-	     
+	     'google-site-verification' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Google Site Verification', 'fau' ),
+                  'label'   => __( ' Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag.', 'fau' ),               
+                  'default' => $defaultoptions['google-site-verification'],
+              ),  
    
           )
        ),
