@@ -8,7 +8,9 @@
  */
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
+<?php
+global $options;
+?>
 
 <div id="hero" class="hero-small">
 	<div class="container">
@@ -17,7 +19,7 @@
 
 			    <?php if(function_exists('bcn_display')): ?>
 					<div class="breadcrumbs">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
+						<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
 						<?php bcn_display(); ?>
 					</div>
 				<?php endif; ?>

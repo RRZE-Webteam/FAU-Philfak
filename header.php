@@ -8,14 +8,14 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
+
+global $options;
+
 ?><!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 	<title><?php wp_title( '-', true, 'right' ); ?></title>
 	<?php wp_head(); ?>
-	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico">
 </head>
 
 <body <?php body_class(); ?>>
@@ -45,16 +45,17 @@
 			</div>
 		</div>
 	</div>
+	<?php if (isset($options['display_nojs_notice']) && $options['display_nojs_notice']==1) { ?> 
 	<noscript>
 		<div id="no-script">
 			<div class="container">
 				<div class="notice">
-					<?php _e('JavaScript deaktiviert 1','fau'); ?><br>
-					<?php _e('JavaScript deaktiviert 2','fau'); ?>
+					<?php  echo $options['display_nojs_note']; ?>				
 				</div>
 			</div>
 		</div>
 	</noscript>
+	<?php } ?>
 	<div id="header">
 		<div class="container">
 		    
@@ -62,9 +63,9 @@
 			if ( ! empty( $header_image ) ) {	
 			    echo '<div class="branding" id="logo" role="banner" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">';
 			    if ( ! is_front_page() ) { 
-				echo '<a itemprop="url" rel="home" href="'.esc_url( home_url( '/' ) ).'">';	
+				echo '<a itemprop="url" rel="home" href="'.fau_esc_url(home_url( '/' ) ).'">';	
 			    } 
-			    echo '<img src="'.esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
+			    echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
 			    if ( ! is_front_page() ) {  
 				echo "</a>"; 			    
 			    }
@@ -75,7 +76,19 @@
 				<div></div>
 				<div></div>
 			</a>			
-			<?php if(class_exists('Walker_Main_Menu', false)) wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); ?>
+			<?php
+			    if ( has_nav_menu( 'main-menu' ) ) {
+				if(class_exists('Walker_Main_Menu', false)) 
+					wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
+			    } else { ?>
+                                    <ul role="navigation" aria-label="<?php _e("Navigation", "fau"); ?>" id="nav">     
+                                        <?php  wp_page_menu( array(
+                                            'menu_class'  => '',
+                                    'sort_column' => 'menu_order, post_title',
+                                    'echo'        => 1,
+                                    'show_home'   => 1 ) ); ?>          
+                                    </ul>
+			   <?php } ?>
 		</div>
 	</div>
 

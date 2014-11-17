@@ -4,7 +4,7 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version' => '3.2',
+    'js-version'		=> '1.1',
     'optionpage-tab-default'	=> 'startseite',
     'content-width'		=> 770,
     'src-fallback-slider-image' => get_template_directory_uri().'/img/slider-fallback.jpg',
@@ -24,7 +24,10 @@ $defaultoptions = array(
    'contact_address_street'	=> __('Schlossplatz 4', 'fau'),
    'contact_address_plz'	=> __('91054', 'fau'),
    'contact_address_ort'	=> __('Erlangen', 'fau'),
-   'contact_address_country'	=> '',
+   
+    'contact_address_country'	=> '',
+    'display_nojs_notice'	=> 1,
+    'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
 ); 
 
 
@@ -206,7 +209,7 @@ $setoptions = array(
 	       
               'sliderpars'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Slider', 'piratenkleider' ),                      
+                  'title'   => __( 'Slider', 'fau' ),                      
               ),
               
 	     'start_header_count'=> array(
@@ -221,7 +224,7 @@ $setoptions = array(
                
               'slider-catid' => array(
                   'type'    => 'select',
-                  'title'   => __( 'Kategorie', 'piratenkleider' ),
+                  'title'   => __( 'Kategorie', 'fau' ),
                   'label'   => __( 'Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen.', 'fau' ),
                   'liste'   => $currentcatliste,
                   'default' => $defaultoptions['slider-catid'],

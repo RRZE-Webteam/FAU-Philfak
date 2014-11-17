@@ -38,43 +38,44 @@ global $options;
                 $hero_posts = get_posts($query); 
             }
             ?>
-			<?php foreach($hero_posts as $hero): ?>
-				<div class="hero-slide">
-					<?php 
-					$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
-					$sliderimage = '';
-					if ($post_thumbnail_id) {
-					    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
-					}
-					// $sliderimage = get_the_post_thumbnail($hero->ID, 'hero');
-					if (!$sliderimage || empty($sliderimage[0])) {  
-					    $slidersrc = '<img src="'.$options['src-fallback-slider-image'].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
-					} else {
-					    $slidersrc = '<img src="'.$sliderimage[0].'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
-					}
-					echo $slidersrc; 
-					?>
-					<div class="hero-slide-text">
-						<div class="container">
-							<h2>
-								<?php if(function_exists('get_field') && get_field('external_link')): ?>
-									<a href="<?php echo get_field('external_link');?>">
-								<?php else: ?>
-									<a href="<?php echo get_permalink($hero->ID); ?>">
-								<?php endif; ?>
-								
-								<?php echo get_the_title($hero->ID); ?></a>
-							</h2><br>
-							<?php if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-							<p><?php echo get_field('abstract', $hero->ID); ?></p>
-							<?php endif; ?>
-						</div>
-					</div>
+	    <?php foreach($hero_posts as $hero): ?>
+		<div class="hero-slide">
+			    <?php 
+			    $post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+			    $sliderimage = '';
+			    if ($post_thumbnail_id) {
+				$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+			    }
+			    if (!$sliderimage || empty($sliderimage[0])) {  
+				$slidersrc = '<img src="'.fau_esc_url($options['src-fallback-slider-image']).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
+			    } else {
+				$slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+			    }
+			    echo $slidersrc."\n"; 
+			    ?>
+			    <div class="hero-slide-text">
+				<div class="container">
+					    <?php
+						echo '<h2><a href="';
+						if (function_exists('get_field') && get_field('external_link')) {
+						    echo get_field('external_link');
+						} else {
+						    echo get_permalink($hero->ID);
+						}
+						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
+	
+					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
+						<br><p><?php echo get_field('abstract', $hero->ID); ?></p>
+					    <?php endif; ?>
 				</div>
-			<?php endforeach; ?>
-            <?php wp_reset_query(); ?>
+			    </div>
+		    </div>
+	    <?php endforeach; 
+              wp_reset_query();
+	      ?>
 		
 		</div>
+	
 		<div class="container">
 			<div class="row">
 				<div class="span3">
@@ -104,7 +105,7 @@ global $options;
 			</div>
 			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
 		</div>
-	</div>
+	</div> <!-- /hero -->
 
 	<div id="content">
 		<div class="container">
@@ -133,54 +134,63 @@ global $options;
 							    
 							$query = new WP_Query( 'tag=startseite'.$j );
 							 while ($query->have_posts() && $i<$max) { 
-								$query->the_post();
-							 
-								?>
-								<div class="news-item">
-
-								<h2> 
-									<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
+							    $query->the_post();  ?>
+				    
+							    <div class="news-item">
+								    <h2><?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
 										<a href="<?php echo get_field('external_link', $post->ID);?>">
 									<?php else: ?>
 										<a href="<?php echo get_permalink($post->ID); ?>">
 									<?php endif; ?>
-									<?php echo get_the_title(); ?></a>
-								</h2>
+									<?php echo get_the_title(); ?></a></h2>
 
 
-									<div class="row">
-									    
-									  
-										<?php if(has_post_thumbnail( $post->ID )): ?>
-										<div class="span3">
-											<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-												<a href="<?php echo get_field('external_link', $post->ID);?>" class="news-image">
-											<?php else: ?>
-												<a href="<?php echo get_permalink($post->ID); ?>" class="news-image">
-											<?php endif; ?>
-											<?php echo get_the_post_thumbnail($post->ID, 'post-thumb'); ?></a>
-										</div>
-										<div class="span5">
-										<?php else: ?>
-										<div class="span8">
-										<?php endif; ?>
-											<p>
-												<?php if (function_exists('get_field')) {
-												     echo get_field('abstract', $post->ID);											  
-												} else {
-												      the_excerpt();
-												}
-												?> 
-												<?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-													<a href="<?php echo get_field('external_link', $post->ID);?>" class="read-more-arrow">
-												<?php else: ?>
-													<a href="<?php echo get_permalink($post->ID); ?>" class="read-more-arrow">
-												<?php endif; ?>
-												›</a>
-											</p>
-										</div>
+								<div class="row">
+								    <?php if(has_post_thumbnail( $post->ID )): ?>
+									<div class="span3">
+										<?php
+										echo '<a href="';
+										if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+										    echo get_field('external_link', $post->ID);
+										} else {
+										    echo get_permalink($post->ID);
+										}
+										echo '" class="news-image">';
+
+										$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+										$sliderimage = '';
+										if ($post_thumbnail_id) {
+										    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+										}
+										if ($sliderimage && !empty($sliderimage[0])) {  
+										    $slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+										}
+										echo $slidersrc;
+										echo '</a>';
+										?>
+									</div>
+									<div class="span5">
+								    <?php else: ?>
+									<div class="span8">
+								    <?php endif; ?>
+									    <p>
+										    <?php if (function_exists('get_field')) {
+											 echo get_field('abstract', $post->ID);											  
+										    } else {
+											  the_excerpt();
+										    }
+
+										    echo ' <a href="';
+										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+											    echo get_field('external_link', $post->ID);
+										    } else {
+											    echo get_permalink($post->ID);
+										    }
+										    echo '" class="read-more-arrow">›</a>'; ?>
+									    </p>
 									</div>
 								</div>
+							    </div> <!-- /news-item -->
 							
 							<?php
 								$i++;
@@ -210,138 +220,131 @@ global $options;
 							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
 							<?php } ?>
 							<div class="row">
-								<?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
-									<div class="span2">
-										<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
-										<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
-									</div>
-									<div class="span2">
-								<?php else: ?>
-									<div class="span4">
-								<?php endif; ?>
-									 <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
-									<div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
-									 <?php } ?>   
-									</div>
-									
+							    <?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
+								<div class="span2">
+									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
+									<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
+								</div>
+								<div class="span2">
+							    <?php else: ?>
+								<div class="span4">
+							    <?php endif; ?>
+								    <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
+								    <div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
+								    <?php } ?>   
+								</div>			
 							</div>
 						</div>
 					<?php endforeach; ?>
 					
 					<?php get_template_part('sidebar'); ?>
 				</div>
-			</div>
+			</div> <!-- /row -->
 			<?php  if ( function_exists('get_field') ) { ?>
+			    <?php if ( get_field( 'portalmenu-slug' ) ) : ?>
+				    <div class="hr"><hr></div>
+				    <?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
+			    <?php endif; ?>
 
-			<?php if ( get_field( 'portalmenu-slug' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
-			<?php endif; ?>
-			
-			<?php if ( get_field( 'logo-slider-slug' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php the_widget('FAUMenuLogosWidget', array('menu-slug' => get_field('logo-slider-slug'))); ?>
-			<?php endif; ?>
-			
-			<?php if ( get_field( 'werbebanner_unten' ) ) : ?>
-				<div class="hr"><hr></div>
-				<?php $ads = get_field('werbebanner_unten');?>
-				<?php foreach($ads as $ad): ?>
-					<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-				<?php endforeach; ?>
-			<?php endif; ?>
+			    <?php if ( get_field( 'logo-slider-slug' ) ) : ?>
+				    <div class="hr"><hr></div>
+				    <?php the_widget('FAUMenuLogosWidget', array('menu-slug' => get_field('logo-slider-slug'))); ?>
+			    <?php endif; ?>
+
+			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
+				    <div class="hr"><hr></div>
+				    <?php $ads = get_field('werbebanner_unten');?>
+				    <?php foreach($ads as $ad): ?>
+					    <?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
+				    <?php endforeach; ?>
+			    <?php endif; ?>
 			<?php  } ?>
 			
-			</div>
-			<div id="social">
-				<div class="container">
-					<div class="row">
-						<?php if (isset($options['socialmedia'])): ?>
-							<div class="span3">
-								<h2 class="small"><strong>FAU</strong>Social</h2>
-								<?php 
-								global $default_socialmedia_liste;
-								
-								echo '<nav id="socialmedia" aria-label="'.__('Social Media','fau').'">';
-								echo '<ul class="social">';       
-								    foreach ( $default_socialmedia_liste as $entry => $listdata ) {        
-
-									$value = '';
-									$active = 0;
-									if (isset($options['sm-list'][$entry]['content'])) {
-										$value = $options['sm-list'][$entry]['content'];
-										if (isset($options['sm-list'][$entry]['active'])) {
-										    $active = $options['sm-list'][$entry]['active'];
-										} 
-									} else {
-										$value = $default_socialmedia_liste[$entry]['content'];
-										$active = $default_socialmedia_liste[$entry]['active'];
-									 }
-
-									if (($active ==1) && ($value)) {
-									    echo '<li class="social-'.$entry.'"><a href="'.$value.'">';
-									    echo $listdata['name'].'</a></li>';
-									}
-								    }
-								    echo '</ul>';
-								    echo '</nav>';
-								?>
-
-							</div>
-						<?php endif; ?>
-						<div class="span9">
+		</div> <!-- /container -->
+		<div id="social">
+			<div class="container">
+				<div class="row">
+					<?php if (isset($options['socialmedia'])): ?>
+						<div class="span3">
+							<h2 class="small"><strong>FAU</strong>Social</h2>
 							<?php 
-							if ( function_exists('get_field') ) {
-							   
-							if(get_field('videos')): ?>
-								<div class="row">
-								    <?php
-								     $foundvids = 0;
-								    while(has_sub_field('videos')): 
+							global $default_socialmedia_liste;
 
-								    $args = '';
-								    $video_link = get_sub_field('video-links');
-								    if($video_link):
-									$video_height = get_sub_field('video-height');
-									$video_height = $video_height ? $video_height : '';
-									$video_width = get_sub_field('video-width');
-									$video_width = $video_width ? $video_width : '';
-									$video_poster = get_sub_field('video-poster');
-									$video_poster = $video_poster ? $video_poster : '';
-									$wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
-									$wp_oembed_get = do_shortcode($wp_oembed_get);
-									    if($wp_oembed_get !== false) : ?>
-									<div class="span3">
-										<?php
-											$video_titel = get_sub_field('video-titel');
-											if($video_titel):
-												echo '<h2 class="small">'.$video_titel.'</h2>';
-											endif; 
-											 $foundvids = 1;
-										?>	
-										<?php echo $wp_oembed_get; ?>
-									</div>
-									    <?php endif; ?>
-									<?php endif; ?>
-									<?php endwhile; ?>
+							echo '<nav id="socialmedia" aria-label="'.__('Social Media','fau').'">';
+							echo '<ul class="social">';       
+							    foreach ( $default_socialmedia_liste as $entry => $listdata ) {        
+
+								$value = '';
+								$active = 0;
+								if (isset($options['sm-list'][$entry]['content'])) {
+									$value = $options['sm-list'][$entry]['content'];
+									if (isset($options['sm-list'][$entry]['active'])) {
+									    $active = $options['sm-list'][$entry]['active'];
+									} 
+								} else {
+									$value = $default_socialmedia_liste[$entry]['content'];
+									$active = $default_socialmedia_liste[$entry]['active'];
+								 }
+
+								if (($active ==1) && ($value)) {
+								    echo '<li class="social-'.$entry.'"><a href="'.$value.'">';
+								    echo $listdata['name'].'</a></li>';
+								}
+							    }
+							    echo '</ul>';
+							    echo '</nav>';
+							?>
+
+						</div>
+					<?php endif; ?>
+					<div class="span9">
+						<?php 
+						if ( function_exists('get_field') ) {
+
+						if(get_field('videos')): ?>
+							<div class="row">
+							    <?php
+							     $foundvids = 0;
+							    while(has_sub_field('videos')): 
+
+							    $args = '';
+							    $video_link = get_sub_field('video-links');
+							    if($video_link):
+								$video_height = get_sub_field('video-height');
+								$video_height = $video_height ? $video_height : '';
+								$video_width = get_sub_field('video-width');
+								$video_width = $video_width ? $video_width : '';
+								$video_poster = get_sub_field('video-poster');
+								$video_poster = $video_poster ? $video_poster : '';
+								$wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
+								$wp_oembed_get = do_shortcode($wp_oembed_get);
+								    if($wp_oembed_get !== false) : ?>
+								<div class="span3">
+									<?php
+										$video_titel = get_sub_field('video-titel');
+										if($video_titel):
+											echo '<h2 class="small">'.$video_titel.'</h2>';
+										endif; 
+										 $foundvids = 1;
+									?>	
+									<?php echo $wp_oembed_get; ?>
 								</div>
-								<?php if ( $foundvids==1) { ?>
-								<div class="pull-right link-all-videos">
-									<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
-								</div>
-								<?php }    
-							     endif;  							
-							} ?>
-							
-						</div>						
-					</div>
+								    <?php endif; ?>
+								<?php endif; ?>
+								<?php endwhile; ?>
+							</div>
+							<?php if ( $foundvids==1) { ?>
+							<div class="pull-right link-all-videos">
+								<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
+							</div>
+							<?php }    
+						     endif;  							
+						} ?>
+
+					</div>						
 				</div>
 			</div>
-			
-			
-
-		</div>
-	</div>
-
+		</div> <!-- /social -->	
+	</div> <!-- /content -->
 
 <?php get_footer(); ?>
