@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: FAU v1.1.3 Dev\n"
+"Project-Id-Version: FAU v1.1.4 Dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-05 15:05+0100\n"
-"PO-Revision-Date: 2014-11-14 16:15:39+0000\n"
+"PO-Revision-Date: 2014-11-17 13:03:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "<span class=\"meta-nav\">&laquo;</span> Newer posts"
 msgid "<span class=\"meta-nav\">&larr;</span> Zurück"
 msgstr "<span class=\"meta-nav\">&larr;</span> Previous"
 
-#: page-templates/page-start.php:343
+#: page-templates/page-start.php:338
 #@ fau
 msgid "Alle Videos"
 msgstr "All videos"
@@ -116,7 +116,7 @@ msgstr "Unfortunately your login was unsuccessful."
 msgid "Leider konnte für Ihre Suche nichts gefunden werden."
 msgstr "Unfortunately, no results were found."
 
-#: page-templates/page-start.php:211
+#: page-templates/page-start.php:208
 #@ fau
 msgid "Mehr Meldungen"
 msgstr "More news"
@@ -136,7 +136,7 @@ msgstr "Meta navigation bottom"
 msgid "Nachrichten"
 msgstr "News"
 
-#: functions.php:315
+#: functions.php:316
 #@ fau
 msgid "News Sidebar"
 msgstr "News Sidebar"
@@ -171,22 +171,22 @@ msgstr "Quicklinks 4"
 msgid "Seite nicht gefunden"
 msgstr "Page not found"
 
-#: functions.php:317
+#: functions.php:318
 #@ fau
 msgid "Sidebar auf der News-Kategorieseite"
 msgstr "Sidebar on the news category page"
 
-#: functions.php:327
+#: functions.php:328
 #@ fau
 msgid "Sidebar auf der Such-Ergebnisseite links"
 msgstr "Sidebar on left of search results page"
 
-#: functions.php:337
+#: functions.php:338
 #@ fau
 msgid "Sprachwechsler"
 msgstr "Language switcher"
 
-#: functions.php:339
+#: functions.php:340
 #@ fau
 msgid "Sprachwechsler im Header der Seite"
 msgstr "Language switcher in header"
@@ -197,7 +197,7 @@ msgstr "Language switcher in header"
 msgid "Suche"
 msgstr "Search"
 
-#: functions.php:325
+#: functions.php:326
 #@ fau
 msgid "Suche Sidebar"
 msgstr "Search Sidebar"
@@ -255,7 +255,7 @@ msgid "Zum Hauptmenü springen"
 msgstr "Skip to main menu"
 
 #: header.php:24
-#: page-templates/page-start.php:105
+#: page-templates/page-start.php:106
 #@ fau
 msgid "Zum Inhalt springen"
 msgstr "Skip to content"
@@ -270,37 +270,37 @@ msgstr "Skip to page menu"
 msgid "Zur Suche springen"
 msgstr "Skip to search"
 
-#: functions.php:268
+#: functions.php:269
 #@ fau
 msgctxt "header image description"
 msgid "FAKMED"
 msgstr "FAKMED"
 
-#: functions.php:273
+#: functions.php:274
 #@ fau
 msgctxt "header image description"
 msgid "FAKNAT"
 msgstr "FAKNAT"
 
-#: functions.php:278
+#: functions.php:279
 #@ fau
 msgctxt "header image description"
 msgid "FAKPHIL"
 msgstr "FAKPHIL"
 
-#: functions.php:283
+#: functions.php:284
 #@ fau
 msgctxt "header image description"
 msgid "FAKRECHTSWIWI"
 msgstr "FAKRECHTSWIWI"
 
-#: functions.php:288
+#: functions.php:289
 #@ fau
 msgctxt "header image description"
 msgid "FAKTECH"
 msgstr "FAKTECH"
 
-#: functions.php:263
+#: functions.php:264
 #@ fau
 msgctxt "header image description"
 msgid "FAU"
@@ -328,7 +328,7 @@ msgstr "We could not find any entry with the given search term."
 msgid "Weitere Suchergebnisse"
 msgstr "More results"
 
-#: functions.php:205
+#: functions.php:206
 #, php-format
 #@ fau
 msgid "Seite %s"
@@ -372,7 +372,7 @@ msgstr ""
 #: functions/constants.php:30
 #@ fau
 msgid "JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher."
-msgstr "JavaScript was deactivated. You can still read all content, but with JavaScript you would get a better user expirience."
+msgstr "JavaScript is either disabled or your browser does not support JavaScript. You will be able to browse all content but your browsing experience may be more complicated."
 
 #: functions/constants.php:137
 #@ fau
@@ -435,7 +435,7 @@ msgid "Anzahl der News auf der Startseite unterhalb des Sliders"
 msgstr ""
 
 #: functions/constants.php:212
-#@ piratenkleider
+#@ fau
 msgid "Slider"
 msgstr ""
 
@@ -460,7 +460,7 @@ msgid "Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen 
 msgstr ""
 
 #: functions/constants.php:240
-#: page-templates/page-start.php:278
+#: page-templates/page-start.php:273
 #@ fau
 msgid "Social Media"
 msgstr ""

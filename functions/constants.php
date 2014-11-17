@@ -224,7 +224,7 @@ $setoptions = array(
                
               'slider-catid' => array(
                   'type'    => 'select',
-                  'title'   => __( 'Kategorie', 'piratenkleider' ),
+                  'title'   => __( 'Kategorie', 'fau' ),
                   'label'   => __( 'Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen.', 'fau' ),
                   'liste'   => $currentcatliste,
                   'default' => $defaultoptions['slider-catid'],
