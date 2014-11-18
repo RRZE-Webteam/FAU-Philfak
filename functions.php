@@ -5,7 +5,7 @@
  * @since FAU 1.0
  */
 
-
+load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
@@ -34,11 +34,6 @@ require_once(get_template_directory() .'/functions/menu.php');
 function fau_setup() {
 	global $options;
 	
-	/*
-	 * Makes FAU available for translation.
-	 *
-	 */
-	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 
 	if ( ! isset( $content_width ) ) $content_width = $options['content-width'];
 	/*
