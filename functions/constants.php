@@ -276,7 +276,7 @@ $setoptions = array(
 	     'google-site-verification' => array(
                   'type'    => 'text',
                   'title'   => __( 'Google Site Verification', 'fau' ),
-                  'label'   => __( ' Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag.', 'fau' ),               
+                  'label'   => __( 'Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag.', 'fau' ),               
                   'default' => $defaultoptions['google-site-verification'],
               ),  
    
