@@ -6107,22 +6107,27 @@ ul.jumplinks li a:focus {display: block; left: 20px; padding: 6px 10px; backgrou
 .menu-faculties li { background-image: none; padding: 0; margin: 0; font-size: 13px; min-height: 34px; line-height: 34px; border-left:8px solid #fff; vertical-align: center; -moz-hyphens: auto; -o-hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;}
 .menu-faculties li a {display:inline-block; *display:inline; *zoom: 1; padding: 2px 0 2px 10px; line-height: 16px; vertical-align: center; }
 
+.menu-faculties li.philfak,
 .menu-faculties li.menu-item-142,
 .menu-faculties li.menu-item-20852,
 .menu-faculties li.menu-item-782275 { border-color: #ad841f;}
 
+.menu-faculties li.rwfak,
 .menu-faculties li.menu-item-143,
 .menu-faculties li.menu-item-20853,
 .menu-faculties li.menu-item-782276 { border-color: #801429;}
 
+.menu-faculties li.medfak,
 .menu-faculties li.menu-item-144,
 .menu-faculties li.menu-item-20854,
 .menu-faculties li.menu-item-782277 { border-color: #00b1c6;}
 
+.menu-faculties li.natfak,
 .menu-faculties li.menu-item-145,
 .menu-faculties li.menu-item-20855,
 .menu-faculties li.menu-item-782278 { border-color: #009775;}
 
+.menu-faculties li.techfak,
 .menu-faculties li.menu-item-146,
 .menu-faculties li.menu-item-20856,
 .menu-faculties li.menu-item-782279 { border-color: #a3acb2;}

@@ -108,7 +108,7 @@ function fau_setup() {
 	remove_action( 'wp_head', 'index_rel_link' ); // index link
 	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
+	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
 	
 }
 add_action( 'after_setup_theme', 'fau_setup' );
@@ -738,4 +738,54 @@ function rw_relative_urls() {
     foreach ( $filters as $filter ) {
         add_filter( $filter, 'wp_make_link_relative' );
     }
+}
+
+
+
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
+    global $default_link_liste;
+    
+    
+    if (is_array($default_link_liste[$list])) {
+	$uselist =  $default_link_liste[$list];
+    } else {
+	$uselist =  $default_link_liste['faculty'];
+    }
+    
+    $result = '';
+    if (isset($uselist['_title'])) {
+	$result .= '<h3>'.$uselist['_title'].'</h3>';	
+	$result .= "\n";
+    }
+    $thislist = '';
+    foreach($uselist as $key => $entry ) {
+	if (substr($key,0,4) != 'link') {
+	    continue;
+	}
+	$thislist .= '<li';
+	if (isset($entry['class'])) {
+	    $thislist .= ' class="'.$entry['class'].'"';
+	}
+	$thislist .= '>';
+	if (isset($entry['content'])) {
+	    $thislist .= '<a href="'.$entry['content'].'">';
+	}
+	$thislist .= $entry['name'];
+	if (isset($entry['content'])) {
+	    $thislist .= '</a>';
+	}
+	$thislist .= "</li>\n";
+    }    
+    if (isset($thislist)) {
+	if (isset($ulclass)) {
+	    $result .= '<ul class="'.$ulclass.'">';
+	} else {
+	    $result .= '<ul class="menu">';
+	}
+	
+	$result .= $thislist;
+	$result .= '</ul>';	
+	$result .= "\n";	
+    }
+    return $result;
 }
