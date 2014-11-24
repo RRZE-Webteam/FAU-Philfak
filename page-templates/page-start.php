@@ -79,28 +79,37 @@ global $options;
 		<div class="container">
 			<div class="row">
 				<div class="span3">
-					<?php if(has_nav_menu('quicklinks-1')): ?>
+					<?php if(has_nav_menu('quicklinks-1')) { ?>
 						<h3><?php echo fau_get_menu_name('quicklinks-1'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-1', 'container' => false, 'items_wrap' => '<ul class="menu-faculties %2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-1', 'container' => false, 'items_wrap' => '<ul class="menu-faculties %2$s">%3$s</ul>' ) ); 
+					} else {
+					    echo fau_get_defaultlinks('faculty', 'menu-faculties');
+					    
+					} ?>
 				</div>
 				<div class="span3">
-					<?php if(has_nav_menu('quicklinks-2')): ?>
+					<?php if(has_nav_menu('quicklinks-2')) { ?>
 						<h3><?php echo fau_get_menu_name('quicklinks-2'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-2', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-2', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); 
+					} else {
+					    echo fau_get_defaultlinks('diefau');
+					} ?>
 				</div>
 				<div class="span3">
-					<?php if(has_nav_menu('quicklinks-3')): ?>
+					<?php if(has_nav_menu('quicklinks-3')) { ?>
 						<h3><?php echo fau_get_menu_name('quicklinks-3'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-3', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-3', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); 
+					} else {
+					    echo fau_get_defaultlinks('centers');
+					} ?>
 				</div>
 				<div class="span3">
-					<?php if(has_nav_menu('quicklinks-4')): ?>
+					<?php if(has_nav_menu('quicklinks-4')) { ?>
 						<h3><?php echo fau_get_menu_name('quicklinks-4'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-4', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'quicklinks-4', 'container' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>' ) );  
+					} else {
+					    echo fau_get_defaultlinks('infos');
+					} ?>
 				</div>
 			</div>
 			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>

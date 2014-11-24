@@ -5,7 +5,7 @@
  * @since FAU 1.0
  */
 
-
+load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
@@ -34,11 +34,6 @@ require_once(get_template_directory() .'/functions/menu.php');
 function fau_setup() {
 	global $options;
 	
-	/*
-	 * Makes FAU available for translation.
-	 *
-	 */
-	load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 
 	if ( ! isset( $content_width ) ) $content_width = $options['content-width'];
 	/*
@@ -113,7 +108,7 @@ function fau_setup() {
 	remove_action( 'wp_head', 'index_rel_link' ); // index link
 	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
+	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
 	
 }
 add_action( 'after_setup_theme', 'fau_setup' );
@@ -261,32 +256,32 @@ function fau_custom_header_setup() {
 		'fau' => array(
 			'url'           => '%s/img/logo-fau.png',
 			'thumbnail_url' => '%s/img/logo-fau.png',
-			'description'   => _x( 'FAU', 'header image description', 'fau' )
+			'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
 		),
 		'fak-med' => array(
 			'url'           => '%s/img/logo-fak-med.png',
 			'thumbnail_url' => '%s/img/logo-fak-med.png',
-			'description'   => _x( 'FAKMED', 'header image description', 'fau' )
+			'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
 		),
 		'fak-nat' => array(
 			'url'           => '%s/img/logo-fak-nat.png',
 			'thumbnail_url' => '%s/img/logo-fak-nat.png',
-			'description'   => _x( 'FAKNAT', 'header image description', 'fau' )
+			'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
 		),
 		'fak-phil' => array(
 			'url'           => '%s/img/logo-fak-phil.png',
 			'thumbnail_url' => '%s/img/logo-fak-phil.png',
-			'description'   => _x( 'FAKPHIL', 'header image description', 'fau' )
+			'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
 		),
 		'fak-rechtswiwi' => array(
 			'url'           => '%s/img/logo-fak-rechtswiwi.png',
 			'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
-			'description'   => _x( 'FAKRECHTSWIWI', 'header image description', 'fau' )
+			'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
 		),
 		'fak-tech' => array(
 			'url'           => '%s/img/logo-fak-tech.png',
 			'thumbnail_url' => '%s/img/logo-fak-tech.png',
-			'description'   => _x( 'FAKTECH', 'header image description', 'fau' )
+			'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
 		),
 	) );
 }
@@ -743,4 +738,54 @@ function rw_relative_urls() {
     foreach ( $filters as $filter ) {
         add_filter( $filter, 'wp_make_link_relative' );
     }
+}
+
+
+
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
+    global $default_link_liste;
+    
+    
+    if (is_array($default_link_liste[$list])) {
+	$uselist =  $default_link_liste[$list];
+    } else {
+	$uselist =  $default_link_liste['faculty'];
+    }
+    
+    $result = '';
+    if (isset($uselist['_title'])) {
+	$result .= '<h3>'.$uselist['_title'].'</h3>';	
+	$result .= "\n";
+    }
+    $thislist = '';
+    foreach($uselist as $key => $entry ) {
+	if (substr($key,0,4) != 'link') {
+	    continue;
+	}
+	$thislist .= '<li';
+	if (isset($entry['class'])) {
+	    $thislist .= ' class="'.$entry['class'].'"';
+	}
+	$thislist .= '>';
+	if (isset($entry['content'])) {
+	    $thislist .= '<a href="'.$entry['content'].'">';
+	}
+	$thislist .= $entry['name'];
+	if (isset($entry['content'])) {
+	    $thislist .= '</a>';
+	}
+	$thislist .= "</li>\n";
+    }    
+    if (isset($thislist)) {
+	if (isset($ulclass)) {
+	    $result .= '<ul class="'.$ulclass.'">';
+	} else {
+	    $result .= '<ul class="menu">';
+	}
+	
+	$result .= $thislist;
+	$result .= '</ul>';	
+	$result .= "\n";	
+    }
+    return $result;
 }

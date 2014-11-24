@@ -26,8 +26,10 @@ $defaultoptions = array(
    'contact_address_ort'	=> __('Erlangen', 'fau'),
    
     'contact_address_country'	=> '',
-    'display_nojs_notice'	=> 1,
+    'display_nojs_notice'	=> 0,
     'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
+    'google-site-verification'	=> '',
+    
 ); 
 
 
@@ -152,34 +154,165 @@ $default_toplink_liste = array(
 );
 
 /* 
- * Default Faculty List for Submenu , can be overwritten bei menu  
+ * Default Link List for Submenus , can be overwritten bei Menu  
  */
-$default_faculty_liste = array(    
-    'link1'  => array(
-	'name'	    => __('Philosophische Fakultät und Fachbereich Theologie', 'fau' ),
-	'content'  => 'http://www.phil.fau.de/',
-	'active'    => 1,
-    ),
-    'link2'  => array(
-	'name'	    => __('Rechts- und Wirtschaftswissenschaftliche Fakultät', 'fau' ),
-	'content'  => 'https://www.rw.fau.de/',
-	'active'    => 0,
-    ),
-    'link3'  => array(
-	'name'	    => __('Medizinische Fakultät', 'fau' ),
-	'content'  => 'http://www.dekanat.med.uni-erlangen.de/',
-	'active'    => 1,
-    ),
-    'link4'  => array(
-	'name'	    => __('Naturwissenschaftliche Fakultät', 'fau' ),
-	'content'  => 'https://www.nat.fau.de/',
-	'active'    => 0,
-    ),
-    'link5'  => array(
-	'name'	    => __('Technische Fakultät', 'fau' ),
-	'content'  => 'https://www.tf.fau.de/',
-	'active'    => 0,
-    ),
+$default_link_liste = array( 
+	'faculty' => array(    
+	    '_title'	=> __('Fakultäten','fau'),
+	    'link1'  => array(
+		'name'	    => __('Philosophische Fakultät und Fachbereich Theologie', 'fau' ),
+		'content'  => 'http://www.phil.fau.de/',
+		'class'	    => 'philfak',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Rechts- und Wirtschaftswissenschaftliche Fakultät', 'fau' ),
+		'content'  => 'https://www.rw.fau.de/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Medizinische Fakultät', 'fau' ),
+		'content'  => 'http://www.dekanat.med.uni-erlangen.de/',
+		'class'	    => 'medfak',
+	    ),
+	    'link4'  => array(
+		'name'	    => __('Naturwissenschaftliche Fakultät', 'fau' ),
+		'content'  => 'https://www.nat.fau.de/',
+		'class'	    => 'natfak',
+	    ),
+	    'link5'  => array(
+		'name'	    => __('Technische Fakultät', 'fau' ),
+		'content'  => 'https://www.tf.fau.de/',
+		'class'	    => 'techfak',
+	    ),
+	),
+	'centers' => array(    
+	    '_title'	=> __('Einrichtungen','fau'),
+	    'link1'  => array(
+		'name'	    => __('Universitätsbibliothek', 'fau' ),
+		'content'  => 'http://www.ub.fau.de/',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Rechenzentrum', 'fau' ),
+		'content'  => 'https://www.rrze.fau.de/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Sprachenzentrum', 'fau' ),
+		'content'  => 'http://www.sz.uni-erlangen.de/',
+		'class'	    => 'medfak',
+	    ),
+	    'link4'  => array(
+		'name'	    => __('Graduiertenschule', 'fau' ),
+		'content'  => 'http://www.promotion.fau.de/',
+		'class'	    => 'natfak',
+	    ),
+	    'link5'  => array(
+		'name'	    => __('FAU Busan Campus', 'fau' ),
+		'content'  => 'http://www.fau-busan.ac.kr/',
+		'class'	    => 'techfak',
+	    ),
+	),
+	'diefau' => array(    
+	    '_title'	=> __('Die FAU','fau'),
+	    'link1'  => array(
+		'name'	    => __('Alle Studiengänge', 'fau' ),
+		'content'  => 'https://www.fau.de.de/studium/vor-dem-studium/studiengaenge/alle-studiengaenge/',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Studium A-Z', 'fau' ),
+		'content'  => 'https://www.fau.de/studium/im-studium/studium-a-z/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Zahlen, Daten, Fakten', 'fau' ),
+		'content'  => 'https://www.fau.de/universitaet/kennzahlen-und-rankings/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link4'  => array(
+		'name'	    => __('Wissenschaftsschwerpunkte', 'fau' ),
+		'content'  => 'https://www.fau.de/forschung/forschungsprofil/forschungsprofil-und-wissenschaftsschwerpunkte-der-fau/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link5'  => array(
+		'name'	    => __('Stiften und Fördern', 'fau' ),
+		'content'  => 'https://www.fau.de/universitaet/stiften-und-foerdern/',
+		'class'	    => 'medfak',
+	    ),	
+	),
+	'infos' => array(    
+	    '_title'	=> __('Informationen für','fau'),
+	    'link1'  => array(
+		'name'	    => __('Studieninteressierte', 'fau' ),
+		'content'  => 'https://www.fau.de/studium/vor-dem-studium/',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Studierende', 'fau' ),
+		'content'  => 'https://www.fau.de/studium/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Alumni', 'fau' ),
+		'content'  => 'https://www.fau.de/alumni/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link4'  => array(
+		'name'	    => __('Schülerinnen und Schüler', 'fau' ),
+		'content'  => 'https://www.fau.de/schulportal-der-fau/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link5'  => array(
+		'name'	    => __('Unternehmen', 'fau' ),
+		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link6'  => array(
+		'name'	    => __('Presse', 'fau' ),
+		'content'  => 'https://www.fau.de/presseportal-der-fau/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link7'  => array(
+		'name'	    => __('Beschäftigte', 'fau' ),
+		'content'  => 'https://www.fau.de/intranet/',
+		'class'	    => 'medfak',
+	    ),	
+	),
+	'top' => array(    
+	    'link1'  => array(
+		'name'	    => __('UnivIS', 'fau' ),
+		'content'  => 'http://univis.fau.de/',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Anfahrt und Lageplan', 'fau' ),
+		'content'  => 'http://karte.fau.de/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Universitätsklinikum', 'fau' ),
+		'content'  => 'http://www.uk-erlangen.de/',
+		'class'	    => 'medfak',
+	    ),	  
+	),
+	'bottom' => array(    
+	    'link1'  => array(
+		'name'	    => __('Stellenangebote', 'fau' ),
+		'content'  => 'https://www.fau.de/universitaet/stellen-praktika-und-jobs/',
+	    ),
+	    'link2'  => array(
+		'name'	    => __('Presse', 'fau' ),
+		'content'  => 'https://www.fau.de/presseportal-der-fau/',
+		'class'	    => 'rwfak',
+	    ),
+	    'link3'  => array(
+		'name'	    => __('Intranet', 'fau' ),
+		'content'  => 'https://www.fau.de/intranet/',
+		'class'	    => 'medfak',
+	    ),	
+	    'link4'  => array(
+		'name'	    => __('Impressum', 'fau' ),
+		'content'  => 'https://www.fau.de/impressum/',
+		'class'	    => 'medfak',
+	    ),	
+	),
 );
 
 
@@ -271,7 +404,12 @@ $setoptions = array(
                   'label'   => __( 'Begriff nach dem Titel des gewählten Menüs', 'fau' ),               
                   'default' => $defaultoptions['menu_aftertitle_portal'],
               ),  
-	     
+	     'google-site-verification' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Google Site Verification', 'fau' ),
+                  'label'   => __( 'Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag.', 'fau' ),               
+                  'default' => $defaultoptions['google-site-verification'],
+              ),  
    
           )
        ),

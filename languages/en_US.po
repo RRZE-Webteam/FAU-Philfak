@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FAU v1.1.4 Dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-05 15:05+0100\n"
-"PO-Revision-Date: 2014-11-17 13:03:42+0000\n"
+"PO-Revision-Date: 2014-11-18 16:03:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam\n"
 "MIME-Version: 1.0\n"
@@ -270,42 +270,6 @@ msgstr "Skip to page menu"
 msgid "Zur Suche springen"
 msgstr "Skip to search"
 
-#: functions.php:269
-#@ fau
-msgctxt "header image description"
-msgid "FAKMED"
-msgstr "FAKMED"
-
-#: functions.php:274
-#@ fau
-msgctxt "header image description"
-msgid "FAKNAT"
-msgstr "FAKNAT"
-
-#: functions.php:279
-#@ fau
-msgctxt "header image description"
-msgid "FAKPHIL"
-msgstr "FAKPHIL"
-
-#: functions.php:284
-#@ fau
-msgctxt "header image description"
-msgid "FAKRECHTSWIWI"
-msgstr "FAKRECHTSWIWI"
-
-#: functions.php:289
-#@ fau
-msgctxt "header image description"
-msgid "FAKTECH"
-msgstr "FAKTECH"
-
-#: functions.php:264
-#@ fau
-msgctxt "header image description"
-msgid "FAU"
-msgstr "FAU"
-
 #: index.php:30
 #@ fau
 msgid "Ältere Beiträge <span class=\"meta-nav\">&raquo;</span>"
@@ -374,203 +338,203 @@ msgstr ""
 msgid "JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher."
 msgstr "JavaScript is either disabled or your browser does not support JavaScript. You will be able to browse all content but your browsing experience may be more complicated."
 
-#: functions/constants.php:137
+#: functions/constants.php:139
 #@ fau
 msgid "UnivIS"
 msgstr "UnivIS"
 
-#: functions/constants.php:142
+#: functions/constants.php:144
 #@ fau
 msgid "Lageplan"
 msgstr "Map"
 
-#: functions/constants.php:147
+#: functions/constants.php:149
 #@ fau
 msgid "Universitätsklinikum"
 msgstr ""
 
-#: functions/constants.php:159
+#: functions/constants.php:161
 #@ fau
 msgid "Philosophische Fakultät und Fachbereich Theologie"
 msgstr ""
 
-#: functions/constants.php:164
+#: functions/constants.php:166
 #@ fau
 msgid "Rechts- und Wirtschaftswissenschaftliche Fakultät"
 msgstr ""
 
-#: functions/constants.php:169
+#: functions/constants.php:171
 #@ fau
 msgid "Medizinische Fakultät"
 msgstr ""
 
-#: functions/constants.php:174
+#: functions/constants.php:176
 #@ fau
 msgid "Naturwissenschaftliche Fakultät"
 msgstr ""
 
-#: functions/constants.php:179
+#: functions/constants.php:181
 #@ fau
 msgid "Technische Fakultät"
 msgstr ""
 
-#: functions/constants.php:189
+#: functions/constants.php:191
 #@ fau
 msgid "Einträge"
 msgstr "Entries"
 
-#: functions/constants.php:198
+#: functions/constants.php:200
 #@ fau
 msgid "Startseite"
 msgstr "Start page"
 
-#: functions/constants.php:204
+#: functions/constants.php:206
 #@ fau
 msgid "Zahl der News"
 msgstr "Number of News"
 
-#: functions/constants.php:205
+#: functions/constants.php:207
 #@ fau
 msgid "Anzahl der News auf der Startseite unterhalb des Sliders"
 msgstr ""
 
-#: functions/constants.php:212
+#: functions/constants.php:214
 #@ fau
 msgid "Slider"
 msgstr ""
 
-#: functions/constants.php:217
+#: functions/constants.php:219
 #@ fau
 msgid "Zahl der Slides"
 msgstr ""
 
-#: functions/constants.php:218
+#: functions/constants.php:220
 #@ fau
 msgid "Anzahl der Slides von verlinkten Top-Artikeln"
 msgstr ""
 
-#: functions/constants.php:227
-#@ piratenkleider
+#: functions/constants.php:229
+#@ fau
 msgid "Kategorie"
 msgstr ""
 
-#: functions/constants.php:228
+#: functions/constants.php:230
 #@ fau
 msgid "Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen."
 msgstr ""
 
-#: functions/constants.php:240
+#: functions/constants.php:242
 #: page-templates/page-start.php:273
 #@ fau
 msgid "Social Media"
 msgstr ""
 
-#: functions/constants.php:245
+#: functions/constants.php:247
 #@ fau
 msgid "Buttons anzeigen"
 msgstr ""
 
-#: functions/constants.php:246
+#: functions/constants.php:248
 #@ fau
 msgid "Welche Social Media Buttons sollen auf der Startseite angezeigt werden."
 msgstr ""
 
-#: functions/constants.php:252
+#: functions/constants.php:254
 #@ fau
 msgid "Social Media Portale"
 msgstr ""
 
-#: functions/constants.php:259
+#: functions/constants.php:261
 #@ fau
 msgid "Allgemeine Einstellungen"
 msgstr ""
 
-#: functions/constants.php:264
+#: functions/constants.php:266
 #@ fau
 msgid "Menü Portal-Button (Vortitel)"
 msgstr ""
 
-#: functions/constants.php:265
+#: functions/constants.php:267
 #@ fau
 msgid "Begriff vor dem Titel des gewählten Menüs"
 msgstr ""
 
-#: functions/constants.php:270
+#: functions/constants.php:272
 #@ fau
 msgid "Menü Portal-Button (Nachtitel)"
 msgstr ""
 
-#: functions/constants.php:271
+#: functions/constants.php:273
 #@ fau
 msgid "Begriff nach dem Titel des gewählten Menüs"
 msgstr ""
 
-#: functions/constants.php:279
+#: functions/constants.php:286
 #@ fau
 msgid "Kontaktdaten"
 msgstr ""
 
-#: functions/constants.php:283
+#: functions/constants.php:290
 #@ fau
 msgid "Öffemtliche Adresse im Fußteil"
 msgstr ""
 
-#: functions/constants.php:287
+#: functions/constants.php:294
 #@ fau
 msgid "Adressat"
 msgstr ""
 
-#: functions/constants.php:288
+#: functions/constants.php:295
 #@ fau
 msgid "Erste Zeile der Adresse"
 msgstr ""
 
-#: functions/constants.php:294
+#: functions/constants.php:301
 #@ fau
 msgid "Adressat (Zusatz)"
 msgstr ""
 
-#: functions/constants.php:295
+#: functions/constants.php:302
 #@ fau
 msgid "Zweite Zeile der Adresse"
 msgstr ""
 
-#: functions/constants.php:301
+#: functions/constants.php:308
 #@ fau
 msgid "Strasse"
 msgstr ""
 
-#: functions/constants.php:302
+#: functions/constants.php:309
 #@ fau
 msgid "Strasse inkl. Hausnummer"
 msgstr ""
 
-#: functions/constants.php:308
+#: functions/constants.php:315
 #@ fau
 msgid "PLZ"
 msgstr ""
 
-#: functions/constants.php:309
+#: functions/constants.php:316
 #@ fau
 msgid "Postleitzahl"
 msgstr ""
 
-#: functions/constants.php:315
+#: functions/constants.php:322
 #@ fau
 msgid "Ort"
 msgstr ""
 
-#: functions/constants.php:316
+#: functions/constants.php:323
 #@ fau
 msgid "Ortsname"
 msgstr ""
 
-#: functions/constants.php:322
+#: functions/constants.php:329
 #@ fau
 msgid "Land"
 msgstr ""
 
-#: functions/constants.php:323
+#: functions/constants.php:330
 #@ fau
 msgid "Optionale Landesangabe"
 msgstr ""
@@ -636,5 +600,51 @@ msgstr ""
 #: header.php:84
 #@ fau
 msgid "Navigation"
+msgstr ""
+
+#: functions/constants.php:278
+#@ fau
+msgid "Google Site Verification"
+msgstr ""
+
+#: functions/constants.php:279
+#@ fau
+msgid "Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag."
+msgstr ""
+
+#: functions.php:264
+#@ fau
+msgctxt "Offizielles FAU-Logo"
+msgid "FAU"
+msgstr ""
+
+#: functions.php:269
+#@ fau
+msgctxt "Offizielles Logo der Medizin"
+msgid "FAKMED"
+msgstr ""
+
+#: functions.php:274
+#@ fau
+msgctxt "Offizielles Logo der Naturwissenschaft"
+msgid "FAKNAT"
+msgstr ""
+
+#: functions.php:279
+#@ fau
+msgctxt "Offizielles Logo der Philosophischen Fakultät"
+msgid "FAKPHIL"
+msgstr ""
+
+#: functions.php:284
+#@ fau
+msgctxt "Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät"
+msgid "FAKRECHTSWIWI"
+msgstr ""
+
+#: functions.php:289
+#@ fau
+msgctxt "Offizielles Logo der Technischen Fakultät"
+msgid "FAKTECH"
 msgstr ""
 

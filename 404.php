@@ -51,7 +51,7 @@ get_header(); ?>
 						<h3><?php _e('Vielleicht hilft Ihnen die Suche:','fau'); ?></h3>
 						<?php
 							
-							$uri = $_SERVER['REQUEST_URI'];
+							$uri = esc_url($_SERVER['REQUEST_URI']);
 							$uri = str_replace('/', ' ', $uri);
 
 						?>
