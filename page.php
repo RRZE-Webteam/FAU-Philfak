@@ -18,9 +18,9 @@ get_header(); ?>
 				
 				<div class="span12">
 					<?php if ( function_exists('the_field') ) {
-						echo "<h2>".the_field('headline')."</h2>\n";
+						echo "<h2>".get_field('headline')."</h2>\n";
 						if( get_field('abstract') != '') {
-						     echo "<h3>".the_field('abstract')."</h3>\n";
+						     echo "<h3>".get_field('abstract')."</h3>\n";
 						}
 					}
 					get_template_part('sidebar', 'inline'); 
