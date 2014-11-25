@@ -11,6 +11,18 @@
 
 global $options;
 
+function fau_main_menu_fallback() {
+    $output = '';
+    $some_pages = get_pages(array('hierarchical' => 0, 'number' => 3));
+    if($some_pages) {
+        foreach($some_pages as $page) {
+            $output .= sprintf('<li class="menu-item level1"><a href="%1$s">%2$s</a></li>', get_permalink($page->ID), $page->post_title);
+        }
+        
+        $output = sprintf('<ul role="navigation" aria-label="%1$s" id="nav">%2$s</ul>', __('Navigation', 'fau'), $output);
+    }   
+    return $output;
+}
 ?><!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
@@ -77,19 +89,13 @@ global $options;
 				<div></div>
 			</a>			
 			<?php
-			    if ( has_nav_menu( 'main-menu' ) ) {
-				if(class_exists('Walker_Main_Menu', false)) 
-					wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
-			    } else { ?>
-                                    <ul role="navigation" aria-label="<?php _e("Navigation", "fau"); ?>" id="nav">     
-                                        <?php  wp_page_menu( array(
-                                            'menu_class'  => '',
-                                    'sort_column' => 'menu_order, post_title',
-                                    'echo'        => 1,
-                                    'show_home'   => 1 ) ); ?>          
-                                    </ul>
-			   <?php } ?>
+			if(has_nav_menu( 'main-menu' ) && class_exists('Walker_Main_Menu', false)) {
+				wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
+		    } elseif(!has_nav_menu( 'main-menu' )) {
+				echo fau_main_menu_fallback(); 
+            } else {
+                // the class Walker_Main_Menu doesn't exist!
+            }
+            ?>
 		</div>
 	</div>
-
-
