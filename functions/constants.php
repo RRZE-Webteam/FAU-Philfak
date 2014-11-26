@@ -29,6 +29,7 @@ $defaultoptions = array(
     'display_nojs_notice'	=> 0,
     'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
     'google-site-verification'	=> '',
+    'default_mainmenu_number'	=> 4,
     
 ); 
 
