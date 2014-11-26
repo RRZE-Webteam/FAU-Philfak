@@ -33,6 +33,8 @@ global $options;
 				<?php
 				if ( has_nav_menu( 'meta' ) ) {
 				    wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) );
+				} else {
+				    echo fau_get_defaultlinks('meta', 'menu', 'meta-nav');
 				}
 				?>
 			</div>
@@ -77,19 +79,13 @@ global $options;
 				<div></div>
 			</a>			
 			<?php
-			    if ( has_nav_menu( 'main-menu' ) ) {
-				if(class_exists('Walker_Main_Menu', false)) 
-					wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
-			    } else { ?>
-                                    <ul role="navigation" aria-label="<?php _e("Navigation", "fau"); ?>" id="nav">     
-                                        <?php  wp_page_menu( array(
-                                            'menu_class'  => '',
-                                    'sort_column' => 'menu_order, post_title',
-                                    'echo'        => 1,
-                                    'show_home'   => 1 ) ); ?>          
-                                    </ul>
-			   <?php } ?>
+		    if(has_nav_menu( 'main-menu' ) && class_exists('Walker_Main_Menu', false)) {
+				wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
+		    } elseif(!has_nav_menu( 'main-menu' )) {
+				echo fau_main_menu_fallback(); 
+		    } else {
+			// the class Walker_Main_Menu doesn't exist!
+		    }
+            ?>
 		</div>
 	</div>
-
-

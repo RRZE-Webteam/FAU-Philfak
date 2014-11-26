@@ -742,7 +742,7 @@ function rw_relative_urls() {
 
 
 
-function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
     
     
@@ -777,15 +777,32 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
 	$thislist .= "</li>\n";
     }    
     if (isset($thislist)) {
-	if (isset($ulclass)) {
-	    $result .= '<ul class="'.$ulclass.'">';
-	} else {
-	    $result .= '<ul class="menu">';
+	$result .= '<ul';
+	if (!empty($ulclass)) {
+	    $result .= ' class="'.$ulclass.'"';
 	}
-	
+	if (!empty($ulid)) {
+	    $result .= ' id="'.$ulid.'"';
+	}
+	$result .= '>';
 	$result .= $thislist;
 	$result .= '</ul>';	
 	$result .= "\n";	
     }
     return $result;
 }
+
+function fau_main_menu_fallback() {
+    global $options;
+    $output = '';
+    $some_pages = get_pages(array('parent' => 0, 'number' => $options['default_mainmenu_number'], 'hierarchical' => 0));
+    if($some_pages) {
+        foreach($some_pages as $page) {
+            $output .= sprintf('<li class="menu-item level1"><a href="%1$s">%2$s</a></li>', get_permalink($page->ID), $page->post_title);
+        }
+        
+        $output = sprintf('<ul role="navigation" aria-label="%1$s" id="nav">%2$s</ul>', __('Navigation', 'fau'), $output);
+    }   
+    return $output;
+}
+
