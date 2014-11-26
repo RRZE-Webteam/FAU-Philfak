@@ -221,22 +221,18 @@ $default_link_liste = array(
 	    'link2'  => array(
 		'name'	    => __('Studium A-Z', 'fau' ),
 		'content'  => 'https://www.fau.de/studium/im-studium/studium-a-z/',
-		'class'	    => 'rwfak',
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Zahlen, Daten, Fakten', 'fau' ),
 		'content'  => 'https://www.fau.de/universitaet/kennzahlen-und-rankings/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link4'  => array(
 		'name'	    => __('Wissenschaftsschwerpunkte', 'fau' ),
 		'content'  => 'https://www.fau.de/forschung/forschungsprofil/forschungsprofil-und-wissenschaftsschwerpunkte-der-fau/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link5'  => array(
 		'name'	    => __('Stiften und Fördern', 'fau' ),
 		'content'  => 'https://www.fau.de/universitaet/stiften-und-foerdern/',
-		'class'	    => 'medfak',
 	    ),	
 	),
 	'infos' => array(    
@@ -248,35 +244,29 @@ $default_link_liste = array(
 	    'link2'  => array(
 		'name'	    => __('Studierende', 'fau' ),
 		'content'  => 'https://www.fau.de/studium/',
-		'class'	    => 'rwfak',
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Alumni', 'fau' ),
 		'content'  => 'https://www.fau.de/alumni/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link4'  => array(
 		'name'	    => __('Schülerinnen und Schüler', 'fau' ),
 		'content'  => 'https://www.fau.de/schulportal-der-fau/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link5'  => array(
 		'name'	    => __('Unternehmen', 'fau' ),
 		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link6'  => array(
 		'name'	    => __('Presse', 'fau' ),
 		'content'  => 'https://www.fau.de/presseportal-der-fau/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link7'  => array(
 		'name'	    => __('Beschäftigte', 'fau' ),
 		'content'  => 'https://www.fau.de/intranet/',
-		'class'	    => 'medfak',
 	    ),	
 	),
-	'top' => array(    
+	'meta' => array(    
 	    'link1'  => array(
 		'name'	    => __('UnivIS', 'fau' ),
 		'content'  => 'http://univis.fau.de/',
@@ -284,15 +274,13 @@ $default_link_liste = array(
 	    'link2'  => array(
 		'name'	    => __('Anfahrt und Lageplan', 'fau' ),
 		'content'  => 'http://karte.fau.de/',
-		'class'	    => 'rwfak',
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Universitätsklinikum', 'fau' ),
 		'content'  => 'http://www.uk-erlangen.de/',
-		'class'	    => 'medfak',
 	    ),	  
 	),
-	'bottom' => array(    
+	'techmenu' => array(    
 	    'link1'  => array(
 		'name'	    => __('Stellenangebote', 'fau' ),
 		'content'  => 'https://www.fau.de/universitaet/stellen-praktika-und-jobs/',
@@ -300,17 +288,14 @@ $default_link_liste = array(
 	    'link2'  => array(
 		'name'	    => __('Presse', 'fau' ),
 		'content'  => 'https://www.fau.de/presseportal-der-fau/',
-		'class'	    => 'rwfak',
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Intranet', 'fau' ),
 		'content'  => 'https://www.fau.de/intranet/',
-		'class'	    => 'medfak',
 	    ),	
 	    'link4'  => array(
 		'name'	    => __('Impressum', 'fau' ),
 		'content'  => 'https://www.fau.de/impressum/',
-		'class'	    => 'medfak',
 	    ),	
 	),
 );

@@ -742,7 +742,7 @@ function rw_relative_urls() {
 
 
 
-function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
     
     
@@ -777,12 +777,14 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '') {
 	$thislist .= "</li>\n";
     }    
     if (isset($thislist)) {
-	if (isset($ulclass)) {
-	    $result .= '<ul class="'.$ulclass.'">';
-	} else {
-	    $result .= '<ul class="menu">';
+	$result .= '<ul';
+	if (!empty($ulclass)) {
+	    $result .= ' class="'.$ulclass.'"';
 	}
-	
+	if (!empty($ulid)) {
+	    $result .= ' id="'.$ulid.'"';
+	}
+	$result .= '>';
 	$result .= $thislist;
 	$result .= '</ul>';	
 	$result .= "\n";	

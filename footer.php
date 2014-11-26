@@ -35,7 +35,10 @@ global $options;
 					<?php 
 					if ( has_nav_menu( 'meta-footer' ) ) {
 					    wp_nav_menu( array( 'theme_location' => 'meta-footer', 'container' => false, 'items_wrap' => '<ul id="footer-nav" class="%2$s">%3$s</ul>' ) ); 
-					} ?>
+					} else {
+					    echo fau_get_defaultlinks('techmenu', 'menu', 'footer-nav');
+					}
+					?>
 				</div>
 			</div>
 		</div>
