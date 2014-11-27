@@ -348,7 +348,7 @@ msgstr "Map"
 #: functions/constants.php:279
 #@ fau
 msgid "Universitätsklinikum"
-msgstr ""
+msgstr "Universitätsklinikum"
 
 #: functions/constants.php:163
 #@ fau
@@ -388,27 +388,27 @@ msgstr "Start page"
 #: functions/constants.php:322
 #@ fau
 msgid "Zahl der News"
-msgstr "Number of News"
+msgstr "Number of news articles"
 
 #: functions/constants.php:323
 #@ fau
 msgid "Anzahl der News auf der Startseite unterhalb des Sliders"
-msgstr ""
+msgstr "Number of news articles on start page beneath slider"
 
 #: functions/constants.php:330
 #@ fau
 msgid "Slider"
-msgstr ""
+msgstr "Slider"
 
 #: functions/constants.php:335
 #@ fau
 msgid "Zahl der Slides"
-msgstr ""
+msgstr "Number of  slides"
 
 #: functions/constants.php:336
 #@ fau
 msgid "Anzahl der Slides von verlinkten Top-Artikeln"
-msgstr ""
+msgstr "Number of slides from linked top articles"
 
 #: functions/constants.php:345
 #@ fau
@@ -418,139 +418,139 @@ msgstr ""
 #: functions/constants.php:346
 #@ fau
 msgid "Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen."
-msgstr ""
+msgstr "Please choose the article category to display in the slider"
 
 #: functions/constants.php:358
 #: page-templates/page-start.php:282
 #@ fau
 msgid "Social Media"
-msgstr ""
+msgstr "Social media"
 
 #: functions/constants.php:363
 #@ fau
 msgid "Buttons anzeigen"
-msgstr ""
+msgstr "Show buttons"
 
 #: functions/constants.php:364
 #@ fau
 msgid "Welche Social Media Buttons sollen auf der Startseite angezeigt werden."
-msgstr ""
+msgstr "Select which social media buttons should be displayed on the start page"
 
 #: functions/constants.php:370
 #@ fau
 msgid "Social Media Portale"
-msgstr ""
+msgstr "Social media sites"
 
 #: functions/constants.php:377
 #@ fau
 msgid "Allgemeine Einstellungen"
-msgstr ""
+msgstr "General settings"
 
 #: functions/constants.php:382
 #@ fau
 msgid "Menü Portal-Button (Vortitel)"
-msgstr ""
+msgstr "Portal button menu (prefix)"
 
 #: functions/constants.php:383
 #@ fau
 msgid "Begriff vor dem Titel des gewählten Menüs"
-msgstr ""
+msgstr "Term in front of selected menu title"
 
 #: functions/constants.php:388
 #@ fau
 msgid "Menü Portal-Button (Nachtitel)"
-msgstr ""
+msgstr "Portal button menu (suffix)"
 
 #: functions/constants.php:389
 #@ fau
 msgid "Begriff nach dem Titel des gewählten Menüs"
-msgstr ""
+msgstr "Term after the title of the selected menu"
 
 #: functions/constants.php:402
 #@ fau
 msgid "Kontaktdaten"
-msgstr ""
+msgstr "Contact details"
 
 #: functions/constants.php:406
 #@ fau
-msgid "Öffemtliche Adresse im Fußteil"
-msgstr ""
+msgid "Öffentliche Adresse im Fußteil"
+msgstr "Public address in footer"
 
 #: functions/constants.php:410
 #@ fau
 msgid "Adressat"
-msgstr ""
+msgstr "Recipient"
 
 #: functions/constants.php:411
 #@ fau
 msgid "Erste Zeile der Adresse"
-msgstr ""
+msgstr "Address line 1"
 
 #: functions/constants.php:417
 #@ fau
 msgid "Adressat (Zusatz)"
-msgstr ""
+msgstr "Recipient line 2"
 
 #: functions/constants.php:418
 #@ fau
 msgid "Zweite Zeile der Adresse"
-msgstr ""
+msgstr "Address line 2"
 
 #: functions/constants.php:424
 #@ fau
 msgid "Strasse"
-msgstr ""
+msgstr "Street"
 
 #: functions/constants.php:425
 #@ fau
 msgid "Strasse inkl. Hausnummer"
-msgstr ""
+msgstr "Street address and number"
 
 #: functions/constants.php:431
 #@ fau
 msgid "PLZ"
-msgstr ""
+msgstr "Postal code"
 
 #: functions/constants.php:432
 #@ fau
 msgid "Postleitzahl"
-msgstr ""
+msgstr "Postal code"
 
 #: functions/constants.php:438
 #@ fau
 msgid "Ort"
-msgstr ""
+msgstr "Town/City"
 
 #: functions/constants.php:439
 #@ fau
 msgid "Ortsname"
-msgstr ""
+msgstr "Town/City"
 
 #: functions/constants.php:445
 #@ fau
 msgid "Land"
-msgstr ""
+msgstr "Country"
 
 #: functions/constants.php:446
 #@ fau
 msgid "Optionale Landesangabe"
-msgstr ""
+msgstr "State (optional)"
 
 #: functions/theme-options.php:19
 #: functions/theme-options.php:20
 #@ fau
 msgid "Theme Options"
-msgstr ""
+msgstr "Theme options"
 
 #: functions/theme-options.php:41
 #@ fau
 msgid "Konfiguration ändern"
-msgstr ""
+msgstr "Change configuration"
 
 #: functions/theme-options.php:44
 #@ fau
 msgid "Neue Konfiguration gespeichert."
-msgstr ""
+msgstr "New configuration saved"
 
 #: functions/theme-options.php:176
 #@ fau
@@ -565,12 +565,12 @@ msgstr ""
 #: functions/theme-options.php:218
 #: functions/theme-options.php:251
 #@ fau
-msgid "No Image selected"
+msgid "No image selected"
 msgstr ""
 
 #: functions/theme-options.php:226
 #@ fau
-msgid "Add Image"
+msgid "Add image"
 msgstr ""
 
 #: functions/theme-options.php:227
@@ -586,7 +586,7 @@ msgstr ""
 #: functions/theme-options.php:530
 #@ fau
 msgid "Option nicht definiert."
-msgstr ""
+msgstr "Option not set"
 
 #: functions/theme-options.php:539
 #@ fau
@@ -601,7 +601,7 @@ msgstr ""
 
 #: functions/constants.php:394
 #@ fau
-msgid "Google Site Verification"
+msgid "Google site verification"
 msgstr ""
 
 #: functions/constants.php:395
@@ -613,37 +613,37 @@ msgstr ""
 #@ fau
 msgctxt "Offizielles FAU-Logo"
 msgid "FAU"
-msgstr ""
+msgstr "Official FAU logo"
 
 #: functions.php:264
 #@ fau
 msgctxt "Offizielles Logo der Medizin"
 msgid "FAKMED"
-msgstr ""
+msgstr "Faculty of Medicine logo"
 
 #: functions.php:269
 #@ fau
 msgctxt "Offizielles Logo der Naturwissenschaft"
 msgid "FAKNAT"
-msgstr ""
+msgstr "Faculty of Sciences Logo"
 
 #: functions.php:274
 #@ fau
 msgctxt "Offizielles Logo der Philosophischen Fakultät"
 msgid "FAKPHIL"
-msgstr ""
+msgstr "Faculty of Humanities, Social Science, and Theology logo"
 
 #: functions.php:279
 #@ fau
 msgctxt "Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät"
 msgid "FAKRECHTSWIWI"
-msgstr ""
+msgstr Faculty of Business, Economics, and Law logo""
 
 #: functions.php:284
 #@ fau
 msgctxt "Offizielles Logo der Technischen Fakultät"
 msgid "FAKTECH"
-msgstr ""
+msgstr "Faculty of Engineering logo"
 
 #: functions/constants.php:161
 #@ fau
@@ -653,7 +653,7 @@ msgstr "Faculties"
 #: functions/constants.php:189
 #@ fau
 msgid "Einrichtungen"
-msgstr "Services"
+msgstr "Institutions and services"
 
 #: functions/constants.php:191
 #@ fau
@@ -663,12 +663,12 @@ msgstr "University Library"
 #: functions/constants.php:195
 #@ fau
 msgid "Rechenzentrum"
-msgstr "Regional Computer Lab"
+msgstr "Regional Computer Centre"
 
 #: functions/constants.php:200
 #@ fau
 msgid "Sprachenzentrum"
-msgstr ""
+msgstr "Language Centre"
 
 #: functions/constants.php:205
 #@ fau
@@ -678,22 +678,22 @@ msgstr "FAU Graduate School"
 #: functions/constants.php:210
 #@ fau
 msgid "FAU Busan Campus"
-msgstr ""
+msgstr "FAU Busan Campus"
 
 #: functions/constants.php:216
 #@ fau
 msgid "Die FAU"
-msgstr "The FAU"
+msgstr "FAU"
 
 #: functions/constants.php:218
 #@ fau
 msgid "Alle Studiengänge"
-msgstr ""
+msgstr "All degree programmes"
 
 #: functions/constants.php:222
 #@ fau
 msgid "Studium A-Z"
-msgstr ""
+msgstr "Study A-Z"
 
 #: functions/constants.php:226
 #@ fau
@@ -703,12 +703,12 @@ msgstr "Facts and figures"
 #: functions/constants.php:230
 #@ fau
 msgid "Wissenschaftsschwerpunkte"
-msgstr "Research profile"
+msgstr "Major Research Areas"
 
 #: functions/constants.php:234
 #@ fau
 msgid "Stiften und Fördern"
-msgstr ""
+msgstr "Foundations and sponsorship"
 
 #: functions/constants.php:239
 #@ fau
@@ -728,17 +728,17 @@ msgstr "Students"
 #: functions/constants.php:249
 #@ fau
 msgid "Alumni"
-msgstr ""
+msgstr "Alumni"
 
 #: functions/constants.php:253
 #@ fau
 msgid "Schülerinnen und Schüler"
-msgstr ""
+msgstr "School leavers"
 
 #: functions/constants.php:257
 #@ fau
 msgid "Unternehmen"
-msgstr ""
+msgstr "Companies"
 
 #: functions/constants.php:261
 #: functions/constants.php:289
@@ -764,7 +764,7 @@ msgstr "Jobs"
 #: functions/constants.php:293
 #@ fau
 msgid "Intranet"
-msgstr ""
+msgstr "Intranet"
 
 #: functions/constants.php:297
 #@ fau
