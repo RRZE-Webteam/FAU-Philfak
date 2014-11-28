@@ -17,8 +17,10 @@ get_header(); ?>
 			<div class="row">
 				
 				<div class="span12">
-					<?php if ( function_exists('the_field') ) {
-						echo "<h2>".get_field('headline')."</h2>\n";
+					<?php if ( function_exists('the_field')) {
+						if (get_field('headline')) {
+						    echo "<h2>".get_field('headline')."</h2>\n";
+						}
 						if( get_field('abstract') != '') {
 						     echo "<h3>".get_field('abstract')."</h3>\n";
 						}
