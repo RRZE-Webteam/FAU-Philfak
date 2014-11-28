@@ -506,7 +506,7 @@ function fau_post_gallery($output, $attr) {
         'exclude' => '',
 		'type' => NULL,
 		'lightbox' => FALSE,
-		'captions' => FALSE
+		'captions' => 1
     ), $attr));
 
     $id = intval($id);
@@ -524,146 +524,143 @@ function fau_post_gallery($output, $attr) {
 
     if (empty($attachments)) return '';
 
-	$output = '';
 	
-	switch($attr['type'])
-	{
-		case "grid":
-			{
-				$rand = rand();
-				
-				$output .= "<div class=\"image-gallery-grid clearfix\">\n";
-			    $output .= "<ul class=\"grid\">\n";
-			
-				foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-grid');
-					$meta = get_post($id);
-					
-					$img_full = wp_get_attachment_image_src($id, 'gallery-full');
-					
-					if($attr['captions'])
-					{
-						$output .= "<li class=\"has-caption\">\n";
-					}
-			        else
-					{
-						$output .= "<li>\n";
-					}
-							if($attr['lightbox']) 
-							{
-								$output .= '<a href="'.$img_full[0].'" class="lightbox"';
-									if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
-								$output .= ' rel="lightbox-'.$rand.'">';
-							}
-							
-			        			$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-							if($attr['lightbox']) $output .= '</a>';
-							if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-			        $output .= "</li>\n";
-			    }
-			
-				$output .= "</ul>\n";
-			    $output .= "</div>\n";
-				
-				break;
-			}
-			
-		case "2cols":
-			{
-				$rand = rand();
-				
-				$output .= '<div class="row">';
-				$i = 0;
-				
-				foreach ($attachments as $id => $attachment) {
-					$img = wp_get_attachment_image_src($id, 'image-2-col');
-					$meta = get_post($id);
-					
-					$output .= '<div class="span4">';
+    $output = '';
+    if (!isset($attr['captions'])) {
+	$attr['captions'] =1;
+    }
+    switch($attr['type'])  {
+	    case "grid":
+		    {
+			$rand = rand();
 
-		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-						
-					$output .= '</div>';
-					
-					$i++;
-					
-					if($i % 2 == 0)
-					{
-						$output .= '</div><div class="row">';
-					}
-				}
-					
-				$output .= '</div>';
-				
-				break;
-			}
-		
-		case "4cols":
-			{
-				$rand = rand();
-
-				$output .= '<div class="row">';
-				$i = 0;
-
-				foreach ($attachments as $id => $attachment) {
-					$img = wp_get_attachment_image_src($id, 'image-4-col');
-					$meta = get_post($id);
-
-					$output .= '<div class="span2">';
-
-		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-
-					$output .= '</div>';
-
-					$i++;
-
-					if($i % 3 == 0)
-					{
-						$output .= '</div><div class="row">';
-					}
-				}
-
-				$output .= '</div>';
-
-				break;
-			}
-					
-		default:
-			{
-				$output .= "<div class=\"image-gallery-slider\">\n";
-			    $output .= "<ul class=\"slides\">\n";
+			$output .= "<div class=\"image-gallery-grid clearfix\">\n";
+			$output .= "<ul class=\"grid\">\n";
 
 			    foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-full');
-					$meta = get_post($id);
+				    $img = wp_get_attachment_image_src($id, 'gallery-grid');
+				    $meta = get_post($id);
+				    $img_full = wp_get_attachment_image_src($id, 'gallery-full');
 
+				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
+					    $output .= "<li class=\"has-caption\">\n";
+				    } else  {
+					    $output .= "<li>\n";
+				    }
+				    if($attr['lightbox'])   {
+					$output .= '<a href="'.$img_full[0].'" class="lightbox"';
+					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
+					$output .= ' rel="lightbox-'.$rand.'">';
+				    }
 
-			        $output .= "<li>\n";
-			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-						if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
-			        $output .= "</li>\n";
-			    }
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+				    if($attr['lightbox']) $output .= '</a>';
+				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
+					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+				    }
+			    $output .= "</li>\n";
+			}
 
 			    $output .= "</ul>\n";
-			    $output .= "</div>\n";
+			$output .= "</div>\n";
 
-				$output .= "<div class=\"image-gallery-carousel\">\n";
-			    $output .= "<ul class=\"slides\">\n";
+			    break;
+		    }
+
+	    case "2cols":
+		    {
+			    $rand = rand();
+
+			    $output .= '<div class="row">';
+			    $i = 0;
 
 			    foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-thumb');
+				    $img = wp_get_attachment_image_src($id, 'image-2-col');
+				    $meta = get_post($id);
 
-			        $output .= "<li>\n";
-			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-			        $output .= "</li>\n";
+				    $output .= '<div class="span4">';
+
+				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+
+				    $output .= '</div>';
+
+				    $i++;
+
+				    if($i % 2 == 0) {
+					    $output .= '</div><div class="row">';
+				    }
 			    }
 
-			    $output .= "</ul>\n";
-			    $output .= "</div>\n";
+			    $output .= '</div>';
+
+			    break;
+		    }
+
+	    case "4cols":
+		    {
+			    $rand = rand();
+
+			    $output .= '<div class="row">';
+			    $i = 0;
+
+			    foreach ($attachments as $id => $attachment) {
+				    $img = wp_get_attachment_image_src($id, 'image-4-col');
+				    $meta = get_post($id);
+
+				    $output .= '<div class="span2">';
+
+				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+
+				    $output .= '</div>';
+
+				    $i++;
+
+				    if($i % 3 == 0) {
+					    $output .= '</div><div class="row">';
+				    }
+			    }
+
+			    $output .= '</div>';
+
+			    break;
+		    }
+
+	    default:
+		    {
+			    $output .= "<div class=\"image-gallery-slider\">\n";
+			$output .= "<ul class=\"slides\">\n";
+
+			foreach ($attachments as $id => $attachment) {
+			    $img = wp_get_attachment_image_src($id, 'gallery-full');
+				    $meta = get_post($id);
+
+
+			    $output .= "<li>\n";
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+					    if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
+			    $output .= "</li>\n";
 			}
-	}
+
+			$output .= "</ul>\n";
+			$output .= "</div>\n";
+
+			    $output .= "<div class=\"image-gallery-carousel\">\n";
+			$output .= "<ul class=\"slides\">\n";
+
+			foreach ($attachments as $id => $attachment) {
+			    $img = wp_get_attachment_image_src($id, 'gallery-thumb');
+
+			    $output .= "<li>\n";
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+			    $output .= "</li>\n";
+			}
+
+			$output .= "</ul>\n";
+			$output .= "</div>\n";
+		    }
+    }
 
     
 
