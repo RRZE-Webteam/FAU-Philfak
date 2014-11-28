@@ -23,9 +23,9 @@ CREDITS & COPYRIGHT
 
 
 REQUIRED
-* Wordpress-Plugins FAU-Plugin
-* Wordpress-Plugins ACF
-* Wordpress-Plugins RRZE-Events
+* Wordpress-Plugin FAU-Plugin
+* Wordpress-Plugin ACF
+* Wordpress-Plugin RRZE-Events
 
 
   
