@@ -706,14 +706,15 @@ function fau_relativeimgurl_callback($matches) {
      return wp_make_link_relative(get_template_directory_uri());
  }
  
- 
- add_action( 'template_redirect', 'rw_relative_urls' );
+
+add_action('template_redirect', 'rw_relative_urls');
 function rw_relative_urls() {
     // Don't do anything if:
     // - In feed
     // - In sitemap by WordPress SEO plugin
-    if ( is_admin() || is_feed() || get_query_var( 'sitemap' ) )
+    if (is_admin() || is_feed() || get_query_var('sitemap')) {
         return;
+    }
     $filters = array(
         'post_link',
         'post_type_link',
@@ -728,16 +729,30 @@ function rw_relative_urls() {
         'day_link',
         'month_link',
         'year_link',
-	'script_loader_src',
-	'style_loader_src',
-
+        'script_loader_src',
+        'style_loader_src',
     );
-    foreach ( $filters as $filter ) {
-        add_filter( $filter, 'wp_make_link_relative' );
+    foreach ($filters as $filter) {
+        add_filter($filter, 'fau_make_link_relative');
     }
 }
 
-
+function fau_make_link_relative($url) {
+    $current_site_url = get_site_url();   
+	if (!empty($GLOBALS['_wp_switched_stack'])) {
+        $switched_stack = $GLOBALS['_wp_switched_stack'];
+        $blog_id = end($switched_stack);
+        if ($GLOBALS['blog_id'] != $blog_id) {
+            $current_site_url = get_site_url($blog_id);
+        }
+    }
+    $current_host = parse_url($current_site_url, PHP_URL_HOST);
+    $host = parse_url($url, PHP_URL_HOST);
+    if($current_host == $host) {
+        $url = wp_make_link_relative($url);
+    }
+    return $url; 
+}
 
 function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
