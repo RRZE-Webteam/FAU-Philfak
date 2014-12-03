@@ -52,19 +52,22 @@ function fau_do_metabox_menuquote( $object, $box ) {
 		//get_field('zitat_autor', $this->currentID);
 		
 	?>
-	<p>
-		<label for="fau_metabox_menuquote_quote">
-                    <?php _e( "Zitat", 'fau' ); ?>
-                </label>
-		<br />
-		<textarea name="fau_metabox_menuquote_quote" id="fau_metabox_menuquote_quote" class="large-text" rows="4" ><?php echo $quote; ?></textarea>			
+	<p class="description">
+	    <?php _e('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau'); ?>
 	</p>
 	<p>
+		<label for="fau_metabox_menuquote_quote">
+                    <?php _e( "Zitat", 'fau' ); ?>:
+                </label>
+	</p>
+	<textarea name="fau_metabox_menuquote_quote" id="fau_metabox_menuquote_quote" class="large-text" rows="4" ><?php echo $quote; ?></textarea>	
+	
+	<p>
 		<label for="fau_metabox_menuquote_autor">
-                    <?php _e( "Autor", 'fau' ); ?>
+                    <?php _e( "Autor", 'fau' ); ?>:
                 </label>
 		<br />
-		<input class="large-text" name="fau_metabox_menuquote_autor" id="fau_metabox_menuquote_autor"><?php echo $author; ?></textarea>			
+		<input class="large-text" name="fau_metabox_menuquote_autor" id="fau_metabox_menuquote_autor" value="<?php echo $author; ?>" />			
 	</p>
 	<?php 
 
@@ -86,23 +89,31 @@ function fau_save_metabox_menuquote( $post_id, $post ) {
 	$newval = ( isset( $_POST['fau_metabox_menuquote_quote'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_quote'] ) : 0 );
 	$oldval = get_post_meta( $post_id, 'zitat_text', true );
 	
-	if ( $newval && '' == $oldval )
-		add_post_meta( $post_id, 'zitat_text', $newval, true );
-	elseif ( $newval && $newval != $oldval )
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
 		update_post_meta( $post_id, 'zitat_text', $newval );
-	elseif ( '' == $newval && $oldval )
-		delete_post_meta( $post_id, 'zitat_text', $oldval );	
+	    } else {
+		add_post_meta( $post_id, 'zitat_text', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_text', $oldval );	
+	} 
+
 	
 	$newval = ( isset( $_POST['fau_metabox_menuquote_autor'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_autor'] ) : 0 );
 	$oldval = get_post_meta( $post_id, 'zitat_autor', true );
 	
-	if ( $newval && '' == $oldval )
-		add_post_meta( $post_id, 'zitat_autor', $newval, true );
-	elseif ( $newval && $newval != $oldval )
-		update_post_meta( $post_id, 'zitat_autor', $newval );
-	elseif ( '' == $newval && $oldval )
-		delete_post_meta( $post_id, 'zitat_autor', $oldval );	
 	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'zitat_autor', $newval );
+	    } else {
+		add_post_meta( $post_id, 'zitat_autor', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
+	} 
+
 	
 	// Remove old values from version 2
 	// $oldval = get_post_meta( $post_id, 'right_column', true );
