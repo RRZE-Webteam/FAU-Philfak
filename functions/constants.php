@@ -36,10 +36,11 @@ $defaultoptions = array(
     'default_logo_width'        => 240,
     
     'default_excerpt_morestring'    => '...',
-    'default_excerpt_length'	=> 30,
+    'default_excerpt_length'	    => 30,
+    'default_search_excerpt_length'	=> 300,
     'menu_fallbackquote_show_excerpt'		=> 1,
     'menu_fallbackquote_excerpt_length'	=> 240,
-    'custom_excerpt_allowtags'	=> 'br',
+    'custom_excerpt_allowtags'	    => 'br',
     
 ); 
 

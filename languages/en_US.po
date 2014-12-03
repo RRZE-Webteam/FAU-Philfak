@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: FAU v1.1.6\n"
+"Project-Id-Version: FAU v1.1.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-05 15:05+0100\n"
-"PO-Revision-Date: 2014-11-26 11:41:45+0000\n"
+"PO-Revision-Date: 2014-12-03 16:58:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: RRZE-Webteam\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "<span class=\"meta-nav\">&laquo;</span> Newer posts"
 #: page-templates/search_event.php:96
 #: page-templates/search_person.php:96
 #: page-templates/search_post.php:96
-#: search.php:63
+#: search.php:79
 #@ fau
 msgid "<span class=\"meta-nav\">&larr;</span> Zurück"
 msgstr "<span class=\"meta-nav\">&larr;</span> Previous"
@@ -46,7 +46,7 @@ msgstr "Login failed"
 #: page-templates/search_event.php:123
 #: page-templates/search_person.php:126
 #: page-templates/search_post.php:124
-#: search.php:82
+#: search.php:98
 #@ fau
 msgid "Bitte geben Sie einen Suchbegriff in das Suchfeld ein."
 msgstr "Please enter a search term in the search box."
@@ -58,22 +58,22 @@ msgstr "Please enter a search term in the search box."
 msgid "Es tut uns leid."
 msgstr "Sorry"
 
-#: functions.php:70
+#: functions.php:55
 #@ fau
 msgid "Fehler 1"
 msgstr "Error 1"
 
-#: functions.php:71
+#: functions.php:56
 #@ fau
 msgid "Fehler 2"
 msgstr "Error 2"
 
-#: functions.php:72
+#: functions.php:57
 #@ fau
 msgid "Fehler 3"
 msgstr "Error 3"
 
-#: functions.php:73
+#: functions.php:58
 #@ fau
 msgid "Fehler 4"
 msgstr "Error 4"
@@ -93,7 +93,7 @@ msgstr "Find"
 msgid "Folgende Inhalte könnten Ihnen auch helfen:"
 msgstr "You might find these pages useful:"
 
-#: functions.php:63
+#: functions.php:48
 #@ fau
 msgid "Haupt-Navigation"
 msgstr "Main navigation"
@@ -111,7 +111,7 @@ msgstr "Unfortunately your login was unsuccessful."
 #: page-templates/search_event.php:120
 #: page-templates/search_person.php:123
 #: page-templates/search_post.php:121
-#: search.php:78
+#: search.php:94
 #@ fau
 msgid "Leider konnte für Ihre Suche nichts gefunden werden."
 msgstr "Unfortunately, no results were found."
@@ -121,12 +121,12 @@ msgstr "Unfortunately, no results were found."
 msgid "Mehr Meldungen"
 msgstr "More news"
 
-#: functions.php:61
+#: functions.php:46
 #@ fau
 msgid "Meta-Navigation oben"
 msgstr "Meta navigation top"
 
-#: functions.php:62
+#: functions.php:47
 #@ fau
 msgid "Meta-Navigation unten"
 msgstr "Meta navigation bottom"
@@ -136,7 +136,7 @@ msgstr "Meta navigation bottom"
 msgid "Nachrichten"
 msgstr "News"
 
-#: functions.php:311
+#: functions.php:251
 #@ fau
 msgid "News Sidebar"
 msgstr "News Sidebar"
@@ -146,22 +146,22 @@ msgstr "News Sidebar"
 msgid "Personen"
 msgstr "People"
 
-#: functions.php:65
+#: functions.php:50
 #@ fau
 msgid "Quicklinks 1"
 msgstr "Quicklinks 1"
 
-#: functions.php:66
+#: functions.php:51
 #@ fau
 msgid "Quicklinks 2"
 msgstr "Quicklinks 2"
 
-#: functions.php:67
+#: functions.php:52
 #@ fau
 msgid "Quicklinks 3"
 msgstr "Quicklinks 3"
 
-#: functions.php:68
+#: functions.php:53
 #@ fau
 msgid "Quicklinks 4"
 msgstr "Quicklinks 4"
@@ -171,22 +171,22 @@ msgstr "Quicklinks 4"
 msgid "Seite nicht gefunden"
 msgstr "Page not found"
 
-#: functions.php:313
+#: functions.php:253
 #@ fau
 msgid "Sidebar auf der News-Kategorieseite"
 msgstr "Sidebar on the news category page"
 
-#: functions.php:323
+#: functions.php:263
 #@ fau
 msgid "Sidebar auf der Such-Ergebnisseite links"
 msgstr "Sidebar on left of search results page"
 
-#: functions.php:333
+#: functions.php:273
 #@ fau
 msgid "Sprachwechsler"
 msgstr "Language switcher"
 
-#: functions.php:335
+#: functions.php:275
 #@ fau
 msgid "Sprachwechsler im Header der Seite"
 msgstr "Language switcher in header"
@@ -197,7 +197,7 @@ msgstr "Language switcher in header"
 msgid "Suche"
 msgstr "Search"
 
-#: functions.php:321
+#: functions.php:261
 #@ fau
 msgid "Suche Sidebar"
 msgstr "Search Sidebar"
@@ -239,7 +239,7 @@ msgstr "You could try searching our website:"
 #: page-templates/search_event.php:97
 #: page-templates/search_person.php:97
 #: page-templates/search_post.php:97
-#: search.php:64
+#: search.php:80
 #@ fau
 msgid "Weiter <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Next <span class=\"meta-nav\">&rarr;</span>"
@@ -287,7 +287,7 @@ msgstr "Portal"
 msgid "Weitere Suchergebnisse"
 msgstr "More results"
 
-#: functions.php:201
+#: functions.php:186
 #, php-format
 #@ fau
 msgid "Seite %s"
@@ -298,7 +298,7 @@ msgstr "Page %s"
 msgid "Die von Ihnen aufgerufene Seite existiert nicht oder ihre Adresse hat sich durch die Erneuerung der FAU-Webseiten geändert."
 msgstr "We cannot find the page you were looking for. The address may have changed during the website relaunch."
 
-#: search.php:69
+#: search.php:85
 #@ fau
 msgid "Weitere Sucheergebnisse"
 msgstr "More results"
@@ -333,205 +333,200 @@ msgstr ""
 msgid "JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher."
 msgstr "JavaScript is either disabled or your browser does not support JavaScript. You will be able to browse all content but your browsing experience may be more complicated."
 
-#: functions/constants.php:139
-#: functions/constants.php:271
+#: functions/constants.php:151
+#: functions/constants.php:283
 #@ fau
 msgid "UnivIS"
 msgstr "UnivIS"
 
-#: functions/constants.php:144
+#: functions/constants.php:156
 #@ fau
 msgid "Lageplan"
 msgstr "Map"
 
-#: functions/constants.php:149
-#: functions/constants.php:279
+#: functions/constants.php:161
+#: functions/constants.php:291
 #@ fau
 msgid "Universitätsklinikum"
 msgstr "Universitätsklinikum"
 
-#: functions/constants.php:163
+#: functions/constants.php:175
 #@ fau
 msgid "Philosophische Fakultät und Fachbereich Theologie"
 msgstr "Faculty of Humanities, Social Sciences, and Theology"
 
-#: functions/constants.php:168
+#: functions/constants.php:180
 #@ fau
 msgid "Rechts- und Wirtschaftswissenschaftliche Fakultät"
 msgstr "Faculty of Business, Economics, and Law"
 
-#: functions/constants.php:173
+#: functions/constants.php:185
 #@ fau
 msgid "Medizinische Fakultät"
 msgstr "Faculty of Medicine"
 
-#: functions/constants.php:178
+#: functions/constants.php:190
 #@ fau
 msgid "Naturwissenschaftliche Fakultät"
 msgstr "Faculty of Sciences"
 
-#: functions/constants.php:183
+#: functions/constants.php:195
 #@ fau
 msgid "Technische Fakultät"
 msgstr "Faculty of Engineering"
 
-#: functions/constants.php:307
+#: functions/constants.php:352
 #@ fau
 msgid "Einträge"
 msgstr "Entries"
 
-#: functions/constants.php:316
+#: functions/constants.php:361
 #@ fau
 msgid "Startseite"
 msgstr "Start page"
 
-#: functions/constants.php:322
+#: functions/constants.php:367
 #@ fau
 msgid "Zahl der News"
 msgstr "Number of news articles"
 
-#: functions/constants.php:323
+#: functions/constants.php:368
 #@ fau
 msgid "Anzahl der News auf der Startseite unterhalb des Sliders"
 msgstr "Number of news articles on start page beneath slider"
 
-#: functions/constants.php:330
+#: functions/constants.php:375
 #@ fau
 msgid "Slider"
 msgstr "Slider"
 
-#: functions/constants.php:335
+#: functions/constants.php:380
 #@ fau
 msgid "Zahl der Slides"
 msgstr "Number of  slides"
 
-#: functions/constants.php:336
+#: functions/constants.php:381
 #@ fau
 msgid "Anzahl der Slides von verlinkten Top-Artikeln"
 msgstr "Number of slides from linked top articles"
 
-#: functions/constants.php:345
+#: functions/constants.php:390
 #@ fau
 msgid "Kategorie"
 msgstr ""
 
-#: functions/constants.php:346
+#: functions/constants.php:391
 #@ fau
 msgid "Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen."
 msgstr "Please choose the article category to display in the slider"
 
-#: functions/constants.php:358
+#: functions/constants.php:403
 #: page-templates/page-start.php:282
 #@ fau
 msgid "Social Media"
 msgstr "Social media"
 
-#: functions/constants.php:363
+#: functions/constants.php:408
 #@ fau
 msgid "Buttons anzeigen"
 msgstr "Show buttons"
 
-#: functions/constants.php:364
+#: functions/constants.php:409
 #@ fau
 msgid "Welche Social Media Buttons sollen auf der Startseite angezeigt werden."
 msgstr "Select which social media buttons should be displayed on the start page"
 
-#: functions/constants.php:370
+#: functions/constants.php:415
 #@ fau
 msgid "Social Media Portale"
 msgstr "Social media sites"
 
-#: functions/constants.php:377
+#: functions/constants.php:422
 #@ fau
 msgid "Allgemeine Einstellungen"
 msgstr "General settings"
 
-#: functions/constants.php:382
+#: functions/constants.php:427
 #@ fau
 msgid "Menü Portal-Button (Vortitel)"
 msgstr "Portal button menu (prefix)"
 
-#: functions/constants.php:383
+#: functions/constants.php:428
 #@ fau
 msgid "Begriff vor dem Titel des gewählten Menüs"
 msgstr "Term in front of selected menu title"
 
-#: functions/constants.php:388
+#: functions/constants.php:433
 #@ fau
 msgid "Menü Portal-Button (Nachtitel)"
 msgstr "Portal button menu (suffix)"
 
-#: functions/constants.php:389
+#: functions/constants.php:434
 #@ fau
 msgid "Begriff nach dem Titel des gewählten Menüs"
 msgstr "Term after the title of the selected menu"
 
-#: functions/constants.php:402
+#: functions/constants.php:456
 #@ fau
 msgid "Kontaktdaten"
 msgstr "Contact details"
 
-#: functions/constants.php:406
-#@ fau
-msgid "Öffentliche Adresse im Fußteil"
-msgstr "Public address in footer"
-
-#: functions/constants.php:410
+#: functions/constants.php:464
 #@ fau
 msgid "Adressat"
 msgstr "Recipient"
 
-#: functions/constants.php:411
+#: functions/constants.php:465
 #@ fau
 msgid "Erste Zeile der Adresse"
 msgstr "Address line 1"
 
-#: functions/constants.php:417
+#: functions/constants.php:471
 #@ fau
 msgid "Adressat (Zusatz)"
 msgstr "Recipient line 2"
 
-#: functions/constants.php:418
+#: functions/constants.php:472
 #@ fau
 msgid "Zweite Zeile der Adresse"
 msgstr "Address line 2"
 
-#: functions/constants.php:424
+#: functions/constants.php:478
 #@ fau
 msgid "Strasse"
 msgstr "Street"
 
-#: functions/constants.php:425
+#: functions/constants.php:479
 #@ fau
 msgid "Strasse inkl. Hausnummer"
 msgstr "Street address and number"
 
-#: functions/constants.php:431
+#: functions/constants.php:485
 #@ fau
 msgid "PLZ"
 msgstr "Postal code"
 
-#: functions/constants.php:432
+#: functions/constants.php:486
 #@ fau
 msgid "Postleitzahl"
 msgstr "Postal code"
 
-#: functions/constants.php:438
+#: functions/constants.php:492
 #@ fau
 msgid "Ort"
 msgstr "Town/City"
 
-#: functions/constants.php:439
+#: functions/constants.php:493
 #@ fau
 msgid "Ortsname"
 msgstr "Town/City"
 
-#: functions/constants.php:445
+#: functions/constants.php:499
 #@ fau
 msgid "Land"
 msgstr "Country"
 
-#: functions/constants.php:446
+#: functions/constants.php:500
 #@ fau
 msgid "Optionale Landesangabe"
 msgstr "State (optional)"
@@ -562,17 +557,6 @@ msgstr ""
 msgid "Remove file"
 msgstr ""
 
-#: functions/theme-options.php:218
-#: functions/theme-options.php:251
-#@ fau
-msgid "No image selected"
-msgstr ""
-
-#: functions/theme-options.php:226
-#@ fau
-msgid "Add image"
-msgstr ""
-
 #: functions/theme-options.php:227
 #@ fau
 msgid "Remove image"
@@ -593,181 +577,258 @@ msgstr "Option not set"
 msgid "Update"
 msgstr ""
 
-#: header.php:84
-#: header.php:86
+#: functions.php:756
+#: header.php:83
 #@ fau
 msgid "Navigation"
 msgstr ""
 
-#: functions/constants.php:394
-#@ fau
-msgid "Google site verification"
-msgstr ""
-
-#: functions/constants.php:395
+#: functions/constants.php:449
 #@ fau
 msgid "Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag."
 msgstr ""
 
-#: functions.php:259
+#: functions/constants.php:320
 #@ fau
 msgctxt "Offizielles FAU-Logo"
 msgid "FAU"
 msgstr "Official FAU logo"
 
-#: functions.php:264
+#: functions/constants.php:325
 #@ fau
 msgctxt "Offizielles Logo der Medizin"
 msgid "FAKMED"
 msgstr "Faculty of Medicine logo"
 
-#: functions.php:269
+#: functions/constants.php:330
 #@ fau
 msgctxt "Offizielles Logo der Naturwissenschaft"
 msgid "FAKNAT"
 msgstr "Faculty of Sciences Logo"
 
-#: functions.php:274
+#: functions/constants.php:335
 #@ fau
 msgctxt "Offizielles Logo der Philosophischen Fakultät"
 msgid "FAKPHIL"
 msgstr "Faculty of Humanities, Social Science, and Theology logo"
 
-#: functions.php:279
+#: functions/constants.php:340
 #@ fau
 msgctxt "Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät"
 msgid "FAKRECHTSWIWI"
-msgstr Faculty of Business, Economics, and Law logo""
+msgstr ""
 
-#: functions.php:284
+#: functions/constants.php:345
 #@ fau
 msgctxt "Offizielles Logo der Technischen Fakultät"
 msgid "FAKTECH"
 msgstr "Faculty of Engineering logo"
 
-#: functions/constants.php:161
+#: functions/constants.php:173
 #@ fau
 msgid "Fakultäten"
 msgstr "Faculties"
 
-#: functions/constants.php:189
+#: functions/constants.php:201
 #@ fau
 msgid "Einrichtungen"
 msgstr "Institutions and services"
 
-#: functions/constants.php:191
+#: functions/constants.php:203
 #@ fau
 msgid "Universitätsbibliothek"
 msgstr "University Library"
 
-#: functions/constants.php:195
+#: functions/constants.php:207
 #@ fau
 msgid "Rechenzentrum"
 msgstr "Regional Computer Centre"
 
-#: functions/constants.php:200
+#: functions/constants.php:212
 #@ fau
 msgid "Sprachenzentrum"
 msgstr "Language Centre"
 
-#: functions/constants.php:205
+#: functions/constants.php:217
 #@ fau
 msgid "Graduiertenschule"
 msgstr "FAU Graduate School"
 
-#: functions/constants.php:210
+#: functions/constants.php:222
 #@ fau
 msgid "FAU Busan Campus"
 msgstr "FAU Busan Campus"
 
-#: functions/constants.php:216
+#: functions/constants.php:228
 #@ fau
 msgid "Die FAU"
 msgstr "FAU"
 
-#: functions/constants.php:218
+#: functions/constants.php:230
 #@ fau
 msgid "Alle Studiengänge"
 msgstr "All degree programmes"
 
-#: functions/constants.php:222
+#: functions/constants.php:234
 #@ fau
 msgid "Studium A-Z"
 msgstr "Study A-Z"
 
-#: functions/constants.php:226
+#: functions/constants.php:238
 #@ fau
 msgid "Zahlen, Daten, Fakten"
 msgstr "Facts and figures"
 
-#: functions/constants.php:230
+#: functions/constants.php:242
 #@ fau
 msgid "Wissenschaftsschwerpunkte"
 msgstr "Major Research Areas"
 
-#: functions/constants.php:234
+#: functions/constants.php:246
 #@ fau
 msgid "Stiften und Fördern"
 msgstr "Foundations and sponsorship"
 
-#: functions/constants.php:239
+#: functions/constants.php:251
 #@ fau
 msgid "Informationen für"
 msgstr "Information for"
 
-#: functions/constants.php:241
+#: functions/constants.php:253
 #@ fau
 msgid "Studieninteressierte"
 msgstr "Prospective students"
 
-#: functions/constants.php:245
+#: functions/constants.php:257
 #@ fau
 msgid "Studierende"
 msgstr "Students"
 
-#: functions/constants.php:249
+#: functions/constants.php:261
 #@ fau
 msgid "Alumni"
 msgstr "Alumni"
 
-#: functions/constants.php:253
+#: functions/constants.php:265
 #@ fau
 msgid "Schülerinnen und Schüler"
 msgstr "School leavers"
 
-#: functions/constants.php:257
+#: functions/constants.php:269
 #@ fau
 msgid "Unternehmen"
 msgstr "Companies"
 
-#: functions/constants.php:261
-#: functions/constants.php:289
+#: functions/constants.php:273
+#: functions/constants.php:301
 #@ fau
 msgid "Presse"
 msgstr "Press"
 
-#: functions/constants.php:265
+#: functions/constants.php:277
 #@ fau
 msgid "Beschäftigte"
 msgstr "Staff"
 
-#: functions/constants.php:275
+#: functions/constants.php:287
 #@ fau
 msgid "Anfahrt und Lageplan"
 msgstr "Map and directions"
 
-#: functions/constants.php:285
+#: functions/constants.php:297
 #@ fau
 msgid "Stellenangebote"
 msgstr "Jobs"
 
-#: functions/constants.php:293
+#: functions/constants.php:305
 #@ fau
 msgid "Intranet"
 msgstr "Intranet"
 
-#: functions/constants.php:297
+#: functions/constants.php:309
 #@ fau
 msgid "Impressum"
 msgstr "Legal notice"
+
+#: functions/constants.php:440
+#@ fau
+msgid "Zitatersatz"
+msgstr ""
+
+#: functions/constants.php:441
+#@ fau
+msgid "Wenn bei einem Menupunkt auf oberster Ebene kein Zitat vorgegeben ist, zeige stattdessen einen Auszug der Seite."
+msgstr ""
+
+#: functions/constants.php:448
+#@ fau
+msgid "Google Site Verification"
+msgstr ""
+
+#: functions/constants.php:460
+#@ fau
+msgid "Öffemtliche Adresse im Fußteil"
+msgstr ""
+
+#: functions/custom-fields.php:28
+#@ fau
+msgid "Zitat für Hauptmenü"
+msgstr ""
+
+#: functions/custom-fields.php:56
+#@ fau
+msgid "Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte."
+msgstr ""
+
+#: functions/custom-fields.php:60
+#@ fau
+msgid "Zitat"
+msgstr ""
+
+#: functions/custom-fields.php:67
+#@ fau
+msgid "Autor"
+msgstr ""
+
+#: functions/theme-options.php:218
+#: functions/theme-options.php:251
+#@ fau
+msgid "No Image selected"
+msgstr ""
+
+#: functions/theme-options.php:226
+#@ fau
+msgid "Add Image"
+msgstr ""
+
+#: functions.php:783
+#@ fau
+msgid "Kein Inhalt"
+msgstr ""
+
+#: search.php:37
+#@ fau
+msgid "Meldung"
+msgstr "News"
+
+#: search.php:38
+#@ fau
+msgid "vom"
+msgstr "from"
+
+#: search.php:41
+#@ fau
+msgid "Veranstaltungshinweis"
+msgstr "Event"
+
+#: single-event.php:50
+#@ fau
+msgid "Ganztägig"
+msgstr "Full day"
+
+#: single-event.php:54
+#, php-format
+#@ fau
+msgid "%s Uhr bis %s Uhr"
+msgstr "%s till %s "
 
