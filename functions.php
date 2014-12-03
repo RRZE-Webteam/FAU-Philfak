@@ -763,11 +763,11 @@ function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextli
   global $options;
     
   
-  //$excerpt = get_post_field('post_excerpt',$id);
+  $excerpt = get_post_field('post_excerpt',$id);
  
-  //if (empty($excerpt)) {
+  if (empty($excerpt)) {
       $excerpt = get_post_field('post_content',$id);
-//  }
+  }
 
   if ($removeyoutube==1) {
     $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
