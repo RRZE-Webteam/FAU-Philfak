@@ -66,22 +66,31 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$output .= '</div>';
 				
 		$output .= '<div class="span4 hide-mobile">';
-		    if ( function_exists('get_field') ) {
-			$quote = get_field('zitat_text', $this->currentID);
-			$author = get_field('zitat_autor', $this->currentID);
-			
-			if($quote) {
-				$output .= '<blockquote>';
-					$output .= '<p class="quote">'.$quote.'</p>';
-					if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
-				$output .= '</blockquote>';
+		 
+		$quote  = get_post_meta( $this->currentID, 'zitat_text', true );
+		// $quote = get_field('zitat_text', $this->currentID);
+		
+		$author =  get_post_meta( $this->currentID, 'zitat_autor', true );
+		//get_field('zitat_autor', $this->currentID);
+
+		if($quote) {
+			$output .= '<blockquote>';
+				$output .= '<p class="quote">'.$quote.'</p>';
+				if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
+			$output .= '</blockquote>';
+		} else {
+		    if ($options['menu_fallbackquote_show_excerpt']) {
+			$excerpt = fau_custom_excerpt($this->currentID,$options['menu_fallbackquote_excerpt_length'],'nav-excerpt');
+			if (isset($excerpt)) {
+			    $output .= $excerpt;
 			}
 		    }
+		}
 
 		$output .= '</div>';
 		
 		$output .= '<div class="span4 hide-mobile">';
-			$output .= get_the_post_thumbnail($this->currentID, array(370,185));
+		$output .= get_the_post_thumbnail($this->currentID, array(370,185));
 		$output .= '</div>';	
 		
 		$output .= '</div></div></div>';

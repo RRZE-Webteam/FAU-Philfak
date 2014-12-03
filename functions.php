@@ -12,23 +12,8 @@ require_once ( get_template_directory() . '/functions/theme-options.php' );
 require_once(get_template_directory() .'/functions/bootstrap.php');
 require_once(get_template_directory() .'/functions/shortcodes.php');
 require_once(get_template_directory() .'/functions/menu.php');
+require_once( get_template_directory() . '/functions/custom-fields.php' );
 
-
-/**
- * Sets up theme defaults and registers the various WordPress features that
- * FAU supports.
- *
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_editor_style() To add Visual Editor stylesheets.
- * @uses add_theme_support() To add support for automatic feed links, post
- * formats, and post thumbnails.
- * @uses register_nav_menu() To add support for a navigation menu.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since FAU 1.0
- *
- * @return void
- */
 
 
 function fau_setup() {
@@ -210,7 +195,8 @@ add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
  */
 
 function fau_excerpt_more( $more ) {
-	return '...';
+    global $options;
+    return $options['default_excerpt_morestring'];
 }
 add_filter('excerpt_more', 'fau_excerpt_more');
 
@@ -218,85 +204,39 @@ add_filter('excerpt_more', 'fau_excerpt_more');
  * Resets the Excerpt More
  */
 function fau_excerpt_length( $length ) {
-	return 30;
+    global $options;
+    return $options['default_excerpt_length'];
 }
 add_filter( 'excerpt_length', 'fau_excerpt_length', 999 );
 
 
 
-/**
- * Sets up the WordPress core custom header arguments and settings.
- *
- * @uses add_theme_support() to register support for 3.4 and up.
- * @uses twentythirteen_header_style() to style front-end.
- * @uses register_default_headers() to set up the bundled header images.
- *
- * @since FAU 1.0
- */
+/* Header Setup */
 function fau_custom_header_setup() {
+    global $default_header_logos;
+    global $options;
 	$args = array(
-		// Text color and image (empty to use none).
-		'default-image'          => '%s/img/logo-fau.png',
-
-		// Set height and width, with a maximum value for the width.
-		'height'                 => 65,
-		'width'                  => 240,
-
-		// Callbacks for styling the header and the admin preview.
-	'admin-head-callback'    => 'fau_admin_header_style',
+	    'default-image'          => $options['default_logo_src'],
+	    'height'                 => $options['default_logo_height'],
+	    'width'                  => $options['default_logo_width'],
+	    'admin-head-callback'    => 'fau_admin_header_style',
 	);
-
 	add_theme_support( 'custom-header', $args );
 
-	/*
-	 * Default custom headers packaged with the theme.
-	 * %s is a placeholder for the theme template directory URI.
-	 */
-	register_default_headers( array(
-		'fau' => array(
-			'url'           => '%s/img/logo-fau.png',
-			'thumbnail_url' => '%s/img/logo-fau.png',
-			'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
-		),
-		'fak-med' => array(
-			'url'           => '%s/img/logo-fak-med.png',
-			'thumbnail_url' => '%s/img/logo-fak-med.png',
-			'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
-		),
-		'fak-nat' => array(
-			'url'           => '%s/img/logo-fak-nat.png',
-			'thumbnail_url' => '%s/img/logo-fak-nat.png',
-			'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
-		),
-		'fak-phil' => array(
-			'url'           => '%s/img/logo-fak-phil.png',
-			'thumbnail_url' => '%s/img/logo-fak-phil.png',
-			'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
-		),
-		'fak-rechtswiwi' => array(
-			'url'           => '%s/img/logo-fak-rechtswiwi.png',
-			'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
-			'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
-		),
-		'fak-tech' => array(
-			'url'           => '%s/img/logo-fak-tech.png',
-			'thumbnail_url' => '%s/img/logo-fak-tech.png',
-			'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
-		),
-	) );
+	register_default_headers( $default_header_logos );
 }
 add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 
 
 
-function fau_admin_style() {
+function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
-add_action( 'admin_enqueue_scripts', 'fau_admin_style' );
+add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
 
 /**
  * Registers our main widget area and the front page widget areas.
@@ -506,7 +446,7 @@ function fau_post_gallery($output, $attr) {
         'exclude' => '',
 		'type' => NULL,
 		'lightbox' => FALSE,
-		'captions' => FALSE
+		'captions' => 1
     ), $attr));
 
     $id = intval($id);
@@ -524,146 +464,143 @@ function fau_post_gallery($output, $attr) {
 
     if (empty($attachments)) return '';
 
-	$output = '';
 	
-	switch($attr['type'])
-	{
-		case "grid":
-			{
-				$rand = rand();
-				
-				$output .= "<div class=\"image-gallery-grid clearfix\">\n";
-			    $output .= "<ul class=\"grid\">\n";
-			
-				foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-grid');
-					$meta = get_post($id);
-					
-					$img_full = wp_get_attachment_image_src($id, 'gallery-full');
-					
-					if($attr['captions'])
-					{
-						$output .= "<li class=\"has-caption\">\n";
-					}
-			        else
-					{
-						$output .= "<li>\n";
-					}
-							if($attr['lightbox']) 
-							{
-								$output .= '<a href="'.$img_full[0].'" class="lightbox"';
-									if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
-								$output .= ' rel="lightbox-'.$rand.'">';
-							}
-							
-			        			$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-							if($attr['lightbox']) $output .= '</a>';
-							if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-			        $output .= "</li>\n";
-			    }
-			
-				$output .= "</ul>\n";
-			    $output .= "</div>\n";
-				
-				break;
-			}
-			
-		case "2cols":
-			{
-				$rand = rand();
-				
-				$output .= '<div class="row">';
-				$i = 0;
-				
-				foreach ($attachments as $id => $attachment) {
-					$img = wp_get_attachment_image_src($id, 'image-2-col');
-					$meta = get_post($id);
-					
-					$output .= '<div class="span4">';
+    $output = '';
+    if (!isset($attr['captions'])) {
+	$attr['captions'] =1;
+    }
+    switch($attr['type'])  {
+	    case "grid":
+		    {
+			$rand = rand();
 
-		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-						
-					$output .= '</div>';
-					
-					$i++;
-					
-					if($i % 2 == 0)
-					{
-						$output .= '</div><div class="row">';
-					}
-				}
-					
-				$output .= '</div>';
-				
-				break;
-			}
-		
-		case "4cols":
-			{
-				$rand = rand();
-
-				$output .= '<div class="row">';
-				$i = 0;
-
-				foreach ($attachments as $id => $attachment) {
-					$img = wp_get_attachment_image_src($id, 'image-4-col');
-					$meta = get_post($id);
-
-					$output .= '<div class="span2">';
-
-		        		$output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-						if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-
-					$output .= '</div>';
-
-					$i++;
-
-					if($i % 3 == 0)
-					{
-						$output .= '</div><div class="row">';
-					}
-				}
-
-				$output .= '</div>';
-
-				break;
-			}
-					
-		default:
-			{
-				$output .= "<div class=\"image-gallery-slider\">\n";
-			    $output .= "<ul class=\"slides\">\n";
+			$output .= "<div class=\"image-gallery-grid clearfix\">\n";
+			$output .= "<ul class=\"grid\">\n";
 
 			    foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-full');
-					$meta = get_post($id);
+				    $img = wp_get_attachment_image_src($id, 'gallery-grid');
+				    $meta = get_post($id);
+				    $img_full = wp_get_attachment_image_src($id, 'gallery-full');
 
+				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
+					    $output .= "<li class=\"has-caption\">\n";
+				    } else  {
+					    $output .= "<li>\n";
+				    }
+				    if($attr['lightbox'])   {
+					$output .= '<a href="'.$img_full[0].'" class="lightbox"';
+					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
+					$output .= ' rel="lightbox-'.$rand.'">';
+				    }
 
-			        $output .= "<li>\n";
-			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-						if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
-			        $output .= "</li>\n";
-			    }
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+				    if($attr['lightbox']) $output .= '</a>';
+				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
+					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+				    }
+			    $output .= "</li>\n";
+			}
 
 			    $output .= "</ul>\n";
-			    $output .= "</div>\n";
+			$output .= "</div>\n";
 
-				$output .= "<div class=\"image-gallery-carousel\">\n";
-			    $output .= "<ul class=\"slides\">\n";
+			    break;
+		    }
+
+	    case "2cols":
+		    {
+			    $rand = rand();
+
+			    $output .= '<div class="row">';
+			    $i = 0;
 
 			    foreach ($attachments as $id => $attachment) {
-			        $img = wp_get_attachment_image_src($id, 'gallery-thumb');
+				    $img = wp_get_attachment_image_src($id, 'image-2-col');
+				    $meta = get_post($id);
 
-			        $output .= "<li>\n";
-			        	$output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-			        $output .= "</li>\n";
+				    $output .= '<div class="span4">';
+
+				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+
+				    $output .= '</div>';
+
+				    $i++;
+
+				    if($i % 2 == 0) {
+					    $output .= '</div><div class="row">';
+				    }
 			    }
 
-			    $output .= "</ul>\n";
-			    $output .= "</div>\n";
+			    $output .= '</div>';
+
+			    break;
+		    }
+
+	    case "4cols":
+		    {
+			    $rand = rand();
+
+			    $output .= '<div class="row">';
+			    $i = 0;
+
+			    foreach ($attachments as $id => $attachment) {
+				    $img = wp_get_attachment_image_src($id, 'image-4-col');
+				    $meta = get_post($id);
+
+				    $output .= '<div class="span2">';
+
+				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
+					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+
+				    $output .= '</div>';
+
+				    $i++;
+
+				    if($i % 3 == 0) {
+					    $output .= '</div><div class="row">';
+				    }
+			    }
+
+			    $output .= '</div>';
+
+			    break;
+		    }
+
+	    default:
+		    {
+			    $output .= "<div class=\"image-gallery-slider\">\n";
+			$output .= "<ul class=\"slides\">\n";
+
+			foreach ($attachments as $id => $attachment) {
+			    $img = wp_get_attachment_image_src($id, 'gallery-full');
+				    $meta = get_post($id);
+
+
+			    $output .= "<li>\n";
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+					    if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
+			    $output .= "</li>\n";
 			}
-	}
+
+			$output .= "</ul>\n";
+			$output .= "</div>\n";
+
+			    $output .= "<div class=\"image-gallery-carousel\">\n";
+			$output .= "<ul class=\"slides\">\n";
+
+			foreach ($attachments as $id => $attachment) {
+			    $img = wp_get_attachment_image_src($id, 'gallery-thumb');
+
+			    $output .= "<li>\n";
+				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
+			    $output .= "</li>\n";
+			}
+
+			$output .= "</ul>\n";
+			$output .= "</div>\n";
+		    }
+    }
 
     
 
@@ -709,14 +646,15 @@ function fau_relativeimgurl_callback($matches) {
      return wp_make_link_relative(get_template_directory_uri());
  }
  
- 
- add_action( 'template_redirect', 'rw_relative_urls' );
+
+add_action('template_redirect', 'rw_relative_urls');
 function rw_relative_urls() {
     // Don't do anything if:
     // - In feed
     // - In sitemap by WordPress SEO plugin
-    if ( is_admin() || is_feed() || get_query_var( 'sitemap' ) )
+    if (is_admin() || is_feed() || get_query_var('sitemap')) {
         return;
+    }
     $filters = array(
         'post_link',
         'post_type_link',
@@ -731,16 +669,30 @@ function rw_relative_urls() {
         'day_link',
         'month_link',
         'year_link',
-	'script_loader_src',
-	'style_loader_src',
-
+        'script_loader_src',
+        'style_loader_src',
     );
-    foreach ( $filters as $filter ) {
-        add_filter( $filter, 'wp_make_link_relative' );
+    foreach ($filters as $filter) {
+        add_filter($filter, 'fau_make_link_relative');
     }
 }
 
-
+function fau_make_link_relative($url) {
+    $current_site_url = get_site_url();   
+	if (!empty($GLOBALS['_wp_switched_stack'])) {
+        $switched_stack = $GLOBALS['_wp_switched_stack'];
+        $blog_id = end($switched_stack);
+        if ($GLOBALS['blog_id'] != $blog_id) {
+            $current_site_url = get_site_url($blog_id);
+        }
+    }
+    $current_host = parse_url($current_site_url, PHP_URL_HOST);
+    $host = parse_url($url, PHP_URL_HOST);
+    if($current_host == $host) {
+        $url = wp_make_link_relative($url);
+    }
+    return $url; 
+}
 
 function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
@@ -806,3 +758,57 @@ function fau_main_menu_fallback() {
     return $output;
 }
 
+
+
+function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextline = 0, $removeyoutube = 1, $alwayscontinuelink = 0){
+  global $options;
+    
+  
+  $excerpt = get_post_field('post_excerpt',$id);
+ 
+  if (empty($excerpt)) {
+      $excerpt = get_post_field('post_content',$id);
+  }
+
+  if ($removeyoutube==1) {
+    $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
+  }
+  
+  $excerpt = strip_shortcodes($excerpt);
+  $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
+  
+
+  
+  if (mb_strlen($excerpt)<5) {
+      $excerpt = '<!-- '.__( 'Kein Inhalt', 'fau' ).' -->';
+  }
+
+    
+  $needcontinue =0;
+  if (mb_strlen($excerpt) >  $length) {
+    $str = mb_substr($excerpt, 0, $length);
+    $str .= "...";
+    $needcontinue = 1;
+  }  else {
+      $str = $excerpt;
+  }
+
+  $the_str = '<p';
+  if (isset($class)) {
+      $the_str .= ' class="'.$class.'"';
+  }
+  $the_str .= '>';
+  $the_str .= $str;
+  
+  
+  if ($alwayscontinuelink < 2) {
+      if (($needcontinue==1) || ($alwayscontinuelink==1)) {
+	  if ($continuenextline==1) {
+	      $the_str .= '<br>';
+	  }
+	  $the_str .= $options['default_excerpt_morestring'];
+      }
+  }
+  $the_str .= '</p>';
+  return $the_str;
+}

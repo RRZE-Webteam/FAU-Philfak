@@ -6163,6 +6163,9 @@ body.admin-bar #nav .nav-flyout { top: 171px;}
 #nav blockquote p { color: #fff; font-size: 18px; line-height: 24px; font-style: italic; padding: 0; margin: 0;}
 #nav blockquote p.author { font-style: normal; font-size: 15px; font-weight: bold; padding: 10px 0;}
 #nav blockquote p.quote:before	{ content:''; width: 42px; height: 37px; background: url('../img/quote.png') no-repeat center center; display: block; float: left; margin-right: 20px;}
+#nav p.nav-excerpt {color: #eee; font-size: 15px; line-height: 24px; font-style: normal; padding: 0; margin: 0; }
+
+
 
 .breadcrumbs { color: #fff; padding: 10px 0;}
 .breadcrumbs span { padding: 0 5px;}

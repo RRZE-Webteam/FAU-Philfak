@@ -30,8 +30,24 @@ get_header(); ?>
 							<?php while ( have_posts() ) : the_post(); ?>
 								<div class="search-result">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-									<div class="news-meta-date"><?php echo get_the_date(); ?></div>
-									<?php the_excerpt(); ?>
+
+									<?php 
+									$type = get_post_type();
+									if ( $type == 'post') {
+									    $typestr = __('Meldung', 'fau');
+									    $typestr .= ' '. __('vom', 'fau'). ' ';
+									    $typestr .= get_the_date();
+									} elseif ($type == 'event') {
+									     $typestr = __('Veranstaltungshinweis', 'fau');
+									} else  {
+									     $typestr = '';
+									}
+									     
+									if (!empty($typestr)) { ?>
+									     <div class="news-meta-date"><?php echo $typestr; ?></div> 
+									<?php } ?>
+									
+									<?php echo fau_custom_excerpt(get_the_ID(),$options['default_search_excerpt_length']); ?>
 								</div>
 							<?php endwhile; ?>
 							<?php
