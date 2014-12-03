@@ -37,6 +37,9 @@ $defaultoptions = array(
     
     'default_excerpt_morestring'    => '...',
     'default_excerpt_length'	=> 30,
+    'menu_fallbackquote_show_excerpt'		=> 1,
+    'menu_fallbackquote_excerpt_length'	=> 240,
+    'custom_excerpt_allowtags'	=> 'br',
     
 ); 
 

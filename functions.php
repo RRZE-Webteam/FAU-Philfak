@@ -757,3 +757,57 @@ function fau_main_menu_fallback() {
     return $output;
 }
 
+
+
+function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextline = 0, $removeyoutube = 1, $alwayscontinuelink = 0){
+  global $options;
+    
+  
+  //$excerpt = get_post_field('post_excerpt',$id);
+ 
+  //if (empty($excerpt)) {
+      $excerpt = get_post_field('post_content',$id);
+//  }
+
+  if ($removeyoutube==1) {
+    $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
+  }
+  
+  $excerpt = strip_shortcodes($excerpt);
+  $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
+  
+
+  
+  if (mb_strlen($excerpt)<5) {
+      $excerpt = '<!-- '.__( 'Kein Inhalt', 'fau' ).' -->';
+  }
+
+    
+  $needcontinue =0;
+  if (mb_strlen($excerpt) >  $length) {
+    $str = mb_substr($excerpt, 0, $length);
+    $str .= "...";
+    $needcontinue = 1;
+  }  else {
+      $str = $excerpt;
+  }
+
+  $the_str = '<p';
+  if (isset($class)) {
+      $the_str .= ' class="'.$class.'"';
+  }
+  $the_str .= '>';
+  $the_str .= $str;
+  
+  
+  if ($alwayscontinuelink < 2) {
+      if (($needcontinue==1) || ($alwayscontinuelink==1)) {
+	  if ($continuenextline==1) {
+	      $the_str .= '<br>';
+	  }
+	  $the_str .= $options['default_excerpt_morestring'];
+      }
+  }
+  $the_str .= '</p>';
+  return $the_str;
+}
