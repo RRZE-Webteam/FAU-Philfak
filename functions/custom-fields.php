@@ -38,6 +38,8 @@ function fau_do_metabox_menuquote( $object, $box ) {
 	
 	if ( 'page' == $post_type ) {
 	    if ( !current_user_can( 'edit_page', $object->ID) )
+		    // Oder sollten wir nach publish_pages  fragen? 
+		    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
 		return;
 	} else {
 	    return;
