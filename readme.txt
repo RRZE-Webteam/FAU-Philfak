@@ -22,13 +22,20 @@ CREDITS & COPYRIGHT
    GNU General Public License (GPL) Version 2 
 
 
-REQUIRED
-* Wordpress-Plugin FAU-Plugin
-* Wordpress-Plugin ACF
-* Wordpress-Plugin RRZE-Events
+REQUIRED PLUGINS
+
+* Wordpress-Plugin FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
+* Wordpress-Plugin ACF (WPPD)
+* Wordpress-Plugin RRZE-Events 
 
 
+OPTIONAL PLUGINS 
+
+* CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
+* RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
+* RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
   
+
 FEEDBACK & BUGS
 
 Please use github for submitting new features or bugs:
