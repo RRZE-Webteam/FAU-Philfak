@@ -67,7 +67,7 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 				
 		$output .= '<div class="span4 hide-mobile">';
 		 
-		$quote  = get_post_meta( $this->currentID, 'zitat_texts', true );
+		$quote  = get_post_meta( $this->currentID, 'zitat_text', true );
 		// $quote = get_field('zitat_text', $this->currentID);
 		
 		$author =  get_post_meta( $this->currentID, 'zitat_autor', true );
