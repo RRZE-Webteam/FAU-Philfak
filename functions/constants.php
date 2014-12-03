@@ -30,6 +30,13 @@ $defaultoptions = array(
     'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
     'google-site-verification'	=> '',
     'default_mainmenu_number'	=> 4,
+   
+    'default_logo_src'		=> get_template_directory_uri().'/img/logo-fau.png',
+    'default_logo_height'	=> 65,
+    'default_logo_width'        => 240,
+    
+    'default_excerpt_morestring'    => '...',
+    'default_excerpt_length'	=> 30,
     
 ); 
 
@@ -301,6 +308,39 @@ $default_link_liste = array(
 	),
 );
 
+
+$default_header_logos = array(
+    'fau' => array(
+	    'url'           => '%s/img/logo-fau.png',
+	    'thumbnail_url' => '%s/img/logo-fau.png',
+	    'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
+    ),
+    'fak-med' => array(
+	    'url'           => '%s/img/logo-fak-med.png',
+	    'thumbnail_url' => '%s/img/logo-fak-med.png',
+	    'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
+    ),
+    'fak-nat' => array(
+	    'url'           => '%s/img/logo-fak-nat.png',
+	    'thumbnail_url' => '%s/img/logo-fak-nat.png',
+	    'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
+    ),
+    'fak-phil' => array(
+	    'url'           => '%s/img/logo-fak-phil.png',
+	    'thumbnail_url' => '%s/img/logo-fak-phil.png',
+	    'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
+    ),
+    'fak-rechtswiwi' => array(
+	    'url'           => '%s/img/logo-fak-rechtswiwi.png',
+	    'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
+	    'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
+    ),
+    'fak-tech' => array(
+	    'url'           => '%s/img/logo-fak-tech.png',
+	    'thumbnail_url' => '%s/img/logo-fak-tech.png',
+	    'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
+    )
+);
 
  $categories=get_categories(array('orderby' => 'name','order' => 'ASC'));
  foreach($categories as $category) {

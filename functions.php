@@ -14,22 +14,6 @@ require_once(get_template_directory() .'/functions/shortcodes.php');
 require_once(get_template_directory() .'/functions/menu.php');
 
 
-/**
- * Sets up theme defaults and registers the various WordPress features that
- * FAU supports.
- *
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_editor_style() To add Visual Editor stylesheets.
- * @uses add_theme_support() To add support for automatic feed links, post
- * formats, and post thumbnails.
- * @uses register_nav_menu() To add support for a navigation menu.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since FAU 1.0
- *
- * @return void
- */
-
 
 function fau_setup() {
 	global $options;
@@ -210,7 +194,8 @@ add_filter( 'wp_title', 'fau_wp_title', 10, 2 );
  */
 
 function fau_excerpt_more( $more ) {
-	return '...';
+    global $options;
+    return $options['default_excerpt_morestring'];
 }
 add_filter('excerpt_more', 'fau_excerpt_more');
 
@@ -218,85 +203,39 @@ add_filter('excerpt_more', 'fau_excerpt_more');
  * Resets the Excerpt More
  */
 function fau_excerpt_length( $length ) {
-	return 30;
+    global $options;
+    return $options['default_excerpt_length'];
 }
 add_filter( 'excerpt_length', 'fau_excerpt_length', 999 );
 
 
 
-/**
- * Sets up the WordPress core custom header arguments and settings.
- *
- * @uses add_theme_support() to register support for 3.4 and up.
- * @uses twentythirteen_header_style() to style front-end.
- * @uses register_default_headers() to set up the bundled header images.
- *
- * @since FAU 1.0
- */
+/* Header Setup */
 function fau_custom_header_setup() {
+    global $default_header_logos;
+    global $options;
 	$args = array(
-		// Text color and image (empty to use none).
-		'default-image'          => '%s/img/logo-fau.png',
-
-		// Set height and width, with a maximum value for the width.
-		'height'                 => 65,
-		'width'                  => 240,
-
-		// Callbacks for styling the header and the admin preview.
-	'admin-head-callback'    => 'fau_admin_header_style',
+	    'default-image'          => $options['default_logo_src'],
+	    'height'                 => $options['default_logo_height'],
+	    'width'                  => $options['default_logo_width'],
+	    'admin-head-callback'    => 'fau_admin_header_style',
 	);
-
 	add_theme_support( 'custom-header', $args );
 
-	/*
-	 * Default custom headers packaged with the theme.
-	 * %s is a placeholder for the theme template directory URI.
-	 */
-	register_default_headers( array(
-		'fau' => array(
-			'url'           => '%s/img/logo-fau.png',
-			'thumbnail_url' => '%s/img/logo-fau.png',
-			'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
-		),
-		'fak-med' => array(
-			'url'           => '%s/img/logo-fak-med.png',
-			'thumbnail_url' => '%s/img/logo-fak-med.png',
-			'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
-		),
-		'fak-nat' => array(
-			'url'           => '%s/img/logo-fak-nat.png',
-			'thumbnail_url' => '%s/img/logo-fak-nat.png',
-			'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
-		),
-		'fak-phil' => array(
-			'url'           => '%s/img/logo-fak-phil.png',
-			'thumbnail_url' => '%s/img/logo-fak-phil.png',
-			'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
-		),
-		'fak-rechtswiwi' => array(
-			'url'           => '%s/img/logo-fak-rechtswiwi.png',
-			'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
-			'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
-		),
-		'fak-tech' => array(
-			'url'           => '%s/img/logo-fak-tech.png',
-			'thumbnail_url' => '%s/img/logo-fak-tech.png',
-			'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
-		),
-	) );
+	register_default_headers( $default_header_logos );
 }
 add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 
 
 
-function fau_admin_style() {
+function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
-add_action( 'admin_enqueue_scripts', 'fau_admin_style' );
+add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
 
 /**
  * Registers our main widget area and the front page widget areas.
