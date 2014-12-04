@@ -139,7 +139,8 @@ function fau_addmetatags() {
     
     // $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">'."\n";    
 
-    
+    $output .= fau_get_rel_alternate();
+            
     if ((isset( $options['google-site-verification'] )) && ( strlen(trim($options['google-site-verification']))>1 )) {
         $output .= '<meta name="google-site-verification" content="'.$options['google-site-verification'].'">'."\n";
     }
@@ -267,8 +268,8 @@ function fau_widgets_init() {
 		'after_title' => '</h2>',
 	) );
 	
-	if (function_exists('workflow_dropdown_pages')) {
-	    // Widget nur wenn CMS-Workflow vorhanden und aktiviert ist
+    // Wenn CMS-Workflow vorhanden und aktiviert ist
+	if (is_workflow_translation_active()) {
 	    register_sidebar( array(
 		    'name' => __( 'Sprachwechsler', 'fau' ),
 		    'id' => 'language-switcher',
@@ -811,4 +812,23 @@ function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextli
   }
   $the_str .= '</p>';
   return $the_str;
+}
+
+/**
+ * CMS-Workflow Plugin
+ */
+function is_workflow_translation_active() {
+    global $cms_workflow;
+    if (isset($cms_workflow->translation) && $cms_workflow->translation->module->options->activated) {
+        return true;
+    }
+    return false;
+}
+
+function fau_get_rel_alternate() {
+    if(is_workflow_translation_active()) {
+        return Workflow_Translation::get_rel_alternate();
+    } else {
+        return '';
+    }
 }
