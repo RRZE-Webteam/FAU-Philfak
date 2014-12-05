@@ -13,7 +13,12 @@ $defaultoptions = array(
     'slider-image-width'	=> 1260,
     'slider-image-height'	=> 350,    
     'start_header_count'	=> 5,
-    'start_news_count'		=> 3,
+    'start_max_newscontent'	=> 5,
+    'start_max_newspertag'	=> 1,    
+    'start_prefix_tag_newscontent'	=> 'startseite',
+    'start_link_news_cat'	=> 0,    
+    'start_link_news_show'	=> 1,
+    'start_link_news_linktitle'	=> __('Mehr Meldungen','fau'),
     'breadcrumb_root'		=> 'fau.de',
     'socialmedia'		=> 1,
     'menu_pretitle_portal'	=> __('Portal', 'fau'),
@@ -41,6 +46,8 @@ $defaultoptions = array(
     'menu_fallbackquote_show_excerpt'		=> 1,
     'menu_fallbackquote_excerpt_length'	=> 240,
     'custom_excerpt_allowtags'	    => 'br',
+    
+    
     
 ); 
 
@@ -361,14 +368,53 @@ $setoptions = array(
            'tabtitle'   => __('Startseite', 'fau'),
            'fields' => array(
                             
-
-	       'start_news_count'=> array(
+	       'newsbereich'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Nachrichtenbereich', 'fau' ),                      
+              ),
+	       
+	       'start_max_newscontent'=> array(
                   'type'    => 'select',
-                  'title'   => __( 'Zahl der News', 'fau' ),
+                  'title'   => __( 'Zahl der News (Gesamt)', 'fau' ),
                   'label'   => __( 'Anzahl der News auf der Startseite unterhalb des Sliders', 'fau' ),
 		   'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
-                  'default' => $defaultoptions['start_news_count'],
+                  'default' => $defaultoptions['start_max_newscontent'],
+		   'parent'  => 'newsbereich'
               ),  
+	        'start_prefix_tag_newscontent' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Angabe des Tag-Prefixes, mit dem News auf der Startseite gezeigt werden. Im Artikel wird dann dieser Tag plus eine Nummer vergeben um die Sortierung festzusetzen. Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2"', 'fau' ),               
+                  'default' => $defaultoptions['start_prefix_tag_newscontent'],
+		     'parent'  => 'newsbereich'
+              ),  
+	       
+	       
+	       'start_max_newspertag'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'News pro gleichem Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Anzahl der Artikel mit dem vorgegebene Prefix-Tag (Reihenfolge).', 'fau' ),
+		   'liste'   => array(1 => 1, 2 => 2,3 => 3, 4 => 4, 5 => 5),
+                  'default' => $defaultoptions['start_max_newspertag'],
+		    'parent'  => 'newsbereich'
+              ),  
+	       'start_link_news_show' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'News verlinken', 'fau' ),
+                  'label'   => __( 'Weitere Meldungen verlinken.', 'fau' ),               
+                  'default' => $defaultoptions['start_link_news_show'],
+		     'parent'  => 'newsbereich'
+              ),  
+		'start_link_news_cat' => array(
+                  'type'    => 'select',
+                  'title'   => __( 'News-Kategorie', 'fau' ),
+                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der News. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
+                  'liste'   => $currentcatliste,
+                  'default' => $defaultoptions['start_link_news_cat'],
+		     'parent'  => 'newsbereich'
+              ), 
+
+	       
 	       
               'sliderpars'  => array(
                   'type'    => 'section',

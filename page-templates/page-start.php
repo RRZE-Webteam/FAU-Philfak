@@ -137,12 +137,17 @@ global $options;
 				<div class="span8">
 					
 					<?php
-						$max = 1;
+					
+						$number = 0;
+						$max = $options['start_max_newspertag'];
+						$maxall = $options['start_max_newscontent'];
+						
 						for($j = 1; $j <= 5; $j++) {
 							$i = 0;
-							    
-							$query = new WP_Query( 'tag=startseite'.$j );
-							 while ($query->have_posts() && $i<$max) { 
+							$thistag = $options['start_prefix_tag_newscontent'].$j;    
+							$query = new WP_Query( 'tag='.$thistag );
+							
+							 while ($query->have_posts() && ($i<$max) && ($number < $maxall)) { 
 							    $query->the_post();  ?>
 				    
 							    <div class="news-item">
@@ -203,19 +208,26 @@ global $options;
 							
 							<?php
 								$i++;
+								$number++;
 								wp_reset_postdata();
 							}
+						}
+						
+						if ($number==0) {
+						    // Found no Posts, use last posts instead
+						    
+						    
 						}
 					?>
 
 					<?php
-						$category = get_category_by_slug('news');
-						if ($category) {
+						$category = get_the_category_by_ID($options['start_link_news_cat']);
+						if (($category) && ($options['start_link_news_show']==1)) {
 					?>
 					
 					<div class="news-more-links">
-						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>"><?php _e('Mehr Meldungen','fau'); ?></a>
-						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
+						<a class="news-more" href="<?php echo get_category_link($options['start_link_news_cat']); ?>"><?php echo $options['start_link_news_linktitle']; ?></a>
+						<a class="news-rss" href="<?php echo get_category_feed_link($options['start_link_news_cat']); ?>">RSS</a>
 					</div>
 					<?php } ?>			    
 					
