@@ -9,6 +9,79 @@
 
 get_header();
 global $options;
+
+
+function fau_display_news_teaser($id = 0) {
+    if ($id ==0) return;   
+    global $options;
+    
+    $post = get_post($id);
+    $output = '';
+    if ($post) {
+	$output .= '<div class="news-item">';
+	
+	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+	    $link = get_field('external_link', $post->ID);
+	} else {
+	    $link = get_permalink($post->ID);
+	}
+	
+	$output .= "\t<h2>";  
+	$output .= '<a href="'.$link.'">'.get_the_title($post->ID).'</a>';
+	$output .= "</h2>\n";  
+	
+	$output .= "\t".'<div class="row">'."\n";  
+	if(has_post_thumbnail( $post->ID )) {
+	    $output .= "\t\t".'<div class="span3">'."\n"; 
+	    
+	     $output .= '<a href="';
+	    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+		$output .= get_field('external_link', $post->ID);
+	    } else {
+		$output .= get_permalink($post->ID);
+	    }
+	    $output .= '" class="news-image">';
+
+	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+	    $imagehtml = '';
+	    if ($post_thumbnail_id) {
+		$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+	    }
+	    if ($sliderimage && !empty($sliderimage[0])) {  
+		$imagehtml = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
+	    }
+	    $output .= $imagehtml;
+	    $output .= '</a>';
+	    
+	    $output .= "\t\t".'</div>'."\n"; 
+	    $output .= "\t\t".'<div class="span5">'."\n"; 
+	} else {
+	    $output .= "\t\t".'<div class="span8">'."\n"; 
+	}
+	$output .= "\t\t\t".'<p>'."\n"; 
+	
+	if (function_exists('get_field')) {
+	    $output .= get_field('abstract', $post->ID);											  
+	} else {
+	    $output .= fau_custom_excerpt($post->ID);
+	}
+
+	$output .= ' <a href="';
+	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+		$output .= get_field('external_link', $post->ID);
+	} else {
+		$output .= get_permalink($post->ID);
+	}
+	$output .= '" class="read-more-arrow">›</a>'; 
+	$output .= "\t\t\t".'</p>'."\n"; 
+	
+	
+	$output .= "\t\t".'</div>'."\n"; 
+	$output .= "\t</div> <!-- /row -->\n";	
+	$output .= "</div> <!-- /news-item -->\n";	
+    }
+    return $output;
+}
 ?>
 
 	<div id="hero">
@@ -139,85 +212,24 @@ global $options;
 					<?php
 					
 						$number = 0;
-						$max = $options['start_max_newspertag'];
-						$maxall = $options['start_max_newscontent'];
+						$max = $options['start_max_newspertag'] || 3;
+						$maxall = $options['start_max_newscontent'] || 5;
 						
-						for($j = 1; $j <= 5; $j++) {
+						for($j = 1; $j <= 3; $j++) {
 							$i = 0;
 							$thistag = $options['start_prefix_tag_newscontent'].$j;    
 							$query = new WP_Query( 'tag='.$thistag );
 							
-							 while ($query->have_posts() && ($i<$max) && ($number < $maxall)) { 
-							    $query->the_post();  ?>
-				    
-							    <div class="news-item">
-								    <h2><?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-										<a href="<?php echo get_field('external_link', $post->ID);?>">
-									<?php else: ?>
-										<a href="<?php echo get_permalink($post->ID); ?>">
-									<?php endif; ?>
-									<?php echo get_the_title(); ?></a></h2>
-
-
-								<div class="row">
-								    <?php if(has_post_thumbnail( $post->ID )): ?>
-									<div class="span3">
-										<?php
-										echo '<a href="';
-										if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-										    echo get_field('external_link', $post->ID);
-										} else {
-										    echo get_permalink($post->ID);
-										}
-										echo '" class="news-image">';
-
-										$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
-										$sliderimage = '';
-										if ($post_thumbnail_id) {
-										    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
-										}
-										if ($sliderimage && !empty($sliderimage[0])) {  
-										    $slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
-										}
-										echo $slidersrc;
-										echo '</a>';
-										?>
-									</div>
-									<div class="span5">
-								    <?php else: ?>
-									<div class="span8">
-								    <?php endif; ?>
-									    <p>
-										    <?php if (function_exists('get_field')) {
-											 echo get_field('abstract', $post->ID);											  
-										    } else {
-											  the_excerpt();
-										    }
-
-										    echo ' <a href="';
-										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-											    echo get_field('external_link', $post->ID);
-										    } else {
-											    echo get_permalink($post->ID);
-										    }
-										    echo '" class="read-more-arrow">›</a>'; ?>
-									    </p>
-									</div>
-								</div>
-							    </div> <!-- /news-item -->
-							
-							<?php
-								$i++;
-								$number++;
-								wp_reset_postdata();
+							 while ($query->have_posts() && ($i<$max) ) { 
+							    $query->the_post(); 
+							    echo fau_display_news_teaser($post->ID);
+							    $i++;
+							    $number++;
+							    wp_reset_postdata();
 							}
 						}
 						
-						if ($number==0) {
-						    // Found no Posts, use last posts instead
-						    
-						    
-						}
+			
 					?>
 
 					<?php

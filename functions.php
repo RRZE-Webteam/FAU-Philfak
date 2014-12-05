@@ -832,3 +832,15 @@ function fau_get_rel_alternate() {
         return '';
     }
 }
+
+/*
+ * wpSEO Metaboxen nur für Pages und Posts
+ */
+add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
+ 
+function prefix_wpseo_add_meta_boxes() {
+    global $post;
+    $post_types_without_seo = array( 'event', 'person' );
+    return !in_array( get_post_type($post), $post_types_without_seo);
+} 
+
