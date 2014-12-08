@@ -66,7 +66,11 @@ function fau_setup() {
 
 	add_image_size( 'hero', 1260, 350, true);
 	add_image_size( 'page-thumb', 220, 110, true); 
-	add_image_size( 'post-thumb', 220, 147, false); // 3:2
+	
+	
+	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
+	
+	
 	add_image_size( 'post', 300, 200, false);
 	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
 	add_image_size( 'person-thumb-bigger', 90, 120, true);
@@ -844,3 +848,76 @@ function prefix_wpseo_add_meta_boxes() {
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
 
+
+function fau_display_news_teaser($id = 0) {
+    if ($id ==0) return;   
+    global $options;
+    
+    $post = get_post($id);
+    $output = '';
+    if ($post) {
+	$output .= '<div class="news-item">';
+	
+	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+	    $link = get_field('external_link', $post->ID);
+	} else {
+	    $link = get_permalink($post->ID);
+	}
+	
+	$output .= "\t<h2>";  
+	$output .= '<a href="'.$link.'">'.get_the_title($post->ID).'</a>';
+	$output .= "</h2>\n";  
+	
+	$output .= "\t".'<div class="row">'."\n";  
+	if ((has_post_thumbnail( $post->ID )) ||($options['default_postthumb_always']))  {
+	    $output .= "\t\t".'<div class="span3">'."\n"; 
+	    
+	     $output .= '<a href="';
+	    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+		$output .= get_field('external_link', $post->ID);
+	    } else {
+		$output .= get_permalink($post->ID);
+	    }
+	    $output .= '" class="news-image">';
+
+	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+	    $imagehtml = '';
+	    if ($post_thumbnail_id) {
+		$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+		$imageurl = $sliderimage[0]; 	
+	    }
+	    if (!isset($imageurl) || (strlen(trim($imageurl)) <4 )) {
+		$imageurl = $options['default_postthumb_src'];
+	    }
+	    $output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_postthumb_width'].'" height="'.$options['default_postthumb_height'].'" alt="">';
+	    $output .= '</a>';
+	    
+	    $output .= "\t\t".'</div>'."\n"; 
+	    $output .= "\t\t".'<div class="span5">'."\n"; 
+	} else {
+	    $output .= "\t\t".'<div class="span8">'."\n"; 
+	}
+	$output .= "\t\t\t".'<p>'."\n"; 
+	
+	if (function_exists('get_field')) {
+	    $output .= get_field('abstract', $post->ID);											  
+	} else {
+	    $output .= fau_custom_excerpt($post->ID);
+	}
+
+	$output .= ' <a href="';
+	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
+		$output .= get_field('external_link', $post->ID);
+	} else {
+		$output .= get_permalink($post->ID);
+	}
+	$output .= '" class="read-more-arrow">›</a>'; 
+	$output .= "\t\t\t".'</p>'."\n"; 
+	
+	
+	$output .= "\t\t".'</div>'."\n"; 
+	$output .= "\t</div> <!-- /row -->\n";	
+	$output .= "</div> <!-- /news-item -->\n";	
+    }
+    return $output;
+}

@@ -43,6 +43,13 @@ $defaultoptions = array(
     'default_excerpt_morestring'    => '...',
     'default_excerpt_length'	    => 30,
     'default_search_excerpt_length'	=> 300,
+    'default_postthumb_src'	=> get_template_directory_uri().'/img/default-postthumb.png',
+    'default_postthumb_width'	=> 220,
+    'default_postthumb_height'	=> 147,
+    'default_postthumb_crop'	=> false,
+    'default_postthumb_always'	=> 1,
+    
+    
     'menu_fallbackquote_show_excerpt'		=> 1,
     'menu_fallbackquote_excerpt_length'	=> 240,
     'custom_excerpt_allowtags'	    => 'br',
@@ -413,7 +420,16 @@ $setoptions = array(
                   'default' => $defaultoptions['start_link_news_cat'],
 		     'parent'  => 'newsbereich'
               ), 
-
+	    'default_postthumb_always' => array(
+		    'type'    => 'select',
+		    'title'   => __( 'Immer ein Artikelbild anzeigen', 'fau' ),
+		    'label'   => __( 'Immer ein Artikelbild zu einer Nachricht zeigen. Wenn kein Artikelbild definiert wurde, nehme stattdessen ein Ersatzbild.', 'fau' ),      
+		    'liste'   => array(1 => __('Ja', 'fau'), 0 => __('Nein', 'fau')),
+		    'default' => $defaultoptions['default_postthumb_always'],
+		    'parent'  => 'newsbereich'
+              ), 
+	        	
+	       
 	       
 	       
               'sliderpars'  => array(
