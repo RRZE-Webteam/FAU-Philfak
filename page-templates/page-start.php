@@ -9,6 +9,8 @@
 
 get_header();
 global $options;
+
+
 ?>
 
 	<div id="hero">
@@ -137,85 +139,53 @@ global $options;
 				<div class="span8">
 					
 					<?php
-						$max = 1;
-						for($j = 1; $j <= 5; $j++) {
+					
+						$number = 0;
+						$max = $options['start_max_newspertag'] || 3;
+						$maxall = $options['start_max_newscontent'] || 5;
+						
+						for($j = 1; $j <= 3; $j++) {
 							$i = 0;
-							    
-							$query = new WP_Query( 'tag=startseite'.$j );
-							 while ($query->have_posts() && $i<$max) { 
-							    $query->the_post();  ?>
-				    
-							    <div class="news-item">
-								    <h2><?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-										<a href="<?php echo get_field('external_link', $post->ID);?>">
-									<?php else: ?>
-										<a href="<?php echo get_permalink($post->ID); ?>">
-									<?php endif; ?>
-									<?php echo get_the_title(); ?></a></h2>
-
-
-								<div class="row">
-								    <?php if(has_post_thumbnail( $post->ID )): ?>
-									<div class="span3">
-										<?php
-										echo '<a href="';
-										if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-										    echo get_field('external_link', $post->ID);
-										} else {
-										    echo get_permalink($post->ID);
-										}
-										echo '" class="news-image">';
-
-										$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
-										$sliderimage = '';
-										if ($post_thumbnail_id) {
-										    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
-										}
-										if ($sliderimage && !empty($sliderimage[0])) {  
-										    $slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
-										}
-										echo $slidersrc;
-										echo '</a>';
-										?>
-									</div>
-									<div class="span5">
-								    <?php else: ?>
-									<div class="span8">
-								    <?php endif; ?>
-									    <p>
-										    <?php if (function_exists('get_field')) {
-											 echo get_field('abstract', $post->ID);											  
-										    } else {
-											  the_excerpt();
-										    }
-
-										    echo ' <a href="';
-										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-											    echo get_field('external_link', $post->ID);
-										    } else {
-											    echo get_permalink($post->ID);
-										    }
-										    echo '" class="read-more-arrow">›</a>'; ?>
-									    </p>
-									</div>
-								</div>
-							    </div> <!-- /news-item -->
+							$thistag = $options['start_prefix_tag_newscontent'].$j;    
+							$query = new WP_Query( 'tag='.$thistag );
 							
-							<?php
-								$i++;
-								wp_reset_postdata();
+							 while ($query->have_posts() && ($i<$max) ) { 
+							    $query->the_post(); 
+							    echo fau_display_news_teaser($post->ID);
+							    $i++;
+							    $number++;
+							    wp_reset_postdata();
 							}
 						}
+						if ($number==0) {
+						    $args = '';
+						    if (isset($options['start_link_news_cat'])) {
+							 $args = 'cat='.$options['start_link_news_cat'];	
+						    }
+						    if (isset($args)) {
+							$args .= '&';
+						    }
+						    
+						    $args .= 'post_type=post&has_password=0&posts_per_page='.$options['start_max_newscontent'];	
+						    $query = new WP_Query( $args );
+						    while ($query->have_posts() ) { 
+							$query->the_post(); 
+							echo fau_display_news_teaser($post->ID);
+							 wp_reset_postdata();
+						    }
+						}
+						
+			
 					?>
 
 					<?php
-						$category = get_category_by_slug('news');
-						if ($category) {
+						$category = get_the_category_by_ID($options['start_link_news_cat']);
+						if (($category) && ($options['start_link_news_show']==1)) {
 					?>
 					
 					<div class="news-more-links">
-						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>"><?php _e('Mehr Meldungen','fau'); ?></a>
-						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
+						<a class="news-more" href="<?php echo get_category_link($options['start_link_news_cat']); ?>"><?php echo $options['start_link_news_linktitle']; ?></a>
+						<a class="news-rss" href="<?php echo get_category_feed_link($options['start_link_news_cat']); ?>">RSS</a>
 					</div>
 					<?php } ?>			    
 					
