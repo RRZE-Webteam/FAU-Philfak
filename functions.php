@@ -858,27 +858,31 @@ function fau_display_news_teaser($id = 0) {
     if ($post) {
 	$output .= '<div class="news-item">';
 	
-	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-	    $link = get_field('external_link', $post->ID);
+	$link = get_post_meta( $post->ID, 'external_link', true );
+	$external = 0;
+	if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+	    $external = 1;
 	} else {
 	    $link = get_permalink($post->ID);
 	}
 	
 	$output .= "\t<h2>";  
-	$output .= '<a href="'.$link.'">'.get_the_title($post->ID).'</a>';
+	$output .= '<a ';
+	if ($external==1) {
+	    $output .= 'class="external" ';
+	}
+	$output .= 'href="'.$link.'">'.get_the_title($post->ID).'</a>';
 	$output .= "</h2>\n";  
 	
 	$output .= "\t".'<div class="row">'."\n";  
+	
 	if ((has_post_thumbnail( $post->ID )) ||($options['default_postthumb_always']))  {
 	    $output .= "\t\t".'<div class="span3">'."\n"; 
-	    
-	     $output .= '<a href="';
-	    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-		$output .= get_field('external_link', $post->ID);
-	    } else {
-		$output .= get_permalink($post->ID);
+	    $output .= '<a href="'.$link.'" class="news-image';
+	    if ($external==1) {
+		$output .= ' external';
 	    }
-	    $output .= '" class="news-image">';
+	    $output .= '">';
 
 	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
 	    $imagehtml = '';
@@ -899,19 +903,20 @@ function fau_display_news_teaser($id = 0) {
 	}
 	$output .= "\t\t\t".'<p>'."\n"; 
 	
-	if (function_exists('get_field')) {
-	    $output .= get_field('abstract', $post->ID);											  
-	} else {
-	    $output .= fau_custom_excerpt($post->ID);
+	
+	
+	$abstract = get_post_meta( $post->ID, 'abstract', true );
+	if (strlen(trim($abstract))<3) {
+	   $abstract =  fau_custom_excerpt($post->ID);
 	}
+	$output .= $abstract;
 
-	$output .= ' <a href="';
-	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-		$output .= get_field('external_link', $post->ID);
-	} else {
-		$output .= get_permalink($post->ID);
+	
+	$output .= '<a class="read-more-arrow';
+	if ($external==1) {
+	    $output .= ' external';
 	}
-	$output .= '" class="read-more-arrow">›</a>'; 
+	$output .= '" href="'.$link.'">›</a>'; 
 	$output .= "\t\t\t".'</p>'."\n"; 
 	
 	
