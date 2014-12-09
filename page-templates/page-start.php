@@ -59,16 +59,22 @@ global $options;
 				<div class="container">
 					    <?php
 						echo '<h2><a href="';
-						if (function_exists('get_field') && get_field('external_link')) {
-						    echo get_field('external_link');
+						
+						$link = get_post_meta( $hero->ID, 'external_link', true );
+						$external = 0;
+						if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+						    $external = 1;
 						} else {
-						    echo get_permalink($hero->ID);
+						    $link = get_permalink($hero->ID);
 						}
+						echo $link;
 						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
 	
-					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-						<br><p><?php echo get_field('abstract', $hero->ID); ?></p>
-					    <?php endif; ?>
+						$abstract = get_post_meta( $hero->ID, 'abstract', true );
+						if (strlen(trim($abstract))<3) {
+						   $abstract =  fau_custom_excerpt($hero->ID);
+						} ?>
+						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
 		    </div>
@@ -192,25 +198,49 @@ global $options;
 				</div>
 				<div class="span4">
 					
-					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
-					<?php foreach($topevent_posts as $topevent): ?>
+					<?php $topevent_posts = get_posts(array('tag' => $options['start_topevents_tag'], 'numberposts' => $options['start_topevents_max']));
+					 foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
-							<?php if (function_exists('get_field') && get_field('topevent_title', $topevent->ID)) { ?>
-							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
-							<?php } ?>
+							<?php 
+							$titel = get_post_meta( $topevent->ID, 'topevent_title', true );
+							if (strlen(trim($titel))<3) {
+							    $titel =  get_the_title($topevent->ID);
+							} 
+							$link = get_permalink($topevent->ID);
+							
+							?>
+							<h2 class="small"><a href="<?php echo $link; ?>"><?php echo $titel; ?></a></h2>
+							
 							<div class="row">
-							    <?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
+							    <?php 
+							    
+								$imageid = get_post_meta( $topevent->ID, 'topevent_image', true );
+								if (isset($imageid) && ($imageid>0)) {
+								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 
+								}
+								if (!$image || empty($image[0])) {  
+								    $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
+								} else {
+								    $imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
+								}
+								
+								
+								
+								
+							    if (isset($imagehtml)) { ?>
 								<div class="span2">
-									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
-									<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
+									<?php echo '<a href="'.$link.'">'.$imagehtml.'</a>'; ?>
 								</div>
 								<div class="span2">
-							    <?php else: ?>
+							    <?php } else { ?>
 								<div class="span4">
-							    <?php endif; ?>
-								    <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
-								    <div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
-								    <?php } ?>   
+							    <?php } 
+							    $desc = get_post_meta( $topevent->ID, 'topevent_description', true );
+							    if (strlen(trim($desc))<3) {
+								$desc =  fau_custom_excerpt($topevent->ID);
+							    }  ?>   
+								    <div class="topevent-description"><?php echo $desc; ?></div>
+								   
 								</div>			
 							</div>
 						</div>

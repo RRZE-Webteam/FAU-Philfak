@@ -69,12 +69,14 @@ function fau_setup() {
 	
 	
 	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
-	
+	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); 	
 	
 	add_image_size( 'post', 300, 200, false);
 	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
 	add_image_size( 'person-thumb-bigger', 90, 120, true);
-	add_image_size( 'topevent-thumb', 140, 90, true); 
+
+	
+	
 	add_image_size( 'logo-thumb', 140, 110, true);
 	
 	add_image_size( 'gallery-full', 940, 470);

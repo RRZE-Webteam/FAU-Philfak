@@ -4,55 +4,67 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		=> '1.1',
-    'optionpage-tab-default'	=> 'startseite',
-    'content-width'		=> 770,
-    'src-fallback-slider-image' => get_template_directory_uri().'/img/slider-fallback.jpg',
-    'slider-category'		=> 'header',
-    'slider-catid'		=> 0,
-    'slider-image-width'	=> 1260,
-    'slider-image-height'	=> 350,    
-    'start_header_count'	=> 5,
-    'start_max_newscontent'	=> 5,
-    'start_max_newspertag'	=> 1,    
-    'start_prefix_tag_newscontent'	=> 'startseite',
-    'start_link_news_cat'	=> 0,    
-    'start_link_news_show'	=> 1,
-    'start_link_news_linktitle'	=> __('Mehr Meldungen','fau'),
-    'breadcrumb_root'		=> 'fau.de',
-    'socialmedia'		=> 1,
-    'menu_pretitle_portal'	=> __('Portal', 'fau'),
-    'menu_aftertitle_portal'	=> '',
+    'js-version'		    => '1.1',
+    'optionpage-tab-default'	    => 'startseite',
+    'content-width'		    => 770,
+    'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
+    'slider-category'		    => 'header',
+    'slider-catid'		    => 0,
+    'slider-image-width'	    => 1260,
+    'slider-image-height'	    => 350,    
+    'start_header_count'	    => 5,
+    'start_max_newscontent'	    => 5,
+    'start_max_newspertag'	    => 1,    
+    'start_prefix_tag_newscontent'  => 'startseite',
+    'start_link_news_cat'	    => 0,    
+    'start_link_news_show'	    => 1,
+    'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
     
-   'contact_address_name'	=> __('Friedrich-Alexander-Universität', 'fau'),
-   'contact_address_name2'	=> __('Erlangen-Nürnberg', 'fau'),
-   'contact_address_street'	=> __('Schlossplatz 4', 'fau'),
-   'contact_address_plz'	=> __('91054', 'fau'),
-   'contact_address_ort'	=> __('Erlangen', 'fau'),
+    'start_topevents_tag'	    => 'top',
+    'start_topevents_max'	    => 1,
+    'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
+    'default_topevent_thumb_width'  => 140,
+    'default_topevent_thumb_height' => 90,
+    'default_topevent_thumb_crop'   => true,
+    
+
+    
+    'breadcrumb_root'		    => 'fau.de',
+    'socialmedia'		    => 1,
+    'menu_pretitle_portal'	    => __('Portal', 'fau'),
+    'menu_aftertitle_portal'	    => '',
+    
+   'contact_address_name'	    => __('Friedrich-Alexander-Universität', 'fau'),
+   'contact_address_name2'	    => __('Erlangen-Nürnberg', 'fau'),
+   'contact_address_street'	    => __('Schlossplatz 4', 'fau'),
+   'contact_address_plz'	    => __('91054', 'fau'),
+   'contact_address_ort'	    => __('Erlangen', 'fau'),
    
-    'contact_address_country'	=> '',
-    'display_nojs_notice'	=> 0,
-    'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
-    'google-site-verification'	=> '',
-    'default_mainmenu_number'	=> 4,
+    'contact_address_country'	    => '',
+    'display_nojs_notice'	    => 0,
+    'display_nojs_note'		    => __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
+    'google-site-verification'	    => '',
+    'default_mainmenu_number'	    => 4,
    
-    'default_logo_src'		=> get_template_directory_uri().'/img/logo-fau.png',
-    'default_logo_height'	=> 65,
-    'default_logo_width'        => 240,
+    'default_logo_src'		    => get_template_directory_uri().'/img/logo-fau.png',
+    'default_logo_height'	    => 65,
+    'default_logo_width'	    => 240,
     
     'default_excerpt_morestring'    => '...',
     'default_excerpt_length'	    => 30,
-    'default_search_excerpt_length'	=> 300,
-    'default_postthumb_src'	=> get_template_directory_uri().'/img/default-postthumb.png',
-    'default_postthumb_width'	=> 220,
-    'default_postthumb_height'	=> 147,
-    'default_postthumb_crop'	=> false,
-    'default_postthumb_always'	=> 1,
+    'default_search_excerpt_length' => 300,
+    'default_postthumb_src'	    => get_template_directory_uri().'/img/default-postthumb.png',
+    'default_postthumb_width'	    => 220,
+    'default_postthumb_height'	    => 147,
+    'default_postthumb_crop'	    => false,
+    'default_postthumb_always'	    => 1,
     
     
     'menu_fallbackquote_show_excerpt'		=> 1,
     'menu_fallbackquote_excerpt_length'	=> 240,
     'custom_excerpt_allowtags'	    => 'br',
+    
+    
     
     
     
@@ -455,8 +467,27 @@ $setoptions = array(
                   'default' => $defaultoptions['slider-catid'],
                    'parent'  => 'sliderpars'
               ), 
-              
-
+             'topevents'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Top Events', 'fau' ),                      
+              ), 
+	    'start_topevents_tag' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Schlagwort', 'fau' ),
+                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
+                  'default' => $defaultoptions['start_topevents_tag'],
+		  'parent'  => 'topevents'
+              ),  
+	       'start_topevents_max'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
+                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
+		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
+                  'default' => $defaultoptions['start_topevents_max'],
+                  'parent'  => 'topevents'
+              ),  
+	       
+    
                
                
           )
