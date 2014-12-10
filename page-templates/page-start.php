@@ -43,11 +43,18 @@ global $options;
 	    <?php foreach($hero_posts as $hero): ?>
 		<div class="hero-slide">
 			    <?php 
-			    $post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+			    
 			    $sliderimage = '';
-			    if ($post_thumbnail_id) {
-				$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+			    $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
+			    if (isset($imageid) && ($imageid>0)) {
+				$sliderimage = wp_get_attachment_image_src($imageid, 'hero'); 
+			    } else {
+				$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+				if ($post_thumbnail_id) {
+				    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+				}
 			    }
+
 			    if (!$sliderimage || empty($sliderimage[0])) {  
 				$slidersrc = '<img src="'.fau_esc_url($options['src-fallback-slider-image']).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
 			    } else {
@@ -72,7 +79,7 @@ global $options;
 	
 						$abstract = get_post_meta( $hero->ID, 'abstract', true );
 						if (strlen(trim($abstract))<3) {
-						   $abstract =  fau_custom_excerpt($hero->ID);
+						   $abstract =  fau_custom_excerpt($hero->ID,$options['default_anleser_excerpt_length']);
 						} ?>
 						<br><p><?php echo $abstract; ?></p>
 				</div>
@@ -237,7 +244,7 @@ global $options;
 							    <?php } 
 							    $desc = get_post_meta( $topevent->ID, 'topevent_description', true );
 							    if (strlen(trim($desc))<3) {
-								$desc =  fau_custom_excerpt($topevent->ID);
+								$desc =  fau_custom_excerpt($topevent->ID,$options['default_topevent_excerpt_length']);
 							    }  ?>   
 								    <div class="topevent-description"><?php echo $desc; ?></div>
 								   

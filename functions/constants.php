@@ -12,6 +12,7 @@ $defaultoptions = array(
     'slider-catid'		    => 0,
     'slider-image-width'	    => 1260,
     'slider-image-height'	    => 350,    
+    'slider-image-crop'		    => true,
     'start_header_count'	    => 5,
     'start_max_newscontent'	    => 5,
     'start_max_newspertag'	    => 1,    
@@ -26,7 +27,7 @@ $defaultoptions = array(
     'default_topevent_thumb_width'  => 140,
     'default_topevent_thumb_height' => 90,
     'default_topevent_thumb_crop'   => true,
-    
+    'default_topevent_excerpt_length' => 100,
 
     
     'breadcrumb_root'		    => 'fau.de',
@@ -51,13 +52,17 @@ $defaultoptions = array(
     'default_logo_width'	    => 240,
     
     'default_excerpt_morestring'    => '...',
-    'default_excerpt_length'	    => 30,
+    'default_excerpt_length'	    => 300,
+    'default_anleser_excerpt_length'=> 300,
     'default_search_excerpt_length' => 300,
+    
     'default_postthumb_src'	    => get_template_directory_uri().'/img/default-postthumb.png',
     'default_postthumb_width'	    => 220,
     'default_postthumb_height'	    => 147,
     'default_postthumb_crop'	    => false,
     'default_postthumb_always'	    => 1,
+    
+    
     
     
     'menu_fallbackquote_show_excerpt'		=> 1,
