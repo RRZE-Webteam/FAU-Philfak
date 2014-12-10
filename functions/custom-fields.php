@@ -31,7 +31,7 @@ function fau_add_metabox_page() {
 		'fau_metabox_menuquote',			
 		esc_html__( 'Zitat für Hauptmenü', 'fau' ),		
 		'fau_do_metabox_menuquote',		
-		 'page','advanced','default'
+		 'page','advanced','high'
 	);
 
 }
@@ -41,13 +41,13 @@ function fau_add_metabox_post() {
 		'fau_metabox_post_teaser',			
 		esc_html__( 'Teaser- und Bühnenoptionen', 'fau' ),		
 		'fau_do_metabox_post_teaser',		
-		 'post','advanced','default'
+		 'post','normal','high'
 	);
 	add_meta_box(
 		'fau_metabox_post_topevent',			
 		esc_html__( 'Top-Event', 'fau' ),		
 		'fau_do_metabox_post_topevent',		
-		 'post','advanced','default'
+		 'post','normal','high'
 	);
 	
 }
@@ -74,7 +74,16 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	
 
 	?>
-
+	<p class="hinweis">
+	   <?php echo __('Bitte beachten: Damit ein Artikel auf der Startseite angezeigt werden soll, muss er das folgende Schlagwort erhalten: ','fau');
+	   echo '<b>'.$options['start_prefix_tag_newscontent'].'</b> - '.__('Dies gefolgt von einer Nummer (1-3) für die Reihenfolge.','fau'); 
+	   if (isset($options['slider-catid'])) {
+	    $category = get_category($options['slider-catid']);	   
+	    echo ' '.__('Damit ein Artikel in der Bühne erscheint, muss er folgender Kategorie angehören: ','fau');
+	    echo '<b>'.$category->name.'</b>';
+	   }
+	   ?>
+	</p>
 	
 	<div class="optionseingabe">
 	    <p>
@@ -84,7 +93,7 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	    </p>
 	    <textarea name="fauval_anleser" id="fauval_anleser" class="large-text" rows="4" ><?php echo $abstract; ?></textarea>	
 	    <br>
-	    <div class="description"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzuglich der erlaubten Zeichen gebildet. ','fau');
+	    <div class="description"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
 	    echo __('Erlaubte Anzahl an Zeichen:','fau');
 	    echo ' <span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';
 	    ?></div>
@@ -179,7 +188,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	
 	<p class="hinweis">
 	   <?php echo __('Bitte beachten: Damit ein Artikel als Top-Event angezeigt wird, muss er das folgende Schlagwort erhalten: ','fau');
-	   echo '<code>'.$options['start_topevents_tag'].'</code>'; ?>
+	   echo '<b>'.$options['start_topevents_tag'].'</b>'; ?>
 	</p>
 	<div class="optionseingabe">
 	    <p>
@@ -227,56 +236,53 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    <?php 
 	    echo '<div class="uploader">';
 	    
-				    $image = '';
-				    $imagehtml = '';
-				    if (isset($topevent_image) && ($topevent_image>0)) {
-					$image = wp_get_attachment_image_src($topevent_image, 'topevent-thumb'); 
-					if (isset($image)) {
-					    $imagehtml = '<img class="image_show_topevent_image" src="'.$image[0].'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';
-					}
-				    }
-				   
-				    echo '<div class="previewimage showimg_topevent_image">';
-				    if (!empty($imagehtml)) {  
-					echo $imagehtml;
-				    } else {
-					 $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
-					 echo $imagehtml;
-					 echo "<br>";
-					 _e('Kein Bild ausgewählt. Ersatzbild wird gezeigt.', 'fau');
-				    } 
-				    echo "</div>\n"; ?>		
-				    
-				    <input type="hidden" name="fauval_topevent_image" id="fauval_topevent_image" 
-					     value="<?php echo sanitize_key( $topevent_image ) ; ?>" />
-				    
-				    <input class="button" name="image_button_topevent_image" id="image_button_topevent_image" value="<?php _e('Bild auswählen', 'fau'); ?>" />
-				    <small><a href="#" class="image_remove_topevent_image"><?php _e( "Entfernen", 'fau' );?></a></small>
-				    <br><div class="description"><?php echo __('Hier können Sie ein Thumbnail auswählen für den Event. Wenn kein Bild gewählt wird, wird ein Ersatzbild angezeigt.','fau'); ?>	      
-				    </div><script>
-				    jQuery(document).ready(function() {
-					jQuery('#image_button_topevent_image').click(function()  {
-					    wp.media.editor.send.attachment = function(props, attachment) {
-						jQuery('#fauval_topevent_image').val(attachment.id);
-						htmlshow = "<img src=\""+attachment.url + "\" width=\"<?php echo $options['default_topevent_thumb_width'];?>\" height=\"<?php echo $options['default_topevent_thumb_height'];?>\">";  					   
-						jQuery('.showimg_topevent_image').html(htmlshow);
+	    $image = '';
+	    $imagehtml = '';
+	    if (isset($topevent_image) && ($topevent_image>0)) {
+		$image = wp_get_attachment_image_src($topevent_image, 'topevent-thumb'); 
+		if (isset($image)) {
+		    $imagehtml = '<img class="image_show_topevent_image" src="'.$image[0].'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';
+		}
+	    }
 
-					    }
-					    wp.media.editor.open(this);
-					    return false;
-					});
-				    });
-				    jQuery(document).ready(function() {
-					jQuery('.image_remove_topevent_image').click(function()   {
-						jQuery('#fauval_topevent_image').val('');
-						jQuery('.showimg_topevent_image').html('<?php _e('Kein Bild ausgewählt.', 'fau'); ?>');
-						return false;
-					});
-				    });
-				   </script> 		    	    
-	    
-	    
+	    echo '<div class="previewimage showimg_topevent_image">';
+	    if (!empty($imagehtml)) {  
+		echo $imagehtml;
+	    } else {
+		 $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
+		 echo $imagehtml;
+		 echo "<br>";
+		 _e('Kein Bild ausgewählt. Ersatzbild wird gezeigt.', 'fau');
+	    } 
+	    echo "</div>\n"; ?>		
 
+	    <input type="hidden" name="fauval_topevent_image" id="fauval_topevent_image" 
+		     value="<?php echo sanitize_key( $topevent_image ) ; ?>" />
+
+	    <input class="button" name="image_button_topevent_image" id="image_button_topevent_image" value="<?php _e('Bild auswählen', 'fau'); ?>" />
+	    <small><a href="#" class="image_remove_topevent_image"><?php _e( "Entfernen", 'fau' );?></a></small>
+	    <br><div class="description"><?php echo __('Hier können Sie ein Thumbnail auswählen für den Event. Wenn kein Bild gewählt wird, wird ein Ersatzbild angezeigt.','fau'); ?>	      
+	    </div><script>
+	    jQuery(document).ready(function() {
+		jQuery('#image_button_topevent_image').click(function()  {
+		    wp.media.editor.send.attachment = function(props, attachment) {
+			jQuery('#fauval_topevent_image').val(attachment.id);
+			htmlshow = "<img src=\""+attachment.url + "\" width=\"<?php echo $options['default_topevent_thumb_width'];?>\" height=\"<?php echo $options['default_topevent_thumb_height'];?>\">";  					   
+			jQuery('.showimg_topevent_image').html(htmlshow);
+
+		    }
+		    wp.media.editor.open(this);
+		    return false;
+		});
+	    });
+	    jQuery(document).ready(function() {
+		jQuery('.image_remove_topevent_image').click(function()   {
+			jQuery('#fauval_topevent_image').val('');
+			jQuery('.showimg_topevent_image').html('<?php _e('Kein Bild ausgewählt.', 'fau'); ?>');
+			return false;
+		});
+	    });
+	   </script> 		    	    
 	    
 	   </div>
 	</div>
