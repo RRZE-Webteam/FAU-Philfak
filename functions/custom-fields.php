@@ -74,7 +74,7 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	
 
 	?>
-	<p class="hinweis">
+	<p>
 	   <?php echo __('Bitte beachten: Damit ein Artikel auf der Startseite angezeigt werden soll, muss er das folgende Schlagwort erhalten: ','fau');
 	   echo '<b>'.$options['start_prefix_tag_newscontent'].'</b> - '.__('Dies gefolgt von einer Nummer (1-3) für die Reihenfolge.','fau'); 
 	   if (isset($options['slider-catid'])) {
@@ -93,7 +93,7 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	    </p>
 	    <textarea name="fauval_anleser" id="fauval_anleser" class="large-text" rows="4" ><?php echo $abstract; ?></textarea>	
 	    <br>
-	    <div class="description"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
+	    <div class="howto"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
 	    echo __('Erlaubte Anzahl an Zeichen:','fau');
 	    echo ' <span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';
 	    ?></div>
@@ -106,7 +106,7 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	    </p>
 	    <input type="url" name="fauval_external_link" id="fauval_external_link" class="large-text" placeholder="http://" value="<?php echo $external_link; ?>">	
 	    <br>
-	    <div class="description"><?php echo __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau');
+	    <div class="howto"><?php echo __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau');
 	    ?></div>
 	</div>
 	
@@ -186,7 +186,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 
 	
 	
-	<p class="hinweis">
+	<p>
 	   <?php echo __('Bitte beachten: Damit ein Artikel als Top-Event angezeigt wird, muss er das folgende Schlagwort erhalten: ','fau');
 	   echo '<b>'.$options['start_topevents_tag'].'</b>'; ?>
 	</p>
@@ -198,7 +198,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    </p>
 	    <input type="text" name="fauval_topevent_title" id="fauval_topevent_title" class="large-text" value="<?php echo $topevent_title; ?>">	
 	    <br>
-	    <div class="description"><?php echo __('Titel wie er in der Sidebar erscheinen soll. Wenn leer, wird der normale Titel des Beitrags verwendet.','fau');
+	    <div class="howto"><?php echo __('Titel wie er in der Sidebar erscheinen soll. Wenn leer, wird der normale Titel des Beitrags verwendet.','fau');
 	    ?></div>
 	</div>
 	<div class="optionseingabe">
@@ -209,7 +209,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    </p>
 	    <textarea name="fauval_topevent_desc" id="fauval_topevent_desc" class="large-text" rows="3" ><?php echo $topevent_desc; ?></textarea>	
 	    <br>
-	    <div class="description"><?php echo __('Kurztext für die Sidebar. Wenn leer, wird der Anleser verwendet.','fau');
+	    <div class="howto"><?php echo __('Kurztext für die Sidebar. Wenn leer, wird der Anleser verwendet.','fau');
 	    echo ' '. __('Erlaubte Anzahl an Zeichen:','fau');
 	    echo ' <span class="fauval_topevent_desc_signs">'.$options['default_topevent_excerpt_length'].'</span>';
 	    ?></div>
@@ -222,7 +222,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    </p>
 	    <input type="date" name="fauval_topevent_date" id="fauval_topevent_date" class="text" value="<?php echo $topevent_date; ?>">		
 	    <br>
-	    <div class="description"><?php echo __('Geben Sie hier das Datum des Events ein.','fau'); ?>	  
+	    <div class="howto"><?php echo __('Geben Sie hier das Datum des Events ein.','fau'); ?>	  
 	   </div>
 	</div>
 	
@@ -261,7 +261,7 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 
 	    <input class="button" name="image_button_topevent_image" id="image_button_topevent_image" value="<?php _e('Bild auswählen', 'fau'); ?>" />
 	    <small><a href="#" class="image_remove_topevent_image"><?php _e( "Entfernen", 'fau' );?></a></small>
-	    <br><div class="description"><?php echo __('Hier können Sie ein Thumbnail auswählen für den Event. Wenn kein Bild gewählt wird, wird ein Ersatzbild angezeigt.','fau'); ?>	      
+	    <br><div class="howto"><?php echo __('Hier können Sie ein Thumbnail auswählen für den Event. Wenn kein Bild gewählt wird, wird ein Ersatzbild angezeigt.','fau'); ?>	      
 	    </div><script>
 	    jQuery(document).ready(function() {
 		jQuery('#image_button_topevent_image').click(function()  {
