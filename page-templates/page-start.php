@@ -79,7 +79,7 @@ global $options;
 	
 						$abstract = get_post_meta( $hero->ID, 'abstract', true );
 						if (strlen(trim($abstract))<3) {
-						   $abstract =  fau_custom_excerpt($hero->ID,$options['default_anleser_excerpt_length']);
+						   $abstract =  fau_custom_excerpt($hero->ID,$options['default_slider_excerpt_length'],false);
 						} ?>
 						<br><p><?php echo $abstract; ?></p>
 				</div>

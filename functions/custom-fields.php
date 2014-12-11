@@ -17,10 +17,12 @@ function fau_metabox_cf_setup() {
 	add_action( 'add_meta_boxes_page', 'fau_add_metabox_page' );
 	add_action( 'add_meta_boxes_post', 'fau_add_metabox_post' );
 	/* Save sidecontent */
-	add_action( 'save_post', 'fau_save_metabox_menuquote', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
+
 	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
 	add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
-	
+
 }
 
 
@@ -28,18 +30,25 @@ function fau_metabox_cf_setup() {
 
 function fau_add_metabox_page() {
 	add_meta_box(
-		'fau_metabox_menuquote',			
-		esc_html__( 'Zitat für Hauptmenü', 'fau' ),		
-		'fau_do_metabox_menuquote',		
-		 'page','advanced','high'
+		'fau_metabox_page_untertitel',			
+		esc_html__( 'Untertitel', 'fau' ),		
+		'fau_do_metabox_page_untertitel',		
+		 'page','normal','high'
 	);
+	add_meta_box(
+		'fau_metabox_page_menu',			
+		esc_html__( 'Menüoptionen', 'fau' ),		
+		'fau_do_metabox_page_menu',		
+		 'page','normal','high'
+	);
+	
 
 }
 
 function fau_add_metabox_post() {
 	add_meta_box(
 		'fau_metabox_post_teaser',			
-		esc_html__( 'Teaser- und Bühnenoptionen', 'fau' ),		
+		esc_html__( 'Beitragsoptionen', 'fau' ),		
 		'fau_do_metabox_post_teaser',		
 		 'post','normal','high'
 	);
@@ -369,8 +378,8 @@ function fau_save_post_topevent( $post_id, $post ) {
 
 
 /* Display Options for menuquotes on pages */
-function fau_do_metabox_menuquote( $object, $box ) { 
-	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_menuquote_nonce' ); 
+function fau_do_metabox_page_menu( $object, $box ) { 
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_menu_nonce' ); 
 	$post_type = get_post_type( $object->ID); 
 	
 	if ( 'page' == $post_type ) {
@@ -384,17 +393,35 @@ function fau_do_metabox_menuquote( $object, $box ) {
 	
 	$quote  = get_post_meta( $object->ID, 'zitat_text', true );	
 	$author =  get_post_meta( $object->ID, 'zitat_autor', true );
-		
+	$menuebene = get_post_meta( $object->ID, 'menu-level', true );
 	?>
-	<p class="description">
-	    <?php _e('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau'); ?>
+	
+	<p>
+		<label for="fau_metabox_page_menuebene">
+                    <?php _e( "Menüebene", 'fau' ); ?>:
+                </label>
+	</p>
+	<select name="fau_metabox_page_menuebene" id="fau_metabox_page_menuebene">
+	    <option value="1" <?php selected($menuebene,1); ?>>1. Ebene</option>
+	    <option value="2" <?php selected($menuebene,2); ?>>2. Ebene</option>
+	    <option value="3" <?php selected($menuebene,3); ?>>3. Ebene</option>  
+	</select>
+	<p class="howto">
+	    <?php _e('Die Menüebene definiert bei Seiten bis zur welchen Ebene das Menu auf der linken Seite gezeigt wird. Dies gilt nur für Seiten, die das folgende Template ausgewählt haben:','fau'); ?>
+	    <code><?php _e('Inhaltsseite mit Navi','fau');?></code> 
 	</p>
 	<p>
 		<label for="fau_metabox_menuquote_quote">
                     <?php _e( "Zitat", 'fau' ); ?>:
                 </label>
 	</p>
+	
 	<textarea name="fau_metabox_menuquote_quote" id="fau_metabox_menuquote_quote" class="large-text" rows="4" ><?php echo $quote; ?></textarea>	
+	<p class="howto">
+	    <?php _e('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau'); ?>
+	</p>
+	
+	
 	
 	<p>
 		<label for="fau_metabox_menuquote_autor">
@@ -403,14 +430,17 @@ function fau_do_metabox_menuquote( $object, $box ) {
 		<br />
 		<input class="large-text" name="fau_metabox_menuquote_autor" id="fau_metabox_menuquote_autor" value="<?php echo $author; ?>" />			
 	</p>
+	<p class="howto">
+	    <?php _e('Dieser freie Text kann einen Namen enthalten auf den das Zitat zurückzuführen ist oder andere Informationen hierzu.','fau'); ?>
+	</p>
 	<?php 
 
  }
 
 /* Save the meta box's post/page metadata. */
-function fau_save_metabox_menuquote( $post_id, $post ) {
+function fau_save_metabox_page_menu( $post_id, $post ) {
 	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['fau_metabox_menuquote_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_menuquote_nonce'], basename( __FILE__ ) ) )
+	if ( !isset( $_POST['fau_metabox_page_menu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_menu_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
 
@@ -447,6 +477,20 @@ function fau_save_metabox_menuquote( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
 	} 
+	
+	$newval = intval($_POST['fau_metabox_page_menuebene']);
+	$oldval = get_post_meta( $post_id, 'menu-level', true );
+	
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'menu-level', $newval );
+	    } else {
+		add_post_meta( $post_id, 'menu-level', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'menu-level', $oldval );	
+	} 
 
 	
 	// Remove old values from version 2
@@ -455,5 +499,67 @@ function fau_save_metabox_menuquote( $post_id, $post ) {
 	//   delete_post_meta( $post_id, 'right_column', $oldval );	
 	// }
 	
+}
+
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_untertitel( $object, $box ) { 
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_untertitel_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		    // Oder sollten wir nach publish_pages  fragen? 
+		    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
+		return;
+	} else {
+	    return;
+	}
+	
+	$untertitel  = get_post_meta( $object->ID, 'headline', true );	
+
+	?>
+	
+	<p>
+		<label for="fau_metabox_page_untertitel">
+                    <?php _e( "Untertitel (Inhaltsüberschrift)", 'fau' ); ?>:
+                </label>
+		<br />
+		<input class="large-text" name="fau_metabox_page_untertitel" id="fau_metabox_page_untertitel" value="<?php echo $untertitel; ?>" />			
+	</p>
+	<p class="howto">
+	    <?php _e('Dieser Untertitel erscheint im Inhaltsbereich, unterhalb des Balkens mit dem eigentlichen Titel.','fau'); ?>
+	</p>
+	<?php 
+
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_untertitel( $post_id, $post ) {
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['fau_metabox_page_untertitel_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_untertitel_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
+	}
+
+	$newval = ( isset( $_POST['fau_metabox_page_untertitel'] ) ? sanitize_text_field( $_POST['fau_metabox_page_untertitel'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'headline', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'headline', $newval );
+	    } else {
+		add_post_meta( $post_id, 'headline', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'headline', $oldval );	
+	} 
+
+
 }
 

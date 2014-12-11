@@ -13,6 +13,7 @@ $defaultoptions = array(
     'slider-image-width'	    => 1260,
     'slider-image-height'	    => 350,    
     'slider-image-crop'		    => true,
+    'default_slider_excerpt_length' => 240,
     'start_header_count'	    => 5,
     'start_max_newscontent'	    => 5,
     'start_max_newspertag'	    => 1,    
@@ -20,7 +21,9 @@ $defaultoptions = array(
     'start_link_news_cat'	    => 0,    
     'start_link_news_show'	    => 1,
     'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
-    
+  
+    'menu_fallbackquote_show_excerpt'		=> 1,
+    'menu_fallbackquote_excerpt_length'	=> 240,  
     'start_topevents_tag'	    => 'top',
     'start_topevents_max'	    => 1,
     'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
@@ -61,12 +64,7 @@ $defaultoptions = array(
     'default_postthumb_height'	    => 147,
     'default_postthumb_crop'	    => false,
     'default_postthumb_always'	    => 1,
-    
-    
-    
-    
-    'menu_fallbackquote_show_excerpt'		=> 1,
-    'menu_fallbackquote_excerpt_length'	=> 240,
+
     'custom_excerpt_allowtags'	    => 'br',
     
     
