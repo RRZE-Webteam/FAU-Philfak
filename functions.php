@@ -767,56 +767,60 @@ function fau_main_menu_fallback() {
 
 
 
-function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextline = 0, $removeyoutube = 1, $alwayscontinuelink = 0){
+function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $withmore = false, $morestr = '', $continuenextline=false) {
   global $options;
     
-  
-  $excerpt = get_post_field('post_excerpt',$id);
+    if ($length==0) {
+	$length = $options['default_excerpt_length'];
+    }
+    
+    if (empty($morestr)) {
+	$morestr = $options['default_excerpt_morestring'];
+    }
+    
+    $excerpt = get_post_field('post_excerpt',$id);
  
-  if (empty($excerpt)) {
-      $excerpt = get_post_field('post_content',$id);
-  }
+    if (mb_strlen(trim($excerpt))<5) {
+	$excerpt = get_post_field('post_content',$id);
+    }
 
-  if ($removeyoutube==1) {
     $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
-  }
-  
-  $excerpt = strip_shortcodes($excerpt);
-  $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
-  
+    $excerpt = strip_shortcodes($excerpt);
+    $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
 
   
   if (mb_strlen($excerpt)<5) {
       $excerpt = '<!-- '.__( 'Kein Inhalt', 'fau' ).' -->';
   }
-
     
   $needcontinue =0;
   if (mb_strlen($excerpt) >  $length) {
-    $str = mb_substr($excerpt, 0, $length);
-    $str .= "...";
-    $needcontinue = 1;
+	$str = mb_substr($excerpt, 0, $length);
+	$needcontinue = 1;
   }  else {
-      $str = $excerpt;
+	$str = $excerpt;
   }
-
-  $the_str = '<p';
-  if (isset($class)) {
-      $the_str .= ' class="'.$class.'"';
-  }
-  $the_str .= '>';
-  $the_str .= $str;
+	    
+    $the_str = '';
+    if ($withp) {
+	$the_str .= '<p';
+	if (isset($class)) {
+	    $the_str .= ' class="'.$class.'"';
+	}
+	$the_str .= '>';
+    }
+    $the_str .= $str;
+    
+    if (($needcontinue==1) && ($withmore==true)) {
+	    if ($continuenextline) {
+		  $the_str .= '<br>';
+	    }
+	    $the_str .= $morestr;
+    }
   
-  
-  if ($alwayscontinuelink < 2) {
-      if (($needcontinue==1) || ($alwayscontinuelink==1)) {
-	  if ($continuenextline==1) {
-	      $the_str .= '<br>';
-	  }
-	  $the_str .= $options['default_excerpt_morestring'];
-      }
-  }
-  $the_str .= '</p>';
+    if ($withp) {
+	$the_str .= '</p>';
+    }
   return $the_str;
 }
 
@@ -851,7 +855,7 @@ function prefix_wpseo_add_meta_boxes() {
 } 
 
 
-function fau_display_news_teaser($id = 0) {
+function fau_display_news_teaser($id = 0, $withdate = false) {
     if ($id ==0) return;   
     global $options;
     
@@ -875,6 +879,11 @@ function fau_display_news_teaser($id = 0) {
 	}
 	$output .= 'href="'.$link.'">'.get_the_title($post->ID).'</a>';
 	$output .= "</h2>\n";  
+	
+	if ($withdate) {
+	    $output .= '<div class="news-meta-date">'.get_the_date('',$post->ID)."</div>\n";
+	}
+
 	
 	$output .= "\t".'<div class="row">'."\n";  
 	
@@ -909,7 +918,7 @@ function fau_display_news_teaser($id = 0) {
 	
 	$abstract = get_post_meta( $post->ID, 'abstract', true );
 	if (strlen(trim($abstract))<3) {
-	   $abstract =  fau_custom_excerpt($post->ID);
+	   $abstract =  fau_custom_excerpt($post->ID,$options['default_anleser_excerpt_length'],false,'',true);
 	}
 	$output .= $abstract;
 
