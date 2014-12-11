@@ -19,13 +19,18 @@ get_header(); ?>
 			<div class="row">
 							
 				<div class="span8">
-				    <?php if (function_exists('get_field')) { ?>
-					<h2><?php the_field('headline'); ?></h2>
-					<?php if( get_field('abstract') != ''): ?>
-						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
-				    <?php endif; } ?>
-							
-					<?php the_content(); ?>
+				    <?php 
+					$headline = get_post_meta( $post->ID, 'headline', true );				
+					if ( $headline) {
+					     echo "<h2>".$headline."</h2>\n";
+					}
+					$abstract = get_post_meta( $post->ID, 'abstract', true );	
+					if($abstract) {
+						     echo "<h3>".$abstract."</h3>\n";
+					}
+					 	
+					the_content(); 
+					?>
 				</div>
 				
 				<div class="span4">
@@ -36,10 +41,19 @@ get_header(); ?>
 
 <?php endwhile; ?>
 			
-			<div class="hr"><hr></div>
 			
-			<?php  if (function_exists('get_field')) {
-			    the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug')));
+			
+			<?php  
+			
+			$menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
+			if ($menuslug) { ?>			
+			    <div class="hr"><hr></div>
+			    <?php 
+			    echo "MENU: $menuslug";
+			   // the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug')));
+			    the_widget('WP_Nav_Menu_Widget', array('menu-slug' => $menuslug));
+			      
+			    
 			  }
 			?>
 
