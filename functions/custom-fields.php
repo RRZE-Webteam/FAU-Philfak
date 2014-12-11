@@ -231,8 +231,19 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    </p>
 	    <input type="date" name="fauval_topevent_date" id="fauval_topevent_date" class="text" value="<?php echo $topevent_date; ?>">		
 	    <br>
-	    <div class="howto"><?php echo __('Geben Sie hier das Datum des Events ein.','fau'); ?>	  
-	   </div>
+	    
+	    
+	    <div class="howto"><?php echo __('Geben Sie hier das Datum des Events ein.','fau'); ?></div>
+	    
+	    <script type="text/javascript">
+
+jQuery(document).ready(function() {
+    jQuery('#fauval_topevent_date').datepicker();
+});
+
+</script>
+	    
+	    
 	</div>
 	
 	<div class="optionseingabe">
