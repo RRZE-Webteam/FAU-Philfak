@@ -49,9 +49,9 @@ get_header(); ?>
 			if ($menuslug) { ?>			
 			    <div class="hr"><hr></div>
 			    <?php 
-			    echo "MENU: $menuslug";
+			   //  echo "MENU: $menuslug";
 			   // the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug')));
-			    the_widget('WP_Nav_Menu_Widget', array('menu-slug' => $menuslug));
+			    the_widget('FAUMenuSubpagesWidget', array('menu-slug' => $menuslug));
 			      
 			    
 			  }
