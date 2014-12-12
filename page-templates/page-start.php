@@ -256,11 +256,17 @@ global $options;
 					<?php get_template_part('sidebar'); ?>
 				</div>
 			</div> <!-- /row -->
-			<?php  if ( function_exists('get_field') ) { ?>
-			    <?php if ( get_field( 'portalmenu-slug' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
-			    <?php endif; ?>
+			<?php  
+			
+			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
+			 if ($menuslug) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 
+				fau_get_contentmenu($menuslug);
+				
+			 }
+
+			if ( function_exists('get_field') ) { ?>
 
 			    <?php if ( get_field( 'logo-slider-slug' ) ) : ?>
 				    <div class="hr"><hr></div>

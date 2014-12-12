@@ -16,10 +16,14 @@ function fau_metabox_cf_setup() {
 	/* Display Metabox */
 	add_action( 'add_meta_boxes_page', 'fau_add_metabox_page' );
 	add_action( 'add_meta_boxes_post', 'fau_add_metabox_post' );
+	
+
 	/* Save sidecontent */
 	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 
+	
 	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
 	add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
 
@@ -33,6 +37,12 @@ function fau_add_metabox_page() {
 		'fau_metabox_page_untertitel',			
 		esc_html__( 'Untertitel', 'fau' ),		
 		'fau_do_metabox_page_untertitel',		
+		 'page','normal','high'
+	);
+	add_meta_box(
+		'fau_metabox_page_portalmenu',			
+		esc_html__( 'Portalmenü einbinden', 'fau' ),		
+		'fau_do_metabox_page_portalmenu',		
 		 'page','normal','high'
 	);
 	add_meta_box(
@@ -570,7 +580,98 @@ function fau_save_metabox_page_untertitel( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'headline', $oldval );	
 	} 
+}
+
+
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_portalmenu( $object, $box ) { 
+    global $options;
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_portalmenu_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		 
+		return;
+	} else {
+	    return;
+	}
+	
+	$currentmenu  = get_post_meta( $object->ID, 'portalmenu-slug', true );	
+	$currentmenuid = 0;
+	if ($currentmenu == sanitize_key($currentmenu)) {
+	    $currentmenuid = $currentmenu;
+	} else {
+	    $thisterm = get_term_by('name', $currentmenu, 'nav_menu');
+	    if (!isset($thisterm)) {
+		$thisterm = get_term_by('slug', $currentmenu, 'nav_menu');
+	    }
+	    if (isset($thisterm)) {
+		$currentmenuid = $thisterm->term_id;    
+	    }
+	}
+	
+ 
+
+	?>
+	
+	<p>
+		<label for="fau_metabox_page_portalmenu_id">
+                    <?php _e( "Portalmenü", 'fau' ); ?>:
+                </label>
+	</p>
+	
+	
+	<select name="fau_metabox_page_portalmenu_id" id="fau_metabox_page_portalmenu_id">
+	<?php 
+	$menuliste = get_terms('nav_menu', array('orderby'=> 'name','hide_empty'=>true));
+	foreach($menuliste as $term){
+		$term_id = $term->term_id;
+		$term_name = $term->name;	
+		?>
+		<option value="<?php echo $term_id; ?>" <?php selected($term_id,$currentmenuid);?>><?php echo $term_name; ?></option>
+	<?php } ?>
+	</select>
+	
+
+	<p class="howto">
+	    <?php _e('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.','fau'); ?>
+	</p>
+	
+	
+	
+	<?php 
+
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_portalmenu( $post_id, $post ) {
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['fau_metabox_page_portalmenu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_portalmenu_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
+	}
+
+	$newval =$_POST['fau_metabox_page_portalmenu_id'];
+	$oldval = get_post_meta( $post_id, 'portalmenu-slug', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'portalmenu-slug', $newval );
+	    } else {
+		add_post_meta( $post_id, 'portalmenu-slug', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'portalmenu-slug', $oldval );	
+	} 
 
 
 }
+
 
