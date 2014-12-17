@@ -40,8 +40,18 @@ get_header(); ?>
 	    if ($menuslug) { ?>	
 		<div class="hr"><hr></div>
 		<?php 
+//		$menu, $submenu = 1, $subentries =0, $spalte = 0, $nothumbs = 0, $nodefthumbs = 0)
 		
-		fau_get_contentmenu($menuslug);
+		$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
+		if ($nosub==1) {
+		    $displaysub =0;
+		} else {
+		    $displaysub =1;
+		}
+		$nofallbackthumbs  = get_post_meta( $post->ID, 'fauval_portalmenu_nofallbackthumb', true );
+		$nothumbnails  = get_post_meta( $post->ID, 'fauval_portalmenu_thumbnailson', true ); 
+		
+		fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
 	      }
 	    ?>
 

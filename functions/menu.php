@@ -148,7 +148,7 @@ class Walker_Main_Menu extends Walker_Nav_Menu {
  * Darstellung eines Submenus im Inhaltsbereich
  * (Ersetzt bisherigen Murks mit fau-menu-widget.php aus FAU-Plugin)
  */
-function fau_get_contentmenu($menu, $abstract = 0, $subentries =0, $spalte = 0, $thumbs = 1, $defthumbs = 1) {
+function fau_get_contentmenu($menu, $submenu = 1, $subentries =0, $spalte = 0, $nothumbs = 0, $nodefthumbs = 0) {
     global $options;
     
     
@@ -175,7 +175,7 @@ function fau_get_contentmenu($menu, $abstract = 0, $subentries =0, $spalte = 0, 
     }
    
     echo '<div class="contentmenu">';   
-    wp_nav_menu( array( 'menu' => $slug, 'container' => false, 'items_wrap' => '%3$s', 'link_before' => '', 'link_after' => '', 'walker' => new Walker_Content_Menu($abstract,$subentries,$spalte,$thumbs,$defthumbs)));
+    wp_nav_menu( array( 'menu' => $slug, 'container' => false, 'items_wrap' => '%3$s', 'link_before' => '', 'link_after' => '', 'walker' => new Walker_Content_Menu($submenu,$subentries,$spalte,$nothumbs,$nodefthumbs)));
     echo "</div>\n";
 
     return;
@@ -188,16 +188,16 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 	private $level = 1;
 	private $count = array();
 	private $element;
-	private $showdescription = FALSE;
+	private $showsub = 1;
 	
 	
-	function __construct($showdescription,$maxsecondlevel=5,$spalten=4,$showthumb=1,$usethumbnailfallback=1) {
+	function __construct($showsub=1,$maxsecondlevel=5,$spalten=4,$noshowthumb=0,$nothumbnailfallback=0) {
 	    echo '<ul class="row subpages-menu">';
-	    $this->showdescription = $showdescription;
+	    $this->showsub = $showsub;
 	    $this->maxsecondlevel = $maxsecondlevel;
 	    $this->maxspalten = $spalten;
-	    $this->showthumbnail = $showthumb;
-	    $this->usethumbnailfallback = $usethumbnailfallback;
+	    $this->nothumbnail = $noshowthumb;
+	    $this->nothumbnailfallback = $nothumbnailfallback;
 	}
 	
 	function __destruct() {
@@ -231,7 +231,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 		}
 		$item_output = '';
 		// Only show elements on the first level and only five on the second level, but only if showdescription == FALSE
-		if($this->level == 1 || ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showdescription == FALSE)) {
+		if($this->level == 1 || ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1)) {
 			$class_names = $value = '';
 
 			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
@@ -291,7 +291,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 			}
 
 			if($this->level == 1) {
-				if ($this->showthumbnail) {			    
+				if (!$this->nothumbnail) {			    
 				    $post_thumbnail_id = get_post_thumbnail_id( $item->object_id, 'page-thumb' ); 
 				    $imagehtml = '';
 				    $imageurl = '';
@@ -299,7 +299,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 					$thisimage = wp_get_attachment_image_src( $post_thumbnail_id,  'page-thumb');
 					$imageurl = $thisimage[0]; 	
 				    }
-				    if ((!isset($imageurl) || (strlen(trim($imageurl)) <4 )) && ($this->usethumbnailfallback))  {
+				    if ((!isset($imageurl) || (strlen(trim($imageurl)) <4 )) && (!$this->nothumbnailfallback))  {
 					$imageurl = $options['default_submenuthumb_src'];
 				    }
 				    if (!empty($imageurl)) {
@@ -322,8 +322,9 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 			$item_output .= $args->after;
 			
 			
-			if($this->showdescription && $this->level == 1) {
+			if(!($this->showsub==1) && ($this->level == 1)) {
 			     $desc  = get_post_meta( $item->object_id, 'portal_description', true );
+			     // Wird bei Bildlink definiert
 			     if ($desc) {
 				$item_output .= '<p>'.$desc.'</p>';
 			     }	
@@ -336,7 +337,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 		if($this->level == 1 || ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel))	{
 			if($this->level == 1) $output .= "</li>\n";  
 			else $output .= "</li>\n";
-		} elseif(($this->level == 2) && ($this->count[$this->level] == ($this->maxsecondlevel+1)) && ($this->showdescription == FALSE)) {
+		} elseif(($this->level == 2) && ($this->count[$this->level] == ($this->maxsecondlevel+1)) && ($this->showsub == 1)) {
 			$output .= '<li class="more"><a href="'.$this->element->url.'">'. __('Mehr', 'fau').' ...</a></li>';
 		}	
 	}  

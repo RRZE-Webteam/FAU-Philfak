@@ -261,9 +261,18 @@ global $options;
 			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 			 if ($menuslug) { ?>	
 			    <div class="hr"><hr></div>
-			    <?php 
-				fau_get_contentmenu($menuslug);
-				
+			    <?php 			
+				$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
+				if ($nosub==1) {
+				    $displaysub =0;
+				} else {
+				    $displaysub =1;
+				}
+				$nofallbackthumbs  = get_post_meta( $post->ID, 'fauval_portalmenu_nofallbackthumb', true );
+				$nothumbnails  = get_post_meta( $post->ID, 'fauval_portalmenu_thumbnailson', true ); 
+
+				fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
+	
 			 }
 
 			if ( function_exists('get_field') ) { ?>

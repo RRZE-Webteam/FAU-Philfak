@@ -639,6 +639,34 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	    <?php _e('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.','fau'); ?>
 	</p>
 	
+	<div class="schalter">
+	<?php $nothumbnails  = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true ); ?>
+	<select class="onoff" name="fau_metabox_page_portalmenu_nothumbnails" id="fau_metabox_page_portalmenu_nothumbnails">
+	    <option value="0" <?php selected(0,$nothumbnails);?>>Aus</option>
+	    <option value="1" <?php selected(1,$nothumbnails);?>>An</option>
+	</select>
+	 <?php _e('Artikelbilder verstecken; Nur Überschriften zeigen.','fau'); ?>
+
+	</div>
+	
+	
+	<?php $nofallbackthumbs  = get_post_meta( $object->ID, 'fauval_portalmenu_nofallbackthumb', true );	?>
+	<div class="schalter">
+	<select class="onoff" name="fau_metabox_page_portalmenu_nofallbackthumb" id="fau_metabox_page_portalmenu_nofallbackthumb">
+	    <option value="0" <?php selected(0,$nofallbackthumbs);?>>Aus</option>
+	    <option value="1" <?php selected(1,$nofallbackthumbs);?>>An</option>
+	</select>
+	 <?php _e('Keine Ersatzbilder zeigen, wenn Artikelbilder nicht gesetzt sind.','fau'); ?>
+	</div>
+	
+	<?php $nosub  = get_post_meta( $object->ID, 'fauval_portalmenu_nosub', true );	?>
+	<div class="schalter">
+	<select class="onoff" name="fau_metabox_page_portalmenu_nosub" id="fau_metabox_page_portalmenu_nosub">
+	    <option value="0" <?php selected(0,$nosub);?>>Aus</option>
+	    <option value="1" <?php selected(1,$nosub);?>>An</option>
+	</select>
+	 <?php _e('Unterpunkte verbergen.','fau'); ?>
+	</div>
 	
 	
 	<?php 
@@ -670,7 +698,45 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'portalmenu-slug', $oldval );	
 	} 
+	
+	$newval = intval($_POST['fau_metabox_page_portalmenu_nothumbnails']);
+	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true );
+	
+	if ($newval==1) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_portalmenu_thumbnailson', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_portalmenu_thumbnailson', $newval, true );
+	    }
+	} else {
+	    delete_post_meta( $post_id, 'fauval_portalmenu_thumbnailson' );	
+	} 
+	
+	$newval = intval($_POST['fau_metabox_page_portalmenu_nofallbackthumb']);
+	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_nofallbackthumb', true );
+	
+	if ($newval==1) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_portalmenu_nofallbackthumb', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_portalmenu_nofallbackthumb', $newval, true );
+	    }
+	} else {
+	    delete_post_meta( $post_id, 'fauval_portalmenu_nofallbackthumb' );	
+	} 
 
+	$newval = intval($_POST['fau_metabox_page_portalmenu_nosub']);
+	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_nosub', true );
+	
+	if ($newval==1) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_portalmenu_nosub', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_portalmenu_nosub', $newval, true );
+	    }
+	} else {
+	    delete_post_meta( $post_id, 'fauval_portalmenu_nosub' );	
+	} 
 
 }
 
