@@ -4,43 +4,83 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		=> '1.1',
-    'optionpage-tab-default'	=> 'startseite',
-    'content-width'		=> 770,
-    'src-fallback-slider-image' => get_template_directory_uri().'/img/slider-fallback.jpg',
-    'slider-category'		=> 'header',
-    'slider-catid'		=> 0,
-    'slider-image-width'	=> 1260,
-    'slider-image-height'	=> 350,    
-    'start_header_count'	=> 5,
-    'start_news_count'		=> 3,
-    'breadcrumb_root'		=> 'fau.de',
-    'socialmedia'		=> 1,
-    'menu_pretitle_portal'	=> __('Portal', 'fau'),
-    'menu_aftertitle_portal'	=> '',
+    'js-version'		    => '1.1',
+    'optionpage-tab-default'	    => 'startseite',
+    'content-width'		    => 770,
+    'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
+    'slider-category'		    => 'header',
+    'slider-catid'		    => 0,
+    'slider-image-width'	    => 1260,
+    'slider-image-height'	    => 350,    
+    'slider-image-crop'		    => true,
+    'default_slider_excerpt_length' => 240,
+    'start_header_count'	    => 5,
+    'start_max_newscontent'	    => 5,
+    'start_max_newspertag'	    => 1,    
+    'start_prefix_tag_newscontent'  => 'startseite',
+    'start_link_news_cat'	    => 0,    
+    'start_link_news_show'	    => 1,
+    'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
+  
     
-   'contact_address_name'	=> __('Friedrich-Alexander-Universität', 'fau'),
-   'contact_address_name2'	=> __('Erlangen-Nürnberg', 'fau'),
-   'contact_address_street'	=> __('Schlossplatz 4', 'fau'),
-   'contact_address_plz'	=> __('91054', 'fau'),
-   'contact_address_ort'	=> __('Erlangen', 'fau'),
+    'default_mainmenuthumb_width'    => 370,
+    'default_mainmenuthumb_height'   => 185,
+    
+    'default_submenuthumb_width'    => 220,
+    'default_submenuthumb_height'   => 110,    
+    'default_submenuthumb_src'	    =>  get_template_directory_uri().'/img/default-submenuthumb.png',
+    'default_submenu_spalten'	    => 4,
+    'default_submenu_entries'	    => 5,
+    
+    'menu_fallbackquote_show_excerpt'		=> 1,
+    'menu_fallbackquote_excerpt_length'	=> 240,  
+    'start_topevents_tag'	    => 'top',
+    'start_topevents_max'	    => 1,
+    'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
+    'default_topevent_thumb_width'  => 140,
+    'default_topevent_thumb_height' => 90,
+    'default_topevent_thumb_crop'   => true,
+    'default_topevent_excerpt_length' => 100,
+
+    
+    'breadcrumb_root'		    => 'fau.de',
+    'socialmedia'		    => 1,
+    'menu_pretitle_portal'	    => __('Portal', 'fau'),
+    'menu_aftertitle_portal'	    => '',
+    
+   'contact_address_name'	    => __('Friedrich-Alexander-Universität', 'fau'),
+   'contact_address_name2'	    => __('Erlangen-Nürnberg', 'fau'),
+   'contact_address_street'	    => __('Schlossplatz 4', 'fau'),
+   'contact_address_plz'	    => __('91054', 'fau'),
+   'contact_address_ort'	    => __('Erlangen', 'fau'),
    
-    'contact_address_country'	=> '',
-    'display_nojs_notice'	=> 0,
-    'display_nojs_note'		=> __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
-    'google-site-verification'	=> '',
-    'default_mainmenu_number'	=> 4,
+    'contact_address_country'	    => '',
+    'display_nojs_notice'	    => 0,
+    'display_nojs_note'		    => __('JavaScript wurde deaktiviert oder Ihr Browser unterstützt kein JavaScript. Alle Inhalte sind erreichbar, jedoch ist die Bedienung teilweise umständlicher.','fau'),
+    'google-site-verification'	    => '',
+    'default_mainmenu_number'	    => 4,
    
-    'default_logo_src'		=> get_template_directory_uri().'/img/logo-fau.png',
-    'default_logo_height'	=> 65,
-    'default_logo_width'        => 240,
+    'default_logo_src'		    => get_template_directory_uri().'/img/logo-fau.png',
+    'default_logo_height'	    => 65,
+    'default_logo_width'	    => 240,
     
     'default_excerpt_morestring'    => '...',
-    'default_excerpt_length'	    => 30,
-    'default_search_excerpt_length'	=> 300,
-    'menu_fallbackquote_show_excerpt'		=> 1,
-    'menu_fallbackquote_excerpt_length'	=> 240,
+    'default_excerpt_length'	    => 300,
+    'default_anleser_excerpt_length'=> 300,
+    'default_search_excerpt_length' => 300,
+    
+    'default_postthumb_src'	    => get_template_directory_uri().'/img/default-postthumb.png',
+    'default_postthumb_width'	    => 220,
+    'default_postthumb_height'	    => 147,
+    'default_postthumb_crop'	    => false,
+    'default_postthumb_always'	    => 1,
+
+
     'custom_excerpt_allowtags'	    => 'br',
+    
+    
+    
+    
     
 ); 
 
@@ -361,14 +401,62 @@ $setoptions = array(
            'tabtitle'   => __('Startseite', 'fau'),
            'fields' => array(
                             
-
-	       'start_news_count'=> array(
+	       'newsbereich'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Nachrichtenbereich', 'fau' ),                      
+              ),
+	       
+	       'start_max_newscontent'=> array(
                   'type'    => 'select',
-                  'title'   => __( 'Zahl der News', 'fau' ),
+                  'title'   => __( 'Zahl der News (Gesamt)', 'fau' ),
                   'label'   => __( 'Anzahl der News auf der Startseite unterhalb des Sliders', 'fau' ),
 		   'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
-                  'default' => $defaultoptions['start_news_count'],
+                  'default' => $defaultoptions['start_max_newscontent'],
+		   'parent'  => 'newsbereich'
               ),  
+	        'start_prefix_tag_newscontent' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Angabe des Tag-Prefixes, mit dem News auf der Startseite gezeigt werden. Im Artikel wird dann dieser Tag plus eine Nummer vergeben um die Sortierung festzusetzen. Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2"', 'fau' ),               
+                  'default' => $defaultoptions['start_prefix_tag_newscontent'],
+		     'parent'  => 'newsbereich'
+              ),  
+	       
+	       
+	       'start_max_newspertag'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'News pro gleichem Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Anzahl der Artikel mit dem vorgegebene Prefix-Tag (Reihenfolge).', 'fau' ),
+		   'liste'   => array(1 => 1, 2 => 2,3 => 3, 4 => 4, 5 => 5),
+                  'default' => $defaultoptions['start_max_newspertag'],
+		    'parent'  => 'newsbereich'
+              ),  
+	       'start_link_news_show' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'News verlinken', 'fau' ),
+                  'label'   => __( 'Weitere Meldungen verlinken.', 'fau' ),               
+                  'default' => $defaultoptions['start_link_news_show'],
+		     'parent'  => 'newsbereich'
+              ),  
+		'start_link_news_cat' => array(
+                  'type'    => 'select',
+                  'title'   => __( 'News-Kategorie', 'fau' ),
+                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der News. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
+                  'liste'   => $currentcatliste,
+                  'default' => $defaultoptions['start_link_news_cat'],
+		     'parent'  => 'newsbereich'
+              ), 
+	    'default_postthumb_always' => array(
+		    'type'    => 'select',
+		    'title'   => __( 'Immer ein Artikelbild anzeigen', 'fau' ),
+		    'label'   => __( 'Immer ein Artikelbild zu einer Nachricht zeigen. Wenn kein Artikelbild definiert wurde, nehme stattdessen ein Ersatzbild.', 'fau' ),      
+		    'liste'   => array(1 => __('Ja', 'fau'), 0 => __('Nein', 'fau')),
+		    'default' => $defaultoptions['default_postthumb_always'],
+		    'parent'  => 'newsbereich'
+              ), 
+	        	
+	       
+	       
 	       
               'sliderpars'  => array(
                   'type'    => 'section',
@@ -393,8 +481,27 @@ $setoptions = array(
                   'default' => $defaultoptions['slider-catid'],
                    'parent'  => 'sliderpars'
               ), 
-              
-
+             'topevents'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Top Events', 'fau' ),                      
+              ), 
+	    'start_topevents_tag' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Schlagwort', 'fau' ),
+                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
+                  'default' => $defaultoptions['start_topevents_tag'],
+		  'parent'  => 'topevents'
+              ),  
+	       'start_topevents_max'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
+                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
+		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
+                  'default' => $defaultoptions['start_topevents_max'],
+                  'parent'  => 'topevents'
+              ),  
+	       
+    
                
                
           )

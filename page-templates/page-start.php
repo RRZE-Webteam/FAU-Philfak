@@ -9,6 +9,8 @@
 
 get_header();
 global $options;
+
+
 ?>
 
 	<div id="hero">
@@ -41,11 +43,18 @@ global $options;
 	    <?php foreach($hero_posts as $hero): ?>
 		<div class="hero-slide">
 			    <?php 
-			    $post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+			    
 			    $sliderimage = '';
-			    if ($post_thumbnail_id) {
-				$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+			    $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
+			    if (isset($imageid) && ($imageid>0)) {
+				$sliderimage = wp_get_attachment_image_src($imageid, 'hero'); 
+			    } else {
+				$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+				if ($post_thumbnail_id) {
+				    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+				}
 			    }
+
 			    if (!$sliderimage || empty($sliderimage[0])) {  
 				$slidersrc = '<img src="'.fau_esc_url($options['src-fallback-slider-image']).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
 			    } else {
@@ -57,16 +66,22 @@ global $options;
 				<div class="container">
 					    <?php
 						echo '<h2><a href="';
-						if (function_exists('get_field') && get_field('external_link')) {
-						    echo get_field('external_link');
+						
+						$link = get_post_meta( $hero->ID, 'external_link', true );
+						$external = 0;
+						if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+						    $external = 1;
 						} else {
-						    echo get_permalink($hero->ID);
+						    $link = get_permalink($hero->ID);
 						}
+						echo $link;
 						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
 	
-					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-						<br><p><?php echo get_field('abstract', $hero->ID); ?></p>
-					    <?php endif; ?>
+						$abstract = get_post_meta( $hero->ID, 'abstract', true );
+						if (strlen(trim($abstract))<3) {
+						   $abstract =  fau_custom_excerpt($hero->ID,$options['default_slider_excerpt_length'],false);
+						} ?>
+						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
 		    </div>
@@ -137,110 +152,102 @@ global $options;
 				<div class="span8">
 					
 					<?php
-						$max = 1;
-						for($j = 1; $j <= 5; $j++) {
+					
+						$number = 0;
+						$max = $options['start_max_newspertag'] || 3;
+						$maxall = $options['start_max_newscontent'] || 5;
+						
+						for($j = 1; $j <= 3; $j++) {
 							$i = 0;
-							    
-							$query = new WP_Query( 'tag=startseite'.$j );
-							 while ($query->have_posts() && $i<$max) { 
-							    $query->the_post();  ?>
-				    
-							    <div class="news-item">
-								    <h2><?php if(function_exists('get_field') && get_field('external_link', $post->ID)): ?>
-										<a href="<?php echo get_field('external_link', $post->ID);?>">
-									<?php else: ?>
-										<a href="<?php echo get_permalink($post->ID); ?>">
-									<?php endif; ?>
-									<?php echo get_the_title(); ?></a></h2>
-
-
-								<div class="row">
-								    <?php if(has_post_thumbnail( $post->ID )): ?>
-									<div class="span3">
-										<?php
-										echo '<a href="';
-										if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-										    echo get_field('external_link', $post->ID);
-										} else {
-										    echo get_permalink($post->ID);
-										}
-										echo '" class="news-image">';
-
-										$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
-										$sliderimage = '';
-										if ($post_thumbnail_id) {
-										    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
-										}
-										if ($sliderimage && !empty($sliderimage[0])) {  
-										    $slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
-										}
-										echo $slidersrc;
-										echo '</a>';
-										?>
-									</div>
-									<div class="span5">
-								    <?php else: ?>
-									<div class="span8">
-								    <?php endif; ?>
-									    <p>
-										    <?php if (function_exists('get_field')) {
-											 echo get_field('abstract', $post->ID);											  
-										    } else {
-											  the_excerpt();
-										    }
-
-										    echo ' <a href="';
-										    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-											    echo get_field('external_link', $post->ID);
-										    } else {
-											    echo get_permalink($post->ID);
-										    }
-										    echo '" class="read-more-arrow">›</a>'; ?>
-									    </p>
-									</div>
-								</div>
-							    </div> <!-- /news-item -->
+							$thistag = $options['start_prefix_tag_newscontent'].$j;    
+							$query = new WP_Query( 'tag='.$thistag );
 							
-							<?php
-								$i++;
-								wp_reset_postdata();
+							 while ($query->have_posts() && ($i<$max) ) { 
+							    $query->the_post(); 
+							    echo fau_display_news_teaser($post->ID);
+							    $i++;
+							    $number++;
+							    wp_reset_postdata();
 							}
 						}
+						if ($number==0) {
+						    $args = '';
+						    if (isset($options['start_link_news_cat'])) {
+							 $args = 'cat='.$options['start_link_news_cat'];	
+						    }
+						    if (isset($args)) {
+							$args .= '&';
+						    }
+						    
+						    $args .= 'post_type=post&has_password=0&posts_per_page='.$options['start_max_newscontent'];	
+						    $query = new WP_Query( $args );
+						    while ($query->have_posts() ) { 
+							$query->the_post(); 
+							echo fau_display_news_teaser($post->ID);
+							 wp_reset_postdata();
+						    }
+						}
+						
+			
 					?>
 
 					<?php
-						$category = get_category_by_slug('news');
-						if ($category) {
+						$category = get_the_category_by_ID($options['start_link_news_cat']);
+						if (($category) && ($options['start_link_news_show']==1)) {
 					?>
 					
 					<div class="news-more-links">
-						<a class="news-more" href="<?php echo get_category_link($category->term_id); ?>"><?php _e('Mehr Meldungen','fau'); ?></a>
-						<a class="news-rss" href="<?php echo get_category_feed_link($category->term_id); ?>">RSS</a>
+						<a class="news-more" href="<?php echo get_category_link($options['start_link_news_cat']); ?>"><?php echo $options['start_link_news_linktitle']; ?></a>
+						<a class="news-rss" href="<?php echo get_category_feed_link($options['start_link_news_cat']); ?>">RSS</a>
 					</div>
 					<?php } ?>			    
 					
 				</div>
 				<div class="span4">
 					
-					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
-					<?php foreach($topevent_posts as $topevent): ?>
+					<?php $topevent_posts = get_posts(array('tag' => $options['start_topevents_tag'], 'numberposts' => $options['start_topevents_max']));
+					 foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
-							<?php if (function_exists('get_field') && get_field('topevent_title', $topevent->ID)) { ?>
-							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
-							<?php } ?>
+							<?php 
+							$titel = get_post_meta( $topevent->ID, 'topevent_title', true );
+							if (strlen(trim($titel))<3) {
+							    $titel =  get_the_title($topevent->ID);
+							} 
+							$link = get_permalink($topevent->ID);
+							
+							?>
+							<h2 class="small"><a href="<?php echo $link; ?>"><?php echo $titel; ?></a></h2>
+							
 							<div class="row">
-							    <?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
+							    <?php 
+							    
+								$imageid = get_post_meta( $topevent->ID, 'topevent_image', true );
+								if (isset($imageid) && ($imageid>0)) {
+								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 
+								}
+								if (!$image || empty($image[0])) {  
+								    $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
+								} else {
+								    $imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
+								}
+								
+								
+								
+								
+							    if (isset($imagehtml)) { ?>
 								<div class="span2">
-									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
-									<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
+									<?php echo '<a href="'.$link.'">'.$imagehtml.'</a>'; ?>
 								</div>
 								<div class="span2">
-							    <?php else: ?>
+							    <?php } else { ?>
 								<div class="span4">
-							    <?php endif; ?>
-								    <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
-								    <div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
-								    <?php } ?>   
+							    <?php } 
+							    $desc = get_post_meta( $topevent->ID, 'topevent_description', true );
+							    if (strlen(trim($desc))<3) {
+								$desc =  fau_custom_excerpt($topevent->ID,$options['default_topevent_excerpt_length']);
+							    }  ?>   
+								    <div class="topevent-description"><?php echo $desc; ?></div>
+								   
 								</div>			
 							</div>
 						</div>
@@ -249,11 +256,26 @@ global $options;
 					<?php get_template_part('sidebar'); ?>
 				</div>
 			</div> <!-- /row -->
-			<?php  if ( function_exists('get_field') ) { ?>
-			    <?php if ( get_field( 'portalmenu-slug' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
-			    <?php endif; ?>
+			<?php  
+			
+			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
+			 if ($menuslug) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 			
+				$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
+				if ($nosub==1) {
+				    $displaysub =0;
+				} else {
+				    $displaysub =1;
+				}
+				$nofallbackthumbs  = get_post_meta( $post->ID, 'fauval_portalmenu_nofallbackthumb', true );
+				$nothumbnails  = get_post_meta( $post->ID, 'fauval_portalmenu_thumbnailson', true ); 
+
+				fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
+	
+			 }
+
+			if ( function_exists('get_field') ) { ?>
 
 			    <?php if ( get_field( 'logo-slider-slug' ) ) : ?>
 				    <div class="hr"><hr></div>

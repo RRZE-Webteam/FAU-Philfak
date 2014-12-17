@@ -21,10 +21,10 @@ global $options;
 <body <?php body_class(); ?>>
 	<nav aria-label="Skiplinks">
 	<ul class="jumplinks">
-		<li><a href="#content" class="jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a></li>
-		<li><a href="#s" class="jumplink-search"><?php _e('Zur Suche springen','fau'); ?></a></li>
-		<li><a href="#nav" class="jumplink-nav"><?php _e('Zum Hauptmenü springen','fau'); ?></a></li>
-		<?php if(strpos(get_page_template(), 'page-subnav') === FALSE): else: ?><li><a href="#subnav" class="jumplink-subnav"><?php _e('Zum Seitenmenü springen','fau'); ?></a></li><?php endif; ?>
+	    <li><a href="#content" class="jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a></li>
+	    <li><a href="#s" class="jumplink-search"><?php _e('Zur Suche springen','fau'); ?></a></li>
+	    <li><a href="#nav" class="jumplink-nav"><?php _e('Zum Hauptmenü springen','fau'); ?></a></li>
+	    <?php if(basename( get_page_template() )=='page-subnav.php') { ?><li><a href="#subnav" class="jumplink-subnav"><?php _e('Zum Seitenmenü springen','fau'); ?></a></li><?php } ?>
 	</ul>
 	</nav>    
 	<div id="meta">
@@ -89,3 +89,5 @@ global $options;
             ?>
 		</div>
 	</div>
+
+	

@@ -20,13 +20,15 @@ get_header(); ?>
 			
 				<div class="span4 span-sm-4">
 					<?php 
-						if (function_exists('get_field') && get_field('menu-level')) {
-							$offset = get_field('menu-level');
+					
+						$menulevel = get_post_meta( $post->ID, 'menu-level', true );
+						if ($menulevel) {
+							$offset = $menulevel;
 						} else	{
 							$offset = 2;
 						}
 					
-						$parent_page = get_top_parent_page_id($id, $offset);
+						$parent_page = get_top_parent_page_id($post->ID, $offset);
 						$parent = get_page($parent_page);
 					?>
 					<h2 class="small menu-header">
@@ -38,16 +40,14 @@ get_header(); ?>
 				</div>
 				
 				<div class="span8 span-sm-8">
-					 <?php if (function_exists('get_field')) { ?>
-					<h2><?php the_field('headline'); ?></h2>
-					 <?php } 
-					    if(function_exists('get_field') && get_field('abstract') != ''): ?>
-						<h3 class="abstract"><?php the_field('abstract'); ?></h3>
-					<?php endif; ?>
-					
-					<?php get_template_part('sidebar', 'inline'); ?>
+					<?php 
+					$headline = get_post_meta( $post->ID, 'headline', true );									
+					if ($headline) { echo '<h2>'.$headline.'</h2>'; }
+					$abstract = get_post_meta( $post->ID, 'abstract', true );
+					if ($abstract) { echo '<h3 class="abstract">'.$abstract.'</h3>'; }
 
-					<?php the_content(); ?>
+					get_template_part('sidebar', 'inline'); 
+					the_content(); ?>
 				</div>
 				
 			</div>

@@ -33,14 +33,17 @@ function fau_get_menu_name($location){
 
 function get_top_parent_page_id($id, $offset = FALSE) {
 
-	if( ! $offset) $offset = 2;
 	$parents = get_post_ancestors( $id );
-	return ($parents) ? $parents[count($parents)-$offset]: $id;
+	if( ! $offset) $offset = 2;
+	$index = count($parents)-$offset;
+	if ($index <0) {
+	    $index = count($parents)-1;
+	}
+	return ($parents) ? $parents[$index]: $id;
 
 }
 
-class Walker_Main_Menu extends Walker_Nav_Menu
-{
+class Walker_Main_Menu extends Walker_Nav_Menu {
 	private $currentID;
 
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
@@ -68,19 +71,16 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 		$output .= '<div class="span4 hide-mobile">';
 		 
 		$quote  = get_post_meta( $this->currentID, 'zitat_text', true );
-		// $quote = get_field('zitat_text', $this->currentID);
-		
 		$author =  get_post_meta( $this->currentID, 'zitat_autor', true );
-		//get_field('zitat_autor', $this->currentID);
 
 		if($quote) {
 			$output .= '<blockquote>';
-				$output .= '<p class="quote">'.$quote.'</p>';
-				if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
+			$output .= '<p class="quote">'.$quote.'</p>';
+			if($author) $output .= '<p class="author"> &mdash; '.$author.'</p>';
 			$output .= '</blockquote>';
 		} else {
 		    if ($options['menu_fallbackquote_show_excerpt']) {
-			$excerpt = fau_custom_excerpt($this->currentID,$options['menu_fallbackquote_excerpt_length'],'nav-excerpt');
+			$excerpt = fau_custom_excerpt($this->currentID,$options['menu_fallbackquote_excerpt_length'],true,'nav-excerpt');
 			if (isset($excerpt)) {
 			    $output .= $excerpt;
 			}
@@ -89,8 +89,8 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 
 		$output .= '</div>';
 		
-		$output .= '<div class="span4 hide-mobile">';
-		$output .= get_the_post_thumbnail($this->currentID, array(370,185));
+		$output .= '<div class="span4 hide-mobile">';		
+		$output .= get_the_post_thumbnail($this->currentID, array($options['default_mainmenuthumb_width'],$options['default_mainmenuthumb_height']));
 		$output .= '</div>';	
 		
 		$output .= '</div></div></div>';
@@ -142,4 +142,204 @@ class Walker_Main_Menu extends Walker_Nav_Menu
 
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
+}
+
+/* 
+ * Darstellung eines Submenus im Inhaltsbereich
+ * (Ersetzt bisherigen Murks mit fau-menu-widget.php aus FAU-Plugin)
+ */
+function fau_get_contentmenu($menu, $submenu = 1, $subentries =0, $spalte = 0, $nothumbs = 0, $nodefthumbs = 0) {
+    global $options;
+    
+    
+    if (empty($menu)) {
+	echo '<!-- no id and empty slug for menu -->';
+	return;
+    }
+    if ($menu == sanitize_key($menu)) {
+	$term = get_term_by('id', $menu, 'nav_menu');
+    } else {
+	$term = get_term_by('name', $menu, 'nav_menu');
+    }
+    if (!isset($term)) {
+	echo '<!-- invalid menu -->';
+	return;   
+    }
+    $slug = $term->slug;     
+    
+    if ($subentries==0) {
+	$subentries = $options['default_submenu_entries'];
+    }
+     if ($spalte==0) {
+	$spalte = $options['default_submenu_spalten'];
+    }
+   
+    echo '<div class="contentmenu">';   
+    wp_nav_menu( array( 'menu' => $slug, 'container' => false, 'items_wrap' => '%3$s', 'link_before' => '', 'link_after' => '', 'walker' => new Walker_Content_Menu($submenu,$subentries,$spalte,$nothumbs,$nodefthumbs)));
+    echo "</div>\n";
+
+    return;
+}
+
+
+
+
+class Walker_Content_Menu extends Walker_Nav_Menu {
+	private $level = 1;
+	private $count = array();
+	private $element;
+	private $showsub = 1;
+	
+	
+	function __construct($showsub=1,$maxsecondlevel=5,$spalten=4,$noshowthumb=0,$nothumbnailfallback=0) {
+	    echo '<ul class="row subpages-menu">';
+	    $this->showsub = $showsub;
+	    $this->maxsecondlevel = $maxsecondlevel;
+	    $this->maxspalten = $spalten;
+	    $this->nothumbnail = $noshowthumb;
+	    $this->nothumbnailfallback = $nothumbnailfallback;
+	}
+	
+	function __destruct() {
+		echo '</ul>';
+	}
+	
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		parent::start_lvl($output, $depth, $args);
+		$this->level++;
+		
+		$this->count[$this->level] = 0;
+	}
+	
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		parent::end_lvl($output, $depth, $args);
+		$this->level--;
+	}
+	
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	    global $options;
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		if (isset($this->count[$this->level])) {   
+		    $this->count[$this->level]++;
+		} else {
+		     $this->count[$this->level] =1;
+		}
+		
+		if($this->level == 1) {
+		    $this->element = $item;
+		}
+		$item_output = '';
+		// Only show elements on the first level and only five on the second level, but only if showdescription == FALSE
+		if($this->level == 1 || ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1)) {
+			$class_names = $value = '';
+
+			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+			$classes[] = 'menu-item-' . $item->ID;
+			if($this->level == 1 && (isset($this->count[$this->level])) && (($this->count[$this->level]-1) % $this->maxspalten==0) ) {
+			    $classes[] = 'clear';
+			}    
+			if($this->level == 1) {
+			    $classes[] = 'span3';
+			}
+		//	$classes[] = 'level'.$this->level;
+		//	$classes[] = 'count'.$this->count[$this->level];
+			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+			if($this->level == 1) {
+				$output .= $indent . '<li' . $id . $value . $class_names .'>';
+			} else	{
+				$output .= '<li>';
+			}
+
+			$atts = array();
+			$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+			$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+			$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+			
+		
+			$post = get_post($item->object_id);
+			if ($post && $post->post_type != 'imagelink') {
+				$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+			}
+
+			if($this->level == 1) $atts['class'] = 'subpage-item';
+
+			
+
+			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
+
+			$attributes = '';
+			foreach ( $atts as $attr => $value ) {
+				if ( ! empty( $value ) ) {
+					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+					$attributes .= ' ' . $attr . '="' . $value . '"';
+				}
+			}
+			
+			$item_output = $args->before;
+			if($post && $post->post_type == 'imagelink') {
+				$protocol  = get_post_meta( $item->object_id, 'protocol', true );
+				$link  = get_post_meta( $item->object_id, 'link', true );
+				$item_output .= '<a class="subpage-item ext-link" href="'.$protocol.$link.'">';
+			} else {
+				$item_output .= '<a'. $attributes .'>';
+			}
+
+			if($this->level == 1) {
+				if (!$this->nothumbnail) {			    
+				    $post_thumbnail_id = get_post_thumbnail_id( $item->object_id, 'page-thumb' ); 
+				    $imagehtml = '';
+				    $imageurl = '';
+				    if ($post_thumbnail_id) {
+					$thisimage = wp_get_attachment_image_src( $post_thumbnail_id,  'page-thumb');
+					$imageurl = $thisimage[0]; 	
+				    }
+				    if ((!isset($imageurl) || (strlen(trim($imageurl)) <4 )) && (!$this->nothumbnailfallback))  {
+					$imageurl = $options['default_submenuthumb_src'];
+				    }
+				    if (!empty($imageurl)) {
+					$item_output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_submenuthumb_width'].'" height="'.$options['default_submenuthumb_height'].'" alt="">';
+				    }
+
+				}
+				
+				
+				
+				if($post && $post->post_type == 'imagelink') {
+					$item_output .= '<div class="ext-icon"></div>';
+				}
+				$item_output .= $args->link_before.'<h3>'.apply_filters( 'the_title', $item->title, $item->ID ) .'</h3>'. $args->link_after;
+			} else {
+				$item_output .= $args->link_before.apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			}
+
+			$item_output .= '</a>';
+			$item_output .= $args->after;
+			
+			
+			if(!($this->showsub==1) && ($this->level == 1)) {
+			     $desc  = get_post_meta( $item->object_id, 'portal_description', true );
+			     // Wird bei Bildlink definiert
+			     if ($desc) {
+				$item_output .= '<p>'.$desc.'</p>';
+			     }	
+			}
+		}
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+	
+	function end_el(&$output, $item, $depth=0, $args=array()) {      
+		if($this->level == 1 || ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel))	{
+			if($this->level == 1) $output .= "</li>\n";  
+			else $output .= "</li>\n";
+		} elseif(($this->level == 2) && ($this->count[$this->level] == ($this->maxsecondlevel+1)) && ($this->showsub == 1)) {
+			$output .= '<li class="more"><a href="'.$this->element->url.'">'. __('Mehr', 'fau').' ...</a></li>';
+		}	
+	}  
+    
 }
