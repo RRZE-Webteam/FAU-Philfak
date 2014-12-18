@@ -43,7 +43,7 @@ function fau_add_metabox_page() {
 		'fau_metabox_page_portalmenu',			
 		esc_html__( 'Portalmenü einbinden', 'fau' ),		
 		'fau_do_metabox_page_portalmenu',		
-		 'page','normal','high'
+		 'page','side','high'
 	);
 	add_meta_box(
 		'fau_metabox_page_menu',			
@@ -639,37 +639,19 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	    <?php _e('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.','fau'); ?>
 	</p>
 	
-	<div class="schalter">
-	<?php $nothumbnails  = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true ); ?>
-	<select class="onoff" name="fau_metabox_page_portalmenu_nothumbnails" id="fau_metabox_page_portalmenu_nothumbnails">
-	    <option value="0" <?php selected(0,$nothumbnails);?>>Aus</option>
-	    <option value="1" <?php selected(1,$nothumbnails);?>>An</option>
-	</select>
-	 <?php _e('Artikelbilder verstecken; Nur Überschriften zeigen.','fau'); ?>
 
-	</div>
-	
-	
-	<?php $nofallbackthumbs  = get_post_meta( $object->ID, 'fauval_portalmenu_nofallbackthumb', true );	?>
-	<div class="schalter">
-	<select class="onoff" name="fau_metabox_page_portalmenu_nofallbackthumb" id="fau_metabox_page_portalmenu_nofallbackthumb">
-	    <option value="0" <?php selected(0,$nofallbackthumbs);?>>Aus</option>
-	    <option value="1" <?php selected(1,$nofallbackthumbs);?>>An</option>
-	</select>
-	 <?php _e('Keine Ersatzbilder zeigen, wenn Artikelbilder nicht gesetzt sind.','fau'); ?>
-	</div>
-	
-	<?php $nosub  = get_post_meta( $object->ID, 'fauval_portalmenu_nosub', true );	?>
-	<div class="schalter">
-	<select class="onoff" name="fau_metabox_page_portalmenu_nosub" id="fau_metabox_page_portalmenu_nosub">
-	    <option value="0" <?php selected(0,$nosub);?>>Aus</option>
-	    <option value="1" <?php selected(1,$nosub);?>>An</option>
-	</select>
-	 <?php _e('Unterpunkte verbergen.','fau'); ?>
-	</div>
-	
-	
 	<?php 
+	$nothumbnails  = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true ); 
+	fau_form_onoff('fau_metabox_page_portalmenu_nothumbnails',$nothumbnails,__('Artikelbilder verstecken; Nur Überschriften zeigen.','fau'));
+	
+	$nofallbackthumbs  = get_post_meta( $object->ID, 'fauval_portalmenu_nofallbackthumb', true );	
+	fau_form_onoff('fau_metabox_page_portalmenu_nofallbackthumb',$nofallbackthumbs,__('Keine Ersatzbilder zeigen, wenn Artikelbilder nicht gesetzt sind.','fau'));
+
+	$nosub  = get_post_meta( $object->ID, 'fauval_portalmenu_nosub', true );	
+	fau_form_onoff('fau_metabox_page_portalmenu_nosub',$nosub,__('Unterpunkte verbergen.','fau'));
+
+	
+
 
  }
 
@@ -741,3 +723,56 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 }
 
 
+
+
+function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  {
+	echo "<p>\n";
+	echo '	<label for="'.$name.'">';
+	echo $labeltext;
+	echo "</label><br />\n";
+	echo '	<input class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	if (strlen(trim($placeholder))) {
+	    echo ' placeholder="'.$placeholder.'"';
+	}
+	if (intval($size)>0) {
+	    echo ' length="'.$size.'"';
+	}
+	echo " />\n";
+	echo "</p>\n";
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_text() - Name oder Label fehlt.', 'fau');
+    }
+}
+    
+function fau_form_onoff($name= '', $prevalue = 0, $labeltext = '',  $howtotext = '' ) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  { ?>
+	<div class="schalter">
+	    <select class="onoff" name="<?php echo $name; ?>" id="<?php echo $name; ?>">
+		<option value="0" <?php selected(0,$prevalue);?>>Aus</option>
+		<option value="1" <?php selected(1,$prevalue);?>>An</option>
+	    </select>
+	    <label>
+		<?php echo $labeltext; ?>
+	    </label>
+	</div>
+	<?php 
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_onoff() - Name oder Label fehlt.', 'fau');
+    }
+}
+    

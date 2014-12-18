@@ -937,3 +937,8 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
     }
     return $output;
 }
+
+
+function fau_san($s){
+    return filter_var(trim($s), FILTER_SANITIZE_STRING);
+}
