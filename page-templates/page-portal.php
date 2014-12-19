@@ -53,6 +53,15 @@ get_header(); ?>
 		
 		fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
 	      }
+	      
+	       $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
+			 if ($logoliste) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 
+			    fau_get_imagelinks($logoliste);
+			     
+			 }
+	      
 	    ?>
 
 	</div>
