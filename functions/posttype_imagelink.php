@@ -127,3 +127,188 @@ function imagelink_post_types_admin_order( $wp_query ) {
 	}
 }
 add_filter('pre_get_posts', 'imagelink_post_types_admin_order');
+
+
+
+function fau_imagelink_metabox() {
+    add_meta_box(
+        'fau_imagelink_metabox',
+        __( 'Eigenschaften', 'fau' ),
+        'fau_imagelink_metabox_content',
+        'imagelink',
+        'normal',
+        'high'
+    );
+}
+function fau_imagelink_metabox_content( $object, $box ) { 
+    global $defaultoptions;
+    global $post;
+
+	
+    wp_nonce_field( basename( __FILE__ ), 'fau_imagelink_metabox_content_nonce' ); 
+
+    if ( !current_user_can( 'edit_page', $object->ID) )
+	    // Oder sollten wir nach publish_pages  fragen? 
+	    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
+	return;
+
+    
+    $targeturl = get_post_meta( $object->ID, 'fauval_imagelink_url', true );
+   
+    /* Old values */
+    $desc  = get_post_meta( $object->ID, 'portal_description', true );
+    $protocol  = get_post_meta( $object->ID, 'protocol', true );
+    $link  = get_post_meta( $object->ID, 'link', true );
+	
+    if (empty($targeturl) && isset($protocol) && isset($link)) {
+	$targeturl = $protocol.$link;
+    }
+				
+    fau_form_url('fau_imagelink_url', $targeturl, __('Webadresse','fau'), '', $placeholder='http://');   
+    fau_form_text('fau_imagelink_desc', $desc, __('Kurzbeschreibung','fau'));
+
+    return;
+
+}
+
+
+add_action( 'add_meta_boxes', 'fau_imagelink_metabox' );
+
+
+
+
+
+
+function fau_imagelink_metabox_content_save( $post_id ) {
+    global $options;
+    if (  'imagelink'!= get_post_type()  ) {
+	return;
+    }
+
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+	return;
+	
+	
+	if ( !isset( $_POST['fau_imagelink_metabox_content_nonce'] ) || !wp_verify_nonce( $_POST['fau_imagelink_metabox_content_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
+	} else {
+		if ( !current_user_can( 'edit_post', $post_id ) )
+		return;
+	}
+	
+    /* Old values */	
+    $targeturl = get_post_meta( $post_id->ID, 'fauval_imagelink_url', true );
+    $protocol  = get_post_meta( $post_id->ID, 'protocol', true );
+    $link  = get_post_meta( $post_id->ID, 'link', true );
+
+    
+    $newval = ( isset( $_POST['fau_imagelink_desc'] ) ? sanitize_text_field( $_POST['fau_imagelink_desc'] ) : 0 );
+    $oldval =  get_post_meta( $post_id->ID, 'portal_description', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'portal_description', $newval );
+	    } else {
+		add_post_meta( $post_id, 'portal_description', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'portal_description', $oldval );	
+	} 
+    
+	
+    if (empty($targeturl) && isset($protocol) && isset($link)) {
+	$targeturl2 = $protocol.$link;
+    }
+    
+    if (filter_var($_POST['fau_imagelink_url'], FILTER_VALIDATE_URL)) {
+	$newval = $_POST['fau_imagelink_url'];
+    }
+    if (!empty($newval)) {
+	    if (isset($targeturl)  && ($targeturl != $newval)) {
+		update_post_meta( $post_id, 'fauval_imagelink_url', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_imagelink_url', $newval, true );
+	    }
+    } else {
+	    if ($targeturl) {
+		delete_post_meta( $post_id, 'fauval_imagelink_url', $oldval );	
+	    }    
+    } 
+    if (isset($protocol) && isset($link)) {
+	delete_post_meta( $post_id, 'protocol' );	
+	delete_post_meta( $post_id, 'link' );	
+    }
+}
+add_action( 'save_post', 'fau_imagelink_metabox_content_save' );
+
+
+
+function fau_get_imagelinks ( $catid ) {
+    global $options;
+    
+    if ( isset($catid) && $catid >0) {
+		
+	
+	 $args = array(
+		    'post_type'	=> 'imagelink',
+		    'nopaging' => 1,
+		    'orderby' => 'name', 
+		    'order' => 'ASC',
+                    'tax_query' => array(
+			     array(
+				'taxonomy' => 'imagelinks_category',
+				'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
+				'terms' => $catid,
+			    
+                            )
+                    )
+        );
+
+    $imagelist = get_posts($args); 
+	$item_output = '';
+	$number =0;
+        foreach($imagelist as $item) {
+	    $number++;
+	    $currenturl  = get_post_meta( $item->ID, 'fauval_imagelink_url', true );
+	    if (!$currenturl) {
+		    $protocol  = get_post_meta( $item->ID, 'protocol', true );
+		    $link  = get_post_meta( $item->ID, 'link', true );
+		    $currenturl = $protocol.$link;
+	    }
+	    $item_output .= '<span class="span2">';
+	    $item_output .= '<a class="logo-item" href="'.$currenturl.'">';
+	    $item_output .= get_the_post_thumbnail($item->ID, 'logo-thumb');
+	    $item_output .= '</a>';
+	    $item_output .= '</span>';
+    
+	}
+	if ($number>0) {
+	    echo '<div class="container">';
+	    echo '<div class="logos-menu-nav">';
+	    echo '<a id="logos-menu-prev" href="#">'. __('Zurück', 'fau') . '</a>';
+	    echo '<a id="logos-menu-next" href="#">'. __('Weiter', 'fau') . '</a>';
+	    echo '</div>';
+	    echo "</div>\n";
+	    
+	    echo '<div class="row logos-menu">';
+	    echo $item_output;    
+	    echo "</div>\n";
+	    echo '<div class="container"><a id="logos-menu-playpause" href="#"><span class="play">'. __('Abspielen', 'fau') . '</span><span class="pause">'. __('Pause', 'fau') . '</span></a></div>';
+	    echo "\n";
+	
+	} 
+		
+	return;
+	
+	
+    } else {
+	return;
+    }
+}

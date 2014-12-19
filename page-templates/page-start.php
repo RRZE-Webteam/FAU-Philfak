@@ -274,13 +274,18 @@ global $options;
 				fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
 	
 			 }
-
+			 
+			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
+			 if ($logoliste) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 
+			    fau_get_imagelinks($logoliste);
+			     
+			 }
+			 
+			 
 			if ( function_exists('get_field') ) { ?>
 
-			    <?php if ( get_field( 'logo-slider-slug' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php the_widget('FAUMenuLogosWidget', array('menu-slug' => get_field('logo-slider-slug'))); ?>
-			    <?php endif; ?>
 
 			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
 				    <div class="hr"><hr></div>

@@ -16,12 +16,13 @@ function fau_metabox_cf_setup() {
 	/* Display Metabox */
 	add_action( 'add_meta_boxes_page', 'fau_add_metabox_page' );
 	add_action( 'add_meta_boxes_post', 'fau_add_metabox_post' );
-	
+
 
 	/* Save sidecontent */
 	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
 
 	
 	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
@@ -43,7 +44,7 @@ function fau_add_metabox_page() {
 		'fau_metabox_page_portalmenu',			
 		esc_html__( 'Portalmenü einbinden', 'fau' ),		
 		'fau_do_metabox_page_portalmenu',		
-		 'page','side','high'
+		 'page','side','core'
 	);
 	add_meta_box(
 		'fau_metabox_page_menu',			
@@ -51,7 +52,12 @@ function fau_add_metabox_page() {
 		'fau_do_metabox_page_menu',		
 		 'page','normal','high'
 	);
-	
+	add_meta_box(
+		'fau_metabox_page_imagelinks',			
+		esc_html__( 'Logos (Bildlinks) anzeigen', 'fau' ),		
+		'fau_do_metabox_page_imagelinks',		
+		 'page','side','core'
+	);
 
 }
 
@@ -613,34 +619,17 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	}
 	
  
-
-	?>
-	
-	<p>
-		<label for="fau_metabox_page_portalmenu_id">
-                    <?php _e( "Portalmenü", 'fau' ); ?>:
-                </label>
-	</p>
-	
-	
-	<select name="fau_metabox_page_portalmenu_id" id="fau_metabox_page_portalmenu_id">
-	<?php 
+	$thislist = array();
 	$menuliste = get_terms('nav_menu', array('orderby'=> 'name','hide_empty'=>true));
 	foreach($menuliste as $term){
 		$term_id = $term->term_id;
 		$term_name = $term->name;	
-		?>
-		<option value="<?php echo $term_id; ?>" <?php selected($term_id,$currentmenuid);?>><?php echo $term_name; ?></option>
-	<?php } ?>
-	</select>
-	
+		$thislist[$term->term_id] =  $term->name;
+	}
+	fau_form_select('fau_metabox_page_portalmenu_id',$thislist,$currentmenuid,__('Portalmenü','fau'),
+		__('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.','fau'),
+		1, __('Kein Portalmenu zeigen','fau'));
 
-	<p class="howto">
-	    <?php _e('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.','fau'); ?>
-	</p>
-	
-
-	<?php 
 	$nothumbnails  = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true ); 
 	fau_form_onoff('fau_metabox_page_portalmenu_nothumbnails',$nothumbnails,__('Artikelbilder verstecken; Nur Überschriften zeigen.','fau'));
 	
@@ -722,57 +711,72 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 
 }
 
+/* 
+ * Imagelinks einbinden 
+ */
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_imagelinks( $object, $box ) { 
+    global $options;
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_imagelinks_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		 
+		return;
+	} else {
+	    return;
+	}
+
+ 
+	$categories = get_categories( array('type' => 'imagelink', 'taxonomy' => 'imagelinks_category', 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => 1 ) ); 
+	foreach($categories as $category) {
+	    if (!is_wp_error( $category )) {
+		if ($category->count > 1) {
+		    $thislist[$category->cat_ID] = $category->name.' ('.$category->count.' '.__('Bilder','fau').')';
+		} else {
+		    $thislist[$category->cat_ID] = $category->name.' ('.$category->count.' '.__('Bild','fau').')';
+		}
+	    }	
+	}	
+	
+
+	$currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
+	fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
+		__('Wählen Sie hier die Kategorie aus aus der Logos (Bildlinks) verwendet werden sollen. Die Bilder aus der gewählten Kategorie werden dann angezeigt.','fau'),
+		1, __('Keine Logos zeigen','fau'));
+	
+	return;
 
 
+ }
 
-function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    if (isset($name) &&  isset($labeltext))  {
-	echo "<p>\n";
-	echo '	<label for="'.$name.'">';
-	echo $labeltext;
-	echo "</label><br />\n";
-	echo '	<input class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
-	if (strlen(trim($placeholder))) {
-	    echo ' placeholder="'.$placeholder.'"';
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_imagelinks( $post_id, $post ) {
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['fau_metabox_page_imagelinks_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_imagelinks_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
 	}
-	if (intval($size)>0) {
-	    echo ' length="'.$size.'"';
-	}
-	echo " />\n";
-	echo "</p>\n";
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_text() - Name oder Label fehlt.', 'fau');
-    }
+
+	$newval = intval($_POST['fau_metabox_page_imagelinks_catid']);
+	$oldval = get_post_meta( $post_id, 'fauval_imagelink_catid', true );
+	
+	if ($newval>0) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_imagelink_catid', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_imagelink_catid', $newval, true );
+	    }
+	} else {
+	    delete_post_meta( $post_id, 'fauval_imagelink_catid', $oldval );	
+	} 
+
 }
-    
-function fau_form_onoff($name= '', $prevalue = 0, $labeltext = '',  $howtotext = '' ) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    if (isset($name) &&  isset($labeltext))  { ?>
-	<div class="schalter">
-	    <select class="onoff" name="<?php echo $name; ?>" id="<?php echo $name; ?>">
-		<option value="0" <?php selected(0,$prevalue);?>>Aus</option>
-		<option value="1" <?php selected(1,$prevalue);?>>An</option>
-	    </select>
-	    <label>
-		<?php echo $labeltext; ?>
-	    </label>
-	</div>
-	<?php 
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_onoff() - Name oder Label fehlt.', 'fau');
-    }
-}
-    
+
