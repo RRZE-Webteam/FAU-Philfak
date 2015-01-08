@@ -1,0 +1,27 @@
+/*
+CSS Colors File for Wordpress Theme FAU
+*/
+
+
+$colorText:		#444;
+$colorTextLight: #888;
+
+
+// Define colors of each faculty
+
+$colorPhilFak: 	#ad841f;
+$colorRwFak: 	#801429;
+$colorMedFak: 	#00b1c6;
+$colorNatFak:	#009775;
+$colorTechFak:	#a3acb2;
+
+$colorZUV:		#003366;
+
+
+// Define primary colors by faculty
+
+$colorPrimary:	$colorZUV;
+$colorHover: 	desaturate(lighten($colorPrimary, 15%), 40%);
+
+$colorLight:	desaturate(lighten($colorPrimary, 65%), 75%);
+$colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);

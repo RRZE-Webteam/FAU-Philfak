@@ -1,0 +1,45 @@
+/*
+Mixins File for Wordpress Theme FAU
+*/
+
+@mixin box-shadow($shadow) {
+  	-webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin transition($duration, $params) {
+	-webkit-transition: $duration $params;
+	-moz-transition: $duration $params;
+	-ms-transition: $duration $params;
+	transition: $duration $params;
+}
+
+@mixin hyphens($value) {
+	-moz-hyphens: $value;
+	-o-hyphens: $value;
+	-webkit-hyphens: $value;
+	-ms-hyphens: $value;
+	hyphens: $value;
+}
+
+@mixin placeholder($color) {
+	::-webkit-input-placeholder {
+		color: $color;
+	}
+	:-moz-placeholder {
+		color: $color;
+	}
+	::-moz-placeholder {
+		color: $color;
+	}
+	:-ms-input-placeholder {
+		color: $color;
+	}
+}

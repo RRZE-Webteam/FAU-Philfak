@@ -11,14 +11,5 @@ Tags: blue
 Text Domain: fau
 */
 
-/* @import url(css/fonts.css); */
-@import url(css/fonts.min.css);
-
-/* @import url(css/basis.css); */ 
-@import url(css/basis.min.css);
-
-/* @import url(css/mediaqueries.css); */
-@import url(css/mediaqueries.min.css); 
-
-/* @import url(css/print.css); */
-@import url(css/print.min.css); 
+@import url(css/base.css);
+@import url(css/print.css); 
