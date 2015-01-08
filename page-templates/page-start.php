@@ -43,11 +43,18 @@ global $options;
 	    <?php foreach($hero_posts as $hero): ?>
 		<div class="hero-slide">
 			    <?php 
-			    $post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+			    
 			    $sliderimage = '';
-			    if ($post_thumbnail_id) {
-				$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+			    $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
+			    if (isset($imageid) && ($imageid>0)) {
+				$sliderimage = wp_get_attachment_image_src($imageid, 'hero'); 
+			    } else {
+				$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
+				if ($post_thumbnail_id) {
+				    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+				}
 			    }
+
 			    if (!$sliderimage || empty($sliderimage[0])) {  
 				$slidersrc = '<img src="'.fau_esc_url($options['src-fallback-slider-image']).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';			    
 			    } else {
@@ -59,16 +66,22 @@ global $options;
 				<div class="container">
 					    <?php
 						echo '<h2><a href="';
-						if (function_exists('get_field') && get_field('external_link')) {
-						    echo get_field('external_link');
+						
+						$link = get_post_meta( $hero->ID, 'external_link', true );
+						$external = 0;
+						if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+						    $external = 1;
 						} else {
-						    echo get_permalink($hero->ID);
+						    $link = get_permalink($hero->ID);
 						}
+						echo $link;
 						echo '">'.get_the_title($hero->ID).'</a></h2>'."\n";					
 	
-					     if (function_exists('get_field') &&  get_field('abstract', $hero->ID)): ?>
-						<br><p><?php echo get_field('abstract', $hero->ID); ?></p>
-					    <?php endif; ?>
+						$abstract = get_post_meta( $hero->ID, 'abstract', true );
+						if (strlen(trim($abstract))<3) {
+						   $abstract =  fau_custom_excerpt($hero->ID,$options['default_slider_excerpt_length'],false);
+						} ?>
+						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
 		    </div>
@@ -192,25 +205,49 @@ global $options;
 				</div>
 				<div class="span4">
 					
-					<?php $topevent_posts = get_posts(array('tag' => 'top', 'numberposts' => 1));?>
-					<?php foreach($topevent_posts as $topevent): ?>
+					<?php $topevent_posts = get_posts(array('tag' => $options['start_topevents_tag'], 'numberposts' => $options['start_topevents_max']));
+					 foreach($topevent_posts as $topevent): ?>
 						<div class="widget">
-							<?php if (function_exists('get_field') && get_field('topevent_title', $topevent->ID)) { ?>
-							<h2 class="small"><a href="<?php echo get_permalink($topevent->ID); ?>"><?php the_field('topevent_title', $topevent->ID); ?></a></h2>
-							<?php } ?>
+							<?php 
+							$titel = get_post_meta( $topevent->ID, 'topevent_title', true );
+							if (strlen(trim($titel))<3) {
+							    $titel =  get_the_title($topevent->ID);
+							} 
+							$link = get_permalink($topevent->ID);
+							
+							?>
+							<h2 class="small"><a href="<?php echo $link; ?>"><?php echo $titel; ?></a></h2>
+							
 							<div class="row">
-							    <?php if(function_exists('get_field') && get_field('topevent_image', $topevent->ID)): ?>
+							    <?php 
+							    
+								$imageid = get_post_meta( $topevent->ID, 'topevent_image', true );
+								if (isset($imageid) && ($imageid>0)) {
+								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 
+								}
+								if (!$image || empty($image[0])) {  
+								    $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
+								} else {
+								    $imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
+								}
+								
+								
+								
+								
+							    if (isset($imagehtml)) { ?>
 								<div class="span2">
-									<?php $image = wp_get_attachment_image_src(get_field('topevent_image', $topevent->ID), 'topevent-thumb'); ?>
-									<a href="<?php echo get_permalink($topevent->ID); ?>"><img src="<?php echo $image[0]; ?>"></a>
+									<?php echo '<a href="'.$link.'">'.$imagehtml.'</a>'; ?>
 								</div>
 								<div class="span2">
-							    <?php else: ?>
+							    <?php } else { ?>
 								<div class="span4">
-							    <?php endif; ?>
-								    <?php if (function_exists('get_field') && get_field('topevent_description', $topevent->ID)) { ?>   
-								    <div class="topevent-description"><?php the_field('topevent_description', $topevent->ID); ?></div>
-								    <?php } ?>   
+							    <?php } 
+							    $desc = get_post_meta( $topevent->ID, 'topevent_description', true );
+							    if (strlen(trim($desc))<3) {
+								$desc =  fau_custom_excerpt($topevent->ID,$options['default_topevent_excerpt_length']);
+							    }  ?>   
+								    <div class="topevent-description"><?php echo $desc; ?></div>
+								   
 								</div>			
 							</div>
 						</div>
@@ -219,16 +256,36 @@ global $options;
 					<?php get_template_part('sidebar'); ?>
 				</div>
 			</div> <!-- /row -->
-			<?php  if ( function_exists('get_field') ) { ?>
-			    <?php if ( get_field( 'portalmenu-slug' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php the_widget('FAUMenuSubpagesWidget', array('menu-slug' => get_field('portalmenu-slug'))); ?>
-			    <?php endif; ?>
+			<?php  
+			
+			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
+			 if ($menuslug) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 			
+				$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
+				if ($nosub==1) {
+				    $displaysub =0;
+				} else {
+				    $displaysub =1;
+				}
+				$nofallbackthumbs  = get_post_meta( $post->ID, 'fauval_portalmenu_nofallbackthumb', true );
+				$nothumbnails  = get_post_meta( $post->ID, 'fauval_portalmenu_thumbnailson', true ); 
 
-			    <?php if ( get_field( 'logo-slider-slug' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php the_widget('FAUMenuLogosWidget', array('menu-slug' => get_field('logo-slider-slug'))); ?>
-			    <?php endif; ?>
+				fau_get_contentmenu($menuslug,$displaysub,0,0,$nothumbnails,$nofallbackthumbs);
+	
+			 }
+			 
+			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
+			 if ($logoliste) { ?>	
+			    <div class="hr"><hr></div>
+			    <?php 
+			    fau_get_imagelinks($logoliste);
+			     
+			 }
+			 
+			 
+			if ( function_exists('get_field') ) { ?>
+
 
 			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
 				    <div class="hr"><hr></div>

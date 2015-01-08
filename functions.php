@@ -13,6 +13,7 @@ require_once(get_template_directory() .'/functions/bootstrap.php');
 require_once(get_template_directory() .'/functions/shortcodes.php');
 require_once(get_template_directory() .'/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
+require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 
 
 
@@ -63,18 +64,19 @@ function fau_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 300, 150, false );
-
-	add_image_size( 'hero', 1260, 350, true);
-	add_image_size( 'page-thumb', 220, 110, true); 
 	
-	
+	add_image_size( 'hero', $options['slider-image-width'], $options['slider-image-height'], $options['slider-image-crop']);	// 1260:350
 	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
+	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); 
+	add_image_size( 'page-thumb', $options['default_submenuthumb_width'], $options['default_submenuthumb_height'], true); // 220:110
 	
 	
 	add_image_size( 'post', 300, 200, false);
 	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
 	add_image_size( 'person-thumb-bigger', 90, 120, true);
-	add_image_size( 'topevent-thumb', 140, 90, true); 
+
+	
+	
 	add_image_size( 'logo-thumb', 140, 110, true);
 	
 	add_image_size( 'gallery-full', 940, 470);
@@ -238,6 +240,7 @@ function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
+    wp_enqueue_script('jquery-ui-datetimepicker');
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
@@ -765,56 +768,60 @@ function fau_main_menu_fallback() {
 
 
 
-function fau_custom_excerpt($id = 0, $length = 100, $class = '', $continuenextline = 0, $removeyoutube = 1, $alwayscontinuelink = 0){
+function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $withmore = false, $morestr = '', $continuenextline=false) {
   global $options;
     
-  
-  $excerpt = get_post_field('post_excerpt',$id);
+    if ($length==0) {
+	$length = $options['default_excerpt_length'];
+    }
+    
+    if (empty($morestr)) {
+	$morestr = $options['default_excerpt_morestring'];
+    }
+    
+    $excerpt = get_post_field('post_excerpt',$id);
  
-  if (empty($excerpt)) {
-      $excerpt = get_post_field('post_content',$id);
-  }
+    if (mb_strlen(trim($excerpt))<5) {
+	$excerpt = get_post_field('post_content',$id);
+    }
 
-  if ($removeyoutube==1) {
     $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
-  }
-  
-  $excerpt = strip_shortcodes($excerpt);
-  $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
-  
+    $excerpt = strip_shortcodes($excerpt);
+    $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
 
   
   if (mb_strlen($excerpt)<5) {
       $excerpt = '<!-- '.__( 'Kein Inhalt', 'fau' ).' -->';
   }
-
     
   $needcontinue =0;
   if (mb_strlen($excerpt) >  $length) {
-    $str = mb_substr($excerpt, 0, $length);
-    $str .= "...";
-    $needcontinue = 1;
+	$str = mb_substr($excerpt, 0, $length);
+	$needcontinue = 1;
   }  else {
-      $str = $excerpt;
+	$str = $excerpt;
   }
-
-  $the_str = '<p';
-  if (isset($class)) {
-      $the_str .= ' class="'.$class.'"';
-  }
-  $the_str .= '>';
-  $the_str .= $str;
+	    
+    $the_str = '';
+    if ($withp) {
+	$the_str .= '<p';
+	if (isset($class)) {
+	    $the_str .= ' class="'.$class.'"';
+	}
+	$the_str .= '>';
+    }
+    $the_str .= $str;
+    
+    if (($needcontinue==1) && ($withmore==true)) {
+	    if ($continuenextline) {
+		  $the_str .= '<br>';
+	    }
+	    $the_str .= $morestr;
+    }
   
-  
-  if ($alwayscontinuelink < 2) {
-      if (($needcontinue==1) || ($alwayscontinuelink==1)) {
-	  if ($continuenextline==1) {
-	      $the_str .= '<br>';
-	  }
-	  $the_str .= $options['default_excerpt_morestring'];
-      }
-  }
-  $the_str .= '</p>';
+    if ($withp) {
+	$the_str .= '</p>';
+    }
   return $the_str;
 }
 
@@ -849,7 +856,7 @@ function prefix_wpseo_add_meta_boxes() {
 } 
 
 
-function fau_display_news_teaser($id = 0) {
+function fau_display_news_teaser($id = 0, $withdate = false) {
     if ($id ==0) return;   
     global $options;
     
@@ -858,27 +865,36 @@ function fau_display_news_teaser($id = 0) {
     if ($post) {
 	$output .= '<div class="news-item">';
 	
-	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-	    $link = get_field('external_link', $post->ID);
+	$link = get_post_meta( $post->ID, 'external_link', true );
+	$external = 0;
+	if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+	    $external = 1;
 	} else {
 	    $link = get_permalink($post->ID);
 	}
 	
 	$output .= "\t<h2>";  
-	$output .= '<a href="'.$link.'">'.get_the_title($post->ID).'</a>';
+	$output .= '<a ';
+	if ($external==1) {
+	    $output .= 'class="external" ';
+	}
+	$output .= 'href="'.$link.'">'.get_the_title($post->ID).'</a>';
 	$output .= "</h2>\n";  
 	
+	if ($withdate) {
+	    $output .= '<div class="news-meta-date">'.get_the_date('',$post->ID)."</div>\n";
+	}
+
+	
 	$output .= "\t".'<div class="row">'."\n";  
+	
 	if ((has_post_thumbnail( $post->ID )) ||($options['default_postthumb_always']))  {
 	    $output .= "\t\t".'<div class="span3">'."\n"; 
-	    
-	     $output .= '<a href="';
-	    if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-		$output .= get_field('external_link', $post->ID);
-	    } else {
-		$output .= get_permalink($post->ID);
+	    $output .= '<a href="'.$link.'" class="news-image';
+	    if ($external==1) {
+		$output .= ' external';
 	    }
-	    $output .= '" class="news-image">';
+	    $output .= '">';
 
 	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
 	    $imagehtml = '';
@@ -899,19 +915,20 @@ function fau_display_news_teaser($id = 0) {
 	}
 	$output .= "\t\t\t".'<p>'."\n"; 
 	
-	if (function_exists('get_field')) {
-	    $output .= get_field('abstract', $post->ID);											  
-	} else {
-	    $output .= fau_custom_excerpt($post->ID);
+	
+	
+	$abstract = get_post_meta( $post->ID, 'abstract', true );
+	if (strlen(trim($abstract))<3) {
+	   $abstract =  fau_custom_excerpt($post->ID,$options['default_anleser_excerpt_length'],false,'',true);
 	}
+	$output .= $abstract;
 
-	$output .= ' <a href="';
-	if(function_exists('get_field') && get_field('external_link', $post->ID)) {
-		$output .= get_field('external_link', $post->ID);
-	} else {
-		$output .= get_permalink($post->ID);
+	
+	$output .= '<a class="read-more-arrow';
+	if ($external==1) {
+	    $output .= ' external';
 	}
-	$output .= '" class="read-more-arrow">›</a>'; 
+	$output .= '" href="'.$link.'">›</a>'; 
 	$output .= "\t\t\t".'</p>'."\n"; 
 	
 	
@@ -920,4 +937,136 @@ function fau_display_news_teaser($id = 0) {
 	$output .= "</div> <!-- /news-item -->\n";	
     }
     return $output;
+}
+
+
+
+
+
+/*
+ * Hilfereiche Funktionen für die Custom Fields
+ */
+
+
+function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  {
+	echo "<p>\n";
+	echo '	<label for="'.$name.'">';
+	echo $labeltext;
+	echo "</label><br />\n";
+	echo '	<input type="text" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	if (strlen(trim($placeholder))) {
+	    echo ' placeholder="'.$placeholder.'"';
+	}
+	if (intval($size)>0) {
+	    echo ' length="'.$size.'"';
+	}
+	echo " />\n";
+	echo "</p>\n";
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_text() - Name oder Label fehlt.', 'fau');
+    }
+}
+
+
+function fau_form_url($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='http://', $size = 0) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  {
+	echo "<p>\n";
+	echo '	<label for="'.$name.'">';
+	echo $labeltext;
+	echo "</label><br />\n";
+	echo '	<input type="url" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	if (strlen(trim($placeholder))) {
+	    echo ' placeholder="'.$placeholder.'"';
+	}
+	if (intval($size)>0) {
+	    echo ' length="'.$size.'"';
+	}
+	echo " />\n";
+	echo "</p>\n";
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_url() - Name oder Label fehlt.', 'fau');
+    }
+}
+    
+function fau_form_onoff($name= '', $prevalue = 0, $labeltext = '',  $howtotext = '' ) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  { ?>
+	<div class="schalter">
+	    <select class="onoff" name="<?php echo $name; ?>" id="<?php echo $name; ?>">
+		<option value="0" <?php selected(0,$prevalue);?>>Aus</option>
+		<option value="1" <?php selected(1,$prevalue);?>>An</option>
+	    </select>
+	    <label for="<?php echo $name; ?>">
+		<?php echo $labeltext; ?>
+	    </label>
+	</div>
+	<?php 
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_onoff() - Name oder Label fehlt.', 'fau');
+    }
+}
+    
+function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = '',  $howtotext = '', $showempty=1, $emptytext = '' ) {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    $emptytext = fau_san( $emptytext );
+     
+    if (is_array($liste) && isset($name) &&  isset($labeltext))  { ?>
+	<div class="liste">
+	    <p><label for="<?php echo $name; ?>">
+		<?php echo $labeltext; ?>
+		</label></p>
+	    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>">
+	    <?php 
+	    if ($showempty==1) { 
+		echo '<option value="">';
+		if (!empty($emptytext)) {
+		    echo $emptytext;
+		} else {
+		    _e('Keine Auswahl','fau');
+		}
+		echo '</option>';
+	    }
+	    
+	    foreach($liste as $entry => $value){  ?>
+		<option value="<?php echo $entry; ?>" <?php selected($entry,$prevalue);?>><?php echo $value; ?></option>
+	    <?php } ?>	
+	    </select>
+	   
+	</div>
+	<?php 
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_select() - Array, Name oder Label fehlt.', 'fau');
+    }
+}
+    
+
+function fau_san($s){
+    return filter_var(trim($s), FILTER_SANITIZE_STRING);
 }

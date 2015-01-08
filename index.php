@@ -22,7 +22,7 @@ get_header(); ?>
 				<div class="span8">
 					
 					<?php while ( have_posts() ) : the_post(); ?>
-					<?php get_template_part( 'post', get_post_type() ); ?>
+    					<?php get_template_part( 'post', get_post_type() ); ?>
 					<?php endwhile; ?>
 					
 					<div class="navigation">
