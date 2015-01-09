@@ -1,0 +1,53 @@
+/*
+Main CSS File for Wordpress Theme FAU
+*/
+
+// Define breakpoints
+$breakSM: 480px;
+$breakMD: 767px;
+$breakLG: 979px;
+
+// Define fonts
+$fontStack: 'roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$fontStackSerifs: Georgia, serif;
+
+// Define text colors
+$colorText:		#444;
+$colorTextLight: #888;
+
+// Define notice colors
+$colorNotice: 		#a71c18;
+
+// Define colors of each faculty
+$colorPhilFak: 	#ad841f;
+$colorRwFak: 	#801429;
+$colorMedFak: 	#00b1c6;
+$colorNatFak:	#009775;
+$colorTechFak:	#a3acb2;
+$colorZUV:		#003366;
+
+// Define primary colors by faculty
+$colorPrimary:	$colorZUV;
+$colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
+$colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
+$colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
+
+// Import Grid System, Mixins, Webfonts and Helper Classes
+@import "includes/bootstrap";
+@import "includes/mixins";
+@import "includes/fonts";
+@import "includes/helpers";
+
+// Import Main Stylings
+@import "base-atoms";
+@import "base-organisms";
+@import "base-molecules";
+
+// Import Plugin Stylings
+@import "plugin-flexslider";
+@import "plugin-fluidbox";
+@import "plugin-fancybox";
+@import "plugin-wpc7";
+
+// Import Media Queries
+@import "mediaqueries";

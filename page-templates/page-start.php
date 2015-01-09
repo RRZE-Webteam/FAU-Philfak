@@ -260,7 +260,7 @@ global $options;
 			
 			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 			 if ($menuslug) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 			
 				$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
 				if ($nosub==1) {
@@ -277,7 +277,7 @@ global $options;
 			 
 			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 
 			    fau_get_imagelinks($logoliste);
 			     
@@ -288,7 +288,7 @@ global $options;
 
 
 			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
-				    <div class="hr"><hr></div>
+				    <hr>
 				    <?php $ads = get_field('werbebanner_unten');?>
 				    <?php foreach($ads as $ad): ?>
 					    <?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
