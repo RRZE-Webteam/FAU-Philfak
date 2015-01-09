@@ -43,3 +43,15 @@ Mixins File for Wordpress Theme FAU
 		color: $color;
 	}
 }
+
+@mixin no-list() {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin inline-block() {
+	display: inline-block; 
+	*display:inline; 
+	*zoom:1;
+}
