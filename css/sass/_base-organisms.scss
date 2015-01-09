@@ -228,8 +228,10 @@ body.admin-bar.nav-fixed {
 	background: $colorLightest;
 	
 	.searchform {
+		border: none;
+		margin: 0;
+		padding: 0;
 		padding-top: 10px;
-		margin-bottom: 0;
 		float: right;
 		
 		input[type="text"] {
@@ -354,7 +356,8 @@ body.admin-bar.nav-fixed {
 	@include placeholder(#fff);
 	margin-top: 20px;
 	padding-bottom: 10px;
-	background: $colorPrimary url('../img/hero-back-blue.jpg') no-repeat right top;
+	position: relative;
+	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url('../img/siegel-zuv.png') no-repeat 95% 110%);
 	@include transition(1.0s, all);
 	
 	h1, h2, h3, h4, p {
@@ -372,8 +375,15 @@ body.admin-bar.nav-fixed {
 		@include no-list;
 	}
 	
+	li {
+		font-size: 13px;
+		padding-left: 20px;
+		padding-bottom: 5px;
+		background: url("../img/list-arrow.png") no-repeat left 4px;
+	}
+	
 	&.hero-small {
-		background-position: center center;
+		@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url('../img/siegel-zuv.png') no-repeat 95% 20%);
 		
 		h1 {
 			padding: 30px 0 10px 0 !important;
@@ -389,7 +399,7 @@ body.admin-bar.nav-fixed {
 		bottom: 23px;
 		right: 100px;
 		text-align: right;
-		color: #0155ab;
+		color: lighten($colorPrimary, 15%);
 		font-size: 60px;
 		line-height: 50px;
 	}
@@ -461,6 +471,7 @@ body.admin-bar.nav-fixed {
 	}
 }
 
+
 /* Hero Slider */
 #hero-slides {
 	position: relative;
@@ -499,7 +510,7 @@ body.admin-bar.nav-fixed {
 			color: #fff;
 			background: $colorPrimary;
 			padding: 0 3px;
-			margin: 2px 0;
+			margin: 4px 0;
 			font-size: 18px;
 			max-width: 600px;
 		}
@@ -524,11 +535,6 @@ body.admin-bar.nav-fixed {
 		@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
 	}
 	
-	.news-image img, 
-	.logos-menu img {
-		@include box-shadow(none);
-	}
-	
 	img.error-404-persons {
 		@include box-shadow(none);
 		margin: 0 auto -22px auto;
@@ -545,15 +551,6 @@ body.admin-bar.nav-fixed {
 		p {
 			color: $colorPrimary;
 		}
-	}
-	
-	.widget {
-		margin-bottom: 7px;
-	}
-	
-	.sidebar-inline .widget {
-		margin-bottom: 22px;
-		margin-top: 22px;
 	}
 }
 
@@ -755,6 +752,10 @@ body.admin-bar.nav-fixed {
 	a {
 		color: #fff;
 		text-decoration: none;
+	}
+	
+	li {
+		font-size: 13px;
 	}
 	
 	a:hover, a:focus {

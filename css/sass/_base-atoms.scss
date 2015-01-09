@@ -62,7 +62,7 @@ p {
 	
 	&.attention {
 		display: block;
-		color: #a71c18;
+		color: $colorNotice;
 		background: transparent url('../img/attention.png') no-repeat 0 7px;
 		padding: 10px 0 10px 35px;
 		margin: 20px 0;
@@ -74,6 +74,15 @@ p {
 		font-size: 13px;
 		line-height: 22px;
 	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $colorPrimary;
 }
 
 h2 {
@@ -160,37 +169,20 @@ h6 em {
 	font-style: normal;
 }
 
-
 li {
-	font-size: 13px;
-	line-height: 22px;
-	padding-left: 20px;
-	padding-bottom: 5px;
 	background: url('../img/list-arrow.png') no-repeat left 4px;
-	
-	#content & {
-		margin: 0;
-		padding: 0 0 7px 20px;
-		font-size: 15px;
-		line-height: 22px;
-		color: $colorText;
-	}
-	
-	ul & {
-		list-style: none;
-	}
-	
-	ol & {
-		list-style: decimal;
-	}
+	padding: 0 0 7px 20px;
+	font-size: 15px;
+	line-height: 22px;
+	color: $colorText;
 }
 
-#content ul {
-	list-style: none;
+ul {
+	@include no-list;
 	list-style-position: inside;
-	margin-left: 10px;
 	
 	li {
+		@include no-list;
 		background: url('../img/li-circle.png') no-repeat left 7px;
 	}
 	
@@ -203,9 +195,10 @@ li {
 	}
 }
 
-#content ol {
+ol {
 	li {
 		padding-left: 0;
+		list-style: decimal;
 	}
 	
 	ul li {
@@ -213,23 +206,27 @@ li {
 	}
 }
 
-#content .widget li {
-	padding: 0 0 0 20px;
-}
-
-
-
-.hr {
-	height: 59px;
+hr {
+	position: relative;
+	clear: both;
 	display: block;
-	border: 0px !important;
-	background: #fff url('../img/hr.png') no-repeat center center;
+	height: 60px;
+	background: #fff;
+	border: none;
 	outline: none;
-	background-size: 100%;
 	margin: 20px 0 0 0;
 }
-.hr hr {
-	display: none;
+
+hr:after {
+	content: "";
+	position: absolute; 
+	top: 30px;
+	bottom: 0;
+	left: 50px;
+	right: 50px;
+	z-index: -1;
+	@include box-shadow(0 0 30px $colorLight);
+	@include border-radius(100px / 10px);
 }
 
 blockquote {
@@ -243,8 +240,6 @@ blockquote {
 	}
 }
 
-
-/* Table */
 table {
 	border: 0;
 	background: transparent;
@@ -300,21 +295,36 @@ table {
 	}
 }
 
-
-#content select, #content textarea, #content input[type="text"], #content input[type="password"], #content input[type="datetime"], #content input[type="datetime-local"], #content input[type="date"], #content input[type="month"], #content input[type="time"], #content input[type="week"], #content input[type="number"], #content input[type="email"], #content input[type="url"], #content input[type="search"], #content input[type="tel"], #content input[type="color"] {
+select, 
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"], 
+input[type="number"], 
+input[type="email"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="color"] {
 	width: 290px;
 	padding: 5px 10px;
 }
 
-#content textarea {
+textarea {
 	height: 100px;
 }
 
-#content form {
-	border: 1px solid #e2e2e2;
+form {
+	border: 1px solid $colorLightest;
 	padding: 20px;
 }
-#content label {
+
+label {
 	display: block;
 	float: left;
 	width: 240px;
@@ -324,8 +334,8 @@ table {
 	margin-right: 20px;
 }
 
-#content input[type="submit"] {
-	display: inline-block; *display:inline; *zoom: 1;
+input[type="submit"] {
+	@include inline-block;
 	border: none;
 	height: 30px;
 	line-height: 30px;
@@ -337,10 +347,10 @@ table {
 	font-weight: bold;
 	
 	&:hover, &:focus {
-		background: #195da1;
+		background: $colorHover;
 	}
 	
 	&:active {
-		background: #031f3c;
+		background: $colorHover;
 	}
 }

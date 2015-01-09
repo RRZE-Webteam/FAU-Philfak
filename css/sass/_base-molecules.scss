@@ -95,12 +95,11 @@
 }
 
 /* Faculties Menu */
-.menu-faculties {
+#hero .menu-faculties {
 	@include no-list;
 	
 	li {
 		@include no-list;
-		background-image: none;
 		font-size: 13px;
 		min-height: 34px;
 		line-height: 34px;
@@ -161,6 +160,7 @@
 		@include no-list;
 		background-image: none;
 		margin-bottom: 20px;
+		padding-left: 20px;
 		
 		a.subpage-item {
 			text-decoration: none !important;
@@ -261,6 +261,15 @@
 	}
 }
 
+/* All Widgets */
+.widget {
+	margin-bottom: 7px;
+	
+	li {
+		padding: 0 0 0 20px;
+	}
+}
+
 /* Widget: RSS */
 .widget_rss,
 .rss-shortcode {
@@ -343,6 +352,11 @@
 			}
 		}
 	}
+}
+
+/* Widget: Nav Menu */
+.widget_nav_menu {
+	@extend .widget_categories;
 }
 
 
@@ -455,9 +469,13 @@ ul.person-info {
 .news-image {
 	display: block;
 	text-align: center;
-	background: #f9f9f9;
+	background: $colorLightest;
 	padding: 4px;
 	@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+	
+	img {
+		@include box-shadow(none);
+	}
 }
 
 .news-item {
@@ -864,6 +882,10 @@ ul.tagcloud {
 	position: relative;
 }
 
+.logos-menu img {
+	@include box-shadow(none);
+}
+
 #logos-menu-prev {
 	position: absolute;
 	z-index: 10;
@@ -944,7 +966,12 @@ ul.tagcloud {
 	margin-left: 30px;
 	padding-left: 18px;
 	margin-bottom: 11px;
-	border-left: 2px solid #ddd;
+	border-left: 2px solid $colorLightest;
+	
+	.widget {
+		margin-bottom: 22px;
+		margin-top: 22px;
+	}
 	
 	.widget:last-child {
 		margin-bottom: 0 !important;
@@ -970,7 +997,7 @@ ul.tagcloud {
 		.accordion-heading {
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
-				background: #eef1f6 url('../img/caret-accordion.png') no-repeat right top;
+				background: $colorLightest url('../img/caret-accordion.png') no-repeat right top;
 				color: $colorPrimary;
 				@include border-radius(4px);
 				text-decoration: none;
@@ -978,38 +1005,40 @@ ul.tagcloud {
 				padding: 8px 35px 8px 10px;
 
 				&:hover, &:focus {
-					background-color: #e5e9f0;
+					background-color: darken($colorLightest, 3%);
 					text-decoration: none;
 				}
 
 				&.active, &.active:hover, &.active:focus {
-					background-color: #e5e9f0;
+					background-color: darken($colorLightest, 3%);
 					background-position: right -41px;
 					color: $colorPrimary;
 				}
 			}
 			
 			.gold .accordion-toggle {
-				border-color: #ad841f;
+				border-color: $colorPhilFak;
 			}
 			.red .accordion-toggle {
-				border-color: #801429;
+				border-color: $colorRwFak;
 			}
 			.blue .accordion-toggle {
-				border-color: #00b1c6;
+				border-color: $colorMedFak;
 			}
 			.green .accordion-toggle {
-				border-color: #009775;
+				border-color: $colorNatFak;
 			}
 			.grey .accordion-toggle {
-				border-color: #a3acb2;
+				border-color: $colorTechFak;
 			}
 		}
 		
 		.accordion-body {
+			display: none;
+			
 			.accordion-inner {
 				border: none;
-				background: #f8f9fb;
+				background: lighten($colorLightest, 4%);
 				padding: 15px 20px;
 			}
 		}
@@ -1021,14 +1050,14 @@ ul.tagcloud {
 .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner {
-	background: #fefeff;
+	background: lighten($colorLightest, 5%);
 }
 
 .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner {
-	background: #f8f9fb;
+	background: lighten($colorLightest, 6%);
 }
 
 .accordion .accordion .accordion-heading .accordion-toggle {
@@ -1068,7 +1097,7 @@ ul.assistant-tabs-nav {
 	@include no-list;
 	margin: 0 -20px 15px -20px;
 	padding: 0 20px 10px 20px;
-	border-bottom: 1px solid #e3e6e8;
+	border-bottom: 1px solid $colorLight;
 	
 	li {
 		@include no-list;
@@ -1076,7 +1105,7 @@ ul.assistant-tabs-nav {
 		display: inline;
 		margin-right: 8px;
 		padding-right: 12px;
-		border-right: 1px solid #ddd;
+		border-right: 1px solid $colorLight;
 		
 		a {
 			text-decoration: none;
@@ -1166,7 +1195,7 @@ ul.assistant-tabs-nav {
 
 /* No Script Notice */
 #no-script {
-	background: #d52727;
+	background: $colorNotice;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -1218,7 +1247,7 @@ ul.files {
 .post-password-form {
 	label {
 		float: none;
-		color: #003366;
+		color: $colorPrimary;
 	}
 	
 	input[type="password"] {
@@ -1228,7 +1257,7 @@ ul.files {
 }
 
 /* Organigram */
-#organigram {
+.organigram {
 	@include no-list;
 	margin: 20px 0;
 	
@@ -1238,7 +1267,7 @@ ul.files {
 	
 	ul {
 		margin-bottom: 20px;
-		border-left: 2px solid #ddd;
+		border-left: 2px solid $colorLightest;
 		margin-left: 10px;
 	}
 	
