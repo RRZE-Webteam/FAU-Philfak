@@ -15,6 +15,18 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
+			
+			<?php 
+			if ( function_exists('get_field') ) {
+			  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
+				<div class="banner-ad-right">
+					<?php $ads = get_field('werbebanner_seitlich');?>
+					<?php foreach($ads as $ad): ?>
+						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; 
+			} ?>
 
 			<div class="row">
 			
