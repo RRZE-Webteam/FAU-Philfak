@@ -15,6 +15,19 @@ get_header(); ?>
 
     <div id="content" class="content-portal">
 	<div class="container">
+		
+		<?php 
+		if ( function_exists('get_field') ) {
+		  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
+			<div class="banner-ad-right">
+				<?php $ads = get_field('werbebanner_seitlich');?>
+				<?php foreach($ads as $ad): ?>
+					<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; 
+		} ?>
+		
 	    <div class="row">
 		<div class="span8">
 		    <?php 
@@ -38,7 +51,7 @@ get_header(); ?>
 
 	    $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 	    if ($menuslug) { ?>	
-		<div class="hr"><hr></div>
+		<hr>
 		<?php 
 //		$menu, $submenu = 1, $subentries =0, $spalte = 0, $nothumbs = 0, $nodefthumbs = 0)
 		
@@ -56,7 +69,7 @@ get_header(); ?>
 	      
 	       $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 
 			    fau_get_imagelinks($logoliste);
 			     
