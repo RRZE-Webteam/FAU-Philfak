@@ -302,9 +302,12 @@ body.admin-bar.nav-fixed {
 			text-decoration: none;
 		}
 		
-		a:hover, &:hover a, &:focus a {
-			text-decoration: underline;
+		a:hover {
+		    text-decoration: underline;
 		}
+		&:hover a, &:focus a {
+			text-decoration: underline;
+		} 
 	}
 	
 	li.has-sub {
@@ -733,8 +736,8 @@ body.admin-bar.nav-fixed {
 	iframe {
 		width: 220px !important;
 		height: 160px !important;
-	}
-	
+	} 
+ 
 }
 
 /* Footer */

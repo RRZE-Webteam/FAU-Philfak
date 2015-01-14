@@ -14,6 +14,9 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
+		    	 <?php 
+			    echo fau_get_ad('werbebanner_seitlich',false);
+			?>
 			<div class="row">
 				
 				<div class="span12">
@@ -22,13 +25,8 @@ get_header(); ?>
 					if ( $headline) {
 					     echo "<h2>".$headline."</h2>\n";
 					}
-					/* 
-					 * Custom Field ist doch nur fuer Posts definiert?
-					 */
-					$abstract = get_post_meta( $post->ID, 'abstract', true );	
-					if($abstract) {
-						     echo "<h3>".$abstract."</h3>\n";
-					}
+					
+					
 					 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>

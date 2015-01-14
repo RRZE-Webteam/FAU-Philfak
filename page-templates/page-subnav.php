@@ -16,17 +16,9 @@ get_header(); ?>
 	<div id="content">
 		<div class="container">
 			
-			<?php 
-			if ( function_exists('get_field') ) {
-			  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
-				<div class="banner-ad-right">
-					<?php $ads = get_field('werbebanner_seitlich');?>
-					<?php foreach($ads as $ad): ?>
-						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; 
-			} ?>
+		<?php 
+		echo fau_get_ad('werbebanner_seitlich',false);
+		?>
 
 			<div class="row">
 			
@@ -55,8 +47,7 @@ get_header(); ?>
 					<?php 
 					$headline = get_post_meta( $post->ID, 'headline', true );									
 					if ($headline) { echo '<h2>'.$headline.'</h2>'; }
-					$abstract = get_post_meta( $post->ID, 'abstract', true );
-					if ($abstract) { echo '<h3 class="abstract">'.$abstract.'</h3>'; }
+
 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>

@@ -133,20 +133,9 @@ global $options;
 
 	<div id="content">
 		<div class="container">
-			
-			
-			
 			<?php 
-			if ( function_exists('get_field') ) {
-			  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
-				<div class="banner-ad-right">
-					<?php $ads = get_field('werbebanner_seitlich');?>
-					<?php foreach($ads as $ad): ?>
-						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; 
-			} ?>
+			    echo fau_get_ad('werbebanner_seitlich',false);
+			 ?>
 			
 			<div class="row">
 				<div class="span8">
@@ -283,18 +272,9 @@ global $options;
 			     
 			 }
 			 
-			 
-			if ( function_exists('get_field') ) { ?>
-
-
-			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
-				    <hr>
-				    <?php $ads = get_field('werbebanner_unten');?>
-				    <?php foreach($ads as $ad): ?>
-					    <?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-				    <?php endforeach; ?>
-			    <?php endif; ?>
-			<?php  } ?>
+			 echo fau_get_ad('werbebanner_unten',true);
+			
+			 ?>
 			
 		</div> <!-- /container -->
 		<div id="social">

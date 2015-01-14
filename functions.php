@@ -2,7 +2,7 @@
 /**
  * @package WordPress
  * @subpackage FAU
- * @since FAU 1.0
+ * @since FAU 1.1
  */
 
 load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
@@ -14,6 +14,7 @@ require_once(get_template_directory() .'/functions/shortcodes.php');
 require_once(get_template_directory() .'/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
+require_once( get_template_directory() . '/functions/posttype_ad.php' );
 
 
 
@@ -1066,6 +1067,8 @@ function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = ''
     }
 }
     
+
+
 
 function fau_san($s){
     return filter_var(trim($s), FILTER_SANITIZE_STRING);
