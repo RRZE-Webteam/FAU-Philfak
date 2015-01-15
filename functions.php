@@ -241,7 +241,7 @@ function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
-    wp_enqueue_script('jquery-ui-datetimepicker');
+    wp_enqueue_script('jquery-ui-datepicker');
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
