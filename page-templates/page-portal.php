@@ -15,6 +15,12 @@ get_header(); ?>
 
     <div id="content" class="content-portal">
 	<div class="container">
+		
+	    <?php 
+	       echo fau_get_ad('werbebanner_seitlich',false);
+	     ?>
+		
+		
 	    <div class="row">
 		<div class="span8">
 		    <?php 
@@ -22,10 +28,7 @@ get_header(); ?>
 			if ( $headline) {
 			     echo "<h2>".$headline."</h2>\n";
 			}
-			$abstract = get_post_meta( $post->ID, 'abstract', true );	
-			if($abstract) {
-				     echo "<h3>".$abstract."</h3>\n";
-			}
+			
 			the_content(); 
 			?>
 		</div>
@@ -38,9 +41,8 @@ get_header(); ?>
 
 	    $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 	    if ($menuslug) { ?>	
-		<div class="hr"><hr></div>
+		<hr>
 		<?php 
-//		$menu, $submenu = 1, $subentries =0, $spalte = 0, $nothumbs = 0, $nodefthumbs = 0)
 		
 		$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
 		if ($nosub==1) {
@@ -56,7 +58,7 @@ get_header(); ?>
 	      
 	       $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 
 			    fau_get_imagelinks($logoliste);
 			     

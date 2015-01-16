@@ -4,21 +4,12 @@ Theme URI: www.fau.de
 Author: RRZE und Medienreaktor GmbH
 Author URI: http://www.rrze.fau.de und http://www.medienreaktor.de
 Description: Wordpress-Theme der Startseite der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU).
-Version: 1.1.12
+Version: 1.1.14
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue
 Text Domain: fau
 */
 
-/* @import url(css/fonts.css); */
-@import url(css/fonts.min.css);
-
-/* @import url(css/basis.css); */ 
-@import url(css/basis.min.css);
-
-/* @import url(css/mediaqueries.css); */
-@import url(css/mediaqueries.min.css); 
-
-/* @import url(css/print.css); */
-@import url(css/print.min.css); 
+@import url(css/base.css);
+@import url(css/print.css); 

@@ -2,7 +2,7 @@
 /**
  * @package WordPress
  * @subpackage FAU
- * @since FAU 1.0
+ * @since FAU 1.1
  */
 
 load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
@@ -14,6 +14,7 @@ require_once(get_template_directory() .'/functions/shortcodes.php');
 require_once(get_template_directory() .'/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
+require_once( get_template_directory() . '/functions/posttype_ad.php' );
 
 
 
@@ -240,7 +241,7 @@ function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
     wp_enqueue_media();
-    wp_enqueue_script('jquery-ui-datetimepicker');
+    wp_enqueue_script('jquery-ui-datepicker');
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
     wp_enqueue_script('themeadminscripts');	   
 }
@@ -1066,6 +1067,8 @@ function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = ''
     }
 }
     
+
+
 
 function fau_san($s){
     return filter_var(trim($s), FILTER_SANITIZE_STRING);

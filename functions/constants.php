@@ -77,7 +77,8 @@ $defaultoptions = array(
 
 
     'custom_excerpt_allowtags'	    => 'br',
-    
+    'url_banner-ad-notice'	    => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/werben/',
+    'title_banner-ad-notice'	    => __( 'Werbung', 'fau' ),
     
     
     
@@ -556,7 +557,22 @@ $setoptions = array(
                   'label'   => __( 'Meta-Tag zur Identifikation der Inhaberschaft gegenüber Google. geben Sie hier den Content-Bestand an für die Identifikation mittels Meta-Tag.', 'fau' ),               
                   'default' => $defaultoptions['google-site-verification'],
               ),  
+	      'url_banner-ad-notice'	 => array(
+                  'type'    => 'url',
+                  'title'   => __( 'Werbebanner Infolink', 'fau' ),
+                  'label'   => __( 'URL zu einer Seite, die bei einem Klick auf den Hinweis zur Werbung aufgerufen wird.', 'fau' ),               
+                  'default' => $defaultoptions['url_banner-ad-notice'],
+              ),  
+	       'title_banner-ad-notice'	 => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Hinweistitel für Werbebanner', 'fau' ),
+                  'label'   => __( 'Aus gesetzlichen Gründen muss vor Werbebannern ein Hinweis stehen, daß es sich um eben solche Werbung handelt. Üblicherweise reicht ein Titel "Werbung" o.ä.. Dieser Titel kann hier angegeben oder geändert werden.', 'fau' ),               
+                  'default' => $defaultoptions['title_banner-ad-notice'],
+              ),  
    
+	       
+	       
+	       
           )
        ),
        'contact'   => array(

@@ -133,20 +133,9 @@ global $options;
 
 	<div id="content">
 		<div class="container">
-			
-			
-			
 			<?php 
-			if ( function_exists('get_field') ) {
-			  if ( get_field( 'werbebanner_seitlich' ) ) : ?>
-				<div class="banner-ad-right">
-					<?php $ads = get_field('werbebanner_seitlich');?>
-					<?php foreach($ads as $ad): ?>
-						<?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; 
-			} ?>
+			    echo fau_get_ad('werbebanner_seitlich',false);
+			 ?>
 			
 			<div class="row">
 				<div class="span8">
@@ -260,7 +249,7 @@ global $options;
 			
 			 $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 			 if ($menuslug) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 			
 				$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
 				if ($nosub==1) {
@@ -277,24 +266,15 @@ global $options;
 			 
 			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
-			    <div class="hr"><hr></div>
+			    <hr>
 			    <?php 
 			    fau_get_imagelinks($logoliste);
 			     
 			 }
 			 
-			 
-			if ( function_exists('get_field') ) { ?>
-
-
-			    <?php if ( get_field( 'werbebanner_unten' ) ) : ?>
-				    <div class="hr"><hr></div>
-				    <?php $ads = get_field('werbebanner_unten');?>
-				    <?php foreach($ads as $ad): ?>
-					    <?php the_widget('FAUAdWidget', array('id' => $ad)); ?>
-				    <?php endforeach; ?>
-			    <?php endif; ?>
-			<?php  } ?>
+			 echo fau_get_ad('werbebanner_unten',true);
+			
+			 ?>
 			
 		</div> <!-- /container -->
 		<div id="social">

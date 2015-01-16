@@ -15,6 +15,10 @@ get_header(); ?>
 
 	<div id="content">
 		<div class="container">
+			
+		<?php 
+		echo fau_get_ad('werbebanner_seitlich',false);
+		?>
 
 			<div class="row">
 			
@@ -43,8 +47,7 @@ get_header(); ?>
 					<?php 
 					$headline = get_post_meta( $post->ID, 'headline', true );									
 					if ($headline) { echo '<h2>'.$headline.'</h2>'; }
-					$abstract = get_post_meta( $post->ID, 'abstract', true );
-					if ($abstract) { echo '<h3 class="abstract">'.$abstract.'</h3>'; }
+
 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>
