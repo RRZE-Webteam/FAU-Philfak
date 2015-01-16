@@ -5,42 +5,14 @@
  */
 
 
-function ads_taxonomy() {
-	register_taxonomy(
-		'ads_category',  //The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
-		'ad',   		 //post type name
-		array(
-			'hierarchical' 		=> true,
-			'label' 		=> __('Werbe-Kategorien', 'fau'),  //Display name
-			'query_var' 		=> true,
-			'rewrite'		=> array(
-					'slug' 		=> 'ads', // This controls the base slug that will display before each term
-					'with_front' 	=> false // Don't display the category base before
-					)
-			)
-		);
-}
-if ( current_user_can('publish_pages') ) {
-    add_action( 'init', 'ads_taxonomy');
-}
-
 // Register Custom Post Type
 function ad_post_type() {
 	
 	$labels = array(
-		'name'                => _x( 'Werbebanner2', 'Post Type General Name', 'fau' ),
-		'singular_name'       => _x( 'Werbebanner', 'Post Type Singular Name', 'fau' ),
-		'menu_name'           => __( 'Werbebanner', 'fau' ),
-		'parent_item_colon'   => __( 'Übergeordneter Werbebanner', 'fau' ),
-		'all_items'           => __( 'Alle Werbebanner', 'fau' ),
-		'view_item'           => __( 'Werbebanner anzeigen', 'fau' ),
-		'add_new_item'        => __( 'Neues Werbebanner einfügen', 'fau' ),
-		'add_new'             => __( 'Neues Werbebanner', 'fau' ),
-		'edit_item'           => __( 'Werbebanner bearbeiten', 'fau' ),
-		'update_item'         => __( 'Werbebanner aktualisieren', 'fau' ),
-		'search_items'        => __( 'Werbebanner suchen', 'fau' ),
-		'not_found'           => __( 'Keine Werbebanner gefunden', 'fau' ),
-		'not_found_in_trash'  => __( 'Keine Werbebanner im Papierkorb gefunden', 'fau' ),
+		'name'                => __( 'Werbung',  'fau' ),
+		'singular_name'       => __( 'Werbung',  'fau' ),
+		'menu_name'           => __( 'Werbung', 'fau' ),
+		'all_items'          => __( 'Übersicht', 'fau' ),
 	);
 	$rewrite = array(
 		'slug'                => 'ad',
@@ -49,11 +21,9 @@ function ad_post_type() {
 		'feeds'               => false,
 	);
 	$args = array(
-		'label'               => __( 'werbebanner2', 'fau' ),
-		'description'         => __( 'Werbebanner', 'fau' ),
+		'description'         => __( 'Werbebanner und Skyscraper erstellen und bearbeiten.', 'fau' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'thumbnail', ),
-		'taxonomies'          => array( 'ads_category' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -103,15 +73,15 @@ function ad_restrict_manage_posts() {
 		foreach ($filters as $tax_slug) {
 			$tax_obj = get_taxonomy($tax_slug);
 			wp_dropdown_categories(array(
-                'show_option_all' => sprintf(__('Alle %s anzeigen', 'fau'), $tax_obj->label),
-                'taxonomy' => $tax_slug,
-                'name' => $tax_obj->name,
-                'orderby' => 'name',
-                'selected' => isset($_GET[$tax_slug]) ? $_GET[$tax_slug] : '',
-                'hierarchical' => $tax_obj->hierarchical,
-                'show_count' => true,
-                'hide_if_empty' => true
-            ));
+			    'show_option_all' => sprintf(__('Alle %s anzeigen', 'fau'), $tax_obj->label),
+			    'taxonomy' => $tax_slug,
+			    'name' => $tax_obj->name,
+			    'orderby' => 'name',
+			    'selected' => isset($_GET[$tax_slug]) ? $_GET[$tax_slug] : '',
+			    'hierarchical' => $tax_obj->hierarchical,
+			    'show_count' => true,
+			    'hide_if_empty' => true
+			));
 		}
 
 	}
@@ -137,6 +107,164 @@ add_filter('pre_get_posts', 'ad_post_types_admin_order');
 
 
 
+
+
+function fau_ad_metabox() {
+    add_meta_box(
+        'fau_ad_metabox',
+        __( 'Eigenschaften', 'fau' ),
+        'fau_ad_metabox_content',
+        'ad',
+        'normal',
+        'high'
+    );
+}
+function fau_ad_metabox_content( $object, $box ) { 
+    global $defaultoptions;
+    global $post;
+
+	
+    wp_nonce_field( basename( __FILE__ ), 'fau_ad_metabox_content_nonce' ); 
+
+    if ( !current_user_can( 'edit_page', $object->ID) )
+	    // Oder sollten wir nach publish_pages  fragen? 
+	    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
+	return;
+
+    
+    $targeturl = get_post_meta( $object->ID, 'fauval_ad_url', true );
+    $code = get_post_meta( $object->ID, 'fauval_ad_code', true );
+    $notiz = get_post_meta( $object->ID, 'fauval_ad_notes', true );
+
+    
+    /* Old values */
+    if (empty($code)) {
+	$code  = get_post_meta( $object->ID, 'ad_script', true );
+    }
+    
+    $link  = get_post_meta( $object->ID, 'link', true );
+
+    if (empty($targeturl) && isset($link)) {
+	$targeturl = $link;
+    }
+   			
+   
+    fau_form_textarea('fauval_ad_code', $code, __('HTML-Code zur Einbindung','fau'),80,6);
+    fau_form_textarea('fauval_ad_notes', $notiz, __('Redaktionelle Notizen','fau'),80,3,__('Hier können redaktionelle Notizen hinterlassen werden. Diese werden nur hier angezeigt.','fau'));
+
+    fau_form_url('fauval_ad_url', $targeturl, __('Webadresse','fau'), __('Sollte kein HTML-Code eingegeben werden sollen, kann alternativ direkt eine Zieladresse und ein Bild aus der Mediathek gewählt werden. Hiermit kann die URL des Zieles eingegeben werden. Als Bild wird das gewählte Beitragsbild verwendet.','fau'), $placeholder='http://');   
+
+    
+    
+    return;
+
+}
+
+
+add_action( 'add_meta_boxes', 'fau_ad_metabox' );
+
+
+
+
+function fau_ad_metabox_content_save( $post_id ) {
+    global $options;
+    if (  'ad'!= get_post_type()  ) {
+	return;
+    }
+
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+	return;
+	
+	
+	if ( !isset( $_POST['fau_ad_metabox_content_nonce'] ) || !wp_verify_nonce( $_POST['fau_ad_metabox_content_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
+	} else {
+		if ( !current_user_can( 'edit_post', $post_id ) )
+		return;
+	}
+	
+    /* Old values */	
+    
+    $targeturl = get_post_meta( $post_id, 'fauval_ad_url', true );
+    $code = get_post_meta( $post_id, 'fauval_ad_code', true );
+    $notiz = get_post_meta($post_id, 'fauval_ad_notes', true );
+
+    
+    /* Old values */
+    if (empty($code)) {
+	$code  = get_post_meta($post_id, 'ad_script', true );
+    }
+    if (empty($targeturl))  {
+	$targeturl = get_post_meta( $post_id, 'link', true );
+    }
+    
+    
+    
+    $newval =  $_POST['fauval_ad_code'] ;
+	
+    if (!empty(trim($newval))) {
+	if (isset($oldval)  && ($code != $newval)) {
+	    update_post_meta( $post_id, 'fauval_ad_code', $newval );
+	} else {
+	    add_post_meta( $post_id, 'fauval_ad_code', $newval, true );
+	}
+    } elseif ($code) {
+	delete_post_meta( $post_id, 'fauval_ad_code', $code );	
+    } 
+    if (get_post_meta( $post_id, 'ad_script', true )) {
+	delete_post_meta( $post_id, 'ad_script', $code );
+    }
+
+    
+    if (filter_var($_POST['fauval_ad_url'], FILTER_VALIDATE_URL)) {
+	$newval = $_POST['fauval_ad_url'];
+    }
+    
+    if (!empty($newval)) {
+	    if (isset($targeturl)  && ($targeturl != $newval)) {
+		update_post_meta( $post_id, 'fauval_ad_url', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_ad_url', $newval, true );
+	    }
+    } else {
+	    if ($targeturl) {
+		delete_post_meta( $post_id, 'fauval_ad_url', $oldval );	
+	    }    
+    } 
+    if (get_post_meta( $post_id, 'link', true )) {
+	    delete_post_meta( $post_id, 'link', $code );
+    }
+   
+    
+    $newval = ( isset( $_POST['fauval_ad_notes'] ) ? sanitize_text_field( $_POST['fauval_ad_notes'] ) : 0 );
+	
+    if (!empty(trim($newval))) {
+	if (isset($notiz)  && ($notiz != $newval)) {
+	    update_post_meta( $post_id, 'fauval_ad_notes', $newval );
+	} else {
+	    add_post_meta( $post_id, 'fauval_ad_notes', $newval, true );
+	}
+    } elseif ($notiz) {
+	delete_post_meta( $post_id, 'fauval_ad_notes', $notiz );	
+    } 
+  
+}
+add_action( 'save_post', 'fau_ad_metabox_content_save' );
+
+
+
+
+
+
+
+
 function fau_get_ad($type, $withhr = true) {
     global $options;
     global $post;
@@ -146,9 +274,9 @@ function fau_get_ad($type, $withhr = true) {
    $class = '';  
    
    if ($type == 'werbebanner_unten') {
-	$class = 'banner-ad-footer';
+	$class = '';
    } else {
-        $class = 'banner-ad-right';
+        $class = ' fau-werbung-right';
    }
    $out = '';
    
@@ -163,10 +291,10 @@ function fau_get_ad($type, $withhr = true) {
 	   $out .= "<hr>\n";
        }
        
-       $out .= '<div class="'.$class.'">';
+       $out .= '<aside class="fau-werbung'.$class.'" role="region">';
        foreach ($list as $id) {
 
-	    $out .= '<div class="banner-ad">';	    
+	    $out .= '<h3>';	    
 	    if (isset($options['url_banner-ad-notice'])) {
 		$out .= '<a class="banner-ad-notice" href="'.$options['url_banner-ad-notice'].'">';
 	    }
@@ -174,13 +302,21 @@ function fau_get_ad($type, $withhr = true) {
 	    if (isset($options['url_banner-ad-notice'])) {
 		  $out .= '</a>';
 	    }
-   		
-	    $scriptcode = get_post_meta( $id, 'ad_script', true );
+	    $out .= '</h3>';	   
+	    $out .= ' <div class="fau-werbung-content">';
+	    $scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
+	    if (empty($scriptcode)) {
+		$scriptcode = get_post_meta( $id, 'ad_script', true );
+	    }
 	    
 	    if(isset($scriptcode)) {
+		
 		$out .=  html_entity_decode($scriptcode);
 	    } else  {
-		$link =    get_post_meta( $id, 'link', true ); 
+		$link =    get_post_meta( $id, 'fauval_ad_url', true ); 
+		if (empty($link)) {
+		    $link =    get_post_meta( $id, 'link', true ); 
+		}
 		if($link) {
 		    $out .=  '<a href="'.get_field('link', $id).'">';
 		}
@@ -193,7 +329,7 @@ function fau_get_ad($type, $withhr = true) {
 	    $out .= '</div>';
 
        }
-       $out .= '</div>';
+       $out .= '</aside>';
        return $out;
 
    }

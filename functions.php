@@ -852,7 +852,7 @@ add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
  
 function prefix_wpseo_add_meta_boxes() {
     global $post;
-    $post_types_without_seo = array( 'event', 'person' );
+    $post_types_without_seo = array( 'event', 'person', 'ad' );
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
 
@@ -948,6 +948,25 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
  * Hilfereiche Funktionen für die Custom Fields
  */
 
+function fau_form_textarea($name= '', $prevalue = '', $labeltext = '', $cols=60, $rows=5, $howtotext = '') {
+    $name = fau_san( $name );
+    $labeltext = fau_san( $labeltext );
+    if (isset($name) &&  isset($labeltext))  {
+	echo "<p>\n";
+	echo '	<label for="'.$name.'">';
+	echo $labeltext;
+	echo "</label></p>\n";
+	echo '	<textarea name="'.$name.'" id="'.$name.'" rows="'.$rows.'" cols="'.$cols.'">'.$prevalue.'</textarea>';
+	
+	if (strlen(trim($howtotext))) {
+	    echo '<p class="howto">';
+	    echo $howtotext;
+	    echo "</p>\n";
+	}
+    } else {
+	echo _('Ungültiger Aufruf von fau_form_textarea() - Name oder Label fehlt.', 'fau');
+    }
+}
 
 function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
     $name = fau_san( $name );
