@@ -935,28 +935,30 @@ ul.tagcloud {
 }
 
 /* Banner Ads */
-.banner-ad {
-	margin: 0 auto;
-	text-align: center;
-	margin-bottom: 10px;
-}
+.fau-werbung {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
 
-.banner-ad-notice {
+    > h3 {
 	display: block;
 	text-align: left;
-	padding-bottom: 4px;
+	font-size: 13px;
+	line-height: 18px;
+	color: $colorPrimary;
+	font-weight: normal;
+	margin: 0;
+	padding: 0 0 4px 0;
+    }
 }
 
-.banner-ad-right {
+.fau-werbung-right {
+	margin: 0;
 	width: 120px;
 	height: 600px;
 	position: absolute;
 	top: 30px;
 	right: -140px;
-	
-	.banner-ad {
-		margin: 0;
-	}
 }
 
 /* Sidebar: Inline */
