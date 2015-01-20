@@ -26,7 +26,11 @@ REQUIRED PLUGINS
 
 * Wordpress-Plugin FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
 * Wordpress-Plugin ACF (WPPD)
+<<<<<<< HEAD
 * Wordpress-Plugin RRZE-Events (https://github.com/RRZE-Webteam/fau-events)
+=======
+* Wordpress-Plugin FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
+>>>>>>> FETCH_HEAD
 
 
 OPTIONAL PLUGINS 
