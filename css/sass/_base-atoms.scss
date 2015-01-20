@@ -182,7 +182,6 @@ ul {
 	list-style-position: inside;
 	
 	li {
-		@include no-list;
 		background: url('../img/li-circle.png') no-repeat left 7px;
 	}
 	
