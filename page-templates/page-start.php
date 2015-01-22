@@ -127,7 +127,7 @@ global $options;
 					} ?>
 				</div>
 			</div>
-			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
+			<a href="#content" class="hero-jumplink-content"><?php _e('','fau'); ?></a>
 		</div>
 	</section> <!-- /hero -->
 

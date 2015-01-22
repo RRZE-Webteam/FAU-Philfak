@@ -258,6 +258,8 @@
 		border: none;
 		outline: none;
 		color: #fff;
+		
+	
 
 		&:focus {
 			background-color: #5e91c3;
@@ -426,7 +428,7 @@ ul.person-info {
 	li {
 		@include no-list;
 		background-image: none;
-		padding-left: 20px;
+		// padding-left: 20px;
 		min-height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -435,33 +437,26 @@ ul.person-info {
 		color: $colorPrimary;
 	}
 	
-	li.person-info-phone {
-		background-image: url('../img/icon-phone.png');
+	li.person-info:before {
+		@extend .fa;
+		width: 20px;
 	}
 	
-	li.person-info-fax {
-		background-image: url('../img/icon-fax.png');
-	}
-	
-	li.person-info-email {
-		background-image: url('../img/icon-email.png');
-	}
-	
-	li.person-info-institution {
-		background-image: url('../img/icon-home.png');
-	}
+	li.person-info-phone:before { @extend .fa-phone; }
+	li.person-info-fax:before { @extend .fa-print; }
+	li.person-info-email:before { @extend .fa-envelope; }
+	li.person-info-institution:before { @extend .fa-home; }
 	
 	li.person-info-address {
 		margin-top: 10px;
+		padding-left: 20px;
 	}
 	
 	li.person-info-description {
 		margin-top: 10px;
+		padding-left: 20px;
 	}
-	
-	li.person-info-position {
-		padding-left: 0;
-	}
+
 }
 
 
@@ -1028,12 +1023,21 @@ ul.tagcloud {
 		.accordion-heading {
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
-				background: $colorLightest url('../img/caret-accordion.png') no-repeat right top;
+				background: $colorLightest;
 				color: $colorPrimary;
 				@include border-radius(4px);
 				text-decoration: none;
 				font-size: 16px;
 				padding: 8px 35px 8px 10px;
+				position: relative;
+				
+				&:before {
+					@extend .fa;
+					@extend .fa-caret-down;
+					position: absolute;
+					top: 10px;
+					right: 10px;
+				}
 
 				&:hover, &:focus {
 					background-color: darken($colorLightest, 3%);
@@ -1042,8 +1046,13 @@ ul.tagcloud {
 
 				&.active, &.active:hover, &.active:focus {
 					background-color: darken($colorLightest, 3%);
-					background-position: right -41px;
+				//	background-position: right -41px;
 					color: $colorPrimary;
+					
+					&:before {
+						@extend .fa-caret-up;
+						top: 8px;
+					}
 				}
 			}
 		}

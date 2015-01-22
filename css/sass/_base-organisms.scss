@@ -85,11 +85,19 @@
 	}
 		
 	li.has-sub {
-		a {
+		> a {
 			padding-bottom: 10px;
 			padding-right: 30px;
-			background: url('../img/caret-down.png') no-repeat right 12px;
 			margin-bottom: 10px;
+			position: relative;
+		}
+		
+		> a:before {
+			@extend .fa;
+			@extend .fa-caret-down;
+			position: absolute;
+			top: 11px; 
+			right: 11px;
 		}
 	}
 	
@@ -313,9 +321,17 @@ body.admin-bar.nav-fixed {
 	li.has-sub {
 		margin-right: 0;
 		
-		a {
-			background: url('../img/caret-down.png') no-repeat right 15px;
+		> a {
 			padding-right: 25px;
+			position: relative;
+		}
+		
+		> a:before {
+			@extend .fa;
+			@extend .fa-caret-down;
+			position: absolute;
+			top: 15px; 
+			right: 11px;
 		}
 	}
 	
@@ -467,10 +483,18 @@ body.admin-bar.nav-fixed {
 		left: 300px;
 		right: 300px;
 		bottom: 0;
-		text-indent: -9999em;
+		//text-indent: -9999em;
 		display: none;
-		height: 15px;
-		background: url('../img/caret-down-white.png') no-repeat center center;
+		height: 25px;
+		text-align: center;
+		text-decoration: none;
+		@extend .fa;
+		@extend .fa-3x;
+		@extend .fa-angle-down;
+		
+		&:hover, &:focus {
+			text-decoration: none;
+		}
 	}
 }
 

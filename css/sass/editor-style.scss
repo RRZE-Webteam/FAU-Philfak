@@ -580,6 +580,21 @@ table tr:nth-child(odd) td {background:#eef1f6;}
 table a {text-decoration:underline;}
 table a:hover, table a:focus {text-decoration: none;}
 
-p.attention {display:block; color: #a71c18; background: transparent url('img/attention.png') no-repeat 0 7px; padding: 10px 0 10px 35px; margin: 20px 0; /*border-top: 1px solid #a71c18; border-bottom: 1px solid #a71c18; */font-weight:bold; }
+p.attention {
+	display: block;
+	color: $colorNotice;
+	padding: 10px 0;
+	margin: 20px 0;
+	font-weight: bold;
+	
+	&:before {
+		@extend .fa;
+		@extend .fa-2x;
+		@extend .fa-exclamation-circle;
+		padding-right: 8px;
+		font-weight: normal;
+		vertical-align: -4px;
+	}
+}
 
 p a, li a {text-decoration:underline;}
