@@ -170,11 +170,20 @@ h6 em {
 }
 
 li {
-	background: url('../img/list-arrow.png') no-repeat left 4px;
-	padding: 0 0 7px 20px;
+//	background: url('../img/list-arrow.png') no-repeat left 4px;
+//	padding: 0 0 7px 20px;
+	padding: 0 0 7px 0;
 	font-size: 15px;
 	line-height: 22px;
 	color: $colorText;
+}
+
+li:before {
+	@extend .fa;
+	@extend .fa-lg;
+	@extend .fa-angle-right;
+	color: #fff;
+	padding-right: 5px;
 }
 
 ul {

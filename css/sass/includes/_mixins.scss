@@ -71,6 +71,10 @@ Mixins File for Wordpress Theme FAU
 	margin: 0;
 	padding: 0;
 	background: none;
+	
+	&:before {
+		display: none;
+	}
 }
 
 @mixin inline-block() {

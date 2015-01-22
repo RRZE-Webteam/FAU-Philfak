@@ -572,8 +572,14 @@ ul.person-info {
 	}
 	
 	.news-rss {
-		background: url('../img/rss.png') no-repeat left center;
-		padding-left: 23px;
+		
+	}
+	
+	.news-rss:before {
+		@extend .fa;
+		@extend .fa-lg;
+		@extend .fa-rss-square;
+		padding-right: 5px;
 	}
 	
 	.news-more {
