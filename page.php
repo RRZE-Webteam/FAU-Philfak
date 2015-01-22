@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<div id="content">
+	<section id="content">
 		<div class="container">
 		    	 <?php 
 			    echo fau_get_ad('werbebanner_seitlich',false);
@@ -34,7 +34,7 @@ get_header(); ?>
 				
 			</div>
 		</div>
-	</div>
+	</section>
 	
 <?php endwhile; ?>
 

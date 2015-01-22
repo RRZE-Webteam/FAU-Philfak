@@ -13,7 +13,7 @@ global $options;
 
 ?>
 
-	<div id="hero">
+	<section id="hero">
 		<div id="hero-slides">
 			
 			<?php			 
@@ -129,9 +129,9 @@ global $options;
 			</div>
 			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
 		</div>
-	</div> <!-- /hero -->
+	</section> <!-- /hero -->
 
-	<div id="content">
+	<section id="content">
 		<div class="container">
 			<?php 
 			    echo fau_get_ad('werbebanner_seitlich',false);
@@ -361,6 +361,6 @@ global $options;
 				</div>
 			</div>
 		</div> <!-- /social -->	
-	</div> <!-- /content -->
+	</section> <!-- /content -->
 
 <?php get_footer(); ?>

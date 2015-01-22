@@ -864,7 +864,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
     $post = get_post($id);
     $output = '';
     if ($post) {
-	$output .= '<div class="news-item">';
+	$output .= '<article class="news-item">';
 	
 	$link = get_post_meta( $post->ID, 'external_link', true );
 	$external = 0;
@@ -935,7 +935,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	
 	$output .= "\t\t".'</div>'."\n"; 
 	$output .= "\t</div> <!-- /row -->\n";	
-	$output .= "</div> <!-- /news-item -->\n";	
+	$output .= "</article> <!-- /news-item -->\n";	
     }
     return $output;
 }

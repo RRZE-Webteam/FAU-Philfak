@@ -12,7 +12,7 @@
 global $options;
 ?>
 
-	<div id="footer">
+	<footer id="footer">
 		<div class="container">
 			<div class="row">
 				<div class="span3">
@@ -42,7 +42,7 @@ global $options;
 				</div>
 			</div>
 		</div>
-	</div>
+	</footer>
 	
 
 

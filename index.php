@@ -15,7 +15,7 @@ get_header(); ?>
 		<?php get_template_part('hero', 'category'); ?>
 	<?php endif; ?>
 
-	<div id="content">
+	<section id="content">
 		<div class="container">
 		
 			<div class="row">
@@ -25,17 +25,17 @@ get_header(); ?>
     					<?php get_template_part( 'post', get_post_type() ); ?>
 					<?php endwhile; ?>
 					
-					<div class="navigation">
+					<nav class="navigation">
 						<div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Neuere Beiträge', 'fau')); ?></div>
 						<div class="nav-next"><?php next_posts_link(__('Ältere Beiträge <span class="meta-nav">&raquo;</span>', 'fau'), '' ); ?></div>
-					</div>
+					</nav>
 				</div>
 				
 				<?php get_template_part('sidebar', 'news'); ?>
 			</div>
 
 		</div>
-	</div>
+	</section>
 
 
 <?php get_footer(); ?>
