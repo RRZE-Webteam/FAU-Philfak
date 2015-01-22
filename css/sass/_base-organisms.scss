@@ -741,6 +741,10 @@ body.admin-bar.nav-fixed {
 		li.social-xing a:before { @extend .fa-xing-square; }
 		li.social-pinterest a:before { @extend .fa-pinterest-square; }
 		li.social-feed a:before { @extend .fa-rss-square; }
+		li.social-delicious a:before { @extend .fa-delicious; }
+		li.social-skype a:before { @extend .fa-skype; }
+		li.social-tumblr a:before { @extend .fa-tumblr-square; }
+		li.social-github a:before { @extend .fa-github-square; }
 	}
 	
 	iframe {
