@@ -163,12 +163,12 @@
 		padding-left: 20px;
 		
 		a.subpage-item {
-			text-decoration: none !important;
+			text-decoration: none;
 
 			h3 {
-				padding: 10px 0;
+				padding: 10px 15px 10px 0;
 				font-weight: bold;
-				text-decoration: none !important;
+				text-decoration: none;
 			}
 		}
 	}
@@ -199,6 +199,10 @@
 			text-decoration: none;
 			background-color: $colorLightest;
 		}
+	}
+	
+	.subpage-item:focus h3 {
+		background-color: $colorLightest;
 	}
 	
 	.ext-link h3 {
@@ -704,6 +708,7 @@ ul.person-info {
 
 .event-detail-item {
 	margin-bottom: 20px;
+	min-height: 50px;
 	
 	.event-info {
 		margin-left: 70px;
@@ -835,7 +840,7 @@ ul.person-info {
 			background: none;
 			display: block;
 			float: left;
-			height: 130px;
+			min-height: 130px;
 			width: 150px;
 			line-height: 125px;
 			vertical-align: middle;
@@ -854,12 +859,12 @@ ul.person-info {
 			.caption {
 				line-height: 18px;
 				font-size: 13px;
-				padding: 0 5px;
+				padding: 5px;
 			}
 		}
 		
 		li.has-caption {
-			height: 180px;
+			min-height: 180px;
 		}
 	}
 }
@@ -891,8 +896,17 @@ ul.tagcloud {
 	position: relative;
 }
 
-.logos-menu img {
-	@include box-shadow(none);
+.logos-menu .logo-item {
+	display: block;
+	text-align: center;
+	
+	&:focus {
+		outline: 1px solid $colorPrimary;
+	}
+	
+	img {
+		@include box-shadow(none);
+	}
 }
 
 #logos-menu-prev {

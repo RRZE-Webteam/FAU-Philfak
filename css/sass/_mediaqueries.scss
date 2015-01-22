@@ -71,6 +71,10 @@ Media Queries for Theme FAU
 	.fau-werbung {
 		display: none;
 	}
+	
+	.logos-menu {
+		display: none;
+	}
 
 	.hide-mobile {
 		display: none !important;
@@ -274,7 +278,7 @@ Media Queries for Theme FAU
 		padding-top: 80px;
 	}
 	#nav.toggled {
-		display: block;
+		display: block !important;
 	}
 	#nav li.level1 {
 		display: block;

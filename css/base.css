@@ -561,6 +561,7 @@ body.admin-bar.nav-fixed #nav .nav-flyout { top: 85px; }
 /* Content Area */
 #content { padding: 20px 0 20px 0; }
 #content img { -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+#content .logos-menu .logo-item img { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 #content img.error-404-persons { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; margin: 0 auto -22px auto; display: block; }
 #content blockquote { font-style: italic; background: url("../img/quote-blue.png") no-repeat left top; margin: 10px 50px; padding-left: 60px; min-height: 50px; }
 #content blockquote p { color: #003366; }
@@ -648,13 +649,14 @@ body.admin-bar.nav-fixed #nav .nav-flyout { top: 85px; }
 /* Subpages / Portal Menu */
 .subpages-menu { list-style: none; margin: 0; padding: 0; background: none; margin: 0 0 20px -20px; }
 .subpages-menu li { list-style: none; margin: 0; padding: 0; background: none; background-image: none; margin-bottom: 20px; padding-left: 20px; }
-.subpages-menu li a.subpage-item { text-decoration: none !important; }
-.subpages-menu li a.subpage-item h3 { padding: 10px 0; font-weight: bold; text-decoration: none !important; }
+.subpages-menu li a.subpage-item { text-decoration: none; }
+.subpages-menu li a.subpage-item h3 { padding: 10px 15px 10px 0; font-weight: bold; text-decoration: none; }
 .subpages-menu .menu-item { position: relative; }
 .subpages-menu ul { list-style: none; margin: 0; padding: 0; background: none; }
 .subpages-menu ul li { list-style: none; margin: 0; padding: 0; background: none; background: none; }
 .subpages-menu ul a { text-decoration: none; background: url("../img/list-arrow-blue.png") no-repeat left center; display: block; padding: 7px 20px; border-bottom: 1px solid #e9edf2; font-size: 13px; line-height: 16px; }
 .subpages-menu ul a:hover, .subpages-menu ul a:focus { text-decoration: none; background-color: #e9edf2; }
+.subpages-menu .subpage-item:focus h3 { background-color: #e9edf2; }
 .subpages-menu .ext-link h3 { display: inline-block; *display: inline; *zoom: 1; background: url("../img/ext-icon-19.png") no-repeat 100% 50%; padding-right: 15px; }
 .subpages-menu .ext-link h3:hover, .subpages-menu .ext-link h3:focus { text-decoration: underline; }
 .subpages-menu .ext-icon { position: absolute; top: 0; right: 0; z-index: 10; height: 20px; width: 20px; background: #003366 url("../img/ext-icon-19-white.png") no-repeat 50% 50%; }
@@ -792,7 +794,7 @@ ul.person-info li.person-info-position { padding-left: 0; }
 .events-list ul { list-style: none; margin: 0; padding: 0; background: none; }
 .events-list ul li { list-style: none; margin: 0; padding: 0; background: none; }
 
-.event-detail-item { margin-bottom: 20px; }
+.event-detail-item { margin-bottom: 20px; min-height: 50px; }
 .event-detail-item .event-info { margin-left: 70px; font-size: 15px; line-height: 20px; padding-top: 6px; }
 .event-detail-item .event-date { width: 50px; padding: 7px 0; }
 .event-detail-item .event-date-month { font-size: 14px; line-height: 18px; }
@@ -822,11 +824,11 @@ ul.person-info li.person-info-position { padding-left: 0; }
 /* Image Gallery: Grid */
 .image-gallery-grid { margin: 10px 0 20px 0; clear: both; }
 .image-gallery-grid ul { list-style: none; margin: 0; padding: 0; background: none; }
-.image-gallery-grid ul li { list-style: none; margin: 0; padding: 0; background: none; background: none; display: block; float: left; height: 130px; width: 150px; line-height: 125px; vertical-align: middle; text-align: center; border: 1px solid #e9edf2; margin: 0 15px 15px 0; }
+.image-gallery-grid ul li { list-style: none; margin: 0; padding: 0; background: none; background: none; display: block; float: left; min-height: 130px; width: 150px; line-height: 125px; vertical-align: middle; text-align: center; border: 1px solid #e9edf2; margin: 0 15px 15px 0; }
 .image-gallery-grid ul li img { vertical-align: middle; }
 .image-gallery-grid ul li .gallery-image-caption { line-height: 20px; }
-.image-gallery-grid ul li .caption { line-height: 18px; font-size: 13px; padding: 0 5px; }
-.image-gallery-grid ul li.has-caption { height: 180px; }
+.image-gallery-grid ul li .caption { line-height: 18px; font-size: 13px; padding: 5px; }
+.image-gallery-grid ul li.has-caption { min-height: 180px; }
 
 /* Tagcloud */
 ul.tagcloud { list-style: none; margin: 0; padding: 0; background: none; }
@@ -837,7 +839,9 @@ ul.tagcloud li a:hover, ul.tagcloud li a:focus { text-decoration: underline; }
 /* Logo Slider */
 .logos-menu-nav { position: relative; }
 
-.logos-menu img { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+.logos-menu .logo-item { display: block; text-align: center; }
+.logos-menu .logo-item:focus { outline: 1px solid #003366; }
+.logos-menu .logo-item img { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
 #logos-menu-prev { position: absolute; z-index: 10; top: 0; left: -40px; display: block; width: 40px; height: 110px; background: #fff url("../img/prev-next.png") no-repeat -32px center; text-indent: -9999em; }
 
@@ -1114,6 +1118,7 @@ Media Queries for Theme FAU
   .image-gallery-slider .flex-viewport { max-height: 400px; overflow: hidden; } }
 @media (max-width: 767px) { body { padding: 0; }
   .fau-werbung { display: none; }
+  .logos-menu { display: none; }
   .hide-mobile { display: none !important; }
   .hide-desktop { display: block; }
   h1, h2, h3, h4, h5, h6, p { margin-left: 15px !important; margin-right: 15px !important; }
@@ -1161,7 +1166,7 @@ Media Queries for Theme FAU
   #header { padding-bottom: 15px; position: fixed; z-index: 200; background: #fff; top: 0; left: 0; right: 0; }
   #nav { margin: 10px 0 0 0 !important; display: none; }
   body { padding-top: 80px; }
-  #nav.toggled { display: block; }
+  #nav.toggled { display: block !important; }
   #nav li.level1 { display: block; float: none; margin: 0; border-bottom: 1px solid #ccc; }
   #nav li.level1 a { display: block; float: none; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; padding: 10px 15px !important; margin-bottom: 0; }
   #nav li.level2 { background-position: left 6px; }
