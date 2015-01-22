@@ -896,7 +896,10 @@ ul.tagcloud li a:hover, ul.tagcloud li a:focus { text-decoration: underline; }
 .screen-reader-text { display: none !important; }
 
 .nav-links { margin: 20px 0; }
-.nav-links span, .nav-links a { margin-right: 4px; }
+.nav-links span, .nav-links a { display: inline-block; height: 24px; min-width: 14px; line-height: 24px; padding: 0 5px; text-align: center; margin-right: 4px; -webkit-border-radius: 14px; -moz-border-radius: 14px; border-radius: 14px; }
+.nav-links .current { background: #003366; color: #fff; }
+.nav-links .prev, .nav-links .next { padding-left: 10px; padding-right: 10px; }
+.nav-links a:hover, .nav-links a:focus { background: #dce3ea; }
 
 /* Assistant */
 .assistant-tab-pane { display: none; }

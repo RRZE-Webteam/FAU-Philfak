@@ -25,6 +25,15 @@ global $options;
 				<?php endif; ?>
 
 				<h1><?php single_cat_title(); ?></h1>
+				
+				<div class="hero-meta-portal">
+					<?php
+						if(get_post_type() == 'post')
+						{
+							echo "FAU Aktuell";
+						}
+					?>
+				</div>
 			</div>
 		</div>
 	</div>

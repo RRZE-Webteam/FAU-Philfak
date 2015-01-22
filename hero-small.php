@@ -37,6 +37,10 @@ global $options;
 								echo $first_parent->post_title;
 							}
 						}
+						else if(get_post_type() == 'post')
+						{
+							echo "FAU Aktuell";
+						}
 					?>
 				</div>
 			</div>

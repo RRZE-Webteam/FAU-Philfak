@@ -264,6 +264,8 @@ global $options;
 	
 			 }
 			 
+			echo fau_get_ad('werbebanner_unten',true);
+			
 			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
 			    <hr>
@@ -271,8 +273,6 @@ global $options;
 			    fau_get_imagelinks($logoliste);
 			     
 			 }
-			 
-			 echo fau_get_ad('werbebanner_unten',true);
 			
 			 ?>
 			
