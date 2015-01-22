@@ -1017,22 +1017,6 @@ ul.tagcloud {
 					color: $colorPrimary;
 				}
 			}
-			
-			.gold .accordion-toggle {
-				border-color: $colorPhilFak;
-			}
-			.red .accordion-toggle {
-				border-color: $colorRwFak;
-			}
-			.blue .accordion-toggle {
-				border-color: $colorMedFak;
-			}
-			.green .accordion-toggle {
-				border-color: $colorNatFak;
-			}
-			.grey .accordion-toggle {
-				border-color: $colorTechFak;
-			}
 		}
 		
 		.accordion-body {
@@ -1044,6 +1028,22 @@ ul.tagcloud {
 				padding: 15px 20px;
 			}
 		}
+	}
+	
+	.gold .accordion-heading .accordion-toggle {
+		border-color: $colorPhilFak;
+	}
+	.red .accordion-heading .accordion-toggle {
+		border-color: $colorRwFak;
+	}
+	.blue .accordion-heading .accordion-toggle {
+		border-color: $colorMedFak;
+	}
+	.green .accordion-heading .accordion-toggle {
+		border-color: $colorNatFak;
+	}
+	.grey .accordion-heading .accordion-toggle {
+		border-color: $colorTechFak;
 	}
 }
 
