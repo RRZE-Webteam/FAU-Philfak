@@ -288,6 +288,11 @@
 				font-size: 13px;
 			}
 			
+			> a {
+				font-weight: bold;
+				font-size: 15px;
+			}
+			
 			a:hover, a:focus {
 				text-decoration: underline;
 			}
@@ -296,11 +301,15 @@
 	
 	.rss-date {
 		display: block;
+		font-size: 13px;
+		padding: 5px 0;
 	}
 	
 	.rssSummary,
 	.rss-description {
 		padding: 5px 0;
+		font-size: 13px;
+		line-height: 18px;
 		color: $colorPrimary;
 	}
 	

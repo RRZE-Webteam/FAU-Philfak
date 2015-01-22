@@ -541,11 +541,11 @@ body.admin-bar.nav-fixed #nav .nav-flyout { top: 85px; }
 #hero .container { position: relative; }
 #hero .hero-meta-portal { position: absolute; bottom: 23px; right: 100px; text-align: right; color: #0059b3; font-size: 60px; line-height: 50px; }
 .flyout-toggled #hero { opacity: 0.3; }
-#hero .searchform { padding-top: 35px; margin-bottom: 0; }
+#hero .searchform { padding: 35px 0 0 0; border: none; }
 #hero .searchform label { color: #fff; }
 #hero .searchform input[type="text"] { -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; padding: 10px 10px 10px 40px; width: 300px; font-size: 15px; line-height: 15px; float: left; margin-right: 10px; background: #5586b6 url("../img/icon-search.png") no-repeat 15px center; border: none; outline: none; color: #fff; }
 #hero .searchform input[type="text"]:focus { background-color: #5e91c3; }
-#hero .searchform input[type="submit"] { -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 10px 15px; display: block; box-sizing: padding-box; height: 40px; color: #444; }
+#hero .searchform input[type="submit"] { -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; border: none; background: #fff; color: #444; font-size: 15px; line-height: 15px; padding: 0 15px; display: block; box-sizing: padding-box; height: 40px; color: #444; }
 #hero .searchform .search-radio-label { float: left; margin-right: 20px; }
 #hero .searchform .search-radio-label input { margin-top: -4px; margin-right: 3px; }
 #hero .hero-jumplink-content { position: absolute; left: 300px; right: 300px; bottom: 0; text-indent: -9999em; display: none; height: 15px; background: url("../img/caret-down-white.png") no-repeat center center; }
@@ -677,9 +677,10 @@ body.admin-bar.nav-fixed #nav .nav-flyout { top: 85px; }
 .widget_rss ul, .rss-shortcode ul { list-style: none; margin: 0; padding: 0; background: none; }
 .widget_rss ul li, .rss-shortcode ul li { list-style: none; margin: 0; padding: 0; background: none; padding: 5px 0; background: none; line-height: 18px; }
 .widget_rss ul li a, .rss-shortcode ul li a { font-weight: normal; text-decoration: none; font-size: 13px; }
+.widget_rss ul li > a, .rss-shortcode ul li > a { font-weight: bold; font-size: 15px; }
 .widget_rss ul li a:hover, .widget_rss ul li a:focus, .rss-shortcode ul li a:hover, .rss-shortcode ul li a:focus { text-decoration: underline; }
-.widget_rss .rss-date, .rss-shortcode .rss-date { display: block; }
-.widget_rss .rssSummary, .widget_rss .rss-description, .rss-shortcode .rssSummary, .rss-shortcode .rss-description { padding: 5px 0; color: #003366; }
+.widget_rss .rss-date, .rss-shortcode .rss-date { display: block; font-size: 13px; padding: 5px 0; }
+.widget_rss .rssSummary, .widget_rss .rss-description, .rss-shortcode .rssSummary, .rss-shortcode .rss-description { padding: 5px 0; font-size: 13px; line-height: 18px; color: #003366; }
 .widget_rss h4, .rss-shortcode h4 { font-size: 20px; line-height: 24px; margin: 0; padding: 20px 0 20px 0; }
 .widget_rss cite, .rss-shortcode cite { color: #888; }
 

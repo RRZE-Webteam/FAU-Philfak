@@ -412,8 +412,8 @@ body.admin-bar.nav-fixed {
 	}
 	
 	.searchform {
-		padding-top: 35px;
-		margin-bottom: 0;
+		padding: 35px 0 0 0;
+		border: none;
 		
 		label {
 			color: #fff;
@@ -444,7 +444,7 @@ body.admin-bar.nav-fixed {
 			color: #444;
 			font-size: 15px;
 			line-height: 15px;
-			padding: 10px 15px;
+			padding: 0 15px;
 			display: block;
 			box-sizing: padding-box;
 			height: 40px;
