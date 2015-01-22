@@ -1137,11 +1137,11 @@ Media Queries for Theme FAU
   #content .widget_event_widget .event-info { margin-left: 60px; }
   .logos-menu-nav, #logos-menu-playpause { display: none; }
   .hero-meta-portal { display: none; }
-  #meta { padding-top: 6px; }
+  #meta { padding-top: 15px; }
   #meta ul { margin: 0 !important; }
   #meta-nav { display: none; }
   #meta .searchform input[type="text"] { width: 100px; }
-  #logo { margin: 15px 15px 0 15px; width: 210px; }
+  #logo { margin: 15px 15px 0 15px; }
   #logo img { max-width: 100%; }
   #hero.hero-small { margin-top: 0 !important; }
   #hero-slides { max-width: 100%; height: auto; min-height: 200px; }
