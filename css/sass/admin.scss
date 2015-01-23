@@ -100,6 +100,10 @@ label.plakattile:hover {
     background-color: #eee;
 }
 
+.wp-admin .fullsize {
+    width: 100%;
+}
+
 img.imgurl {
     display: block;
 }
@@ -113,5 +117,6 @@ img.imgurl {
 #adminmenu .menu-icon-linktipps div.wp-menu-image:before {
     content: "\f319";
 }
+
 
 

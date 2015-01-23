@@ -23,6 +23,7 @@ function fau_metabox_cf_setup() {
 	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
 
 	
 	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
@@ -56,6 +57,13 @@ function fau_add_metabox_page() {
 		'fau_metabox_page_imagelinks',			
 		esc_html__( 'Logos (Bildlinks) anzeigen', 'fau' ),		
 		'fau_do_metabox_page_imagelinks',		
+		 'page','side','core'
+	);
+	
+	add_meta_box(
+		'fau_metabox_page_ad',			
+		esc_html__( 'Werbung aktivieren', 'fau' ),		
+		'fau_do_metabox_page_ad',		
 		 'page','side','core'
 	);
 
@@ -252,11 +260,9 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	    <div class="howto"><?php echo __('Geben Sie hier das Datum des Events ein.','fau'); ?></div>
 	    
 	    <script type="text/javascript">
-
 jQuery(document).ready(function() {
     jQuery('#fauval_topevent_date').datepicker();
 });
-
 </script>
 	    
 	    
@@ -671,7 +677,7 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} 
 	
 	$newval = intval($_POST['fau_metabox_page_portalmenu_nothumbnails']);
-	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_thumbnailson', true );
+	$oldval = get_post_meta( $post_id, 'fauval_portalmenu_thumbnailson', true );
 	
 	if ($newval==1) {
 	    if (isset($oldval)  && ($oldval != $newval)) {
@@ -684,7 +690,7 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} 
 	
 	$newval = intval($_POST['fau_metabox_page_portalmenu_nofallbackthumb']);
-	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_nofallbackthumb', true );
+	$oldval = get_post_meta( $post_id, 'fauval_portalmenu_nofallbackthumb', true );
 	
 	if ($newval==1) {
 	    if (isset($oldval)  && ($oldval != $newval)) {
@@ -697,7 +703,7 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} 
 
 	$newval = intval($_POST['fau_metabox_page_portalmenu_nosub']);
-	$oldval = get_post_meta( $object->ID, 'fauval_portalmenu_nosub', true );
+	$oldval = get_post_meta( $post_id, 'fauval_portalmenu_nosub', true );
 	
 	if ($newval==1) {
 	    if (isset($oldval)  && ($oldval != $newval)) {
@@ -778,5 +784,127 @@ function fau_save_metabox_page_imagelinks( $post_id, $post ) {
 	    delete_post_meta( $post_id, 'fauval_imagelink_catid', $oldval );	
 	} 
 
+}
+
+
+
+
+/* 
+ * Werbung aktivieren 
+ */
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_ad( $object, $box ) { 
+    global $options;
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_ad_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		 
+		return;
+	} else {
+	    return;
+	}
+	
+	
+	$allads = get_posts( array('post_type' => 'ad', 'posts_per_page' => -1));
+	if ($allads) {
+	    $sidebarads = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    $bottomads = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    
+	    foreach ($allads as $ad) {
+		$title = get_the_title($ad->ID);
+		$position = get_post_meta( $ad->ID, 'fauval_ad_position', true );
+		if ($position==1) {
+		    // Nur in der Sidebar
+		    $sidebarads[$ad->ID] = $title;
+	        } elseif ($position==2) {		    
+		    // Nur Unten
+		    $bottomads[$ad->ID] = $title;
+		} else {
+		    // Beide Bereiceh oder unedefiniert
+		    $sidebarads[$ad->ID] = $title;
+		    $bottomads[$ad->ID] = $title;
+		}
+	    }
+	    wp_reset_postdata();
+	    $listseite = get_post_meta( $object->ID, 'werbebanner_seitlich', true );
+	    $listunten = get_post_meta( $object->ID, 'werbebanner_unten', true );
+	    
+	    
+	    fau_form_multiselect('werbebanner_seitlich', $sidebarads, $listseite, __('Sidebar','fau'),  __('Wählen Sie die Werbung, die in der Sidebar erscheinen soll.','fau'), 0 );	    
+	    fau_form_multiselect('werbebanner_unten', $bottomads, $listunten, __('Inhaltsbereich','fau'),  __('Wählen Sie die Werbung, die unterhalb des Inhalts erscheinen soll.','fau'), 0);
+	    
+	    
+	} else {
+	    _e('Es wurde noch keine Werbung definiert, die angezeigt werden kann.', 'fau');
+	}
+	return;
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_ad( $post_id, $post ) {
+	if ( !isset( $_POST['fau_metabox_page_ad_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_ad_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
+	}
+
+	
+	$newval = $_POST['werbebanner_seitlich'];
+	$oldval = get_post_meta( $post_id, 'werbebanner_seitlich', true );
+	$remove = 0;
+	$found =0;
+	if (isset($newval)) {
+	    foreach ($newval as $i) {
+		if ($i == -1) {
+		    $remove = 1;
+		} elseif ($i >0) {
+		    $found = 1;
+		}
+	    }
+	}
+	
+	if (($remove==1) || ($found==0)) {
+	     delete_post_meta( $post_id, 'werbebanner_seitlich' );	 
+	} else {
+		if (isset($oldval))  {
+		    update_post_meta( $post_id, 'werbebanner_seitlich', $newval );
+		} else {
+		    add_post_meta( $post_id, 'werbebanner_seitlich', $newval, true );
+		}
+	}
+	
+	
+	$newval = $_POST['werbebanner_unten'];
+	$oldval = get_post_meta( $post_id, 'werbebanner_unten', true );
+	$remove = 0;
+	$found =0;
+	if (isset($newval)) {
+	    foreach ($newval as $i) {
+		if ($i == -1) {
+		    $remove = 1;
+		} elseif ($i >0) {
+		    $found = 1;
+		}
+	    }
+	}
+	
+	if (($remove==1) || ($found==0)) {
+	     delete_post_meta( $post_id, 'werbebanner_unten' );	 
+	} else {
+		if (isset($oldval))  {
+		    update_post_meta( $post_id, 'werbebanner_unten', $newval );
+		} else {
+		    add_post_meta( $post_id, 'werbebanner_unten', $newval, true );
+		}
+	}
+
+	
 }
 
