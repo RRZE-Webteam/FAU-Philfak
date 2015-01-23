@@ -85,11 +85,19 @@
 	}
 		
 	li.has-sub {
-		a {
+		> a {
 			padding-bottom: 10px;
 			padding-right: 30px;
-			background: url('../img/caret-down.png') no-repeat right 12px;
 			margin-bottom: 10px;
+			position: relative;
+		}
+		
+		> a:before {
+			@extend .fa;
+			@extend .fa-caret-down;
+			position: absolute;
+			top: 11px; 
+			right: 11px;
 		}
 	}
 	
@@ -313,9 +321,17 @@ body.admin-bar.nav-fixed {
 	li.has-sub {
 		margin-right: 0;
 		
-		a {
-			background: url('../img/caret-down.png') no-repeat right 15px;
+		> a {
 			padding-right: 25px;
+			position: relative;
+		}
+		
+		> a:before {
+			@extend .fa;
+			@extend .fa-caret-down;
+			position: absolute;
+			top: 15px; 
+			right: 11px;
 		}
 	}
 	
@@ -412,8 +428,8 @@ body.admin-bar.nav-fixed {
 	}
 	
 	.searchform {
-		padding-top: 35px;
-		margin-bottom: 0;
+		padding: 35px 0 0 0;
+		border: none;
 		
 		label {
 			color: #fff;
@@ -444,7 +460,7 @@ body.admin-bar.nav-fixed {
 			color: #444;
 			font-size: 15px;
 			line-height: 15px;
-			padding: 10px 15px;
+			padding: 0 15px;
 			display: block;
 			box-sizing: padding-box;
 			height: 40px;
@@ -467,10 +483,18 @@ body.admin-bar.nav-fixed {
 		left: 300px;
 		right: 300px;
 		bottom: 0;
-		text-indent: -9999em;
+		//text-indent: -9999em;
 		display: none;
-		height: 15px;
-		background: url('../img/caret-down-white.png') no-repeat center center;
+		height: 25px;
+		text-align: center;
+		text-decoration: none;
+		@extend .fa;
+		@extend .fa-3x;
+		@extend .fa-angle-down;
+		
+		&:hover, &:focus {
+			text-decoration: none;
+		}
 	}
 }
 
@@ -536,6 +560,10 @@ body.admin-bar.nav-fixed {
 	
 	img {
 		@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+	}
+	
+	.logos-menu .logo-item img {
+		@include box-shadow(none);
 	}
 	
 	img.error-404-persons {
@@ -677,7 +705,7 @@ body.admin-bar.nav-fixed {
 	
 	ul.social {
 		@include no-list;
-		margin: 0 0 10px 5px;
+		margin: 0 0 10px 0;
 		
 		li {
 			@include no-list;
@@ -689,48 +717,34 @@ body.admin-bar.nav-fixed {
 				text-decoration: none;
 				height: 20px;
 				line-height: 20px;
-				padding: 5px 0px 5px 30px;
-				background-position: left top;
-				background-repeat: no-repeat;
-				
+				padding: 5px 0;
+				background: none;
+
 				&:hover, &:focus {
-					background-position: left bottom;
 					color: $colorPrimary;
 				}
 			}
+			
+			a:before {
+				@extend .fa;
+				@extend .fa-lg;
+				padding-right: 7px;
+			}
 		}
 		
-		li.social-facebook a {
-			background-image: url('../img/social-facebook.png');
-		}
-		
-		li.social-twitter a {
-			background-image: url('../img/social-twitter.png');
-		}
-		
-		li.social-gplus a {
-			background-image: url('../img/social-gplus.png');
-		}
-		
-		li.social-youtube a {
-			background-image: url('../img/social-youtube.png');
-		}
-		
-		li.social-vimeo a {
-			background-image: url('../img/social-vimeo.png');
-		}
-		
-		li.social-flickr a {
-			background-image: url('../img/social-flickr.png');
-		}
-		
-		li.social-xing a {
-			background-image: url('../img/social-xing.png');
-		}
-		
-		li.social-pinterest a {
-			background-image: url('../img/social-pinterest.png');
-		}
+		li.social-facebook a:before { @extend .fa-facebook-square; }
+		li.social-twitter a:before { @extend .fa-twitter-square; }
+		li.social-gplus a:before { @extend .fa-google-plus-square; }
+		li.social-youtube a:before { @extend .fa-youtube-square; }
+		li.social-vimeo a:before { @extend .fa-vimeo-square; }
+		li.social-flickr a:before { @extend .fa-flickr; }
+		li.social-xing a:before { @extend .fa-xing-square; }
+		li.social-pinterest a:before { @extend .fa-pinterest-square; }
+		li.social-feed a:before { @extend .fa-rss-square; }
+		li.social-delicious a:before { @extend .fa-delicious; }
+		li.social-skype a:before { @extend .fa-skype; }
+		li.social-tumblr a:before { @extend .fa-tumblr-square; }
+		li.social-github a:before { @extend .fa-github-square; }
 	}
 	
 	iframe {

@@ -36,6 +36,7 @@ $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
 @import "includes/bootstrap";
 @import "includes/mixins";
 @import "includes/fonts";
+@import "includes/font-awesome";
 @import "includes/helpers";
 
 // Import Main Stylings

@@ -13,7 +13,7 @@ global $options;
 
 ?>
 
-	<div id="hero">
+	<section id="hero">
 		<div id="hero-slides">
 			
 			<?php			 
@@ -127,11 +127,11 @@ global $options;
 					} ?>
 				</div>
 			</div>
-			<a href="#content" class="hero-jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a>
+			<a href="#content" class="hero-jumplink-content"><?php _e('','fau'); ?></a>
 		</div>
-	</div> <!-- /hero -->
+	</section> <!-- /hero -->
 
-	<div id="content">
+	<section id="content">
 		<div class="container">
 			<?php 
 			    echo fau_get_ad('werbebanner_seitlich',false);
@@ -264,6 +264,8 @@ global $options;
 	
 			 }
 			 
+			echo fau_get_ad('werbebanner_unten',true);
+			
 			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
 			 if ($logoliste) { ?>	
 			    <hr>
@@ -271,8 +273,6 @@ global $options;
 			    fau_get_imagelinks($logoliste);
 			     
 			 }
-			 
-			 echo fau_get_ad('werbebanner_unten',true);
 			
 			 ?>
 			
@@ -361,6 +361,6 @@ global $options;
 				</div>
 			</div>
 		</div> <!-- /social -->	
-	</div> <!-- /content -->
+	</section> <!-- /content -->
 
 <?php get_footer(); ?>

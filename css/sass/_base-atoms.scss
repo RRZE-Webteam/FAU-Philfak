@@ -63,10 +63,19 @@ p {
 	&.attention {
 		display: block;
 		color: $colorNotice;
-		background: transparent url('../img/attention.png') no-repeat 0 7px;
-		padding: 10px 0 10px 35px;
+	//	background: transparent url('../img/attention.png') no-repeat 0 7px;
+		padding: 10px 0;
 		margin: 20px 0;
-		font-weight:bold;
+		font-weight: bold;
+		
+		&:before {
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-exclamation-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
 	}
 	
 	#content .span4 .widget &,

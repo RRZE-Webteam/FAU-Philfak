@@ -163,12 +163,12 @@
 		padding-left: 20px;
 		
 		a.subpage-item {
-			text-decoration: none !important;
+			text-decoration: none;
 
 			h3 {
-				padding: 10px 0;
+				padding: 10px 15px 10px 0;
 				font-weight: bold;
-				text-decoration: none !important;
+				text-decoration: none;
 			}
 		}
 	}
@@ -199,6 +199,10 @@
 			text-decoration: none;
 			background-color: $colorLightest;
 		}
+	}
+	
+	.subpage-item:focus h3 {
+		background-color: $colorLightest;
 	}
 	
 	.ext-link h3 {
@@ -254,6 +258,8 @@
 		border: none;
 		outline: none;
 		color: #fff;
+		
+	
 
 		&:focus {
 			background-color: #5e91c3;
@@ -288,6 +294,11 @@
 				font-size: 13px;
 			}
 			
+			> a {
+				font-weight: bold;
+				font-size: 15px;
+			}
+			
 			a:hover, a:focus {
 				text-decoration: underline;
 			}
@@ -296,11 +307,15 @@
 	
 	.rss-date {
 		display: block;
+		font-size: 13px;
+		padding: 5px 0;
 	}
 	
 	.rssSummary,
 	.rss-description {
 		padding: 5px 0;
+		font-size: 13px;
+		line-height: 18px;
 		color: $colorPrimary;
 	}
 	
@@ -413,7 +428,7 @@ ul.person-info {
 	li {
 		@include no-list;
 		background-image: none;
-		padding-left: 20px;
+		// padding-left: 20px;
 		min-height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -422,33 +437,26 @@ ul.person-info {
 		color: $colorPrimary;
 	}
 	
-	li.person-info-phone {
-		background-image: url('../img/icon-phone.png');
+	li.person-info:before {
+		@extend .fa;
+		width: 20px;
 	}
 	
-	li.person-info-fax {
-		background-image: url('../img/icon-fax.png');
-	}
-	
-	li.person-info-email {
-		background-image: url('../img/icon-email.png');
-	}
-	
-	li.person-info-institution {
-		background-image: url('../img/icon-home.png');
-	}
+	li.person-info-phone:before { @extend .fa-phone; }
+	li.person-info-fax:before { @extend .fa-print; }
+	li.person-info-email:before { @extend .fa-envelope; }
+	li.person-info-institution:before { @extend .fa-home; }
 	
 	li.person-info-address {
 		margin-top: 10px;
+		padding-left: 20px;
 	}
 	
 	li.person-info-description {
 		margin-top: 10px;
+		padding-left: 20px;
 	}
-	
-	li.person-info-position {
-		padding-left: 0;
-	}
+
 }
 
 
@@ -559,8 +567,14 @@ ul.person-info {
 	}
 	
 	.news-rss {
-		background: url('../img/rss.png') no-repeat left center;
-		padding-left: 23px;
+		
+	}
+	
+	.news-rss:before {
+		@extend .fa;
+		@extend .fa-lg;
+		@extend .fa-rss-square;
+		padding-right: 5px;
 	}
 	
 	.news-more {
@@ -695,6 +709,7 @@ ul.person-info {
 
 .event-detail-item {
 	margin-bottom: 20px;
+	min-height: 50px;
 	
 	.event-info {
 		margin-left: 70px;
@@ -826,7 +841,7 @@ ul.person-info {
 			background: none;
 			display: block;
 			float: left;
-			height: 130px;
+			min-height: 130px;
 			width: 150px;
 			line-height: 125px;
 			vertical-align: middle;
@@ -845,12 +860,12 @@ ul.person-info {
 			.caption {
 				line-height: 18px;
 				font-size: 13px;
-				padding: 0 5px;
+				padding: 5px;
 			}
 		}
 		
 		li.has-caption {
-			height: 180px;
+			min-height: 180px;
 		}
 	}
 }
@@ -882,8 +897,17 @@ ul.tagcloud {
 	position: relative;
 }
 
-.logos-menu img {
-	@include box-shadow(none);
+.logos-menu .logo-item {
+	display: block;
+	text-align: center;
+	
+	&:focus {
+		outline: 1px solid $colorPrimary;
+	}
+	
+	img {
+		@include box-shadow(none);
+	}
 }
 
 #logos-menu-prev {
@@ -999,12 +1023,21 @@ ul.tagcloud {
 		.accordion-heading {
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
-				background: $colorLightest url('../img/caret-accordion.png') no-repeat right top;
+				background: $colorLightest;
 				color: $colorPrimary;
 				@include border-radius(4px);
 				text-decoration: none;
 				font-size: 16px;
 				padding: 8px 35px 8px 10px;
+				position: relative;
+				
+				&:before {
+					@extend .fa;
+					@extend .fa-caret-down;
+					position: absolute;
+					top: 10px;
+					right: 10px;
+				}
 
 				&:hover, &:focus {
 					background-color: darken($colorLightest, 3%);
@@ -1013,25 +1046,14 @@ ul.tagcloud {
 
 				&.active, &.active:hover, &.active:focus {
 					background-color: darken($colorLightest, 3%);
-					background-position: right -41px;
+				//	background-position: right -41px;
 					color: $colorPrimary;
+					
+					&:before {
+						@extend .fa-caret-up;
+						top: 8px;
+					}
 				}
-			}
-			
-			.gold .accordion-toggle {
-				border-color: $colorPhilFak;
-			}
-			.red .accordion-toggle {
-				border-color: $colorRwFak;
-			}
-			.blue .accordion-toggle {
-				border-color: $colorMedFak;
-			}
-			.green .accordion-toggle {
-				border-color: $colorNatFak;
-			}
-			.grey .accordion-toggle {
-				border-color: $colorTechFak;
 			}
 		}
 		
@@ -1044,6 +1066,22 @@ ul.tagcloud {
 				padding: 15px 20px;
 			}
 		}
+	}
+	
+	.gold .accordion-heading .accordion-toggle {
+		border-color: $colorPhilFak;
+	}
+	.red .accordion-heading .accordion-toggle {
+		border-color: $colorRwFak;
+	}
+	.blue .accordion-heading .accordion-toggle {
+		border-color: $colorMedFak;
+	}
+	.green .accordion-heading .accordion-toggle {
+		border-color: $colorNatFak;
+	}
+	.grey .accordion-heading .accordion-toggle {
+		border-color: $colorTechFak;
 	}
 }
 
@@ -1082,7 +1120,29 @@ ul.tagcloud {
 	margin: 20px 0;
 	
 	span, a {
+		display: inline-block;
+		height: 24px;
+		min-width: 14px;
+		line-height: 24px;
+		padding: 0 5px;
+		text-align: center;
 		margin-right: 4px;
+		@include border-radius(14px);
+	}
+	
+	.current {
+		background: $colorPrimary;
+		color: #fff;
+	}
+	
+	.prev, 
+	.next {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	a:hover, a:focus {
+		background: $colorLight;
 	}
 }
 
