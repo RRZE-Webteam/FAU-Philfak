@@ -13,6 +13,7 @@ function ad_post_type() {
 		'singular_name'       => __( 'Werbung',  'fau' ),
 		'menu_name'           => __( 'Werbung', 'fau' ),
 		'all_items'          => __( 'Übersicht', 'fau' ),
+
 	);
 	$rewrite = array(
 		'slug'                => 'ad',
@@ -30,7 +31,9 @@ function ad_post_type() {
 		'show_in_menu'        => true,
 		'show_in_nav_menus'   => false,
 		'show_in_admin_bar'   => true,
-		'menu_position'       => 5,
+	//	'menu_position'       => 5,
+  	 	'menu_icon'		=> 'dashicons-cart',
+
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => true,
