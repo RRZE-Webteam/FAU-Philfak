@@ -88,7 +88,7 @@ class FAUShortcodes {
 						$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-downloads-'.$category->term_id.'-'.$i.'">'.$category->name.'</a>';
 					$return .= '</div>';
 					$return .= '<div id="collapse-downloads-'.$category->term_id.'-'.$i.'" class="accordion-body">';
-						$return .= '<div class="accordion-inner">';
+						$return .= '<div class="accordion-inner clearfix">';
 
 							$return .= $this->fau_downloads_recursive($category->term_id);
 
@@ -148,7 +148,7 @@ class FAUShortcodes {
 					$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-'.$page->ID.'-'.$i.'">'.$page->post_title.'</a>';
 				$return .= '</div>';
 				$return .= '<div id="collapse-'.$page->ID.'-'.$i.'" class="accordion-body">';
-					$return .= '<div class="accordion-inner">';
+					$return .= '<div class="accordion-inner clearfix">';
 						
 						$subpages = get_pages(array('sort_order' => 'ASC', 'sort_column' => 'menu_order', 'parent' => $page->ID, 'hierarchical' => 0));
 						
