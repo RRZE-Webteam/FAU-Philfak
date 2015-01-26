@@ -12,6 +12,8 @@
 global $options;
 ?>
 
+	</div> <!-- /wrap -->
+
 	<footer id="footer">
 		<div class="container">
 			<div class="row">
@@ -44,7 +46,7 @@ global $options;
 		</div>
 	</footer>
 	
-
+	<a href="#meta" class="top-link"><span class="hidden">Nach oben</span></a>
 
 	<?php wp_footer(); ?>
 </body>
