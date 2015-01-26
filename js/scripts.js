@@ -67,6 +67,8 @@ $(document).ready(function()
 		$('#subnav li a').eq(0).focus();
 	});
 	
+	
+	
 	$('.image-gallery-slider').flexslider({
 		selector: 'ul > li',
 		animation: 'slide',
@@ -276,6 +278,12 @@ $(document).ready(function()
 				$('body').addClass('nav-fixed');
 			} else {
 				$('body').removeClass('nav-fixed');
+			}
+			
+			if ($(window).scrollTop() > 200) {
+				$('.top-link').fadeIn();
+			} else {
+				$('.top-link').fadeOut();
 			}
 		});
 	}

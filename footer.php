@@ -44,7 +44,7 @@ global $options;
 		</div>
 	</footer>
 	
-
+	<a href="#meta" class="top-link"><span class="hidden">Nach oben</span></a>
 
 	<?php wp_footer(); ?>
 </body>

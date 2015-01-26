@@ -1358,3 +1358,29 @@ ul.files {
 		text-decoration: underline;
 	}
 }
+
+
+/* "to top"-Link */
+
+.top-link {
+	position: fixed;
+	bottom: 20px; 
+	right: 20px;
+	
+	@extend .fa;
+	@extend .fa-2x;
+	@extend .fa-chevron-up;
+
+	background: $colorPrimary;
+	color: #fff;
+	padding: 7px;
+	@include border-radius(4px);
+	
+	&:hover, &:focus {
+		color: #fff;
+		background: $colorHover;
+	}
+	
+	display: none;
+
+}
