@@ -13,6 +13,7 @@ function ad_post_type() {
 		'singular_name'       => __( 'Werbung',  'fau' ),
 		'menu_name'           => __( 'Werbung', 'fau' ),
 		'all_items'          => __( 'Übersicht', 'fau' ),
+
 	);
 	$rewrite = array(
 		'slug'                => 'ad',
@@ -30,7 +31,9 @@ function ad_post_type() {
 		'show_in_menu'        => true,
 		'show_in_nav_menus'   => false,
 		'show_in_admin_bar'   => true,
-		'menu_position'       => 5,
+	//	'menu_position'       => 5,
+  	 	'menu_icon'		=> 'dashicons-cart',
+
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => true,
@@ -135,7 +138,10 @@ function fau_ad_metabox_content( $object, $box ) {
     $targeturl = get_post_meta( $object->ID, 'fauval_ad_url', true );
     $code = get_post_meta( $object->ID, 'fauval_ad_code', true );
     $notiz = get_post_meta( $object->ID, 'fauval_ad_notes', true );
-
+    $position = get_post_meta( $object->ID, 'fauval_ad_position', true );
+    if (!$position) {
+	$position =0;
+    }
     
     /* Old values */
     if (empty($code)) {
@@ -149,12 +155,17 @@ function fau_ad_metabox_content( $object, $box ) {
     }
    			
    
-    fau_form_textarea('fauval_ad_code', $code, __('HTML-Code zur Einbindung','fau'),80,6);
+    fau_form_textarea('fauval_ad_code', $code, __('HTML-Code zur Einbindung','fau'),80,6, __('Achtung: Dieser HTML-Code wird nicht auf syntaktische Korrektheit geprüft. Fehler, wie nicht geschlossene HTML-Anweisungen, können die gesamte Website beschädigen und dafür sorgen, daß eine kleine süße Katze irgendwo auf der Welt stirbt.','fau'));
     fau_form_textarea('fauval_ad_notes', $notiz, __('Redaktionelle Notizen','fau'),80,3,__('Hier können redaktionelle Notizen hinterlassen werden. Diese werden nur hier angezeigt.','fau'));
 
     fau_form_url('fauval_ad_url', $targeturl, __('Webadresse','fau'), __('Sollte kein HTML-Code eingegeben werden sollen, kann alternativ direkt eine Zieladresse und ein Bild aus der Mediathek gewählt werden. Hiermit kann die URL des Zieles eingegeben werden. Als Bild wird das gewählte Beitragsbild verwendet.','fau'), $placeholder='http://');   
 
     
+    fau_form_select('fauval_ad_position', array( '1' => __('Sidebar','fau'), '2' => __('Unterhalb des Inhaltsbereich','fau')), $position, __('Position','fau'), __('Angabe an welchen Positionen der Seite diese Werbung angezeigt werden kann.', 'fau'),1, __('Sidebar und unterhalb des Inhaltsbereich','fau'));
+    
+    
+    // function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = '',  $howtotext = '', $showempty=1, $emptytext = '' ) {
+
     
     return;
 
@@ -195,6 +206,7 @@ function fau_ad_metabox_content_save( $post_id ) {
     $targeturl = get_post_meta( $post_id, 'fauval_ad_url', true );
     $code = get_post_meta( $post_id, 'fauval_ad_code', true );
     $notiz = get_post_meta($post_id, 'fauval_ad_notes', true );
+    $position = get_post_meta( $post_id, 'fauval_ad_position', true );
 
     
     /* Old values */
@@ -210,7 +222,7 @@ function fau_ad_metabox_content_save( $post_id ) {
     $newval =  $_POST['fauval_ad_code'] ;
 	
     if (!empty(trim($newval))) {
-	if (isset($oldval)  && ($code != $newval)) {
+	if (isset($code)  && ($code != $newval)) {
 	    update_post_meta( $post_id, 'fauval_ad_code', $newval );
 	} else {
 	    add_post_meta( $post_id, 'fauval_ad_code', $newval, true );
@@ -225,6 +237,8 @@ function fau_ad_metabox_content_save( $post_id ) {
     
     if (filter_var($_POST['fauval_ad_url'], FILTER_VALIDATE_URL)) {
 	$newval = $_POST['fauval_ad_url'];
+    } else {
+	$newval = '';
     }
     
     if (!empty($newval)) {
@@ -255,6 +269,20 @@ function fau_ad_metabox_content_save( $post_id ) {
 	delete_post_meta( $post_id, 'fauval_ad_notes', $notiz );	
     } 
   
+    
+     $newval = intval($_POST['fauval_ad_position']) ;
+	
+    if (!empty(trim($newval))) {
+	if (isset($position)  && ($position != $newval)) {
+	    update_post_meta( $post_id, 'fauval_ad_position', $newval );
+	} else {
+	    add_post_meta( $post_id, 'fauval_ad_position', $newval, true );
+	}
+    } elseif ($position) {
+	delete_post_meta( $post_id, 'fauval_ad_position', $position );	
+    } 
+   
+    
 }
 add_action( 'save_post', 'fau_ad_metabox_content_save' );
 
