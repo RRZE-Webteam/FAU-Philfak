@@ -290,6 +290,18 @@ $(document).ready(function()
 			}
 		});
 	}
+	
+	$('.organigram .has-sub').each(function() {
+		$(this).prepend('<span class="toggle-icon"></span>');
+		$(this).children('ul').hide();
+	});
+	
+	$('.organigram .has-sub .toggle-icon').bind('click', function(event) {
+		event.preventDefault();
+		
+		$(this).closest('.has-sub').toggleClass('active');
+		$(this).closest('.has-sub').children('ul').slideToggle();
+	});
 
 }
 );
