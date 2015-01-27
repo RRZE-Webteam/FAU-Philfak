@@ -8,6 +8,7 @@
 load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
+require_once( get_template_directory() . '/functions/helper-functions.php' );
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
 require_once(get_template_directory() .'/functions/bootstrap.php');
 require_once(get_template_directory() .'/functions/shortcodes.php');
@@ -131,7 +132,12 @@ function fau_scripts_styles() {
 	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
 	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
 	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array(), $options['js-version'], true );
-	wp_enqueue_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.min.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array(), $options['js-version'], true );
+	wp_enqueue_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.js', array(), $options['js-version'], true );
 }
 add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
 
@@ -240,6 +246,7 @@ add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 function fau_admin_header_style() {
     wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
     wp_enqueue_style( 'themeadminstyle' );	
+    wp_enqueue_style( 'dashicons' );
     wp_enqueue_media();
     wp_enqueue_script('jquery-ui-datepicker');
     wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
@@ -852,7 +859,7 @@ add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
  
 function prefix_wpseo_add_meta_boxes() {
     global $post;
-    $post_types_without_seo = array( 'event', 'person' );
+    $post_types_without_seo = array( 'event', 'person', 'ad' );
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
 
@@ -864,7 +871,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
     $post = get_post($id);
     $output = '';
     if ($post) {
-	$output .= '<div class="news-item">';
+	$output .= '<article class="news-item">';
 	
 	$link = get_post_meta( $post->ID, 'external_link', true );
 	$external = 0;
@@ -935,141 +942,10 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	
 	$output .= "\t\t".'</div>'."\n"; 
 	$output .= "\t</div> <!-- /row -->\n";	
-	$output .= "</div> <!-- /news-item -->\n";	
+	$output .= "</article> <!-- /news-item -->\n";	
     }
     return $output;
 }
 
 
 
-
-
-/*
- * Hilfereiche Funktionen für die Custom Fields
- */
-
-
-function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    if (isset($name) &&  isset($labeltext))  {
-	echo "<p>\n";
-	echo '	<label for="'.$name.'">';
-	echo $labeltext;
-	echo "</label><br />\n";
-	echo '	<input type="text" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
-	if (strlen(trim($placeholder))) {
-	    echo ' placeholder="'.$placeholder.'"';
-	}
-	if (intval($size)>0) {
-	    echo ' length="'.$size.'"';
-	}
-	echo " />\n";
-	echo "</p>\n";
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_text() - Name oder Label fehlt.', 'fau');
-    }
-}
-
-
-function fau_form_url($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='http://', $size = 0) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    if (isset($name) &&  isset($labeltext))  {
-	echo "<p>\n";
-	echo '	<label for="'.$name.'">';
-	echo $labeltext;
-	echo "</label><br />\n";
-	echo '	<input type="url" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
-	if (strlen(trim($placeholder))) {
-	    echo ' placeholder="'.$placeholder.'"';
-	}
-	if (intval($size)>0) {
-	    echo ' length="'.$size.'"';
-	}
-	echo " />\n";
-	echo "</p>\n";
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_url() - Name oder Label fehlt.', 'fau');
-    }
-}
-    
-function fau_form_onoff($name= '', $prevalue = 0, $labeltext = '',  $howtotext = '' ) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    if (isset($name) &&  isset($labeltext))  { ?>
-	<div class="schalter">
-	    <select class="onoff" name="<?php echo $name; ?>" id="<?php echo $name; ?>">
-		<option value="0" <?php selected(0,$prevalue);?>>Aus</option>
-		<option value="1" <?php selected(1,$prevalue);?>>An</option>
-	    </select>
-	    <label for="<?php echo $name; ?>">
-		<?php echo $labeltext; ?>
-	    </label>
-	</div>
-	<?php 
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_onoff() - Name oder Label fehlt.', 'fau');
-    }
-}
-    
-function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = '',  $howtotext = '', $showempty=1, $emptytext = '' ) {
-    $name = fau_san( $name );
-    $labeltext = fau_san( $labeltext );
-    $emptytext = fau_san( $emptytext );
-     
-    if (is_array($liste) && isset($name) &&  isset($labeltext))  { ?>
-	<div class="liste">
-	    <p><label for="<?php echo $name; ?>">
-		<?php echo $labeltext; ?>
-		</label></p>
-	    <select name="<?php echo $name; ?>" id="<?php echo $name; ?>">
-	    <?php 
-	    if ($showempty==1) { 
-		echo '<option value="">';
-		if (!empty($emptytext)) {
-		    echo $emptytext;
-		} else {
-		    _e('Keine Auswahl','fau');
-		}
-		echo '</option>';
-	    }
-	    
-	    foreach($liste as $entry => $value){  ?>
-		<option value="<?php echo $entry; ?>" <?php selected($entry,$prevalue);?>><?php echo $value; ?></option>
-	    <?php } ?>	
-	    </select>
-	   
-	</div>
-	<?php 
-	if (strlen(trim($howtotext))) {
-	    echo '<p class="howto">';
-	    echo $howtotext;
-	    echo "</p>\n";
-	}
-    } else {
-	echo _('Ungültiger Aufruf von fau_form_select() - Array, Name oder Label fehlt.', 'fau');
-    }
-}
-    
-
-
-
-function fau_san($s){
-    return filter_var(trim($s), FILTER_SANITIZE_STRING);
-}

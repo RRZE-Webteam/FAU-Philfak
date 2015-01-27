@@ -12,7 +12,7 @@
 global $options; 
 ?>
 
-<div id="hero" class="hero-small">
+<section id="hero" class="hero-small">
 	<div class="container">
 		<div class="row">
 			<div class="span12">
@@ -37,6 +37,10 @@ global $options;
 								echo $first_parent->post_title;
 							}
 						}
+						else if(get_post_type() == 'post')
+						{
+							echo "FAU Aktuell";
+						}
 					?>
 				</div>
 			</div>
@@ -49,4 +53,4 @@ global $options;
 			</div>
 		</div>
 	</div>
-</div>
+</section>

@@ -12,7 +12,9 @@
 global $options;
 ?>
 
-	<div id="footer">
+	</div> <!-- /wrap -->
+
+	<footer id="footer">
 		<div class="container">
 			<div class="row">
 				<div class="span3">
@@ -42,9 +44,9 @@ global $options;
 				</div>
 			</div>
 		</div>
-	</div>
+	</footer>
 	
-
+	<a href="#meta" class="top-link"><span class="hidden">Nach oben</span></a>
 
 	<?php wp_footer(); ?>
 </body>

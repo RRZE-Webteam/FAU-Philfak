@@ -11,7 +11,7 @@ get_header(); ?>
 
 <?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
 
-	<div id="hero" class="hero-small">
+	<section id="hero" class="hero-small">
 		<div class="container">
 			<div class="row">
 				<div class="span12">
@@ -30,10 +30,10 @@ get_header(); ?>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	
 
-	<div id="content">
+	<section id="content">
 		<div class="container">
 		
 			<div class="row">
@@ -92,6 +92,6 @@ get_header(); ?>
 			</div>
 			
 		</div>
-	</div>
+	</section>
 
 <?php get_footer(); ?>

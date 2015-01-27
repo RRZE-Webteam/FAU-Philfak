@@ -51,7 +51,7 @@ function imagelink_post_type() {
 		'show_in_menu'        => true,
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
-		'menu_position'       => 5,
+  	 	'menu_icon'		=> 'dashicons-format-image',
 		'can_export'          => true,
 		'has_archive'         => false,
 		'exclude_from_search' => true,
@@ -204,13 +204,13 @@ function fau_imagelink_metabox_content_save( $post_id ) {
 	}
 	
     /* Old values */	
-    $targeturl = get_post_meta( $post_id->ID, 'fauval_imagelink_url', true );
-    $protocol  = get_post_meta( $post_id->ID, 'protocol', true );
-    $link  = get_post_meta( $post_id->ID, 'link', true );
+    $targeturl = get_post_meta( $post_id, 'fauval_imagelink_url', true );
+    $protocol  = get_post_meta( $post_id, 'protocol', true );
+    $link  = get_post_meta( $post_id, 'link', true );
 
     
     $newval = ( isset( $_POST['fau_imagelink_desc'] ) ? sanitize_text_field( $_POST['fau_imagelink_desc'] ) : 0 );
-    $oldval =  get_post_meta( $post_id->ID, 'portal_description', true );
+    $oldval =  get_post_meta( $post_id, 'portal_description', true );
 	
 	if (!empty(trim($newval))) {
 	    if (isset($oldval)  && ($oldval != $newval)) {

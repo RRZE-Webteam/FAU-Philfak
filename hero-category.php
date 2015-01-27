@@ -12,7 +12,7 @@
 global $options; 
 ?>
 
-<div id="hero" class="hero-small">
+<section id="hero" class="hero-small">
 	<div class="container">
 		<div class="row">
 			<div class="span8">
@@ -25,7 +25,16 @@ global $options;
 				<?php endif; ?>
 
 				<h1><?php single_cat_title(); ?></h1>
+				
+				<div class="hero-meta-portal">
+					<?php
+						if(get_post_type() == 'post')
+						{
+							echo "FAU Aktuell";
+						}
+					?>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</section>

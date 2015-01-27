@@ -13,7 +13,7 @@ get_header(); ?>
 
     <?php get_template_part('hero', 'small'); ?>
 
-    <div id="content" class="content-portal">
+    <section id="content" class="content-portal">
 	<div class="container">
 		
 	    <?php 
@@ -67,7 +67,7 @@ get_header(); ?>
 	    ?>
 
 	</div>
-    </div>
+    </section>
 <?php endwhile; ?>
 
 <?php get_footer(); ?>

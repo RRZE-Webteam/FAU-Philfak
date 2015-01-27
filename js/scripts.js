@@ -1,7 +1,9 @@
 $(document).ready(function()
 {	
+	// This browser supports JS
 	$('html').removeClass('no-js').addClass('js');
 
+	// Smooth scrolling for anchor-links (excluding accordion-toggles)
 	$('a[href*=#]:not([href=#]):not(.accordion-toggle):not(.accordion-tabs-nav-toggle)').click(function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 			var target = $(this.hash);
@@ -15,20 +17,21 @@ $(document).ready(function()
 			}
 		});
 
-
+	// Fancybox for lightboxes
 	$('a.lightbox').fancybox({ helpers: { title: { type: 'outside'}}});
 	
-	$('a').not($('#nav > li div a')).focus(function() {
-		$('#nav > li').removeClass('focus');
-		
-	});
-	
+	// Hover-Intent for navigation
 	$('#nav').hoverIntent({
 		over: function() {$(this).addClass('focus')},
 		out: function() {$(this).removeClass('focus')},
 		selector: 'li',
 		timeout: 150,
 		interval: 20
+	});
+	
+	// Keyboard-navigation, remove and set focus class on focus-change
+	$('a').not($('#nav > li div a')).focus(function() {
+		$('#nav > li').removeClass('focus');
 	});
 	
 	$('#nav > li > a').focus(function() {
@@ -45,28 +48,28 @@ $(document).ready(function()
 		$(this).parents('ul').addClass('focus');
 	});
 	
-/*	$('#nav > li > a').blur(function() {
-		$(this).parents('li').removeClass('focus');
-	});
-*/	
-
-	
-
-	$('.jumplink-search').bind('click', function(event) {
+	// Mobile navigation toggle
+	$('#nav-toggle').bind('click', function(event) {
 		event.preventDefault();
-		$('#s').focus();
+		$('#nav').toggleClass('toggled');
 	});
 	
-	$('.jumplink-nav').bind('click', function(event) {
+	// Set jumplinks
+	$('.jumplinks a').bind('click', function(event) {
 		event.preventDefault();
-		$('#nav a').eq(0).focus();
+		
+		var target = $(this).data('target');
+		var firstchild = $(this).data('firstchild');
+		
+		if(firstchild == 1) {
+			$(target).eq(0).focus();
+		}
+		else {
+			$(target).focus();
+		}
 	});
 	
-	$('.jumplink-subnav').bind('click', function(event) {
-		event.preventDefault();
-		$('#subnav li a').eq(0).focus();
-	});
-	
+	// FlexSlider for image galleries
 	$('.image-gallery-slider').flexslider({
 		selector: 'ul > li',
 		animation: 'slide',
@@ -77,6 +80,7 @@ $(document).ready(function()
 		sync: '.image-gallery-carousel'
 	});
 	
+	// Thumb carousel for image galleries
 	$('.image-gallery-carousel').flexslider({
 		selector: 'ul > li',
 		animation: 'slide',
@@ -88,18 +92,14 @@ $(document).ready(function()
 		itemMargin: 5,
 	});
 	
+	// FlexSlider for hero on homepage
 	$('#hero-slides').flexslider({
 		selector: '.hero-slide',
 		directionNav: true,
 		pausePlay: true
 	});
 	
-	$('#nav-toggle').bind('click', function(event) {
-		event.preventDefault();
-		$('#nav').toggleClass('toggled');
-	});
-	
-	
+	// Assistant tabs
 	$('.assistant-tabs-nav a').bind('click', function(event) {
 		event.preventDefault();
 		var pane = $(this).attr('href');
@@ -108,16 +108,8 @@ $(document).ready(function()
 		$(this).parents('.assistant-tabs').find('.assistant-tab-pane').removeClass('assistant-tab-pane-active');
 		$(pane).addClass('assistant-tab-pane-active');
 	});
-	/*
-	$('.assistant-tabs-nav a').focus(function(event) {
-		event.preventDefault();
-		var pane = $(this).attr('href');
-		$(this).parents('ul').find('a').removeClass('active');
-		$(this).addClass('active');
-		$(this).parents('.assistant-tabs').find('.assistant-tab-pane').removeClass('assistant-tab-pane-active');
-		$(pane).addClass('assistant-tab-pane-active');
-	});
-	*/
+	
+	// Keyboard navigation for assistant tabs
 	$('.assistant-tabs-nav a').keydown('click', function(event) {
 		if(event.keyCode == 32) 
 		{
@@ -128,6 +120,8 @@ $(document).ready(function()
 			$(pane).addClass('assistant-tab-pane-active');
 		}
 	});
+	
+	// Accordions
 	$('.accordion-toggle').bind('click', function(event) {
 		event.preventDefault();
 		var accordion = $(this).attr('href');
@@ -136,16 +130,8 @@ $(document).ready(function()
 		$(this).toggleClass('active');
 		$(accordion).slideToggle();
 	});
-	/*
-	$('.accordion-toggle').focus(function(event) {
-		event.preventDefault();
-		var accordion = $(this).attr('href');
-		$(this).closest('.accordion').find('.accordion-toggle').not($(this)).removeClass('active');
-		$(this).closest('.accordion').find('.accordion-body').not(accordion).slideUp();
-		$(this).toggleClass('active');
-		$(accordion).slideToggle();
-	});
-	*/
+	
+	// Keyboard navigation for accordions
 	$('.accordion-toggle').keydown(function(event) {
 		if(event.keyCode == 32)
 		{
@@ -155,72 +141,78 @@ $(document).ready(function()
 			$(this).toggleClass('active');
 			$(accordion).slideToggle();
 		}
-		
 	});
 
+	// AJAX for studienangebot-database
 	$('#studienangebot *').change(function() {
-		//$('#studienangebot-result').fadeTo(300, 0.3);
+		// Show loading spinner
 		$('#loading').fadeIn(300);
+		
+		// Get results and replace content
 		$.get($(this).parents('form').attr('action'), $(this).parents('form').serialize(), function(data) {
 			$('#studienangebot-result').replaceWith($(data).find('#studienangebot-result'));
 			$('#loading').fadeOut(300);
 		});
 	});
 	
-	
+	// Set environmental parameters
 	var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
 	var isMobile = windowWidth < 767;
 	var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
-	if( ! isMobile )
-	{
-		$('.logos-menu').carouFredSel({
-			responsive: true,
-			width: '100%',
-			height: 110,
-			scroll: 1,
-			padding: 20,
-			items: {
-				width: 140,
+	// Logo-Slider
+	if($('.logos-menu').length > 0) {
+		if( ! isMobile)
+		{
+			$('.logos-menu').carouFredSel({
+				responsive: true,
+				width: '100%',
 				height: 110,
-			//	height: '30%',	//	optionally resize item-height
-				visible: 6
-			},
-			prev: {
-				button: '#logos-menu-prev',
-				key: 'left'
-			},
-			next: {
-				button: '#logos-menu-next',
-				key: 'next'
-			},
-			auto: {
-				button: '#logos-menu-playpause'
-			}
-		});
+				scroll: 1,
+				padding: 20,
+				items: {
+					width: 140,
+					height: 110,
+					visible: 6
+				},
+				prev: {
+					button: '#logos-menu-prev',
+					key: 'left'
+				},
+				next: {
+					button: '#logos-menu-next',
+					key: 'next'
+				},
+				auto: {
+					button: '#logos-menu-playpause'
+				}
+			});
+		}
+		else
+		{
+			$('.logos-menu').carouFredSel({
+				responsive: true,
+				width: '100%',
+				height: 110,
+				scroll: 1,
+				padding: 20,
+				items: {
+					width: 140,
+					height: 110,
+					visible: 2
+				}
+			});
+		}
 	}
-	else
-	{
-		$('.logos-menu').carouFredSel({
-			responsive: true,
-			width: '100%',
-			height: 110,
-			scroll: 1,
-			padding: 20,
-			items: {
-				width: 140,
-				height: 110,
-			//	height: '30%',	//	optionally resize item-height
-				visible: 2
-			}
-		});
-		
+
+	// Move sidebar on mobile devices to the bottom
+	if(isMobile) {
 		var sidebar = $('.sidebar-inline').html();
 		$('.sidebar-inline').remove();
 		$('#content .container').append(sidebar);
 	}
 	
-	
+	// Touch navigation
 	if(isTouch)
 	{
 		$('#nav > li > a').click(function() {		
@@ -238,7 +230,7 @@ $(document).ready(function()
 		});
 	}
 	
-	
+	// Fix for very large navigation (text-zoomed)
 	if( ! isMobile )
 	{
 		$('#nav > li').hover(function() {
@@ -258,11 +250,11 @@ $(document).ready(function()
 			$('.nav-flyout').css({'top': top-offset});
 		})
 	}
-
 	
-	/* responsive tables */
+	// Responsive tables
 	$("#content table").wrap('<div class="table-wrapper" />').wrap('<div class="scrollable" />');
 	
+	// Scroll spy on desktop
 	if( ! isMobile )
 	{
 		$(window).scroll(function () {
@@ -277,8 +269,27 @@ $(document).ready(function()
 			} else {
 				$('body').removeClass('nav-fixed');
 			}
+			
+			if ($(window).scrollTop() > 200) {
+				$('.top-link').fadeIn();
+			} else {
+				$('.top-link').fadeOut();
+			}
 		});
 	}
+	
+	// Add toggle icons to organigram
+	$('.organigram .has-sub').each(function() {
+		$(this).prepend('<span class="toggle-icon"></span>');
+		$(this).children('ul').hide();
+	});
+	
+	$('.organigram .has-sub .toggle-icon').bind('click', function(event) {
+		event.preventDefault();
+		
+		$(this).closest('.has-sub').toggleClass('active');
+		$(this).closest('.has-sub').children('ul').slideToggle();
+	});
 
 }
 );

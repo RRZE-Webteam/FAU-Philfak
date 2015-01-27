@@ -7,7 +7,14 @@ body {
 	font-size: 13px;
 	line-height: 18px;
 	color: $colorText;
-	background-color: #ffffff;
+	background-color: $colorPrimary;
+}
+
+/* Wrap content in white */
+#wrap {
+	min-height: 100%;
+	margin: 0 auto;
+	background: #fff;
 }
 
 html, body, textarea, input, button, select {
@@ -63,10 +70,19 @@ p {
 	&.attention {
 		display: block;
 		color: $colorNotice;
-		background: transparent url('../img/attention.png') no-repeat 0 7px;
-		padding: 10px 0 10px 35px;
+	//	background: transparent url('../img/attention.png') no-repeat 0 7px;
+		padding: 10px 0;
 		margin: 20px 0;
-		font-weight:bold;
+		font-weight: bold;
+		
+		&:before {
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-exclamation-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
 	}
 	
 	#content .span4 .widget &,
@@ -182,7 +198,6 @@ ul {
 	list-style-position: inside;
 	
 	li {
-		@include no-list;
 		background: url('../img/li-circle.png') no-repeat left 7px;
 	}
 	
@@ -208,6 +223,7 @@ ol {
 
 hr {
 	position: relative;
+	z-index: 10;
 	clear: both;
 	display: block;
 	height: 60px;
@@ -217,6 +233,17 @@ hr {
 	margin: 20px 0 60px 0;
 }
 
+hr:before {
+	content: "";
+	position: absolute;
+	background: #fff;
+	top: 0; 
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 11;
+}
+
 hr:after {
 	content: "";
 	position: absolute; 
@@ -224,7 +251,7 @@ hr:after {
 	bottom: 0;
 	left: 50px;
 	right: 50px;
-	z-index: -1;
+	z-index: 9;
 	@include box-shadow(0 0 30px $colorLight);
 	@include border-radius(100px / 10px);
 }
