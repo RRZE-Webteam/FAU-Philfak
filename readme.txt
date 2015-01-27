@@ -34,7 +34,10 @@ OPTIONAL PLUGINS
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
-  
+* Breadcrumb NavXT
+* TinyMCE Advanced
+* CMS Tree Page View   
+* CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 
 FEEDBACK & BUGS
 
