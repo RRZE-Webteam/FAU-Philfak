@@ -6,9 +6,7 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
-?>
-
-<?php
+	    
 global $options;
 ?>
 
@@ -24,7 +22,7 @@ global $options;
 					</div>
 				<?php endif; ?>
 
-				<h1><?php _e('Veranstaltungskalender','fau'); ?></h1>
+				<h1><?php echo $options['title_hero_events']; ?></h1>
 			</div>
 		</div>
 	</div>

@@ -34,8 +34,9 @@ get_header(); ?>
 									<?php 
 									$type = get_post_type();
 									if ( $type == 'post') {
-									    $typestr = __('Meldung', 'fau');
-									    $typestr .= ' '. __('vom', 'fau'). ' ';
+									     $typestr = '';
+									//    $typestr = __('Meldung', 'fau');
+									//    $typestr .= ' '. __('vom', 'fau'). ' ';
 									    $typestr .= get_the_date();
 									} elseif ($type == 'event') {
 									     $typestr = __('Veranstaltungshinweis', 'fau');
@@ -47,7 +48,9 @@ get_header(); ?>
 									     <div class="news-meta-date"><?php echo $typestr; ?></div> 
 									<?php } ?>
 									
-									<?php echo fau_custom_excerpt(get_the_ID(),$options['default_search_excerpt_length']); ?>
+									<?php echo fau_custom_excerpt(get_the_ID(),$options['default_search_excerpt_length'],true,'',true); ?>
+									     
+									     
 								</div>
 							<?php endwhile; ?>
 							<?php

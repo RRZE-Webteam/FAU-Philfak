@@ -7,6 +7,7 @@
  * @since FAU 1.0
  */
 
+global $options;
 global $post, $wp_rewrite;
 
 $query = isset($_REQUEST['sq']) ? sanitize_text_field($_REQUEST['sq']) : '';
@@ -16,7 +17,6 @@ $paged = isset($_REQUEST['spg']) ? absint($_REQUEST['spg']) : 1;
 get_header();
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
 
 <div id="hero" class="hero-small">
     <div class="container">
@@ -57,8 +57,8 @@ get_header();
                 </div>
             </div>
             <div class="span9">
-                <?php if (!empty($query) && class_exists('CMS_Search')) : ?>
-                    <?php
+                <?php 
+		    if (!empty($query) && class_exists('CMS_Search')) : 
                     $engine = CMS_Search::instance();
                     $search_engine = 'nachrichten';
 
@@ -68,8 +68,7 @@ get_header();
 
                     $posts = $engine->search($search_engine, $query, $paged);
 
-                    if (!empty($posts)) : ?>
-                        <?php
+                    if (!empty($posts)) { 
                         $pagenum_link = html_entity_decode(get_pagenum_link());
                         $query_args   = array();
                         $url_parts    = explode('&', $pagenum_link);
@@ -98,12 +97,15 @@ get_header();
                             )
                         );
                         ?>
-                        <h2 style="padding-top:4px"><?php _e('Suchergebnisse', 'fau'); ?></h2>                
+                        <h2><?php _e('Suchergebnisse', 'fau'); ?></h2>                
                         <div class="search-result">                
                         <?php foreach ($posts as $post): setup_postdata($post); ?>
                             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 			    <div class="news-meta-date"><?php echo get_the_date(); ?></div>
-                            <?php the_excerpt(); ?>
+                            <?php 
+				fau_custom_excerpt(get_the_ID(),$options['default_search_excerpt_length'],true,'',true); 
+			    
+			    ?>
                         <?php endforeach; ?>
                         </div>                                
                         <?php wp_reset_postdata(); ?>
@@ -117,11 +119,11 @@ get_header();
                             </nav>
                         <?php endif; ?>
                         <!-- end pagination -->                            
-                    <?php else : ?>
-                        <h2 style="padding-top: 4px"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.', 'fau'); ?></h2>
-                    <?php endif; ?>
+                    <?php } else { ?>
+                        <h2><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.', 'fau'); ?></h2>
+		    <?php } ?>
                 <?php elseif(isset($_REQUEST['sq']) && empty($query) && class_exists('CMS_Search')) : ?>
-                    <h2 style="padding-top: 4px"><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
+                    <h2><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
                 <?php endif; ?>
             </div>
         </div>

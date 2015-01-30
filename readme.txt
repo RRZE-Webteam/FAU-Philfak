@@ -38,6 +38,7 @@ OPTIONAL PLUGINS
 * TinyMCE Advanced
 * CMS Tree Page View   
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
+* CMS-Search (https://github.com/RRZE-Webteam/cms-search)
 
 FEEDBACK & BUGS
 

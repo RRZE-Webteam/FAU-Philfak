@@ -6,9 +6,7 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
-?>
 
-<?php 
 global $options; 
 ?>
 
@@ -28,10 +26,9 @@ global $options;
 				
 				<div class="hero-meta-portal">
 					<?php
-						if(get_post_type() == 'post')
-						{
-							echo "FAU aktuell";
-						}
+					    if(get_post_type() == 'post') {
+						echo $options['title_hero_post_categories'];
+					    }
 					?>
 				</div>
 			</div>

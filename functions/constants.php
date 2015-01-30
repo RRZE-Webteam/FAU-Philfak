@@ -80,9 +80,12 @@ $defaultoptions = array(
     'url_banner-ad-notice'	    => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/werben/',
     'title_banner-ad-notice'	    => __( 'Werbung', 'fau' ),
     
+    'title_hero_post_categories'    =>  __( 'FAU aktuell', 'fau' ),
+    'title_hero_post_archive'	    =>  __( 'FAU aktuell', 'fau' ),
+    'title_hero_search'		    =>  __( 'Suche', 'fau' ),
+    'title_hero_events'		    =>  __( 'Veranstaltungskalender','fau')
     
-    
-    
+
 ); 
 
 
@@ -570,7 +573,31 @@ $setoptions = array(
                   'default' => $defaultoptions['title_banner-ad-notice'],
               ),  
    
-	       
+		'title_hero_post_categories'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Bühnentitel Kategorieseiten', 'fau' ),
+		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Kategorieseiten von Nachrichten hinterlegt werden.', 'fau' ),               
+		    'default' => $defaultoptions['title_hero_post_categories'],
+		), 
+		'title_hero_post_archive'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Bühnentitel Beitragsarchiv', 'fau' ),
+		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Archivseiten von Nachrichten hinterlegt werden.', 'fau' ),               
+		    'default' => $defaultoptions['title_hero_post_archive'],
+		), 
+	       'title_hero_search'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Bühnentitel Suche', 'fau' ),
+		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Suchergebnisseiten hinterlegt werden.', 'fau' ),               
+		    'default' => $defaultoptions['title_hero_search'],
+		), 
+	       'title_hero_events'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Bühnentitel Veranstaltungen', 'fau' ),
+		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Seiten zu Veranstaltungen hinterlegt werden.', 'fau' ),               
+		    'default' => $defaultoptions['title_hero_events'],
+		), 
+   
 	       
 	       
           )

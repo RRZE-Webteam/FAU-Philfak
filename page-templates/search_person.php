@@ -7,6 +7,7 @@
  * @since FAU 1.0
  */
 
+global $options;
 global $post, $wp_rewrite;
 
 $query = isset($_REQUEST['sq']) ? sanitize_text_field($_REQUEST['sq']) : '';
@@ -16,7 +17,6 @@ $paged = isset($_REQUEST['spg']) ? absint($_REQUEST['spg']) : 1;
 get_header();
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
 
 <div id="hero" class="hero-small">
     <div class="container">
