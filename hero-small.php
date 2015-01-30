@@ -39,7 +39,7 @@ global $options;
 						}
 						else if(get_post_type() == 'post')
 						{
-							echo "FAU Aktuell";
+							echo "FAU aktuell";
 						}
 					?>
 				</div>
