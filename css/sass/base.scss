@@ -10,6 +10,7 @@ Main CSS File for Wordpress Theme FAU
 @import "includes/mixins";
 @import "includes/fonts";
 @import "includes/font-awesome";
+@import "includes/font-justvector";
 @import "includes/helpers";
 
 // Import Main Stylings
@@ -19,7 +20,7 @@ Main CSS File for Wordpress Theme FAU
 
 // Import Plugin Stylings
 @import "plugin-flexslider";
-@import "plugin-fluidbox";
+@import "plugin-fluidbox"; 
 @import "plugin-fancybox";
 @import "plugin-wpc7";
 
