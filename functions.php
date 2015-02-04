@@ -45,6 +45,15 @@ function fau_setup() {
 //		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
 //	) );
 
+	if ( ! function_exists( '_wp_render_title_tag' ) ) :
+	    function theme_slug_render_title() {
+	?>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<?php
+	    }
+	    add_action( 'wp_head', 'theme_slug_render_title' );
+	endif;
+	 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'meta', __( 'Meta-Navigation oben', 'fau' ) );
 	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
