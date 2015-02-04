@@ -623,7 +623,7 @@ $setoptions = array(
                   'default' => $defaultoptions['contact_address_name2'],
 		    'parent'  => 'pubadresse'
               ),  
-	      'contact_address_strasse' => array(
+	      'contact_address_street' => array(
                   'type'    => 'text',
                   'title'   => __( 'Strasse', 'fau' ),
                   'label'   => __( 'Strasse inkl. Hausnummer', 'fau' ),               
