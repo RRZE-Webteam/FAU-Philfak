@@ -661,7 +661,9 @@ function fau_relativeimgurl_callback($matches) {
  function get_fau_template_uri () {
      return wp_make_link_relative(get_template_directory_uri());
  }
- 
+ function fau_get_template_uri () {
+     return wp_make_link_relative(get_template_directory_uri());
+ } 
 
 add_action('template_redirect', 'rw_relative_urls');
 function rw_relative_urls() {

@@ -7,16 +7,17 @@
  * @since FAU 1.0
  */
 
-get_header(); ?>
+global $options;
+get_header();
+?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
 
 	<section id="hero" class="hero-small">
 		<div class="container">
 			<div class="row">
 				<div class="span12">
 					<div class="breadcrumbs">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a>
+						<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a>
 					</div>
 
 					<div class="hero-meta-portal">
@@ -43,7 +44,7 @@ get_header(); ?>
 						<?php _e('Leider dürfen Sie auf diese Seite nicht zugreifen.','fau'); ?>
 					</h2>
 					<div class="row">
-						<div class="span4 offset2"><img src="<?php echo get_bloginfo('template_directory'); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
+						<div class="span4 offset2"><img src="<?php echo fau_get_template_uri(); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
 					</div>
 				</div>
 			</div>
