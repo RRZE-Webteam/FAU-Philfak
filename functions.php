@@ -687,7 +687,7 @@ function rw_relative_urls() {
         return;
     }
     $filters = array(
-        'post_link',
+    //    'post_link',
         'post_type_link',
         'page_link',
         'attachment_link',
