@@ -10,12 +10,13 @@ require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once( get_template_directory() . '/functions/helper-functions.php' );
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
-require_once(get_template_directory() .'/functions/bootstrap.php');
-require_once(get_template_directory() .'/functions/shortcodes.php');
-require_once(get_template_directory() .'/functions/menu.php');
+require_once( get_template_directory() .'/functions/bootstrap.php');
+require_once( get_template_directory() .'/functions/shortcodes.php');
+require_once( get_template_directory() .'/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
+require_once( get_template_directory() . '/functions/widgets.php' );
 
 
 
@@ -469,9 +470,9 @@ function fau_post_gallery($output, $attr) {
         'size' => 'thumbnail',
         'include' => '',
         'exclude' => '',
-		'type' => NULL,
-		'lightbox' => FALSE,
-		'captions' => 1
+	'type' => NULL,
+	'lightbox' => FALSE,
+	'captions' => 1
     ), $attr));
 
     $id = intval($id);
@@ -493,6 +494,9 @@ function fau_post_gallery($output, $attr) {
     $output = '';
     if (!isset($attr['captions'])) {
 	$attr['captions'] =1;
+    }
+    if (!isset($attr['type'])) {
+	$attr['type'] = 'default';
     }
     switch($attr['type'])  {
 	    case "grid":

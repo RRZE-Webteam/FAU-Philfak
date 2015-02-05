@@ -24,9 +24,9 @@ CREDITS & COPYRIGHT
 
 REQUIRED PLUGINS
 
-* Wordpress-Plugin FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
-* Wordpress-Plugin ACF (WPPD)
-* Wordpress-Plugin FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
+* FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
+* FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
+* ACF 
 
 
 OPTIONAL PLUGINS 
