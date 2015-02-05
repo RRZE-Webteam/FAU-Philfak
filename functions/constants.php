@@ -4,7 +4,7 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		    => '1.1',
+    'js-version'		    => '1.2',
     'optionpage-tab-default'	    => 'startseite',
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
@@ -83,9 +83,14 @@ $defaultoptions = array(
     'title_hero_post_categories'    =>  __( 'FAU aktuell', 'fau' ),
     'title_hero_post_archive'	    =>  __( 'FAU aktuell', 'fau' ),
     'title_hero_search'		    =>  __( 'Suche', 'fau' ),
-    'title_hero_events'		    =>  __( 'Veranstaltungskalender','fau')
+    'title_hero_events'		    =>  __( 'Veranstaltungskalender','fau'),
     
-
+    'post_display_category_below'	=> true,
+    'search_display_post_thumbnails'	=> true,
+    'search_display_post_cats'		=> true,
+    'search_display_continue_arrow'		=> true,
+    'search_display_excerpt_morestring'		=> '...',
+    
 ); 
 
 
@@ -597,9 +602,59 @@ $setoptions = array(
 		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Seiten zu Veranstaltungen hinterlegt werden.', 'fau' ),               
 		    'default' => $defaultoptions['title_hero_events'],
 		), 
-   
+	     'postoptions'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Beiträge', 'fau' ),                      
+              ),
+	       
+	       'post_display_category_below' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Zeige Kategorien', 'fau' ),
+                  'label'   => __( 'Liste der Kategorien unter dem Beitrag anzeigen', 'fau' ),                
+                  'default' => $defaultoptions['post_display_category_below'],
+		  'parent'  => 'postoptions'
+              ),  
 	       
 	       
+	      'suchergebnisse'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Suchergebnisse', 'fau' ),                      
+              ),
+	       
+	       'search_display_post_thumbnails' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Zeige Thumbs', 'fau' ),
+                  'label'   => __( 'Bei den Suchergebnisse Thumbnails anzeigen, wenn diese vorhanden sind', 'fau' ),                
+                  'default' => $defaultoptions['search_display_post_thumbnails'],
+		  'parent'  => 'suchergebnisse'
+              ),   
+	      'search_display_post_cats'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Zeige Kategorien', 'fau' ),
+                  'label'   => __( 'Bei den Suchergebnisse Kategorien der Beiträge anzeigen', 'fau' ),                
+                  'default' => $defaultoptions['search_display_post_cats'],
+		  'parent'  => 'suchergebnisse'
+              ),   
+	       'search_display_continue_arrow' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Weiterlesen-Pfeil', 'fau' ),
+                  'label'   => __( 'Zeige verlinkten Pfeil zum Weiterelesen.', 'fau' ),                
+                  'default' => $defaultoptions['search_display_continue_arrow'],
+		  'parent'  => 'suchergebnisse'
+              ),   
+	       'default_search_excerpt_length' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Länge Textauszug', 'fau' ),
+                  'label'   => __( 'Anzahl der maximalen Zeichen für den Textauszug bei der Ergebnissliste.', 'fau' ),                
+                  'default' => $defaultoptions['default_search_excerpt_length'],
+		  'parent'  => 'suchergebnisse'
+              ),   
+	     'search_display_excerpt_morestring'=> array(
+		    'type'    => 'text',
+		    'title'   => __( 'Textabbruch', 'fau' ),
+		    'label'   => __( 'Falls der Textauszug nach der vorgegebenen Länger abgeschnitten werden muss, können hier Trennzeichen angegeben werden.', 'fau' ),               
+		    'default' => $defaultoptions['search_display_excerpt_morestring'],
+		), 
           )
        ),
        'contact'   => array(

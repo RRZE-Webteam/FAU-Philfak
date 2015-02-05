@@ -27,33 +27,12 @@ get_header(); ?>
                     
 						<?php if(have_posts()): ?>							
 							<h2><?php _e('Suchergebnisse','fau'); ?></h2>
-							<?php while ( have_posts() ) : the_post(); ?>
-								<div class="search-result">
-									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
-									<?php 
-									$type = get_post_type();
-									if ( $type == 'post') {
-									     $typestr = '';
-									//    $typestr = __('Meldung', 'fau');
-									//    $typestr .= ' '. __('vom', 'fau'). ' ';
-									    $typestr .= get_the_date();
-									} elseif ($type == 'event') {
-									     $typestr = __('Veranstaltungshinweis', 'fau');
-									} else  {
-									     $typestr = '';
-									}
-									     
-									if (!empty($typestr)) { ?>
-									     <div class="news-meta-date"><?php echo $typestr; ?></div> 
-									<?php } ?>
-									
-									<?php echo fau_custom_excerpt(get_the_ID(),$options['default_search_excerpt_length'],true,'',true); ?>
-									     
-									     
-								</div>
-							<?php endwhile; ?>
-							<?php
+							<?php 
+							while ( have_posts() ) { 
+							    the_post(); 
+							    echo fau_display_search_resultitem();
+							
+							} 
                             global $wp_query, $wp_rewrite;
                             
                             if ( $wp_query->max_num_pages > 1 ) {
