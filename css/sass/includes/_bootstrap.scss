@@ -982,11 +982,15 @@ table th[class*="span"] {
 	.row {
 		margin-left: 0;
 	}
-	[class*="span"] {
+	[class*="span"],
+	.span-sm-4,
+	.span-sm-8, 
+	.span-sm-8 .span9 {
 		margin-left: 0;
 		float: none;
 		width: auto;
 	}
+	
 }
 
 @media (max-width: 480px) {
