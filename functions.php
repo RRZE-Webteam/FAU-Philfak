@@ -516,14 +516,14 @@ function fau_post_gallery($output, $attr) {
 				    } else  {
 					    $output .= "<li>\n";
 				    }
-				    if($attr['lightbox'])   {
+				    if(isset($attr['lightbox']))   {
 					$output .= '<a href="'.$img_full[0].'" class="lightbox"';
 					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
 					$output .= ' rel="lightbox-'.$rand.'">';
 				    }
 
 				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-				    if($attr['lightbox']) $output .= '</a>';
+				    if(isset($attr['lightbox'])) $output .= '</a>';
 				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
 					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    }
