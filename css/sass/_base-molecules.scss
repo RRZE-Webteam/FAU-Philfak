@@ -474,6 +474,10 @@ ul.person-info {
 	width: 300px;
 }
 
+.news-details {
+	margin-top: 20px;
+}
+
 .news-image {
 	display: block;
 	text-align: center;
@@ -488,8 +492,29 @@ ul.person-info {
 
 .news-item {
 	margin-bottom: 11px;
+	
+	h2 {
+	    padding-bottom: 10px;
+	}
+	.news-meta {
+		padding: 5px 0;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		color: $colorText;
+		display: block;
+	}
+	.news-meta-date {
+	    margin-left: 10px;
+	}	
 }
-
+.post-meta {
+        display: block;
+	padding: 5px 0;
+	margin: -14px 0 14px 0;
+	color: $colorPrimary;
+	
+}
+/*
 .news-meta {
 	border-bottom: 1px solid $colorLightest;
 	padding: 5px 0;
@@ -508,6 +533,7 @@ ul.person-info {
 		margin-top: 0px;
 	}
 }
+*/
 
 .news-meta-categories {
 	@include inline-block;
@@ -536,6 +562,23 @@ ul.person-info {
 		}
 	}	
 }
+
+
+.search-result {
+	margin-bottom: 11px;
+
+	.search-meta {
+		padding: 5px 0;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		color: $colorText;
+		display: block;
+	}
+	.post-meta-category {
+	    margin-right: 10px;
+	}
+}
+
 
 .read-more {
 	text-align: right;

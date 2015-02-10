@@ -6,9 +6,7 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
-?>
 
-<?php
 global $options;
 ?>
 
@@ -19,13 +17,13 @@ global $options;
 
 			    <div class="breadcrumbs">
 					<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
-					<?php _e('Suche','fau'); ?>
+					<?php  echo $options['title_hero_search']; ?>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="span3">
-				<h1><?php _e('Suche','fau'); ?></h1>
+				<h1><?php echo $options['title_hero_search']; ?></h1>
 			</div>
 			<div class="span9">
 				<?php /* get_search_form(); */ ?>

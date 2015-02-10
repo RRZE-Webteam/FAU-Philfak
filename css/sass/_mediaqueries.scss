@@ -359,3 +359,19 @@ Media Queries for Theme FAU
 	}
 
 }
+
+@media (min-height: 900px) {
+	#wrap { min-height: 770px;}
+}
+
+@media (min-height: 1000px) {
+	#wrap { min-height: 870px;}
+}
+
+@media (min-height: 1100px) {
+	#wrap { min-height: 970px;}
+}
+
+@media (min-height: 1200px) {
+	#wrap { min-height: 1070px;}
+}

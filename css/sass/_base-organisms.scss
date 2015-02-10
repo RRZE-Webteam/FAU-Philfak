@@ -558,8 +558,13 @@ body.admin-bar.nav-fixed {
 #content {
 	padding: 20px 0 20px 0;
 	
+	.wp-caption {
+		max-width: 100%;
+	}
+	
 	img {
 		@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+		max-width: 100%;
 	}
 	
 	.logos-menu .logo-item img {
@@ -722,16 +727,30 @@ body.admin-bar.nav-fixed {
 
 				&:hover, &:focus {
 					color: $colorPrimary;
+					
+					&:before {
+						background: $colorPrimary;
+					}
 				}
 			}
 			
 			a:before {
-				@extend .fa;
-				@extend .fa-lg;
-				padding-right: 7px;
+			//	@extend .fa;
+			//	@extend .fa-lg;
+				background: #a1aab1;
+				color: $colorLightest;
+				height: 21px;
+				width: 24px;
+				padding-top: 3px;
+				line-height: 24px;
+				text-align: center;
+				@include border-radius(12px);
+				font-size: 16px;
+				margin-right: 6px;
 			}
 		}
 		
+		/*
 		li.social-facebook a:before { @extend .fa-facebook-square; }
 		li.social-twitter a:before { @extend .fa-twitter-square; }
 		li.social-gplus a:before { @extend .fa-google-plus-square; }
@@ -745,6 +764,24 @@ body.admin-bar.nav-fixed {
 		li.social-skype a:before { @extend .fa-skype; }
 		li.social-tumblr a:before { @extend .fa-tumblr-square; }
 		li.social-github a:before { @extend .fa-github-square; }
+		*/
+		li.social-facebook a:before { @extend .jv-facebook; }
+	 	li.social-diaspora a:before { @extend .fa; @extend .fa-3x; content: '*'; vertical-align: -5px; line-height: 37px; }
+		li.social-identica a:before { @extend .jv-identi-ca; }
+		li.social-skype a:before { @extend .jv-skype; }
+		li.social-itunes a:before { @extend .jv-itunes; }
+		li.social-twitter a:before { @extend .jv-twitter; }
+		li.social-gplus a:before { @extend .jv-google; }
+		li.social-youtube a:before { @extend .jv-youtube; }
+		li.social-vimeo a:before { @extend .jv-vimeo; }
+		li.social-flickr a:before { @extend .jv-flickr; }
+		li.social-xing a:before { @extend .jv-xing; }
+		li.social-pinterest a:before { @extend .fa-pinterest-p; @extend .fa; @extend .fa-lg; line-height: 1.0em;}
+		li.social-feed a:before { @extend .jv-rss; }
+		li.social-delicious a:before { @extend .jv-delicious; }
+		li.social-skype a:before { @extend .jv-skype; }
+		li.social-tumblr a:before { @extend .jv-tumblr; }
+		li.social-github a:before { @extend .jv-github; }
 	}
 	
 	iframe {

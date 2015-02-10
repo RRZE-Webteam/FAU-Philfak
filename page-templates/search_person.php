@@ -7,6 +7,7 @@
  * @since FAU 1.0
  */
 
+global $options;
 global $post, $wp_rewrite;
 
 $query = isset($_REQUEST['sq']) ? sanitize_text_field($_REQUEST['sq']) : '';
@@ -16,7 +17,6 @@ $paged = isset($_REQUEST['spg']) ? absint($_REQUEST['spg']) : 1;
 get_header();
 ?>
 
-<?php $options = get_option('fau_theme_options', array('breadcrumb_root' => 'fau.de')); ?>
 
 <div id="hero" class="hero-small">
     <div class="container">
@@ -98,7 +98,7 @@ get_header();
                             )
                         );
                         ?>
-                        <h2 style="padding-top:4px"><?php _e('Suchergebnisse', 'fau'); ?></h2>                
+                        <h2><?php _e('Suchergebnisse', 'fau'); ?></h2>                
                         <div class="search-result">                
                         <?php foreach ($posts as $post): setup_postdata($post); ?>                
                             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
@@ -120,10 +120,10 @@ get_header();
                         <?php endif; ?>
                         <!-- end pagination -->                            
                     <?php else : ?>
-                        <h2 style="padding-top: 4px"><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.', 'fau'); ?></h2>
+                        <h2><?php _e('Leider konnte für Ihre Suche nichts gefunden werden.', 'fau'); ?></h2>
                     <?php endif; ?>
                 <?php elseif(isset($_REQUEST['sq']) && empty($query) && class_exists('CMS_Search')) : ?>
-                    <h2 style="padding-top: 4px"><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
+                    <h2><?php _e('Bitte geben Sie einen Suchbegriff in das Suchfeld ein.','fau'); ?></h2>
                 <?php endif; ?>
             </div>
         </div>
