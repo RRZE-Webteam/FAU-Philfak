@@ -22,6 +22,10 @@ CREDITS & COPYRIGHT
    GNU General Public License (GPL) Version 2 
 
 
+LIBRARIES & SOURCES
+
+   "Font Awesome by Dave Gandy - http://fontawesome.io". 
+
 REQUIRED PLUGINS
 
 * FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
