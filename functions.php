@@ -10,12 +10,13 @@ require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once( get_template_directory() . '/functions/helper-functions.php' );
 require_once ( get_template_directory() . '/functions/theme-options.php' );     
-require_once(get_template_directory() .'/functions/bootstrap.php');
-require_once(get_template_directory() .'/functions/shortcodes.php');
-require_once(get_template_directory() .'/functions/menu.php');
+require_once( get_template_directory() .'/functions/bootstrap.php');
+require_once( get_template_directory() .'/functions/shortcodes.php');
+require_once( get_template_directory() .'/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
+require_once( get_template_directory() . '/functions/widgets.php' );
 
 
 
@@ -45,6 +46,15 @@ function fau_setup() {
 //		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
 //	) );
 
+	if ( ! function_exists( '_wp_render_title_tag' ) ) :
+	    function theme_slug_render_title() {
+	?>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<?php
+	    }
+	    add_action( 'wp_head', 'theme_slug_render_title' );
+	endif;
+	 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'meta', __( 'Meta-Navigation oben', 'fau' ) );
 	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
@@ -460,9 +470,9 @@ function fau_post_gallery($output, $attr) {
         'size' => 'thumbnail',
         'include' => '',
         'exclude' => '',
-		'type' => NULL,
-		'lightbox' => FALSE,
-		'captions' => 1
+	'type' => NULL,
+	'lightbox' => FALSE,
+	'captions' => 1
     ), $attr));
 
     $id = intval($id);
@@ -485,6 +495,9 @@ function fau_post_gallery($output, $attr) {
     if (!isset($attr['captions'])) {
 	$attr['captions'] =1;
     }
+    if (!isset($attr['type'])) {
+	$attr['type'] = 'default';
+    }
     switch($attr['type'])  {
 	    case "grid":
 		    {
@@ -503,14 +516,14 @@ function fau_post_gallery($output, $attr) {
 				    } else  {
 					    $output .= "<li>\n";
 				    }
-				    if($attr['lightbox'])   {
+				    if(isset($attr['lightbox']))   {
 					$output .= '<a href="'.$img_full[0].'" class="lightbox"';
 					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
 					$output .= ' rel="lightbox-'.$rand.'">';
 				    }
 
 				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-				    if($attr['lightbox']) $output .= '</a>';
+				    if(isset($attr['lightbox'])) $output .= '</a>';
 				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
 					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    }
@@ -661,7 +674,9 @@ function fau_relativeimgurl_callback($matches) {
  function get_fau_template_uri () {
      return wp_make_link_relative(get_template_directory_uri());
  }
- 
+ function fau_get_template_uri () {
+     return wp_make_link_relative(get_template_directory_uri());
+ } 
 
 add_action('template_redirect', 'rw_relative_urls');
 function rw_relative_urls() {
@@ -672,7 +687,7 @@ function rw_relative_urls() {
         return;
     }
     $filters = array(
-        'post_link',
+    //    'post_link',
         'post_type_link',
         'page_link',
         'attachment_link',
@@ -863,7 +878,7 @@ function prefix_wpseo_add_meta_boxes() {
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
 
-
+/* Newsseiten */
 function fau_display_news_teaser($id = 0, $withdate = false) {
     if ($id ==0) return;   
     global $options;
@@ -889,8 +904,28 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	$output .= 'href="'.$link.'">'.get_the_title($post->ID).'</a>';
 	$output .= "</h2>\n";  
 	
+	
+	 $categories = get_the_category();
+	    $separator = ', ';
+	    $thiscatstr = '';
+	    $typestr = '';
+	    if($categories){
+		$typestr .= '<span class="news-meta-categories fa fa-tag"> ';
+		$typestr .= __('Kategorie', 'fau');
+		$typestr .= ': ';
+		foreach($categories as $category) {
+		    $thiscatstr .= '<a href="'.get_category_link( $category->term_id ).'">'.$category->cat_name.'</a>'.$separator;
+		}
+		$typestr .= trim($thiscatstr, $separator);
+		$typestr .= '</span> ';
+	    }
+	    
+	
 	if ($withdate) {
-	    $output .= '<div class="news-meta-date">'.get_the_date('',$post->ID)."</div>\n";
+	    $output .= '<div class="news-meta">'."\n";
+	    $output .= $typestr;
+	    $output .= '<span class="news-meta-date fa fa-calendar"> '.get_the_date('',$post->ID)."</span>\n";
+	    $output .= '</div>'."\n";
 	}
 
 	
@@ -949,3 +984,111 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 
 
 
+/* 
+ * Suchergebnisse 
+ */
+function fau_display_search_resultitem() {
+    global $post;
+    global $options;
+    
+    $output = '';
+    $withthumb = $options['search_display_post_thumbnails'];
+    $withcats =  $options['search_display_post_cats'];
+    if (isset($post) && isset($post->ID)) {
+	
+	$link = get_post_meta( $post->ID, 'external_link', true );
+	$external = 0;
+	if (isset($link) && (filter_var($link, FILTER_VALIDATE_URL))) {
+	    $external = 1;
+	} else {
+	    $link = fau_make_link_relative(get_permalink($post->ID));
+	}
+	
+	
+	$output .= '<article class="search-result">'."\n";
+	$output .= "\t<h3><a href=\"".$link."\">".get_the_title()."</a></h3>\n";
+	$type = get_post_type();
+	if ( $type == 'post') {
+	     $typestr = '<div class="search-meta">';
+	//    $typestr = __('Meldung', 'fau');
+	//    $typestr .= ' '. __('vom', 'fau'). ' ';
+	    
+	     
+	    $categories = get_the_category();
+	    $separator = ', ';
+	    $thiscatstr = '';
+	    if(($withcats==true) && ($categories)){
+		$typestr .= '<span class="post-meta-category fa fa-tag"> ';
+		$typestr .= __('Kategorie', 'fau');
+		$typestr .= ': ';
+		foreach($categories as $category) {
+		    $thiscatstr .= '<a href="'.get_category_link( $category->term_id ).'">'.$category->cat_name.'</a>'.$separator;
+		}
+		$typestr .= trim($thiscatstr, $separator);
+		$typestr .= '</span> ';
+	    }
+	     
+	     
+	    $typestr .= '<span class="post-meta-date fa fa-calendar"> ';
+	    $typestr .= get_the_date();
+	    $typestr .= '</span>';
+	    $typestr .= '</div>'."\n";
+	    
+	} elseif ($type == 'event') {
+	     $typestr = __('Veranstaltungshinweis', 'fau');
+	} else  {
+	     $typestr = '';
+	}
+
+	if (!empty($typestr)) { 
+	     $output .= "\t".$typestr."\n"; 
+	}
+	$output .= "\t".'<div class="row">'."\n";  
+	
+	
+	if (($withthumb==true) && (has_post_thumbnail( $post->ID )) )  {
+	    $output .= "\t\t".'<div class="span3">'."\n"; 
+	    $output .= '<a href="'.$link.'" class="news-image';
+	    if ($external==1) {
+		$output .= ' external';
+	    }
+	    $output .= '">';
+
+	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+	    $imagehtml = '';
+	    if ($post_thumbnail_id) {
+		$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+		$imageurl = $sliderimage[0]; 	
+	    }
+	    if (!isset($imageurl) || (strlen(trim($imageurl)) <4 )) {
+		$imageurl = $options['default_postthumb_src'];
+	    }
+	    $output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_postthumb_width'].'" height="'.$options['default_postthumb_height'].'" alt="">';
+	    $output .= '</a>';
+	    
+	    $output .= "\t\t".'</div>'."\n"; 
+	    $output .= "\t\t".'<div class="span5">'."\n"; 
+	} else {
+	    $output .= "\t\t".'<div class="span8">'."\n"; 
+	}
+	
+	
+	
+	$output .= "\t\t".'<p>'."\n"; 
+	$output .= fau_custom_excerpt($post->ID,$options['default_search_excerpt_length'],false,'',true,$options['search_display_excerpt_morestring']);	
+	if ($options['search_display_continue_arrow']) {
+	    $output .= '<a class="read-more-arrow';
+	    if ($external==1) {
+		$output .= ' external';
+	    }
+	    $output .= '" href="'.$link.'">›</a>'; 
+	}
+	$output .= "\t\t\t".'</p>'."\n"; 
+	$output .= "\t</div> <!-- /row -->\n";	
+	$output .= "</article>\n";
+    } else {
+	$output .= "<!-- empty result -->\n";
+    }
+    return $output;						     
+							
+}

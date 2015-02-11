@@ -8,6 +8,7 @@
  * @since FAU 1.0
  */
 
+global $options;
 get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
@@ -46,9 +47,45 @@ get_header(); ?>
 								<?php endif; ?>
 							</div>
 
-						<?php endif; ?>
-						<div class="news-meta-date"><?php echo get_the_date(); ?></div>   
-						<?php the_content(); ?>
+						<?php endif; 
+						
+						
+						
+						$output = '';
+						$categories = get_the_category();
+						$separator = ",\n ";
+						$thiscatstr = '';
+						$typestr = '';
+						if($categories){
+						    $typestr .= '<span class="post-meta-categories fa fa-tag"> ';
+						    $typestr .= __('Kategorie', 'fau');
+						    $typestr .= ': ';
+						    
+						    foreach($categories as $category) {
+							$thiscatstr .= '<a href="'.get_category_link( $category->term_id ).'">'.$category->cat_name.'</a>'.$separator;
+						    }
+						    $typestr .= trim($thiscatstr, $separator);
+						    $typestr .= '</span> ';
+						}
+
+
+						$output .= '<div class="post-meta">'."\n";
+					//	$output .= $typestr;
+						$output .= '<span class="post-meta-date fa fa-calendar"> '.get_the_date('',$post->ID)."</span>\n";
+						$output .= '</div>'."\n";
+	
+						echo $output;    
+						the_content();
+						
+						if ($options['post_display_category_below']) {
+						    $output = '<div>'."\n";
+						    $output .= $typestr;
+						    $output .= '</div>'."\n";
+						    echo $output;   
+						}
+						?>
+					    
+						
 					</article>
 					
 				</div>

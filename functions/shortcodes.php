@@ -21,7 +21,7 @@ class FAUShortcodes {
 	}
 	
 	function fau_hr ( $atts, $content = null) {
-		return '<div class="hr"><hr></div>';
+		return '<hr>';
 	}
 	
 	function fau_organigram( $atts, $content = null) {

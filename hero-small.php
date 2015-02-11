@@ -36,10 +36,8 @@ global $options;
 							if (isset($first_parent)) { //  && ($first_parent->ID != get_the_ID())) {
 								echo $first_parent->post_title;
 							}
-						}
-						else if(get_post_type() == 'post')
-						{
-							echo "FAU aktuell";
+						} else if(get_post_type() == 'post') {
+							echo $options['title_hero_post_archive'];
 						}
 					?>
 				</div>
