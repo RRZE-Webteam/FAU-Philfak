@@ -21,9 +21,15 @@ get_header(); ?>
 			<div class="row">
 				<div class="span8">
 					
-					<?php while ( have_posts() ) : the_post(); ?>
-    					<?php get_template_part( 'post', get_post_type() ); ?>
-					<?php endwhile; ?>
+					<?php while ( have_posts() ) : 
+					    the_post();  
+				
+					     if(get_post_type() == 'event') {
+						get_template_part( 'post', 'event' ); 
+					     } else {
+						  echo fau_display_news_teaser($post->ID,true);
+					     }
+					endwhile; ?>
 					
 					<nav class="navigation">
 						<div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Neuere Beiträge', 'fau')); ?></div>
