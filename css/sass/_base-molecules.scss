@@ -502,6 +502,7 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
 	}
 	.news-meta-date {
 	    margin-left: 10px;
@@ -512,6 +513,7 @@ ul.person-info {
 	padding: 5px 0;
 	margin: -14px 0 14px 0;
 	color: $colorPrimary;
+	font-family: $fontStack;
 	
 }
 /*
@@ -573,6 +575,7 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
 	}
 	.post-meta-category {
 	    margin-right: 10px;

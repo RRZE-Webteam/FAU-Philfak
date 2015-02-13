@@ -941,14 +941,18 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 
 	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
 	    $imagehtml = '';
+	    $imgwidth = $options['default_postthumb_width'];
+	    $imgheight = $options['default_postthumb_height'];
 	    if ($post_thumbnail_id) {
 		$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
 		$imageurl = $sliderimage[0]; 	
+		$imgwidth = $sliderimage[1];
+		$imgheight = $sliderimage[2];
 	    }
 	    if (!isset($imageurl) || (strlen(trim($imageurl)) <4 )) {
 		$imageurl = $options['default_postthumb_src'];
 	    }
-	    $output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_postthumb_width'].'" height="'.$options['default_postthumb_height'].'" alt="">';
+	    $output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$imgwidth.'" height="'.$imgheight.'" alt="">';
 	    $output .= '</a>';
 	    
 	    $output .= "\t\t".'</div>'."\n"; 
@@ -1035,7 +1039,11 @@ function fau_display_search_resultitem() {
 	    $typestr .= '</div>'."\n";
 	    
 	} elseif ($type == 'event') {
-	     $typestr = __('Veranstaltungshinweis', 'fau');
+	    $typestr = '<div class="search-meta">';
+	    $typestr .= '<span class="fa fa-calendar-o"> ';
+	    $typestr .= __('Veranstaltungshinweis', 'fau');
+	    $typestr .= '</span>';
+	    $typestr .= '</div>'."\n";
 	} else  {
 	     $typestr = '';
 	}
