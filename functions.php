@@ -1014,10 +1014,7 @@ function fau_display_search_resultitem() {
 	$type = get_post_type();
 	if ( $type == 'post') {
 	     $typestr = '<div class="search-meta">';
-	//    $typestr = __('Meldung', 'fau');
-	//    $typestr .= ' '. __('vom', 'fau'). ' ';
-	    
-	     
+
 	    $categories = get_the_category();
 	    $separator = ', ';
 	    $thiscatstr = '';
@@ -1031,11 +1028,20 @@ function fau_display_search_resultitem() {
 		$typestr .= trim($thiscatstr, $separator);
 		$typestr .= '</span> ';
 	    }
-	     
-	     
-	    $typestr .= '<span class="post-meta-date fa fa-calendar"> ';
-	    $typestr .= get_the_date();
-	    $typestr .= '</span>';
+	    $topevent_date = get_post_meta( $post->ID, 'topevent_date', true );
+	    if ($topevent_date) {
+		    $typestr .= '<span class="post-meta-date fa fa-calendar"> ';
+		    $typestr .= date_i18n( get_option( 'date_format' ), strtotime( $topevent_date ) ); 
+		    $typestr .= ' (';
+		    $typestr .= __('Veranstaltungshinweis', 'fau');
+		    $typestr .= ')';
+		    $typestr .= '</span>';
+			
+	     } else {
+		$typestr .= '<span class="post-meta-date fa fa-calendar"> ';
+		$typestr .= get_the_date();
+		$typestr .= '</span>';
+	     }
 	    $typestr .= '</div>'."\n";
 	    
 	} elseif ($type == 'event') {
