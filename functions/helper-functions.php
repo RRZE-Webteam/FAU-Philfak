@@ -205,7 +205,7 @@ if ( ! function_exists( 'fau_form_multiselect' ) ) :
 endif;    
    
 
-if ( ! function_exists( 'fau_form_multiselect' ) ) :  
+if ( ! function_exists( 'fau_san' ) ) :  
     function fau_san($s){
 	return filter_var(trim($s), FILTER_SANITIZE_STRING);
     }
