@@ -1168,7 +1168,30 @@ ul.tagcloud {
 	h2 {
 	    padding: 0px;
 	}
+	&.philfak {
+		border-color: $colorPhilFak;
+	}
+
+	&.rwfak {
+		border-color: $colorRwFak;
+	}
+
+	&.medfak {
+		border-color: $colorMedFak;
+	}
+
+	&.natfak {
+		border-color: $colorNatFak;
+	}
+
+	&.techfak {
+		border-color: $colorTechFak;
+	}
+	
+	
     }
+    
+     
     
     .body {
 	border: none;
