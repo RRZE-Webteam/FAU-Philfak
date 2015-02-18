@@ -1150,6 +1150,33 @@ ul.tagcloud {
 	border-left: 0;
 }
 
+/* Boxes like accordions for single glossar entries and other article-inserts/shortcodes */
+
+.accordionbox {
+    margin: 10px 0 20px 0;
+    
+    header {
+	border-left: 10px solid $colorPrimary;
+	background: $colorLightest;
+	color: $colorPrimary;
+	@include border-radius(4px);
+	text-decoration: none;
+	font-size: 16px;
+	padding: 8px 35px 8px 10px;
+	position: relative;
+	
+	h2 {
+	    padding: 0px;
+	}
+    }
+    
+    .body {
+	border: none;
+	background: lighten($colorLightest, 4%);
+	padding: 15px 20px;
+    } 
+}
+
 
 /* Social Media Buttons */
 .likebutton-dynamic, .tweetbutton-dynamic {
