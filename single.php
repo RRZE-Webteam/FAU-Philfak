@@ -28,8 +28,8 @@ get_header(); ?>
 
 								$post_thumbnail_id = get_post_thumbnail_id(); 
 								if ($post_thumbnail_id) {
-									
-									$full_image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'gallery-full');
+									$full_image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'full');
+								//	$full_image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'gallery-full');
 									echo '<a class="lightbox" href="'.fau_esc_url($full_image_attributes[0]).'"';
 										if(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != ''):
 										 	echo ' title="'.get_post(get_post_thumbnail_id())->post_excerpt.'"';

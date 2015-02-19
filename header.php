@@ -27,7 +27,8 @@ global $options;
 			    <li><a href="#content" data-target="#content" data-firstchild="0" class="jumplink-content"><?php _e('Zum Inhalt springen','fau'); ?></a></li>
 			    <li><a href="#meta" data-target="#meta .searchform input" data-firstchild="1" class="jumplink-search"><?php _e('Zur Suche springen','fau'); ?></a></li>
 			    <li><a href="#nav" data-target="#nav a" data-firstchild="1" class="jumplink-nav"><?php _e('Zum Hauptmenü springen','fau'); ?></a></li>
-			    <?php if(basename( get_page_template() )=='page-subnav.php') { ?><li><a href="#subnav" data-target="#subnav li a" data-firstchild="1" class="jumplink-subnav"><?php _e('Zum Seitenmenü springen','fau'); ?></a></li><?php } ?>
+			    <?php if(!is_tax() && !is_category()  && basename( get_page_template() )=='page-subnav.php') { ?>
+			    <li><a href="#subnav" data-target="#subnav li a" data-firstchild="1" class="jumplink-subnav"><?php _e('Zum Seitenmenü springen','fau'); ?></a></li><?php } ?>
 			</ul>
 		</nav>    
 		<section id="meta">

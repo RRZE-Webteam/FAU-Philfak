@@ -502,6 +502,7 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
 	}
 	.news-meta-date {
 	    margin-left: 10px;
@@ -512,6 +513,7 @@ ul.person-info {
 	padding: 5px 0;
 	margin: -14px 0 14px 0;
 	color: $colorPrimary;
+	font-family: $fontStack;
 	
 }
 /*
@@ -573,6 +575,7 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
 	}
 	.post-meta-category {
 	    margin-right: 10px;
@@ -1145,6 +1148,56 @@ ul.tagcloud {
 
 .accordion .accordion .accordion-heading .accordion-toggle {
 	border-left: 0;
+}
+
+/* Boxes like accordions for single glossar entries and other article-inserts/shortcodes */
+
+.accordionbox {
+    margin: 10px 0 20px 0;
+    
+    header {
+	border-left: 10px solid $colorPrimary;
+	background: $colorLightest;
+	color: $colorPrimary;
+	@include border-radius(4px);
+	text-decoration: none;
+	font-size: 16px;
+	padding: 8px 35px 8px 10px;
+	position: relative;
+	
+	h2 {
+	    padding: 0px;
+	}
+	&.philfak {
+		border-color: $colorPhilFak;
+	}
+
+	&.rwfak {
+		border-color: $colorRwFak;
+	}
+
+	&.medfak {
+		border-color: $colorMedFak;
+	}
+
+	&.natfak {
+		border-color: $colorNatFak;
+	}
+
+	&.techfak {
+		border-color: $colorTechFak;
+	}
+	
+	
+    }
+    
+     
+    
+    .body {
+	border: none;
+	background: lighten($colorLightest, 4%);
+	padding: 15px 20px;
+    } 
 }
 
 
