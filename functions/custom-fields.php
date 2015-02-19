@@ -12,7 +12,7 @@ add_action( 'load-post-new.php', 'fau_metabox_cf_setup' );
 
 /* Meta box setup function. */
 function fau_metabox_cf_setup() {
-
+    global $options;
 	/* Display Metabox */
 	add_action( 'add_meta_boxes_page', 'fau_add_metabox_page' );
 	add_action( 'add_meta_boxes_post', 'fau_add_metabox_post' );
@@ -25,9 +25,12 @@ function fau_metabox_cf_setup() {
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
 
-	
-	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
-	add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
+	if ($options['advanced_beitragsoptionen']==true) {
+	    add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
+	}
+	if ($options['advanced_topevent']==true) {
+	    add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
+	}
 
 }
 
@@ -70,18 +73,21 @@ function fau_add_metabox_page() {
 }
 
 function fau_add_metabox_post() {
+	global $options;
 	add_meta_box(
 		'fau_metabox_post_teaser',			
 		esc_html__( 'Beitragsoptionen', 'fau' ),		
 		'fau_do_metabox_post_teaser',		
 		 'post','normal','high'
 	);
-	add_meta_box(
-		'fau_metabox_post_topevent',			
-		esc_html__( 'Top-Event', 'fau' ),		
-		'fau_do_metabox_post_topevent',		
-		 'post','normal','high'
-	);
+	if ($options['advanced_topevent']==true) {
+	    add_meta_box(
+		    'fau_metabox_post_topevent',			
+		    esc_html__( 'Top-Event', 'fau' ),		
+		    'fau_do_metabox_post_topevent',		
+		     'post','normal','high'
+	    );
+	}
 	
 }
 
@@ -121,22 +127,23 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 
 	
 	<?php
-	$howto = __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
-	$howto .= '<br>'.__('Erlaubte Anzahl an Zeichen:','fau');
-	$howto .= '<span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
-	$abstract  = get_post_meta( $object->ID, 'abstract', true );	
-	fau_form_textarea('fauval_anleser', $abstract, __('Anleser','fau'), 80, 5, $howto);
 	
-	$external_link =  get_post_meta( $object->ID, 'external_link', true );
-	fau_form_url('fauval_external_link', $external_link, __( "Externer Link", 'fau' ), __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau'), $placeholder='http://', $size = 0);
-	
-	$override_thumbdesc =  get_post_meta( $object->ID, 'fauval_overwrite_thumbdesc', true );
-	fau_form_text('fauval_overwrite_thumbdesc', $override_thumbdesc, __('Ersetze Bildbeschreibung','fau'), __('Mit diesem optionalen Text kann die Bildunterschrift des verwendeten Beitragsbildes durch einen eigenen Text ersetzt werden, der nur für diesen Beitrag gilt.','fau'));
-	
-	$sliderimage =  get_post_meta( $object->ID, 'fauval_slider_image', true );
-	fau_form_image('fauval_slider_image', $sliderimage, __('Bühnenbild','fau'), __('An dieser Stelle kann optional ein alternatives Bild für die Bühne der Startseite ausgewählt werden, falls das normale Beitragsbild hierzu nicht verwendet werden soll.','fau'),540,150);
+	if ($options['advanced_beitragsoptionen']==true) {	
+	    $howto = __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
+	    $howto .= '<br>'.__('Erlaubte Anzahl an Zeichen:','fau');
+	    $howto .= '<span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
+	    $abstract  = get_post_meta( $object->ID, 'abstract', true );	
+	    fau_form_textarea('fauval_anleser', $abstract, __('Anleser','fau'), 80, 5, $howto);
 
+	    $external_link =  get_post_meta( $object->ID, 'external_link', true );
+	    fau_form_url('fauval_external_link', $external_link, __( "Externer Link", 'fau' ), __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau'), $placeholder='http://', $size = 0);
 
+	    $override_thumbdesc =  get_post_meta( $object->ID, 'fauval_overwrite_thumbdesc', true );
+	    fau_form_text('fauval_overwrite_thumbdesc', $override_thumbdesc, __('Ersetze Bildbeschreibung','fau'), __('Mit diesem optionalen Text kann die Bildunterschrift des verwendeten Beitragsbildes durch einen eigenen Text ersetzt werden, der nur für diesen Beitrag gilt.','fau'));
+
+	    $sliderimage =  get_post_meta( $object->ID, 'fauval_slider_image', true );
+	    fau_form_image('fauval_slider_image', $sliderimage, __('Bühnenbild','fau'), __('An dieser Stelle kann optional ein alternatives Bild für die Bühne der Startseite ausgewählt werden, falls das normale Beitragsbild hierzu nicht verwendet werden soll.','fau'),540,150);
+	}
  }
 
  /* Save the meta box's post/page metadata. */

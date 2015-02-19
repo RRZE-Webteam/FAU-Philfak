@@ -85,6 +85,9 @@ $defaultoptions = array(
     'title_hero_search'		    =>  __( 'Suche', 'fau' ),
     'title_hero_events'		    =>  __( 'Veranstaltungskalender','fau'),
     
+    'advanced_beitragsoptionen'		=> true,
+    'advanced_topevent'			=> true,
+    
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
@@ -710,6 +713,34 @@ $setoptions = array(
    
           )
        ),
+       'advanced'   => array(
+           'tabtitle'   => __('Erweitert', 'fau'),
+           'fields' => array(
+               'bedienung'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Backend', 'fau' ),                      
+              ),
+             'advanced_beitragsoptionen'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Erweiterte Beitragsoptionen', 'fau' ),
+                  'label'   => __( 'Bei der Bearbeitung von Beiträgen die erweiterten Optionen anzeigen.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_beitragsoptionen'],
+		  'parent'  => 'bedienung'
+              ),   
+	      'advanced_topevent'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Top-Events', 'fau' ),
+                  'label'   => __( 'Ermöglicht es Beiträge als Top-Event zu deklarieren und entsprechende Optionen freizuschalten.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_topevent'],
+		  'parent'  => 'bedienung'
+              ),   
+
+	     
+   
+          )
+       ),
+       
+       
     )
 );
 	       
