@@ -25,26 +25,30 @@ get_header(); ?>
 						<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 							<div class="post-image">
 								<?php 
-
+								$bildunterschrift = get_post_meta( $post->ID, 'fauval_overwrite_thumbdesc', true );
 								$post_thumbnail_id = get_post_thumbnail_id(); 
 								if ($post_thumbnail_id) {
 									$full_image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'full');
-								//	$full_image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'gallery-full');
 									echo '<a class="lightbox" href="'.fau_esc_url($full_image_attributes[0]).'"';
-										if(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != ''):
-										 	echo ' title="'.get_post(get_post_thumbnail_id())->post_excerpt.'"';
-										endif;
+									
 									echo '>';
 
 								    $image_attributes = wp_get_attachment_image_src( $post_thumbnail_id, 'post' );							    
-								    echo '<img src="'.fau_esc_url($image_attributes[0]).'" class="attachment-post wp-post-image" width="'.$image_attributes[1].'" height="'.$image_attributes[1].'" alt="">';
+								    echo '<img src="'.fau_esc_url($image_attributes[0]).'" class="attachment-post wp-post-image" width="'.$image_attributes[1].'" height="'.$image_attributes[1].'" '
+									    . 'title="'.get_the_title().'" alt="">';
 								
-									echo '</a>';
+								    echo '</a>';
+									
+									
+								    if (isset($bildunterschrift) && strlen($bildunterschrift)>1) {
+									echo '<div class="post-image-caption">'.$bildunterschrift.'</div>';
+								    } elseif(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != '') { 
+									echo '<div class="post-image-caption">'.get_post(get_post_thumbnail_id())->post_excerpt.'</div>';
+								    } 
+									
 								}
 
-								if(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != ''): ?>
-									<div class="post-image-caption"><?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?></div>
-								<?php endif; ?>
+								?>
 							</div>
 
 						<?php endif; 
@@ -70,7 +74,6 @@ get_header(); ?>
 
 
 						$output .= '<div class="post-meta">'."\n";
-					//	$output .= $typestr;
 						$output .= '<span class="post-meta-date fa fa-calendar"> '.get_the_date('',$post->ID)."</span>\n";
 						$output .= '</div>'."\n";
 	

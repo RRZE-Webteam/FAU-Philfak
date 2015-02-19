@@ -102,8 +102,8 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	    return;
 	}
 	
-	$abstract  = get_post_meta( $object->ID, 'abstract', true );	
-	$external_link =  get_post_meta( $object->ID, 'external_link', true );
+	
+	
 	
 
 	?>
@@ -118,33 +118,23 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	   ?>
 	</p>
 	
-	<div class="optionseingabe">
-	    <p>
-		    <label for="fauval_anleser">
-			<?php _e( "Anleser", 'fau' ); ?>:
-		    </label>
-	    </p>
-	    <textarea name="fauval_anleser" id="fauval_anleser" class="large-text" rows="4" ><?php echo $abstract; ?></textarea>	
-	    <br>
-	    <div class="howto"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
-	    echo __('Erlaubte Anzahl an Zeichen:','fau');
-	    echo ' <span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';
-	    ?></div>
-	</div>
-	<div class="optionseingabe">
-	    <p>
-		    <label for="fauval_external_link">
-			<?php _e( "Externer Link", 'fau' ); ?>:
-		    </label>
-	    </p>
-	    <input type="url" name="fauval_external_link" id="fauval_external_link" class="large-text" placeholder="http://" value="<?php echo $external_link; ?>">	
-	    <br>
-	    <div class="howto"><?php echo __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau');
-	    ?></div>
-	</div>
+
+	
+	<?php
+	$howto = __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
+	$howto .= '<br>'.__('Erlaubte Anzahl an Zeichen:','fau');
+	$howto .= '<span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
+	$abstract  = get_post_meta( $object->ID, 'abstract', true );	
+	fau_form_textarea('fauval_anleser', $abstract, __('Anleser','fau'), 80, 5, $howto);
+	
+	$external_link =  get_post_meta( $object->ID, 'external_link', true );
+	fau_form_url('fauval_external_link', $external_link, __( "Externer Link", 'fau' ), __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau'), $placeholder='http://', $size = 0);
+	
+	$override_thumbdesc =  get_post_meta( $object->ID, 'fauval_overwrite_thumbdesc', true );
+	fau_form_text('fauval_overwrite_thumbdesc', $override_thumbdesc, __('Ersetze Bildbeschreibung','fau'), __('Mit diesem optionalen Text kann die Bildunterschrift des verwendeten Beitragsbildes durch einen eigenen Text ersetzt werden, der nur für diesen Beitrag gilt.','fau'));
 	
 	
-	<?php 
+	 
 
  }
 
@@ -191,6 +181,20 @@ function fau_save_post_teaser( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'external_link', $oldval );	
 	} 
+	
+	$newval = ( isset( $_POST['fauval_overwrite_thumbdesc'] ) ? wp_filter_nohtml_kses( $_POST['fauval_overwrite_thumbdesc'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_overwrite_thumbdesc', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $oldval );	
+	} 
+	
 	
 }
 
