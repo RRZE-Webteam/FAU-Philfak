@@ -142,9 +142,9 @@ function fau_scripts_styles() {
 	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
 	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
 	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array(), $options['js-version'], true );
-	if (is_front_page() || is_home()) {
+//	if (is_front_page() || is_home()) {
 	    wp_enqueue_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array(), $options['js-version'], true );
-	}
+//	}
 	wp_enqueue_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array(), $options['js-version'], true );
 	wp_enqueue_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
 	wp_enqueue_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
@@ -511,21 +511,23 @@ function fau_post_gallery($output, $attr) {
 			    foreach ($attachments as $id => $attachment) {
 				    $img = wp_get_attachment_image_src($id, 'gallery-grid');
 				    $meta = get_post($id);
-				    $img_full = wp_get_attachment_image_src($id, 'gallery-full');
+				    // $img_full = wp_get_attachment_image_src($id, 'gallery-full');
+				    $img_full = wp_get_attachment_image_src($id, 'full');
 
 				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
 					    $output .= "<li class=\"has-caption\">\n";
 				    } else  {
 					    $output .= "<li>\n";
 				    }
-				    if(isset($attr['lightbox']))   {
-					$output .= '<a href="'.$img_full[0].'" class="lightbox"';
+				//    if(isset($attr['lightbox']))   {
+					$output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox"';
 					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
 					$output .= ' rel="lightbox-'.$rand.'">';
-				    }
+				 //   }
 
-				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-				    if(isset($attr['lightbox'])) $output .= '</a>';
+				    $output .= '<img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
+				//    if(isset($attr['lightbox'])) 
+				    $output .= '</a>';
 				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
 					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    }
@@ -542,28 +544,27 @@ function fau_post_gallery($output, $attr) {
 		    {
 			    $rand = rand();
 
-			    $output .= '<div class="row">';
+			    $output .= '<div class="row">'."\n";
 			    $i = 0;
 
 			    foreach ($attachments as $id => $attachment) {
 				    $img = wp_get_attachment_image_src($id, 'image-2-col');
+				    $img_full = wp_get_attachment_image_src($id, 'full');
 				    $meta = get_post($id);
 
 				    $output .= '<div class="span4">';
-
-				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-
-				    $output .= '</div>';
-
+				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">';
+				    $output .= '<img class="content-image-cols" src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt=""></a>';
+				    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
+				    $output .= '</div>'."\n";
 				    $i++;
 
 				    if($i % 2 == 0) {
-					    $output .= '</div><div class="row">';
+					    $output .= '</div><div class="row">'."\n";
 				    }
 			    }
 
-			    $output .= '</div>';
+			    $output .= '</div>'."\n";
 
 			    break;
 		    }
@@ -572,63 +573,62 @@ function fau_post_gallery($output, $attr) {
 		    {
 			    $rand = rand();
 
-			    $output .= '<div class="row">';
+			    $output .= '<div class="row">'."\n";
 			    $i = 0;
 
 			    foreach ($attachments as $id => $attachment) {
 				    $img = wp_get_attachment_image_src($id, 'image-4-col');
+				    $img_full = wp_get_attachment_image_src($id, 'full');
 				    $meta = get_post($id);
 
 				    $output .= '<div class="span2">';
-
-				    $output .= "<img class=\"content-image-cols\" src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />";
-					    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
-
+				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">';
+				    $output .= '<img class="content-image-cols" src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt=""></a>';
+				    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    $output .= '</div>';
-
 				    $i++;
 
-				    if($i % 3 == 0) {
-					    $output .= '</div><div class="row">';
+				    if($i % 4 == 0) {
+					    $output .= '    </div><div class="row">'."\n";
 				    }
 			    }
 
-			    $output .= '</div>';
+			    $output .= "</div>\n";
 
 			    break;
 		    }
 
 	    default:
 		    {
-			    $output .= "<div class=\"image-gallery-slider\">\n";
-			$output .= "<ul class=\"slides\">\n";
+			    
+			$output .= "<div class=\"image-gallery-slider\">\n";
+			$output .= "	<ul class=\"slides\">\n";
 
 			foreach ($attachments as $id => $attachment) {
 			    $img = wp_get_attachment_image_src($id, 'gallery-full');
-				    $meta = get_post($id);
+			    $meta = get_post($id);
 
 
-			    $output .= "<li>\n";
-				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-					    if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
+			    $output .= '	<li><img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
+			    if($meta->post_excerpt != '') $output .= '<div class="gallery-image-caption">'.$meta->post_excerpt.'</div>';
 			    $output .= "</li>\n";
 			}
 
-			$output .= "</ul>\n";
+			$output .= "	</ul>\n";
 			$output .= "</div>\n";
 
-			    $output .= "<div class=\"image-gallery-carousel\">\n";
-			$output .= "<ul class=\"slides\">\n";
+			
+			
+			$output .= "<div class=\"image-gallery-carousel\">\n";
+			$output .= "	<ul class=\"slides\">\n";
 
 			foreach ($attachments as $id => $attachment) {
 			    $img = wp_get_attachment_image_src($id, 'gallery-thumb');
-
-			    $output .= "<li>\n";
-				    $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"\" />\n";
-			    $output .= "</li>\n";
+			    $output .= '	<li><img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt=""></li>';
+			    $output .= "\n";
 			}
 
-			$output .= "</ul>\n";
+			$output .= "	</ul>\n";
 			$output .= "</div>\n";
 		    }
     }
