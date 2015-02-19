@@ -23,8 +23,9 @@ function fau_metabox_cf_setup() {
 	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
-	add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
-
+	if ($options['advanced_activateads'] == true) {
+	    add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
+	}
 	if ($options['advanced_beitragsoptionen']==true) {
 	    add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
 	}
@@ -38,6 +39,7 @@ function fau_metabox_cf_setup() {
 /* Create one or more meta boxes to be displayed on the post editor screen. */
 
 function fau_add_metabox_page() {
+    global $options;
 	add_meta_box(
 		'fau_metabox_page_untertitel',			
 		esc_html__( 'Untertitel', 'fau' ),		
@@ -62,13 +64,14 @@ function fau_add_metabox_page() {
 		'fau_do_metabox_page_imagelinks',		
 		 'page','side','core'
 	);
-	
-	add_meta_box(
-		'fau_metabox_page_ad',			
-		esc_html__( 'Werbung aktivieren', 'fau' ),		
-		'fau_do_metabox_page_ad',		
-		 'page','side','core'
-	);
+	if ($options['advanced_activateads'] == true) {
+	    add_meta_box(
+		    'fau_metabox_page_ad',			
+		    esc_html__( 'Werbung aktivieren', 'fau' ),		
+		    'fau_do_metabox_page_ad',		
+		     'page','side','core'
+	    );
+	}
 
 }
 

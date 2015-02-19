@@ -87,7 +87,8 @@ $defaultoptions = array(
     
     'advanced_beitragsoptionen'		=> true,
     'advanced_topevent'			=> true,
-    
+    'advanced_activateads'		=> true,
+   
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
@@ -734,7 +735,13 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_topevent'],
 		  'parent'  => 'bedienung'
               ),   
-
+	      'advanced_activateads' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Werbebanner', 'fau' ),
+                  'label'   => __( 'Aktiviert die Möglichkeit, Werbebanner zu verwalten.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activateads'],
+		  'parent'  => 'bedienung'
+              ),   
 	     
    
           )
