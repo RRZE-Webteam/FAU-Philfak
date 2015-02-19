@@ -205,6 +205,75 @@ if ( ! function_exists( 'fau_form_multiselect' ) ) :
 endif;    
    
 
+
+if ( ! function_exists( 'fau_form_image' ) ) :
+    function fau_form_image($name= '', $preimageid = 0, $labeltext = '',  $howtotext = '', $width=300, $height=200 ) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo '<p><label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label></p>\n";
+
+	    echo '<div class="uploader">';
+	    
+	    $image = '';
+	    $imagehtml = '';
+	    if (isset($preimageid) && ($preimageid>0)) {
+		$image = wp_get_attachment_image_src($preimageid, 'full'); 
+		if (isset($image)) {
+		    $imagehtml = '<img class="image_show_'.$name.'" src="'.$image[0].'" width="'.$width.'" height="'.$height.'" alt="">';
+		}
+	    }
+
+	    echo '<div class="previewimage showimg_'.$name.'">';
+	    if (!empty($imagehtml)) {  
+		echo $imagehtml;
+	    } 
+	    echo "</div>\n"; ?>		
+
+	    <input type="hidden" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo sanitize_key( $preimageid ) ; ?>" />
+	    
+
+	    <input class="button" name="image_button_<?php echo $name; ?>" id="image_button_<?php echo $name; ?>" value="<?php _e('Bild auswählen', 'fau'); ?>" />
+	    <small><a href="#" class="image_remove_<?php echo $name; ?>"><?php _e( "Entfernen", 'fau' );?></a></small>
+	    <br><p class="howto"><?php echo $howtotext; ?>	      
+	    </p><script>
+	    jQuery(document).ready(function() {
+		jQuery('#image_button_<?php echo $name; ?>').click(function()  {
+		    wp.media.editor.send.attachment = function(props, attachment) {
+			jQuery('#<?php echo $name; ?>').val(attachment.id);
+			htmlshow = "<img src=\""+attachment.url + "\" width=\"<?php echo $width;?>\" height=\"<?php echo $height;?>\">";  					   
+			jQuery('.showimg_<?php echo $name; ?>').html(htmlshow);
+
+		    }
+		    wp.media.editor.open(this);
+		    return false;
+		});
+	    });
+	    jQuery(document).ready(function() {
+		jQuery('.image_remove_<?php echo $name; ?>').click(function()   {
+			jQuery('#<?php echo $name; ?>').val('');
+			jQuery('.showimg_<?php echo $name; ?>').html('<?php _e('Kein Bild ausgewählt.', 'fau'); ?>');
+			return false;
+		});
+	    });
+	   </script> 		    	    
+
+	   <?php 
+
+	
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_image() - Name oder Label fehlt.', 'fau');
+	}
+    }
+ endif;
+    
+
+
+
+
+
 if ( ! function_exists( 'fau_san' ) ) :  
     function fau_san($s){
 	return filter_var(trim($s), FILTER_SANITIZE_STRING);

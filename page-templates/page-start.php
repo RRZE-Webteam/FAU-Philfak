@@ -45,7 +45,8 @@ global $options;
 			    <?php 
 			    
 			    $sliderimage = '';
-			    $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
+			   // $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
+			    $imageid = get_post_meta( $hero->ID, 'fauval_slider_image', true );
 			    if (isset($imageid) && ($imageid>0)) {
 				$sliderimage = wp_get_attachment_image_src($imageid, 'hero'); 
 			    } else {

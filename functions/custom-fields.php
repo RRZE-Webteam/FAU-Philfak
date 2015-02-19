@@ -133,8 +133,9 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	$override_thumbdesc =  get_post_meta( $object->ID, 'fauval_overwrite_thumbdesc', true );
 	fau_form_text('fauval_overwrite_thumbdesc', $override_thumbdesc, __('Ersetze Bildbeschreibung','fau'), __('Mit diesem optionalen Text kann die Bildunterschrift des verwendeten Beitragsbildes durch einen eigenen Text ersetzt werden, der nur für diesen Beitrag gilt.','fau'));
 	
-	
-	 
+	$sliderimage =  get_post_meta( $object->ID, 'fauval_slider_image', true );
+	fau_form_image('fauval_slider_image', $sliderimage, __('Bühnenbild','fau'), __('An dieser Stelle kann optional ein alternatives Bild für die Bühne der Startseite ausgewählt werden, falls das normale Beitragsbild hierzu nicht verwendet werden soll.','fau'),540,150);
+
 
  }
 
@@ -193,6 +194,20 @@ function fau_save_post_teaser( $post_id, $post ) {
 	    }
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $oldval );	
+	} 
+	
+	
+	$newval = ( isset( $_POST['fauval_slider_image'] ) ? intval( $_POST['fauval_slider_image'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_slider_image', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_slider_image', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_slider_image', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_slider_image', $oldval );	
 	} 
 	
 	
