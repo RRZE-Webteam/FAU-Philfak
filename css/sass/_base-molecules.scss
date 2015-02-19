@@ -1107,6 +1107,7 @@ ul.tagcloud {
 			display: none;
 			
 			.accordion-inner {
+				@extend .clearfix;
 				border: none;
 				background: lighten($colorLightest, 4%);
 				padding: 15px 20px;
