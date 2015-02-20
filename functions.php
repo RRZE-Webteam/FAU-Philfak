@@ -612,11 +612,12 @@ function fau_post_gallery($output, $attr) {
 			    $img_full = wp_get_attachment_image_src($id, 'full');
 
 			    $output .= '<li><img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
-			    if (($options['galery_link_original']) && ($meta->post_excerpt != '')) {
+			    if (($options['galery_link_original']) || ($meta->post_excerpt != '')) {
 				$output .= '<div class="gallery-image-caption">';
-				if($meta->post_excerpt != '') $output .= $meta->post_excerpt;
+				if($meta->post_excerpt != '') { $output .= $meta->post_excerpt; }
 				if ($options['galery_link_original']) {
-				    $output .= '<br>(<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">'.__('In Originalgröße','fau').'</a>)';
+				    if($meta->post_excerpt != '') { $output .= '<br>'; }
+				    $output .= '<span class="linkorigin">(<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">'.__('In Originalgröße','fau').'</a>)</span>';
 				}
 				$output .='</div>';
 			    }

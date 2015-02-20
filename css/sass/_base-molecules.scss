@@ -553,26 +553,7 @@ ul.person-info {
 	font-family: $fontStack;
 	
 }
-/*
-.news-meta {
-	border-bottom: 1px solid $colorLightest;
-	padding: 5px 0;
-	margin-top: 30px;
-	margin-bottom: -20px;
-	color: #888;
-	text-align: right;
-}
 
-.news-meta-date {
-	display: block;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
-	
-	.search-result & {
-		margin-top: 0px;
-	}
-}
-*/
 
 .news-meta-categories {
 	@include inline-block;
@@ -863,6 +844,16 @@ ul.person-info {
 		img {
 			@include box-shadow(none !important);
 		}
+	}
+	
+	.gallery-image-caption {
+	    line-height: 20px;
+	    padding: 5px;
+	    .linkorigin {
+		font-size: 13px;
+		line-height: 18px;
+		color: $colorTextLight;
+	     }
 	}
 }
 
