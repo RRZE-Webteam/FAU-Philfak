@@ -88,7 +88,9 @@ $defaultoptions = array(
     'advanced_beitragsoptionen'		=> true,
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
-   
+    'galery_link_original'		=> true,
+    
+    
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
@@ -741,6 +743,18 @@ $setoptions = array(
                   'label'   => __( 'Aktiviert die Möglichkeit, Werbebanner zu verwalten.', 'fau' ),                
                   'default' => $defaultoptions['advanced_activateads'],
 		  'parent'  => 'bedienung'
+              ),   
+	      'design'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Design', 'fau' ),                      
+              ),
+	       
+	      'galery_link_original'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Verlinke Galerybilder', 'fau' ),
+                  'label'   => __( 'Bei der Anzeige einer Defaultgalerie unter der Bildunterschrift eine Verlinkung auf das Originalbild eunschalten', 'fau' ),                
+                  'default' => $defaultoptions['galery_link_original'],
+		  'parent'  => 'design'
               ),   
 	     
    

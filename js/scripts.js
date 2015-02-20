@@ -1,5 +1,4 @@
-$(document).ready(function()
-{	
+jQuery(document).ready(function($) {	
 	// This browser supports JS
 	$('html').removeClass('no-js').addClass('js');
 
@@ -69,28 +68,7 @@ $(document).ready(function()
 		}
 	});
 	
-	// FlexSlider for image galleries
-	$('.image-gallery-slider').flexslider({
-		selector: 'ul > li',
-		animation: 'slide',
-		directionNav: false,
-		controlNav: false,
-		pausePlay: false,
-		slideshow: false,
-		sync: '.image-gallery-carousel'
-	});
-	
-	// Thumb carousel for image galleries
-	$('.image-gallery-carousel').flexslider({
-		selector: 'ul > li',
-		animation: 'slide',
-		directionNav: true,
-		pausePlay: false,
-		slideshow: false,
-		asNavFor: '.image-gallery-slider',
-		itemWidth: 125,
-		itemMargin: 5,
-	});
+
 	
 	// FlexSlider for hero on homepage
 	$('#hero-slides').flexslider({

@@ -874,7 +874,8 @@ ul.person-info {
 	ul.slides {
 		@include no-list;
 		background: none;
-		
+		padding-left: 40px;
+		padding-right: 40px;
 		li {
 			@include no-list;
 			cursor: pointer;
@@ -898,16 +899,27 @@ ul.person-info {
 			@include no-list;
 			background: none;
 		}
+		
 	}
 	
 	.flex-prev {
 		top: 60px;
-		left: 0;
+		left: 0px;
+		opacity: 0.1;
 	}
 	
 	.flex-next {
 		top: 60px;
-		right: 0;
+		right: 0px;
+		opacity: 0.1;
+	}
+	&:hover {
+	    .flex-prev {
+		opacity: 1;
+	    }
+	    .flex-next {
+		opacity: 1;
+	    }
 	}
 }
 
