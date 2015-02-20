@@ -91,15 +91,19 @@ function fau_setup() {
 	
 	add_image_size( 'logo-thumb', 140, 110, true);
 	
+	/* 
+	 * Größen für Bildergalerien: 
+	 */
+	
 	add_image_size( 'gallery-full', 940, 470);
+	    // Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
 	add_image_size( 'gallery-thumb', 120, 80, true);
 	add_image_size( 'gallery-grid', 145, 120, false);
-
 	add_image_size( 'image-2-col', 300, 200, true);
 	add_image_size( 'image-4-col', 140, 70, true);	
 		
-	// This theme uses its own gallery styles.
-//	add_filter( 'use_default_gallery_style', '__return_false' );
+	
+
 	
 	
 	/* Remove something out of the head */
@@ -140,21 +144,56 @@ function fau_initoptions() {
 function fau_scripts_styles() {
 	global $options;
 	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
-//	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
-	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array('jquery'), $options['js-version'], true );
-//	if (is_front_page() || is_home()) {
-	    wp_enqueue_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );
-	    // wird bei Startseioe Slider und auch bei gallerien verwendet
-//	}
-	wp_enqueue_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
-	    // wird bei Bild-Menus und Galerien verwendet
-	wp_enqueue_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
-	wp_enqueue_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
-	wp_enqueue_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );
 	wp_enqueue_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.js', array('jquery'), $options['js-version'], true );
+	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array('jquery'), $options['js-version'], true );	
+
+	
 }
 add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
 
+
+add_action('init', 'fau_register_scripts');
+add_action('wp_footer', 'fau_print_scripts');
+
+function fau_register_scripts() {
+    global $options;
+    
+    //	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
+
+	wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );
+	    
+
+	wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
+	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
+	wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );
+	
+    
+	wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
+	wp_register_script( 'fau-js-caroufredsel', get_fau_template_uri() . '/js/usecaroufredsel.js', array('jquery','fau-libs-jquery-caroufredsel'), $options['js-version'], true );
+}
+
+function fau_print_scripts() {
+	global $usejslibs;
+  
+	 wp_print_scripts('fau-libs-jquery-hoverintent');
+	 wp_print_scripts('fau-libs-jquery-fluidbox');
+	 wp_print_scripts('fau-libs-jquery-fancybox');
+	// wp_print_scripts('fau-scripts');
+
+	 
+	 if ($usejslibs['flexslider'] == true) {
+	     // wird bei Startseite Slider und auch bei gallerien verwendet
+	    wp_print_scripts('fau-libs-jquery-flexslider');	     
+	 }	 
+	 
+	 if ($usejslibs['caroufredsel'] == true) {
+	    // wird bei Logo-Menus verwendet
+	    wp_print_scripts('fau-libs-jquery-caroufredsel');
+	    wp_print_scripts('fau-js-caroufredsel');
+	}
+
+	
+}
 
 function fau_addmetatags() {
     global $options;
@@ -457,6 +496,8 @@ add_filter('post_gallery', 'fau_post_gallery', 10, 2);
 function fau_post_gallery($output, $attr) {
     global $post;
     global $options;
+    global $usejslibs;
+    
     if (isset($attr['orderby'])) {
         $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
         if (!$attr['orderby'])
@@ -521,16 +562,12 @@ function fau_post_gallery($output, $attr) {
 				    } else  {
 					    $output .= "<li>\n";
 				    }
-				//    if(isset($attr['lightbox']))   {
 					$output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox"';
-					if($meta->post_excerpt != '') $output .= ' title="'.$meta->post_excerpt.'"';
 					$output .= ' rel="lightbox-'.$rand.'">';
-				 //   }
 
 				    $output .= '<img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
-				//    if(isset($attr['lightbox'])) 
 				    $output .= '</a>';
-				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
+				    if($meta->post_excerpt) {
 					    $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    }
 			    $output .= "</li>\n";
@@ -602,6 +639,7 @@ function fau_post_gallery($output, $attr) {
 
 	    default:
 		    {
+			$usejslibs['flexslider'] = true;
 			$rand = rand();	    
 			$output .= "<div id=\"slider-$rand\" class=\"image-gallery-slider\">\n";
 			$output .= "	<ul class=\"slides\">\n";

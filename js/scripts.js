@@ -70,12 +70,7 @@ jQuery(document).ready(function($) {
 	
 
 	
-	// FlexSlider for hero on homepage
-	$('#hero-slides').flexslider({
-		selector: '.hero-slide',
-		directionNav: true,
-		pausePlay: true
-	});
+
 	
 	// Assistant tabs
 	$('.assistant-tabs-nav a').bind('click', function(event) {
@@ -138,51 +133,7 @@ jQuery(document).ready(function($) {
 	var isMobile = windowWidth < 767;
 	var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 
-	// Logo-Slider
-	if($('.logos-menu').length > 0) {
-		if( ! isMobile)
-		{
-			$('.logos-menu').carouFredSel({
-				responsive: true,
-				width: '100%',
-				height: 110,
-				scroll: 1,
-				padding: 20,
-				items: {
-					width: 140,
-					height: 110,
-					visible: 6
-				},
-				prev: {
-					button: '#logos-menu-prev',
-					key: 'left'
-				},
-				next: {
-					button: '#logos-menu-next',
-					key: 'next'
-				},
-				auto: {
-					button: '#logos-menu-playpause'
-				}
-			});
-		}
-		else
-		{
-			$('.logos-menu').carouFredSel({
-				responsive: true,
-				width: '100%',
-				height: 110,
-				scroll: 1,
-				padding: 20,
-				items: {
-					width: 140,
-					height: 110,
-					visible: 2
-				}
-			});
-		}
-	}
-
+	
 	// Move sidebar on mobile devices to the bottom
 	if(isMobile) {
 		var sidebar = $('.sidebar-inline').html();

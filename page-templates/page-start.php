@@ -16,7 +16,11 @@ global $options;
 	<section id="hero">
 		<div id="hero-slides">
 			
-			<?php			 
+			<?php	
+			global $usejslibs;
+			
+			$usejslibs['flexslider'] = true;
+			
             if (isset($options['slider-catid']) && $options['slider-catid'] > 0) {
                 $hero_posts = get_posts( array( 'cat' => $options['slider-catid'], 'posts_per_page' => $options['start_header_count']) );
             } else {							    
@@ -39,8 +43,7 @@ global $options;
                 }
                 $hero_posts = get_posts($query); 
             }
-            ?>
-	    <?php foreach($hero_posts as $hero): ?>
+            foreach($hero_posts as $hero): ?>
 		<div class="hero-slide">
 			    <?php 
 			    
@@ -85,6 +88,15 @@ global $options;
 						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
+		    <script type="text/javascript">
+			jQuery(document).ready(function($) {
+			$('#hero-slides').flexslider({
+				selector: '.hero-slide',
+				directionNav: true,
+				pausePlay: true
+			});
+		    });
+		    </script>
 		    </div>
 	    <?php endforeach; 
               wp_reset_query();
