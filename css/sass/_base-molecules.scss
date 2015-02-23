@@ -570,7 +570,17 @@ ul.person-info {
 	}
 	.news-meta-date {
 	    margin-left: 10px;
-	}	
+	}
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+	
 }
 
 

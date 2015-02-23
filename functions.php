@@ -966,7 +966,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	$output .= "\t<h2>";  
 	$output .= '<a ';
 	if ($external==1) {
-	    $output .= 'class="external" ';
+	    $output .= 'class="ext-link" ';
 	}
 	$output .= 'href="'.$link.'">'.get_the_title($post->ID).'</a>';
 	$output .= "</h2>\n";  
@@ -1002,7 +1002,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	    $output .= "\t\t".'<div class="span3">'."\n"; 
 	    $output .= '<a href="'.$link.'" class="news-image';
 	    if ($external==1) {
-		$output .= ' external';
+		$output .= ' ext-link';
 	    }
 	    $output .= '">';
 
@@ -1040,7 +1040,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	
 	$output .= '<a class="read-more-arrow';
 	if ($external==1) {
-	    $output .= ' external';
+	    $output .= ' ext-link';
 	}
 	$output .= '" href="'.$link.'">›</a>'; 
 	$output .= "\t\t\t".'</p>'."\n"; 
