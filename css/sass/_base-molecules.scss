@@ -639,6 +639,16 @@ ul.person-info {
 		}
 		
 	}
+	h3 .ext-link,  
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
 	.post-meta-category {
 	    margin-right: 10px;
 	}

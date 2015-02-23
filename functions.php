@@ -1077,7 +1077,11 @@ function fau_display_search_resultitem() {
 	
 	
 	$output .= '<article class="search-result">'."\n";
-	$output .= "\t<h3><a href=\"".$link."\">".get_the_title()."</a></h3>\n";
+	$output .= "\t<h3><a ";
+	if ($external==1) {
+	    $output .= 'class="ext-link" ';
+	}
+	 $output .= "href=\"".$link."\">".get_the_title()."</a></h3>\n";
 	$type = get_post_type();
 	if ( $type == 'post') {
 	     $typestr = '<div class="search-meta">';
@@ -1131,7 +1135,7 @@ function fau_display_search_resultitem() {
 	    $output .= "\t\t".'<div class="span3">'."\n"; 
 	    $output .= '<a href="'.$link.'" class="news-image';
 	    if ($external==1) {
-		$output .= ' external';
+		$output .= ' ext-link';
 	    }
 	    $output .= '">';
 
@@ -1160,7 +1164,7 @@ function fau_display_search_resultitem() {
 	if ($options['search_display_continue_arrow']) {
 	    $output .= '<a class="read-more-arrow';
 	    if ($external==1) {
-		$output .= ' external';
+		$output .= ' ext-link';
 	    }
 	    $output .= '" href="'.$link.'">›</a>'; 
 	}
