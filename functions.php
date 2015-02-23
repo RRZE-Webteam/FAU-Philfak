@@ -977,7 +977,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	    $thiscatstr = '';
 	    $typestr = '';
 	    if($categories){
-		$typestr .= '<span class="news-meta-categories fa fa-tag"> ';
+		$typestr .= '<span class="news-meta-categories"> ';
 		$typestr .= __('Kategorie', 'fau');
 		$typestr .= ': ';
 		foreach($categories as $category) {
@@ -991,7 +991,7 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	if ($withdate) {
 	    $output .= '<div class="news-meta">'."\n";
 	    $output .= $typestr;
-	    $output .= '<span class="news-meta-date fa fa-calendar"> '.get_the_date('',$post->ID)."</span>\n";
+	    $output .= '<span class="news-meta-date"> '.get_the_date('',$post->ID)."</span>\n";
 	    $output .= '</div>'."\n";
 	}
 
@@ -1086,7 +1086,7 @@ function fau_display_search_resultitem() {
 	    $separator = ', ';
 	    $thiscatstr = '';
 	    if(($withcats==true) && ($categories)){
-		$typestr .= '<span class="post-meta-category fa fa-tag"> ';
+		$typestr .= '<span class="post-meta-category"> ';
 		$typestr .= __('Kategorie', 'fau');
 		$typestr .= ': ';
 		foreach($categories as $category) {
@@ -1097,7 +1097,7 @@ function fau_display_search_resultitem() {
 	    }
 	    $topevent_date = get_post_meta( $post->ID, 'topevent_date', true );
 	    if ($topevent_date) {
-		    $typestr .= '<span class="post-meta-date fa fa-calendar"> ';
+		    $typestr .= '<span class="post-meta-date"> ';
 		    $typestr .= date_i18n( get_option( 'date_format' ), strtotime( $topevent_date ) ); 
 		    $typestr .= ' (';
 		    $typestr .= __('Veranstaltungshinweis', 'fau');
@@ -1105,7 +1105,7 @@ function fau_display_search_resultitem() {
 		    $typestr .= '</span>';
 			
 	     } else {
-		$typestr .= '<span class="post-meta-date fa fa-calendar"> ';
+		$typestr .= '<span class="post-meta-date"> ';
 		$typestr .= get_the_date();
 		$typestr .= '</span>';
 	     }
@@ -1113,7 +1113,7 @@ function fau_display_search_resultitem() {
 	    
 	} elseif ($type == 'event') {
 	    $typestr = '<div class="search-meta">';
-	    $typestr .= '<span class="fa fa-calendar-o"> ';
+	    $typestr .= '<span class="post-meta-event"> ';
 	    $typestr .= __('Veranstaltungshinweis', 'fau');
 	    $typestr .= '</span>';
 	    $typestr .= '</div>'."\n";

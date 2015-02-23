@@ -59,7 +59,7 @@ get_header(); ?>
 						$thiscatstr = '';
 						$typestr = '';
 						if($categories){
-						    $typestr .= '<span class="post-meta-categories fa fa-tag"> ';
+						    $typestr .= '<span class="post-meta-categories"> ';
 						    $typestr .= __('Kategorie', 'fau');
 						    $typestr .= ': ';
 						    
@@ -72,7 +72,7 @@ get_header(); ?>
 
 
 						$output .= '<div class="post-meta">'."\n";
-						$output .= '<span class="post-meta-date fa fa-calendar"> '.get_the_date('',$post->ID)."</span>\n";
+						$output .= '<span class="post-meta-date"> '.get_the_date('',$post->ID)."</span>\n";
 						$output .= '</div>'."\n";
 	
 						echo $output;    

@@ -513,7 +513,25 @@ ul.person-info {
 
 .news-details {
 	margin-top: 20px;
+	
+	
+	.post-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+	}
+	.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+	}
 }
+.post-meta {
+	    display: block;
+	    padding: 5px 0;
+	    margin: -14px 0 14px 0;
+	    color: $colorPrimary;
+	    font-family: $fontStack;
+}
+
 
 .news-image {
 	display: block;
@@ -540,19 +558,21 @@ ul.person-info {
 		color: $colorText;
 		display: block;
 		font-family: $fontStack;
+		
+		.news-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.news-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
 	}
 	.news-meta-date {
 	    margin-left: 10px;
 	}	
 }
-.post-meta {
-        display: block;
-	padding: 5px 0;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
-	font-family: $fontStack;
-	
-}
+
 
 
 .news-meta-categories {
@@ -594,10 +614,26 @@ ul.person-info {
 		color: $colorText;
 		display: block;
 		font-family: $fontStack;
+		
+		.post-meta-category:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
+		.post-meta-event:before {
+		    @extend .fa;
+		    @extend .fa-calendar-o;
+		}
+		
 	}
 	.post-meta-category {
 	    margin-right: 10px;
 	}
+	
+	
 }
 
 
