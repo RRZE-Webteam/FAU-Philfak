@@ -550,14 +550,18 @@ function fau_post_gallery($output, $attr) {
 				    $meta = get_post($id);
 				    // $img_full = wp_get_attachment_image_src($id, 'gallery-full');
 				    $img_full = wp_get_attachment_image_src($id, 'full');
-
+				    $lightboxattr = '';
+				    $lightboxtitle = sanitize_text_field($meta->post_excerpt);
+				    if (strlen(trim($lightboxtitle))>1) {
+					$lightboxattr = ' title="'.$lightboxtitle.'"';
+				    }
 				    if(isset( $attr['captions']) && ($attr['captions']==1) && $meta->post_excerpt) {
 					    $output .= "<li class=\"has-caption\">\n";
 				    } else  {
 					    $output .= "<li>\n";
 				    }
 					$output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox"';
-					$output .= ' rel="lightbox-'.$rand.'">';
+					$output .= ' rel="lightbox-'.$rand.'"'.$lightboxattr.'>';
 
 				    $output .= '<img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
 				    $output .= '</a>';
@@ -584,9 +588,13 @@ function fau_post_gallery($output, $attr) {
 				    $img = wp_get_attachment_image_src($id, 'image-2-col');
 				    $img_full = wp_get_attachment_image_src($id, 'full');
 				    $meta = get_post($id);
-
+				     $lightboxattr = '';
+				    $lightboxtitle = sanitize_text_field($meta->post_excerpt);
+				    if (strlen(trim($lightboxtitle))>1) {
+					$lightboxattr = ' title="'.$lightboxtitle.'"';
+				    }
 				    $output .= '<div class="span4">';
-				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">';
+				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'"'.$lightboxattr.'>';
 				    $output .= '<img class="content-image-cols" src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt=""></a>';
 				    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    $output .= '</div>'."\n";
@@ -613,9 +621,13 @@ function fau_post_gallery($output, $attr) {
 				    $img = wp_get_attachment_image_src($id, 'image-4-col');
 				    $img_full = wp_get_attachment_image_src($id, 'full');
 				    $meta = get_post($id);
-
+				    $lightboxattr = '';
+				    $lightboxtitle = sanitize_text_field($meta->post_excerpt);
+				    if (strlen(trim($lightboxtitle))>1) {
+					$lightboxattr = ' title="'.$lightboxtitle.'"';
+				    }
 				    $output .= '<div class="span2">';
-				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">';
+				    $output .= '<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'"'.$lightboxattr.'>';
 				    $output .= '<img class="content-image-cols" src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt=""></a>';
 				    if($attr['captions'] && $meta->post_excerpt) $output .= '<div class="caption">'.$meta->post_excerpt.'</div>';
 				    $output .= '</div>';
@@ -646,10 +658,17 @@ function fau_post_gallery($output, $attr) {
 			    $output .= '<li><img src="'.fau_esc_url($img[0]).'" width="'.$img[1].'" height="'.$img[2].'" alt="">';
 			    if (($options['galery_link_original']) || ($meta->post_excerpt != '')) {
 				$output .= '<div class="gallery-image-caption">';
-				if($meta->post_excerpt != '') { $output .= $meta->post_excerpt; }
+				$lightboxattr = '';
+				if($meta->post_excerpt != '') { 
+				    $output .= $meta->post_excerpt; 
+				    $lightboxtitle = sanitize_text_field($meta->post_excerpt);
+				    if (strlen(trim($lightboxtitle))>1) {
+					$lightboxattr = ' title="'.$lightboxtitle.'"';
+				    }
+				}
 				if ($options['galery_link_original']) {
 				    if($meta->post_excerpt != '') { $output .= '<br>'; }
-				    $output .= '<span class="linkorigin">(<a href="'.fau_esc_url($img_full[0]).'" class="lightbox" rel="lightbox-'.$rand.'">'.__('In Originalgröße','fau').'</a>)</span>';
+				    $output .= '<span class="linkorigin">(<a href="'.fau_esc_url($img_full[0]).'" '.$lightboxattr.' class="lightbox" rel="lightbox-'.$rand.'">'.__('Vergrößern','fau').'</a>)</span>';
 				}
 				$output .='</div>';
 			    }
