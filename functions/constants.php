@@ -763,7 +763,7 @@ $setoptions = array(
 	      'galery_link_original'	  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Verlinke Galerybilder', 'fau' ),
-                  'label'   => __( 'Bei der Anzeige einer Defaultgalerie unter der Bildunterschrift eine Verlinkung auf das Originalbild eunschalten', 'fau' ),                
+                  'label'   => __( 'Bei der Anzeige einer Defaultgalerie unter der Bildunterschrift eine Verlinkung auf das Originalbild einschalten', 'fau' ),                
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
               ),   
