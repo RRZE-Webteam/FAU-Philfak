@@ -89,6 +89,7 @@ $defaultoptions = array(
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
     'galery_link_original'		=> true,
+    'advanced_activatefaupluginpersonen'=> true,
     
     
     'post_display_category_below'	=> true,
@@ -744,6 +745,16 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_activateads'],
 		  'parent'  => 'bedienung'
               ),   
+	        'advanced_activatefaupluginpersonen' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'FAU-Plugin Personenverwaltung', 'fau' ),
+                  'label'   => __( 'Nutze alte Personen- und Adressverwaltung aus dem FAU-Plugin', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activatefaupluginpersonen'],
+		  'parent'  => 'bedienung'
+              ),   
+	       
+	       
+	       
 	      'design'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Design', 'fau' ),                      
@@ -757,6 +768,9 @@ $setoptions = array(
 		  'parent'  => 'design'
               ),   
 	     
+	       
+	       
+	       
    
           )
        ),
