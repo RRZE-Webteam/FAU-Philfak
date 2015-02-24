@@ -1226,7 +1226,11 @@ function fau_breadcrumb($lasttitle = '') {
 	} else {
 	    
 	$cat = get_the_category(); 
-	$last = array_pop($cat);
+	if ($options['breadcrumb_uselastcat']) {
+	    $last = array_pop($cat);
+	} else {
+	    $last = $cat[0];
+	}
 	$catid = $last->cat_ID;
 
 	echo get_category_parents($catid, TRUE,  $delimiter );
