@@ -14,13 +14,18 @@ global $options;
 	<div class="container">
 		<div class="row">
 			<div class="span8">
-
-			    <?php if(function_exists('bcn_display')): ?>
+				
+			    <?php
+				fau_breadcrumb();
+				/* 
+			    if(function_exists('bcn_display')): ?>
 					<div class="breadcrumbs">
 						<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
 						<?php bcn_display(); ?>
 					</div>
-				<?php endif; ?>
+				<?php endif; 
+				 */ ?>
+				 
 
 				<h1><?php single_cat_title(); ?></h1>
 				

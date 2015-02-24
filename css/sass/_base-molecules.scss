@@ -1306,7 +1306,12 @@ ul.tagcloud {
 }
 
 .screen-reader-text {
-	display: none !important;
+    position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
 
 .nav-links {

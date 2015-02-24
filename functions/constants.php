@@ -43,7 +43,12 @@ $defaultoptions = array(
     'default_topevent_excerpt_length' => 100,
 
     
-    'breadcrumb_root'		    => 'fau.de',
+    'breadcrumb_root'		     => 'fau.de',
+    'breadcrumb_delimiter'		=> ' <span>/</span>',
+    'breadcrumb_beforehtml'		=> '<span class="active">', // '<span class="current">'; // tag before the current crumb
+    'breadcrumb_afterhtml'		=> '</span>',
+    
+    
     'socialmedia'		    => 1,
     'menu_pretitle_portal'	    => __('Portal', 'fau'),
     'menu_aftertitle_portal'	    => '',
@@ -98,6 +103,8 @@ $defaultoptions = array(
     'search_display_continue_arrow'		=> true,
     'search_display_excerpt_morestring'		=> '...',
     
+
+     
 ); 
 
 
