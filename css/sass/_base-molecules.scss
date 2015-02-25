@@ -274,6 +274,14 @@
 	li {
 		padding: 0 0 0 20px;
 	}
+	
+}
+.FAUVideoWidget {
+    li {
+	background: url("../img/list-arrow-blue.png") no-repeat scroll left 4px rgba(0, 0, 0, 0);
+	font-size: 13px;
+	line-height: 20px;
+    }
 }
 
 /* Widget: RSS */
@@ -1139,6 +1147,13 @@ ul.tagcloud {
 	.widget {
 		margin-bottom: 22px;
 		margin-top: 22px;
+		
+		
+		li {
+		    font-size: 13px;
+		    line-height: 22px;		   
+		}
+		
 	}
 	
 	.widget:last-child {
@@ -1152,6 +1167,8 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
+	
+	
 }
 
 /* Accordion */
@@ -1210,19 +1227,23 @@ ul.tagcloud {
 			}
 		}
 	}
-	
+	.philfak .accordion-heading .accordion-toggle,
 	.gold .accordion-heading .accordion-toggle {
 		border-color: $colorPhilFak;
 	}
+	.rwfak .accordion-heading .accordion-toggle,
 	.red .accordion-heading .accordion-toggle {
 		border-color: $colorRwFak;
 	}
+	.medfak .accordion-heading .accordion-toggle,
 	.blue .accordion-heading .accordion-toggle {
 		border-color: $colorMedFak;
 	}
+	.natfak .accordion-heading .accordion-toggle,
 	.green .accordion-heading .accordion-toggle {
 		border-color: $colorNatFak;
 	}
+	.techfak .accordion-heading .accordion-toggle,
 	.grey .accordion-heading .accordion-toggle {
 		border-color: $colorTechFak;
 	}

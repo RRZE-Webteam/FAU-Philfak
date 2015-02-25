@@ -21,7 +21,9 @@ $defaultoptions = array(
     'start_link_news_cat'	    => 0,    
     'start_link_news_show'	    => 1,
     'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
-  
+    'start_link_videoportal_socialmedia'    => true,
+    'start_title_videoportal_socialmedia'   => __('Alle Videos','fau'),
+    
     
     'default_mainmenuthumb_width'    => 370,
     'default_mainmenuthumb_height'   => 185,
@@ -545,7 +547,18 @@ $setoptions = array(
 		  'title'   => __( 'Social Media Portale', 'fau' ),
 		  'liste'   => $default_socialmedia_liste,
 	      ), 
-	                      
+	     'start_link_videoportal_socialmedia'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Verlinke Videoportal', 'fau' ),
+                  'label'   => __( 'Verlinke Videoportal auf dem Social Media Fußteil der Startseite', 'fau' ),
+                  'default' => $defaultoptions['start_link_videoportal_socialmedia'],
+              ),     
+	      'start_title_videoportal_socialmedia' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Verlinkungstext Videoportal', 'fau' ),
+                  'label'   => __( 'Text mit der auf das Videoportal im Social Media Fußteil verlinkt wird.', 'fau' ),               
+                  'default' => $defaultoptions['start_title_videoportal_socialmedia'],
+              ),       
           )
        ),
        'allgemeines'   => array(

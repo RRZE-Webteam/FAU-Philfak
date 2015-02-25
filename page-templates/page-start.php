@@ -327,49 +327,17 @@ global $options;
 						</div>
 					<?php endif; ?>
 					<div class="span9">
+						<div class="row">
 						<?php 
-						if ( function_exists('get_field') ) {
-
-						if(get_field('videos')): ?>
-							<div class="row">
-							    <?php
-							     $foundvids = 0;
-							    while(has_sub_field('videos')): 
-
-							    $args = '';
-							    $video_link = get_sub_field('video-links');
-							    if($video_link):
-								$video_height = get_sub_field('video-height');
-								$video_height = $video_height ? $video_height : '';
-								$video_width = get_sub_field('video-width');
-								$video_width = $video_width ? $video_width : '';
-								$video_poster = get_sub_field('video-poster');
-								$video_poster = $video_poster ? $video_poster : '';
-								$wp_oembed_get = sprintf('[fauvideo url="%1$s" height="%2$s" width="%3$s" image="%4$s"]', $video_link, $video_height, $video_width, $video_poster);
-								$wp_oembed_get = do_shortcode($wp_oembed_get);
-								    if($wp_oembed_get !== false) : ?>
-								<div class="span3">
-									<?php
-										$video_titel = get_sub_field('video-titel');
-										if($video_titel):
-											echo '<h2 class="small">'.$video_titel.'</h2>';
-										endif; 
-										 $foundvids = 1;
-									?>	
-									<?php echo $wp_oembed_get; ?>
-								</div>
-								    <?php endif; ?>
-								<?php endif; ?>
-								<?php endwhile; ?>
-							</div>
-							<?php if ( $foundvids==1) { ?>
-							<div class="pull-right link-all-videos">
-								<a href="http://video.fau.de/"><?php _e('Alle Videos','fau'); ?></a>
-							</div>
-							<?php }    
-						     endif;  							
-						} ?>
-
+						    if ( is_active_sidebar( 'startpage-socialmediainfo' ) ) { 
+							dynamic_sidebar( 'startpage-socialmediainfo' ); 
+						    }  ?>
+						</div>
+						<?php if ($options['start_link_videoportal_socialmedia']) { ?>
+						<div class="pull-right link-all-videos">
+						    <a href="http://video.fau.de/"><?php echo $options['start_title_videoportal_socialmedia']; ?></a>
+						</div>
+						<?php } ?>
 					</div>						
 				</div>
 			</div>

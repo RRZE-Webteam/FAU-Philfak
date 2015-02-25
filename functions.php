@@ -306,7 +306,7 @@ add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
  *
  * @since FAU 1.0
  */
-function fau_widgets_init() {
+function fau_sidebars_init() {
 
 	
 
@@ -329,6 +329,15 @@ function fau_widgets_init() {
 		'before_title' => '<h2 class="small">',
 		'after_title' => '</h2>',
 	) );
+	register_sidebar( array(
+		'name' => __( 'Social Media Infobereich (Footer)', 'fau' ),
+		'id' => 'startpage-socialmediainfo',
+		'description' => __( 'Widgetbereich neben den Social Media Icons im Footer der Startseite.', 'fau' ),
+		'before_widget' => '<div class="span3">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="small">',
+		'after_title' => '</h2>',
+	) );
 	
     // Wenn CMS-Workflow vorhanden und aktiviert ist
 	if (is_workflow_translation_active()) {
@@ -344,7 +353,7 @@ function fau_widgets_init() {
 	}
 	
 }
-add_action( 'widgets_init', 'fau_widgets_init' );
+add_action( 'widgets_init', 'fau_sidebars_init' );
 
 
 
