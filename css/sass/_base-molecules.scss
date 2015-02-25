@@ -473,7 +473,7 @@ ul.person-info {
 	li {
 		@include no-list;
 		background-image: none;
-		// padding-left: 20px;
+		padding-left: 0px;
 		min-height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -494,7 +494,7 @@ ul.person-info {
 	
 	li.person-info-address {
 		margin-top: 10px;
-		padding-left: 20px;
+		padding-left: 0px;
 	}
 	
 	li.person-info-description {
@@ -1167,7 +1167,6 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
-	
 	
 }
 
