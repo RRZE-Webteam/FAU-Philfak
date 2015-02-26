@@ -27,7 +27,30 @@ if ( ! function_exists( 'fau_form_textarea' ) ) :
 	}
     }
 endif;
-
+if ( ! function_exists( 'fau_form_wpeditor' ) ) :
+    function fau_form_wpeditor($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $small = true) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo "<p>\n";
+	    echo '	<label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label></p>\n";
+	    if ($small==true) {
+		wp_editor( $prevalue, $name, array('teeny' => true, 'textarea_rows' => 5, 'media_buttons' => false) );
+	    } else {
+		wp_editor( $prevalue, $name );
+	    }
+	    if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_wpeditor() - Name oder Label fehlt.', 'fau');
+	}
+    }
+endif;
 if ( ! function_exists( 'fau_form_text' ) ) :
     function fau_form_text($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
 	$name = fau_san( $name );

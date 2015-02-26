@@ -72,7 +72,15 @@ function fau_add_metabox_page() {
 		     'page','side','core'
 	    );
 	}
-
+/*
+	add_meta_box(
+		'fau_metabox_page_sidebar',			
+		esc_html__( 'Sidebar (BETA!!!)', 'fau' ),		
+		'fau_do_metabox_page_sidebar',		
+		 'page','normal','core'
+	);
+  */
+ 
 }
 
 function fau_add_metabox_post() {
@@ -932,6 +940,114 @@ function fau_save_metabox_page_ad( $post_id, $post ) {
 		} else {
 		    add_post_meta( $post_id, 'werbebanner_unten', $newval, true );
 		}
+	}
+
+	
+}
+
+
+
+
+/* 
+ * Sidebar der Seiten  
+ */
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_sidebar( $object, $box ) { 
+    global $options;
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_sidebar_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		 
+		return;
+	} else {
+	    return;
+	}
+	
+	
+	$sidebar_title_above = get_post_meta( $object->ID, 'sidebar_title_above', true );
+	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
+	
+	
+	$sidebar_title_personen = get_post_meta( $object->ID, 'sidebar_title_personen', true );	 
+	$sidebar_personen = get_post_meta( $object->ID, 'sidebar_personen', true );
+	
+	// Verlinkung auf Post Type personen, kann mehr als ein sein
+	
+	$sidebar_title_quicklinks = get_post_meta( $object->ID, 'sidebar_title_quicklinks', true );
+	$sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks', true );
+	    // Verlinkung auf vorhandenen Seiten, kann mehr als ein sein
+	$sidebar_quicklinks_external = get_post_meta( $object->ID, 'sidebar_quicklinks_external', true );
+	    // Verlinkung auf externe Seiten, ggf. wie Ads verwalten, kann mehr als ein sein
+	  
+	 
+
+	$sidebar_title_below = get_post_meta( $object->ID, 'sidebar_title_below', true );
+	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
+
+
+	
+	
+        
+	
+	
+		   
+	fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
+ 	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
+   
+	fau_form_text('sidebar_title_personen', $sidebar_title_personen, __('Titel Ansprechpartner','fau'), __('Titel über Ansprechpartner','fau'));
+	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
+	if ($personen) {
+	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    
+	    foreach ($personen as $current) {
+		$title = get_the_title($current->ID);
+		$auswahl[$current->ID] = $title;
+	    }
+	    wp_reset_postdata();
+	    
+	    fau_form_multiselect('sidebar_personen', $auswahl, $sidebar_personen, __('Auswahl Ansprechpartner','fau'),  __('Wählen Sie die Personen oder Ansprechpartner, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	}
+	
+/*
+	fau_form_text('sidebar_title_quicklinks', $sidebar_title_personen, __('Titel Quicklinks','fau'), __('Titel über Liste von Quicklinks','fau'));
+	$links = get_posts(array('post_type' => 'page', 'post_status' => 'publish', 'orderby' => 'title'));
+	if ($links) {
+	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    
+	    foreach ($links as $current) {
+		$title = get_the_title($current->ID);
+		$auswahl[$current->ID] = $title;
+	    }
+	    wp_reset_postdata();
+	    
+	    fau_form_multiselect('sidebar_quicklinks', $auswahl, $sidebar_quicklinks, __('Auswahl Seitenlinks','fau'),  __('Wählen Sie die Links auf Seiten innerhalb des Webauftritts, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	}
+	
+	
+	
+	*/
+	
+	fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
+ 	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);	    
+	    
+	    
+
+	return;
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_sidebar( $post_id, $post ) {
+	if ( !isset( $_POST['fau_metabox_page_sidebar_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_sidebar_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
 	}
 
 	
