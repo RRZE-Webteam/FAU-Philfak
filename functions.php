@@ -162,7 +162,7 @@ function fau_register_scripts() {
 	    
 
 	wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
-	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
+//	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
 	wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );
 	
     
@@ -173,19 +173,27 @@ function fau_register_scripts() {
 function fau_print_scripts() {
 	global $usejslibs;
   
-	 wp_print_scripts('fau-libs-jquery-hoverintent');
-	 wp_print_scripts('fau-libs-jquery-fluidbox');
-	 wp_print_scripts('fau-libs-jquery-fancybox');
+	 wp_enqueue_script('fau-libs-jquery-hoverintent');
+	    // wird für die Navigationen mit <nav> verwendet
+	 
+	// wp_print_scripts('fau-libs-jquery-fluidbox');
+	    // macht eine ALternative zu lightbox. http://terrymun.github.io/Fluidbox/ 
+	    // Wird nicht verwendet?
+	 
+	 wp_enqueue_script('fau-libs-jquery-fancybox');
+	    // wird für Bilder verwendet, die mit Lightbox vergrößert werden,
+	    //  dazu muss bei dem Bild eine Klasse .lightbox im Link gesetzt
+	    //   werden: <a class="lightbox" ..>
 	 
 	 if ($usejslibs['flexslider'] == true) {
 	     // wird bei Startseite Slider und auch bei gallerien verwendet
-	    wp_print_scripts('fau-libs-jquery-flexslider');	     
+	    wp_enqueue_script('fau-libs-jquery-flexslider');	     
 	 }	 
 	 
 	 if ($usejslibs['caroufredsel'] == true) {
 	    // wird bei Logo-Menus verwendet
-	    wp_print_scripts('fau-libs-jquery-caroufredsel');
-	    wp_print_scripts('fau-js-caroufredsel');
+	    wp_enqueue_script('fau-libs-jquery-caroufredsel');
+	    wp_enqueue_script('fau-js-caroufredsel');
 	}
 }
 
