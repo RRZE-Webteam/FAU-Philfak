@@ -136,66 +136,80 @@ function fau_initoptions() {
 
 /**
  * Enqueues scripts and styles for front end.
- *
- * @since FAU 1.0
- *
- * @return void
  */
-function fau_scripts_styles() {
-	global $options;
-	wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
-	wp_enqueue_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.js', array('jquery'), $options['js-version'], true );
-	wp_enqueue_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.js', array('jquery'), $options['js-version'], true );	
-}
-add_action( 'wp_enqueue_scripts', 'fau_scripts_styles' );
-
-
-add_action('init', 'fau_register_scripts');
-add_action('wp_footer', 'fau_print_scripts');
-
 function fau_register_scripts() {
     global $options;
-    
-    //	wp_enqueue_script( 'fau-libs-jquery', get_fau_template_uri() . '/js/libs/jquery-1.11.1.min.js', array(), $options['js-version'], true );
+    wp_register_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.min.js', array('jquery'), $options['js-version'], true );
+    wp_register_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.min.js', array('jquery'), $options['js-version'], true );	
 
-	wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );
-	    
-
-	wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
+    wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );	    
+    wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
 //	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
-	wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );
-	
+    wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );  
+    wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
+    wp_register_script( 'fau-js-caroufredsel', get_fau_template_uri() . '/js/usecaroufredsel.min.js', array('jquery','fau-libs-jquery-caroufredsel'), $options['js-version'], true );
+}
+add_action('init', 'fau_register_scripts');
+
+
+function fau_basescripts_styles() {
+    global $options;
+    global $usejslibs;
+    wp_enqueue_style( 'fau-style', get_stylesheet_uri(), array(), $options['js-version'] );	
+    wp_enqueue_script( 'fau-scripts');
+    wp_enqueue_script( 'fau-libs-plugins' );	
+
+    wp_enqueue_script('fau-libs-jquery-hoverintent');
+	// wird für die Navigationen mit <nav> verwendet
+
+     // wp_enqueue_script('fau-libs-jquery-fluidbox');
+	// macht eine ALternative zu lightbox. http://terrymun.github.io/Fluidbox/ 
+	// Wird nicht verwendet?
+
+    wp_enqueue_script('fau-libs-jquery-fancybox');
+	// wird für Bilder verwendet, die mit Lightbox vergrößert werden,
+	//  dazu muss bei dem Bild eine Klasse .lightbox im Link gesetzt
+	//   werden: <a class="lightbox" ..>
+}
+add_action( 'wp_enqueue_scripts', 'fau_basescripts_styles' );
+
+
+/*
+ * Scripts, die nur abhaengig von Funktionen, die auf den content wirken, im Footer aktiviert werden.
+ */
+function fau_enqueuefootercripts() {
+    global $options;
+    global $usejslibs;
+   
     
-	wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
-	wp_register_script( 'fau-js-caroufredsel', get_fau_template_uri() . '/js/usecaroufredsel.js', array('jquery','fau-libs-jquery-caroufredsel'), $options['js-version'], true );
+     if ((isset($usejslibs['flexslider']) && ($usejslibs['flexslider'] == true))) {
+	 // wird bei Startseite Slider und auch bei gallerien verwendet
+	wp_enqueue_script('fau-libs-jquery-flexslider');	     
+     }	 
+
+     if ((isset($usejslibs['caroufredsel']) && ($usejslibs['caroufredsel'] == true))) {
+	// wird bei Logo-Menus verwendet
+	wp_enqueue_script('fau-libs-jquery-caroufredsel');
+	wp_enqueue_script('fau-js-caroufredsel');
+    }
 }
 
-function fau_print_scripts() {
-	global $usejslibs;
-  
-	 wp_enqueue_script('fau-libs-jquery-hoverintent');
-	    // wird für die Navigationen mit <nav> verwendet
-	 
-	// wp_print_scripts('fau-libs-jquery-fluidbox');
-	    // macht eine ALternative zu lightbox. http://terrymun.github.io/Fluidbox/ 
-	    // Wird nicht verwendet?
-	 
-	 wp_enqueue_script('fau-libs-jquery-fancybox');
-	    // wird für Bilder verwendet, die mit Lightbox vergrößert werden,
-	    //  dazu muss bei dem Bild eine Klasse .lightbox im Link gesetzt
-	    //   werden: <a class="lightbox" ..>
-	 
-	 if ($usejslibs['flexslider'] == true) {
-	     // wird bei Startseite Slider und auch bei gallerien verwendet
-	    wp_enqueue_script('fau-libs-jquery-flexslider');	     
-	 }	 
-	 
-	 if ($usejslibs['caroufredsel'] == true) {
-	    // wird bei Logo-Menus verwendet
-	    wp_enqueue_script('fau-libs-jquery-caroufredsel');
-	    wp_enqueue_script('fau-js-caroufredsel');
-	}
+add_action( 'wp_footer', 'fau_enqueuefootercripts' );
+
+/* 
+ * Scripts und CSS fuer Adminbereich 
+ */
+function fau_admin_header_style() {
+    wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
+    wp_enqueue_style( 'themeadminstyle' );	
+    wp_enqueue_style( 'dashicons' );
+    wp_enqueue_media();
+    wp_enqueue_script('jquery-ui-datepicker');
+    wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
+    wp_enqueue_script('themeadminscripts');	   
 }
+add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
+
 
 function fau_addmetatags() {
     global $options;
@@ -298,16 +312,6 @@ add_action( 'after_setup_theme', 'fau_custom_header_setup' );
 
 
 
-function fau_admin_header_style() {
-    wp_register_style( 'themeadminstyle', get_fau_template_uri().'/css/admin.css' );	   
-    wp_enqueue_style( 'themeadminstyle' );	
-    wp_enqueue_style( 'dashicons' );
-    wp_enqueue_media();
-    wp_enqueue_script('jquery-ui-datepicker');
-    wp_register_script('themeadminscripts', get_fau_template_uri().'/js/admin.js', array('jquery'));    
-    wp_enqueue_script('themeadminscripts');	   
-}
-add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
 
 /**
  * Registers our main widget area and the front page widget areas.
@@ -315,8 +319,6 @@ add_action( 'admin_enqueue_scripts', 'fau_admin_header_style' );
  * @since FAU 1.0
  */
 function fau_sidebars_init() {
-
-	
 
 	register_sidebar( array(
 		'name' => __( 'News Sidebar', 'fau' ),
