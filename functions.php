@@ -142,12 +142,16 @@ function fau_register_scripts() {
     wp_register_script( 'fau-scripts', get_fau_template_uri() . '/js/scripts.min.js', array('jquery'), $options['js-version'], true );
     wp_register_script( 'fau-libs-plugins', get_fau_template_uri() . '/js/libs/plugins.min.js', array('jquery'), $options['js-version'], true );	
 
-    wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );	    
+    wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );
+	// Flexslider für Startseite und für Galerien.  
     wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
 //	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
     wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );  
+	// Fuer bessere Lightboxen
     wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
     wp_register_script( 'fau-js-caroufredsel', get_fau_template_uri() . '/js/usecaroufredsel.min.js', array('jquery','fau-libs-jquery-caroufredsel'), $options['js-version'], true );
+	// Slidende Logos
+    
 }
 add_action('init', 'fau_register_scripts');
 

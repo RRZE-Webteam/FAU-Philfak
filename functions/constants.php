@@ -4,7 +4,7 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		    => '1.2',
+    'js-version'		    => '1.3',
     'optionpage-tab-default'	    => 'startseite',
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
