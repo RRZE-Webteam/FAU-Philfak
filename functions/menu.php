@@ -285,7 +285,13 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 			if($post && $post->post_type == 'imagelink') {
 				$protocol  = get_post_meta( $item->object_id, 'protocol', true );
 				$link  = get_post_meta( $item->object_id, 'link', true );
-				$item_output .= '<a class="subpage-item ext-link" href="'.$protocol.$link.'">';
+				$targeturl = get_post_meta( $item->object_id, 'fauval_imagelink_url', true );
+				
+				 if (empty($targeturl) && isset($protocol) && isset($link)) {
+				    $targeturl = $protocol.$link;
+				}
+				
+				$item_output .= '<a class="subpage-item ext-link" href="'.$targeturl.'">';
 			} else {
 				$item_output .= '<a'. $attributes .'>';
 			}

@@ -14,11 +14,13 @@ global $options;
 	<div class="container">
 		<div class="row">
 			<div class="span8">
-
+			    <?php fau_breadcrumb($options['title_hero_search']); ?>
+			   <!-- 
 			    <div class="breadcrumbs">
 					<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
 					<?php  echo $options['title_hero_search']; ?>
 				</div>
+			    -->
 			</div>
 		</div>
 		<div class="row">

@@ -12,7 +12,7 @@ add_action( 'load-post-new.php', 'fau_metabox_cf_setup' );
 
 /* Meta box setup function. */
 function fau_metabox_cf_setup() {
-
+    global $options;
 	/* Display Metabox */
 	add_action( 'add_meta_boxes_page', 'fau_add_metabox_page' );
 	add_action( 'add_meta_boxes_post', 'fau_add_metabox_post' );
@@ -23,11 +23,15 @@ function fau_metabox_cf_setup() {
 	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
-	add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
-
-	
-	add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
-	add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
+	if ($options['advanced_activateads'] == true) {
+	    add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
+	}
+	if ($options['advanced_beitragsoptionen']==true) {
+	    add_action( 'save_post', 'fau_save_post_teaser', 10, 2 );
+	}
+	if ($options['advanced_topevent']==true) {
+	    add_action( 'save_post', 'fau_save_post_topevent', 10, 2 );
+	}
 
 }
 
@@ -35,6 +39,7 @@ function fau_metabox_cf_setup() {
 /* Create one or more meta boxes to be displayed on the post editor screen. */
 
 function fau_add_metabox_page() {
+    global $options;
 	add_meta_box(
 		'fau_metabox_page_untertitel',			
 		esc_html__( 'Untertitel', 'fau' ),		
@@ -59,29 +64,41 @@ function fau_add_metabox_page() {
 		'fau_do_metabox_page_imagelinks',		
 		 'page','side','core'
 	);
-	
+	if ($options['advanced_activateads'] == true) {
+	    add_meta_box(
+		    'fau_metabox_page_ad',			
+		    esc_html__( 'Werbung aktivieren', 'fau' ),		
+		    'fau_do_metabox_page_ad',		
+		     'page','side','core'
+	    );
+	}
+/*
 	add_meta_box(
-		'fau_metabox_page_ad',			
-		esc_html__( 'Werbung aktivieren', 'fau' ),		
-		'fau_do_metabox_page_ad',		
-		 'page','side','core'
+		'fau_metabox_page_sidebar',			
+		esc_html__( 'Sidebar (BETA!!!)', 'fau' ),		
+		'fau_do_metabox_page_sidebar',		
+		 'page','normal','core'
 	);
-
+  */
+ 
 }
 
 function fau_add_metabox_post() {
+	global $options;
 	add_meta_box(
 		'fau_metabox_post_teaser',			
 		esc_html__( 'Beitragsoptionen', 'fau' ),		
 		'fau_do_metabox_post_teaser',		
 		 'post','normal','high'
 	);
-	add_meta_box(
-		'fau_metabox_post_topevent',			
-		esc_html__( 'Top-Event', 'fau' ),		
-		'fau_do_metabox_post_topevent',		
-		 'post','normal','high'
-	);
+	if ($options['advanced_topevent']==true) {
+	    add_meta_box(
+		    'fau_metabox_post_topevent',			
+		    esc_html__( 'Top-Event', 'fau' ),		
+		    'fau_do_metabox_post_topevent',		
+		     'post','normal','high'
+	    );
+	}
 	
 }
 
@@ -102,8 +119,8 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	    return;
 	}
 	
-	$abstract  = get_post_meta( $object->ID, 'abstract', true );	
-	$external_link =  get_post_meta( $object->ID, 'external_link', true );
+	
+	
 	
 
 	?>
@@ -118,34 +135,26 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	   ?>
 	</p>
 	
-	<div class="optionseingabe">
-	    <p>
-		    <label for="fauval_anleser">
-			<?php _e( "Anleser", 'fau' ); ?>:
-		    </label>
-	    </p>
-	    <textarea name="fauval_anleser" id="fauval_anleser" class="large-text" rows="4" ><?php echo $abstract; ?></textarea>	
-	    <br>
-	    <div class="howto"><?php echo __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
-	    echo __('Erlaubte Anzahl an Zeichen:','fau');
-	    echo ' <span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';
-	    ?></div>
-	</div>
-	<div class="optionseingabe">
-	    <p>
-		    <label for="fauval_external_link">
-			<?php _e( "Externer Link", 'fau' ); ?>:
-		    </label>
-	    </p>
-	    <input type="url" name="fauval_external_link" id="fauval_external_link" class="large-text" placeholder="http://" value="<?php echo $external_link; ?>">	
-	    <br>
-	    <div class="howto"><?php echo __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau');
-	    ?></div>
-	</div>
-	
-	
-	<?php 
 
+	
+	<?php
+	
+	if ($options['advanced_beitragsoptionen']==true) {	
+	    $howto = __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
+	    $howto .= '<br>'.__('Erlaubte Anzahl an Zeichen:','fau');
+	    $howto .= '<span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
+	    $abstract  = get_post_meta( $object->ID, 'abstract', true );	
+	    fau_form_textarea('fauval_anleser', $abstract, __('Anleser','fau'), 80, 5, $howto);
+
+	    $external_link =  get_post_meta( $object->ID, 'external_link', true );
+	    fau_form_url('fauval_external_link', $external_link, __( "Externer Link", 'fau' ), __('Wenn der Artikel nicht auf der Website liegt, sondern auf eine externe Seite verlinkt werden soll, ist hier eine URL anzugeben.','fau'), $placeholder='http://', $size = 0);
+
+	    $override_thumbdesc =  get_post_meta( $object->ID, 'fauval_overwrite_thumbdesc', true );
+	    fau_form_text('fauval_overwrite_thumbdesc', $override_thumbdesc, __('Ersetze Bildbeschreibung','fau'), __('Mit diesem optionalen Text kann die Bildunterschrift des verwendeten Beitragsbildes durch einen eigenen Text ersetzt werden, der nur für diesen Beitrag gilt.','fau'));
+
+	    $sliderimage =  get_post_meta( $object->ID, 'fauval_slider_image', true );
+	    fau_form_image('fauval_slider_image', $sliderimage, __('Bühnenbild','fau'), __('An dieser Stelle kann optional ein alternatives Bild für die Bühne der Startseite ausgewählt werden, falls das normale Beitragsbild hierzu nicht verwendet werden soll.','fau'),540,150);
+	}
  }
 
  /* Save the meta box's post/page metadata. */
@@ -191,6 +200,34 @@ function fau_save_post_teaser( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'external_link', $oldval );	
 	} 
+	
+	$newval = ( isset( $_POST['fauval_overwrite_thumbdesc'] ) ? wp_filter_nohtml_kses( $_POST['fauval_overwrite_thumbdesc'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_overwrite_thumbdesc', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_overwrite_thumbdesc', $oldval );	
+	} 
+	
+	
+	$newval = ( isset( $_POST['fauval_slider_image'] ) ? intval( $_POST['fauval_slider_image'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_slider_image', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_slider_image', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_slider_image', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_slider_image', $oldval );	
+	} 
+	
 	
 }
 
@@ -903,6 +940,114 @@ function fau_save_metabox_page_ad( $post_id, $post ) {
 		} else {
 		    add_post_meta( $post_id, 'werbebanner_unten', $newval, true );
 		}
+	}
+
+	
+}
+
+
+
+
+/* 
+ * Sidebar der Seiten  
+ */
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_page_sidebar( $object, $box ) { 
+    global $options;
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_sidebar_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( 'page' == $post_type ) {
+	    if ( !current_user_can( 'edit_page', $object->ID) )
+		 
+		return;
+	} else {
+	    return;
+	}
+	
+	
+	$sidebar_title_above = get_post_meta( $object->ID, 'sidebar_title_above', true );
+	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
+	
+	
+	$sidebar_title_personen = get_post_meta( $object->ID, 'sidebar_title_personen', true );	 
+	$sidebar_personen = get_post_meta( $object->ID, 'sidebar_personen', true );
+	
+	// Verlinkung auf Post Type personen, kann mehr als ein sein
+	
+	$sidebar_title_quicklinks = get_post_meta( $object->ID, 'sidebar_title_quicklinks', true );
+	$sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks', true );
+	    // Verlinkung auf vorhandenen Seiten, kann mehr als ein sein
+	$sidebar_quicklinks_external = get_post_meta( $object->ID, 'sidebar_quicklinks_external', true );
+	    // Verlinkung auf externe Seiten, ggf. wie Ads verwalten, kann mehr als ein sein
+	  
+	 
+
+	$sidebar_title_below = get_post_meta( $object->ID, 'sidebar_title_below', true );
+	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
+
+
+	
+	
+        
+	
+	
+		   
+	fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
+ 	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
+   
+	fau_form_text('sidebar_title_personen', $sidebar_title_personen, __('Titel Ansprechpartner','fau'), __('Titel über Ansprechpartner','fau'));
+	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
+	if ($personen) {
+	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    
+	    foreach ($personen as $current) {
+		$title = get_the_title($current->ID);
+		$auswahl[$current->ID] = $title;
+	    }
+	    wp_reset_postdata();
+	    
+	    fau_form_multiselect('sidebar_personen', $auswahl, $sidebar_personen, __('Auswahl Ansprechpartner','fau'),  __('Wählen Sie die Personen oder Ansprechpartner, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	}
+	
+/*
+	fau_form_text('sidebar_title_quicklinks', $sidebar_title_personen, __('Titel Quicklinks','fau'), __('Titel über Liste von Quicklinks','fau'));
+	$links = get_posts(array('post_type' => 'page', 'post_status' => 'publish', 'orderby' => 'title'));
+	if ($links) {
+	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
+	    
+	    foreach ($links as $current) {
+		$title = get_the_title($current->ID);
+		$auswahl[$current->ID] = $title;
+	    }
+	    wp_reset_postdata();
+	    
+	    fau_form_multiselect('sidebar_quicklinks', $auswahl, $sidebar_quicklinks, __('Auswahl Seitenlinks','fau'),  __('Wählen Sie die Links auf Seiten innerhalb des Webauftritts, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	}
+	
+	
+	
+	*/
+	
+	fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
+ 	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);	    
+	    
+	    
+
+	return;
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_page_sidebar( $post_id, $post ) {
+	if ( !isset( $_POST['fau_metabox_page_sidebar_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_sidebar_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+		return;
 	}
 
 	

@@ -114,10 +114,16 @@ Media Queries for Theme FAU
 		overflow-y: hidden;
 	}
 
-	#content img {
+	#content img, 
+	#content .image-placeholder {
 		margin-left: 15px;
 		margin-right: 15px;
 		margin-bottom: 15px;
+	}
+	#content .image-placeholder {
+		img {
+			margin: 0;
+		}
 	}
 	#content .image-gallery-grid ul li img {
 		margin: 0;

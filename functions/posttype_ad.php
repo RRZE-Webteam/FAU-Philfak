@@ -4,10 +4,11 @@
  * Code fuer den Custom Type "ad" / Werbebanner
  */
 
+global $options;
 
 // Register Custom Post Type
 function ad_post_type() {
-	
+    global $options;
 	$labels = array(
 		'name'                => __( 'Werbung',  'fau' ),
 		'singular_name'       => __( 'Werbung',  'fau' ),
@@ -31,9 +32,7 @@ function ad_post_type() {
 		'show_in_menu'        => true,
 		'show_in_nav_menus'   => false,
 		'show_in_admin_bar'   => true,
-	//	'menu_position'       => 5,
   	 	'menu_icon'		=> 'dashicons-cart',
-
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => true,
@@ -58,19 +57,23 @@ function ad_post_type() {
 		),
 		'map_meta_cap' => true
 	);
-	register_post_type( 'ad', $args );
+	
+	
+	
+    register_post_type( 'ad', $args );
+  
 
 }
 
 // Hook into the 'init' action
-if ( current_user_can('publish_pages') ) {
+if ( current_user_can('publish_pages') && ($options['advanced_activateads'] == true)) {
     add_action( 'init', 'ad_post_type', 0 );
 }
 
 function ad_restrict_manage_posts() {
 	global $typenow;
-
-	if( $typenow == "ad" ){
+	global $options;
+	if ($typenow == "ad" )  {
 		$filters = get_object_taxonomies($typenow);
 		
 		foreach ($filters as $tax_slug) {
@@ -172,8 +175,9 @@ function fau_ad_metabox_content( $object, $box ) {
 }
 
 
-add_action( 'add_meta_boxes', 'fau_ad_metabox' );
-
+if ($options['advanced_activateads'] == true) {
+    add_action( 'add_meta_boxes', 'fau_ad_metabox' );
+}
 
 
 
@@ -284,8 +288,9 @@ function fau_ad_metabox_content_save( $post_id ) {
    
     
 }
-add_action( 'save_post', 'fau_ad_metabox_content_save' );
-
+if ($options['advanced_activateads'] == true) {
+    add_action( 'save_post', 'fau_ad_metabox_content_save' );
+}
 
 
 
@@ -297,69 +302,74 @@ function fau_get_ad($type, $withhr = true) {
     global $options;
     global $post;
     
-    // werbebanner_seitlich   oder     werbebanner_unten
-   $list = get_post_meta( $post->ID, $type, true );
-   $class = '';  
-   
-   if ($type == 'werbebanner_unten') {
-	$class = '';
-   } else {
-        $class = ' fau-werbung-right';
-   }
-   $out = '';
-   
-   if ((isset($list)) && (!empty($list))) {
-       if (!is_array($list)) {
-	    $val = $list;
-	    $list = array();
-	    $list[0] = $val;
-       } 
-       
-       if ($withhr) {
-	   $out .= "<hr>\n";
+    if ($options['advanced_activateads'] == true) {
+
+	// werbebanner_seitlich   oder     werbebanner_unten
+       $list = get_post_meta( $post->ID, $type, true );
+       $class = '';  
+
+       if ($type == 'werbebanner_unten') {
+	    $class = '';
+       } else {
+	    $class = ' fau-werbung-right';
        }
-       
-       $out .= '<aside class="fau-werbung'.$class.'" role="region">';
-       foreach ($list as $id) {
+       $out = '';
 
-	    $out .= '<h3>';	    
-	    if (isset($options['url_banner-ad-notice'])) {
-		$out .= '<a class="banner-ad-notice" href="'.$options['url_banner-ad-notice'].'">';
-	    }
-	    $out .= $options['title_banner-ad-notice'];
-	    if (isset($options['url_banner-ad-notice'])) {
-		  $out .= '</a>';
-	    }
-	    $out .= '</h3>';	   
-	    $out .= ' <div class="fau-werbung-content">';
-	    $scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
-	    if (empty($scriptcode)) {
-		$scriptcode = get_post_meta( $id, 'ad_script', true );
-	    }
-	    
-	    if(isset($scriptcode)) {
-		
-		$out .=  html_entity_decode($scriptcode);
-	    } else  {
-		$link =    get_post_meta( $id, 'fauval_ad_url', true ); 
-		if (empty($link)) {
-		    $link =    get_post_meta( $id, 'link', true ); 
+       if ((isset($list)) && (!empty($list))) {
+	   if (!is_array($list)) {
+		$val = $list;
+		$list = array();
+		$list[0] = $val;
+	   } 
+
+	   if ($withhr) {
+	       $out .= "<hr>\n";
+	   }
+
+	   $out .= '<aside class="fau-werbung'.$class.'" role="region">';
+	   foreach ($list as $id) {
+
+		$out .= '<h3>';	    
+		if (isset($options['url_banner-ad-notice'])) {
+		    $out .= '<a class="banner-ad-notice" href="'.$options['url_banner-ad-notice'].'">';
 		}
-		if($link) {
-		    $out .=  '<a href="'.get_field('link', $id).'">';
+		$out .= $options['title_banner-ad-notice'];
+		if (isset($options['url_banner-ad-notice'])) {
+		      $out .= '</a>';
 		}
-		$out .=  get_the_post_thumbnail($id, 'full');
-		if($link) {
-		    $out .=  '</a>';
+		$out .= '</h3>';	   
+		$out .= ' <div class="fau-werbung-content">';
+		$scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
+		if (empty($scriptcode)) {
+		    $scriptcode = get_post_meta( $id, 'ad_script', true );
 		}
-				
-	    }
-	    $out .= '</div>';
+
+		if(isset($scriptcode)) {
+
+		    $out .=  html_entity_decode($scriptcode);
+		} else  {
+		    $link =    get_post_meta( $id, 'fauval_ad_url', true ); 
+		    if (empty($link)) {
+			$link =    get_post_meta( $id, 'link', true ); 
+		    }
+		    if($link) {
+			$out .=  '<a href="'.get_field('link', $id).'">';
+		    }
+		    $out .=  get_the_post_thumbnail($id, 'full');
+		    if($link) {
+			$out .=  '</a>';
+		    }
+
+		}
+		$out .= '</div>';
+
+	   }
+	   $out .= '</aside>';
+	   return $out;
 
        }
-       $out .= '</aside>';
-       return $out;
-
-   }
+    } else {
+	return;
+    }
    
 }

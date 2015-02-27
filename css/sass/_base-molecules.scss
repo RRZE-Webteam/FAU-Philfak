@@ -274,6 +274,14 @@
 	li {
 		padding: 0 0 0 20px;
 	}
+	
+}
+.FAUVideoWidget {
+    li {
+	background: url("../img/list-arrow-blue.png") no-repeat scroll left 4px rgba(0, 0, 0, 0);
+	font-size: 13px;
+	line-height: 20px;
+    }
 }
 
 /* Widget: RSS */
@@ -412,13 +420,50 @@
 }
 
 .content-person {
+	border: 1px solid $colorLightest;
 	margin: 10px 0;
-	padding-bottom: 10px;
+	padding: 10px;
+	
+	@media(max-width: $breakMD) {
+		margin: 10px 15px;
+		padding: 10px 0;
+	}
 	
 	li {
 		font-size: 13px;
 		line-height: 20px;
 		background-position: left 5px;
+	}
+	
+	.person-info-description {
+		padding-top: 8px;
+		
+		@media(max-width: $breakMD) {
+			margin-left: 0 !important;
+		}
+	}
+	
+	.person-info-description,
+	.person-info-description p {
+		font-size: 13px;
+		line-height: 20px;
+	}
+	
+	.image-placeholder {
+		width: 90px;
+		height: 120px;
+		background: $colorLightest;
+		position: relative;
+		text-align: center;
+	
+		
+		&:before {
+			@extend .fa;
+			@extend .fa-4x;
+			@extend .fa-user;
+			line-height: 120px;	
+			color: $colorLight;
+		}
 	}
 }
 
@@ -428,7 +473,7 @@ ul.person-info {
 	li {
 		@include no-list;
 		background-image: none;
-		// padding-left: 20px;
+		padding-left: 0px;
 		min-height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -449,7 +494,7 @@ ul.person-info {
 	
 	li.person-info-address {
 		margin-top: 10px;
-		padding-left: 20px;
+		padding-left: 0px;
 	}
 	
 	li.person-info-description {
@@ -476,7 +521,25 @@ ul.person-info {
 
 .news-details {
 	margin-top: 20px;
+	
+	
+	.post-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+	}
+	.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+	}
 }
+.post-meta {
+	    display: block;
+	    padding: 5px 0;
+	    margin: -14px 0 14px 0;
+	    color: $colorPrimary;
+	    font-family: $fontStack;
+}
+
 
 .news-image {
 	display: block;
@@ -502,38 +565,33 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
+		
+		.news-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.news-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
 	}
 	.news-meta-date {
 	    margin-left: 10px;
-	}	
-}
-.post-meta {
-        display: block;
-	padding: 5px 0;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
+	}
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
 	
-}
-/*
-.news-meta {
-	border-bottom: 1px solid $colorLightest;
-	padding: 5px 0;
-	margin-top: 30px;
-	margin-bottom: -20px;
-	color: #888;
-	text-align: right;
 }
 
-.news-meta-date {
-	display: block;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
-	
-	.search-result & {
-		margin-top: 0px;
-	}
-}
-*/
+
 
 .news-meta-categories {
 	@include inline-block;
@@ -573,10 +631,37 @@ ul.person-info {
 		margin-bottom: 10px;
 		color: $colorText;
 		display: block;
+		font-family: $fontStack;
+		
+		.post-meta-category:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
+		.post-meta-event:before {
+		    @extend .fa;
+		    @extend .fa-calendar-o;
+		}
+		
+	}
+	h3 .ext-link,  
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
 	}
 	.post-meta-category {
 	    margin-right: 10px;
 	}
+	
+	
 }
 
 
@@ -824,6 +909,16 @@ ul.person-info {
 			@include box-shadow(none !important);
 		}
 	}
+	
+	.gallery-image-caption {
+	    line-height: 20px;
+	    padding: 5px;
+	    .linkorigin {
+		font-size: 13px;
+		line-height: 18px;
+		color: $colorTextLight;
+	     }
+	}
 }
 
 /* Image Gallery: Carousel */
@@ -834,7 +929,8 @@ ul.person-info {
 	ul.slides {
 		@include no-list;
 		background: none;
-		
+		padding-left: 40px;
+		padding-right: 40px;
 		li {
 			@include no-list;
 			cursor: pointer;
@@ -858,16 +954,27 @@ ul.person-info {
 			@include no-list;
 			background: none;
 		}
+		
 	}
 	
 	.flex-prev {
 		top: 60px;
-		left: 0;
+		left: 0px;
+		opacity: 0.1;
 	}
 	
 	.flex-next {
 		top: 60px;
-		right: 0;
+		right: 0px;
+		opacity: 0.1;
+	}
+	&:hover {
+	    .flex-prev {
+		opacity: 1;
+	    }
+	    .flex-next {
+		opacity: 1;
+	    }
 	}
 }
 
@@ -1040,6 +1147,13 @@ ul.tagcloud {
 	.widget {
 		margin-bottom: 22px;
 		margin-top: 22px;
+		
+		
+		li {
+		    font-size: 13px;
+		    line-height: 22px;		   
+		}
+		
 	}
 	
 	.widget:last-child {
@@ -1053,6 +1167,7 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
+	
 }
 
 /* Accordion */
@@ -1104,25 +1219,30 @@ ul.tagcloud {
 			display: none;
 			
 			.accordion-inner {
+				@extend .clearfix;
 				border: none;
 				background: lighten($colorLightest, 4%);
 				padding: 15px 20px;
 			}
 		}
 	}
-	
+	.philfak .accordion-heading .accordion-toggle,
 	.gold .accordion-heading .accordion-toggle {
 		border-color: $colorPhilFak;
 	}
+	.rwfak .accordion-heading .accordion-toggle,
 	.red .accordion-heading .accordion-toggle {
 		border-color: $colorRwFak;
 	}
+	.medfak .accordion-heading .accordion-toggle,
 	.blue .accordion-heading .accordion-toggle {
 		border-color: $colorMedFak;
 	}
+	.natfak .accordion-heading .accordion-toggle,
 	.green .accordion-heading .accordion-toggle {
 		border-color: $colorNatFak;
 	}
+	.techfak .accordion-heading .accordion-toggle,
 	.grey .accordion-heading .accordion-toggle {
 		border-color: $colorTechFak;
 	}
@@ -1147,6 +1267,56 @@ ul.tagcloud {
 	border-left: 0;
 }
 
+/* Boxes like accordions for single glossar entries and other article-inserts/shortcodes */
+
+.accordionbox {
+    margin: 10px 0 20px 0;
+    
+    header {
+	border-left: 10px solid $colorPrimary;
+	background: $colorLightest;
+	color: $colorPrimary;
+	@include border-radius(4px);
+	text-decoration: none;
+	font-size: 16px;
+	padding: 8px 35px 8px 10px;
+	position: relative;
+	
+	h2 {
+	    padding: 0px;
+	}
+	&.philfak {
+		border-color: $colorPhilFak;
+	}
+
+	&.rwfak {
+		border-color: $colorRwFak;
+	}
+
+	&.medfak {
+		border-color: $colorMedFak;
+	}
+
+	&.natfak {
+		border-color: $colorNatFak;
+	}
+
+	&.techfak {
+		border-color: $colorTechFak;
+	}
+	
+	
+    }
+    
+     
+    
+    .body {
+	border: none;
+	background: lighten($colorLightest, 4%);
+	padding: 15px 20px;
+    } 
+}
+
 
 /* Social Media Buttons */
 .likebutton-dynamic, .tweetbutton-dynamic {
@@ -1156,7 +1326,12 @@ ul.tagcloud {
 }
 
 .screen-reader-text {
-	display: none !important;
+    position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
 
 .nav-links {
@@ -1441,4 +1616,65 @@ ul.files {
 	
 	display: none;
 
+}
+
+
+/* social share links */
+
+.social-share {
+	@include no-list;
+	margin: 20px 0;
+	
+	li {
+		@include no-list;
+		display: inline;
+		margin-right: 3px;
+		
+		a {
+			display: inline-block;
+			padding: 2px 5px;
+			text-decoration: none;
+			@include border-radius(4px);
+			
+			&:hover, &:focus {
+				text-decoration: none;
+			}
+			
+			&:before {
+				@extend .fa;
+				@extend .fa-lg;
+				margin-right: 5px;
+			}
+			
+			&.btn-social-share-facebook {
+				background: #3e59a5;
+				color: #fff;
+				border: 1px solid #3e59a5;
+				
+				&:before {
+					@extend .fa-facebook-square;
+				}
+				
+				&:hover, &:focus {
+					border-color: #23376e;
+					background: #344d92;
+				}
+			}
+			
+			&.btn-social-share-twitter {
+				background: #ecf6f5;
+				color: #03a5d5;
+				border: 1px solid #c9dcda;
+				
+				&:before {
+					@extend .fa-twitter;
+				}
+				
+				&:hover, &:focus {
+					border-color: #93c2d0;
+					background: #e7f3f7;
+				}
+			}
+		}
+	}
 }
