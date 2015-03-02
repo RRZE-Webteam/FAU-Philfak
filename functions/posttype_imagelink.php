@@ -252,6 +252,7 @@ add_action( 'save_post', 'fau_imagelink_metabox_content_save' );
 
 function fau_get_imagelinks ( $catid ) {
     global $options;
+    global $usejslibs;
     
     if ( isset($catid) && $catid >0) {
 		
@@ -302,7 +303,7 @@ function fau_get_imagelinks ( $catid ) {
 	    echo "</div>\n";
 	    echo '<div class="container"><a id="logos-menu-playpause" href="#"><span class="play">'. __('Abspielen', 'fau') . '</span><span class="pause">'. __('Pause', 'fau') . '</span></a></div>';
 	    echo "\n";
-	
+	    $usejslibs['caroufredsel'] = true;
 	} 
 		
 	return;

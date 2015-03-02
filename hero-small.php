@@ -16,12 +16,9 @@ global $options;
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<?php if(function_exists('bcn_display')): ?>
-					<div class="breadcrumbs">
-						<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
-						<?php bcn_display(); ?>
-					</div>
-				<?php endif; ?>
+				<?php 
+				 fau_breadcrumb();
+				 ?>
 				
 				<div class="hero-meta-portal">
 					<?php

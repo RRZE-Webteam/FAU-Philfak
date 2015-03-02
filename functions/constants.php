@@ -4,7 +4,7 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		    => '1.2',
+    'js-version'		    => '1.3',
     'optionpage-tab-default'	    => 'startseite',
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
@@ -21,7 +21,9 @@ $defaultoptions = array(
     'start_link_news_cat'	    => 0,    
     'start_link_news_show'	    => 1,
     'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
-  
+    'start_link_videoportal_socialmedia'    => true,
+    'start_title_videoportal_socialmedia'   => __('Alle Videos','fau'),
+    
     
     'default_mainmenuthumb_width'    => 370,
     'default_mainmenuthumb_height'   => 185,
@@ -43,7 +45,12 @@ $defaultoptions = array(
     'default_topevent_excerpt_length' => 100,
 
     
-    'breadcrumb_root'		    => 'fau.de',
+    'breadcrumb_root'			=> 'fau.de',
+    'breadcrumb_delimiter'		=> ' <span>/</span>',
+    'breadcrumb_beforehtml'		=> '<span class="active">', // '<span class="current">'; // tag before the current crumb
+    'breadcrumb_afterhtml'		=> '</span>',
+    'breadcrumb_uselastcat'		=> true,
+    
     'socialmedia'		    => 1,
     'menu_pretitle_portal'	    => __('Portal', 'fau'),
     'menu_aftertitle_portal'	    => '',
@@ -85,12 +92,21 @@ $defaultoptions = array(
     'title_hero_search'		    =>  __( 'Suche', 'fau' ),
     'title_hero_events'		    =>  __( 'Veranstaltungskalender','fau'),
     
+    'advanced_beitragsoptionen'		=> true,
+    'advanced_topevent'			=> true,
+    'advanced_activateads'		=> true,
+    'galery_link_original'		=> true,
+    'advanced_activatefaupluginpersonen'=> true,
+    
+    
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
     'search_display_continue_arrow'		=> true,
     'search_display_excerpt_morestring'		=> '...',
     
+
+     
 ); 
 
 
@@ -531,7 +547,18 @@ $setoptions = array(
 		  'title'   => __( 'Social Media Portale', 'fau' ),
 		  'liste'   => $default_socialmedia_liste,
 	      ), 
-	                      
+	     'start_link_videoportal_socialmedia'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Verlinke Videoportal', 'fau' ),
+                  'label'   => __( 'Verlinke Videoportal auf dem Social Media Fußteil der Startseite', 'fau' ),
+                  'default' => $defaultoptions['start_link_videoportal_socialmedia'],
+              ),     
+	      'start_title_videoportal_socialmedia' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Verlinkungstext Videoportal', 'fau' ),
+                  'label'   => __( 'Text mit der auf das Videoportal im Social Media Fußteil verlinkt wird.', 'fau' ),               
+                  'default' => $defaultoptions['start_title_videoportal_socialmedia'],
+              ),       
           )
        ),
        'allgemeines'   => array(
@@ -710,6 +737,65 @@ $setoptions = array(
    
           )
        ),
+       'advanced'   => array(
+           'tabtitle'   => __('Erweitert', 'fau'),
+           'fields' => array(
+               'bedienung'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Backend', 'fau' ),                      
+              ),
+             'advanced_beitragsoptionen'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Erweiterte Beitragsoptionen', 'fau' ),
+                  'label'   => __( 'Bei der Bearbeitung von Beiträgen die erweiterten Optionen anzeigen.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_beitragsoptionen'],
+		  'parent'  => 'bedienung'
+              ),   
+	      'advanced_topevent'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Top-Events', 'fau' ),
+                  'label'   => __( 'Ermöglicht es Beiträge als Top-Event zu deklarieren und entsprechende Optionen freizuschalten.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_topevent'],
+		  'parent'  => 'bedienung'
+              ),   
+	      'advanced_activateads' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Werbebanner', 'fau' ),
+                  'label'   => __( 'Aktiviert die Möglichkeit, Werbebanner zu verwalten.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activateads'],
+		  'parent'  => 'bedienung'
+              ),   
+	        'advanced_activatefaupluginpersonen' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'FAU-Plugin Personenverwaltung', 'fau' ),
+                  'label'   => __( 'Nutze alte Personen- und Adressverwaltung aus dem FAU-Plugin', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activatefaupluginpersonen'],
+		  'parent'  => 'bedienung'
+              ),   
+	       
+	       
+	       
+	      'design'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Design', 'fau' ),                      
+              ),
+	       
+	      'galery_link_original'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Verlinke Galerybilder', 'fau' ),
+                  'label'   => __( 'Bei der Anzeige einer Defaultgalerie unter der Bildunterschrift eine Verlinkung auf das Originalbild einschalten', 'fau' ),                
+                  'default' => $defaultoptions['galery_link_original'],
+		  'parent'  => 'design'
+              ),   
+	     
+	       
+	       
+	       
+   
+          )
+       ),
+       
+       
     )
 );
 	       

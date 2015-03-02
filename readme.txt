@@ -13,8 +13,8 @@ DOWNLOADS
 
 AUTHOR 
 
-   RRZE-Webteam (webmaster@rrze.fau.de)
-   Agentur Medienreaktor
+   RRZE-Webteam , http://www.rrze.fau.de
+   Agentur Medienreaktor, http://www.medienreaktor.de/
 
 
 CREDITS & COPYRIGHT
@@ -24,7 +24,14 @@ CREDITS & COPYRIGHT
 
 LIBRARIES & SOURCES
 
-   "Font Awesome by Dave Gandy - http://fontawesome.io". 
+* Font Awesome by Dave Gandy - http://fontawesome.io. 
+* Font JustVector
+* Font OpenSans
+* Font Roboto
+* fancyBox v2.1.5 fancyapps.com 
+* jQuery carouFredSel 6.2.1
+* jQuery FlexSlider v2.3.0
+* hoverIntent v1.8.0
 
 REQUIRED PLUGINS
 
@@ -38,7 +45,6 @@ OPTIONAL PLUGINS
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
-* Breadcrumb NavXT
 * TinyMCE Advanced
 * CMS Tree Page View   
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)

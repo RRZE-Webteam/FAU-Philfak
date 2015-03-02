@@ -274,6 +274,14 @@
 	li {
 		padding: 0 0 0 20px;
 	}
+	
+}
+.FAUVideoWidget {
+    li {
+	background: url("../img/list-arrow-blue.png") no-repeat scroll left 4px rgba(0, 0, 0, 0);
+	font-size: 13px;
+	line-height: 20px;
+    }
 }
 
 /* Widget: RSS */
@@ -465,7 +473,7 @@ ul.person-info {
 	li {
 		@include no-list;
 		background-image: none;
-		// padding-left: 20px;
+		padding-left: 0px;
 		min-height: 20px;
 		font-size: 13px;
 		line-height: 20px;
@@ -486,7 +494,7 @@ ul.person-info {
 	
 	li.person-info-address {
 		margin-top: 10px;
-		padding-left: 20px;
+		padding-left: 0px;
 	}
 	
 	li.person-info-description {
@@ -513,7 +521,25 @@ ul.person-info {
 
 .news-details {
 	margin-top: 20px;
+	
+	
+	.post-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+	}
+	.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+	}
 }
+.post-meta {
+	    display: block;
+	    padding: 5px 0;
+	    margin: -14px 0 14px 0;
+	    color: $colorPrimary;
+	    font-family: $fontStack;
+}
+
 
 .news-image {
 	display: block;
@@ -540,39 +566,32 @@ ul.person-info {
 		color: $colorText;
 		display: block;
 		font-family: $fontStack;
+		
+		.news-meta-categories:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.news-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
 	}
 	.news-meta-date {
 	    margin-left: 10px;
-	}	
-}
-.post-meta {
-        display: block;
-	padding: 5px 0;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
-	font-family: $fontStack;
+	}
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
 	
-}
-/*
-.news-meta {
-	border-bottom: 1px solid $colorLightest;
-	padding: 5px 0;
-	margin-top: 30px;
-	margin-bottom: -20px;
-	color: #888;
-	text-align: right;
 }
 
-.news-meta-date {
-	display: block;
-	margin: -14px 0 14px 0;
-	color: $colorPrimary;
-	
-	.search-result & {
-		margin-top: 0px;
-	}
-}
-*/
+
 
 .news-meta-categories {
 	@include inline-block;
@@ -613,10 +632,36 @@ ul.person-info {
 		color: $colorText;
 		display: block;
 		font-family: $fontStack;
+		
+		.post-meta-category:before {
+		    @extend .fa;
+		    @extend .fa-tag;
+		}
+		.post-meta-date:before {
+		    @extend .fa;
+		    @extend .fa-calendar;
+		}
+		.post-meta-event:before {
+		    @extend .fa;
+		    @extend .fa-calendar-o;
+		}
+		
+	}
+	h3 .ext-link,  
+	h2 .ext-link {
+		@include inline-block;
+		background: url('../img/ext-icon-19.png') no-repeat 100% 50%;
+		padding-right: 15px;
+		
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
 	}
 	.post-meta-category {
 	    margin-right: 10px;
 	}
+	
+	
 }
 
 
@@ -864,6 +909,16 @@ ul.person-info {
 			@include box-shadow(none !important);
 		}
 	}
+	
+	.gallery-image-caption {
+	    line-height: 20px;
+	    padding: 5px;
+	    .linkorigin {
+		font-size: 13px;
+		line-height: 18px;
+		color: $colorTextLight;
+	     }
+	}
 }
 
 /* Image Gallery: Carousel */
@@ -874,7 +929,8 @@ ul.person-info {
 	ul.slides {
 		@include no-list;
 		background: none;
-		
+		padding-left: 40px;
+		padding-right: 40px;
 		li {
 			@include no-list;
 			cursor: pointer;
@@ -898,16 +954,27 @@ ul.person-info {
 			@include no-list;
 			background: none;
 		}
+		
 	}
 	
 	.flex-prev {
 		top: 60px;
-		left: 0;
+		left: 0px;
+		opacity: 0.1;
 	}
 	
 	.flex-next {
 		top: 60px;
-		right: 0;
+		right: 0px;
+		opacity: 0.1;
+	}
+	&:hover {
+	    .flex-prev {
+		opacity: 1;
+	    }
+	    .flex-next {
+		opacity: 1;
+	    }
 	}
 }
 
@@ -1080,6 +1147,13 @@ ul.tagcloud {
 	.widget {
 		margin-bottom: 22px;
 		margin-top: 22px;
+		
+		
+		li {
+		    font-size: 13px;
+		    line-height: 22px;		   
+		}
+		
 	}
 	
 	.widget:last-child {
@@ -1093,6 +1167,7 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
+	
 }
 
 /* Accordion */
@@ -1151,19 +1226,23 @@ ul.tagcloud {
 			}
 		}
 	}
-	
+	.philfak .accordion-heading .accordion-toggle,
 	.gold .accordion-heading .accordion-toggle {
 		border-color: $colorPhilFak;
 	}
+	.rwfak .accordion-heading .accordion-toggle,
 	.red .accordion-heading .accordion-toggle {
 		border-color: $colorRwFak;
 	}
+	.medfak .accordion-heading .accordion-toggle,
 	.blue .accordion-heading .accordion-toggle {
 		border-color: $colorMedFak;
 	}
+	.natfak .accordion-heading .accordion-toggle,
 	.green .accordion-heading .accordion-toggle {
 		border-color: $colorNatFak;
 	}
+	.techfak .accordion-heading .accordion-toggle,
 	.grey .accordion-heading .accordion-toggle {
 		border-color: $colorTechFak;
 	}
@@ -1247,7 +1326,12 @@ ul.tagcloud {
 }
 
 .screen-reader-text {
-	display: none !important;
+    position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
 
 .nav-links {
