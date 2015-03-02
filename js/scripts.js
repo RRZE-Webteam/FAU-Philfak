@@ -207,6 +207,31 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
+	// Equalize image gallery grid heights
+	function equalize() {
+		var height = 0;
+		
+		$('.image-gallery-grid li').each(function() {
+			var imageHeight = $(this).find('img').innerHeight();
+			if(imageHeight < 92) imageHeight = 92;
+			var captionHeight = $(this).find('.caption').innerHeight();
+			
+			if((imageHeight + captionHeight) > height) {
+				height = imageHeight + captionHeight;
+			}
+		});
+		
+		$('.image-gallery-grid li').css({
+			'height': height+'px'
+		});
+	}
+	equalize();
+	
+	$(window).resize(function() {
+		equalize();
+	});
+	
+	
 	// Add toggle icons to organigram
 	$('.organigram .has-sub').each(function() {
 		$(this).prepend('<span class="toggle-icon"></span>');
