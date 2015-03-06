@@ -187,7 +187,7 @@ if ( ! function_exists( 'fau_form_multiselect' ) ) :
 		<p><label for="<?php echo $name; ?>">
 		    <?php echo $labeltext; ?>
 		    </label></p>
-		    <select class="fullsize" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
+		    <select class="fullsize" size="5" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
 		<?php 
 		if ($showempty==1) { 
 		    echo '<option value="">';
