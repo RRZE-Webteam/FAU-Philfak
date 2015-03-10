@@ -39,7 +39,8 @@ function ad_post_type() {
 		'publicly_queryable'  => true,
 		'query_var'           => 'ad',
 		'rewrite'             => $rewrite,
-		'capability_type'     => 'ad',
+	/*
+	    	'capability_type'     => 'ad',
 		'capabilities' => array(
 		    'edit_post' => 'edit_ad',
 		    'read_post' => 'read_ad',
@@ -56,10 +57,9 @@ function ad_post_type() {
 		    'edit_published_posts' => 'edit_published_ads'
 		),
 		'map_meta_cap' => true
+	 */	 
 	);
-	
-	
-	
+
     register_post_type( 'ad', $args );
   
 
@@ -67,7 +67,7 @@ function ad_post_type() {
 
 // Hook into the 'init' action
 if ( current_user_can('publish_pages') && ($options['advanced_activateads'] == true)) {
-    add_action( 'init', 'ad_post_type', 0 );
+    add_action( 'init', 'ad_post_type' );
 }
 
 function ad_restrict_manage_posts() {
@@ -132,7 +132,7 @@ function fau_ad_metabox_content( $object, $box ) {
 	
     wp_nonce_field( basename( __FILE__ ), 'fau_ad_metabox_content_nonce' ); 
 
-    if ( !current_user_can( 'edit_page', $object->ID) )
+    if ( !current_user_can( 'edit_page',  $object->ID) )
 	    // Oder sollten wir nach publish_pages  fragen? 
 	    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
 	return;
@@ -197,13 +197,9 @@ function fau_ad_metabox_content_save( $post_id ) {
 
 
 
-	if ( 'page' == $_POST['post_type'] ) {
-		if ( !current_user_can( 'edit_page', $post_id ) )
+		if ( !current_user_can( 'edit_page' ) )
 		return;
-	} else {
-		if ( !current_user_can( 'edit_post', $post_id ) )
-		return;
-	}
+	
 	
     /* Old values */	
     

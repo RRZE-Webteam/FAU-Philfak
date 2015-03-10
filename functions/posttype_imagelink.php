@@ -58,7 +58,7 @@ function imagelink_post_type() {
 		'publicly_queryable'  => true,
 		'query_var'           => 'imagelink',
 		'rewrite'             => false,
-		'capability_type'     => 'imagelink',
+	/*	'capability_type'     => 'imagelink',
 		'capabilities' => array(
 		    'edit_post' => 'edit_imagelink',
 		    'read_post' => 'read_imagelink',
@@ -75,6 +75,8 @@ function imagelink_post_type() {
 		    'edit_published_posts' => 'edit_published_imagelinks'
 		),
 		'map_meta_cap' => true
+	 
+	 */
 	);
 	register_post_type( 'imagelink', $args );
 
