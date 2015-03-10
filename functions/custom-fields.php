@@ -72,14 +72,14 @@ function fau_add_metabox_page() {
 		     'page','side','core'
 	    );
 	}
-/*
+
 	add_meta_box(
 		'fau_metabox_page_sidebar',			
 		esc_html__( 'Sidebar (BETA!!!)', 'fau' ),		
 		'fau_do_metabox_page_sidebar',		
 		 'page','normal','core'
 	);
-  */
+  
  
 }
 

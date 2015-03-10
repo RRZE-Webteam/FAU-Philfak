@@ -964,7 +964,7 @@ add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
  
 function prefix_wpseo_add_meta_boxes() {
     global $post;
-    $post_types_without_seo = array( 'event', 'person', 'ad' );
+    $post_types_without_seo = array( 'event', 'person', 'ad', 'glossary', 'synonym' );
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
 
@@ -1304,3 +1304,5 @@ function fau_breadcrumb($lasttitle = '') {
   }
    echo '</nav>'; 
 }
+
+
