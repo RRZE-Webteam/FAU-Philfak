@@ -772,7 +772,7 @@ function fau_do_metabox_page_imagelinks( $object, $box ) {
 	    return;
 	}
 
- 
+	$thislist = array();
 	$categories = get_categories( array('type' => 'imagelink', 'taxonomy' => 'imagelinks_category', 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => 1 ) ); 
 	foreach($categories as $category) {
 	    if (!is_wp_error( $category )) {
@@ -784,12 +784,14 @@ function fau_do_metabox_page_imagelinks( $object, $box ) {
 	    }	
 	}	
 	
-
-	$currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
-	fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
+	if (empty($thislist)) {
+	    echo __('Es wurden noch keine Bilder als Logos definiert. Daher kann hie rnoch nichts ausgewählt werden.','fau');
+	} else {
+	    $currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
+	    fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
 		__('Wählen Sie hier die Kategorie aus aus der Logos (Bildlinks) verwendet werden sollen. Die Bilder aus der gewählten Kategorie werden dann angezeigt.','fau'),
 		1, __('Keine Logos zeigen','fau'));
-	
+	}
 	return;
 
 
