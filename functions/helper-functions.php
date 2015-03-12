@@ -296,6 +296,100 @@ if ( ! function_exists( 'fau_form_image' ) ) :
 
 
 
+if ( ! function_exists( 'fau_form_link' ) ) :
+    function fau_form_link($name= '', $pretitle ='', $preurl ='' , $labeltext = '',  $howtotext = '' ) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {	    
+	    wp_enqueue_script( 'wp-link' );
+	    echo '<div class="linkeingabe">';
+	    $rand = rand();
+	    echo '<h2>'.$labeltext.'</h2>';
+	     if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	     echo '<div class="linkauswahl" id="container_'.$rand.'">';
+	    echo "<p>\n";
+	    echo '<label for="title_'.$rand.'_'.$name.'">'.__('Titel','fau');   
+	    echo "</label><br />\n";
+	    echo '<input type="text" class="large-text" name="title_'.$name.'" id="title_'.$rand.'_'.$name.'" value="'.$pretitle.'">';
+	    echo "</p>\n";
+	    
+	    echo "<p>\n";
+	    echo '<label for="url_'.$rand.'_'.$name.'">'.__('URL','fau');  
+	    echo "</label><br />\n";
+	    echo '<input type="url" class="large-text" name="url_'.$name.'" id="url_'.$rand.'_'.$name.'" value="'.$preurl.'" placeholder="https://">';
+	    echo '<input class="button link_button_'.$name.'" name="link_button_'.$name.'" id="link_button_'.$name.'" type="button" value="'.__('Wähle Link','fau').'">';
+
+	    echo "</p>";
+	   
+	   
+	    ?>
+	   <script>
+		var _link_sideload = false; 
+		var link_btn_<?php echo $name?> = (function($){
+		    var _link_sideload = false; 
+		    function _init() {
+			$('.link_button_<?php echo $name?>').on('click', function(event) {
+			    _addLinkListeners();
+			    _link_sideload = false;
+			    var link_val_container = $('#url_<?php echo $rand?>_<?php echo $name?>');
+			    window.wpActiveEditor = true;
+			    _link_sideload = true;
+			    wpLink.open();
+			    wpLink.textarea = $(link_val_container);
+			    return false;
+			});
+		    }
+		    function _addLinkListeners() {
+			$('body').on('click', '#wp-link-submit', function(event) {
+			    var linkAtts = wpLink.getAttrs();
+			    $('#url_<?php echo $rand?>_<?php echo $name?>').val(linkAtts.href);
+			    $('#title_<?php echo $rand?>_<?php echo $name?>').val(linkAtts.title);
+			    _removeLinkListeners();
+			    return false;
+			});
+			$('body').on('click', '#wp-link-cancel', function(event) {
+			    _removeLinkListeners();
+			    return false;
+			});
+		    }
+
+		    function _removeLinkListeners() {
+			if(_link_sideload){
+			    if ( typeof wpActiveEditor != 'undefined') {
+				wpActiveEditor = undefined;
+			    }
+			}
+			wpLink.close();
+			wpLink.textarea = $('html');//focus on document
+			$('body').off('click', '#wp-link-submit');
+			$('body').off('click', '#wp-link-cancel');
+		    }
+		    return {
+			init:       _init,
+		    };
+		    })(jQuery);
+	   
+	    jQuery(document).ready(function($) {	 
+		 link_btn_<?php echo $name?>.init();
+	    });
+	  
+	   </script> 		    	    
+	   <?php 
+         echo "</div>\n";
+	 echo "</div>\n";
+	
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_link() - Name oder Label fehlt.', 'fau');
+	}
+    }
+ endif;
+    
+
+
 
 if ( ! function_exists( 'fau_san' ) ) :  
     function fau_san($s){
