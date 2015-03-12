@@ -98,6 +98,14 @@ $defaultoptions = array(
     'galery_link_original'		=> true,
     'advanced_activatefaupluginpersonen'=> true,
     
+    'advanced_page_sidebar_titleabove'	=> true,
+    'advanced_page_sidebar_titlebelow'	=> true,    
+    'advanced_page_sidebar_personen_title'	=> __('Kontakt','fau'), 
+    'advanced_page_sidebar_linkblock1_number'	=> 3, 
+    'advanced_page_sidebar_linkblock2_number'	=> 3,
+    'advanced_page_sidebar_linkblock1_title'	=> __('Weitere Informationen','fau'), 
+    'advanced_page_sidebar_linkblock2_title'	=> __('Sonstiges','fau'), 
+    
     
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
@@ -787,7 +795,66 @@ $setoptions = array(
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
               ),   
-	     
+	       'sidebaropt'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Erweiterte Einstellunge für Sidebars (von Seiten)', 'fau' ),                      
+              ),
+	       'advanced_page_sidebar_titleabove'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Feld Titel oben', 'fau' ),
+                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum text oben ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_titleabove'],
+		  'parent'  => 'sidebaropt'
+              ), 
+	       'advanced_page_sidebar_titlebelow'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Feld Titel unten', 'fau' ),
+                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum Text unten ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_titlebelow'],
+		  'parent'  => 'sidebaropt'
+              ), 
+		'advanced_page_sidebar_personen_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel über Kontakte', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über ein ausgewählte Kontakte.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_personen_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       'advanced_page_sidebar_linkblock1_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel erster Linkblock', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über den ersten Linkblock, wenn dieser belegt ist.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock1_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       
+	        'advanced_page_sidebar_linkblock2_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel zweiter Linkblock', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über den zweiten Linkblock, wenn dieser belegt ist.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock2_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	        'advanced_page_sidebar_linkblock1_number'	  => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Links im ersten Linkblock', 'fau' ),
+                  'label'   => __( 'Wieviele Links können maximal im ersten Linkblock angegeben werden.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock1_number'],
+		  'parent'  => 'sidebaropt'
+		), 
+	         'advanced_page_sidebar_linkblock2_number'	  => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Links im zweiten Linkblock', 'fau' ),
+                  'label'   => __( 'Wieviele Links können maximal im zweiten Linkblock angegeben werden.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock2_number'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       
+
+
+	       
+	       
+	       
 	       
 	       
 	       

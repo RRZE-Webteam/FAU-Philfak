@@ -304,27 +304,25 @@ if ( ! function_exists( 'fau_form_link' ) ) :
 	    wp_enqueue_script( 'wp-link' );
 	    echo '<div class="linkeingabe">';
 	    $rand = rand();
-	    echo '<h2>'.$labeltext.'</h2>';
+	    echo '<h2 class="label">'.$labeltext.'</h2>';
 	     if (strlen(trim($howtotext))) {
 		echo '<p class="howto">';
 		echo $howtotext;
 		echo "</p>\n";
 	    }
-	     echo '<div class="linkauswahl" id="container_'.$rand.'">';
+	    echo '<div class="linkauswahl" id="container_'.$rand.'">';
 	    echo "<p>\n";
 	    echo '<label for="title_'.$rand.'_'.$name.'">'.__('Titel','fau');   
 	    echo "</label><br />\n";
-	    echo '<input type="text" class="large-text" name="title_'.$name.'" id="title_'.$rand.'_'.$name.'" value="'.$pretitle.'">';
-	    echo "</p>\n";
-	    
+	    echo '<input type="text" class="large-text" name="'.$name.'_title" id="title_'.$rand.'_'.$name.'" value="'.$pretitle.'">';
+	    echo "</p>\n";	    
 	    echo "<p>\n";
 	    echo '<label for="url_'.$rand.'_'.$name.'">'.__('URL','fau');  
 	    echo "</label><br />\n";
-	    echo '<input type="url" class="large-text" name="url_'.$name.'" id="url_'.$rand.'_'.$name.'" value="'.$preurl.'" placeholder="https://">';
-	    echo '<input class="button link_button_'.$name.'" name="link_button_'.$name.'" id="link_button_'.$name.'" type="button" value="'.__('Wähle Link','fau').'">';
-
+	    echo '<input type="url" class="large-text" name="'.$name.'_url" id="url_'.$rand.'_'.$name.'" value="'.$preurl.'" placeholder="https://">';
 	    echo "</p>";
-	   
+	    echo '<p><input class="button link_button_'.$name.'" name="link_button_'.$name.'" id="link_button_'.$name.'" type="button" value="'.__('Wähle Link','fau').'"></p>';
+	    echo "</div>\n";
 	   
 	    ?>
 	   <script>
@@ -379,7 +377,7 @@ if ( ! function_exists( 'fau_form_link' ) ) :
 	  
 	   </script> 		    	    
 	   <?php 
-         echo "</div>\n";
+        
 	 echo "</div>\n";
 	
 	} else {
