@@ -297,7 +297,7 @@ if ( ! function_exists( 'fau_form_image' ) ) :
 
 
 if ( ! function_exists( 'fau_form_link' ) ) :
-    function fau_form_link($name= '', $pretitle ='', $preurl ='' , $labeltext = '',  $howtotext = '' ) {
+    function fau_form_link($name= '', $pretitle ='', $preurl ='' , $labeltext = '',  $howtotext = '', $types = '' ) {
 	$name = fau_san( $name );
 	$labeltext = fau_san( $labeltext );
 	if (isset($name) &&  isset($labeltext))  {	    

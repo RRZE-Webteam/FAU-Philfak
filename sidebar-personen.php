@@ -1,14 +1,19 @@
 <?php 
- if ( function_exists('get_field') ) {
-     if(get_field('sidebar_personen')): ?>
-	<?php $persons = get_field('sidebar_personen'); ?>
-	<?php $i = 0; ?>
-	<?php foreach($persons as $person): ?>
-		<?php if($i == 0): ?>
-			<?php the_widget('FAUPersonWidget', array('id' => $person->ID, 'title' => get_field('sidebar_title_personen'))); ?>
-		<?php else: ?>
-			<?php the_widget('FAUPersonWidget', array('id' => $person->ID)); $i++; ?>
-		<?php endif; ?>
-	<?php endforeach; ?>
-<?php endif; 
- } ?>
+
+
+    $sidebar_personen = get_post_meta( $post->ID, 'sidebar_personen', true );
+    $sidebar_title_personen = get_post_meta( $post->ID, 'sidebar_title_personen', true );	 
+		
+		
+     if(isset($sidebar_personen)) { 
+	$persons = $sidebar_personen;
+	$i = 0; 
+	foreach($persons as $person) {
+	    if($i == 0) {
+		 the_widget('FAUPersonWidget', array('id' => $person, 'title' => $sidebar_title_personen));
+	    }else {
+		 the_widget('FAUPersonWidget', array('id' => $person)); 
+		 $i++; 
+	    }
+	} 
+    } 

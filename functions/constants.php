@@ -105,7 +105,9 @@ $defaultoptions = array(
     'advanced_page_sidebar_linkblock2_number'	=> 3,
     'advanced_page_sidebar_linkblock1_title'	=> __('Weitere Informationen','fau'), 
     'advanced_page_sidebar_linkblock2_title'	=> __('Sonstiges','fau'), 
-    
+    'advanced_page_sidebar_order_personlinks'	=> 0,
+	// 0 = Kontakte, Links
+	// 1 = Links, Kontakte
     
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
