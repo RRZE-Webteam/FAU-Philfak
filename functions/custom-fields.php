@@ -20,7 +20,7 @@ function fau_metabox_cf_setup() {
 
 	/* Save sidecontent */
 	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
-	add_action( 'save_post', 'fau_do_metabox_page_subnavmenu', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_subnavmenu', 10, 2 );
 	
 	
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
@@ -453,10 +453,9 @@ function fau_save_post_topevent( $post_id, $post ) {
  /* Display Options for menuquotes on pages */
 function fau_do_metabox_page_subnavmenu( $object, $box ) { 
 	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_subnavmenu_nonce' ); 
-	$post_type = get_post_type( $object->ID); 
 	
-	    if ( !current_user_can( 'edit_page', $object->ID) )
-		return;
+	if ( !current_user_can( 'edit_page', $object->ID) )
+	    return;
 
 
 	$menuebene = get_post_meta( $object->ID, 'menu-level', true );

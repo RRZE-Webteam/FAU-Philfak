@@ -405,7 +405,7 @@ body.admin-bar.nav-fixed {
 		@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url('../img/siegel-zuv.png') no-repeat 95% 20%);
 		
 		h1 {
-			padding: 30px 0 10px 0 !important;
+			padding: 30px 0 10px 0;
 		}
 	}
 	
@@ -693,6 +693,8 @@ body.admin-bar.nav-fixed {
 		background-repeat: no-repeat;
 		background-position: right center;
 	}
+	
+
 }
 
 

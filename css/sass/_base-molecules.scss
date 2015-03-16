@@ -226,6 +226,20 @@
 	}
 }
 
+.page-template-page-subnav {
+    #content {
+	.span8 {
+	    img.alignleft, img.alignright {
+		    // Sidebar Inline Bilder haben Probleme mit dem Standard Floating
+		    float: none;
+		    max-width: 350px;
+		    height: auto;
+		    margin-right: 0px;
+	    }
+	}
+    }
+}
+
 /* Breadcrumb */
 .breadcrumbs {
 	color: #fff;
@@ -491,6 +505,7 @@ ul.person-info {
 	li.person-info-fax:before { @extend .fa-print; }
 	li.person-info-email:before { @extend .fa-envelope; }
 	li.person-info-institution:before { @extend .fa-home; }
+	li.person-info-www:before { @extend .fa-info-circle; }
 	
 	li.person-info-address {
 		margin-top: 10px;
