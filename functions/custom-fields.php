@@ -81,7 +81,7 @@ function fau_add_metabox_page() {
 
 	add_meta_box(
 		'fau_metabox_page_sidebar',			
-		esc_html__( 'Sidebar (BETA!!!)', 'fau' ),		
+		esc_html__( 'Sidebar', 'fau' ),		
 		'fau_do_metabox_page_sidebar',		
 		 'page','normal','core'
 	);

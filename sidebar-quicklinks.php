@@ -24,7 +24,6 @@ if ($options['advanced_page_sidebar_linkblock1_number'] > 0) {
 	    }
 	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock1_number']; $i++) {
 		$name = 'fauval_linkblock1_link'.$i;
-		$title = __('Link Nr. ','fau').$i;
 		$urlname= $name.'_url';
 		$titlename= $name.'_title';
 		
@@ -65,7 +64,6 @@ if ($options['advanced_page_sidebar_linkblock2_number'] > 0) {
 	    }
 	   for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock2_number']; $i++) {
 		$name = 'fauval_linkblock2_link'.$i;
-		$title = __('Link Nr. ','fau').$i;
 		$urlname= $name.'_url';
 		$titlename= $name.'_title';
 		
