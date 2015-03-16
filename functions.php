@@ -103,8 +103,6 @@ function fau_setup() {
 	add_image_size( 'image-4-col', 140, 70, true);	
 		
 	
-
-	
 	
 	/* Remove something out of the head */
 	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
@@ -116,6 +114,7 @@ function fau_setup() {
 	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
 	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
+	
 	
 }
 add_action( 'after_setup_theme', 'fau_setup' );
@@ -146,6 +145,7 @@ function fau_register_scripts() {
 	// Flexslider für Startseite und für Galerien.  
     wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
 //	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
+	// wird nirgends verwendet
     wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );  
 	// Fuer bessere Lightboxen
     wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
@@ -155,6 +155,12 @@ function fau_register_scripts() {
 }
 add_action('init', 'fau_register_scripts');
 
+function fau_custom_init() {
+	/* Keine verwirrende Abfrage nach Kommentaren im Page-Editor */
+	remove_post_type_support( 'page', 'comments' );
+}
+add_action( 'init', 'fau_custom_init' );
+	
 
 function fau_basescripts_styles() {
     global $options;
@@ -967,6 +973,20 @@ function prefix_wpseo_add_meta_boxes() {
     $post_types_without_seo = array( 'event', 'person', 'ad', 'glossary', 'synonym' );
     return !in_array( get_post_type($post), $post_types_without_seo);
 } 
+
+/* Refuse spam-comments on media */
+function filter_media_comment_status( $open, $post_id ) {
+	$post = get_post( $post_id );
+	if( $post->post_type == 'attachment' ) {
+		return false;
+	}
+	return $open;
+}
+add_filter( 'comments_open', 'filter_media_comment_status', 10 , 2 );
+
+
+
+
 
 /* Newsseiten */
 function fau_display_news_teaser($id = 0, $withdate = false) {

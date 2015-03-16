@@ -60,13 +60,18 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	    echo '	<label for="'.$name.'">';
 	    echo $labeltext;
 	    echo "</label><br />\n";
-	    echo '	<input type="text" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	     
+	    echo '	<input type="text" ';
+	   if (intval($size)>0) {
+	       echo ' size="'.$size.'"';
+	    } else {
+		echo 'class="large-text"';
+	    }
+	    echo 'name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
 	    if (strlen(trim($placeholder))) {
 		echo ' placeholder="'.$placeholder.'"';
 	    }
-	    if (intval($size)>0) {
-		echo ' length="'.$size.'"';
-	    }
+	  
 	    echo " />\n";
 	    echo "</p>\n";
 	    if (strlen(trim($howtotext))) {
@@ -187,7 +192,7 @@ if ( ! function_exists( 'fau_form_multiselect' ) ) :
 		<p><label for="<?php echo $name; ?>">
 		    <?php echo $labeltext; ?>
 		    </label></p>
-		    <select class="fullsize" size="5" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
+		    <select size="5" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
 		<?php 
 		if ($showempty==1) { 
 		    echo '<option value="">';

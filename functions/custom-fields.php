@@ -20,7 +20,9 @@ function fau_metabox_cf_setup() {
 
 	/* Save sidecontent */
 	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
-	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
+	add_action( 'save_post', 'fau_do_metabox_page_subnavmenu', 10, 2 );
+	
+	
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
 	
@@ -51,15 +53,16 @@ function fau_add_metabox_page() {
 	);
 	add_meta_box(
 		'fau_metabox_page_portalmenu',			
-		esc_html__( 'Portalmenü einbinden', 'fau' ),		
+		esc_html__( 'Optionen für Portalseiten', 'fau' ),		
 		'fau_do_metabox_page_portalmenu',		
 		 'page','side','core'
 	);
+
 	add_meta_box(
-		'fau_metabox_page_menu',			
+		'fau_metabox_page_subnavmenu',			
 		esc_html__( 'Menüoptionen', 'fau' ),		
-		'fau_do_metabox_page_menu',		
-		 'page','normal','high'
+		'fau_do_metabox_page_subnavmenu',		
+		 'page','side','core'
 	);
 	add_meta_box(
 		'fau_metabox_page_imagelinks',			
@@ -447,25 +450,15 @@ function fau_save_post_topevent( $post_id, $post ) {
 }
 
  
- 
-
-
-/* Display Options for menuquotes on pages */
-function fau_do_metabox_page_menu( $object, $box ) { 
-	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_menu_nonce' ); 
+ /* Display Options for menuquotes on pages */
+function fau_do_metabox_page_subnavmenu( $object, $box ) { 
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_subnavmenu_nonce' ); 
 	$post_type = get_post_type( $object->ID); 
 	
-	if ( 'page' == $post_type ) {
 	    if ( !current_user_can( 'edit_page', $object->ID) )
-		    // Oder sollten wir nach publish_pages  fragen? 
-		    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
 		return;
-	} else {
-	    return;
-	}
-	
-	$quote  = get_post_meta( $object->ID, 'zitat_text', true );	
-	$author =  get_post_meta( $object->ID, 'zitat_autor', true );
+
+
 	$menuebene = get_post_meta( $object->ID, 'menu-level', true );
 	?>
 	
@@ -483,37 +476,15 @@ function fau_do_metabox_page_menu( $object, $box ) {
 	    <?php _e('Die Menüebene definiert bei Seiten bis zur welchen Ebene das Menu auf der linken Seite gezeigt wird. Dies gilt nur für Seiten, die das folgende Template ausgewählt haben:','fau'); ?>
 	    <code><?php _e('Inhaltsseite mit Navi','fau');?></code> 
 	</p>
-	<p>
-		<label for="fau_metabox_menuquote_quote">
-                    <?php _e( "Zitat", 'fau' ); ?>:
-                </label>
-	</p>
 	
-	<textarea name="fau_metabox_menuquote_quote" id="fau_metabox_menuquote_quote" class="large-text" rows="4" ><?php echo $quote; ?></textarea>	
-	<p class="howto">
-	    <?php _e('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau'); ?>
-	</p>
-	
-	
-	
-	<p>
-		<label for="fau_metabox_menuquote_autor">
-                    <?php _e( "Autor", 'fau' ); ?>:
-                </label>
-		<br />
-		<input class="large-text" name="fau_metabox_menuquote_autor" id="fau_metabox_menuquote_autor" value="<?php echo $author; ?>" />			
-	</p>
-	<p class="howto">
-	    <?php _e('Dieser freie Text kann einen Namen enthalten auf den das Zitat zurückzuführen ist oder andere Informationen hierzu.','fau'); ?>
-	</p>
 	<?php 
 
  }
 
 /* Save the meta box's post/page metadata. */
-function fau_save_metabox_page_menu( $post_id, $post ) {
+function fau_save_metabox_page_subnavmenu( $post_id, $post ) {
 	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['fau_metabox_page_menu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_menu_nonce'], basename( __FILE__ ) ) )
+	if ( !isset( $_POST['fau_metabox_page_subnavmenu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_subnavmenu_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
 
@@ -523,33 +494,6 @@ function fau_save_metabox_page_menu( $post_id, $post ) {
 		return;
 	}
 
-	$newval = ( isset( $_POST['fau_metabox_menuquote_quote'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_quote'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'zitat_text', true );
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'zitat_text', $newval );
-	    } else {
-		add_post_meta( $post_id, 'zitat_text', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'zitat_text', $oldval );	
-	} 
-
-	
-	$newval = ( isset( $_POST['fau_metabox_menuquote_autor'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_autor'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'zitat_autor', true );
-	
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'zitat_autor', $newval );
-	    } else {
-		add_post_meta( $post_id, 'zitat_autor', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
-	} 
 	
 	$newval = intval($_POST['fau_metabox_page_menuebene']);
 	$oldval = get_post_meta( $post_id, 'menu-level', true );
@@ -564,15 +508,10 @@ function fau_save_metabox_page_menu( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'menu-level', $oldval );	
 	} 
-
-	
-	// Remove old values from version 2
-	// $oldval = get_post_meta( $post_id, 'right_column', true );
-	//  if (isset($oldval)) {
-	//   delete_post_meta( $post_id, 'right_column', $oldval );	
-	// }
 	
 }
+
+
 
 
 /* Display Options for menuquotes on pages */
@@ -649,6 +588,16 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	} else {
 	    return;
 	}
+	
+	$quote  = get_post_meta( $object->ID, 'zitat_text', true );	
+	$author =  get_post_meta( $object->ID, 'zitat_autor', true );
+		
+	echo '<div id="portalseitenquote">';
+	    
+	fau_form_textarea('fau_metabox_menuquote_quote', $quote, __( "Zitat", 'fau' ),40,3, __('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau')); 	    
+	fau_form_text('fau_metabox_menuquote_autor', $author, __( "Autor", 'fau' ), __('Dieser freie Text kann einen Namen enthalten auf den das Zitat zurückzuführen ist oder andere Informationen hierzu.','fau'), '', 20);
+	
+	echo '</div>';
 	
 	$currentmenu  = get_post_meta( $object->ID, 'portalmenu-slug', true );	
 	$currentmenuid = 0;
@@ -754,7 +703,35 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} else {
 	    delete_post_meta( $post_id, 'fauval_portalmenu_nosub' );	
 	} 
+	
+	
+	$newval = ( isset( $_POST['fau_metabox_menuquote_quote'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_quote'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'zitat_text', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'zitat_text', $newval );
+	    } else {
+		add_post_meta( $post_id, 'zitat_text', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_text', $oldval );	
+	} 
 
+	
+	$newval = ( isset( $_POST['fau_metabox_menuquote_autor'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_autor'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'zitat_autor', true );
+	
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'zitat_autor', $newval );
+	    } else {
+		add_post_meta( $post_id, 'zitat_autor', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
+	} 
 }
 
 /* 
@@ -973,7 +950,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
 	}
 	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
- 	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),false);
+ 	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
    
 	if (($options['advanced_page_sidebar_linkblock1_number'] > 0) || ($options['advanced_page_sidebar_linkblock2_number'] > 0)) {
 	    // Frage nach Reihenfolge Linklisten vs Personen
@@ -1090,7 +1067,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
 	}
 	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
- 	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),false);	    
+ 	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);	    
 	    
 	    
 

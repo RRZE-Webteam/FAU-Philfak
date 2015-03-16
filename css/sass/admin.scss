@@ -118,7 +118,38 @@ img.imgurl {
     content: "\f319";
 }
 
-.linkauswahl {
-    padding-left: 2em;
+#poststuff label {
+     font-weight: bold;
 }
+#fau_metabox_page_sidebar {
+    
+    .linkeingabe {
+	h2.label {
+	    font-size: 13px;
+	    line-height: 1.5;
+	    margin-bottom: 5px;
+	    font-weight: bold;
+	}
+    }
+    .linkauswahl {
+	padding-left: 2em;
+	p {
+	     margin: 0;
+	     padding: 0;
+	     width: 38%;
+	     display: inline-block;
+	     
+	     label {
+		 font-style: italic;
+		  font-weight: normal;
+	     }
+	}
+	p:last-child {
+	    width: 20%;
+	    min-width: 5em;	    
+	}
+	
+    }    
+}
+
 

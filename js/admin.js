@@ -39,5 +39,79 @@ jQuery(document).ready(function($){
     });
 
    
+    if (($('#page_template').val() == 'page-templates/page-start.php')
+     || ($('#page_template').val() == 'page-templates/page-portal.php')) {
+	// show the meta box
+	$('#fau_metabox_page_imagelinks').show();
+	$('#fau_metabox_page_portalmenu').show();
+	$('#fau_metabox_page_subnavmenu').hide();
+	
+
+	if (($('#page_template').val() == 'page-templates/page-portal.php')) {
+	    $('#portalseitenquote').show();
+	    $('#fau_metabox_page_untertitel').show();
+	} else {
+	    $('#portalseitenquote').hide();
+	    $('#fau_metabox_page_untertitel').hide();
+	    
+	}
+	
+    } else {
+	// hide your meta box
+	$('#fau_metabox_page_imagelinks').hide();
+	$('#fau_metabox_page_portalmenu').hide();
+	$('#fau_metabox_page_untertitel').show();
+	 
+	if ($('#page_template').val() == 'page-templates/page-subnav.php') {
+	    // show the meta box
+	    $('#fau_metabox_page_subnavmenu').show();
+
+	} else {
+	    // hide your meta box
+	    $('#fau_metabox_page_subnavmenu').hide();
+        }
+
+    }
+
+
+    $('#page_template').live('change', function(){
+	if (($(this).val() == 'page-templates/page-start.php') || ($(this).val() == 'page-templates/page-portal.php')) {
+	    // show the meta box
+	    $('#fau_metabox_page_imagelinks').show();
+	    $('#fau_metabox_page_subnavmenu').hide();
+   
+	    $('#fau_metabox_page_portalmenu').show();
+
+	    if (($(this).val() == 'page-templates/page-portal.php')) {
+		$('#portalseitenquote').show();
+		$('#fau_metabox_page_untertitel').show();
+	    } else {
+		$('#portalseitenquote').hide();
+		$('#fau_metabox_page_untertitel').hide();
+	    }
+
+	   
+	   
+	} else {
+	    // hide your meta box
+	    $('#fau_metabox_page_imagelinks').hide();
+	    $('#fau_metabox_page_portalmenu').hide();
+	    $('#fau_metabox_page_untertitel').show();
+	    if ($(this).val() == 'page-templates/page-subnav.php') {
+		// show the meta box
+		$('#fau_metabox_page_subnavmenu').show();
+
+	    } else {
+		// hide your meta box
+		$('#fau_metabox_page_subnavmenu').hide();
+
+	    }
+	}
+    });
+    
+   
+
+    
+
     
 });

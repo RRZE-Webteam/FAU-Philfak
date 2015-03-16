@@ -5,7 +5,7 @@
     $sidebar_title_personen = get_post_meta( $post->ID, 'sidebar_title_personen', true );	 
 		
 		
-     if(isset($sidebar_personen)) { 
+     if(isset($sidebar_personen) && (is_array($sidebar_title_personen))) { 
 	$persons = $sidebar_personen;
 	$i = 0; 
 	foreach($persons as $person) {
