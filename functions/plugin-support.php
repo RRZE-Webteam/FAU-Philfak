@@ -8,7 +8,7 @@
 /* 
  * Event Shortcode for Plugin FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
  */
-if ( ! function_exists( 'events_shortcode' ) ) :  
+// if ( ! function_exists( 'events_shortcode' ) ) :  
     function events_shortcode($atts, $content = "") {
 	global $event_events_helper, $event_calendar_helper;    
 
@@ -120,7 +120,7 @@ if ( ! function_exists( 'events_shortcode' ) ) :
 	<?php
 	return ob_get_clean();
     }
-endif;
+// endif;
 add_shortcode('termine', 'events_shortcode');
 
 add_action('widgets_init', function() {

@@ -9,15 +9,15 @@ load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once( get_template_directory() . '/functions/helper-functions.php' );
-require_once ( get_template_directory() . '/functions/theme-options.php' );     
-require_once( get_template_directory() .'/functions/bootstrap.php');
-require_once( get_template_directory() .'/functions/shortcodes.php');
-require_once( get_template_directory() .'/functions/menu.php');
+require_once( get_template_directory() . '/functions/theme-options.php' );     
+require_once( get_template_directory() . '/functions/bootstrap.php');
+require_once( get_template_directory() . '/functions/shortcodes.php');
+require_once( get_template_directory() . '/functions/plugin-support.php' );
+require_once( get_template_directory() . '/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
 require_once( get_template_directory() . '/functions/widgets.php' );
-
 
 
 function fau_setup() {
@@ -240,8 +240,8 @@ function fau_addmetatags() {
     if ((isset($options['favicon-file'])) && ($options['favicon-file_id']>0 )) {	 
         $output .=  '<link rel="shortcut icon" href="'.$options['favicon-file'].'">'."\n";
     } else {
-        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/apple-touch-icon.png">'."\n";
-        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/favicon.ico">'."\n";
+        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/img/apple-touch-icon.png">'."\n";
+        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/img/favicon.ico">'."\n";
     }
     echo $output;
 }
@@ -963,16 +963,7 @@ function fau_get_rel_alternate() {
     }
 }
 
-/*
- * wpSEO Metaboxen nur für Pages und Posts
- */
-add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
- 
-function prefix_wpseo_add_meta_boxes() {
-    global $post;
-    $post_types_without_seo = array( 'event', 'person', 'ad', 'glossary', 'synonym' );
-    return !in_array( get_post_type($post), $post_types_without_seo);
-} 
+
 
 /* Refuse spam-comments on media */
 function filter_media_comment_status( $open, $post_id ) {

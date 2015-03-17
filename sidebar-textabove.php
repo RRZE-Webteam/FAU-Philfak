@@ -6,6 +6,7 @@
 	}
 	$text = get_post_meta( $post->ID, 'sidebar_text_above', true );
 	if (!empty($text)) {
+	    $text = do_shortcode($text);
 	    if(function_exists('mimetypes_to_icons')) {
 		$output .= mimetypes_to_icons($text); 
 	    } else 	{
