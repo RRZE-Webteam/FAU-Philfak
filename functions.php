@@ -75,33 +75,56 @@ function fau_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 300, 150, false );
+	set_post_thumbnail_size( $options['default_thumb_width'], $options['default_thumb_height'], $options['default_thumb_crop'] ); // 300:150:false
 	
+	/* Image Sizes for Slider, Name: hero */
 	add_image_size( 'hero', $options['slider-image-width'], $options['slider-image-height'], $options['slider-image-crop']);	// 1260:350
+	
+    
+	/* Thumb for Main menu - Name: portalmenu-thumb */
+	add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
+ 
+	
+	/* Thumb for Posts in Lists - Name: post-thumb */
 	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
+	
+	/* Thumb of Topevent in Sidebar - Name: topevent-thumb */
 	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); 
+	
+	/* Thumb for Image Menus in Content - Name: page-thumb */
 	add_image_size( 'page-thumb', $options['default_submenuthumb_width'], $options['default_submenuthumb_height'], true); // 220:110
 	
+	/* Thumb for Posts, displayed in post/page single display - Name: post */
+	add_image_size( 'post', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']);
 	
-	add_image_size( 'post', 300, 200, false);
-	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
-	add_image_size( 'person-thumb-bigger', 90, 120, true);
+	/* Thumb for person-type; small for sidebar - Name: person-thumb */
+	add_image_size( 'person-thumb', $options['default_person_thumb_width' ], $options['default_person_thumb_height'], $options['default_person_thumb_crop'	]); // 60, 80, true
+	
+        /* Thumb for person-type; small for content - Name: person-thumb-bigger */
+	add_image_size( 'person-thumb-bigger', $options['default_person_thumb_bigger_width'], $options[ 'default_person_thumb_bigger_height'], $options['default_person_thumb_bigger_crop']); // 90,120,true
 
-	
-	
-	add_image_size( 'logo-thumb', 140, 110, true);
-	
+	/* Thumb for Logos (used in carousel) - Name: logo-thumb */
+	add_image_size( 'logo-thumb', $options['default_logo_carousel_width'], $options['default_logo_carousel_height'], $options['default_logo_carousel_crop']);
+
 	/* 
 	 * Größen für Bildergalerien: 
 	 */
+	/* Images for gallerys - Name: gallery-full */
+	add_image_size( 'gallery-full', $options['default_gallery_full_width'], $options['default_gallery_full_height'], $options['default_gallery_full_crop']); // 940, 470, false
+	//
+	// Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
+	add_image_size( 'gallery-thumb', $options['default_gallery_thumb_width'], $options['default_gallery_thumb_height'], $options['default_gallery_thumb_crop']); // 120, 80, true
 	
-	add_image_size( 'gallery-full', 940, 470);
-	    // Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
-	add_image_size( 'gallery-thumb', 120, 80, true);
-	add_image_size( 'gallery-grid', 145, 120, false);
-	add_image_size( 'image-2-col', 300, 200, true);
-	add_image_size( 'image-4-col', 140, 70, true);	
-		
+	/* Grid-Thumbs for gallerys - Name: gallery-grid */
+	add_image_size( 'gallery-grid', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 145, 120, false
+	
+	/* 2 column Imagelists for gallerys - Name: image-2-col */
+	add_image_size( 'image-2-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 300, 200, true
+	
+	/* 4 column Imagelists for gallerys - Name: image-4-col */
+	add_image_size( 'image-4-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']);	// 140, 70, true
+
+	
 	
 	
 	/* Remove something out of the head */
