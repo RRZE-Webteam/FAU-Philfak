@@ -504,7 +504,7 @@ ul.person-info {
 	li.person-info-phone:before { @extend .fa-phone; }
 	li.person-info-fax:before { @extend .fa-print; }
 	li.person-info-email:before { @extend .fa-envelope; }
-	li.person-info-institution:before { @extend .fa-home; }
+	li.person-info-institution:before { @extend .fa-building; }
 	li.person-info-www:before { @extend .fa-info-circle; }
 	
 	li.person-info-address {
