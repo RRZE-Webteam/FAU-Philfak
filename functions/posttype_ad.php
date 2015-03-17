@@ -137,6 +137,7 @@ function fau_ad_metabox_content( $object, $box ) {
 	    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
 	return;
 
+    $aditionid = get_post_meta( $object->ID, 'fauval_ad_aditionid', true );
     
     $targeturl = get_post_meta( $object->ID, 'fauval_ad_url', true );
     $code = get_post_meta( $object->ID, 'fauval_ad_code', true );
@@ -156,15 +157,23 @@ function fau_ad_metabox_content( $object, $box ) {
     if (empty($targeturl) && isset($link)) {
 	$targeturl = $link;
     }
-   			
+   $infotext = 	__('Geben Sie hier die ID-Nummer ein, die für die jeweilige Werbeeinblendung genutzt werden soll. Diese ID erhalten Sie von Adition, bzw. finden Sie in dem HTML-Code, den Sie zum Einbau in ihrer Website von Adition erhalten haben.','fau');
+   $infotext .= '<br>'.__('Beispiel eines Codes von Adition: ','fau').'<img style="border: 2px dotted #ddd; display: block; margin: 10px;" src="'. get_fau_template_uri().'/img/posttype_ad_example.png" alt="Beispiel-Code von Universi"><br>';
+   $infotext .= __('Nehmen Sie hier die Zahl, die bei Ihrem Code an der im Beispiel unterstrichenen Stelle hinter der Zeichenfolge <code>wp_id=</code> auftaucht.','fau'); 
    
+    fau_form_number('fauval_ad_aditionid',$aditionid, __('Werbe-ID', 'fau'),$infotext);
+    
+    echo __('Hinweis: Ist die Id mit einem Wert über 0 belegt, wird der Code in der manuellen HTML-Einbindung und der Verlinkung ignoriert.','fau');
+    
     fau_form_textarea('fauval_ad_code', $code, __('HTML-Code zur Einbindung','fau'),80,6, __('Achtung: Dieser HTML-Code wird nicht auf syntaktische Korrektheit geprüft. Fehler, wie nicht geschlossene HTML-Anweisungen, können die gesamte Website beschädigen und dafür sorgen, daß eine kleine süße Katze irgendwo auf der Welt stirbt.','fau'));
+
+    echo __('Sollte weder eine Adition-ID eingegeben worden sein, noch HTML-Code, kann eine Bannerverlinkung durch EIngabe der URL und des Beitragsbildes festgelegt werden.','fau');
+    
+    fau_form_url('fauval_ad_url', $targeturl, __('Webadresse','fau'), __('Sollte kein HTML-Code eingegeben werden sollen, kann alternativ direkt eine Zieladresse und ein Bild aus der Mediathek gewählt werden. Hiermit kann die URL des Zieles eingegeben werden. Als Bild wird das gewählte Beitragsbild verwendet.','fau'), $placeholder='http://');      
+    fau_form_select('fauval_ad_position', array( '1' => __('Sidebar','fau'), '2' => __('Unterhalb des Inhaltsbereich','fau')), $position, __('Position','fau'), __('Angabe an welchen Positionen der Seite diese Werbung angezeigt werden kann.', 'fau'),1, __('Sidebar und unterhalb des Inhaltsbereich','fau'));
+    
     fau_form_textarea('fauval_ad_notes', $notiz, __('Redaktionelle Notizen','fau'),80,3,__('Hier können redaktionelle Notizen hinterlassen werden. Diese werden nur hier angezeigt.','fau'));
 
-    fau_form_url('fauval_ad_url', $targeturl, __('Webadresse','fau'), __('Sollte kein HTML-Code eingegeben werden sollen, kann alternativ direkt eine Zieladresse und ein Bild aus der Mediathek gewählt werden. Hiermit kann die URL des Zieles eingegeben werden. Als Bild wird das gewählte Beitragsbild verwendet.','fau'), $placeholder='http://');   
-
-    
-    fau_form_select('fauval_ad_position', array( '1' => __('Sidebar','fau'), '2' => __('Unterhalb des Inhaltsbereich','fau')), $position, __('Position','fau'), __('Angabe an welchen Positionen der Seite diese Werbung angezeigt werden kann.', 'fau'),1, __('Sidebar und unterhalb des Inhaltsbereich','fau'));
     
     
     // function fau_form_select($name= '', $liste = array(), $prevalue, $labeltext = '',  $howtotext = '', $showempty=1, $emptytext = '' ) {
@@ -202,7 +211,7 @@ function fau_ad_metabox_content_save( $post_id ) {
 	
 	
     /* Old values */	
-    
+    $aditionid = get_post_meta( $object->ID, 'fauval_ad_aditionid', true );
     $targeturl = get_post_meta( $post_id, 'fauval_ad_url', true );
     $code = get_post_meta( $post_id, 'fauval_ad_code', true );
     $notiz = get_post_meta($post_id, 'fauval_ad_notes', true );
@@ -217,7 +226,17 @@ function fau_ad_metabox_content_save( $post_id ) {
 	$targeturl = get_post_meta( $post_id, 'link', true );
     }
     
-    
+     $newval = intval($_POST['fauval_ad_aditionid']) ;
+	
+    if (!empty(trim($newval))) {
+	if (isset($aditionid)  && ($aditionid != $newval)) {
+	    update_post_meta( $post_id, 'fauval_ad_aditionid', $newval );
+	} else {
+	    add_post_meta( $post_id, 'fauval_ad_aditionid', $newval, true );
+	}
+    } elseif ($position) {
+	delete_post_meta( $post_id, 'fauval_ad_aditionid', $aditionid );	
+    } 
     
     $newval =  $_POST['fauval_ad_code'] ;
 	
@@ -335,28 +354,35 @@ function fau_get_ad($type, $withhr = true) {
 		}
 		$out .= '</h3>';	   
 		$out .= ' <div class="fau-werbung-content">';
-		$scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
-		if (empty($scriptcode)) {
-		    $scriptcode = get_post_meta( $id, 'ad_script', true );
-		}
-
-		if(isset($scriptcode)) {
-
-		    $out .=  html_entity_decode($scriptcode);
-		} else  {
-		    $link =    get_post_meta( $id, 'fauval_ad_url', true ); 
-		    if (empty($link)) {
-			$link =    get_post_meta( $id, 'link', true ); 
+		$aditionid = get_post_meta( $id, 'fauval_ad_aditionid', true );
+		if ($aditionid >0) { 
+		    $prot = 'https';
+		    $out .= "<!-- BEGIN ADITIONSSLTAG -->";
+		    $out .= "<script type=\"text/javascript\" src=\"".$prot."://imagesrv.adition.com/js/adition.js\"></script>";
+		    $out .= "<script type=\"text/javascript\" src=\"".$prot."://ad1.adfarm1.adition.com/js?wp_id=".$aditionid."\"></script>";
+		    $out .= "<!-- END ADITIONSSLTAG -->";    
+		} else { 
+		    $scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
+		    if (empty($scriptcode)) {
+			$scriptcode = get_post_meta( $id, 'ad_script', true );
 		    }
-		    if($link) {
-			$out .=  '<a href="'.get_field('link', $id).'">';
-		    }
-		    $out .=  get_the_post_thumbnail($id, 'full');
-		    if($link) {
-			$out .=  '</a>';
-		    }
+		    if(isset($scriptcode)) {
+			$out .=  html_entity_decode($scriptcode);
+		    } else  {
+			$link =    get_post_meta( $id, 'fauval_ad_url', true ); 
+			if (empty($link)) {
+			    $link =    get_post_meta( $id, 'link', true ); 
+			}
+			if($link) {
+			    $out .=  '<a href="'.get_field('link', $id).'">';
+			}
+			$out .=  get_the_post_thumbnail($id, 'full');
+			if($link) {
+			    $out .=  '</a>';
+			}
 
-		}
+		    }
+		 }
 		$out .= '</div>';
 
 	   }

@@ -84,6 +84,41 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	}
     }
 endif;
+if ( ! function_exists( 'fau_form_number' ) ) :
+    function fau_form_number($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $min = 0, $max = 0, $step=1) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo "<p>\n";
+	    echo '	<label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label><br />\n";
+	     
+	    echo '	<input type="number" ';
+	   
+	    echo 'name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	    if ($min>0) {
+		echo ' min="'.$min.'"';
+	    }
+	    if ($max>0) {
+		echo ' max="'.$max.'"';
+	    }
+	     if ($step>1) {
+		echo ' step="'.$step.'"';
+	    }
+	  
+	    echo " />\n";
+	    echo "</p>\n";
+	    if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_number() - Name oder Label fehlt.', 'fau');
+	}
+    }
+endif;
 
 if ( ! function_exists( 'fau_form_url' ) ) :
     function fau_form_url($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='http://', $size = 0) {
