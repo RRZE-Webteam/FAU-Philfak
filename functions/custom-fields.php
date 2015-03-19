@@ -1258,7 +1258,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
 		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );
 		
-		if (!isset($key) || ($key <=0)) {
+		if (!isset($newid) || ($newid <=0)) {
 		    // Versuche aus der URL die ID zu ermitteln
 		    $relativeurl = fau_make_link_relative($newurl);
 		    if ($relativeurl != $newurl) {
@@ -1266,20 +1266,15 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 			$newid = url_to_postid( $newurl );
 		    }
 		} 
-		if (($oldparams ==1) || ($oldparams==0)) {
-		   // Neu   
-		    add_post_meta( $post_id, $urlname, $newurl, true );
-		    add_post_meta( $post_id, $titlename, $newtitle, true );
-		    add_post_meta( $post_id, $name, $newid, true );
+
 		    if ($oldparams ==1) {
 			delete_post_meta( $post_id, 'sidebar_quicklinks' );
 		    }
-		} else {
-		    // Update
+
 		    update_post_meta( $post_id, $urlname, $newurl );
-		    update_post_meta( $post_id, $titlename, $newtitle );
+		    update_post_meta( $post_id, $titlename, $newtitle );	    
 		    update_post_meta( $post_id, $name, $newid );			    
-		}  
+
 	    }
 	    
 	     $sidebar_quicklinks = get_post_meta( $post_id, 'sidebar_quicklinks_external', true );
@@ -1316,7 +1311,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
 		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );
 		
-		if (!isset($key) || ($key <=0)) {
+		if (!isset($newid) || ($newid <=0)) {
 		    // Versuche aus der URL die ID zu ermitteln
 		    $relativeurl = fau_make_link_relative($newurl);
 		    if ($relativeurl != $newurl) {
@@ -1324,17 +1319,12 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 			$newid = url_to_postid( $newurl );
 		    }
 		} 
-		if (($oldparams ==1) || ($oldparams==0)) {
-		   // Neu   
-		    add_post_meta( $post_id, $urlname, $newurl, true );
-		    add_post_meta( $post_id, $titlename, $newtitle, true );
-		    add_post_meta( $post_id, $name, $newid, true );
-		} else {
-		    // Update
+ 
+
 		    update_post_meta( $post_id, $urlname, $newurl );
 		    update_post_meta( $post_id, $titlename, $newtitle );
 		    update_post_meta( $post_id, $name, $newid );			    
-		}  
+		 
 	    }
 	
 

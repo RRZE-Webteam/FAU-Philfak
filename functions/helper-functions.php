@@ -65,9 +65,9 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	   if (intval($size)>0) {
 	       echo ' size="'.$size.'"';
 	    } else {
-		echo 'class="large-text"';
+		echo ' class="large-text"';
 	    }
-	    echo 'name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	    echo ' name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
 	    if (strlen(trim($placeholder))) {
 		echo ' placeholder="'.$placeholder.'"';
 	    }
