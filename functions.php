@@ -1340,3 +1340,12 @@ function fau_breadcrumb($lasttitle = '') {
 }
 
 
+function fau_wp_link_query_args( $query ) {
+     // check to make sure we are not in the admin
+   //  if ( !is_admin() ) {
+          $query['post_type'] = array( 'post', 'page', 'person'  ); // show only posts and pages
+   //  }
+     return $query;
+}
+add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' ); 
+
