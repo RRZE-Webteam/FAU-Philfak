@@ -84,6 +84,39 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	}
     }
 endif;
+if ( ! function_exists( 'fau_form_email' ) ) :
+    function fau_form_email($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo "<p>\n";
+	    echo '	<label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label><br />\n";
+	     
+	    echo '	<input type="email" ';
+	   if (intval($size)>0) {
+	       echo ' size="'.$size.'"';
+	    } else {
+		echo ' class="large-text"';
+	    }
+	    echo ' name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	    if (strlen(trim($placeholder))) {
+		echo ' placeholder="'.$placeholder.'"';
+	    }
+	  
+	    echo " />\n";
+	    echo "</p>\n";
+	    if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_email() - Name oder Label fehlt.', 'fau');
+	}
+    }
+endif;
 if ( ! function_exists( 'fau_form_number' ) ) :
     function fau_form_number($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $min = 0, $max = 0, $step=1) {
 	$name = fau_san( $name );

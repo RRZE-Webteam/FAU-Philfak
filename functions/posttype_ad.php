@@ -197,18 +197,16 @@ function fau_ad_metabox_content_save( $post_id ) {
     }
 
 
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 	return;
 	
 	
-	if ( !isset( $_POST['fau_ad_metabox_content_nonce'] ) || !wp_verify_nonce( $_POST['fau_ad_metabox_content_nonce'], basename( __FILE__ ) ) )
-		return $post_id;
+    if ( !isset( $_POST['fau_ad_metabox_content_nonce'] ) || !wp_verify_nonce( $_POST['fau_ad_metabox_content_nonce'], basename( __FILE__ ) ) )
+	return $post_id;
 
+    if ( !current_user_can( 'edit_page' ) )
+    return;
 
-
-		if ( !current_user_can( 'edit_page' ) )
-		return;
-	
 	
     /* Old values */	
     $aditionid = get_post_meta( $object->ID, 'fauval_ad_aditionid', true );

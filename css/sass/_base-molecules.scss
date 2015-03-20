@@ -506,7 +506,9 @@ ul.person-info {
 	li.person-info-email:before { @extend .fa-envelope; }
 	li.person-info-institution:before { @extend .fa-building; }
 	li.person-info-www:before { @extend .fa-info-circle; }
-	
+	li.person-info-position {
+	    font-weight: bold;
+	}
 	li.person-info-address {
 		margin-top: 10px;
 		padding-left: 0px;
@@ -1181,6 +1183,11 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
+	
+	li.person-info-address {
+		white-space: pre;
+	}
+	
 	
 }
 
