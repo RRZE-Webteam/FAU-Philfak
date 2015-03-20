@@ -36,12 +36,11 @@ LIBRARIES & SOURCES
 REQUIRED PLUGINS
 
 * FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
-* FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
-* ACF 
 
 
 OPTIONAL PLUGINS 
 
+* FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
