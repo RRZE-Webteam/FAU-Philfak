@@ -47,8 +47,14 @@ OPTIONAL PLUGINS
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
 * TinyMCE Advanced
 * CMS Tree Page View   
-* CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * CMS-Search (https://github.com/RRZE-Webteam/cms-search)
+* WP External Link
+   with Options: 
+    - General Settings: Open external link in same window
+    - SEO-Settings: Add "external" rel-attribute, please no "nofollow" !
+                    Dont use title-Attribut, it messes with accessibility
+    - Style Stettings: Icon 19, No icon for external links with imahes
+
 
 FEEDBACK & BUGS
 
