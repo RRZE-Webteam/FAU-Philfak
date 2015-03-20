@@ -972,14 +972,14 @@ function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $w
  */
 function is_workflow_translation_active() {
     global $cms_workflow;
-    if (isset($cms_workflow->translation) && $cms_workflow->translation->module->options->activated) {
+    if ((class_exists('Workflow_Translation')) && (isset($cms_workflow->translation) && $cms_workflow->translation->module->options->activated)) {
         return true;
     }
     return false;
 }
 
 function fau_get_rel_alternate() {
-    if(is_workflow_translation_active()) {
+    if ((class_exists('Workflow_Translation')) && (function_exists('get_rel_alternate')) && (is_workflow_translation_active())) {
         return Workflow_Translation::get_rel_alternate();
     } else {
         return '';
