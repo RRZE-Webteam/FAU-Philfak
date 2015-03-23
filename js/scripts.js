@@ -212,8 +212,9 @@ jQuery(document).ready(function($) {
 		var height = 0;
 		
 		$('.image-gallery-grid li').each(function() {
-			var imageHeight = $(this).find('img').innerHeight();
-			if(imageHeight < 92) imageHeight = 92;
+			// var imageHeight = $(this).find('img').innerHeight();
+			// if(imageHeight < 92) imageHeight = 92;
+			var imageHeight = 120;
 			var captionHeight = $(this).find('.caption').innerHeight();
 			
 			if((imageHeight + captionHeight) > height) {
