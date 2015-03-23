@@ -20,9 +20,14 @@ function fau_metabox_cf_setup() {
 
 	/* Save sidecontent */
 	add_action( 'save_post', 'fau_save_metabox_page_untertitel', 10, 2 );
-	add_action( 'save_post', 'fau_save_metabox_page_menu', 10, 2 );
+	add_action( 'save_post', 'fau_save_metabox_page_subnavmenu', 10, 2 );
+	
+	
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
+	
+	add_action( 'save_post', 'fau_save_metabox_page_sidebar', 10, 2 );
+	
 	if ($options['advanced_activateads'] == true) {
 	    add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
 	}
@@ -48,15 +53,16 @@ function fau_add_metabox_page() {
 	);
 	add_meta_box(
 		'fau_metabox_page_portalmenu',			
-		esc_html__( 'Portalmenü einbinden', 'fau' ),		
+		esc_html__( 'Optionen für Portalseiten', 'fau' ),		
 		'fau_do_metabox_page_portalmenu',		
 		 'page','side','core'
 	);
+
 	add_meta_box(
-		'fau_metabox_page_menu',			
+		'fau_metabox_page_subnavmenu',			
 		esc_html__( 'Menüoptionen', 'fau' ),		
-		'fau_do_metabox_page_menu',		
-		 'page','normal','high'
+		'fau_do_metabox_page_subnavmenu',		
+		 'page','side','core'
 	);
 	add_meta_box(
 		'fau_metabox_page_imagelinks',			
@@ -72,14 +78,14 @@ function fau_add_metabox_page() {
 		     'page','side','core'
 	    );
 	}
-/*
+
 	add_meta_box(
 		'fau_metabox_page_sidebar',			
-		esc_html__( 'Sidebar (BETA!!!)', 'fau' ),		
+		esc_html__( 'Sidebar', 'fau' ),		
 		'fau_do_metabox_page_sidebar',		
 		 'page','normal','core'
 	);
-  */
+  
  
 }
 
@@ -444,25 +450,14 @@ function fau_save_post_topevent( $post_id, $post ) {
 }
 
  
- 
-
-
-/* Display Options for menuquotes on pages */
-function fau_do_metabox_page_menu( $object, $box ) { 
-	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_menu_nonce' ); 
-	$post_type = get_post_type( $object->ID); 
+ /* Display Options for menuquotes on pages */
+function fau_do_metabox_page_subnavmenu( $object, $box ) { 
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_subnavmenu_nonce' ); 
 	
-	if ( 'page' == $post_type ) {
-	    if ( !current_user_can( 'edit_page', $object->ID) )
-		    // Oder sollten wir nach publish_pages  fragen? 
-		    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
-		return;
-	} else {
+	if ( !current_user_can( 'edit_page', $object->ID) )
 	    return;
-	}
-	
-	$quote  = get_post_meta( $object->ID, 'zitat_text', true );	
-	$author =  get_post_meta( $object->ID, 'zitat_autor', true );
+
+
 	$menuebene = get_post_meta( $object->ID, 'menu-level', true );
 	?>
 	
@@ -480,37 +475,15 @@ function fau_do_metabox_page_menu( $object, $box ) {
 	    <?php _e('Die Menüebene definiert bei Seiten bis zur welchen Ebene das Menu auf der linken Seite gezeigt wird. Dies gilt nur für Seiten, die das folgende Template ausgewählt haben:','fau'); ?>
 	    <code><?php _e('Inhaltsseite mit Navi','fau');?></code> 
 	</p>
-	<p>
-		<label for="fau_metabox_menuquote_quote">
-                    <?php _e( "Zitat", 'fau' ); ?>:
-                </label>
-	</p>
 	
-	<textarea name="fau_metabox_menuquote_quote" id="fau_metabox_menuquote_quote" class="large-text" rows="4" ><?php echo $quote; ?></textarea>	
-	<p class="howto">
-	    <?php _e('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau'); ?>
-	</p>
-	
-	
-	
-	<p>
-		<label for="fau_metabox_menuquote_autor">
-                    <?php _e( "Autor", 'fau' ); ?>:
-                </label>
-		<br />
-		<input class="large-text" name="fau_metabox_menuquote_autor" id="fau_metabox_menuquote_autor" value="<?php echo $author; ?>" />			
-	</p>
-	<p class="howto">
-	    <?php _e('Dieser freie Text kann einen Namen enthalten auf den das Zitat zurückzuführen ist oder andere Informationen hierzu.','fau'); ?>
-	</p>
 	<?php 
 
  }
 
 /* Save the meta box's post/page metadata. */
-function fau_save_metabox_page_menu( $post_id, $post ) {
+function fau_save_metabox_page_subnavmenu( $post_id, $post ) {
 	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['fau_metabox_page_menu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_menu_nonce'], basename( __FILE__ ) ) )
+	if ( !isset( $_POST['fau_metabox_page_subnavmenu_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_subnavmenu_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
 
@@ -520,33 +493,6 @@ function fau_save_metabox_page_menu( $post_id, $post ) {
 		return;
 	}
 
-	$newval = ( isset( $_POST['fau_metabox_menuquote_quote'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_quote'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'zitat_text', true );
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'zitat_text', $newval );
-	    } else {
-		add_post_meta( $post_id, 'zitat_text', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'zitat_text', $oldval );	
-	} 
-
-	
-	$newval = ( isset( $_POST['fau_metabox_menuquote_autor'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_autor'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'zitat_autor', true );
-	
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'zitat_autor', $newval );
-	    } else {
-		add_post_meta( $post_id, 'zitat_autor', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
-	} 
 	
 	$newval = intval($_POST['fau_metabox_page_menuebene']);
 	$oldval = get_post_meta( $post_id, 'menu-level', true );
@@ -561,15 +507,10 @@ function fau_save_metabox_page_menu( $post_id, $post ) {
 	} elseif ($oldval) {
 	    delete_post_meta( $post_id, 'menu-level', $oldval );	
 	} 
-
-	
-	// Remove old values from version 2
-	// $oldval = get_post_meta( $post_id, 'right_column', true );
-	//  if (isset($oldval)) {
-	//   delete_post_meta( $post_id, 'right_column', $oldval );	
-	// }
 	
 }
+
+
 
 
 /* Display Options for menuquotes on pages */
@@ -646,6 +587,16 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	} else {
 	    return;
 	}
+	
+	$quote  = get_post_meta( $object->ID, 'zitat_text', true );	
+	$author =  get_post_meta( $object->ID, 'zitat_autor', true );
+		
+	echo '<div id="portalseitenquote">';
+	    
+	fau_form_textarea('fau_metabox_menuquote_quote', $quote, __( "Zitat", 'fau' ),40,3, __('Das Zitat und der Autor erscheint bei Portalseiten oder Menüpunkten der ersten Ebene des Hauptmenüs neben der Auflistung der Untermenüpunkte.','fau')); 	    
+	fau_form_text('fau_metabox_menuquote_autor', $author, __( "Autor", 'fau' ), __('Dieser freie Text kann einen Namen enthalten auf den das Zitat zurückzuführen ist oder andere Informationen hierzu.','fau'), '', 20);
+	
+	echo '</div>';
 	
 	$currentmenu  = get_post_meta( $object->ID, 'portalmenu-slug', true );	
 	$currentmenuid = 0;
@@ -751,7 +702,35 @@ function fau_save_metabox_page_portalmenu( $post_id, $post ) {
 	} else {
 	    delete_post_meta( $post_id, 'fauval_portalmenu_nosub' );	
 	} 
+	
+	
+	$newval = ( isset( $_POST['fau_metabox_menuquote_quote'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_quote'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'zitat_text', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'zitat_text', $newval );
+	    } else {
+		add_post_meta( $post_id, 'zitat_text', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_text', $oldval );	
+	} 
 
+	
+	$newval = ( isset( $_POST['fau_metabox_menuquote_autor'] ) ? sanitize_text_field( $_POST['fau_metabox_menuquote_autor'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'zitat_autor', true );
+	
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'zitat_autor', $newval );
+	    } else {
+		add_post_meta( $post_id, 'zitat_autor', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'zitat_autor', $oldval );	
+	} 
 }
 
 /* 
@@ -772,7 +751,7 @@ function fau_do_metabox_page_imagelinks( $object, $box ) {
 	    return;
 	}
 
- 
+	$thislist = array();
 	$categories = get_categories( array('type' => 'imagelink', 'taxonomy' => 'imagelinks_category', 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => 1 ) ); 
 	foreach($categories as $category) {
 	    if (!is_wp_error( $category )) {
@@ -784,12 +763,14 @@ function fau_do_metabox_page_imagelinks( $object, $box ) {
 	    }	
 	}	
 	
-
-	$currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
-	fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
+	if (empty($thislist)) {
+	    echo __('Es wurden noch keine Bilder als Logos definiert. Daher kann hie rnoch nichts ausgewählt werden.','fau');
+	} else {
+	    $currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
+	    fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
 		__('Wählen Sie hier die Kategorie aus aus der Logos (Bildlinks) verwendet werden sollen. Die Bilder aus der gewählten Kategorie werden dann angezeigt.','fau'),
 		1, __('Keine Logos zeigen','fau'));
-	
+	}
 	return;
 
 
@@ -956,81 +937,135 @@ function fau_save_metabox_page_ad( $post_id, $post ) {
 function fau_do_metabox_page_sidebar( $object, $box ) { 
     global $options;
 	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_page_sidebar_nonce' ); 
-	$post_type = get_post_type( $object->ID); 
-	
-	if ( 'page' == $post_type ) {
-	    if ( !current_user_can( 'edit_page', $object->ID) )
-		 
-		return;
-	} else {
+
+
+	 if ( !current_user_can( 'edit_page', $object->ID) )
 	    return;
-	}
 	
-	
-	$sidebar_title_above = get_post_meta( $object->ID, 'sidebar_title_above', true );
-	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
-	
-	
-	$sidebar_title_personen = get_post_meta( $object->ID, 'sidebar_title_personen', true );	 
-	$sidebar_personen = get_post_meta( $object->ID, 'sidebar_personen', true );
-	
-	// Verlinkung auf Post Type personen, kann mehr als ein sein
-	
-	$sidebar_title_quicklinks = get_post_meta( $object->ID, 'sidebar_title_quicklinks', true );
-	$sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks', true );
-	    // Verlinkung auf vorhandenen Seiten, kann mehr als ein sein
-	$sidebar_quicklinks_external = get_post_meta( $object->ID, 'sidebar_quicklinks_external', true );
-	    // Verlinkung auf externe Seiten, ggf. wie Ads verwalten, kann mehr als ein sein
-	  
-	 
 
-	$sidebar_title_below = get_post_meta( $object->ID, 'sidebar_title_below', true );
-	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
-
-
-	
-	
         
-	
-	
-		   
-	fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
+	if ($options['advanced_page_sidebar_titleabove']) {
+	    $sidebar_title_above = get_post_meta( $object->ID, 'sidebar_title_above', true );
+	    fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
+	}
+	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
  	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
    
-	fau_form_text('sidebar_title_personen', $sidebar_title_personen, __('Titel Ansprechpartner','fau'), __('Titel über Ansprechpartner','fau'));
-	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
+	if (($options['advanced_page_sidebar_linkblock1_number'] > 0) || ($options['advanced_page_sidebar_linkblock2_number'] > 0)) {
+	    // Frage nach Reihenfolge Linklisten vs Personen
+	    
+	    $fauval_sidebar_order_personlinks = get_post_meta( $object->ID, 'fauval_sidebar_order_personlinks', true );
+	    if (!isset($fauval_sidebar_order_personlinks)) {
+		$fauval_sidebar_order_personlinks = $options['advanced_page_sidebar_order_personlinks'];
+	    }
+	    fau_form_select('fauval_sidebar_order_personlinks', array(0 => __('Zuerst Kontake, dann Linklisten','fau'), 1 => __('Zuerst Linklisten, dann Kontakte', 'fau')), $fauval_sidebar_order_personlinks, __('Reihenfolge Kontakte und Linklisten'),  __('Hier kann die Reihenfolge von Kontakte und Linklisten geändert werden, wie sie auf der Seite präsentiert werden.','fau'), 0 );
+	}	
+	
+	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 100, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
 	if ($personen) {
 	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
-	    
+	    $found = 0;
 	    foreach ($personen as $current) {
 		$title = get_the_title($current->ID);
 		$auswahl[$current->ID] = $title;
+		$found = 1;
 	    }
 	    wp_reset_postdata();
-	    
-	    fau_form_multiselect('sidebar_personen', $auswahl, $sidebar_personen, __('Auswahl Ansprechpartner','fau'),  __('Wählen Sie die Personen oder Ansprechpartner, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
-	}
-	
-/*
-	fau_form_text('sidebar_title_quicklinks', $sidebar_title_personen, __('Titel Quicklinks','fau'), __('Titel über Liste von Quicklinks','fau'));
-	$links = get_posts(array('post_type' => 'page', 'post_status' => 'publish', 'orderby' => 'title'));
-	if ($links) {
-	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
-	    
-	    foreach ($links as $current) {
-		$title = get_the_title($current->ID);
-		$auswahl[$current->ID] = $title;
+	    if ($found==1) {
+		$sidebar_personen = get_post_meta( $object->ID, 'sidebar_personen', true );
+		$sidebar_title_personen = get_post_meta( $object->ID, 'sidebar_title_personen', true );	 
+		fau_form_text('sidebar_title_personen', $sidebar_title_personen, $options['advanced_page_sidebar_personen_title'], __('Titel über Ansprechpartner','fau'));
+		fau_form_multiselect('sidebar_personen', $auswahl, $sidebar_personen, __('Auswahl Ansprechpartner','fau'),  __('Wählen Sie die Personen oder Ansprechpartner, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	    } else {
+		echo __('Derzeit sind noch Persoen oder Kontakte eingetragen, die man verlinken könnte.','fau');
 	    }
-	    wp_reset_postdata();
+	} 
+	
+
+	
+	
+	if ($options['advanced_page_sidebar_linkblock1_number'] > 0) {	
+	    $sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks', true );
+	    // Alter ACF Rotz
 	    
-	    fau_form_multiselect('sidebar_quicklinks', $auswahl, $sidebar_quicklinks, __('Auswahl Seitenlinks','fau'),  __('Wählen Sie die Links auf Seiten innerhalb des Webauftritts, die in der Sidebar erscheinen sollen. Es kann mehr als ein Eintrag gewählt werden.','fau'), 0 );	    
+	    $block_title = get_post_meta( $object->ID, 'fauval_sidebar_title_linkblock1', true );
+	    if (strlen(trim($block_title))<1) {
+		$oldtitle = get_post_meta( $object->ID, 'sidebar_title_quicklinks', true );
+		if (strlen(trim($oldtitle))>0) {
+		    $block_title = $oldtitle;
+		// } else {
+		   // $block_title = $options['advanced_page_sidebar_linkblock1_title'];
+		}
+	    }
+	    fau_form_text('fauval_sidebar_title_linkblock1', $block_title, __('Titel erster Linkblock','fau'), __('Titel über die erste Liste von Links, sogenannte Quicklinks','fau'));
+	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock1_number']; $i++) {
+		$name = 'fauval_linkblock1_link'.$i;
+		$title = __('Link Nr. ','fau').$i;
+		$urlname= $name.'_url';
+		$titlename= $name.'_title';
+		
+		$oldpageid =  get_post_meta( $object->ID, $name, true );
+		$oldurl =  get_post_meta( $object->ID, $urlname, true );
+		$oldtitle =  get_post_meta( $object->ID, $titlename, true );
+		$c = $i-1;
+		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
+		    if (isset($sidebar_quicklinks) && (isset($sidebar_quicklinks[$c]))) {
+			$oldpageid = $sidebar_quicklinks[$c];
+			if (isset($oldpageid) && ($oldpageid>0)) {
+			    $oldtitle = get_the_title($oldpageid );
+			    $oldurl = get_permalink($oldpageid );
+			}
+		    }
+		}
+		
+		fau_form_link($name, $oldtitle, $oldurl, $title);
+	    }
 	}
 	
 	
-	
-	*/
-	
-	fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
+	if ($options['advanced_page_sidebar_linkblock2_number'] > 0) {	    
+	    	    
+	    $sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks_external', true );
+	   	    // Alter ACF Rotz mit SubFields	    
+	    
+	    $block_title = get_post_meta( $object->ID, 'fauval_sidebar_title_linkblock2', true );
+	    // Default erstmal auskommentiert wenn man es leer haben will; irritiert sonst
+	    // if (isset($block_title) && strlen(trim($block_title))<1) {
+		//$block_title = $options['advanced_page_sidebar_linkblock2_title'];	
+	    //}
+	    fau_form_text('fauval_sidebar_title_linkblock2', $block_title, __('Titel zweiter Linkblock','fau'), __('Titel über die zweite Liste von Links. Weitere Links oder bspw. externe Links.','fau'));
+
+
+	   for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock2_number']; $i++) {
+		$name = 'fauval_linkblock2_link'.$i;
+		$title = __('Link Nr. ','fau').$i;
+		$urlname= $name.'_url';
+		$titlename= $name.'_title';
+		
+		$oldpageid =  get_post_meta( $object->ID, $name, true );
+		$oldurl =  get_post_meta( $object->ID, $urlname, true );
+		$oldtitle =  get_post_meta( $object->ID, $titlename, true );
+		$c = $i-1;
+		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
+		    if (!empty($sidebar_quicklinks)) {
+			// Schau nach alten ACF Subfields
+			$oldlinkname = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_text';
+			$oldlinkurl = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_link';
+			$oldurl =  get_post_meta( $object->ID, $oldlinkurl, true );
+			$oldtitle =  get_post_meta( $object->ID, $oldlinkname, true );
+		    }
+		}
+		
+		fau_form_link($name, $oldtitle, $oldurl, $title);
+	    }
+	}
+
+
+	if ($options['advanced_page_sidebar_titlebelow']) {
+	    $sidebar_title_below = get_post_meta( $object->ID, 'sidebar_title_below', true );
+	    fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
+	}
+	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
  	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);	    
 	    
 	    
@@ -1045,11 +1080,257 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 
 
 	/* Check if the current user has permission to edit the post. */
-	if ( 'page' == $_POST['post_type'] ) {
-		if ( !current_user_can( 'edit_page', $post_id ) )
+	if ( !current_user_can( 'edit_page', $post_id ) )
 		return;
+	
+	$newval = ( isset( $_POST['sidebar_title_above'] ) ? sanitize_text_field( $_POST['sidebar_title_above'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'sidebar_title_above', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'sidebar_title_above', $newval );
+	    } else {
+		add_post_meta( $post_id, 'sidebar_title_above', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'sidebar_title_above', $oldval );	
+	} 
+	
+	
+	$newval = ( isset( $_POST['sidebar_text_above'] ) ? $_POST['sidebar_text_above']  : 0 );
+	$oldval = get_post_meta( $post_id, 'sidebar_text_above', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'sidebar_text_above', $newval );
+	    } else {
+		add_post_meta( $post_id, 'sidebar_text_above', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'sidebar_text_above', $oldval );	
+	} 
+	
+	
+	$newval = ( isset( $_POST['sidebar_title_below'] ) ? sanitize_text_field( $_POST['sidebar_title_below'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'sidebar_title_below', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'sidebar_title_below', $newval );
+	    } else {
+		add_post_meta( $post_id, 'sidebar_title_below', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'sidebar_title_below', $oldval );	
+	} 
+	
+	
+	$newval = ( isset( $_POST['sidebar_text_below'] ) ? $_POST['sidebar_text_below']  : 0 );
+	$oldval = get_post_meta( $post_id, 'sidebar_text_below', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'sidebar_text_below', $newval );
+	    } else {
+		add_post_meta( $post_id, 'sidebar_text_below', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'sidebar_text_below', $oldval );	
+	} 
+	
+	
+	$newval = intval($_POST['fauval_sidebar_order_personlinks']);
+	$oldval = get_post_meta( $post_id, 'fauval_sidebar_order_personlinks', true );
+	
+	if ($newval>0) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_sidebar_order_personlinks', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_sidebar_order_personlinks', $newval, true );
+	    }
+	} else {
+	    delete_post_meta( $post_id, 'fauval_sidebar_order_personlinks', $oldval );	
+	} 
+
+	
+	$newval = ( isset( $_POST['sidebar_title_personen'] ) ? sanitize_text_field( $_POST['sidebar_title_personen'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'sidebar_title_personen', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'sidebar_title_personen', $newval );
+	    } else {
+		add_post_meta( $post_id, 'sidebar_title_personen', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'sidebar_title_personen', $oldval );	
+	} 
+	
+
+	
+	$newval = $_POST['sidebar_personen'];
+	$oldval = get_post_meta( $post_id, 'sidebar_personen', true );
+	$remove = 0;
+	$found =0;
+	if (isset($newval)) {
+	    foreach ($newval as $i) {
+		if ($i == -1) {
+		    $remove = 1;
+		} elseif ($i >0) {
+		    $found = 1;
+		}
+	    }
+	}
+	
+	if (($remove==1) || ($found==0)) {
+	     delete_post_meta( $post_id, 'sidebar_personen' );	 
+	} else {
+		if (isset($oldval))  {
+		    update_post_meta( $post_id, 'sidebar_personen', $newval );
+		} else {
+		    add_post_meta( $post_id, 'sidebar_personen', $newval, true );
+		}
 	}
 
+	$newval = ( isset( $_POST['fauval_sidebar_title_linkblock1'] ) ? sanitize_text_field( $_POST['fauval_sidebar_title_linkblock1'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', true );
+	if ((!isset($oldvar)) || empty($oldvar) ) {
+	    	$oldval = get_post_meta( $post_id, 'sidebar_title_quicklinks', true );  
+	}
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', $oldval );	
+	} 
+	
+	
+	
+	$newval = ( isset( $_POST['fauval_sidebar_title_linkblock2'] ) ? sanitize_text_field( $_POST['fauval_sidebar_title_linkblock2'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_sidebar_title_linkblock2', true );
+
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_sidebar_title_linkblock2', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_sidebar_title_linkblock2', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_sidebar_title_linkblock2', $oldval );	
+	} 
+	
+	
+	global $options;
+	 $sidebar_quicklinks = get_post_meta( $post_id, 'sidebar_quicklinks', true );
+	 
+	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock1_number']; $i++) {
+		$name = 'fauval_linkblock1_link'.$i;
+		$urlname= $name.'_url';
+		$titlename= $name.'_title';
+		$oldpageid =  get_post_meta( $post_id, $name, true );
+		$oldurl =  get_post_meta( $post_id, $urlname, true );
+		$oldtitle =  get_post_meta( $post_id, $titlename, true );
+		$c = $i-1;
+		$oldparams = 0;
+		
+		 
+		
+		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
+		    
+		    if (isset($sidebar_quicklinks) && (isset($sidebar_quicklinks[$c]))) {
+			$oldpageid = $sidebar_quicklinks[$c];
+			if (isset($oldpageid) && ($oldpageid>0)) {
+			    $oldtitle = get_the_title($oldpageid );
+			    $oldurl = get_permalink($oldpageid );
+			    if ((!empty($oldlinkname)) && (!empty($oldlinkurl))) {
+				$oldparams = 1;
+			    }
+			}
+		    }
+
+		} else {
+		     $oldparams = -1;
+		}
+		$newurl = ( isset( $_POST[$urlname] ) ? esc_url( $_POST[$urlname] ) : 0 );
+		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
+		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );
+		
+		if (!isset($newid) || ($newid <=0)) {
+		    // Versuche aus der URL die ID zu ermitteln
+		    $relativeurl = fau_make_link_relative($newurl);
+		    if ($relativeurl != $newurl) {
+			// Ist eine interne URL, also mnuss es eine ID geben			
+			$newid = url_to_postid( $newurl );
+		    }
+		} 
+
+		    if ($oldparams ==1) {
+			delete_post_meta( $post_id, 'sidebar_quicklinks' );
+		    }
+
+		    update_post_meta( $post_id, $urlname, $newurl );
+		    update_post_meta( $post_id, $titlename, $newtitle );	    
+		    update_post_meta( $post_id, $name, $newid );			    
+
+	    }
+	    
+	     $sidebar_quicklinks = get_post_meta( $post_id, 'sidebar_quicklinks_external', true );
+	   	    // Alter ACF Rotz mit SubFields	    
+	    
+	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock2_number']; $i++) {
+		$name = 'fauval_linkblock2_link'.$i;
+		$urlname= $name.'_url';
+		$titlename= $name.'_title';
+		$oldpageid =  get_post_meta( $post_id, $name, true );
+		$oldurl =  get_post_meta( $post_id, $urlname, true );
+		$oldtitle =  get_post_meta( $post_id, $titlename, true );
+		$c = $i-1;
+		$oldparams = 0;
+		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
+		    if (!empty($sidebar_quicklinks)) {
+			// Schau nach alten ACF Subfields
+			$oldlinkname = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_text';
+			$oldlinkurl = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_link';
+			$oldurl =  get_post_meta( $post_id, $oldlinkurl, true );
+			$oldtitle =  get_post_meta( $post_id, $oldlinkname, true );
+			if ((!empty($oldlinkname)) && (!empty($oldlinkurl))) {
+			 delete_post_meta( $post_id, $oldlinkname );	
+			 delete_post_meta( $post_id, $oldlinkurl );
+			 
+			 $oldparams = 1;
+			}
+			
+		    }
+		} else {
+		     $oldparams = -1;
+		}
+		$newurl = ( isset( $_POST[$urlname] ) ? esc_url( $_POST[$urlname] ) : 0 );
+		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
+		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );
+		
+		if (!isset($newid) || ($newid <=0)) {
+		    // Versuche aus der URL die ID zu ermitteln
+		    $relativeurl = fau_make_link_relative($newurl);
+		    if ($relativeurl != $newurl) {
+			// Ist eine interne URL, also mnuss es eine ID geben			
+			$newid = url_to_postid( $newurl );
+		    }
+		} 
+ 
+
+		    update_post_meta( $post_id, $urlname, $newurl );
+		    update_post_meta( $post_id, $titlename, $newtitle );
+		    update_post_meta( $post_id, $name, $newid );			    
+		 
+	    }
+	
+
+	
+	
+	
 	
 }
 

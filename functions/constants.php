@@ -10,9 +10,7 @@ $defaultoptions = array(
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
     'slider-category'		    => 'header',
     'slider-catid'		    => 0,
-    'slider-image-width'	    => 1260,
-    'slider-image-height'	    => 350,    
-    'slider-image-crop'		    => true,
+    
     'default_slider_excerpt_length' => 240,
     'start_header_count'	    => 5,
     'start_max_newscontent'	    => 5,
@@ -23,27 +21,92 @@ $defaultoptions = array(
     'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
     'start_link_videoportal_socialmedia'    => true,
     'start_title_videoportal_socialmedia'   => __('Alle Videos','fau'),
-    
-    
-    'default_mainmenuthumb_width'    => 370,
-    'default_mainmenuthumb_height'   => 185,
-    
-    'default_submenuthumb_width'    => 220,
-    'default_submenuthumb_height'   => 110,    
     'default_submenuthumb_src'	    =>  get_template_directory_uri().'/img/default-submenuthumb.png',
     'default_submenu_spalten'	    => 4,
     'default_submenu_entries'	    => 5,
-    
     'menu_fallbackquote_show_excerpt'		=> 1,
     'menu_fallbackquote_excerpt_length'	=> 240,  
     'start_topevents_tag'	    => 'top',
     'start_topevents_max'	    => 1,
     'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
-    'default_topevent_thumb_width'  => 140,
-    'default_topevent_thumb_height' => 90,
-    'default_topevent_thumb_crop'   => true,
     'default_topevent_excerpt_length' => 100,
 
+    /* Image Sizes */
+    
+    /* Default Thumb Size */
+    'default_thumb_width'	    => 300,
+    'default_thumb_height'	    => 150,
+    'default_thumb_crop'	    => false,
+    
+    /* Image Sizes for Slider, Name: hero */
+    'slider-image-width'	    => 1260,
+    'slider-image-height'	    => 350,    
+    'slider-image-crop'		    => true,
+    
+    /* Thumb for Main menu - Name: portalmenu-thumb */
+    'default_mainmenuthumb_width'    => 370,
+    'default_mainmenuthumb_height'   => 185,
+    'default_mainmenuthumb_crop'    => false,
+    
+    /* Thumb for Image Menus in Content - Name: page-thumb */
+    'default_submenuthumb_width'    => 220,
+    'default_submenuthumb_height'   => 110,    
+    
+    /* Thumb of Topevent in Sidebar - Name: topevent-thumb */
+    'default_topevent_thumb_width'  => 140,
+    'default_topevent_thumb_height' => 90,
+    'default_topevent_thumb_crop'   => true,  
+    
+    /* Thumb for Posts in Lists - Name: post-thumb */
+    'default_postthumb_width'	    => 220,
+    'default_postthumb_height'	    => 147,
+    'default_postthumb_crop'	    => false,
+   
+     /* Thumb for Posts, displayed in post/page single display - Name: post */
+    'default_postthumb_width'	    => 300,
+    'default_postthumb_height'	    => 200,
+    'default_postthumb_crop'	    => false, 
+    
+     /* Thumb for person-type; small for sidebar - Name: person-thumb */
+    'default_person_thumb_width'    => 60,
+    'default_person_thumb_height'   => 80,
+    'default_person_thumb_crop'	    => true, 
+     
+     /* Thumb for person-type; small for content - Name: person-thumb-bigger */
+    'default_person_thumb_bigger_width'    => 90,
+    'default_person_thumb_bigger_height'   => 120,
+    'default_person_thumb_bigger_crop'	    => true,     
+    
+    /* Thumb for Logos (used in carousel) - Name: logo-thumb */
+    'default_logo_carousel_width'	=> 140,
+    'default_logo_carousel_height'	=> 110,
+    'default_logo_carousel_crop'	=> true,      
+  
+    /* Images for gallerys - Name: gallery-full */
+    'default_gallery_full_width'	=> 940,
+    'default_gallery_full_height'	=> 470,
+    'default_gallery_full_crop'		=> false,     
+    
+    /* Thumbs for gallerys - Name: gallery-thumb */
+    'default_gallery_thumb_width'	=> 120,
+    'default_gallery_thumb_height'	=> 80,
+    'default_gallery_thumb_crop'	=> true,     
+
+    /* Grid-Thumbs for gallerys - Name: gallery-grid */
+    'default_gallery_grid_width'	=> 145,
+    'default_gallery_grid_height'	=> 120,
+    'default_gallery_grid_crop'		=> false,    
+    
+     /* 2 column Imagelists for gallerys - Name: image-2-col */
+    'default_gallery_grid_width'	=> 300,
+    'default_gallery_grid_height'	=> 200,
+    'default_gallery_grid_crop'		=> true,        
+
+    /* 4 column Imagelists for gallerys - Name: image-4-col */
+    'default_gallery_grid_width'	=> 140,
+    'default_gallery_grid_height'	=> 70,
+    'default_gallery_grid_crop'		=> true,   
+    
     
     'breadcrumb_root'			=> 'fau.de',
     'breadcrumb_delimiter'		=> ' <span>/</span>',
@@ -77,9 +140,7 @@ $defaultoptions = array(
     'default_search_excerpt_length' => 300,
     
     'default_postthumb_src'	    => get_template_directory_uri().'/img/default-postthumb.png',
-    'default_postthumb_width'	    => 220,
-    'default_postthumb_height'	    => 147,
-    'default_postthumb_crop'	    => false,
+
     'default_postthumb_always'	    => 1,
 
 
@@ -98,6 +159,16 @@ $defaultoptions = array(
     'galery_link_original'		=> true,
     'advanced_activatefaupluginpersonen'=> true,
     
+    'advanced_page_sidebar_titleabove'	=> true,
+    'advanced_page_sidebar_titlebelow'	=> true,    
+    'advanced_page_sidebar_personen_title'	=> __('Kontakt','fau'), 
+    'advanced_page_sidebar_linkblock1_number'	=> 3, 
+    'advanced_page_sidebar_linkblock2_number'	=> 3,
+    'advanced_page_sidebar_linkblock1_title'	=> __('Weitere Informationen','fau'), 
+    'advanced_page_sidebar_linkblock2_title'	=> __('Sonstiges','fau'), 
+    'advanced_page_sidebar_order_personlinks'	=> 0,
+	// 0 = Kontakte, Links
+	// 1 = Links, Kontakte
     
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
@@ -787,7 +858,66 @@ $setoptions = array(
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
               ),   
-	     
+	       'sidebaropt'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Erweiterte Einstellunge für Sidebars (von Seiten)', 'fau' ),                      
+              ),
+	       'advanced_page_sidebar_titleabove'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Feld Titel oben', 'fau' ),
+                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum text oben ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_titleabove'],
+		  'parent'  => 'sidebaropt'
+              ), 
+	       'advanced_page_sidebar_titlebelow'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Feld Titel unten', 'fau' ),
+                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum Text unten ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_titlebelow'],
+		  'parent'  => 'sidebaropt'
+              ), 
+		'advanced_page_sidebar_personen_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel über Kontakte', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über ein ausgewählte Kontakte.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_personen_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       'advanced_page_sidebar_linkblock1_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel erster Linkblock', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über den ersten Linkblock, wenn dieser belegt ist.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock1_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       
+	        'advanced_page_sidebar_linkblock2_title'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Default Titel zweiter Linkblock', 'fau' ),
+                  'label'   => __( 'Optionaler Titel über den zweiten Linkblock, wenn dieser belegt ist.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock2_title'],
+		  'parent'  => 'sidebaropt'
+		), 
+	        'advanced_page_sidebar_linkblock1_number'	  => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Links im ersten Linkblock', 'fau' ),
+                  'label'   => __( 'Wieviele Links können maximal im ersten Linkblock angegeben werden.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock1_number'],
+		  'parent'  => 'sidebaropt'
+		), 
+	         'advanced_page_sidebar_linkblock2_number'	  => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Links im zweiten Linkblock', 'fau' ),
+                  'label'   => __( 'Wieviele Links können maximal im zweiten Linkblock angegeben werden.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_linkblock2_number'],
+		  'parent'  => 'sidebaropt'
+		), 
+	       
+
+
+	       
+	       
+	       
 	       
 	       
 	       

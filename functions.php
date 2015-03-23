@@ -9,15 +9,15 @@ load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once( get_template_directory() . '/functions/helper-functions.php' );
-require_once ( get_template_directory() . '/functions/theme-options.php' );     
-require_once( get_template_directory() .'/functions/bootstrap.php');
-require_once( get_template_directory() .'/functions/shortcodes.php');
-require_once( get_template_directory() .'/functions/menu.php');
+require_once( get_template_directory() . '/functions/theme-options.php' );     
+require_once( get_template_directory() . '/functions/bootstrap.php');
+require_once( get_template_directory() . '/functions/shortcodes.php');
+require_once( get_template_directory() . '/functions/plugin-support.php' );
+require_once( get_template_directory() . '/functions/menu.php');
 require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
 require_once( get_template_directory() . '/functions/widgets.php' );
-
 
 
 function fau_setup() {
@@ -75,35 +75,56 @@ function fau_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 300, 150, false );
+	set_post_thumbnail_size( $options['default_thumb_width'], $options['default_thumb_height'], $options['default_thumb_crop'] ); // 300:150:false
 	
+	/* Image Sizes for Slider, Name: hero */
 	add_image_size( 'hero', $options['slider-image-width'], $options['slider-image-height'], $options['slider-image-crop']);	// 1260:350
+	
+    
+	/* Thumb for Main menu - Name: portalmenu-thumb */
+	add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
+ 
+	
+	/* Thumb for Posts in Lists - Name: post-thumb */
 	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
+	
+	/* Thumb of Topevent in Sidebar - Name: topevent-thumb */
 	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); 
+	
+	/* Thumb for Image Menus in Content - Name: page-thumb */
 	add_image_size( 'page-thumb', $options['default_submenuthumb_width'], $options['default_submenuthumb_height'], true); // 220:110
 	
+	/* Thumb for Posts, displayed in post/page single display - Name: post */
+	add_image_size( 'post', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']);
 	
-	add_image_size( 'post', 300, 200, false);
-	add_image_size( 'person-thumb', 60, 80, true); // 300, 150
-	add_image_size( 'person-thumb-bigger', 90, 120, true);
+	/* Thumb for person-type; small for sidebar - Name: person-thumb */
+	add_image_size( 'person-thumb', $options['default_person_thumb_width' ], $options['default_person_thumb_height'], $options['default_person_thumb_crop'	]); // 60, 80, true
+	
+        /* Thumb for person-type; small for content - Name: person-thumb-bigger */
+	add_image_size( 'person-thumb-bigger', $options['default_person_thumb_bigger_width'], $options[ 'default_person_thumb_bigger_height'], $options['default_person_thumb_bigger_crop']); // 90,120,true
 
-	
-	
-	add_image_size( 'logo-thumb', 140, 110, true);
-	
+	/* Thumb for Logos (used in carousel) - Name: logo-thumb */
+	add_image_size( 'logo-thumb', $options['default_logo_carousel_width'], $options['default_logo_carousel_height'], $options['default_logo_carousel_crop']);
+
 	/* 
 	 * Größen für Bildergalerien: 
 	 */
+	/* Images for gallerys - Name: gallery-full */
+	add_image_size( 'gallery-full', $options['default_gallery_full_width'], $options['default_gallery_full_height'], $options['default_gallery_full_crop']); // 940, 470, false
+	//
+	// Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
+	add_image_size( 'gallery-thumb', $options['default_gallery_thumb_width'], $options['default_gallery_thumb_height'], $options['default_gallery_thumb_crop']); // 120, 80, true
 	
-	add_image_size( 'gallery-full', 940, 470);
-	    // Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
-	add_image_size( 'gallery-thumb', 120, 80, true);
-	add_image_size( 'gallery-grid', 145, 120, false);
-	add_image_size( 'image-2-col', 300, 200, true);
-	add_image_size( 'image-4-col', 140, 70, true);	
-		
+	/* Grid-Thumbs for gallerys - Name: gallery-grid */
+	add_image_size( 'gallery-grid', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 145, 120, false
 	
+	/* 2 column Imagelists for gallerys - Name: image-2-col */
+	add_image_size( 'image-2-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 300, 200, true
+	
+	/* 4 column Imagelists for gallerys - Name: image-4-col */
+	add_image_size( 'image-4-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']);	// 140, 70, true
 
+	
 	
 	
 	/* Remove something out of the head */
@@ -117,6 +138,7 @@ function fau_setup() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
 	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
 	
+
 }
 add_action( 'after_setup_theme', 'fau_setup' );
 
@@ -146,6 +168,7 @@ function fau_register_scripts() {
 	// Flexslider für Startseite und für Galerien.  
     wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
 //	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
+	// wird nirgends verwendet
     wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );  
 	// Fuer bessere Lightboxen
     wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
@@ -155,6 +178,12 @@ function fau_register_scripts() {
 }
 add_action('init', 'fau_register_scripts');
 
+function fau_custom_init() {
+	/* Keine verwirrende Abfrage nach Kommentaren im Page-Editor */
+	remove_post_type_support( 'page', 'comments' );
+}
+add_action( 'init', 'fau_custom_init' );
+	
 
 function fau_basescripts_styles() {
     global $options;
@@ -234,8 +263,8 @@ function fau_addmetatags() {
     if ((isset($options['favicon-file'])) && ($options['favicon-file_id']>0 )) {	 
         $output .=  '<link rel="shortcut icon" href="'.$options['favicon-file'].'">'."\n";
     } else {
-        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/apple-touch-icon.png">'."\n";
-        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/favicon.ico">'."\n";
+        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/img/apple-touch-icon.png">'."\n";
+        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/img/favicon.ico">'."\n";
     }
     echo $output;
 }
@@ -943,30 +972,35 @@ function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $w
  */
 function is_workflow_translation_active() {
     global $cms_workflow;
-    if (isset($cms_workflow->translation) && $cms_workflow->translation->module->options->activated) {
+    if ((class_exists('Workflow_Translation')) && (isset($cms_workflow->translation) && $cms_workflow->translation->module->options->activated)) {
         return true;
     }
     return false;
 }
 
 function fau_get_rel_alternate() {
-    if(is_workflow_translation_active()) {
+    if ((class_exists('Workflow_Translation')) && (function_exists('get_rel_alternate')) && (is_workflow_translation_active())) {
         return Workflow_Translation::get_rel_alternate();
     } else {
         return '';
     }
 }
 
-/*
- * wpSEO Metaboxen nur für Pages und Posts
- */
-add_filter( 'wpseo_add_meta_boxes', 'prefix_wpseo_add_meta_boxes' );
- 
-function prefix_wpseo_add_meta_boxes() {
-    global $post;
-    $post_types_without_seo = array( 'event', 'person', 'ad' );
-    return !in_array( get_post_type($post), $post_types_without_seo);
-} 
+
+
+/* Refuse spam-comments on media */
+function filter_media_comment_status( $open, $post_id ) {
+	$post = get_post( $post_id );
+	if( $post->post_type == 'attachment' ) {
+		return false;
+	}
+	return $open;
+}
+add_filter( 'comments_open', 'filter_media_comment_status', 10 , 2 );
+
+
+
+
 
 /* Newsseiten */
 function fau_display_news_teaser($id = 0, $withdate = false) {
@@ -1304,3 +1338,14 @@ function fau_breadcrumb($lasttitle = '') {
   }
    echo '</nav>'; 
 }
+
+
+function fau_wp_link_query_args( $query ) {
+     // check to make sure we are not in the admin
+   //  if ( !is_admin() ) {
+          $query['post_type'] = array( 'post', 'page', 'person'  ); // show only posts and pages
+   //  }
+     return $query;
+}
+add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' ); 
+

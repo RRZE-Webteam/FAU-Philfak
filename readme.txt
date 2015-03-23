@@ -36,19 +36,24 @@ LIBRARIES & SOURCES
 REQUIRED PLUGINS
 
 * FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
-* FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
-* ACF 
 
 
 OPTIONAL PLUGINS 
 
+* FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
 * TinyMCE Advanced
 * CMS Tree Page View   
-* CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
 * CMS-Search (https://github.com/RRZE-Webteam/cms-search)
+* WP External Link
+   with Options: 
+    - General Settings: Open external link in same window
+    - SEO-Settings: Add "external" rel-attribute, please no "nofollow" !
+                    Dont use title-Attribut, it messes with accessibility
+    - Style Stettings: Icon 19, No icon for external links with imahes
+
 
 FEEDBACK & BUGS
 

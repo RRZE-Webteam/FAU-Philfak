@@ -90,7 +90,10 @@ class Walker_Main_Menu extends Walker_Nav_Menu {
 		$output .= '</div>';
 		
 		$output .= '<div class="span4 hide-mobile">';		
-		$output .= get_the_post_thumbnail($this->currentID, array($options['default_mainmenuthumb_width'],$options['default_mainmenuthumb_height']));
+	//	$output .= get_the_post_thumbnail($this->currentID, array($options['default_mainmenuthumb_width'],$options['default_mainmenuthumb_height']));
+	//	$output .= get_the_post_thumbnail($this->currentID);
+		$output .= get_the_post_thumbnail($this->currentID,'portalmenu-thumb');
+		    //default?
 		$output .= '</div>';	
 		
 		$output .= '</div></div></div>';

@@ -60,13 +60,18 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	    echo '	<label for="'.$name.'">';
 	    echo $labeltext;
 	    echo "</label><br />\n";
-	    echo '	<input type="text" class="large-text" name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	     
+	    echo '	<input type="text" ';
+	   if (intval($size)>0) {
+	       echo ' size="'.$size.'"';
+	    } else {
+		echo ' class="large-text"';
+	    }
+	    echo ' name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
 	    if (strlen(trim($placeholder))) {
 		echo ' placeholder="'.$placeholder.'"';
 	    }
-	    if (intval($size)>0) {
-		echo ' length="'.$size.'"';
-	    }
+	  
 	    echo " />\n";
 	    echo "</p>\n";
 	    if (strlen(trim($howtotext))) {
@@ -76,6 +81,74 @@ if ( ! function_exists( 'fau_form_text' ) ) :
 	    }
 	} else {
 	    echo _('Ungültiger Aufruf von fau_form_text() - Name oder Label fehlt.', 'fau');
+	}
+    }
+endif;
+if ( ! function_exists( 'fau_form_email' ) ) :
+    function fau_form_email($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $placeholder='', $size = 0) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo "<p>\n";
+	    echo '	<label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label><br />\n";
+	     
+	    echo '	<input type="email" ';
+	   if (intval($size)>0) {
+	       echo ' size="'.$size.'"';
+	    } else {
+		echo ' class="large-text"';
+	    }
+	    echo ' name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	    if (strlen(trim($placeholder))) {
+		echo ' placeholder="'.$placeholder.'"';
+	    }
+	  
+	    echo " />\n";
+	    echo "</p>\n";
+	    if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_email() - Name oder Label fehlt.', 'fau');
+	}
+    }
+endif;
+if ( ! function_exists( 'fau_form_number' ) ) :
+    function fau_form_number($name= '', $prevalue = '', $labeltext = '', $howtotext = '', $min = 0, $max = 0, $step=1) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {
+	    echo "<p>\n";
+	    echo '	<label for="'.$name.'">';
+	    echo $labeltext;
+	    echo "</label><br />\n";
+	     
+	    echo '	<input type="number" ';
+	   
+	    echo 'name="'.$name.'" id="'.$name.'" value="'.$prevalue.'"';
+	    if ($min>0) {
+		echo ' min="'.$min.'"';
+	    }
+	    if ($max>0) {
+		echo ' max="'.$max.'"';
+	    }
+	     if ($step>1) {
+		echo ' step="'.$step.'"';
+	    }
+	  
+	    echo " />\n";
+	    echo "</p>\n";
+	    if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_number() - Name oder Label fehlt.', 'fau');
 	}
     }
 endif;
@@ -187,7 +260,7 @@ if ( ! function_exists( 'fau_form_multiselect' ) ) :
 		<p><label for="<?php echo $name; ?>">
 		    <?php echo $labeltext; ?>
 		    </label></p>
-		    <select class="fullsize" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
+		    <select size="5" multiple="1" name="<?php echo $name; ?>[]" id="<?php echo $name; ?>">
 		<?php 
 		if ($showempty==1) { 
 		    echo '<option value="">';
@@ -294,6 +367,98 @@ if ( ! function_exists( 'fau_form_image' ) ) :
     
 
 
+
+
+if ( ! function_exists( 'fau_form_link' ) ) :
+    function fau_form_link($name= '', $pretitle ='', $preurl ='' , $labeltext = '',  $howtotext = '', $types = '' ) {
+	$name = fau_san( $name );
+	$labeltext = fau_san( $labeltext );
+	if (isset($name) &&  isset($labeltext))  {	    
+	    wp_enqueue_script( 'wp-link' );
+	    echo '<div class="linkeingabe">';
+	    $rand = rand();
+	    echo '<h2 class="label">'.$labeltext.'</h2>';
+	     if (strlen(trim($howtotext))) {
+		echo '<p class="howto">';
+		echo $howtotext;
+		echo "</p>\n";
+	    }
+	    echo '<div class="linkauswahl" id="container_'.$rand.'">';
+	    echo "<p>\n";
+	    echo '<label for="title_'.$rand.'_'.$name.'">'.__('Titel','fau');   
+	    echo "</label><br />\n";
+	    echo '<input type="text" class="large-text" name="'.$name.'_title" id="title_'.$rand.'_'.$name.'" value="'.$pretitle.'">';
+	    echo "</p>\n";	    
+	    echo "<p>\n";
+	    echo '<label for="url_'.$rand.'_'.$name.'">'.__('URL','fau');  
+	    echo "</label><br />\n";
+	    echo '<input type="url" class="large-text" name="'.$name.'_url" id="url_'.$rand.'_'.$name.'" value="'.$preurl.'" placeholder="https://">';
+	    echo "</p>";
+	    echo '<p><input class="button link_button_'.$name.'" name="link_button_'.$name.'" id="link_button_'.$name.'" type="button" value="'.__('Wähle Link','fau').'"></p>';
+	    echo "</div>\n";
+	   
+	    ?>
+	   <script>
+		var _link_sideload = false; 
+		var link_btn_<?php echo $name?> = (function($){
+		    var _link_sideload = false; 
+		    function _init() {
+			$('.link_button_<?php echo $name?>').on('click', function(event) {
+			    _addLinkListeners();
+			    _link_sideload = false;
+			    var link_val_container = $('#url_<?php echo $rand?>_<?php echo $name?>');
+			    window.wpActiveEditor = true;
+			    _link_sideload = true;
+			    wpLink.open();
+			    wpLink.textarea = $(link_val_container);
+			    return false;
+			});
+		    }
+		    function _addLinkListeners() {
+			$('body').on('click', '#wp-link-submit', function(event) {
+			    var linkAtts = wpLink.getAttrs();
+			    $('#url_<?php echo $rand?>_<?php echo $name?>').val(linkAtts.href);
+			    $('#title_<?php echo $rand?>_<?php echo $name?>').val(linkAtts.title);
+			    _removeLinkListeners();
+			    return false;
+			});
+			$('body').on('click', '#wp-link-cancel', function(event) {
+			    _removeLinkListeners();
+			    return false;
+			});
+		    }
+
+		    function _removeLinkListeners() {
+			if(_link_sideload){
+			    if ( typeof wpActiveEditor != 'undefined') {
+				wpActiveEditor = undefined;
+			    }
+			}
+			wpLink.close();
+			wpLink.textarea = $('html');//focus on document
+			$('body').off('click', '#wp-link-submit');
+			$('body').off('click', '#wp-link-cancel');
+		    }
+		    return {
+			init:       _init,
+		    };
+		    })(jQuery);
+	   
+	    jQuery(document).ready(function($) {	 
+		 link_btn_<?php echo $name?>.init();
+	    });
+	  
+	   </script> 		    	    
+	   <?php 
+        
+	 echo "</div>\n";
+	
+	} else {
+	    echo _('Ungültiger Aufruf von fau_form_link() - Name oder Label fehlt.', 'fau');
+	}
+    }
+ endif;
+    
 
 
 

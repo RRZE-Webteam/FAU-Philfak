@@ -74,7 +74,7 @@ get_header(); ?>
                 <div class="span8">
                      
                     <?php echo $content; ?>
-                    <div style="margin-top: 2em;">
+                    <div>
                     <?php the_content(); ?>
                     </div>
                     

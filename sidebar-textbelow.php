@@ -1,22 +1,24 @@
 <?php 
- if ( function_exists('get_field') ) {
 
-    if(get_field('sidebar_text_below')): ?>
-	<aside class="widget">
-		<?php if(get_field('sidebar_title_below')): ?>
-			<h2 class="small"><?php echo get_field('sidebar_title_below'); ?></h2>
-		<?php endif; ?>
-		<?php 
-			if(function_exists('mimetypes_to_icons'))
-			{
-				echo mimetypes_to_icons(get_field('sidebar_text_below')); 
-			}
-			else 
-			{
-				echo get_field('sidebar_text_below');
-			}
- 		?>
-	</aside>
-<?php endif; 
- }
- ?>
+	$output = '';
+	$title = get_post_meta( $post->ID, 'sidebar_title_below', true );
+	if (strlen(trim($title))>1) {
+	    $output .= '<h2 class="small">'.$title.'</h2>'."\n";
+	}
+	$text = get_post_meta( $post->ID, 'sidebar_text_below', true );
+	if (!empty($text)) {
+    	    $text = do_shortcode($text);
+
+	    if(function_exists('mimetypes_to_icons')) {
+		$output .= mimetypes_to_icons($text); 
+	    } else 	{
+		$output .= $text;
+	    }
+	}
+
+	if (!empty($output)) {
+	    echo '<aside class="widget">'."\n";
+	    echo $output;
+	    echo "</aside>\n";
+	}
+
