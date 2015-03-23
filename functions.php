@@ -138,7 +138,7 @@ function fau_setup() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
 	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
 	
-	
+
 }
 add_action( 'after_setup_theme', 'fau_setup' );
 

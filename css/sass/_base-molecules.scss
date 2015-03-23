@@ -495,28 +495,48 @@ ul.person-info {
 		background-position: left center;
 		color: $colorPrimary;
 	}
-	
+	/*
 	li.person-info:before {
 		@extend .fa;
 		width: 20px;
-	}
+	} */
 	
-	li.person-info-phone:before { @extend .fa-phone; }
-	li.person-info-fax:before { @extend .fa-print; }
-	li.person-info-email:before { @extend .fa-envelope; }
-	li.person-info-institution:before { @extend .fa-building; }
-	li.person-info-www:before { @extend .fa-info-circle; }
+	li.person-info-phone:before { 
+	    @extend .fa;
+	    width: 20px; 
+	    @extend .fa-phone; 
+	}
+	li.person-info-fax:before {
+	    @extend .fa;
+	    width: 20px; 
+	    @extend .fa-print; 
+	}
+	li.person-info-email:before {
+	    @extend .fa;
+	    width: 20px; 
+	    @extend .fa-envelope; 
+	}
+	li.person-info-institution:before { 
+	    @extend .fa;
+	    width: 20px; 
+	    @extend .fa-building; 
+	}
+	li.person-info-www:before { 
+	    @extend .fa;
+	    width: 20px; 
+	    @extend .fa-info-circle; 
+	}
 	li.person-info-position {
 	    font-weight: bold;
 	}
 	li.person-info-address {
-		margin-top: 10px;
-		padding-left: 0px;
+	    margin-top: 10px;
+	    padding-left: 0px;
 	}
 	
 	li.person-info-description {
-		margin-top: 10px;
-		padding-left: 20px;
+	    margin-top: 10px;
+	    padding-left: 20px;
 	}
 
 }
