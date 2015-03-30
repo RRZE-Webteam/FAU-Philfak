@@ -134,10 +134,12 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	   <?php echo __('Bitte beachten: Damit ein Artikel auf der Startseite angezeigt werden soll, muss er das folgende Schlagwort erhalten: ','fau');
 	   echo '<b>'.$options['start_prefix_tag_newscontent'].'</b> - '.__('Dies gefolgt von einer Nummer (1-3) für die Reihenfolge.','fau'); 
 	   if (isset($options['slider-catid'])) {
-	    $category = get_category($options['slider-catid']);	   
-	    echo ' '.__('Damit ein Artikel in der Bühne erscheint, muss er folgender Kategorie angehören: ','fau');
-	    echo '<b>'.$category->name.'</b>';
-	   }
+		$category = get_category($options['slider-catid']);	   
+		if ($category) {
+		    echo ' '.__('Damit ein Artikel in der Bühne erscheint, muss er folgender Kategorie angehören: ','fau');
+		    echo '<b>'.$category->name.'</b>';
+		}
+	    }
 	   ?>
 	</p>
 	
