@@ -355,9 +355,8 @@ if ( ! function_exists( 'fau_form_image' ) ) :
 		});
 	    });
 	   </script> 		    	    
-
+	   </div>
 	   <?php 
-
 	
 	} else {
 	    echo _('Ungültiger Aufruf von fau_form_image() - Name oder Label fehlt.', 'fau');
@@ -459,6 +458,39 @@ if ( ! function_exists( 'fau_form_link' ) ) :
     }
  endif;
     
+
+if ( ! function_exists( 'fau_save_standard' ) ) :  
+    function fau_save_standard($name, $val, $post_id, $post_type, $type='text') {
+	if (isset($name) && isset($post_id) && isset($post_type)) {
+	    
+	    if ($type == 'url') {
+		 $newval = ( isset( $val ) ? esc_url( $val ) : 0 );		
+	    } elseif ($type == 'email') {
+		 $newval = ( isset( $val ) ? sanitize_email( $val ) : 0 );	
+	    } elseif ($type == 'text') {
+		 $newval = ( isset( $val ) ? sanitize_text_field( $val ) : 0 );	
+	    } elseif ($type == 'textarea') {
+		 $newval =  ( isset( $val ) ? esc_textarea( $val ) : 0 );				 
+	     } elseif ($type == 'wpeditor') {
+		 $newval =  $val;			 
+	    } else {
+		 $newval = ( isset( $val ) ? sanitize_text_field( $val ) : 0 );
+	    }
+	    $oldval =  get_post_meta( $post_id, $name, true );	  
+	    if (!empty($newval)) {
+		update_post_meta( $post_id, $name, $newval );
+	    } elseif ($oldval) {
+		delete_post_meta( $post_id, $name, $oldval );	
+	    } 
+
+	    
+	} else {
+	    return false;
+	}
+    
+    }
+
+ endif;    
 
 
 
