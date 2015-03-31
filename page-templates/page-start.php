@@ -224,13 +224,15 @@ global $options;
 							    <?php 
 							    
 								$imageid = get_post_meta( $topevent->ID, 'topevent_image', true );
+								$imagehtml = '';
 								if (isset($imageid) && ($imageid>0)) {
-								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 
-								}
-								if (!$image || empty($image[0])) {  
-								    $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
-								} else {
-								    $imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
+								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 					
+								    if (($image) && ($image[0])) {  
+									$imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
+								    }								    
+								} 
+								if (empty($imagehtml)) {
+								   $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
 								}
 								
 								
