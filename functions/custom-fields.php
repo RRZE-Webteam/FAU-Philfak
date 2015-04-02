@@ -128,27 +128,26 @@ function fau_do_metabox_post_teaser( $object, $box ) {
 	
 	
 	
-
-	?>
-	<p>
-	   <?php echo __('Bitte beachten: Damit ein Artikel auf der Startseite angezeigt werden soll, muss er das folgende Schlagwort erhalten: ','fau');
+	echo "<p>\n";
+	 echo __('Bitte beachten: Damit ein Artikel auf der Startseite angezeigt werden soll, muss er das folgende Schlagwort erhalten: ','fau');
 	   echo '<b>'.$options['start_prefix_tag_newscontent'].'</b> - '.__('Dies gefolgt von einer Nummer (1-3) für die Reihenfolge.','fau'); 
 	   if (isset($options['slider-catid'])) {
-	    $category = get_category($options['slider-catid']);	   
-	    echo ' '.__('Damit ein Artikel in der Bühne erscheint, muss er folgender Kategorie angehören: ','fau');
-	    echo '<b>'.$category->name.'</b>';
-	   }
-	   ?>
-	</p>
-	
-
-	
-	<?php
+		$category = get_category($options['slider-catid']);	   
+		if ($category) {
+		    echo ' '.__('Damit ein Artikel in der Bühne erscheint, muss er folgender Kategorie angehören: ','fau');
+		    echo '<b>'.$category->name.'</b>';
+		}
+	    }
+	   
+	echo "</p>\n";
 	
 	if ($options['advanced_beitragsoptionen']==true) {	
+	    
 	    $howto = __('Kurztext für die Bühne und den Newsindex (Startseite und Indexseiten). Wenn leer, wird der Kurztext automatisch aus dem Inhalt abzüglich der erlaubten Zeichen gebildet. ','fau');
 	    $howto .= '<br>'.__('Erlaubte Anzahl an Zeichen:','fau');
-	    $howto .= '<span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
+	    $howto .= ' <span class="fauval_anleser_signs">'.$options['default_anleser_excerpt_length'].'</span>';	
+	    
+	    
 	    $abstract  = get_post_meta( $object->ID, 'abstract', true );	
 	    fau_form_textarea('fauval_anleser', $abstract, __('Anleser','fau'), 80, 5, $howto);
 
@@ -253,7 +252,6 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	}
 	
 	
-	$topevent_title  = get_post_meta( $object->ID, 'topevent_title', true );
 	$topevent_desc  = get_post_meta( $object->ID, 'topevent_description', true );
 	$topevent_date  = get_post_meta( $object->ID, 'topevent_date', true );
 	$topevent_image  = get_post_meta( $object->ID, 'topevent_image', true );
@@ -266,17 +264,15 @@ function fau_do_metabox_post_topevent( $object, $box ) {
 	   <?php echo __('Bitte beachten: Damit ein Artikel als Top-Event angezeigt wird, muss er das folgende Schlagwort erhalten: ','fau');
 	   echo '<b>'.$options['start_topevents_tag'].'</b>'; ?>
 	</p>
-	<div class="optionseingabe">
-	    <p>
-		    <label for="fauval_topevent_title">
-			<?php _e( "Titel", 'fau' ); ?>:
-		    </label>
-	    </p>
-	    <input type="text" name="fauval_topevent_title" id="fauval_topevent_title" class="large-text" value="<?php echo $topevent_title; ?>">	
-	    <br>
-	    <div class="howto"><?php echo __('Titel wie er in der Sidebar erscheinen soll. Wenn leer, wird der normale Titel des Beitrags verwendet.','fau');
-	    ?></div>
-	</div>
+	
+	
+	<?php 
+	    $topevent_title  = get_post_meta( $object->ID, 'topevent_title', true );
+	    fau_form_text('fauval_topevent_title', $topevent_title, __('Titel','fau'), __('Titel wie er in der Sidebar erscheinen soll. Wenn leer, wird der normale Titel des Beitrags verwendet.','fau'));
+	?>
+
+	
+	
 	<div class="optionseingabe">
 	    <p>
 		    <label for="fauval_topevent_desc">
@@ -391,7 +387,7 @@ function fau_save_post_topevent( $post_id, $post ) {
 		return;
 	}
 
-	$newval = ( isset( $_POST['fauval_topevent_title'] ) ? sanitize_title( $_POST['fauval_topevent_title'] ) : 0 );
+	$newval = ( isset( $_POST['fauval_topevent_title'] ) ? sanitize_text_field( $_POST['fauval_topevent_title'] ) : 0 );
 	$oldval = get_post_meta( $post_id, 'topevent_title', true );
 	
 	if (!empty(trim($newval))) {
@@ -528,20 +524,7 @@ function fau_do_metabox_page_untertitel( $object, $box ) {
 	}
 	
 	$untertitel  = get_post_meta( $object->ID, 'headline', true );	
-
-	?>
-	
-	<p>
-		<label for="fau_metabox_page_untertitel">
-                    <?php _e( "Untertitel (Inhaltsüberschrift)", 'fau' ); ?>:
-                </label>
-		<br />
-		<input class="large-text" name="fau_metabox_page_untertitel" id="fau_metabox_page_untertitel" value="<?php echo $untertitel; ?>" />			
-	</p>
-	<p class="howto">
-	    <?php _e('Dieser Untertitel erscheint im Inhaltsbereich, unterhalb des Balkens mit dem eigentlichen Titel.','fau'); ?>
-	</p>
-	<?php 
+	fau_form_text('fau_metabox_page_untertitel', $untertitel, __('Untertitel (Inhaltsüberschrift)','fau'), __('Dieser Untertitel erscheint im Inhaltsbereich, unterhalb des Balkens mit dem eigentlichen Titel.','fau'));
 
  }
 
