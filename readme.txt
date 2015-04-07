@@ -1,5 +1,6 @@
-FAU-Theme 
-- Wordpress-Theme für die Website der FAU (www.fau.de)
+FAU-Philfak 
+Wordpress-Theme für die Philosophische Fakultät und Fachbereich Theologie
+der Friedrich-Alexander-Universität (FAU)
 ====================================================
  
 
@@ -7,14 +8,13 @@ FAU-Theme
 DOWNLOADS
 
     GITHub-Repo:
-        https://github.com/RRZE-Webteam/FAU-Theme
+        https://github.com/RRZE-Webteam/FAU-Philfak
     
     
 
 AUTHOR 
 
    RRZE-Webteam , http://www.rrze.fau.de
-   Agentur Medienreaktor, http://www.medienreaktor.de/
 
 
 CREDITS & COPYRIGHT

@@ -47,7 +47,7 @@
 			li {
 				@include no-list;
 				float: none;
-				background: none;
+				background: none; 
 
 				a {
 					float: none;
@@ -233,7 +233,7 @@ body.admin-bar.nav-fixed {
 /* Meta */
 #meta {
 	@include placeholder(#fff);
-	background: $colorLightest;
+	background: $colorMetaBackground;
 	
 	.searchform {
 		border: none;
@@ -249,7 +249,7 @@ body.admin-bar.nav-fixed {
 			font-size: 13px;
 			line-height: 15px;
 			float: left;
-			background: $colorPrimary url('../img/icon-search.png') no-repeat 10px center;
+			background: $colorMeta url('../img/icon-search.png') no-repeat 10px center;
 			border: none;
 			outline: none;
 			color: #fff;
@@ -258,7 +258,7 @@ body.admin-bar.nav-fixed {
 			margin-right: -25px;
 			
 			&:focus {
-				background-color: $colorHover;
+				background-color: $colorMetaHover;
 			}
 		}
 		
@@ -272,14 +272,14 @@ body.admin-bar.nav-fixed {
 			font-weight: bold;
 			border: none;
 			outline: none;
-			color: $colorPrimary;
+			color: $colorMeta;
 			background: #fff;
 			font-size: 13px;
 			line-height: 15px;
 			display: inline-block;
 			
 			&:hover, &:focus {
-				background: $colorLightest;
+				background: $colorMetaLightest;
 				@include box-shadow(0 0 5px rgba(0,0,0,0.2));
 			}
 		}
@@ -305,7 +305,7 @@ body.admin-bar.nav-fixed {
 		a {
 			@include inline-block;
 			padding: 10px 0;
-			color: $colorPrimary;
+			color: $colorMeta;
 			font-size: 13px;
 			text-decoration: none;
 		}
@@ -341,7 +341,7 @@ body.admin-bar.nav-fixed {
 		position: absolute;
 		top: 35px;
 		left: -10px;
-		background: $colorLightest;
+		background: $colorMetaLightest;
 		width: 180px;
 		@include box-shadow(0 3px 3px rgba(0,0,0,0.2));
 		
@@ -376,7 +376,7 @@ body.admin-bar.nav-fixed {
 	margin-top: 20px;
 	padding-bottom: 10px;
 	position: relative;
-	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url('../img/siegel-zuv.png') no-repeat 95% 110%);
+	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 110%);
 	@include transition(1.0s, all);
 	
 	h1, h2, h3, h4, p {
@@ -402,7 +402,7 @@ body.admin-bar.nav-fixed {
 	}
 	
 	&.hero-small {
-		@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url('../img/siegel-zuv.png') no-repeat 95% 20%);
+		@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 20%);
 		
 		h1 {
 			padding: 30px 0 10px 0;

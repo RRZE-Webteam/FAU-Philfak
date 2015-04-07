@@ -20,11 +20,32 @@ $colorRwFak: 	#801429;
 $colorMedFak: 	#00b1c6;
 $colorNatFak:	#009775;
 $colorTechFak:	#a3acb2;
-$colorZUV:		#003366;
+$colorTechFakDark :#6a7881;
+$colorZUV:	#003366;
+$colorDefault:	#003366;
+
 
 // Define primary colors by faculty
-$colorPrimary:	$colorZUV;
+$colorPrimary:	$colorPhilFak;
 $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
 $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
 $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
 
+// Meta Menu
+$colorMeta: $colorDefault;
+// Define Background-Color for Meta Menu at top
+$colorMetaBackground:   #e9edf2;
+$colorMetaHover: 	desaturate(lighten($colorDefault, 10%), 40%);
+$colorMetaLight:	desaturate(lighten($colorDefault, 69%), 75%);
+$colorMetaLightest:	desaturate(lighten($colorDefault, 73%), 75%);
+
+
+// Define Siegel
+$siegelurl: '../img/siegel-philfak.png';
+// ZUV:  '../img/siegel-zuv.png'
+// Philfak:  '../img/siegel-philfak.png'
+// Medfak:  '../img/siegel-medfak.png'
+// RW:  '../img/siegel-rwfak.png'
+// Natfak:  '../img/siegel-natfak.png'
+// Techfak:  '../img/siegel-techfak.png'
+// White:  '../img/siegel.png'
