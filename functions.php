@@ -60,15 +60,14 @@ function fau_setup() {
 	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
 	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
 	
-	register_nav_menu( 'quicklinks-1', __( 'Quicklinks 1', 'fau' ) );
-	register_nav_menu( 'quicklinks-2', __( 'Quicklinks 2', 'fau' ) );
-	register_nav_menu( 'quicklinks-3', __( 'Quicklinks 3', 'fau' ) );
-	register_nav_menu( 'quicklinks-4', __( 'Quicklinks 4', 'fau' ) );
+
+	register_nav_menu( 'quicklinks-3', __( 'Startseite: Bühne Spalte 1', 'fau' ) );
+	register_nav_menu( 'quicklinks-4', __( 'Startseite: Bühne Spalte 2', 'fau' ) );
 	
-	register_nav_menu( 'error-1', __( 'Fehler 1', 'fau' ) );
-	register_nav_menu( 'error-2', __( 'Fehler 2', 'fau' ) );
-	register_nav_menu( 'error-3', __( 'Fehler 3', 'fau' ) );
-	register_nav_menu( 'error-4', __( 'Fehler 4', 'fau' ) );
+	register_nav_menu( 'error-1', __( 'Fehlerseite: Vorschlagmenu Spalte 1', 'fau' ) );
+	register_nav_menu( 'error-2', __( 'Fehlerseite: Vorschlagmenu Spalte 2', 'fau' ) );
+	register_nav_menu( 'error-3', __( 'Fehlerseite: Vorschlagmenu Spalte 3', 'fau' ) );
+	register_nav_menu( 'error-4', __( 'Fehlerseite: Vorschlagmenu Spalte 4', 'fau' ) );
 	
 	/*
 	 * This theme uses a custom image size for featured images, displayed on
@@ -844,9 +843,9 @@ function fau_make_link_relative($url) {
     return $url; 
 }
 
-function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $addfauhome = false) {
     global $default_link_liste;
-    
+    global $options;
     
     if (is_array($default_link_liste[$list])) {
 	$uselist =  $default_link_liste[$list];
@@ -860,6 +859,13 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
 	$result .= "\n";
     }
     $thislist = '';
+    if (($addfauhome==true) && isset($options['fauhome_url']) && isset($options['fauhome_linktext'])) {
+	$thislist .= '<li class="fauhome">';
+	$thislist .= '<a href="'.$options['fauhome_url'].'" title="'.$options['fauhome_title'].'">';
+	$thislist .= $options['fauhome_linktext'];
+	$thislist .= '</a>';
+	$thislist .= '</li>'."\n";	
+    }
     foreach($uselist as $key => $entry ) {
 	if (substr($key,0,4) != 'link') {
 	    continue;

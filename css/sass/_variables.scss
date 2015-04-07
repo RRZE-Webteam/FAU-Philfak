@@ -35,6 +35,7 @@ $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
 $colorMeta: $colorDefault;
 // Define Background-Color for Meta Menu at top
 $colorMetaBackground:   #e9edf2;
+$colorMetaFAUHomeBackground: #d0d3d8;
 $colorMetaHover: 	desaturate(lighten($colorDefault, 10%), 40%);
 $colorMetaLight:	desaturate(lighten($colorDefault, 69%), 75%);
 $colorMetaLightest:	desaturate(lighten($colorDefault, 73%), 75%);

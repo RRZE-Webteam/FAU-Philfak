@@ -238,9 +238,9 @@ body.admin-bar.nav-fixed {
 	.searchform {
 		border: none;
 		margin: 0;
-		padding: 0;
-		padding-top: 10px;
+		padding: 5px 0;
 		float: right;
+		
 		
 		input[type="text"] {
 			@include border-radius(20px);
@@ -256,7 +256,7 @@ body.admin-bar.nav-fixed {
 			height: 20px;
 			display: inline-block;
 			margin-right: -25px;
-			
+			margin-bottom: 0px;
 			&:focus {
 				background-color: $colorMetaHover;
 			}
@@ -293,7 +293,7 @@ body.admin-bar.nav-fixed {
 /* Meta-Navigation */
 #meta-nav {
 	@include no-list;
-	padding: 5px 0;
+	padding: 0;
 	
 	li {
 		@include no-list;
@@ -334,6 +334,17 @@ body.admin-bar.nav-fixed {
 			right: 11px;
 		}
 	}
+	li.fauhome {
+	    background: $colorMetaFAUHomeBackground;
+	    padding-right: 10px;
+	}
+	li.fauhome:before {
+	    @extend .fa;
+	    @extend .fa-long-arrow-up;
+	    margin-left: 5px;
+	    margin-right: 5px;
+	}
+	
 	
 	ul.sub-menu {
 		@include no-list;
@@ -376,7 +387,7 @@ body.admin-bar.nav-fixed {
 	margin-top: 20px;
 	padding-bottom: 10px;
 	position: relative;
-	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 110%);
+	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 155%);
 	@include transition(1.0s, all);
 	
 	h1, h2, h3, h4, p {

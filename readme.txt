@@ -33,10 +33,6 @@ LIBRARIES & SOURCES
 * jQuery FlexSlider v2.3.0
 * hoverIntent v1.8.0
 
-REQUIRED PLUGINS
-
-* FAU-Plugin (https://github.com/RRZE-Webteam/FAU-Plugin)
-
 
 OPTIONAL PLUGINS 
 
@@ -52,13 +48,13 @@ OPTIONAL PLUGINS
     - General Settings: Open external link in same window
     - SEO-Settings: Add "external" rel-attribute, please no "nofollow" !
                     Dont use title-Attribut, it messes with accessibility
-    - Style Stettings: Icon 19, No icon for external links with imahes
+    - Style Stettings: Icon 19, No icon for external links with images
 
 
 FEEDBACK & BUGS
 
 Please use github for submitting new features or bugs:
- https://github.com/RRZE-Webteam/FAU-Theme/issues
+ https://github.com/RRZE-Webteam/FAU-Philfak/issues
 
 or send an email to 
  webmaster@rrze.fau.de

@@ -4,7 +4,7 @@
  * Default Constants and values for FAU THeme
  */
 $defaultoptions = array(
-    'js-version'		    => '1.3',
+    'js-version'		    => '1.0',
     'optionpage-tab-default'	    => 'startseite',
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
@@ -108,11 +108,15 @@ $defaultoptions = array(
     'default_gallery_grid_crop'		=> true,   
     
     
-    'breadcrumb_root'			=> 'fau.de',
+    'breadcrumb_root'			=> 'phil.fau.de',
     'breadcrumb_delimiter'		=> ' <span>/</span>',
     'breadcrumb_beforehtml'		=> '<span class="active">', // '<span class="current">'; // tag before the current crumb
     'breadcrumb_afterhtml'		=> '</span>',
     'breadcrumb_uselastcat'		=> true,
+    
+    'fauhome_url'		    => 'https://www.fau.de',
+    'fauhome_title'		    => __('Friedrich-Alexander-Universität (FAU)','fau'),
+    'fauhome_linktext'		    => __('Zur FAU Seite','fau'),
     
     'socialmedia'		    => 1,
     'menu_pretitle_portal'	    => __('Portal', 'fau'),
@@ -305,34 +309,7 @@ $default_toplink_liste = array(
  * Default Link List for Submenus , can be overwritten bei Menu  
  */
 $default_link_liste = array( 
-	'faculty' => array(    
-	    '_title'	=> __('Fakultäten','fau'),
-	    'link1'  => array(
-		'name'	    => __('Philosophische Fakultät und Fachbereich Theologie', 'fau' ),
-		'content'  => 'http://www.phil.fau.de/',
-		'class'	    => 'philfak',
-	    ),
-	    'link2'  => array(
-		'name'	    => __('Rechts- und Wirtschaftswissenschaftliche Fakultät', 'fau' ),
-		'content'  => 'https://www.rw.fau.de/',
-		'class'	    => 'rwfak',
-	    ),
-	    'link3'  => array(
-		'name'	    => __('Medizinische Fakultät', 'fau' ),
-		'content'  => 'http://www.dekanat.med.uni-erlangen.de/',
-		'class'	    => 'medfak',
-	    ),
-	    'link4'  => array(
-		'name'	    => __('Naturwissenschaftliche Fakultät', 'fau' ),
-		'content'  => 'https://www.nat.fau.de/',
-		'class'	    => 'natfak',
-	    ),
-	    'link5'  => array(
-		'name'	    => __('Technische Fakultät', 'fau' ),
-		'content'  => 'https://www.tf.fau.de/',
-		'class'	    => 'techfak',
-	    ),
-	),
+	
 	'centers' => array(    
 	    '_title'	=> __('Einrichtungen','fau'),
 	    'link1'  => array(
@@ -360,73 +337,47 @@ $default_link_liste = array(
 		'class'	    => 'techfak',
 	    ),
 	),
-	'diefau' => array(    
-	    '_title'	=> __('Die FAU','fau'),
-	    'link1'  => array(
-		'name'	    => __('Alle Studiengänge', 'fau' ),
-		'content'  => 'https://www.fau.de.de/studium/vor-dem-studium/studiengaenge/alle-studiengaenge/',
-	    ),
-	    'link2'  => array(
-		'name'	    => __('Studium A-Z', 'fau' ),
-		'content'  => 'https://www.fau.de/studium/im-studium/studium-a-z/',
-	    ),
-	    'link3'  => array(
-		'name'	    => __('Zahlen, Daten, Fakten', 'fau' ),
-		'content'  => 'https://www.fau.de/universitaet/kennzahlen-und-rankings/',
-	    ),	
-	    'link4'  => array(
-		'name'	    => __('Wissenschaftsschwerpunkte', 'fau' ),
-		'content'  => 'https://www.fau.de/forschung/forschungsprofil/forschungsprofil-und-wissenschaftsschwerpunkte-der-fau/',
-	    ),	
-	    'link5'  => array(
-		'name'	    => __('Stiften und Fördern', 'fau' ),
-		'content'  => 'https://www.fau.de/universitaet/stiften-und-foerdern/',
-	    ),	
-	),
+	
 	'infos' => array(    
 	    '_title'	=> __('Informationen für','fau'),
+	  
 	    'link1'  => array(
-		'name'	    => __('Studieninteressierte', 'fau' ),
-		'content'  => 'https://www.fau.de/studium/vor-dem-studium/',
-	    ),
-	    'link2'  => array(
 		'name'	    => __('Studierende', 'fau' ),
 		'content'  => 'https://www.fau.de/studium/',
 	    ),
+	  
+	    'link2'  => array(
+		'name'	    => __('Schülerinnen und Schüler', 'fau' ),
+		'content'  => 'https://www.fau.de/schulportal-der-fau/',
+	    ),	
 	    'link3'  => array(
 		'name'	    => __('Alumni', 'fau' ),
 		'content'  => 'https://www.fau.de/alumni/',
 	    ),	
 	    'link4'  => array(
-		'name'	    => __('Schülerinnen und Schüler', 'fau' ),
-		'content'  => 'https://www.fau.de/schulportal-der-fau/',
-	    ),	
-	    'link5'  => array(
 		'name'	    => __('Unternehmen', 'fau' ),
 		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
 	    ),	
-	    'link6'  => array(
-		'name'	    => __('Presse', 'fau' ),
-		'content'  => 'https://www.fau.de/presseportal-der-fau/',
+	    'link5'  => array(
+		'name'	    => __('Alumni', 'fau' ),
+		'content'  => 'https://www.fau.de/alumni/',
 	    ),	
-	    'link7'  => array(
-		'name'	    => __('Beschäftigte', 'fau' ),
-		'content'  => 'https://www.fau.de/intranet/',
-	    ),	
+	 
 	),
-	'meta' => array(    
+	'meta' => array(
 	    'link1'  => array(
+		'name'	    => __('Mein Campus', 'fau' ),
+		'content'  => 'https://campus.fau.de/',
+	    ),
+	    'link2'  => array(
 		'name'	    => __('UnivIS', 'fau' ),
 		'content'  => 'http://univis.fau.de/',
 	    ),
-	    'link2'  => array(
+	    'link3'  => array(
 		'name'	    => __('Anfahrt und Lageplan', 'fau' ),
 		'content'  => 'http://karte.fau.de/',
 	    ),
-	    'link3'  => array(
-		'name'	    => __('Universitätsklinikum', 'fau' ),
-		'content'  => 'http://www.uk-erlangen.de/',
-	    ),	  
+	   
 	),
 	'techmenu' => array(    
 	    'link1'  => array(
