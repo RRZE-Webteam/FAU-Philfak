@@ -26,10 +26,12 @@ $colorDefault:	#003366;
 
 
 // Define primary colors by faculty
-$colorPrimary:	$colorPhilFak;
+$colorPrimary:	darken($colorPhilFak, 10%);
 $colorHover: 	#615400;
 $colorLight:	#cca33d;
 $colorLightest:	#edc76a;
+
+$colorPrimaryHero: $colorPhilFak;
 // Helper for colors: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9 
 
 // $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);

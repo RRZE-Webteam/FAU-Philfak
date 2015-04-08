@@ -387,7 +387,7 @@ body.admin-bar.nav-fixed {
 	margin-top: 20px;
 	padding-bottom: 10px;
 	position: relative;
-	@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 155%);
+	@include radial-gradient-image($colorPrimaryHero, lighten($colorPrimaryHero, 15%), url($siegelurl) no-repeat 95% 155%);
 	@include transition(1.0s, all);
 	
 	h1, h2, h3, h4, p {
@@ -413,7 +413,7 @@ body.admin-bar.nav-fixed {
 	}
 	
 	&.hero-small {
-		@include radial-gradient-image($colorPrimary, lighten($colorPrimary, 15%), url($siegelurl) no-repeat 95% 20%);
+		@include radial-gradient-image($colorPrimaryHero, lighten($colorPrimaryHero, 15%), url($siegelurl) no-repeat 95% 20%);
 		
 		h1 {
 			padding: 30px 0 10px 0;
