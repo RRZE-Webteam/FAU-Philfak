@@ -1,5 +1,6 @@
 <?php
 
+if ( ! function_exists( 'persons_taxonomy' ) ) :
 function persons_taxonomy() {
 	register_taxonomy(
 		'persons_category',  //The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
@@ -15,10 +16,12 @@ function persons_taxonomy() {
 			)
 		);
 }
+endif;
 add_action( 'init', 'persons_taxonomy');
 
 
 // Register Custom Post Type
+if ( ! function_exists( 'person_post_type' ) ) :
 function person_post_type() {	
 	
 	$labels = array(
@@ -85,11 +88,11 @@ function person_post_type() {
 	register_post_type( 'person', $args );
 
 }
-
+endif;
 // Hook into the 'init' action
 add_action( 'init', 'person_post_type', 0 );
 
-
+if ( ! function_exists( 'person_restrict_manage_posts' ) ) :
 function person_restrict_manage_posts() {
 	global $typenow;
 
@@ -112,10 +115,11 @@ function person_restrict_manage_posts() {
 
 	}
 }
+endif;
 add_action( 'restrict_manage_posts', 'person_restrict_manage_posts' );
 
 
-
+if ( ! function_exists( 'person_post_types_admin_order' ) ) :
 function person_post_types_admin_order( $wp_query ) {
 	if (is_admin()) {
 
@@ -132,9 +136,10 @@ function person_post_types_admin_order( $wp_query ) {
 		}
 	}
 }
+endif;
 add_filter('pre_get_posts', 'person_post_types_admin_order');
 
-
+if ( ! function_exists( 'fau_person_metabox' ) ) :
 function fau_person_metabox() {
     add_meta_box(
         'fau_person_metabox',
@@ -145,6 +150,8 @@ function fau_person_metabox() {
         'high'
     );
 }
+endif;
+if ( ! function_exists( 'fau_person_metabox_content' ) ) :
 function fau_person_metabox_content( $object, $box ) { 
     global $defaultoptions;
     global $post;
@@ -234,9 +241,10 @@ function fau_person_metabox_content( $object, $box ) {
     return;
 
 }
+endif;
 add_action( 'add_meta_boxes', 'fau_person_metabox' );
 
-
+if ( ! function_exists( 'fau_person_metabox_content_save' ) ) :
 function fau_person_metabox_content_save( $post_id ) {
     global $options;
     if (  'person'!= get_post_type()  ) {
@@ -292,5 +300,6 @@ function fau_person_metabox_content_save( $post_id ) {
 		    update_post_meta( $post_id, 'link', $newid );	
 
 }
+endif;
 add_action( 'save_post', 'fau_person_metabox_content_save' );
 

@@ -4,6 +4,8 @@
 
 
 // Register Custom Post Type
+if ( ! function_exists( 'synonym_post_type' ) ) :
+
 function synonym_post_type() {	
 	
 	$labels = array(
@@ -67,11 +69,12 @@ function synonym_post_type() {
 	register_post_type( 'synonym', $args );
 
 }
+endif;
 
 // Hook into the 'init' action
 add_action( 'init', 'synonym_post_type', 0 );
 
-
+if ( ! function_exists( 'synonym_restrict_manage_posts' ) ) :
 function synonym_restrict_manage_posts() {
 	global $typenow;
 
@@ -94,8 +97,10 @@ function synonym_restrict_manage_posts() {
 
 	}
 }
+endif;
 add_action( 'restrict_manage_posts', 'synonym_restrict_manage_posts' );
 
+if ( ! function_exists( 'synonym_post_types_admin_order' ) ) :
 
 function synonym_post_types_admin_order( $wp_query ) {
 	if (is_admin()) {
@@ -113,11 +118,12 @@ function synonym_post_types_admin_order( $wp_query ) {
 		}
 	}
 }
+endif;
 add_filter('pre_get_posts', 'synonym_post_types_admin_order');
 
 
 
-
+if ( ! function_exists( 'fau_synonym_metabox' ) ) :
 function fau_synonym_metabox() {
     add_meta_box(
         'fau_synonym_metabox',
@@ -128,6 +134,8 @@ function fau_synonym_metabox() {
         'high'
     );
 }
+endif;
+if ( ! function_exists( 'fau_synonym_metabox_content' ) ) :
 function fau_synonym_metabox_content( $object, $box ) { 
     global $defaultoptions;
     global $post;
@@ -158,15 +166,14 @@ function fau_synonym_metabox_content( $object, $box ) {
     return;
 
 }
-
+endif;
 
 add_action( 'add_meta_boxes', 'fau_synonym_metabox' );
 
 
 
 
-
-
+if ( ! function_exists( 'fau_synonym_metabox_content_save' ) ) :
 function fau_synonym_metabox_content_save( $post_id ) {
     global $options;
     if (  'synonym'!= get_post_type()  ) {
@@ -201,4 +208,5 @@ function fau_synonym_metabox_content_save( $post_id ) {
     
 	
 }
+endif;
 add_action( 'save_post', 'fau_synonym_metabox_content_save' );

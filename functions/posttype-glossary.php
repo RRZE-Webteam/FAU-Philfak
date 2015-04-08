@@ -1,5 +1,5 @@
 <?php
-
+if ( ! function_exists( 'glossary_taxonomy' ) ) :
 function glossary_taxonomy() {
 	register_taxonomy(
 		'glossary_category',  //The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
@@ -15,10 +15,14 @@ function glossary_taxonomy() {
 			)
 		);
 }
+endif;
 add_action( 'init', 'glossary_taxonomy');
 
 
+
 // Register Custom Post Type
+if ( ! function_exists( 'glossary_post_type' ) ) :
+
 function glossary_post_type() {	
 	
 	$labels = array(
@@ -82,10 +86,11 @@ function glossary_post_type() {
 	register_post_type( 'glossary', $args );
 
 }
-
+endif;
 // Hook into the 'init' action
 add_action( 'init', 'glossary_post_type', 0 );
 
+if ( ! function_exists( 'glossary_restrict_manage_posts' ) ) :
 
 function glossary_restrict_manage_posts() {
 	global $typenow;
@@ -109,8 +114,10 @@ function glossary_restrict_manage_posts() {
 
 	}
 }
+endif;
 add_action( 'restrict_manage_posts', 'glossary_restrict_manage_posts' );
 
+if ( ! function_exists( 'glossary_post_types_admin_order' ) ) :
 
 function glossary_post_types_admin_order( $wp_query ) {
 	if (is_admin()) {
@@ -128,10 +135,13 @@ function glossary_post_types_admin_order( $wp_query ) {
 		}
 	}
 }
+endif;
 add_filter('pre_get_posts', 'glossary_post_types_admin_order');
 
 
 /* Moving old ACF-Field "description" to normal content, if still in use */
+if ( ! function_exists( 'prefill_desc_byoldversion' ) ) :
+
 function prefill_desc_byoldversion($content) {
     global $post;
 
@@ -141,11 +151,12 @@ function prefill_desc_byoldversion($content) {
     }
     return $content;
 }
-
+endif;
 add_filter('the_editor_content', 'prefill_desc_byoldversion');
 
 
 
+if ( ! function_exists( 'fau_glossar_metabox' ) ) :
 
 function fau_glossar_metabox() {
     add_meta_box(
@@ -157,6 +168,9 @@ function fau_glossar_metabox() {
         'high'
     );
 }
+endif;
+
+if ( ! function_exists( 'fau_glossar_metabox_content' ) ) :
 function fau_glossar_metabox_content( $object, $box ) { 
     global $post;
 
@@ -178,10 +192,9 @@ function fau_glossar_metabox_content( $object, $box ) {
 	echo $helpuse;
     }
 
-    
     return;
 
 }
-
+endif;
 
 add_action( 'add_meta_boxes', 'fau_glossar_metabox' );
