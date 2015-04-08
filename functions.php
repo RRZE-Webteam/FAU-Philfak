@@ -19,6 +19,11 @@ require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
 require_once( get_template_directory() . '/functions/widgets.php' );
 
+if ($options['advanced_activatefaupluginpersonen']==true) {
+    require_once( get_template_directory() . '/functions/posttype-person.php');
+}
+require_once( get_template_directory() . '/functions/posttype-synonym.php');
+require_once( get_template_directory() . '/functions/posttype-glossary.php');
 
 function fau_setup() {
 	global $options;

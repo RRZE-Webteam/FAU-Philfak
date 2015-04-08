@@ -331,11 +331,7 @@ $default_link_liste = array(
 		'content'  => 'http://www.promotion.fau.de/',
 		'class'	    => 'natfak',
 	    ),
-	    'link5'  => array(
-		'name'	    => __('FAU Busan Campus', 'fau' ),
-		'content'  => 'http://www.fau-busan.ac.kr/',
-		'class'	    => 'techfak',
-	    ),
+	  
 	),
 	
 	'infos' => array(    
@@ -358,10 +354,7 @@ $default_link_liste = array(
 		'name'	    => __('Unternehmen', 'fau' ),
 		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
 	    ),	
-	    'link5'  => array(
-		'name'	    => __('Alumni', 'fau' ),
-		'content'  => 'https://www.fau.de/alumni/',
-	    ),	
+	    	
 	 
 	),
 	'meta' => array(
@@ -651,6 +644,16 @@ $setoptions = array(
 		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Seiten zu Veranstaltungen hinterlegt werden.', 'fau' ),               
 		    'default' => $defaultoptions['title_hero_events'],
 		), 
+	              
+	      'breadcrumb_root'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Titel Startseite in Breadcrumb', 'fau' ),
+		    'label'   => __( 'Definiert, wie der Link zur Startseite in der Breadcrumb aussehen soll. Per Default sollte hier die offizielle URL stehen; bspw. <code>phil.fau.de</code>.', 'fau' ),               
+		    'default' => $defaultoptions['breadcrumb_root'],
+		), 
+
+	       
+	       
 	     'postoptions'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Beiträge', 'fau' ),                      
@@ -663,6 +666,8 @@ $setoptions = array(
                   'default' => $defaultoptions['post_display_category_below'],
 		  'parent'  => 'postoptions'
               ),  
+	       
+	
 	       
 	       
 	      'suchergebnisse'  => array(
@@ -789,8 +794,8 @@ $setoptions = array(
               ),   
 	        'advanced_activatefaupluginpersonen' => array(
                   'type'    => 'bool',
-                  'title'   => __( 'FAU-Plugin Personenverwaltung', 'fau' ),
-                  'label'   => __( 'Nutze alte Personen- und Adressverwaltung aus dem FAU-Plugin', 'fau' ),                
+                  'title'   => __( 'Integrierte einfache Personenverwaltung', 'fau' ),
+                  'label'   => __( 'Nutze einfache Personen- und Adressverwaltung des Themes (ohne Syncronisation mit UnivIS und anderen)', 'fau' ),                
                   'default' => $defaultoptions['advanced_activatefaupluginpersonen'],
 		  'parent'  => 'bedienung'
               ),   
