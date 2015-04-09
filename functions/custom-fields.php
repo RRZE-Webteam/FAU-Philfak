@@ -944,7 +944,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    fau_form_select('fauval_sidebar_order_personlinks', array(0 => __('Zuerst Kontake, dann Linklisten','fau'), 1 => __('Zuerst Linklisten, dann Kontakte', 'fau')), $fauval_sidebar_order_personlinks, __('Reihenfolge Kontakte und Linklisten'),  __('Hier kann die Reihenfolge von Kontakte und Linklisten geändert werden, wie sie auf der Seite präsentiert werden.','fau'), 0 );
 	}	
 	
-	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => 100, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
+	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
 	if ($personen) {
 	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
 	    $found = 0;
