@@ -931,9 +931,13 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    $sidebar_title_above = get_post_meta( $object->ID, 'sidebar_title_above', true );
 	    fau_form_text('sidebar_title_above', $sidebar_title_above, __('Titel oben','fau'), __('Titel am Anfang der Sidebar','fau'));
 	}
+	
 	$sidebar_text_above = get_post_meta( $object->ID, 'sidebar_text_above', true );
- 	fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
-   
+	if ($options['advanced_page_sidebar_useeditor_textabove']) {
+	    fau_form_wpeditor('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), __('Text am Anfang der Sidebar','fau'),true);
+	} else {
+	    fau_form_textarea('sidebar_text_above', $sidebar_text_above, __('Textbereich oben','fau'), $cols=50, $rows=5, __('Text am Anfang der Sidebar','fau')); 
+	}
 	if (($options['advanced_page_sidebar_linkblock1_number'] > 0) || ($options['advanced_page_sidebar_linkblock2_number'] > 0)) {
 	    // Frage nach Reihenfolge Linklisten vs Personen
 	    
@@ -944,7 +948,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    fau_form_select('fauval_sidebar_order_personlinks', array(0 => __('Zuerst Kontake, dann Linklisten','fau'), 1 => __('Zuerst Linklisten, dann Kontakte', 'fau')), $fauval_sidebar_order_personlinks, __('Reihenfolge Kontakte und Linklisten'),  __('Hier kann die Reihenfolge von Kontakte und Linklisten geändert werden, wie sie auf der Seite präsentiert werden.','fau'), 0 );
 	}	
 	
-	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
+	$personen = get_posts(array('post_type' => 'person', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false));
 	if ($personen) {
 	    $auswahl = array('-1' => __('Keine (Deaktivieren)','fau'));
 	    $found = 0;
@@ -1048,9 +1052,13 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 	    $sidebar_title_below = get_post_meta( $object->ID, 'sidebar_title_below', true );
 	    fau_form_text('sidebar_title_below', $sidebar_title_below, __('Titel unten','fau'), __('Titel am Ende der Sidebar','fau'));
 	}
-	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );
- 	fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);	    
-	    
+	
+	$sidebar_text_below = get_post_meta( $object->ID, 'sidebar_text_below', true );	
+	if ($options['advanced_page_sidebar_useeditor_textbelow']) {
+	    fau_form_wpeditor('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), __('Text am Ende der Sidebar','fau'),true);
+	} else {
+	    fau_form_textarea('sidebar_text_below', $sidebar_text_below, __('Textbereich unten','fau'), $cols=50, $rows=5, __('Text am Ende der Sidebar','fau')); 
+	}	    
 	    
 
 	return;
@@ -1058,6 +1066,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 
 /* Save the meta box's post/page metadata. */
 function fau_save_metabox_page_sidebar( $post_id, $post ) {
+    global $options;
 	if ( !isset( $_POST['fau_metabox_page_sidebar_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_page_sidebar_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
@@ -1066,61 +1075,25 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 	if ( !current_user_can( 'edit_page', $post_id ) )
 		return;
 	
-	$newval = ( isset( $_POST['sidebar_title_above'] ) ? sanitize_text_field( $_POST['sidebar_title_above'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'sidebar_title_above', true );
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'sidebar_title_above', $newval );
-	    } else {
-		add_post_meta( $post_id, 'sidebar_title_above', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'sidebar_title_above', $oldval );	
-	} 
 	
 	
-	$newval = ( isset( $_POST['sidebar_text_above'] ) ? $_POST['sidebar_text_above']  : 0 );
-	$oldval = get_post_meta( $post_id, 'sidebar_text_above', true );
+	fau_save_standard('sidebar_title_above', $_POST['sidebar_title_above'], $post_id, 'page', 'text');
+
+	if ($options['advanced_page_sidebar_useeditor_textabove']==false) {
+	    fau_save_standard('sidebar_text_above', $_POST['sidebar_text_above'], $post_id, 'page', 'textnohtml');
+	} else {
+	    fau_save_standard('sidebar_text_above', $_POST['sidebar_text_above'], $post_id, 'page', 'wpeditor');
+	}
 	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'sidebar_text_above', $newval );
-	    } else {
-		add_post_meta( $post_id, 'sidebar_text_above', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'sidebar_text_above', $oldval );	
-	} 
+	fau_save_standard('sidebar_title_below', $_POST['sidebar_title_below'], $post_id, 'page', 'text');
+
+	if ($options['advanced_page_sidebar_useeditor_textbelow']==false) {
+	    fau_save_standard('sidebar_text_below', $_POST['sidebar_text_below'], $post_id, 'page', 'textnohtml');
+	} else {
+	    fau_save_standard('sidebar_text_below', $_POST['sidebar_text_below'], $post_id, 'page', 'wpeditor');
+	}
 	
-	
-	$newval = ( isset( $_POST['sidebar_title_below'] ) ? sanitize_text_field( $_POST['sidebar_title_below'] ) : 0 );
-	$oldval = get_post_meta( $post_id, 'sidebar_title_below', true );
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'sidebar_title_below', $newval );
-	    } else {
-		add_post_meta( $post_id, 'sidebar_title_below', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'sidebar_title_below', $oldval );	
-	} 
-	
-	
-	$newval = ( isset( $_POST['sidebar_text_below'] ) ? $_POST['sidebar_text_below']  : 0 );
-	$oldval = get_post_meta( $post_id, 'sidebar_text_below', true );
-	
-	if (!empty(trim($newval))) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'sidebar_text_below', $newval );
-	    } else {
-		add_post_meta( $post_id, 'sidebar_text_below', $newval, true );
-	    }
-	} elseif ($oldval) {
-	    delete_post_meta( $post_id, 'sidebar_text_below', $oldval );	
-	} 
-	
+
 	
 	$newval = intval($_POST['fauval_sidebar_order_personlinks']);
 	$oldval = get_post_meta( $post_id, 'fauval_sidebar_order_personlinks', true );

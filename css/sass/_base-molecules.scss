@@ -743,14 +743,15 @@ ul.person-info {
 	}
 	
 	.news-more {
-		background: $colorLightest;
+		color: $colorButton;
+		background: $colorButtonBackground;
 		padding: 6px 10px;
 		text-decoration: none;
 		@include border-radius(3px);
 		font-size: 14px;
 		
 		&:hover, &:focus {
-			background: darken($colorLightest, 3%);
+			background: $colorButtonBackgroundHover;
 		}
 	}
 }
@@ -834,24 +835,32 @@ ul.person-info {
 	}
 }
 
-.event-category-techfak .event-date {
-	background: $colorTechFak !important;
+.event-category-fau .event-date {
+	background: $colorZUV;
+    
+}
+.event-category-einrichtungen .event-date {
+	background: $colorDefault;
 }
 
-.event-category-rwww .event-date {
-	background: $colorRwFak !important
+.event-category-techfak .event-date {
+	background: $colorTechFak;
+}
+
+.event-category-rwfak .event-date {
+	background: $colorRwFak;
 }
 
 .event-category-philfak .event-date {
-	background: $colorPhilFak !important
+	background: $colorPhilFak;
 }
 
 .event-category-natfak .event-date {
-	background: $colorNatFak !important
+	background: $colorNatFak;
 }
 
 .event-category-medfak .event-date {
-	background: $colorMedFak !important;
+	background: $colorMedFak;
 }
 
 .widget_event_widget a {
@@ -911,15 +920,16 @@ ul.person-info {
 	}
 	
 	.events-more {
-		background: $colorLightest;
+		color: $colorButton;
+		background: $colorButtonBackground;
 		padding: 8px 10px;
 		text-decoration: none;
 		@include border-radius(3px);
 		font-size: 14px;
 		
 		&:hover, &:focus {
-			background: darken($colorLightest, 3%);
-			text-decoration: none !important;
+			background: $colorButtonBackgroundHover;
+			text-decoration: none;
 		}
 	}
 }

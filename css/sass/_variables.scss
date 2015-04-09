@@ -26,7 +26,12 @@ $colorDefault:	#003366;
 
 
 // Define primary colors by faculty
-$colorPrimary:	darken($colorPhilFak, 10%);
+$colorPrimary: $colorPhilFak;	// darken($colorPhilFak, 10%);
+
+// $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
+// $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
+// $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
+ 
 $colorHover: 	#615400;
 $colorLight:	#cca33d;
 $colorLightest:	#edc76a;
@@ -34,9 +39,6 @@ $colorLightest:	#edc76a;
 $colorPrimaryHero: $colorPhilFak;
 // Helper for colors: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9 
 
-// $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
-// $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
-// $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
 
 $colorSubNavCurrent:		#fff;
 $colorSubNavCurrentBackground:  #8b6507;
@@ -45,6 +47,10 @@ $colorSubNavCurrentHoverBackground: $colorHover;
 $colorSubNav:			#615400;
 $colorSubNavBackground:		$colorLightest;
 $colorSubNavBackgroundHover:	darken($colorSubNavBackground, 3%);
+
+$colorButton:			#615400;
+$colorButtonBackground:		$colorLightest;
+$colorButtonBackgroundHover:	darken($colorButtonBackground, 3%);
 
 
 // Meta Menu

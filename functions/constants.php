@@ -165,6 +165,9 @@ $defaultoptions = array(
     
     'advanced_page_sidebar_titleabove'	=> true,
     'advanced_page_sidebar_titlebelow'	=> true,    
+    'advanced_page_sidebar_useeditor_textabove'	=> false,
+    'advanced_page_sidebar_useeditor_textbelow'	=> false,
+
     'advanced_page_sidebar_personen_title'	=> __('Kontakt','fau'), 
     'advanced_page_sidebar_linkblock1_number'	=> 3, 
     'advanced_page_sidebar_linkblock2_number'	=> 3,
@@ -832,6 +835,24 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_page_sidebar_titlebelow'],
 		  'parent'  => 'sidebaropt'
               ), 
+	       
+	        'advanced_page_sidebar_useeditor_textabove'		  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'WYSIWYG-Editor Text unten', 'fau' ),
+                  'label'   => __( 'Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sitebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_useeditor_textabove'],
+		  'parent'  => 'sidebaropt'
+              ), 
+	    'advanced_page_sidebar_useeditor_textbelow'		  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'WYSIWYG-Editor Text unten', 'fau' ),
+                  'label'   => __('Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sitebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_page_sidebar_useeditor_textbelow'],
+		  'parent'  => 'sidebaropt'
+              ), 
+	       
+	       
+	       
 		'advanced_page_sidebar_personen_title'	  => array(
                   'type'    => 'text',
                   'title'   => __( 'Default Titel über Kontakte', 'fau' ),

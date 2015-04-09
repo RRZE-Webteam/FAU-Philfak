@@ -15,6 +15,7 @@ if ( ! function_exists( 'fau_form_textarea' ) ) :
 	    echo '	<label for="'.$name.'">';
 	    echo $labeltext;
 	    echo "</label></p>\n";
+	    $prevalue =  esc_textarea($prevalue);
 	    echo '	<textarea name="'.$name.'" id="'.$name.'" rows="'.$rows.'" cols="'.$cols.'">'.$prevalue.'</textarea>';
 
 	    if (strlen(trim($howtotext))) {
@@ -469,6 +470,8 @@ if ( ! function_exists( 'fau_save_standard' ) ) :
 		 $newval = ( isset( $val ) ? sanitize_email( $val ) : 0 );	
 	    } elseif ($type == 'text') {
 		 $newval = ( isset( $val ) ? sanitize_text_field( $val ) : 0 );	
+	    } elseif ($type == 'textnohtml') {
+	        $newval = ( isset( $val ) ? wp_strip_all_tags( $val ) : 0 );	 
 	    } elseif ($type == 'textarea') {
 		 $newval =  ( isset( $val ) ? esc_textarea( $val ) : 0 );				 
 	     } elseif ($type == 'wpeditor') {
