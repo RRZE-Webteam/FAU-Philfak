@@ -1,12 +1,13 @@
 <?php 
 
 
-    $sidebar_personen = get_post_meta( $post->ID, 'sidebar_personen', true );
-    $sidebar_title_personen = get_post_meta( $post->ID, 'sidebar_title_personen', true );	 
+     
 	
     
     if (class_exists( 'FAUPersonWidget' ) ) :
- 
+	
+	$sidebar_personen = get_post_meta( $post->ID, 'sidebar_personen', true );
+	$sidebar_title_personen = get_post_meta( $post->ID, 'sidebar_title_personen', true );	
 	if(isset($sidebar_personen) && !empty($sidebar_personen))  { 
 	   $persons = $sidebar_personen;
 	   $i = 0; 

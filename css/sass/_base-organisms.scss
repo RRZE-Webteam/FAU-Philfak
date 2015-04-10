@@ -718,9 +718,11 @@ body.admin-bar.nav-fixed {
 	margin-bottom: -30px;
 	margin-top: 30px;
 	
+	.textwidget, 
+	p, 
 	h2 {
-		color: #a1aab1;
-		padding-top: 0 !important;
+		color: $colorSocial;
+		padding-top: 0;
 	}
 	
 	ul.social {
@@ -733,7 +735,7 @@ body.admin-bar.nav-fixed {
 			
 			a {
 				@include inline-block;
-				color: #a1aab1;
+				color: $colorSocial;
 				text-decoration: none;
 				height: 20px;
 				line-height: 20px;
@@ -752,7 +754,7 @@ body.admin-bar.nav-fixed {
 			a:before {
 			//	@extend .fa;
 			//	@extend .fa-lg;
-				background: #a1aab1;
+				background: $colorSocial;
 				color: $colorLightest;
 				height: 21px;
 				width: 24px;

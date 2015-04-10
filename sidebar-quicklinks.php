@@ -136,5 +136,9 @@ if ((strlen(trim($list1))>0) || (strlen(trim($list2))>0)) {
     $output .= '</aside>'."\n";;
 }
 
+ if(function_exists('mimetypes_to_icons')) {
+		$output = mimetypes_to_icons($output); 
+ }
+
 echo $output;
 

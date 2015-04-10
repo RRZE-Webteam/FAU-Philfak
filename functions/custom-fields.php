@@ -971,19 +971,9 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 
 	
 	
-	if ($options['advanced_page_sidebar_linkblock1_number'] > 0) {	
-	    $sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks', true );
-	    // Alter ACF Rotz
-	    
+	if ($options['advanced_page_sidebar_linkblock1_number'] > 0) {		    
 	    $block_title = get_post_meta( $object->ID, 'fauval_sidebar_title_linkblock1', true );
-	    if (strlen(trim($block_title))<1) {
-		$oldtitle = get_post_meta( $object->ID, 'sidebar_title_quicklinks', true );
-		if (strlen(trim($oldtitle))>0) {
-		    $block_title = $oldtitle;
-		// } else {
-		   // $block_title = $options['advanced_page_sidebar_linkblock1_title'];
-		}
-	    }
+	    
 	    fau_form_text('fauval_sidebar_title_linkblock1', $block_title, __('Titel erster Linkblock','fau'), __('Titel über die erste Liste von Links, sogenannte Quicklinks','fau'));
 	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock1_number']; $i++) {
 		$name = 'fauval_linkblock1_link'.$i;
@@ -994,26 +984,12 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 		$oldpageid =  get_post_meta( $object->ID, $name, true );
 		$oldurl =  get_post_meta( $object->ID, $urlname, true );
 		$oldtitle =  get_post_meta( $object->ID, $titlename, true );
-		$c = $i-1;
-		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
-		    if (isset($sidebar_quicklinks) && (isset($sidebar_quicklinks[$c]))) {
-			$oldpageid = $sidebar_quicklinks[$c];
-			if (isset($oldpageid) && ($oldpageid>0)) {
-			    $oldtitle = get_the_title($oldpageid );
-			    $oldurl = get_permalink($oldpageid );
-			}
-		    }
-		}
-		
 		fau_form_link($name, $oldtitle, $oldurl, $title);
 	    }
 	}
 	
 	
-	if ($options['advanced_page_sidebar_linkblock2_number'] > 0) {	    
-	    	    
-	    $sidebar_quicklinks = get_post_meta( $object->ID, 'sidebar_quicklinks_external', true );
-	   	    // Alter ACF Rotz mit SubFields	    
+	if ($options['advanced_page_sidebar_linkblock2_number'] > 0) {	       
 	    
 	    $block_title = get_post_meta( $object->ID, 'fauval_sidebar_title_linkblock2', true );
 	    // Default erstmal auskommentiert wenn man es leer haben will; irritiert sonst
@@ -1032,16 +1008,7 @@ function fau_do_metabox_page_sidebar( $object, $box ) {
 		$oldpageid =  get_post_meta( $object->ID, $name, true );
 		$oldurl =  get_post_meta( $object->ID, $urlname, true );
 		$oldtitle =  get_post_meta( $object->ID, $titlename, true );
-		$c = $i-1;
-		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
-		    if (!empty($sidebar_quicklinks)) {
-			// Schau nach alten ACF Subfields
-			$oldlinkname = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_text';
-			$oldlinkurl = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_link';
-			$oldurl =  get_post_meta( $object->ID, $oldlinkurl, true );
-			$oldtitle =  get_post_meta( $object->ID, $oldlinkname, true );
-		    }
-		}
+	
 		
 		fau_form_link($name, $oldtitle, $oldurl, $title);
 	    }
@@ -1150,9 +1117,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 
 	$newval = ( isset( $_POST['fauval_sidebar_title_linkblock1'] ) ? sanitize_text_field( $_POST['fauval_sidebar_title_linkblock1'] ) : 0 );
 	$oldval = get_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', true );
-	if ((!isset($oldvar)) || empty($oldvar) ) {
-	    	$oldval = get_post_meta( $post_id, 'sidebar_title_quicklinks', true );  
-	}
+	
 	if (!empty(trim($newval))) {
 	    if (isset($oldval)  && ($oldval != $newval)) {
 		update_post_meta( $post_id, 'fauval_sidebar_title_linkblock1', $newval );
@@ -1180,7 +1145,6 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 	
 	
 	global $options;
-	 $sidebar_quicklinks = get_post_meta( $post_id, 'sidebar_quicklinks', true );
 	 
 	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock1_number']; $i++) {
 		$name = 'fauval_linkblock1_link'.$i;
@@ -1190,26 +1154,8 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 		$oldurl =  get_post_meta( $post_id, $urlname, true );
 		$oldtitle =  get_post_meta( $post_id, $titlename, true );
 		$c = $i-1;
-		$oldparams = 0;
 		
-		 
-		
-		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
-		    
-		    if (isset($sidebar_quicklinks) && (isset($sidebar_quicklinks[$c]))) {
-			$oldpageid = $sidebar_quicklinks[$c];
-			if (isset($oldpageid) && ($oldpageid>0)) {
-			    $oldtitle = get_the_title($oldpageid );
-			    $oldurl = get_permalink($oldpageid );
-			    if ((!empty($oldlinkname)) && (!empty($oldlinkurl))) {
-				$oldparams = 1;
-			    }
-			}
-		    }
 
-		} else {
-		     $oldparams = -1;
-		}
 		$newurl = ( isset( $_POST[$urlname] ) ? esc_url( $_POST[$urlname] ) : 0 );
 		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
 		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );
@@ -1223,18 +1169,13 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 		    }
 		} 
 
-		    if ($oldparams ==1) {
-			delete_post_meta( $post_id, 'sidebar_quicklinks' );
-		    }
 
 		    update_post_meta( $post_id, $urlname, $newurl );
 		    update_post_meta( $post_id, $titlename, $newtitle );	    
 		    update_post_meta( $post_id, $name, $newid );			    
 
 	    }
-	    
-	     $sidebar_quicklinks = get_post_meta( $post_id, 'sidebar_quicklinks_external', true );
-	   	    // Alter ACF Rotz mit SubFields	    
+
 	    
 	    for ($i = 1; $i <= $options['advanced_page_sidebar_linkblock2_number']; $i++) {
 		$name = 'fauval_linkblock2_link'.$i;
@@ -1244,25 +1185,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 		$oldurl =  get_post_meta( $post_id, $urlname, true );
 		$oldtitle =  get_post_meta( $post_id, $titlename, true );
 		$c = $i-1;
-		$oldparams = 0;
-		if (empty($oldpageid) && empty($oldurl) && empty($oldtitle)) {
-		    if (!empty($sidebar_quicklinks)) {
-			// Schau nach alten ACF Subfields
-			$oldlinkname = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_text';
-			$oldlinkurl = 'sidebar_quicklinks_external_'.$c.'_sidebar_quicklinks_external_link';
-			$oldurl =  get_post_meta( $post_id, $oldlinkurl, true );
-			$oldtitle =  get_post_meta( $post_id, $oldlinkname, true );
-			if ((!empty($oldlinkname)) && (!empty($oldlinkurl))) {
-			 delete_post_meta( $post_id, $oldlinkname );	
-			 delete_post_meta( $post_id, $oldlinkurl );
-			 
-			 $oldparams = 1;
-			}
-			
-		    }
-		} else {
-		     $oldparams = -1;
-		}
+		
 		$newurl = ( isset( $_POST[$urlname] ) ? esc_url( $_POST[$urlname] ) : 0 );
 		$newid = ( isset( $_POST[$name] ) ? sanitize_key( $_POST[$name] ) : 0 );
 		$newtitle = ( isset( $_POST[$titlename] ) ? sanitize_text_field( $_POST[$titlename] ) : 0 );

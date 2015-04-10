@@ -43,6 +43,7 @@ OPTIONAL PLUGINS
 * TinyMCE Advanced
 * CMS Tree Page View   
 * CMS-Search (https://github.com/RRZE-Webteam/cms-search)
+* MimeTypes Link Icons
 * WP External Link
    with Options: 
     - General Settings: Open external link in same window

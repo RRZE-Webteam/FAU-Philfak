@@ -86,7 +86,7 @@ $showhelplinks = 0;
                             
 						<?php else: ?>
 							<p class="hinweis">
-							    <strong><?php _e('Keine Ergebnisse.','fau'); ?></strong><br>
+							    <strong><?php _e('Nichts gefunden.','fau'); ?></strong><br>
 							    <?php _e('Leider konnte für Ihren Suchbegriff kein passendes Ergebnis gefunden werden.','fau'); ?>
 							</p>
 							<div class="row">

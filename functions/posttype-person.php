@@ -65,24 +65,6 @@ function person_post_type() {
 		'publicly_queryable'  => true,
 		'query_var'           => 'person',
 		'rewrite'             => $rewrite,
-		/* 'capability_type'     => 'person',
-		'capabilities' => array(
-            'edit_post' => 'edit_person',
-            'read_post' => 'read_person',
-            'delete_post' => 'delete_person',
-            'edit_posts' => 'edit_persons',
-            'edit_others_posts' => 'edit_others_persons',
-            'publish_posts' => 'publish_persons',
-            'read_private_posts' => 'read_private_persons',
-            'delete_posts' => 'delete_persons',
-            'delete_private_posts' => 'delete_private_persons',
-            'delete_published_posts' => 'delete_published_persons',
-            'delete_others_posts' => 'delete_others_persons',
-            'edit_private_posts' => 'edit_private_persons',
-            'edit_published_posts' => 'edit_published_persons'
-		),
-		'map_meta_cap' => true
-		  */
 
 	);
 	register_post_type( 'person', $args );
@@ -92,52 +74,7 @@ endif;
 // Hook into the 'init' action
 add_action( 'init', 'person_post_type', 0 );
 
-if ( ! function_exists( 'person_restrict_manage_posts' ) ) :
-function person_restrict_manage_posts() {
-	global $typenow;
 
-	if( $typenow == "person" ){
-		$filters = get_object_taxonomies($typenow);
-		
-		foreach ($filters as $tax_slug) {
-			$tax_obj = get_taxonomy($tax_slug);
-			wp_dropdown_categories(array(
-                'show_option_all' => sprintf(__('Alle %s anzeigen', 'fau'), $tax_obj->label),
-                'taxonomy' => $tax_slug,
-                'name' => $tax_obj->name,
-                'orderby' => 'name',
-                'selected' => isset($_GET[$tax_slug]) ? $_GET[$tax_slug] : '',
-                'hierarchical' => $tax_obj->hierarchical,
-                'show_count' => true,
-                'hide_if_empty' => true
-            ));
-		}
-
-	}
-}
-endif;
-add_action( 'restrict_manage_posts', 'person_restrict_manage_posts' );
-
-
-if ( ! function_exists( 'person_post_types_admin_order' ) ) :
-function person_post_types_admin_order( $wp_query ) {
-	if (is_admin()) {
-
-		$post_type = $wp_query->query['post_type'];
-
-		if ( $post_type == 'person') {
-
-			if( ! isset($wp_query->query['orderby']))
-			{
-				$wp_query->set('orderby', 'title');
-				$wp_query->set('order', 'ASC');
-			}
-
-		}
-	}
-}
-endif;
-add_filter('pre_get_posts', 'person_post_types_admin_order');
 
 if ( ! function_exists( 'fau_person_metabox' ) ) :
 function fau_person_metabox() {
@@ -160,8 +97,6 @@ function fau_person_metabox_content( $object, $box ) {
     wp_nonce_field( basename( __FILE__ ), 'fau_person_metabox_content_nonce' ); 
 
     if ( !current_user_can( 'edit_page', $object->ID) )
-	    // Oder sollten wir nach publish_pages  fragen? 
-	    // oder nach der Rolle? vgl. http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/ 
 	return;
 
     

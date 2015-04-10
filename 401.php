@@ -48,7 +48,7 @@ get_header(); ?>
 				</div>
 			</div>
 
-			<hr>
+			<?php get_template_part('search', 'helper');  ?>
 
 		</div>
 	</section>
