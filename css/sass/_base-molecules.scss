@@ -114,38 +114,23 @@
 			vertical-align: center;
 		}
 		
-		&.philfak,
-		&.menu-item-142,
-		&.menu-item-20852,
-		&.menu-item-782275 {
+		&.philfak {
 			border-color: $colorPhilFak;
 		}
 		
-		&.rwfak,
-		&.menu-item-143,
-		&.menu-item-20853,
-		&.menu-item-782276 {
+		&.rwfak {
 			border-color: $colorRwFak;
 		}
 		
-		&.medfak,
-		&.menu-item-144,
-		&.menu-item-20854,
-		&.menu-item-782277 {
+		&.medfak {
 			border-color: $colorMedFak;
 		}
 		
-		&.natfak,
-		&.menu-item-145,
-		&.menu-item-20855,
-		&.menu-item-782278 {
+		&.natfak  {
 			border-color: $colorNatFak;
 		}
 		
-		&.techfak,
-		&.menu-item-146,
-		&.menu-item-20856,
-		&.menu-item-782279 {
+		&.techfak {
 			border-color: $colorTechFak;
 		}
 	}
@@ -255,6 +240,7 @@
 .searchform-content {
 	border: none;
 	padding-top: 40px;
+	@include placeholder($colorSearchPlaceholder);
 
 	h3 {
 		font-weight: normal;
@@ -268,15 +254,15 @@
 		line-height: 15px;
 		float: left;
 		margin-right: 10px;
-		background: #5586b6 url('../img/icon-search.png') no-repeat 15px center;
+		background: $colorSearchInputBackground url('../img/icon-search.png') no-repeat 15px center;
 		border: none;
 		outline: none;
-		color: #fff;
+		color: $colorSearchInput;
 		
 	
 
 		&:focus {
-			background-color: #5e91c3;
+			background-color: $colorSearchInputBackgroundFocus;
 		}
 	}
 }
@@ -361,7 +347,7 @@
 	}
 	
 	.searchform label {
-		display: none !important;
+		@extend .unsichtbar;
 	}
 }
 
@@ -1310,6 +1296,10 @@ ul.tagcloud {
 	.grey .accordion-heading .accordion-toggle {
 		border-color: $colorTechFak;
 	}
+	.fau .accordion-heading .accordion-toggle, 
+	.default .accordion-heading .accordion-toggle {
+		border-color: $colorDefault;
+	}
 }
 
 
@@ -1369,6 +1359,10 @@ ul.tagcloud {
 		border-color: $colorTechFak;
 	}
 	
+	&.fau, &.default {
+		border-color: $colorDefault;
+	}
+	
 	
     }
     
@@ -1389,14 +1383,7 @@ ul.tagcloud {
 	margin-top: 10px;
 }
 
-.screen-reader-text {
-    position:absolute;
-  left:-10000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
+
 
 .nav-links {
 	margin: 20px 0;

@@ -69,10 +69,10 @@ function fau_setup() {
 	register_nav_menu( 'quicklinks-3', __( 'Startseite: Bühne Spalte 1', 'fau' ) );
 	register_nav_menu( 'quicklinks-4', __( 'Startseite: Bühne Spalte 2', 'fau' ) );
 	
-	register_nav_menu( 'error-1', __( 'Fehlerseite: Vorschlagmenu Spalte 1', 'fau' ) );
-	register_nav_menu( 'error-2', __( 'Fehlerseite: Vorschlagmenu Spalte 2', 'fau' ) );
-	register_nav_menu( 'error-3', __( 'Fehlerseite: Vorschlagmenu Spalte 3', 'fau' ) );
-	register_nav_menu( 'error-4', __( 'Fehlerseite: Vorschlagmenu Spalte 4', 'fau' ) );
+	register_nav_menu( 'error-1', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 1', 'fau' ) );
+	register_nav_menu( 'error-2', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau' ) );
+	register_nav_menu( 'error-3', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 3', 'fau' ) );
+	register_nav_menu( 'error-4', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 4', 'fau' ) );
 	
 	/*
 	 * This theme uses a custom image size for featured images, displayed on

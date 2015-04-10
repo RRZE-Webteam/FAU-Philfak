@@ -285,7 +285,7 @@ body.admin-bar.nav-fixed {
 		}
 		
 		label {
-			display: none;
+			@extend .unsichtbar;
 		}
 	}
 }
@@ -441,7 +441,7 @@ body.admin-bar.nav-fixed {
 	.searchform {
 		padding: 35px 0 0 0;
 		border: none;
-		
+		@include placeholder($colorSearchPlaceholder);
 		label {
 			color: #fff;
 		}
@@ -454,13 +454,13 @@ body.admin-bar.nav-fixed {
 			line-height: 15px;
 			float: left;
 			margin-right: 10px;
-			background: #5586b6 url('../img/icon-search.png') no-repeat 15px center;
+			background: $colorSearchInputBackground url('../img/icon-search.png') no-repeat 15px center;
 			border: none;
 			outline: none;
-			color: #fff;
+			color: $colorSearchInput;
 			
 			&:focus {
-				background-color: #5e91c3;
+				background-color: $colorSearchInputBackgroundFocus;
 			}
 		}
 		

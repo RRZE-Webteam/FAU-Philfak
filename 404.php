@@ -39,10 +39,10 @@ get_header();
 		
 			<div class="row">
 				<div class="span6">
-					<h2>
+					<p class="hinweis">
 						<strong><?php _e('Es tut uns leid.','fau'); ?></strong><br>
-						<?php _e('Die von Ihnen aufgerufene Seite existiert nicht oder ihre Adresse hat sich durch die Erneuerung der FAU-Webseiten geändert.','fau'); ?>
-					</h2>
+						<?php _e('Die von Ihnen aufgerufene Seite existiert nicht oder ihre Adresse hat sich durch Änderungen der Seiten geändert.','fau'); ?>
+					</p>
 					<div class="row">
 						<div class="span4 offset2"><img src="<?php echo fau_get_template_uri(); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
 					</div>
@@ -56,41 +56,17 @@ get_header();
 							$uri = str_replace('/', ' ', $uri);
 
 						?>
-						<input type="text" value="<?php echo $uri ?>" name="s" id="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
+						<label class="unsichtbar" for="suchmaske-error"><?php _e('Geben Sie hier den Suchbegriff ein','fau'); ?></label>
+						<input type="text" value="<?php echo $uri ?>" name="s" id="suchmaske-error" placeholder="<?php _e('Suchen nach...','fau'); ?>">
 						<input type="submit" id="searchsubmit" value="<?php _e('Finden','fau'); ?>">
 					</form>
 				</div>
 			</div>
 
-			<div class="hr"><hr></div>
-
-			<h2><?php _e('Folgende Inhalte könnten Ihnen auch helfen:','fau'); ?></h2>
-			<div class="row subpages-menu">
-				<div class="span3">
-					<?php if(has_nav_menu('error-1')): ?>
-						<h3><?php echo fau_get_menu_name('error-1'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'error-1', 'container' => false, 'items_wrap' => '<ul class="sub-menu %2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
-				</div>
-				<div class="span3">
-					<?php if(has_nav_menu('error-2')): ?>
-						<h3><?php echo fau_get_menu_name('error-2'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'error-2', 'container' => false, 'items_wrap' => '<ul class="sub-menu %2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
-				</div>
-				<div class="span3">
-					<?php if(has_nav_menu('error-3')): ?>
-						<h3><?php echo fau_get_menu_name('error-3'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'error-3', 'container' => false, 'items_wrap' => '<ul class="sub-menu %2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
-				</div>
-				<div class="span3">
-					<?php if(has_nav_menu('error-4')): ?>
-						<h3><?php echo fau_get_menu_name('error-4'); ?></h3>
-						<?php wp_nav_menu( array( 'theme_location' => 'error-4', 'container' => false, 'items_wrap' => '<ul class="sub-menu %2$s">%3$s</ul>' ) ); ?>
-					<?php endif; ?>
-				</div>
-			</div>
+		    
+		    
+			<?php get_template_part('search', 'helper');  ?>
+			
 			
 		</div>
 	</section>

@@ -71,13 +71,6 @@ img.aligncenter {
 	margin: 0 auto 10px auto;
 }
 
-.hide-desktop {
-	display: none;
-}
-
-.hidden {
-	display: none;
-}
 
 .content-image-cols {
 	margin-bottom: 20px;
@@ -100,4 +93,29 @@ img.aligncenter {
 
 .link-all-videos {
 	padding-top: 10px;
+}
+
+.unsichtbar {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.unsichtbar:focus {
+  position: relative;
+  left: 0;
+  width: auto;
+  height: auto;
+  overflow: auto;
+}
+
+.screen-reader-text,
+.hide-desktop {
+    @extend .unsichtbar;
+}
+
+.hidden {
+	display: none;
 }

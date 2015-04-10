@@ -39,17 +39,17 @@ get_header();
 		
 			<div class="row">
 				<div class="span6">
-					<h2>
+					<p class="hinweis">
 						<strong><?php _e('Es tut uns leid.','fau'); ?></strong><br>
 						<?php _e('Leider dürfen Sie auf diese Seite nicht zugreifen.','fau'); ?>
-					</h2>
+					</p>
 					<div class="row">
 						<div class="span4 offset2"><img src="<?php echo fau_get_template_uri(); ?>/img/friedrich-alexander.gif" alt="" class="error-404-persons"></div>
 					</div>
 				</div>
 			</div>
 
-			<div class="hr"><hr></div>
+			<hr>
 
 		</div>
 	</section>

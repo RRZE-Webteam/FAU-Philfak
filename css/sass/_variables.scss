@@ -52,6 +52,10 @@ $colorButton:			#615400;
 $colorButtonBackground:		$colorLightest;
 $colorButtonBackgroundHover:	darken($colorButtonBackground, 3%);
 
+$colorSearchPlaceholder:        #111;
+$colorSearchInput:		#000;
+$colorSearchInputBackground:	$colorLightest; // #5586b6;
+$colorSearchInputBackgroundFocus:  #fff; // #5e91c3;
 
 // Meta Menu
 $colorMeta: $colorDefault;

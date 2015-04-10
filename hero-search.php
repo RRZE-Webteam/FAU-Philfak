@@ -15,24 +15,17 @@ global $options;
 		<div class="row">
 			<div class="span8">
 			    <?php fau_breadcrumb($options['title_hero_search']); ?>
-			   <!-- 
-			    <div class="breadcrumbs">
-					<a href="<?php echo fau_esc_url( home_url( '/' ) ); ?>"><?php echo $options['breadcrumb_root']; ?></a><span>/</span>
-					<?php  echo $options['title_hero_search']; ?>
-				</div>
-			    -->
 			</div>
 		</div>
 		<div class="row">
 			<div class="span3">
-				<h1><?php echo $options['title_hero_search']; ?></h1>
+			    <h1><?php echo $options['title_hero_search']; ?></h1>
 			</div>
 			<div class="span9">
-				<?php /* get_search_form(); */ ?>
-				
+			    <label class="unsichtbar" for="suchmaske-hero"><?php _e('Geben Sie hier den Suchbegriff ein','fau'); ?></label>
 				<form role="search" method="get" class="searchform" action="<?php echo home_url( '/' )?>">
-					<input type="text" value="<?php the_search_query(); ?>" name="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
-					<input type="submit" id="searchsubmit" value="<?php _e('Finden','fau'); ?>">
+					<input id="suchmaske-hero" type="text" value="<?php the_search_query(); ?>" name="s" placeholder="<?php _e('Suchen nach...','fau'); ?>">
+					<input type="submit" value="<?php _e('Finden','fau'); ?>">
 				</form>
 				
 			</div>
