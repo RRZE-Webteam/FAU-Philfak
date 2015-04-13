@@ -161,7 +161,7 @@ $defaultoptions = array(
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
     'galery_link_original'		=> true,
-    'advanced_activatefaupluginpersonen'=> true,
+    'advanced_activatefaupluginpersonen'=> false,
     
     'advanced_page_sidebar_titleabove'	=> true,
     'advanced_page_sidebar_titlebelow'	=> true,    
