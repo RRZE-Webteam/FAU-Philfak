@@ -1232,7 +1232,7 @@ ul.tagcloud {
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
 				background: $colorLightest;
-				color: $colorPrimary;
+				color: $colorLightestContrast; // $colorPrimary;
 				@include border-radius(4px);
 				text-decoration: none;
 				font-size: 16px;
@@ -1255,7 +1255,7 @@ ul.tagcloud {
 				&.active, &.active:hover, &.active:focus {
 					background-color: darken($colorLightest, 3%);
 				//	background-position: right -41px;
-					color: $colorPrimary;
+					color: $colorLightestContrast; // $colorPrimary;
 					
 					&:before {
 						@extend .fa-caret-up;
@@ -1329,7 +1329,7 @@ ul.tagcloud {
     header {
 	border-left: 10px solid $colorPrimary;
 	background: $colorLightest;
-	color: $colorPrimary;
+	color: $colorLightestContrast; // $colorPrimary;
 	@include border-radius(4px);
 	text-decoration: none;
 	font-size: 16px;

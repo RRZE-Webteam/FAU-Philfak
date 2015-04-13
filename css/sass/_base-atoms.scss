@@ -290,12 +290,13 @@ table {
 	
 	th, td {
 		padding: 7px 10px;
-		color: $colorPrimary;
+		
 		font-size: 13px;
 		line-height: 18px;
 	}
 	
 	th {
+		color: $colorLightContrast;
 		background: $colorLight;
 		font-weight: bold;
 		border-top: 1px solid $colorLight;
@@ -310,6 +311,7 @@ table {
 	
 	td {
 		border-right: 1px solid #fff;
+		color: $colorLightContrast;
 	}
 	
 	tr {
@@ -318,7 +320,14 @@ table {
 	}
 	
 	tr:nth-child(odd) td {
+		color:  $colorLightestContrast;
 		background: $colorLightest;
+		
+		ul {
+		    li {
+			color:  $colorLightestContrast;
+		    }
+		}
 	}
 	
 	ul {

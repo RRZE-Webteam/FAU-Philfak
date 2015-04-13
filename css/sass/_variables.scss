@@ -27,14 +27,21 @@ $colorDefault:	#003366;
 
 // Define primary colors by faculty
 $colorPrimary: $colorPhilFak;	// darken($colorPhilFak, 10%);
+// If ColorPrimary is used as background, wie need a contrast color
+$colorPrimaryContrast: #fff;
 
 // $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
 // $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
 // $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
  
-$colorHover: 	#615400;
-$colorLight:	#cca33d;
-$colorLightest:	#edc76a;
+$colorHover:		    #615400;
+
+$colorLight:		    #cca33d;
+$colorLightContrast:	    #fff;
+$colorLightest:		    #edc76a;
+$colorLightestContrast:	    #615400;
+
+
 
 $colorPrimaryHero: $colorPhilFak;
 // Helper for colors: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9 
@@ -60,11 +67,11 @@ $colorSearchInputBackgroundFocus:  #fff; // #5e91c3;
 // Meta Menu
 $colorMeta: $colorDefault;
 // Define Background-Color for Meta Menu at top
-$colorMetaBackground:   #e9edf2;
-$colorMetaFAUHomeBackground: #d0d3d8;
-$colorMetaHover: 	desaturate(lighten($colorDefault, 10%), 40%);
-$colorMetaLight:	desaturate(lighten($colorDefault, 69%), 75%);
-$colorMetaLightest:	desaturate(lighten($colorDefault, 73%), 75%);
+$colorMetaBackground:		#e9edf2;
+$colorMetaFAUHomeBackground:	#d0d3d8;
+$colorMetaHover:		desaturate(lighten($colorDefault, 10%), 40%);
+$colorMetaLight:		desaturate(lighten($colorDefault, 69%), 75%);
+$colorMetaLightest:		desaturate(lighten($colorDefault, 73%), 75%);
 
 // Social Bar Startseite
 
