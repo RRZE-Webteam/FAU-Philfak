@@ -479,8 +479,10 @@ ul.person-info {
 		line-height: 20px;
 		background-repeat: no-repeat;
 		background-position: left center;
-		color: $colorPrimary;
+		
 	}
+	
+	
 	/*
 	li.person-info:before {
 		@extend .fa;
@@ -1199,6 +1201,10 @@ ul.tagcloud {
 	.content-portal & {
 		margin-top: 22px;
 	}
+	ul.person-info li {
+	    color: $colorPrimary;
+
+	}
 	
 	li.person-info-address {
 		white-space: pre;
@@ -1337,6 +1343,7 @@ ul.tagcloud {
 	position: relative;
 	
 	h2 {
+	    color: $colorLightestContrast; // $colorPrimary;
 	    padding: 0px;
 	}
 	&.philfak {

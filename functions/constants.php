@@ -63,9 +63,9 @@ $defaultoptions = array(
     'default_postthumb_crop'	    => false,
    
      /* Thumb for Posts, displayed in post/page single display - Name: post */
-    'default_postthumb_width'	    => 300,
-    'default_postthumb_height'	    => 200,
-    'default_postthumb_crop'	    => false, 
+    'default_post_width'	    => 300,
+    'default_post_height'	    => 200,
+    'default_post_crop'	    => false, 
     
      /* Thumb for person-type; small for sidebar - Name: person-thumb */
     'default_person_thumb_width'    => 60,
@@ -76,6 +76,11 @@ $defaultoptions = array(
     'default_person_thumb_bigger_width'    => 90,
     'default_person_thumb_bigger_height'   => 120,
     'default_person_thumb_bigger_crop'	    => true,     
+
+     /* Thumb for person-type; small for content - Name: person-thumb-page */
+    'default_person_thumb_page_width'    => 200,
+    'default_person_thumb_page_height'   => 300,
+    'default_person_thumb_page_crop'	 => true,         
     
     /* Thumb for Logos (used in carousel) - Name: logo-thumb */
     'default_logo_carousel_width'	=> 140,
@@ -161,7 +166,6 @@ $defaultoptions = array(
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
     'galery_link_original'		=> true,
-    'advanced_activatefaupluginpersonen'=> false,
     
     'advanced_page_sidebar_titleabove'	=> true,
     'advanced_page_sidebar_titlebelow'	=> true,    
@@ -183,6 +187,7 @@ $defaultoptions = array(
     'search_display_continue_arrow'		=> true,
     'search_display_excerpt_morestring'		=> '...',
     
+    'plugin_fau_person_headline'	=> true,
 
      
 ); 
@@ -793,13 +798,6 @@ $setoptions = array(
                   'title'   => __( 'Werbebanner', 'fau' ),
                   'label'   => __( 'Aktiviert die Möglichkeit, Werbebanner zu verwalten.', 'fau' ),                
                   'default' => $defaultoptions['advanced_activateads'],
-		  'parent'  => 'bedienung'
-              ),   
-	        'advanced_activatefaupluginpersonen' => array(
-                  'type'    => 'bool',
-                  'title'   => __( 'Integrierte einfache Personenverwaltung', 'fau' ),
-                  'label'   => __( 'Nutze einfache Personen- und Adressverwaltung des Themes (ohne Syncronisation mit UnivIS und anderen)', 'fau' ),                
-                  'default' => $defaultoptions['advanced_activatefaupluginpersonen'],
 		  'parent'  => 'bedienung'
               ),   
 	       

@@ -18,10 +18,6 @@ require_once( get_template_directory() . '/functions/custom-fields.php' );
 require_once( get_template_directory() . '/functions/posttype_imagelink.php' );
 require_once( get_template_directory() . '/functions/posttype_ad.php' );
 require_once( get_template_directory() . '/functions/widgets.php' );
-
-if ($options['advanced_activatefaupluginpersonen']==true) {
-    require_once( get_template_directory() . '/functions/posttype-person.php');
-}
 require_once( get_template_directory() . '/functions/posttype-synonym.php');
 require_once( get_template_directory() . '/functions/posttype-glossary.php');
 
@@ -99,7 +95,7 @@ function fau_setup() {
 	add_image_size( 'page-thumb', $options['default_submenuthumb_width'], $options['default_submenuthumb_height'], true); // 220:110
 	
 	/* Thumb for Posts, displayed in post/page single display - Name: post */
-	add_image_size( 'post', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']);
+	add_image_size( 'post', $options['default_post_width'], $options['default_post_height'], $options['default_post_crop']);
 	
 	/* Thumb for person-type; small for sidebar - Name: person-thumb */
 	add_image_size( 'person-thumb', $options['default_person_thumb_width' ], $options['default_person_thumb_height'], $options['default_person_thumb_crop'	]); // 60, 80, true
@@ -107,6 +103,10 @@ function fau_setup() {
         /* Thumb for person-type; small for content - Name: person-thumb-bigger */
 	add_image_size( 'person-thumb-bigger', $options['default_person_thumb_bigger_width'], $options[ 'default_person_thumb_bigger_height'], $options['default_person_thumb_bigger_crop']); // 90,120,true
 
+	 /* Thumb for person-type; big for content - Name: person-thumb-page */
+	add_image_size( 'person-thumb-page', $options['default_person_thumb_page_width'], $options[ 'default_person_thumb_page_height'], $options['default_person_thumb_page_crop']); // 200,300,true
+
+	
 	/* Thumb for Logos (used in carousel) - Name: logo-thumb */
 	add_image_size( 'logo-thumb', $options['default_logo_carousel_width'], $options['default_logo_carousel_height'], $options['default_logo_carousel_crop']);
 
@@ -1359,4 +1359,5 @@ function fau_wp_link_query_args( $query ) {
      return $query;
 }
 add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' ); 
+
 
