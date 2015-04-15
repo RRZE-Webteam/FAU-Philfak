@@ -188,6 +188,9 @@ $defaultoptions = array(
     'search_display_excerpt_morestring'		=> '...',
     
     'plugin_fau_person_headline'	=> true,
+    'index_synonym_listall'		=> true,
+    'index_glossary_listall'		=> true,
+    
 
      
 ); 

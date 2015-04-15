@@ -186,13 +186,7 @@ get_header(); ?>
 			<?php _e('Für den angegebenen Kontakt können keine Informationen abgerufen werden.','fau'); ?>
 					</p>
 		<?php }
-		    
-					
-					
-					
-					
-					
-					
+
 					
 					?>
 				</div>
