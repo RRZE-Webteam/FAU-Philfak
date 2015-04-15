@@ -17,7 +17,7 @@ $posttype = get_post_type();
 	} elseif ($posttype == 'post') {
 		get_template_part('hero', 'category'); 
 	} else {
-	    get_template_part('hero', 'category'); 
+	    get_template_part('hero', 'index'); 
 	} ?>
 
 	<section id="content">
@@ -34,17 +34,23 @@ $posttype = get_post_type();
 					    echo '<h2>'.__('Glossar','fau')."</h2>\n";					    
 					    echo fau_get_glossar();					    					    
 					} else {	
-					    
+					    $line=0;
 					    while ( have_posts() ) : 
 						the_post();  
-
+						$line++;
 						if( $posttype == 'event') {
 						    get_template_part( 'post', 'event' ); 
 						} elseif($posttype == 'synonym') { 	
 						    echo fau_get_synonym($post->ID);
 						} elseif($posttype == 'glossary') { 	
 						    echo fau_get_glossar($post->ID);
-						 } elseif($posttype == 'post') { 
+						} elseif($posttype == 'person') { 	
+						    if ($line>1) {
+							echo "<hr>\n";
+						    }
+						    echo fau_get_person_index($post->ID);
+						    
+						} elseif($posttype == 'post') { 
 						      echo fau_display_news_teaser($post->ID,true);
 						 } else { ?>
 
@@ -74,11 +80,12 @@ $posttype = get_post_type();
 					    endwhile; 
 
 
-					    if ($posttype=='glossary') { ?>
+					    if (($posttype=='glossary') || ($posttype=='person')) { ?>
 						<nav class="navigation">
 						    <div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Vorherige Einträge', 'fau')); ?></div>
 						    <div class="nav-next"><?php next_posts_link(__('Weitere Einträge <span class="meta-nav">&raquo;</span>', 'fau'), '' ); ?></div>
 						</nav>
+					   	
 					    <?php } elseif($posttype=='post') { ?>
 						<nav class="navigation">
 						    <div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Neuere Beiträge', 'fau')); ?></div>
