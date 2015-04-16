@@ -193,6 +193,9 @@ $defaultoptions = array(
     'search_display_excerpt_morestring'		=> '...',
     
     'plugin_fau_person_headline'	=> true,
+    'plugin_fau_person_malethumb'	=> get_template_directory_uri().'/img/platzhalter-mann.png',
+    'plugin_fau_person_femalethumb'	=> get_template_directory_uri().'/img/platzhalter-frau.png',
+    
     'index_synonym_listall'		=> true,
     'index_glossary_listall'		=> true,
     

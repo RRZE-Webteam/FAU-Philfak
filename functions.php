@@ -1364,7 +1364,7 @@ add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' );
 
  if ( ! function_exists( 'fau_get_person_index' ) ) :  
     function fau_get_person_index($id=0) {
-
+     global $options;
 	$honorificPrefix = get_post_meta($id, 'fau_person_honorificPrefix', true);
 	$givenName = get_post_meta($id, 'fau_person_givenName', true);
 	$familyName = get_post_meta($id, 'fau_person_familyName', true);
@@ -1374,7 +1374,9 @@ add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' );
 	$email = get_post_meta($id, 'fau_person_email', true);
 	$worksFor = get_post_meta($id, 'fau_person_worksFor', true);
         $faxNumber = get_post_meta($id, 'fau_person_faxNumber', true);
+        $type = get_post_meta($id, 'fau_person_typ', true);
 
+	
 	$fullname = '';
 	if($honorificPrefix) 	$fullname .= '<span itemprop="honorificPrefix">'.$honorificPrefix.'</span> ';
 	if($givenName) 	$fullname .= '<span itemprop="givenName">'.$givenName.'</span> ';
@@ -1389,7 +1391,23 @@ add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' );
     <div class="person content-person" itemscope="" itemtype="http://schema.org/Person">
 	<div class="row">
 	    <div class="span1 span-small">		
-		<?php echo get_the_post_thumbnail($id, 'person-thumb-bigger'); ?>
+		<?php 
+		if (has_post_thumbnail()) {
+		    echo get_the_post_thumbnail($id, 'person-thumb-bigger'); 
+		} else {
+		    if ($type == 'realmale') {
+			$url = $options['plugin_fau_person_malethumb'];     
+		    } elseif ($type == 'realfemale') {
+			$url = $options['plugin_fau_person_femalethumb']; 
+		    } else {
+			$url = '';     
+		    }
+		    if ($url) {
+			echo '<img src="'.$url.'" width="90" height="120" alt="">';
+		    }
+		}
+		
+		?>
 	    </div>
 	    <div class="span3">
 		<h3><?php echo $fullname; ?></h3>
