@@ -180,7 +180,12 @@ $defaultoptions = array(
     'advanced_page_sidebar_order_personlinks'	=> 0,
 	// 0 = Kontakte, Links
 	// 1 = Links, Kontakte
+    'advanced_activate_post_comments'	=> true,
+    'advanced_comments_notes_before'	    => __( 'Ihre E-Mail-Adresse wird nicht angezeigt. Verpflichtende Felder werden mit dem folgenden Zeichen markiert: <span class="required">*</span>', 'fau' ),
+    'advanced_comments_disclaimer'          => __('Hinweis: Die Kommentare wurden von Lesern geschrieben und spiegeln deren persönliche Meinung wieder. Sie müssen nicht die Meinung der Universität oder der Fakultät repräsentieren.', 'fau' ),
+    'advanced_comments_avatar'		    => false,
     
+
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
@@ -497,6 +502,14 @@ $setoptions = array(
                   'default' => $defaultoptions['start_link_news_cat'],
 		     'parent'  => 'newsbereich'
               ), 
+	        'start_link_news_linktitle' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Linktitel', 'fau' ),
+                  'label'   => __( 'Verlinkungstitel für weitere Meldungen.', 'fau' ),               
+                  'default' => $defaultoptions['start_link_news_linktitle'],
+		     'parent'  => 'newsbereich'
+              ),  
+	       
 	    'default_postthumb_always' => array(
 		    'type'    => 'select',
 		    'title'   => __( 'Immer ein Artikelbild anzeigen', 'fau' ),
@@ -892,10 +905,33 @@ $setoptions = array(
 		), 
 	       
 
-
+		'kommentare'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Kommentare', 'fau' ),                      
+		),
+	       'advanced_activate_post_comments'		  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Kommentarfunktion aktivieren', 'fau' ),
+                  'label'   => __( 'Schaltet die Kommentarfunktion für Beiträge ein.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activate_post_comments'],
+		  'parent'  => 'kommentare'
+		), 
+	        'advanced_comments_notes_before'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Hinweistext Eingabeformular', 'fau' ),
+                  'label'   => __( 'Informationen über den Eingabefeldern für neue Kommentare.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_comments_notes_before'],
+		  'parent'  => 'kommentare'
+		), 
+	        'advanced_comments_disclaimer'	  => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Kommentar-Disclaimer', 'fau' ),
+                  'label'   => __( 'Hinweistext zur Abgrenzung zum Inhalt der Kommentare.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_comments_disclaimer'],
+		  'parent'  => 'kommentare'
+		), 
 	       
-	       
-	       
+  
 	       
 	       
 	       

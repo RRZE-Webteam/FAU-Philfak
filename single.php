@@ -88,7 +88,13 @@ get_header(); ?>
 					    
 						
 					</article>
-					
+				    <?php if ($options['advanced_activate_post_comments']) { ?>
+					 <div class="post-comments" id="comments"> 
+					    <?php 
+					    
+					    comments_template(); ?>
+					 </div>
+				    <?php } ?>
 				</div>
 				
 				<?php get_template_part('sidebar', 'news'); ?>
