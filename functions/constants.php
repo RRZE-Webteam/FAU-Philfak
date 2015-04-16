@@ -841,7 +841,7 @@ $setoptions = array(
 	       'advanced_page_sidebar_titleabove'	  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Feld Titel oben', 'fau' ),
-                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum text oben ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
+                  'label'   => __( 'Fragt ein eigenes Titelfeld über den Texteditor zum Text oben ab (Titel können allerdings auch im Editorfeld eingegeben werden)', 'fau' ),                
                   'default' => $defaultoptions['advanced_page_sidebar_titleabove'],
 		  'parent'  => 'sidebaropt'
               ), 
@@ -873,7 +873,7 @@ $setoptions = array(
 		'advanced_page_sidebar_personen_title'	  => array(
                   'type'    => 'text',
                   'title'   => __( 'Default Titel über Kontakte', 'fau' ),
-                  'label'   => __( 'Optionaler Titel über ein ausgewählte Kontakte.', 'fau' ),                
+                  'label'   => __( 'Optionaler Titel über einem ausgewählten Kontakt.', 'fau' ),                
                   'default' => $defaultoptions['advanced_page_sidebar_personen_title'],
 		  'parent'  => 'sidebaropt'
 		), 
