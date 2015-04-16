@@ -180,7 +180,7 @@ $defaultoptions = array(
     'advanced_page_sidebar_order_personlinks'	=> 0,
 	// 0 = Kontakte, Links
 	// 1 = Links, Kontakte
-    'advanced_activate_post_comments'	=> true,
+    'advanced_activate_post_comments'	=> false,
     'advanced_comments_notes_before'	    => __( 'Ihre E-Mail-Adresse wird nicht angezeigt. Verpflichtende Felder werden mit dem folgenden Zeichen markiert: <span class="required">*</span>', 'fau' ),
     'advanced_comments_disclaimer'          => __('Hinweis: Die Kommentare wurden von Lesern geschrieben und spiegeln deren persönliche Meinung wieder. Sie müssen nicht die Meinung der Universität oder der Fakultät repräsentieren.', 'fau' ),
     'advanced_comments_avatar'		    => false,
