@@ -65,7 +65,7 @@ $defaultoptions = array(
      /* Thumb for Posts, displayed in post/page single display - Name: post */
     'default_post_width'	    => 300,
     'default_post_height'	    => 200,
-    'default_post_crop'	    => false, 
+    'default_post_crop'		    => false, 
     
      /* Thumb for person-type; small for sidebar - Name: person-thumb */
     'default_person_thumb_width'    => 60,

@@ -532,16 +532,18 @@ ul.person-info {
 
 /* Posts / News */
 .post-image {
-	float: right;
-	margin-bottom: 20px;
-	margin-left: 20px;
-}
+    float: right;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    text-align: center;
 
-.post-image-caption {
-	line-height: 18px;
-	font-size: 13px;
-	padding: 10px 0;
-	width: 300px;
+    .post-image-caption {
+	    line-height: 18px;
+	    font-size: 13px;
+	    padding: 10px 0;
+	    width: 300px;
+	    text-align: left;
+    }
 }
 
 .news-details {

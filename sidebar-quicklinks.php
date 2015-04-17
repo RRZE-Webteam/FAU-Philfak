@@ -94,11 +94,7 @@ if ($options['advanced_page_sidebar_linkblock2_number'] > 0) {
 		}
 		if (!empty($oldurl) && (!empty($oldtitle))) {
 		    $relativeurl = fau_make_link_relative($oldurl);
-		    if ($relativeurl == $oldurl) {
-			$list2 .= "\t".'<li class="tag"><a class="ext-link ext-icon-19" rel="external"  href="'.$relativeurl.'">'.$oldtitle.'</a></li>'."\n";
-		    } else {
-			$list2 .= "\t".'<li class="tag"><a href="'.$relativeurl.'">'.$oldtitle.'</a></li>'."\n";
-		    }
+		    $list2 .= "\t".'<li class="tag"><a href="'.$relativeurl.'">'.$oldtitle.'</a></li>'."\n"; 
 		}
 	    }
 }
