@@ -1237,6 +1237,8 @@ ul.tagcloud {
 		margin-bottom: 5px;
 		
 		.accordion-heading {
+    			overflow: hidden; 
+
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
 				background: $colorLightest;
