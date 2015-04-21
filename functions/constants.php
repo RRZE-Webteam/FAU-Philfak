@@ -166,7 +166,9 @@ $defaultoptions = array(
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
     'galery_link_original'		=> true,
-    
+
+    'advanced_post_active_subtitle'	=> true,
+
     'advanced_page_sidebar_titleabove'	=> true,
     'advanced_page_sidebar_titlebelow'	=> true,    
     'advanced_page_sidebar_useeditor_textabove'	=> false,
@@ -819,7 +821,13 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_activateads'],
 		  'parent'  => 'bedienung'
               ),   
-	       
+	       'advanced_post_active_subtitle'	=> array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Untertitel (Beiträge)', 'fau' ),
+                  'label'   => __( 'Erlaube die Eingabe von Untertitel bei Beiträgen.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_post_active_subtitle'],
+		  'parent'  => 'bedienung'
+              ),   
 	       
 	       
 	      'design'  => array(

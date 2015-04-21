@@ -131,7 +131,12 @@ h2 {
 			padding-top: 8px;
 		}
 	}
-
+	&.subtitle {
+		font-size: 18px;
+		line-height: 22px;
+		font-weight: bold;
+		padding: 0 0 22px 0;		
+	}
 	
 	&.menu-header {
 		padding: 11px 15px;

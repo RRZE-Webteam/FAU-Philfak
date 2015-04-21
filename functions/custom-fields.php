@@ -23,11 +23,15 @@ function fau_metabox_cf_setup() {
 	add_action( 'save_post', 'fau_save_metabox_page_subnavmenu', 10, 2 );
 	
 	
+	
 	add_action( 'save_post', 'fau_save_metabox_page_portalmenu', 10, 2 );
 	add_action( 'save_post', 'fau_save_metabox_page_imagelinks', 10, 2 );
 	
 	add_action( 'save_post', 'fau_save_metabox_page_sidebar', 10, 2 );
 	
+	if ($options['advanced_post_active_subtitle']==true) {
+	    add_action( 'save_post', 'fau_save_metabox_post_untertitel', 10, 2 );
+	}
 	if ($options['advanced_activateads'] == true) {
 	    add_action( 'save_post', 'fau_save_metabox_page_ad', 10, 2 );
 	}
@@ -97,6 +101,14 @@ function fau_add_metabox_post() {
 		'fau_do_metabox_post_teaser',		
 		 'post','normal','high'
 	);
+	if ($options['advanced_post_active_subtitle']==true) {
+	    add_meta_box(
+		   'fau_metabox_post_untertitel',			
+		    esc_html__( 'Untertitel', 'fau' ),		
+		    'fau_do_metabox_post_untertitel',	
+		     'post','normal','high'
+	    );
+	}
 	if ($options['advanced_topevent']==true) {
 	    add_meta_box(
 		    'fau_metabox_post_topevent',			
@@ -506,6 +518,47 @@ function fau_save_metabox_page_subnavmenu( $post_id, $post ) {
 	
 }
 
+
+
+/* Display Options for menuquotes on pages */
+function fau_do_metabox_post_untertitel( $object, $box ) { 
+	wp_nonce_field( basename( __FILE__ ), 'fau_metabox_post_untertitel_nonce' ); 
+	$post_type = get_post_type( $object->ID); 
+	
+	if ( !current_user_can( 'edit_post', $object->ID) )
+	    return;
+	
+	
+	$untertitel  = get_post_meta( $object->ID, 'fauval_untertitel', true );	
+	fau_form_text('fau_metabox_post_untertitel', $untertitel, __('Untertitel (Inhaltsüberschrift)','fau'), __('Dieser Untertitel erscheint im Inhaltsbereich, unterhalb des Balkens mit dem eigentlichen Titel.','fau'));
+
+ }
+
+/* Save the meta box's post/page metadata. */
+function fau_save_metabox_post_untertitel( $post_id, $post ) {
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['fau_metabox_post_untertitel_nonce'] ) || !wp_verify_nonce( $_POST['fau_metabox_post_untertitel_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+
+	/* Check if the current user has permission to edit the post. */
+	if ( !current_user_can( 'edit_post', $post_id ) )
+		return;
+	
+
+	$newval = ( isset( $_POST['fau_metabox_post_untertitel'] ) ? sanitize_text_field( $_POST['fau_metabox_post_untertitel'] ) : 0 );
+	$oldval = get_post_meta( $post_id, 'fauval_untertitel', true );
+	
+	if (!empty(trim($newval))) {
+	    if (isset($oldval)  && ($oldval != $newval)) {
+		update_post_meta( $post_id, 'fauval_untertitel', $newval );
+	    } else {
+		add_post_meta( $post_id, 'fauval_untertitel', $newval, true );
+	    }
+	} elseif ($oldval) {
+	    delete_post_meta( $post_id, 'fauval_untertitel', $oldval );	
+	} 
+}
 
 
 
