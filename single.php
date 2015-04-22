@@ -79,7 +79,7 @@ get_header(); ?>
 						the_content();
 						
 						if ($options['post_display_category_below']) {
-						    $output = '<div>'."\n";
+						    $output = '<div class="meta-footer">'."\n";
 						    $output .= $typestr;
 						    $output .= '</div>'."\n";
 						    echo $output;   

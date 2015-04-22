@@ -643,7 +643,7 @@ function fau_do_metabox_page_portalmenu( $object, $box ) {
 	    if (!isset($thisterm)) {
 		$thisterm = get_term_by('slug', $currentmenu, 'nav_menu');
 	    }
-	    if (isset($thisterm)) {
+	    if ($thisterm!==false) {
 		$currentmenuid = $thisterm->term_id;    
 	    }
 	}

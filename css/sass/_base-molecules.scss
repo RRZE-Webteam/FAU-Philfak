@@ -558,6 +558,9 @@ ul.person-info {
 		    @extend .fa;
 		    @extend .fa-calendar;
 	}
+	.meta-footer {
+	    clear: both;
+	}
 }
 .post-meta {
 	    display: block;

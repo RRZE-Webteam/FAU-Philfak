@@ -602,6 +602,7 @@ body.admin-bar.nav-fixed {
 }
 
 #comments {
+    clear: both;
     code {
 	white-space: normal;
 	color: $colorLightestContrast;

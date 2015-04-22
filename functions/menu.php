@@ -164,7 +164,7 @@ function fau_get_contentmenu($menu, $submenu = 1, $subentries =0, $spalte = 0, $
     } else {
 	$term = get_term_by('name', $menu, 'nav_menu');
     }
-    if (!isset($term)) {
+    if ($term===false) {
 	echo '<!-- invalid menu -->';
 	return;   
     }
