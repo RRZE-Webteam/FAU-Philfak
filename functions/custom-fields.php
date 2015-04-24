@@ -800,7 +800,7 @@ function fau_do_metabox_page_imagelinks( $object, $box ) {
 	}	
 	
 	if (empty($thislist)) {
-	    echo __('Es wurden noch keine Bilder als Logos definiert. Daher kann hie rnoch nichts ausgewählt werden.','fau');
+	    echo __('Es wurden noch keine Bilder als Logos definiert. Daher kann hier noch nichts ausgewählt werden.','fau');
 	} else {
 	    $currentcat  = get_post_meta( $object->ID, 'fauval_imagelink_catid', true );
 	    fau_form_select('fau_metabox_page_imagelinks_catid',$thislist,$currentcat,__('Kategorie','fau'),
