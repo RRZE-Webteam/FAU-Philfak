@@ -403,16 +403,22 @@ if ( ! function_exists( 'fau_form_link' ) ) :
 		var link_btn_<?php echo $name?> = (function($){
 		    var _link_sideload = false; 
 		    function _init() {
-			$('.link_button_<?php echo $name?>').on('click', function(event) {
-			    _addLinkListeners();
-			    _link_sideload = false;
-			    var link_val_container = $('#url_<?php echo $rand?>_<?php echo $name?>');
-			    window.wpActiveEditor = true;
-			    _link_sideload = true;
-			    wpLink.open();
-			    wpLink.textarea = $(link_val_container);
-			    return false;
-			});
+			 $('.link_button_<?php echo $name ?>').on('click', function (event) {
+                            _addLinkListeners();
+                            _link_sideload = false;
+                            var link_val_container = $('#url_<?php echo $rand ?>_<?php echo $name ?>');
+                          
+                            if ( typeof wpActiveEditor != 'undefined') {
+                                wpLink.open();
+                                wpLink.textarea = $(link_val_container);
+                            } else {
+                                window.wpActiveEditor = true;
+                                _link_sideload = true;
+                                wpLink.open();
+                                wpLink.textarea = $(link_val_container);
+                            }
+                            return false;
+                        });
 		    }
 		    function _addLinkListeners() {
 			$('body').on('click', '#wp-link-submit', function(event) {
