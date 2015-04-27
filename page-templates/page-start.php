@@ -278,58 +278,8 @@ global $options;
 			 ?>
 			
 		</div> <!-- /container -->
-		<div id="social">
-			<div class="container">
-				<div class="row">
-					<?php if (isset($options['socialmedia'])): ?>
-						<div class="span3">
-							<h2 class="small"><strong>FAU</strong>Social</h2>
-							<?php 
-							global $default_socialmedia_liste;
-
-							echo '<nav id="socialmedia" aria-label="'.__('Social Media','fau').'">';
-							echo '<ul class="social">';       
-							    foreach ( $default_socialmedia_liste as $entry => $listdata ) {        
-
-								$value = '';
-								$active = 0;
-								if (isset($options['sm-list'][$entry]['content'])) {
-									$value = $options['sm-list'][$entry]['content'];
-									if (isset($options['sm-list'][$entry]['active'])) {
-									    $active = $options['sm-list'][$entry]['active'];
-									} 
-								} else {
-									$value = $default_socialmedia_liste[$entry]['content'];
-									$active = $default_socialmedia_liste[$entry]['active'];
-								 }
-
-								if (($active ==1) && ($value)) {
-								    echo '<li class="social-'.$entry.'"><a href="'.$value.'">';
-								    echo $listdata['name'].'</a></li>';
-								}
-							    }
-							    echo '</ul>';
-							    echo '</nav>';
-							?>
-
-						</div>
-					<?php endif; ?>
-					<div class="span9">
-						<div class="row">
-						<?php 
-						    if ( is_active_sidebar( 'startpage-socialmediainfo' ) ) { 
-							dynamic_sidebar( 'startpage-socialmediainfo' ); 
-						    }  ?>
-						</div>
-						<?php if ($options['start_link_videoportal_socialmedia']) { ?>
-						<div class="pull-right link-all-videos">
-						    <a href="http://video.fau.de/"><?php echo $options['start_title_videoportal_socialmedia']; ?></a>
-						</div>
-						<?php } ?>
-					</div>						
-				</div>
-			</div>
-		</div> <!-- /social -->	
+		<?php get_template_part('footer', 'social'); ?>	
+		
 	</section> <!-- /content -->
 
 <?php get_footer(); ?>

@@ -51,6 +51,7 @@ get_header(); ?>
 			<?php get_template_part('search', 'helper');  ?>
 
 		</div>
+			<?php get_template_part('footer', 'social'); ?>	
 	</section>
 
 <?php get_footer(); ?>

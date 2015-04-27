@@ -124,6 +124,9 @@ $defaultoptions = array(
     'fauhome_linktext'		    => __('Zur FAU Seite','fau'),
     
     'socialmedia'		    => 1,
+    'active_socialmedia_footer'	    => array(1,3),  
+    'socialmedia_buttons_title'	    => __('FAUSocial','fau'),
+    
     'menu_pretitle_portal'	    => __('Portal', 'fau'),
     'menu_aftertitle_portal'	    => '',
     
@@ -576,9 +579,23 @@ $setoptions = array(
           )
        ), 
        'socialmedia'   => array(
-           'tabtitle'   => __('Social Media', 'fau'),
+           'tabtitle'   => __('Social Media Footer', 'fau'),
            'fields' => array(
-              
+              'active_socialmedia_footer' => array(
+                  'type'    => 'multiselectlist',
+                  'title'   => __( 'Social Media Footer anzeigen', 'fau' ),
+                  'label'   => __( 'Auf welchen Seiten soll der Social Media Footer angezeigt werden.', 'fau' ),
+		  'liste'   => array(
+				1 => __('Startseite','fau'),
+      				2 => __('Portalseiten','fau'),
+      				3 => __('Suche und Fehlerseiten','fau'),
+      				4 => __('Inhaltsseite mit Navi','fau'),
+      				5 => __('Standard Seiten','fau'),
+      				6 => __('Beiträge','fau'),       
+		      ),
+                  'default' => $defaultoptions['active_socialmedia_footer'],
+              ),  
+	       
               'socialmedia' => array(
                   'type'    => 'bool',
                   'title'   => __( 'Buttons anzeigen', 'fau' ),
@@ -586,6 +603,14 @@ $setoptions = array(
                  
                   'default' => $defaultoptions['socialmedia'],
               ),  
+	        'socialmedia_buttons_title' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Titel Socialmediabereich', 'fau' ),
+                  'label'   => __( 'Titel über den Social Media Icons im Social Media Footer.', 'fau' ),               
+                  'default' => $defaultoptions['socialmedia_buttons_title'],
+		),        
+	       
+	       
 	      'sm-list'  => array(
 		  'type'    => 'urlchecklist',
 		  'title'   => __( 'Social Media Portale', 'fau' ),

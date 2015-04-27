@@ -69,6 +69,7 @@ get_header();
 			
 			
 		</div>
+	    		<?php get_template_part('footer', 'social'); ?>	
 	</section>
 
 <?php get_footer(); ?>
