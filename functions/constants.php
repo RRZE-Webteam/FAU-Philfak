@@ -124,7 +124,7 @@ $defaultoptions = array(
     'fauhome_linktext'		    => __('Zur FAU Seite','fau'),
     
     'socialmedia'		    => 1,
-    'active_socialmedia_footer'	    => array(1,3),  
+    'active_socialmedia_footer'	    => array(1),  
     'socialmedia_buttons_title'	    => __('FAUSocial','fau'),
     
     'menu_pretitle_portal'	    => __('Portal', 'fau'),

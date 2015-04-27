@@ -396,6 +396,10 @@ body.admin-bar.nav-fixed {
 		margin: 10px 0;
 		padding: 0;
 	}
+	h1 {
+	    position: relative;
+	    z-index: 999;
+	}
 	
 	a {
 		color: #fff;
