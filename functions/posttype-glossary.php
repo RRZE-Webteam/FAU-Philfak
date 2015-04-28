@@ -139,22 +139,6 @@ endif;
 add_filter('pre_get_posts', 'glossary_post_types_admin_order');
 
 
-/* Moving old ACF-Field "description" to normal content, if still in use */
-if ( ! function_exists( 'prefill_desc_byoldversion' ) ) :
-
-function prefill_desc_byoldversion($content) {
-    global $post;
-
-    if ( empty( $content ) && ($post && $post->post_type == "glossary" )) {
-	   $default_content = get_post_meta( $post->ID, 'description', true );
-	   return $default_content;
-    }
-    return $content;
-}
-endif;
-add_filter('the_editor_content', 'prefill_desc_byoldversion');
-
-
 
 if ( ! function_exists( 'fau_glossar_metabox' ) ) :
 
