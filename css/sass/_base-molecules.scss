@@ -214,12 +214,15 @@
 .page-template-page-subnav {
     #content {
 	.span8 {
-	    img.alignleft, img.alignright {
-		    // Sidebar Inline Bilder haben Probleme mit dem Standard Floating
-		    float: none;
+	    img.alignleft, img.alignright, img.size-full {
+		    // Sidebar Inline Bilder haben Probleme mit dem Standard Floating	    
 		    max-width: 350px;
 		    height: auto;
-		    margin-right: 0px;
+		    vertical-align: top;
+	    }
+	    div.alignleft, img.alignleft {
+		clear: none;
+		
 	    }
 	}
     }
@@ -229,7 +232,8 @@
 .breadcrumbs {
 	color: #fff;
 	padding: 10px 0;
-	
+	position: relative;
+	z-index: 10;
 	span {
 		padding: 0 5px;
 	}
@@ -1312,6 +1316,13 @@ ul.tagcloud {
 	.fau .accordion-heading .accordion-toggle, 
 	.default .accordion-heading .accordion-toggle {
 		border-color: $colorDefault;
+	}
+	.content-person {
+	    padding: 5px 0 10px 0;
+	    border: none;
+	    h1, h2, h3 {
+		color: $colorText;
+	    }
 	}
 }
 

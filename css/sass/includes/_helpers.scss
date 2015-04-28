@@ -65,7 +65,9 @@ img.aligncenter,
 div.aligncenter {
 	margin-bottom: 10px;
 }
-
+img.size-full {
+	display: block;    
+}
 img.aligncenter {
 	display: block;
 	margin: 0 auto 10px auto;

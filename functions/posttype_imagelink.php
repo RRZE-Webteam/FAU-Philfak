@@ -113,18 +113,18 @@ add_action( 'restrict_manage_posts', 'imagelink_restrict_manage_posts' );
 
 
 function imagelink_post_types_admin_order( $wp_query ) {
-	if (is_admin()) {
+	if ((is_admin()) && ($wp_query)) {
+	        if (isset($wp_query->query['post_type'])) {
+		    $post_type = $wp_query->query['post_type'];
+		    if ( $post_type == 'imagelink') {
 
-		$post_type = $wp_query->query['post_type'];
+			    if( ! isset($wp_query->query['orderby']))
+			    {
+				    $wp_query->set('orderby', 'title');
+				    $wp_query->set('order', 'ASC');
+			    }
 
-		if ( $post_type == 'imagelink') {
-
-			if( ! isset($wp_query->query['orderby']))
-			{
-				$wp_query->set('orderby', 'title');
-				$wp_query->set('order', 'ASC');
-			}
-
+		    }
 		}
 	}
 }

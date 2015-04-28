@@ -512,7 +512,9 @@ if ( ! function_exists( 'fau_save_standard' ) ) :
 	    if ($type == 'url') {
 		 $newval = ( isset( $val ) ? esc_url( $val ) : 0 );		
 	    } elseif ($type == 'email') {
-		 $newval = ( isset( $val ) ? sanitize_email( $val ) : 0 );	
+		 $newval = ( isset( $val ) ? sanitize_email( $val ) : 0 );
+	   } elseif ($type == 'int') {
+		 $newval = ( isset( $val ) ? intval( $val ) : 0 );		 
 	    } elseif ($type == 'text') {
 		 $newval = ( isset( $val ) ? sanitize_text_field( $val ) : 0 );	
 	    } elseif ($type == 'textnohtml') {

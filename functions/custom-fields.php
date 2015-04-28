@@ -824,19 +824,8 @@ function fau_save_metabox_page_imagelinks( $post_id, $post ) {
 		if ( !current_user_can( 'edit_page', $post_id ) )
 		return;
 	}
-
-	$newval = intval($_POST['fau_metabox_page_imagelinks_catid']);
-	$oldval = get_post_meta( $post_id, 'fauval_imagelink_catid', true );
-	
-	if ($newval>0) {
-	    if (isset($oldval)  && ($oldval != $newval)) {
-		update_post_meta( $post_id, 'fauval_imagelink_catid', $newval );
-	    } else {
-		add_post_meta( $post_id, 'fauval_imagelink_catid', $newval, true );
-	    }
-	} else {
-	    delete_post_meta( $post_id, 'fauval_imagelink_catid', $oldval );	
-	} 
+	$newval = ( isset( $_POST['fau_metabox_page_imagelinks_catid'] ) ? intval( $_POST['fau_metabox_page_imagelinks_catid'] ) : 0 );	
+	fau_save_standard('fauval_imagelink_catid', $newval, $post_id, 'post', 'int'); 
 
 }
 
@@ -1143,8 +1132,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 	} 
 	
 
-	
-	$newval = $_POST['sidebar_personen'];
+	$newval = ( isset( $_POST['sidebar_personen'] ) ? intval( $_POST['sidebar_personen'] ) : 0 );
 	$oldval = get_post_meta( $post_id, 'sidebar_personen', true );
 	$remove = 0;
 	$found =0;
