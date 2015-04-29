@@ -27,8 +27,9 @@ get_header(); ?>
 			$headline = get_post_meta( $post->ID, 'headline', true );				
 			if ( $headline) {
 			     echo "<h2>".$headline."</h2>\n";
+			} else {
+			    echo '<div class="page-nosubtitle">&nbsp;</div>';
 			}
-			
 			the_content(); 
 			?>
 		</div>
