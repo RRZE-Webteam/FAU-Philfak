@@ -14,9 +14,10 @@
 	   foreach($persons as $person) {
 	       if($i == 0) {
 		    the_widget('FAUPersonWidget', array('id' => $person, 'title' => $sidebar_title_personen));
+		     $i++; 
 	       }else {
 		    the_widget('FAUPersonWidget', array('id' => $person)); 
-		    $i++; 
+		   
 	       }
 	   } 
        } 
