@@ -55,7 +55,7 @@
 			text: 'Person einfügen',
 			context: 'tools',
 			onclick: function() {
-				editor.insertContent('[person slug="" showlink="0" extended="0"]');
+				editor.insertContent('[person id="" showlink="0" extended="0"]');
 			}
 		});
 		
