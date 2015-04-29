@@ -450,9 +450,16 @@ class BoostrapShortcodes {
     
     if (!empty($state)) 
       $state = 'in';
+    
+    $output = '<div class="accordion-group '.$color.'">';
 
-    return '
-    <div class="accordion-group '.$color.'"><div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $GLOBALS['collapsibles_count'] . '" href="#collapse_' . $GLOBALS['current_collapse'] .'">' . $title . '</a></div><div id="collapse_' . $GLOBALS['current_collapse'] . '" class="accordion-body ' . $state . '"><div class="accordion-inner clearfix">'.do_shortcode($content).'</div></div></div>';
+    $output .= '<div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $GLOBALS['collapsibles_count'] . '" href="#collapse_' . $GLOBALS['current_collapse'] .'">' . $title . '</a></div>';
+    $output .= '<div id="collapse_' . $GLOBALS['current_collapse'] . '" class="accordion-body ' . $state . '">';
+    $output .= '<div class="accordion-inner clearfix">';
+    $output .= wpautop(do_shortcode($content));
+    $output .= '</div>';
+    $output .= '</div></div>';
+    return $output;
   }
 
 
