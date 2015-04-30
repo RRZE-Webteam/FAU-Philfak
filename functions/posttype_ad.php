@@ -354,6 +354,8 @@ function fau_get_ad($type, $withhr = true) {
 		$out .= ' <div class="fau-werbung-content">';
 		$aditionid = get_post_meta( $id, 'fauval_ad_aditionid', true );
 		if ($aditionid >0) { 
+		    
+		    $out .= "aditionid > 0: $aditionid<br>";
 		    $prot = 'https';
 		    $out .= "<!-- BEGIN ADITIONSSLTAG -->";
 		    $out .= "<script type=\"text/javascript\" src=\"".$prot."://imagesrv.adition.com/js/adition.js\"></script>";
@@ -361,18 +363,14 @@ function fau_get_ad($type, $withhr = true) {
 		    $out .= "<!-- END ADITIONSSLTAG -->";    
 		} else { 
 		    $scriptcode = get_post_meta( $id, 'fauval_ad_code', true );
-		    if (empty($scriptcode)) {
-			$scriptcode = get_post_meta( $id, 'ad_script', true );
-		    }
-		    if(isset($scriptcode)) {
+		   
+		    if(!empty($scriptcode)) {
 			$out .=  html_entity_decode($scriptcode);
 		    } else  {
 			$link =    get_post_meta( $id, 'fauval_ad_url', true ); 
-			if (empty($link)) {
-			    $link =    get_post_meta( $id, 'link', true ); 
-			}
+			
 			if($link) {
-			    $out .=  '<a href="'.get_field('link', $id).'">';
+			    $out .=  '<a href="'.$link.'">';
 			}
 			$out .=  get_the_post_thumbnail($id, 'full');
 			if($link) {
