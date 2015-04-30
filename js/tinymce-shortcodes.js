@@ -3,13 +3,7 @@
     tinymce.PluginManager.add('faurteshortcodes', function( editor )
     {
 		
-		editor.addMenuItem('shortcode_downloads', {
-			text: 'Downloads einfügen',
-			context: 'tools',
-			onclick: function() {
-				editor.insertContent('[downloads category=""]');
-			}
-		});
+		
 		
 		editor.addMenuItem('shortcode_organigram', {
 			text: 'Organigramm einfügen',

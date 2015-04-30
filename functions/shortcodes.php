@@ -16,7 +16,6 @@ class FAUShortcodes {
 	function add_shortcodes() {
 		add_shortcode('assistant', array( $this, 'fau_assistant' ));
 		add_shortcode('organigram', array( $this, 'fau_organigram'));
-		add_shortcode('downloads', array( $this, 'fau_downloads'));
 		add_shortcode('hr', array( $this, 'fau_hr'));
 	}
 	
@@ -32,98 +31,7 @@ class FAUShortcodes {
 		return wp_nav_menu( array('menu' => $menu, 'container' => false, 'menu_id' => 'organigram', 'menu_class' => 'organigram', 'echo' => 0));
 	}
 	
-	function fau_downloads( $atts, $content = null) {
-		extract(shortcode_atts(array(
-			"category" => 'category'
-			), $atts));
-			
-		$category = get_term_by('slug', $category, 'attachment_document');
-		
-		$return = '';
-		
-		if($category)
-		{
-			$return .= $this->fau_downloads_recursive($category->term_id);
-			
-			$files = get_posts(array('post_type' => 'attachment', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
-					 array(
-						'taxonomy' => 'attachment_document',
-						'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
-						'terms' => $category->term_id,
-						'include_children' => false
-						)
-					), 
-				'suppress_filters' => true));
-
-			if($files)
-			{
-				$return .= '<ul class="files">';
-					foreach($files as $file)
-					{	
-						$return .= '<li><a href="'.$file->guid.'">'.$file->post_title.'</a></li>';
-					}
-				$return .= '</ul>';
-			}
-		}
-		
-		return $return;
-	}
 	
-	function fau_downloads_recursive($term_id)
-	{
-		$categories = get_terms(array('attachment_document'), array('parent' => $term_id, 'hide_empty' => false));
-		
-		$return = '';
-			
-		if($categories)
-		{
-			$return .= '<div class="accordion">';
-
-			$i = 0;
-
-			foreach($categories as $category)
-			{
-				$return .= '<div class="accordion-group">';
-					$return .= '<div class="accordion-heading">';
-						$return .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion-" href="#collapse-downloads-'.$category->term_id.'-'.$i.'">'.$category->name.'</a>';
-					$return .= '</div>';
-					$return .= '<div id="collapse-downloads-'.$category->term_id.'-'.$i.'" class="accordion-body">';
-						$return .= '<div class="accordion-inner clearfix">';
-
-							$return .= $this->fau_downloads_recursive($category->term_id);
-
-							$files = get_posts(array('post_type' => 'attachment', 'numberposts' => 1000, 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
-									 array(
-										'taxonomy' => 'attachment_document',
-										'field' => 'id', // can be slug or id - a CPT-onomy term's ID is the same as its post ID
-										'terms' => $category->term_id,
-										'include_children' => false
-										)
-									), 
-								'suppress_filters' => true));
-
-							if($files)
-							{
-								$return .= '<ul class="files">';
-									foreach($files as $file)
-									{	
-										$return .= '<li><a href="'.$file->guid.'">'.$file->post_title.'</a></li>';
-									}
-								$return .= '</ul>';
-							}
-
-						$return .= '</div>';
-					$return .= '</div>';
-				$return .= '</div>';
-
-				$i++;
-			}
-
-			$return .= '</div>';
-		}
-
-		return $return;
-	}
 	
 	function fau_subpages( $atts, $content = null ) {
 		return '<div class="row">' . do_shortcode( $content ) . '</div>';
