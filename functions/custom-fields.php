@@ -1132,7 +1132,7 @@ function fau_save_metabox_page_sidebar( $post_id, $post ) {
 	} 
 	
 
-	$newval = ( isset( $_POST['sidebar_personen'] ) ? intval( $_POST['sidebar_personen'] ) : 0 );
+	$newval = ( isset( $_POST['sidebar_personen'] ) ?  $_POST['sidebar_personen']  : 0 );
 	$oldval = get_post_meta( $post_id, 'sidebar_personen', true );
 	$remove = 0;
 	$found =0;
