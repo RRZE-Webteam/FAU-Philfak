@@ -73,11 +73,11 @@ Media Queries for Theme FAU
 	}
 	
 	.logos-menu {
-		display: none;
+	//	display: none;
 	}
 
 	.hide-mobile {
-		display: none !important;
+		display: none;
 	}
 	.hide-desktop {
 		display: block;
@@ -88,19 +88,19 @@ Media Queries for Theme FAU
 		margin-right: 15px;
 	}
 	ul, ol {
-		margin-left: 15px !important;
-		margin-right: 15px !important;
+		margin-left: 15px;
+		margin-right: 15px;
 	}
 	ul.menu {
-		margin-bottom: 10px !important;
+		margin-bottom: 10px;
 	}
 	#content ul.menu, #content ul.menu ul {
-		margin-left: 0 !important;
-		margin-right: 0 !important;
+		margin-left: 0;
+		margin-right: 0;
 	}
 
-	body.admin-bar #nav-toggle {
-		top: 85px !important;
+	.logged-in #nav-toggle {
+		top: 85px;
 	}
 
 	div.table-wrapper {
@@ -158,7 +158,7 @@ Media Queries for Theme FAU
 		   margin: 0;
 	   }
 	   
-	   #content ul.page-print-actions {
+	   ul.page-print-actions {
 		display: none;
 	    }
 
@@ -181,6 +181,25 @@ Media Queries for Theme FAU
 			    margin-left: 0px;
 			    margin-right: 0px;
 			}
+	    }
+	     .news-image {
+		background: none;
+		text-align: left;
+		@include box-shadow(none);
+		float: left;
+	    }
+	    
+	     .subpages-menu {
+		margin: 0;
+		li {
+		    width: 260px; 
+		    padding-left: 10px;
+		    float: left;
+		}
+	    }
+	    form {
+		border: none;
+		padding: 0;
 	    }
 	}
 	.post-image {
@@ -216,24 +235,22 @@ Media Queries for Theme FAU
 	}
 
 	#meta {
-		padding-top: 15px;
+		padding-top: 0px;
+		ul {
+		    margin: 0;
+		}
+		.searchform input[type="text"] {
+	    	width: 100px;
+	    }
 	}
-	#meta ul {
-		margin: 0 !important;
-	}
-	#meta-nav {
-		display: none;
-	}
-	#meta .searchform input[type="text"] {
-		width: 100px;
-	}
+	
 
 	#logo {
 		margin: 15px 15px 0 15px;
 	//	width: 210px;
-	}
-	#logo img {
+	    img {
 		max-width: 100%;
+	    }
 	}
 
 	#hero.hero-small {
@@ -302,15 +319,10 @@ Media Queries for Theme FAU
 		margin: 0;
 	}
 
-	#content .news-image {
-		background: none;
-		text-align: left;
-		@include box-shadow(none);
-	}
 
 	#header {
 		padding-bottom: 15px;
-		position: fixed;
+		position: relative;
 		z-index: 200;
 		background: #fff;
 		top: 0;
@@ -318,15 +330,15 @@ Media Queries for Theme FAU
 		right: 0;
 	}
 
+
 	#nav {
-		margin: 10px 0 0 0 !important;
-		display: none;
+		margin: 10px 0 0 0;
 	}
 	body {
-		padding-top: 80px;
+		padding: 0px;
 	}
 	#nav.toggled {
-		display: block !important;
+		display: block;
 	}
 	#nav li.level1 {
 		display: block;
@@ -358,18 +370,11 @@ Media Queries for Theme FAU
 
 	#subnav {
 		ul {
-			margin-left: 0 !important;
-			margin-right: 0 !important;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 	
-	#content .subpages-menu {
-		margin: 0 !important;
-	}
-	#content .subpages-menu li {
-		padding-left: 0 !important;
-	}
-
 	.accordion-group {
 		margin-left: 15px;
 		margin-right: 15px;
@@ -384,16 +389,19 @@ Media Queries for Theme FAU
 		margin: 0;
 	}
 
-	#content form {
-		border: none;
-		padding: 0;
-	}
-
 	.logos-menu .span2 {
 		float: left;
 	}
-     
-		  
+	
+	 .span3 {
+		width: 220px; 
+		float: left;
+		margin-left: 20px;
+	    }
+	 .span6 {
+		width: #{$breakMD - 10}px;
+		padding: 10px;
+	    }
 }
 
 @media (min-width: 768px) and (min-height: 700px) and (max-height: 900px) {
@@ -418,7 +426,7 @@ Media Queries for Theme FAU
 		   
 		    .span4 {
 			padding-bottom: 10px;
-			border-bottom: 2px solid #e9edf2;
+			border-bottom: 2px solid $colorStandardHellgrau;
 		    }
 		    .container {
 			h1, h2, h3, h4, h5, h6, p {
@@ -434,11 +442,97 @@ Media Queries for Theme FAU
 		       }
 
 		       aside.widget:first-child {
-			   border-top: 2px solid #e9edf2;
+			   border-top: 2px solid $colorStandardHellgrau;
 		       }
 		    }
 		}
 	}
+	.page-template-page-start {
+	    .span3 {
+		width: #{($breakSM/2) - 20}px; 
+		float: left;
+		margin-left: 20px;
+	    }
+	    .span6 {
+		width: #{$breakSM - 10}px;
+		padding: 10px;
+	    }
+	    #hero {
+		#hero-slides {
+		    max-height: 130px;
+		    min-height: auto;
+		    height: inherit;
+		    margin: 0;
+		    top: 0;
+		    
+		    .hero-slide {
+			margin: 0;
+			padding: 0;
+			height: 130px;
+		    }
+		    .hero-slide img {
+		       height: auto;
+		       width: $breakSM;
+		       max-height: 130px;
+		       overflow: hidden;
+		       left: 0;
+		       margin: 0;
+		       max-width: $breakSM;
+		    }
+		    .hero-slide-text {
+			bottom: 50px;
+			h2 {
+			    padding: 5px 10px;
+			}
+			p {
+			 display: none;
+			}
+		    }
+		}
+	    }
+	}
+	hr {
+	    height: 40px;
+	    margin: 0px 0 40px;
+	}
+	#content .subpages-menu {
+	    .menu-item {
+		margin: 0;
+	    }
+	    ul {
+		display: block;
+	    }
+	    li {
+		
+		width: #{$breakSM - 10}px;
+		margin-left: 10px;
+		list-style: inside none circle;
+		float: none;
+		a {
+		    h3 {
+			padding: 0 15px 0 0;
+			text-decoration: underline;
+			font-weight: normal;
+			
+			&.ext-link {
+			    background: url("../img/ext-icon-19-white.png") no-repeat scroll 110% 0 $colorStandardHellgrau;
+		      }
+		    }
+		   
+		    img {
+			display: none;
+		    }
+		    .ext-icon {
+			display: none;
+			
+		    }
+		}
+		.span3 {
+		    float: none;
+		}
+	    }
+	}    
+
 }
 
 @media (min-height: 900px) {

@@ -52,11 +52,11 @@ $colorSubNavCurrent:		#fff;
 $colorSubNavCurrentBackground:  #8b6507;
 $colorSubNavCurrentHover:	#fff;
 $colorSubNavCurrentHoverBackground: $colorHover;
-$colorSubNav:			#615400;
+$colorSubNav:			$colorHover;
 $colorSubNavBackground:		$colorLightest;
 $colorSubNavBackgroundHover:	darken($colorSubNavBackground, 3%);
 
-$colorButton:			#615400;
+$colorButton:			$colorHover;
 $colorButtonBackground:		$colorLightest;
 $colorButtonBackgroundHover:	darken($colorButtonBackground, 3%);
 
