@@ -24,6 +24,7 @@ $colorTechFakDark :#6a7881;
 $colorZUV:	#003366;
 $colorDefault:	#003366;
 
+$colorStandardHellgrau:	    #e9edf2;
 
 // Define primary colors by faculty
 $colorPrimary: $colorPhilFak;	// darken($colorPhilFak, 10%);
@@ -43,7 +44,7 @@ $colorLightestContrast:	    #615400;
 
 
 
-$colorPrimaryHero: $colorPhilFak;
+$colorPrimaryHero:		$colorPhilFak;
 // Helper for colors: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9 
 
 
@@ -65,14 +66,15 @@ $colorSearchInputBackground:	$colorLightest; // #5586b6;
 $colorSearchInputBackgroundFocus:  #fff; // #5e91c3;
 
 // Meta Menu
-$colorMeta: $colorDefault;
+$colorMeta:			$colorDefault;
 // Define Background-Color for Meta Menu at top
-$colorMetaBackground:		#e9edf2;
-$colorMetaFAUHomeBackground:	#d0d3d8;
+$colorMetaBackground:		$colorStandardHellgrau;
+$colorMetaFAUHomeBackground:	desaturate(darken($colorStandardHellgrau, 10%), 90%); // #d0d3d8;
 $colorMetaHover:		desaturate(lighten($colorDefault, 10%), 40%);
 $colorMetaLight:		desaturate(lighten($colorDefault, 69%), 75%);
 $colorMetaLightest:		desaturate(lighten($colorDefault, 73%), 75%);
 
+$colorPasspartoutBackground:	$colorStandardHellgrau;
 // Social Bar Startseite
 
 $colorSocial: $colorButton; // #a1aab1
