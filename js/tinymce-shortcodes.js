@@ -1,10 +1,7 @@
 (function() {
 
     tinymce.PluginManager.add('faurteshortcodes', function( editor )
-    {
-		
-		
-		
+    {	
 		editor.addMenuItem('shortcode_organigram', {
 			text: 'Organigramm einfügen',
 			context: 'tools',
