@@ -41,7 +41,7 @@
                                 editor.insertContent('[faukarte url="" width="100%"]');
                         }
                 });
-		
+	/*	
 		editor.addMenuItem('shortcode_person', {
 			text: 'Person einfügen',
 			context: 'tools',
@@ -57,7 +57,7 @@
 				editor.insertContent('[persons category="" showlink="0" extended="0"]');
 			}
 		});
-		
+*/		
 		editor.addMenuItem('shortcode_synonym', {
 			text: 'Synonym einfügen',
 			context: 'tools',
