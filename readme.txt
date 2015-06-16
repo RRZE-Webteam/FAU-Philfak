@@ -3,8 +3,6 @@ Wordpress-Theme für die Philosophische Fakultät und Fachbereich Theologie
 der Friedrich-Alexander-Universität (FAU)
 ====================================================
  
-
-
 DOWNLOADS
 
     GITHub-Repo:
