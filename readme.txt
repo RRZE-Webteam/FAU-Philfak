@@ -9,8 +9,7 @@ DOWNLOADS
 
     GITHub-Repo:
         https://github.com/RRZE-Webteam/FAU-Philfak
-    
-    
+   
 
 AUTHOR 
 
