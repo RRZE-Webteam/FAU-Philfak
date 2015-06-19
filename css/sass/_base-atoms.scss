@@ -199,27 +199,27 @@ h6 em {
 }
 
 li {
-	background: url('../img/list-arrow.png') no-repeat left 4px;
-	padding: 0 0 7px 20px;
+	padding: 3px 0 4px 4px;
 	font-size: 15px;
 	line-height: 22px;
 	color: $colorText;
 }
 
+.sidebar-inline li {
+    	background: url('../img/list-arrow.png') no-repeat left 4px;
+	padding: 3px 0 4px 20px;
+}
+
 ul {
-	@include no-list;
 	list-style-position: inside;
-	
 	li {
-		background: url('../img/li-circle.png') no-repeat left 7px;
-	}
-	
-	ul {
-		margin-left: 20px;
-		
-		ol li {
-			padding-left: 0;
+	    list-style-type: circle;	    
+	    ul li {
+		list-style-type: disc;		
+		ul li {
+		   list-style-type: square;
 		}
+	    }
 	}
 }
 
@@ -227,10 +227,24 @@ ol {
 	li {
 		padding-left: 0;
 		list-style: decimal;
-	}
-	
-	ul li {
-		padding-left: 20px;
+		ol li {
+		    list-style: lower-latin;
+		    
+		    ol li {
+		     list-style: upper-roman;
+		     
+		      ol li {
+			list-style: lower-greek;
+			}
+		     
+		    }
+		    ul li {
+			list-style-type: circle;
+		    }
+		}
+		ul li {
+		     list-style-type: circle;	    
+		}
 	}
 }
 
