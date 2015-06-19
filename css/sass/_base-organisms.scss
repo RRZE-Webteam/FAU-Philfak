@@ -414,6 +414,7 @@ body.admin-bar.nav-fixed {
 	}
 	
 	li {
+		@include no-list;
 		font-size: 13px;
 		padding-left: 20px;
 		padding-bottom: 5px;
