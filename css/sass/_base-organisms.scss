@@ -55,16 +55,17 @@
 					padding: 0;
 					font-weight: normal;
 					font-size: 15px;
-					background: transparent url('../img/list-arrow.png') no-repeat left center !important;
+					background: transparent url('../img/list-arrow.png') no-repeat left center;
 					display: block;
 					padding: 7px 20px 7px 20px;
+					color: $colorMainMenu;
 					@include border-radius(0);
 					border-bottom: 1px solid $colorHover;
 				}
 
 				a:hover, a:focus {
 					text-decoration: none;
-					background-color: $colorHover !important;
+					background-color: $colorHover;
 				}
 			}
 		}
@@ -107,7 +108,7 @@
 		min-height: 40px;
 
 		p {
-			color: #fff;
+			color: $colorMainMenu;
 			font-size: 18px;
 			line-height: 24px;
 			font-style: italic;
@@ -151,6 +152,7 @@
 	-moz-border-radius-bottomright: 0;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+	color: $colorMainMenu;
 }
 
 .no-js #nav li.level1:hover a, 
@@ -163,8 +165,8 @@
 
 .no-js #nav li.level1 a:hover, 
 .no-js #nav li.level1 a:focus {
-	background-color: $colorPrimary;
-	color: #fff;
+	background-color: $colorHover; // $colorPrimary;
+	color: $colorMainMenu;
 }
 
 .no-js #nav li.has-sub a:hover, 
@@ -173,7 +175,9 @@
 .no-js #nav li.has-sub:hover a, 
 .no-js #nav li.has-sub:focus a, 
 #nav li.has-sub.focus a {
-	background-position: right -28px;
+	// background-position: right -28px;
+	color: $colorMainMenu;
+
 }
 
 
