@@ -35,17 +35,6 @@ function fau_setup() {
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
 
-	// Switches default core markup for search form, comment form, and comments
-	// to output valid HTML5.
-//	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
-
-	/*
-	 * This theme supports all available post formats by default.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-//	add_theme_support( 'post-formats', array(
-//		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
-//	) );
 
 	if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	    function theme_slug_render_title() {

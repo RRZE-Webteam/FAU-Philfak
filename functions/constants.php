@@ -189,7 +189,8 @@ $defaultoptions = array(
     'advanced_comments_notes_before'	    => __( 'Ihre E-Mail-Adresse wird nicht angezeigt. Verpflichtende Felder werden mit dem folgenden Zeichen markiert: <span class="required">*</span>', 'fau' ),
     'advanced_comments_disclaimer'          => __('Hinweis: Die Kommentare wurden von Lesern geschrieben und spiegeln deren persönliche Meinung wieder. Sie müssen nicht die Meinung der Universität oder der Fakultät repräsentieren.', 'fau' ),
     'advanced_comments_avatar'		    => false,
-    
+    'advanced_activate_synonyms'	    => false,
+    'advanced_activate_glossary'	    => false,
 
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
@@ -846,6 +847,24 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_activateads'],
 		  'parent'  => 'bedienung'
               ),   
+	       
+	      'advanced_activate_synonyms'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Synonyme', 'fau' ),
+                  'label'   => __( 'Aktiviert die Verwaltung von Synonymen.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activate_synonyms'],
+		  'parent'  => 'bedienung'
+              ),   
+		'advanced_activate_glossary'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Glossar', 'fau' ),
+                  'label'   => __( 'Aktiviert die Verwaltung von Glossareinträgen.', 'fau' ),                
+                  'default' => $defaultoptions['advanced_activate_glossary'],
+		  'parent'  => 'bedienung'
+		),  
+	       
+	       
+	       
 	       'advanced_post_active_subtitle'	=> array(
                   'type'    => 'bool',
                   'title'   => __( 'Untertitel (Beiträge)', 'fau' ),

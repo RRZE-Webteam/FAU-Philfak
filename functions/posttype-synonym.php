@@ -1,10 +1,9 @@
 <?php
 
-
-
+global $options;
 
 // Register Custom Post Type
-if ( ! function_exists( 'synonym_post_type' ) ) :
+if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) && (! function_exists( 'synonym_post_type' ) )) :
 
 function synonym_post_type() {	
 	
@@ -48,31 +47,16 @@ function synonym_post_type() {
 		'publicly_queryable'  => true,
 		'query_var'           => 'synonym',
 		'rewrite'             => $rewrite,
-		/* 'capability_type'     => 'synonym',
-		'capabilities' => array(
-		    'edit_post' => 'edit_synonym',
-		    'read_post' => 'read_synonym',
-		    'delete_post' => 'delete_synonym',
-		    'edit_posts' => 'edit_synonyms',
-		    'edit_others_posts' => 'edit_others_synonyms',
-		    'publish_posts' => 'publish_synonyms',
-		    'read_private_posts' => 'read_private_synonyms',
-		    'delete_posts' => 'delete_synonyms',
-		    'delete_private_posts' => 'delete_private_synonyms',
-		    'delete_published_posts' => 'delete_published_synonyms',
-		    'delete_others_posts' => 'delete_others_synonyms',
-		    'edit_private_posts' => 'edit_private_synonyms',
-		    'edit_published_posts' => 'edit_published_synonyms'
-		),
-		'map_meta_cap' => true */
+		
 	);
 	register_post_type( 'synonym', $args );
 
 }
+add_action( 'init', 'synonym_post_type', 0 );
+
 endif;
 
-// Hook into the 'init' action
-add_action( 'init', 'synonym_post_type', 0 );
+
 
 if ( ! function_exists( 'synonym_restrict_manage_posts' ) ) :
 function synonym_restrict_manage_posts() {
@@ -98,10 +82,11 @@ function synonym_restrict_manage_posts() {
 	}
 }
 endif;
-add_action( 'restrict_manage_posts', 'synonym_restrict_manage_posts' );
+if ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true)) {
+    add_action( 'restrict_manage_posts', 'synonym_restrict_manage_posts' );
+}
 
 if ( ! function_exists( 'synonym_post_types_admin_order' ) ) :
-
 function synonym_post_types_admin_order( $wp_query ) {
 	if (is_admin()) {
 
@@ -118,8 +103,9 @@ function synonym_post_types_admin_order( $wp_query ) {
 		}
 	}
 }
-endif;
 add_filter('pre_get_posts', 'synonym_post_types_admin_order');
+
+endif;
 
 
 
@@ -135,7 +121,8 @@ function fau_synonym_metabox() {
     );
 }
 endif;
-if ( ! function_exists( 'fau_synonym_metabox_content' ) ) :
+
+if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) &&  ( ! function_exists( 'fau_synonym_metabox_content' ) )):
 function fau_synonym_metabox_content( $object, $box ) { 
     global $defaultoptions;
     global $post;
@@ -166,14 +153,15 @@ function fau_synonym_metabox_content( $object, $box ) {
     return;
 
 }
-endif;
-
 add_action( 'add_meta_boxes', 'fau_synonym_metabox' );
 
+endif;
 
 
 
-if ( ! function_exists( 'fau_synonym_metabox_content_save' ) ) :
+
+
+if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) &&  ( ! function_exists( 'fau_synonym_metabox_content_save' ) )):
 function fau_synonym_metabox_content_save( $post_id ) {
     global $options;
     if (  'synonym'!= get_post_type()  ) {
@@ -208,13 +196,14 @@ function fau_synonym_metabox_content_save( $post_id ) {
     
 	
 }
-endif;
 add_action( 'save_post', 'fau_synonym_metabox_content_save' );
+
+endif;
 
 
 
  
-if ( ! function_exists( 'fau_synonym' ) ) :  
+if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) && ( ! function_exists( 'fau_synonym' ) )) :  
     function fau_synonym( $atts, $content = null) {
             extract(shortcode_atts(array(
                     "slug" => 'slug',
@@ -234,10 +223,10 @@ if ( ! function_exists( 'fau_synonym' ) ) :
 	    return $return;
            
     }
-endif;
  add_shortcode('synonym', 'fau_synonym' );
+endif;
 
- if ( ! function_exists( 'fau_get_synonym' ) ) :  
+ if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) && ( ! function_exists( 'fau_get_synonym' ) )):  
     function fau_get_synonym($id =0) {
 
 	    if (isset($id) && intval($id) && $id>0) {
@@ -271,4 +260,13 @@ endif;
 	    return $return;
            
     }
+endif;
+
+if  ( (isset($options['advanced_activate_synonyms'])) && ($options['advanced_activate_synonyms'] == true) && ( ! function_exists( 'fau_synonym_rte_add_buttons' ) )):
+    function fau_synonym_rte_add_buttons( $plugin_array ) {
+        $plugin_array['synonymrteshortcodes'] = get_template_directory_uri().'/js/tinymce-synonym.js';
+        return $plugin_array;
+    }
+    add_filter( 'mce_external_plugins','fau_synonym_rte_add_buttons');
+
 endif;
