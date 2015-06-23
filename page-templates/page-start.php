@@ -284,4 +284,6 @@ global $options;
 		
 	</section> <!-- /content -->
 
-<?php get_footer(); ?>
+<?php 
+get_footer(); 
+
