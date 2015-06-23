@@ -126,7 +126,9 @@ global $options;
 					} ?>
 				</div>
 			</div>
-			<a href="#content" class="hero-jumplink-content"><?php _e('','fau'); ?></a>
+		    <?php if ($options['advanced_page_start_herojumplink']) { ?>
+			<a href="#content" class="hero-jumplink-content"></a>
+		    <?php } ?>
 		</div>
 	</section> <!-- /hero -->
 
@@ -282,4 +284,6 @@ global $options;
 		
 	</section> <!-- /content -->
 
-<?php get_footer(); ?>
+<?php 
+get_footer(); 
+

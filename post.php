@@ -12,4 +12,3 @@
 	
 <?php 
    echo fau_display_news_teaser($post->ID,true);
-?>	

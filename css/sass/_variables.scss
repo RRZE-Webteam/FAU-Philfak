@@ -34,27 +34,37 @@ $colorPrimaryContrast: #fff;
 // $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
 // $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
 // $colorLightest:	desaturate(lighten($colorPrimary, 73%), 75%);
- 
-$colorHover:		    #615400;
 
-$colorLight:		    #cca33d;
+// Helper for colors: 
+// Philfak: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9  
+// Medfak: http://paletton.com/#uid=13l0u0kiCFn8GVde7NVmtwSqXtg
+// RWFak: http://paletton.com/#uid=15v0u0kuiiUvNtru4nlwudexs7O
+// Natfak: http://paletton.com/#uid=13b0u0kw0tpsSJEvcC8ugnrubio
+
+$PalettonHellste:	#edc76a;
+$PalettonHeller:	#cca33d;
+$PalettonDunkler:	#8b6507;
+$PalettonDunkelste:	#615400;
+
+
+
+$colorHover:		    $PalettonDunkelste;
+$colorLight:		    $PalettonHeller;
 $colorLightContrast:	    #fff;
-$colorLightest:		    #edc76a;
-$colorLightestContrast:	    #615400;
-
-
-
-$colorPrimaryHero:		$colorPhilFak;
-// Helper for colors: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9 
+$colorLightest:		    $PalettonHellste;
+$colorLightestContrast:	    $PalettonDunkelste;
+$colorPrimaryHero:	    $colorPrimary;
 
 
 $colorSubNavCurrent:		#fff;
-$colorSubNavCurrentBackground:  #8b6507;
+$colorSubNavCurrentBackground:  $PalettonDunkler;
 $colorSubNavCurrentHover:	#fff;
 $colorSubNavCurrentHoverBackground: $colorHover;
 $colorSubNav:			$colorHover;
 $colorSubNavBackground:		$colorLightest;
 $colorSubNavBackgroundHover:	darken($colorSubNavBackground, 3%);
+$colorMainMenu:			#fff;
+
 
 $colorButton:			$colorHover;
 $colorButtonBackground:		$colorLightest;
