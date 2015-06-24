@@ -183,7 +183,7 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 	    
 	    if (isset($id) && intval($id)>0) {
 		$title = get_the_title($id);
-		$letter = get_the_title($id);
+		$letter = remove_accents(get_the_title($id));
 		$letter = mb_substr($letter, 0, 1);
 		$letter = mb_strtoupper($letter, 'UTF-8');
 		$content = apply_filters( 'the_content',  get_post_field('post_content',$id) );
@@ -233,11 +233,11 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 
 		$i = 0;
 		foreach($posts as $post) {
-			$letter = get_the_title($post->ID);
+			$letter = remove_accents(get_the_title($post->ID));
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
 
-			if(($i == 0 || $letter != $current) && preg_match("/^([a-z])+$/i", $letter)) {
+			if ($i == 0 || $letter != $current){
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;
@@ -296,7 +296,7 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 
 	    if (isset($id) && intval($id)>0) {
 		$title = get_the_title($id);
-		$letter = get_the_title($id);
+		$letter = remove_accents(get_the_title($id));
 		$letter = mb_substr($letter, 0, 1);
 		$letter = mb_strtoupper($letter, 'UTF-8');
 		$content = apply_filters( 'the_content',  get_post_field('post_content',$id) );
@@ -348,11 +348,11 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 
 		$i = 0;
 		foreach($posts as $post) {
-			$letter = get_the_title($post->ID);
+			$letter = remove_accents(get_the_title($post->ID));
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
 
-			if(($i == 0 || $letter != $current) && preg_match("/^([a-z])+$/i", $letter)) {
+			if ($i == 0 || $letter != $current)  {
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;
