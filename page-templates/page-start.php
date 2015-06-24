@@ -144,9 +144,8 @@ global $options;
 					<?php
 					
 						$number = 0;
-						$max = $options['start_max_newspertag'] || 3;
-						$maxall = $options['start_max_newscontent'] || 5;
-						
+						$max = $options['start_max_newspertag'];
+						$maxall = $options['start_max_newscontent'];  
 						for($j = 1; $j <= 3; $j++) {
 							$i = 0;
 							$thistag = $options['start_prefix_tag_newscontent'].$j;    
@@ -159,8 +158,10 @@ global $options;
 							    $number++;
 							    wp_reset_postdata();
 							}
+							
 						}
-						if ($number==0) {
+						
+						if (($number==0) || ($number < $maxall)) {
 						    $args = '';
 						    if (isset($options['start_link_news_cat'])) {
 							 $args = 'cat='.$options['start_link_news_cat'];	

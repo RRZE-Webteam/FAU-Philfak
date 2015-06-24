@@ -237,7 +237,7 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
 
-			if($i == 0 || $letter != $current) {
+			if(($i == 0 || $letter != $current) && preg_match("/^([a-z])+$/i", $letter)) {
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;
@@ -352,7 +352,7 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
 
-			if($i == 0 || $letter != $current) {
+			if(($i == 0 || $letter != $current) && preg_match("/^([a-z])+$/i", $letter)) {
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;
