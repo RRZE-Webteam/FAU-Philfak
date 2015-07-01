@@ -103,14 +103,15 @@ $defaultoptions = array(
     'default_gallery_grid_crop'		=> false,    
     
      /* 2 column Imagelists for gallerys - Name: image-2-col */
-    'default_gallery_grid_width'	=> 300,
-    'default_gallery_grid_height'	=> 200,
-    'default_gallery_grid_crop'		=> true,        
+    'default_gallery_grid2col_width'	=> 300,
+    'default_gallery_grid2col_height'	=> 200,
+    'default_gallery_grid2col_crop'		=> true,        
 
     /* 4 column Imagelists for gallerys - Name: image-4-col */
-    'default_gallery_grid_width'	=> 140,
-    'default_gallery_grid_height'	=> 70,
-    'default_gallery_grid_crop'		=> true,   
+    'default_gallery_grid4col_width'	=> 140,
+    'default_gallery_grid4col_height'	=> 70,
+    'default_gallery_grid4col_crop'		=> true,   
+    
     
     
     'breadcrumb_root'			=> 'phil.fau.de',
@@ -996,7 +997,121 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_comments_disclaimer'],
 		  'parent'  => 'kommentare'
 		), 
+	       	'dimensions'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Image Dimensions', 'fau' ),
+		),   
 	       
+               'default_gallery_full_width' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (Groß) - Breite', 'fau' ),
+                  'label'   => __( 'Breite in Pixel für große Galleriebilder.', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_full_width'],
+                   'parent'  => 'dimensions',
+                ), 
+                'default_gallery_full_height' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (Groß) - Höhe', 'fau' ),
+                  'label'   => __( 'Höhe in Pixel für große Galleriebilder.', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_full_height'],
+                   'parent'  => 'dimensions',
+                ),              
+                'default_gallery_full_crop'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Bilder zuschneiden', 'fau' ),
+                  'label'   => __( 'Sollen die großen Galleriebilder zugeschnitten werden um in die Dimensionen zu passen?', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_full_crop'],
+		  'parent' => 'dimensions',
+                ),
+
+		'default_gallery_thumb_width' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder  - Breite', 'fau' ),
+                  'label'   => __( 'Breite in Pixel für Galleriebilder.', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_thumb_width'],
+                   'parent'  => 'dimensions',
+                ), 
+                'default_gallery_thumb_height' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder - Höhe', 'fau' ),
+                  'label'   => __( 'Höhe in Pixel für Galleriebilder.', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_thumb_height'],
+                   'parent'  => 'dimensions',
+                ),              
+                'default_gallery_thumb_crop'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Bilder zuschneiden', 'fau' ),
+                  'label'   => __( 'Sollen die Galleriebilder zugeschnitten werden um in die Dimensionen zu passen?', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_thumb_crop'],
+		  'parent' => 'dimensions',
+                ),
+	       
+		'default_gallery_grid_width' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (Grid)  - Breite', 'fau' ),
+                  'label'   => __( 'Breite in Pixel für Galleriebilder (Grid).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid_width'],
+                   'parent'  => 'dimensions',
+                ), 
+                'default_gallery_grid_height' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (Grid) - Höhe', 'fau' ),
+                  'label'   => __( 'Höhe in Pixel für Galleriebilder (Grid).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid_height'],
+                   'parent'  => 'dimensions',
+                ),              
+                'default_gallery_grid_crop'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Bilder zuschneiden', 'fau' ),
+                  'label'   => __( 'Sollen die Galleriebilder (Grid) zugeschnitten werden um in die Dimensionen zu passen?', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid_crop'],
+		  'parent' => 'dimensions',
+                ),
+	       
+		'default_gallery_grid2col_width' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (2 Spalten)  - Breite', 'fau' ),
+                  'label'   => __( 'Breite in Pixel für Galleriebilder (2 Spalten).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid2col_width'],
+                   'parent'  => 'dimensions',
+                ), 
+                'default_gallery_grid2col_height' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (2 Spalten) - Höhe', 'fau' ),
+                  'label'   => __( 'Höhe in Pixel für Galleriebilder (2 Spalten).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid2col_height'],
+                   'parent'  => 'dimensions',
+                ),              
+                'default_gallery_grid2col_crop'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Bilder zuschneiden', 'fau' ),
+                  'label'   => __( 'Sollen die Galleriebilder (2 Spalten) zugeschnitten werden um in die Dimensionen zu passen?', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid2col_crop'],
+		  'parent' => 'dimensions',
+                ),
+	       	       
+	       
+		'default_gallery_grid4col_width' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (4 Spalten)  - Breite', 'fau' ),
+                  'label'   => __( 'Breite in Pixel für Galleriebilder (4 Spalten).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid4col_width'],
+                   'parent'  => 'dimensions',
+                ), 
+                'default_gallery_grid4col_height' => array(
+                  'type'    => 'number',
+                  'title'   => __( 'Galleriebilder (4 Spalten) - Höhe', 'fau' ),
+                  'label'   => __( 'Höhe in Pixel für Galleriebilder (4 Spalten).', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid4col_height'],
+                   'parent'  => 'dimensions',
+                ),              
+                'default_gallery_grid4col_crop'  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Bilder zuschneiden', 'fau' ),
+                  'label'   => __( 'Sollen die Galleriebilder (4 Spalten) zugeschnitten werden um in die Dimensionen zu passen?', 'fau' ),
+                  'default' => $defaultoptions['default_gallery_grid4col_crop'],
+		  'parent' => 'dimensions',
+                ),	       
   
 	       
 	       
