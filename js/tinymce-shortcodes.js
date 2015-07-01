@@ -41,6 +41,7 @@
                                 editor.insertContent('[faukarte url="" width="100%"]');
                         }
                 });
+		
 	/*	
 		editor.addMenuItem('shortcode_person', {
 			text: 'Person einfügen',
