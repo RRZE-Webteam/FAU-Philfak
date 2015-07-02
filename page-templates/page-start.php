@@ -143,49 +143,59 @@ global $options;
 					
 					<?php
 					
-						$number = 0;
-						$max = $options['start_max_newspertag'];
-						$maxall = $options['start_max_newscontent'];  
-						for($j = 1; $j <= 3; $j++) {
-							$i = 0;
-							$thistag = $options['start_prefix_tag_newscontent'].$j;    
-							$query = new WP_Query( 'tag='.$thistag );
-							
-							 while ($query->have_posts() && ($i<$max) ) { 
-							    $query->the_post(); 
-							    echo fau_display_news_teaser($post->ID);
-							    $i++;
-							    $number++;
-							    wp_reset_postdata();
-							}
-							
-						}
-						
-						if (($number==0) || ($number < $maxall)) {
-						    $args = '';
-						    if (isset($options['start_link_news_cat'])) {
-							 $args = 'cat='.$options['start_link_news_cat'];	
-						    }
-						    if (isset($args)) {
-							$args .= '&';
-						    }
-						    
-						    $args .= 'post_type=post&has_password=0&posts_per_page='.$options['start_max_newscontent'];	
-						    $query = new WP_Query( $args );
-						    while ($query->have_posts() ) { 
-							$query->the_post(); 
-							echo fau_display_news_teaser($post->ID);
-							 wp_reset_postdata();
-						    }
-						}
-						
-			
-					?>
+					$number = 0;
+					$max = $options['start_max_newspertag'];
+					$maxall = $options['start_max_newscontent'];
+					$displayedposts = array();
+					for($j = 1; $j <= 3; $j++) {
+						$i = 0;
+						$thistag = $options['start_prefix_tag_newscontent'].$j;    
+						$query = new WP_Query( 'tag='.$thistag );
 
-					<?php
-						$category = get_the_category_by_ID($options['start_link_news_cat']);
-						if (($category) && ($options['start_link_news_show']==1)) {
-					?>
+						 while ($query->have_posts() && ($i<$max) && ($number<$maxall) ) { 
+						    $query->the_post(); 
+						    echo fau_display_news_teaser($post->ID);
+						    $i++;
+						    $number++;
+						    $displayedposts[] = $post->ID;
+						}
+						wp_reset_postdata();
+						wp_reset_query();
+
+					}
+					if (($number==0) || ($number < $maxall)) {
+
+					    if ($number < $maxall) {
+						$num = $maxall - $number;
+						if ($num <=0 ) {
+						    $num=1;
+						}
+						if (isset($options['start_link_news_cat'])) {
+						    $query = new WP_Query(  array( 'post__not_in' => $displayedposts, 'posts_per_page'  => $num, 'has_password' => false, 'post_type' => 'post', 'cat' => $options['start_link_news_cat']  ) );
+						} else {
+						    $query = new WP_Query(  array( 'post__not_in' => $displayedposts, 'posts_per_page'  => $num, 'has_password' => false, 'post_type' => 'post'  ) );							    
+						}
+					    } else {
+						 $args = '';
+						if (isset($options['start_link_news_cat'])) {
+						    $args = 'cat='.$options['start_link_news_cat'];	
+						}
+						if (isset($args)) {
+						    $args .= '&';
+						}
+
+						$args .= 'post_type=post&has_password=0&posts_per_page='.$options['start_max_newscontent'];	
+						$query = new WP_Query( $args );
+					    }
+					    while ($query->have_posts() ) { 
+						$query->the_post(); 
+						echo fau_display_news_teaser($post->ID);
+						 wp_reset_postdata();
+					    }
+					}
+
+					$category = get_the_category_by_ID($options['start_link_news_cat']);
+					if (($category) && ($options['start_link_news_show']==1)) { ?>
 					
 					<div class="news-more-links">
 						<a class="news-more" href="<?php echo get_category_link($options['start_link_news_cat']); ?>"><?php echo $options['start_link_news_linktitle']; ?></a>
