@@ -278,7 +278,7 @@ hr:after {
 	left: 50px;
 	right: 50px;
 	z-index: 9;
-	@include box-shadow(0 0 30px $colorLight);
+	@include box-shadow(0 0 30px $colorStandardHellgrau);
 	@include border-radius(100px / 10px);
 }
 
