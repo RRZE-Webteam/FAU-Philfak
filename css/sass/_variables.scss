@@ -9,25 +9,25 @@ $fontStackSerifs: Georgia, serif;
 
 // Define text colors
 $colorText:		#444;
-$colorTextLight: #888;
-
+$colorTextLight:	#888;
 // Define notice colors
 $colorNotice: 		#a71c18;
 
 // Define colors of each faculty
-$colorPhilFak: 	#ad841f;
-$colorRwFak: 	#801429;
-$colorMedFak: 	#00b1c6;
-$colorNatFak:	#009775;
-$colorTechFak:	#a3acb2;
-$colorTechFakDark :#6a7881;
-$colorZUV:	#003366;
-$colorDefault:	#003366;
+$colorPhilFak:	    #ad841f;
+$colorRwFak:	    #801429;
+$colorMedFak:	    #00b1c6;
+$colorNatFak:	    #009775;
+$colorTechFak:	    #a3acb2;
+$colorTechFakDark:  #6a7881;
+$colorZUV:	    #003366;
+$colorDefault:	    #003366;
 
 $colorStandardHellgrau:	    #e9edf2;
 
 // Define primary colors by faculty
-$colorPrimary: $colorPhilFak;	// darken($colorPhilFak, 10%);
+$colorPrimary: $colorPhilFak;	
+
 // If ColorPrimary is used as background, wie need a contrast color
 $colorPrimaryContrast: #fff;
 
@@ -87,7 +87,8 @@ $colorMetaLightest:		desaturate(lighten($colorDefault, 73%), 75%);
 $colorPasspartoutBackground:	$colorStandardHellgrau;
 // Social Bar Startseite
 
-$colorSocial: $colorButton; // #a1aab1
+$colorSocial:			$colorDefault;
+$colorSocialBackground:		$colorMetaBackground;
 
 // Define Siegel
 $siegelurl: '../img/siegel-philfak.png';
