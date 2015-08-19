@@ -96,8 +96,9 @@ class FAUMenuTagcloudWidget extends WP_Widget
 		'description' => __('Tagcloud-Menü', 'fau'),
 		'class' => 'FAUMenuTagcloudWidget',
 		)
-	    );
+	    ); 
 	}
+ 
 
 	function form($instance)
 	{

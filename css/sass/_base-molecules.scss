@@ -328,7 +328,7 @@
 		padding: 5px 0;
 		font-size: 13px;
 		line-height: 18px;
-		color: $colorPrimary;
+		color: $colorText;
 	}
 	
 	h4 {
@@ -372,13 +372,11 @@
 				border-bottom: 1px solid #fff;
 				padding-left: 15px;
 				padding-right: 15px;
-			
+				
 				&:hover, &:focus {
 					background-color: darken($colorLightest, 3%);
 				}
-				
 			}
-			
 			&.techfak a {
 			    background-color: $colorTechFak;
 			    color: #fff;
@@ -438,16 +436,25 @@
 		padding-top: 5px;
 		font-weight: bold;
 		font-size: 15px;
+		
+		a {
+		    color: $colorText;
+		    text-decoration: underline;
+		}
 	}
 	
 	h4 {
 		padding-top: 0;
 		font-weight: normal;
+		a {
+		    color: $colorText;
+		    text-decoration: underline;
+		}
 	}
 }
 
 .content-person {
-	border: 1px solid $colorLightest;
+	border: 1px solid $colorStandardHellgrau;
 	margin: 10px 0;
 	padding: 10px;
 	
@@ -601,7 +608,7 @@ ul.person-info {
 .news-image {
 	display: block;
 	text-align: center;
-	background: $colorPasspartoutBackground;
+	background: $colorStandardHellgrau;
 	padding: 4px;
 	@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
 	
@@ -1062,7 +1069,7 @@ ul.person-info {
 			line-height: 125px;
 			vertical-align: middle;
 			text-align: center;
-			border: 1px solid $colorLightest;
+			border: 1px solid $colorStandardHellgrau;
 			margin: 0 15px 15px 0;
 			
 			img {
@@ -1234,7 +1241,7 @@ ul.tagcloud {
 		margin-top: 22px;
 	}
 	ul.person-info li {
-	    color: $colorPrimary;
+	    color: $colorText;
 
 	}
 	
@@ -1271,8 +1278,8 @@ ul.tagcloud {
 
 			.accordion-toggle {
 				border-left: 10px solid $colorPrimary;
-				background: $colorLightest;
-				color: $colorLightestContrast; // $colorPrimary;
+				background: $colorContentBorders;
+				color: $colorDefault; // $colorPrimary;
 				@include border-radius(4px);
 				text-decoration: none;
 				font-size: 16px;
@@ -1311,7 +1318,7 @@ ul.tagcloud {
 			.accordion-inner {
 				@extend .clearfix;
 				border: none;
-				background: lighten($colorLightest, 4%);
+				background: $colorContentRegions;
 				padding: 15px 20px;
 			}
 		}
@@ -1354,14 +1361,14 @@ ul.tagcloud {
 .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner {
-	background: lighten($colorLightest, 5%);
+	background: $colorContentRegions;
 }
 
 .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner,
 .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion .accordion-inner {
-	background: lighten($colorLightest, 6%);
+	background: $colorContentRegions;
 }
 
 .accordion .accordion .accordion-heading .accordion-toggle {
@@ -1375,8 +1382,8 @@ ul.tagcloud {
     
     header {
 	border-left: 10px solid $colorPrimary;
-	background: $colorLightest;
-	color: $colorLightestContrast; // $colorPrimary;
+	background: $colorContentBorders;
+	color: $colorDefault; // $colorPrimary;
 	@include border-radius(4px);
 	text-decoration: none;
 	font-size: 16px;
@@ -1384,7 +1391,7 @@ ul.tagcloud {
 	position: relative;
 	
 	h2 {
-	    color: $colorLightestContrast; // $colorPrimary;
+	    color: $colorDefault; // $colorPrimary;
 	    padding: 0px;
 	}
 	&.philfak {
@@ -1411,16 +1418,14 @@ ul.tagcloud {
 		border-color: $colorDefault;
 	}
 	
-	h1, h2, h3, h4, h5, h6 {
-	    color: $colorText;
-	}
+	
     }
     
      
     
     .body {
 	border: none;
-	background: lighten($colorLightest, 4%);
+	background: $colorContentRegions;
 	padding: 15px 20px;
     } 
 }
