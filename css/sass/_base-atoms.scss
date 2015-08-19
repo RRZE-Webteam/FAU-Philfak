@@ -112,11 +112,11 @@ h2 {
 	line-height: 28px;
 	margin: 0;
 	padding: 22px 0;
+	font-weight: bold;
 	
 	&.small {
 		font-size: 18px;
 		line-height: 22px;
-		font-weight: bold;
 		
 		.widget & {
 			padding-bottom: 11px;
@@ -134,7 +134,6 @@ h2 {
 	&.subtitle {
 		font-size: 18px;
 		line-height: 22px;
-		font-weight: bold;
 		padding: 0 0 22px 0;		
 	}
 	
@@ -296,8 +295,8 @@ blockquote {
 table {
 	border: 0;
 	background: transparent;
-	border-top: 1px solid $colorLight;
-	border-bottom: 1px solid $colorLight;
+	border-top: 1px solid $colorContentBorders;
+	border-bottom: 1px solid $colorContentBorders;
 	margin: 5px 0 20px 0;
 	width: 100%;
 	
@@ -313,11 +312,11 @@ table {
 	}
 	
 	th {
-		color: $colorLightContrast;
-		background: $colorLight;
+		color: $colorText;
+		background: $colorContentBorders;
 		font-weight: bold;
-		border-top: 1px solid $colorLight;
-		border-bottom: 1px solid $colorLight;
+		border-top: 1px solid $colorContentBorders;
+		border-bottom: 1px solid $colorContentBorders;
 		text-align: left;
 		
 		#studienangebot-result & {
@@ -332,13 +331,13 @@ table {
 	}
 	
 	tr {
-		border-left: 1px solid $colorLightest;
-		border-right: 1px solid $colorLightest;
+		border-left: 1px solid $colorStandardHellgrau;
+		border-right: 1px solid $colorStandardHellgrau;
 	}
 	
 	tr:nth-child(odd) td {
 		color:  $colorLightestContrast;
-		background: $colorLightest;
+		background: $colorStandardHellgrau;
 		
 		ul {
 		    li {

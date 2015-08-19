@@ -26,21 +26,7 @@
 			}
 		});
                 
-                editor.addMenuItem('shortcode_univis', {
-                        text: 'UnivIS einfügen',
-                        context: 'tools',
-                        onclick: function() {
-                                editor.insertContent('[univis number=""]');
-                        }
-                });
-                
-                editor.addMenuItem('shortcode_karte', {
-                        text: 'Lageplan (FAU-Karte) einfügen',
-                        context: 'tools',
-                        onclick: function() {
-                                editor.insertContent('[faukarte url="" width="100%"]');
-                        }
-                });
+             
 		
 	/*	
 		editor.addMenuItem('shortcode_person', {

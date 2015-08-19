@@ -108,7 +108,7 @@
 		min-height: 40px;
 
 		p {
-			color: $colorMainMenu;
+			color: #fff;
 			font-size: 18px;
 			line-height: 24px;
 			font-style: italic;
@@ -152,7 +152,7 @@
 	-moz-border-radius-bottomright: 0;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	color: $colorMainMenu;
+    	color: $colorMainMenu;
 }
 
 .no-js #nav li.level1:hover a, 
@@ -160,7 +160,7 @@
 .no-js #nav li.level1:focus a, 
 #nav li.focus a {
 	background-color: $colorPrimary;
-	color: $colorLightest;
+	color: $colorMainMenu;
 }
 
 .no-js #nav li.level1 a:hover, 
@@ -390,8 +390,8 @@ body.admin-bar.nav-fixed {
 	@include placeholder(#fff);
 	margin-top: 20px;
 	padding-bottom: 10px;
-	position: relative;
-	@include radial-gradient-image($colorPrimaryHero, lighten($colorPrimaryHero, 15%), url($siegelurl) no-repeat 95% 155%);
+	position: relative; 
+	@include radial-gradient-image($colorPrimaryHero, $colorPrimaryHeroLight, url($siegelurl) no-repeat 95% 155%);
 	@include transition(1.0s, all);
 	
 	h1, h2, h3, h4, p {
@@ -403,6 +403,7 @@ body.admin-bar.nav-fixed {
 	h1 {
 	    position: relative;
 	    z-index: 10;
+    	    padding-top: 20px;
 	}
 	
 	a {
@@ -414,7 +415,7 @@ body.admin-bar.nav-fixed {
 	}
 	
 	li {
-		@include no-list;
+    		@include no-list;
 		font-size: 13px;
 		padding-left: 20px;
 		padding-bottom: 5px;
@@ -422,7 +423,7 @@ body.admin-bar.nav-fixed {
 	}
 	
 	&.hero-small {
-		@include radial-gradient-image($colorPrimaryHero, lighten($colorPrimaryHero, 15%), url($siegelurl) no-repeat 95% 20%);
+		@include radial-gradient-image($colorPrimaryHero, $colorPrimaryHeroLight, url($siegelurl) no-repeat 95% 20%);
 		
 		h1 {
 			padding: 30px 0 10px 0;
@@ -438,7 +439,7 @@ body.admin-bar.nav-fixed {
 		bottom: 23px;
 		right: 100px;
 		text-align: right;
-		color: lighten($colorPrimary, 15%);
+		color: $colorPrimaryHeroLight; 
 		font-size: 60px;
 		line-height: 50px;
 	}
@@ -591,7 +592,7 @@ body.admin-bar.nav-fixed {
 	img {
 		@include box-shadow(0 1px 2px rgba(0,0,0,0.3));
 		max-width: 100%;
-		
+				
 		&.shadow {
 		    @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
 		}
@@ -600,8 +601,6 @@ body.admin-bar.nav-fixed {
 		    @include border-radius(2px);
 		}
 	}
-	
-	
 	
 	.logos-menu .logo-item img {
 		@include box-shadow(none);
@@ -708,7 +707,8 @@ body.admin-bar.nav-fixed {
 		padding-right: 15px; 
 
 		&:hover, &:focus {
-			background-color: $colorSubNavBackgroundHover;
+			background-color: $colorSubNavCurrentBackground;
+			color: $colorSubNavCurrent;
 		}
 	}
 	
@@ -808,8 +808,8 @@ body.admin-bar.nav-fixed {
 	.textwidget, 
 	p, 
 	h2 {
-	    color: $colorSocial;
-	    padding-top: 0;
+		color: $colorSocial;
+		padding-top: 0;
 	}
 	a {
 	    color: $colorSocial;	    
@@ -845,6 +845,8 @@ body.admin-bar.nav-fixed {
 			}
 			
 			a:before {
+			//	@extend .fa;
+			//	@extend .fa-lg;
 				background: $colorSocial;
 				color: $colorSocialBackground;
 				height: 21px;
