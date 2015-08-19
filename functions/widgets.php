@@ -90,10 +90,13 @@ class Walker_Tagcloud_Menu extends Walker_Nav_Menu
 
 class FAUMenuTagcloudWidget extends WP_Widget
 {
-	function FAUMenuTagcloudWidget()
-	{
-		$widget_ops = array('classname' => 'FAUMenuTagcloudWidget', 'description' => __('Tagcloud-Menü', 'fau') );
-		$this->WP_Widget('FAUMenuTagcloudWidget', 'Tagcloud-Menü', $widget_ops);
+	public function __construct() {
+	    parent::__construct(
+		'FAUMenuTagcloudWidget', __('Tagcloud-Menü', 'fau'), array(
+		'description' => __('Tagcloud-Menü', 'fau'),
+		'class' => 'FAUMenuTagcloudWidget',
+		)
+	    );
 	}
 
 	function form($instance)
