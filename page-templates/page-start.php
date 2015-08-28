@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Startseite
+ * Template Name: Startseite Fakultät
  *
  * @package WordPress
  * @subpackage FAU
