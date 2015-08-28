@@ -9,7 +9,7 @@ $defaultoptions = array(
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
     'slider-category'		    => 'header',
-    'slider-catid'		    => 0,
+    'slider-catid'		    => 1,
     
     'default_slider_excerpt_length' => 240,
     'start_header_count'	    => 5,
