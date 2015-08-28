@@ -214,13 +214,19 @@
 .page-template-page-subnav {
     #content {
 	.span8 {
-	    img.alignleft, img.alignright, img.size-full {
-		    // Sidebar Inline Bilder haben Probleme mit dem Standard Floating	    
-		    max-width: 350px;
-		    height: auto;
+	    img {		
+		&.alignleft, 
+		&.alignright, 
+		&.size-full {
 		    vertical-align: top;
+		    overflow: hide;
+	        }
+		&.size-full {
+		    clear: both;
+		}
 	    }
-	    div.alignleft, img.alignleft {
+	    div.alignleft, 
+	    img.alignleft {
 		clear: none;
 		
 	    }
