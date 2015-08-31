@@ -139,7 +139,7 @@
 /* Subpages / Portal Menu */
 .subpages-menu {
 	@include no-list;
-	margin: 0 0 20px -20px;
+	margin: 20px 0 20px -20px;
 	
 	li {
 		@include no-list;
