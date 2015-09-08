@@ -319,7 +319,12 @@ $default_socialmedia_liste = array(
     'pinterest' => array(
 	'name' => 'Pinterest',
 	'content'  => 'http://www.pinterest.com/unifau/',
-	'active' => 1,
+	'active' => 0,
+    ),
+    'instagram' => array(
+	'name' => 'Instagram',
+	'content'  => 'https://instagram.com/uni_fau/',
+	'active' => 0,
     ),
 ); 
 

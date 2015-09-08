@@ -933,6 +933,7 @@ body.admin-bar.nav-fixed {
 		li.social-flickr a:before { @extend .jv-flickr; }
 		li.social-xing a:before { @extend .jv-xing; }
 		li.social-pinterest a:before { @extend .fa-pinterest-p; @extend .fa; @extend .fa-lg; line-height: 1.0em;}
+		li.social-instagram a:before { @extend .fa; @extend .fa-instagram; line-height: 1.0em;}
 		li.social-feed a:before { @extend .jv-rss; }
 		li.social-delicious a:before { @extend .jv-delicious; }
 		li.social-skype a:before { @extend .jv-skype; }
