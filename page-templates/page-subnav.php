@@ -13,7 +13,7 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 			
 		<?php 
@@ -43,6 +43,7 @@ get_header(); ?>
 				</div>
 				
 				<div class="span8 span-sm-8">
+				    <main>
 					<?php 
 					$headline = get_post_meta( $post->ID, 'headline', true );									
 					if ($headline) { 
@@ -54,16 +55,16 @@ get_header(); ?>
 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>
+				    </main>
 				</div>
 				
 			</div>
 		</div>
   		<?php get_template_part('footer', 'social'); ?>	
-	</section>
+	</div>
 	
 	
 <?php endwhile; ?>
 
 <?php 
 get_footer(); 
-

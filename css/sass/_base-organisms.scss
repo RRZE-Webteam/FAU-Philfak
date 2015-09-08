@@ -298,6 +298,9 @@ body.admin-bar.nav-fixed {
 #meta-nav {
 	@include no-list;
 	padding: 0;
+	max-width: 650px;
+	overflow: hidden;
+	height: 42px;
 	
 	li {
 		@include no-list;
@@ -306,6 +309,11 @@ body.admin-bar.nav-fixed {
 		background: none;
 		position: relative;
 		
+		img {
+		    vertical-align: sub;		  
+		    padding: 0;
+		    margin: 0 2px;
+		}    
 		a {
 			@include inline-block;
 			padding: 10px 0;
@@ -339,8 +347,8 @@ body.admin-bar.nav-fixed {
 		}
 	}
 	li.fauhome {
-	    background: $colorMetaFAUHomeBackground;
-	    padding-right: 10px;
+	    padding-right: 5px;
+	    margin-right: 10px;	    
 	}
 	li.fauhome:before {
 	    @extend .fa;
@@ -348,6 +356,29 @@ body.admin-bar.nav-fixed {
 	    margin-left: 5px;
 	    margin-right: 5px;
 	}
+	li.facultyhome {
+	    padding-right: 5px;
+	    padding-left: 5px;
+	    margin-right: 10px;
+	    margin-left: -15px;
+	   
+	}
+
+	
+	
+	li.fauhome, li.facultyhome {
+	    @include transition(background, 0.2s ease-out);
+	}
+	li.fauhome:hover, li.fauhome:focus, 
+	li.facultyhome:hover, li.facultyhome:focus {
+	    background: $colorMetaFAUHomeBackground;
+	    @include transition(background, 0.1s);
+	}
+//	li.facultyhome:hover, li.facultyhome:focus {
+//	    background: $colorMedFak;
+//	    a { color: white; }
+//	}
+	   
 	
 	
 	ul.sub-menu {
@@ -403,7 +434,22 @@ body.admin-bar.nav-fixed {
 	h1 {
 	    position: relative;
 	    z-index: 10;
-    	    padding-top: 20px;
+	    padding-top: 20px;
+	}
+		
+	h3.breadcrumb_sitetitle {
+	    font-size: 14px;
+	    font-weight: normal;
+	    line-height: 18px;
+	    margin-bottom: -5px;
+	    color: $colorPrimaryHeroLight;
+	}
+	
+	p.description {
+	    font-weight: normal;
+	    color: #fff;
+	    font-size: 18px;
+	    line-height: 26px;
 	}
 	
 	a {

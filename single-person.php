@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 			
 		<?php 
@@ -21,6 +21,7 @@ get_header(); ?>
 
 			<div class="row">
 				<div class="span12">
+				    <main>
 				    <?php 
 				    $id = $post->ID;
 				    if ($id) {
@@ -32,15 +33,14 @@ get_header(); ?>
 					    <?php _e('Für den angegebenen Kontakt können keine Informationen abgerufen werden.','fau'); ?>
 					</p>
 				    <?php }  ?>
+				    </main>
 				</div>
 				
 			</div>
 		</div>
-	</section>
+	</div>
 	
 	
 <?php endwhile; ?>
 
-<?php 
-get_footer(); 
-
+<?php get_footer(); ?>

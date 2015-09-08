@@ -30,8 +30,9 @@ $showhelplinks = 0;
 			    <?php } else { ?>
 				<div class="span6">
 				
-			    <?php } 
-			    
+			    <?php } ?>
+				<main>
+				 <?php 
 				if(strlen(get_search_query()) > 0):
 				    if(have_posts()): ?>							
 							<h2><?php _e('Suchergebnisse','fau'); ?></h2>
@@ -110,7 +111,7 @@ $showhelplinks = 0;
 						?>
 
 					<?php endif; ?>
-					
+				</main>
 				</div>
 			</div>
 		    

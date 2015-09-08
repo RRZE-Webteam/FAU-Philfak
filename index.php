@@ -20,12 +20,12 @@ $posttype = get_post_type();
 	    get_template_part('hero', 'index'); 
 	} ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 		
 			<div class="row">
 				<div class="span8">
-					
+				    <main>
 					<?php 
 					if (($posttype == 'synonym') && ($options['index_synonym_listall'])) {					    
 					    echo '<h2>'.__('Synonyme','fau')."</h2>\n";					    
@@ -94,15 +94,15 @@ $posttype = get_post_type();
 					    <?php }
 					} ?>
 					
-					
+				   
 				</div>
-				
+				 </main>
 				<?php get_template_part('sidebar', 'news'); ?>
 			</div>
 
 		</div>
-		    		<?php get_template_part('footer', 'social'); ?>	
-	</section>
+		<?php get_template_part('footer', 'social'); ?>	
+	</div>
 
 
 <?php 

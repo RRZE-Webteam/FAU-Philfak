@@ -35,6 +35,17 @@ function fau_setup() {
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
 
+	// Switches default core markup for search form, comment form, and comments
+	// to output valid HTML5.
+//	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+
+	/*
+	 * This theme supports all available post formats by default.
+	 * See http://codex.wordpress.org/Post_Formats
+	 */
+//	add_theme_support( 'post-formats', array(
+//		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
+//	) );
 
 	if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	    function theme_slug_render_title() {
@@ -107,7 +118,7 @@ function fau_setup() {
 	//
 	// Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
 	add_image_size( 'gallery-thumb', $options['default_gallery_thumb_width'], $options['default_gallery_thumb_height'], $options['default_gallery_thumb_crop']); // 120, 80, true
-	
+
 	/* Grid-Thumbs for gallerys - Name: gallery-grid */
 	add_image_size( 'gallery-grid', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 145, 120, false
 	
@@ -116,6 +127,7 @@ function fau_setup() {
 	
 	/* 4 column Imagelists for gallerys - Name: image-4-col */
 	add_image_size( 'image-4-col', $options['default_gallery_grid4col_width'], $options['default_gallery_grid4col_height'], $options['default_gallery_grid4col_crop']);	// 140, 70, true
+
 
 	
 	
@@ -793,7 +805,7 @@ function fau_make_link_relative($url) {
     return $url; 
 }
 
-function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $addfauhome = false) {
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
     global $options;
     
@@ -809,13 +821,7 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $ad
 	$result .= "\n";
     }
     $thislist = '';
-    if (($addfauhome==true) && isset($options['fauhome_url']) && isset($options['fauhome_linktext'])) {
-	$thislist .= '<li class="fauhome">';
-	$thislist .= '<a href="'.$options['fauhome_url'].'" title="'.$options['fauhome_title'].'">';
-	$thislist .= $options['fauhome_linktext'];
-	$thislist .= '</a>';
-	$thislist .= '</li>'."\n";	
-    }
+    
     foreach($uselist as $key => $entry ) {
 	if (substr($key,0,4) != 'link') {
 	    continue;
@@ -849,6 +855,108 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $ad
     }
     return $result;
 }
+
+function fau_get_toplinks() {
+    global $options;
+    global $default_link_liste;
+    
+    $uselist =  $default_link_liste['meta'];
+    $result = '';
+    
+
+    if (isset($uselist['_title'])) {
+	$result .= '<h3>'.$uselist['_title'].'</h3>';	
+	$result .= "\n";
+    }
+    
+	// website_type: 0 = Fakultaetsportal; 1 = Lehrstuehle, Einrichtungen, etc unter Fakultaet; 2 = Sonstige
+	    
+    if ($options['website_type']==0) {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = false;
+	$options['fauhome_useimg'] = false;
+    } elseif ($options['website_type']==1) {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = true;	
+	$options['fauhome_useimg'] = true;
+    } else {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = false;
+	$options['fauhome_useimg'] = true;
+    }
+    
+    
+    $thislist = '';
+    if (($options['default_display_fauhomelink']==true) && isset($options['fauhome_url'])) {
+	$thislist .= '<li class="fauhome">';
+	$thislist .= '<a href="'.$options['fauhome_url'].'">';
+	    			
+	if ($options['fauhome_useimg']) {
+	    $thislist .= '<img src="'.$options['fauhome_imgsrc'].'" alt="'.$options['fauhome_title'].'">'; 
+	} else {
+	    $thislist .= $options['fauhome_linktext']; 
+	}	
+	$thislist .= '</a>';
+	$thislist .= '</li>'."\n";	
+    }
+    if (($options['default_display_facultyhomelink']==true) && isset($options['facultyhome_url'])) {
+	$thislist .= '<li class="facultyhome">';
+	$thislist .= '<a href="'.$options['facultyhome_url'].'">';
+	$thislist .= $options['facultyhome_title']; 
+	$thislist .= '</a>';
+	$thislist .= '</li>'."\n";	
+    }
+
+    
+    
+    if ( has_nav_menu( 'meta' ) ) {
+	// wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) );
+	
+	 $menu_name = 'meta';
+
+	    if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+		$menu_items = wp_get_nav_menu_items($menu->term_id);
+		foreach ( (array) $menu_items as $key => $menu_item ) {
+		    $title = $menu_item->title;
+		    $url = $menu_item->url;
+		    $thislist .= '<li><a href="' . $url . '">' . $title . '</a></li>';
+		}
+	    } 
+	
+    } else {
+	foreach($uselist as $key => $entry ) {
+	   if (substr($key,0,4) != 'link') {
+	       continue;
+	   }
+	   $thislist .= '<li';
+	   if (isset($entry['class'])) {
+	       $thislist .= ' class="'.$entry['class'].'"';
+	   }
+	   $thislist .= '>';
+	   if (isset($entry['content'])) {
+	       $thislist .= '<a href="'.$entry['content'].'">';
+	   }
+	   $thislist .= $entry['name'];
+	   if (isset($entry['content'])) {
+	       $thislist .= '</a>';
+	   }
+	   $thislist .= "</li>\n";
+       }   
+    }
+    if (isset($thislist)) {	
+	$result .= '<ul id="meta-nav">';
+	$result .= $thislist;
+	$result .= '</ul>';	
+	$result .= "\n";	
+    }
+    return $result;
+	     
+    
+  
+}
+
+
 
 function fau_main_menu_fallback() {
     global $options;
@@ -1201,8 +1309,12 @@ function fau_breadcrumb($lasttitle = '') {
   $pretitletextstart   = '<span>';
   $pretitletextend     = '</span>';
   
+  if ($options['breadcrumb_withtitle']) {
+	echo '<h3 class="breadcrumb_sitetitle" role="presentation">'.get_bloginfo( 'title' ).'</h3>';
+	echo "\n";
+    }
   echo '<nav aria-labelledby="bc-title" class="breadcrumbs">'; 
-  echo '<h3 class="screen-reader-text" id="bc-title">'.__('Sie befinden sich hier:','fau').'</h3>';
+  echo '<h4 class="screen-reader-text" id="bc-title">'.__('Sie befinden sich hier:','fau').'</h4>';
   if ( !is_home() && !is_front_page() || is_paged() ) { 
     
     global $post;
@@ -1293,6 +1405,9 @@ function fau_breadcrumb($lasttitle = '') {
 	echo $before . get_the_title(get_option('page_for_posts')) . $after;
   }
    echo '</nav>'; 
+   
+  
+   
 }
 
 
@@ -1436,6 +1551,7 @@ function fau_comment( $comment, $args, $depth ) {
         endswitch;
 }
 endif;
+
 
 
 function revealid_add_id_column( $columns ) {

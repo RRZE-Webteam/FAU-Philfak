@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Portalseite
+ * Template Name: Portalseite 
  *
  * @package WordPress
  * @subpackage FAU
@@ -13,14 +13,14 @@ get_header(); ?>
 
     <?php get_template_part('hero', 'small'); ?>
 
-    <section id="content" class="content-portal">
+    <div id="content" class="content-portal">
 	<div class="container">
 		
 	    <?php 
 	       echo fau_get_ad('werbebanner_seitlich',false);
 	     ?>
 		
-		
+	    <main>
 	    <div class="row">
 		<div class="span8">
 		    <?php 
@@ -66,12 +66,12 @@ get_header(); ?>
 			 }
 	      
 	    ?>
-
+	    </main>
 	</div>
+	
 	<?php get_template_part('footer', 'social'); ?>	
-    </section>
+    </div>
 <?php endwhile; ?>
 
 <?php 
-get_footer(); 
-
+get_footer();

@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 		    	 <?php 
 			    echo fau_get_ad('werbebanner_seitlich',false);
@@ -20,6 +20,7 @@ get_header(); ?>
 			<div class="row">
 				
 				<div class="span12">
+				    <main>
 					<?php 
 					$headline = get_post_meta( $post->ID, 'headline', true );				
 					if ( $headline) {
@@ -30,16 +31,16 @@ get_header(); ?>
 					 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>
+				    </main>
 				</div>
 				
 			</div>
 		</div>
-	    	    	    		<?php get_template_part('footer', 'social'); ?>	
+	    	<?php get_template_part('footer', 'social'); ?>	
 
-	</section>
+	</div>
 	
 <?php endwhile; ?>
 
 <?php 
 get_footer(); 
-

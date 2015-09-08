@@ -15,12 +15,12 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 
 			<div class="row">
 				<div class="span8">
-					
+				    <main>
 					<article class="news-details">
 						<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 							<div class="post-image">
@@ -88,6 +88,7 @@ get_header(); ?>
 					    
 						
 					</article>
+				    </main>
 				    <?php if ($options['advanced_activate_post_comments']) { ?>
 					 <div class="post-comments" id="comments"> 
 					    <?php 
@@ -101,11 +102,10 @@ get_header(); ?>
 			</div>
 
 		</div>
-	    		<?php get_template_part('footer', 'social'); ?>	
-	</section>
+	    	<?php get_template_part('footer', 'social'); ?>	
+	</div>
 	
 <?php endwhile; ?>
 
 <?php 
-get_footer(); 
-
+get_footer();

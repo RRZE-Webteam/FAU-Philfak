@@ -5,7 +5,7 @@
  */
 $defaultoptions = array(
     'js-version'		    => '1.0',
-    'optionpage-tab-default'	    => 'startseite',
+    'optionpage-tab-default'	    => 'website',
     'content-width'		    => 770,
     'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
     'slider-category'		    => 'header',
@@ -113,16 +113,27 @@ $defaultoptions = array(
     'default_gallery_grid4col_crop'		=> true,   
     
     
-    
-    'breadcrumb_root'			=> 'phil.fau.de',
+    'website_type'			=> 1,
+	// website_type: 0 = Fakultaetsportal; 1 = Lehrstuehle, Einrichtungen, etc unter Fakultaet; 2 = Sonstige
+    'breadcrumb_root'			=> __('Startseite', 'fau'),
     'breadcrumb_delimiter'		=> ' <span>/</span>',
     'breadcrumb_beforehtml'		=> '<span class="active">', // '<span class="current">'; // tag before the current crumb
     'breadcrumb_afterhtml'		=> '</span>',
     'breadcrumb_uselastcat'		=> true,
+    'breadcrumb_withtitle'		=> false,
     
-    'fauhome_url'		    => 'https://www.fau.de',
-    'fauhome_title'		    => __('Friedrich-Alexander-Universität (FAU)','fau'),
-    'fauhome_linktext'		    => __('Zur FAU Seite','fau'),
+    'default_display_fauhomelink'	=> true,
+    'fauhome_url'			=> 'https://www.fau.de',
+    'fauhome_imgsrc'			=> get_template_directory_uri().'/img/logo-fau-37x16.png',
+    'fauhome_title'			=> __('Friedrich-Alexander-Universität (FAU)','fau'),
+    'fauhome_linktext'			=> __('Zur FAU Seite','fau'),
+    'fauhome_useimg'			=> true,
+    
+    
+    'default_display_facultyhomelink'   => true,
+    'facultyhome_url'			=> 'https://phil.fau.de',
+    'facultyhome_title'			=> __('Philosophische Fakultät und Fachbereich Theologie','fau'),
+       
     
     'socialmedia'		    => 1,
     'active_socialmedia_footer'	    => array(1),  
@@ -170,10 +181,10 @@ $defaultoptions = array(
     'advanced_topevent'			=> true,
     'advanced_activateads'		=> true,
     'galery_link_original'		=> true,
+    'advanced_page_start_herojumplink'	=> false,
 
     'advanced_post_active_subtitle'	=> true,
-    
-    'advanced_page_start_herojumplink'	=> false,
+
     'advanced_page_sidebar_titleabove'	=> true,
     'advanced_page_sidebar_titlebelow'	=> true,    
     'advanced_page_sidebar_useeditor_textabove'	=> false,
@@ -193,6 +204,7 @@ $defaultoptions = array(
     'advanced_comments_avatar'		    => false,
     'advanced_activate_synonyms'	    => false,
     'advanced_activate_glossary'	    => false,
+  
 
     'post_display_category_below'	=> true,
     'search_display_post_thumbnails'	=> true,
@@ -208,8 +220,8 @@ $defaultoptions = array(
     'index_glossary_listall'		=> true,
     
     'advanced_reveal_pages_id'		=> true,
-
-     
+    
+    
 ); 
 
 
@@ -311,27 +323,6 @@ $default_socialmedia_liste = array(
     ),
 ); 
 
-/* 
- * Default Links for Topmenu , can be overwritten bei menu  
- */
-$default_toplink_liste = array(    
-    'link1'  => array(
-	'name'	    => __('UnivIS', 'fau' ),
-	'content'  => 'http://univis.fau.de/',
-	'active'    => 1,
-    ),
-    'link2'  => array(
-	'name'	    => __('Lageplan', 'fau' ),
-	'content'  => 'https://karte.fau.de/',
-	'active'    => 0,
-    ),
-    'link3'  => array(
-	'name'	    => __('Universitätsklinikum', 'fau' ),
-	'content'  => 'http://www.uk-erlangen.de/',
-	'active'    => 1,
-    ),
-  
-);
 
 /* 
  * Default Link List for Submenus , can be overwritten bei Menu  
@@ -427,7 +418,7 @@ $default_header_logos = array(
 	    'thumbnail_url' => '%s/img/logo-fau.png',
 	    'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
     ),
-    'fak-med' => array(
+/*    'fak-med' => array(
 	    'url'           => '%s/img/logo-fak-med.png',
 	    'thumbnail_url' => '%s/img/logo-fak-med.png',
 	    'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
@@ -436,13 +427,13 @@ $default_header_logos = array(
 	    'url'           => '%s/img/logo-fak-nat.png',
 	    'thumbnail_url' => '%s/img/logo-fak-nat.png',
 	    'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
-    ),
+    ), */
     'fak-phil' => array(
 	    'url'           => '%s/img/logo-fak-phil.png',
 	    'thumbnail_url' => '%s/img/logo-fak-phil.png',
 	    'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
     ),
-    'fak-rechtswiwi' => array(
+/*    'fak-rechtswiwi' => array(
 	    'url'           => '%s/img/logo-fak-rechtswiwi.png',
 	    'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
 	    'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
@@ -451,7 +442,7 @@ $default_header_logos = array(
 	    'url'           => '%s/img/logo-fak-tech.png',
 	    'thumbnail_url' => '%s/img/logo-fak-tech.png',
 	    'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
-    )
+    ) */
 );
 
  $categories=get_categories(array('orderby' => 'name','order' => 'ASC'));
@@ -462,126 +453,83 @@ $default_header_logos = array(
  }        
 
 $setoptions = array(
-   'fau_theme_options'   => array(
+    'fau_theme_options'   => array(
        
-       
-        'startseite'   => array(
-           'tabtitle'   => __('Startseite', 'fau'),
+       'website'   => array(
+           'tabtitle'   => __('Webauftritt', 'fau'),
            'fields' => array(
-                            
-	       'newsbereich'  => array(
+	       
+	        'webgroup'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Nachrichtenbereich', 'fau' ),                      
-              ),
+                  'title'   => __( 'Daten zum Webauftritt', 'fau' ),                      
+                ),
 	       
-	       'start_max_newscontent'=> array(
-                  'type'    => 'select',
-                  'title'   => __( 'Zahl der News (Gesamt)', 'fau' ),
-                  'label'   => __( 'Anzahl der News auf der Startseite unterhalb des Sliders', 'fau' ),
-		   'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
-                  'default' => $defaultoptions['start_max_newscontent'],
-		   'parent'  => 'newsbereich'
-              ),  
-	        'start_prefix_tag_newscontent' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Sortierungs-Tag', 'fau' ),
-                  'label'   => __( 'Angabe des Tag-Prefixes, mit dem News auf der Startseite gezeigt werden. Im Artikel wird dann dieser Tag plus eine Nummer vergeben um die Sortierung festzusetzen. Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2"', 'fau' ),               
-                  'default' => $defaultoptions['start_prefix_tag_newscontent'],
-		     'parent'  => 'newsbereich'
-              ),  
-	       
-	       
-	       'start_max_newspertag'=> array(
-                  'type'    => 'select',
-                  'title'   => __( 'News pro gleichem Sortierungs-Tag', 'fau' ),
-                  'label'   => __( 'Anzahl der Artikel mit dem vorgegebene Prefix-Tag (Reihenfolge).', 'fau' ),
-		   'liste'   => array(1 => 1, 2 => 2,3 => 3, 4 => 4, 5 => 5),
-                  'default' => $defaultoptions['start_max_newspertag'],
-		    'parent'  => 'newsbereich'
-              ),  
-	       'start_link_news_show' => array(
-                  'type'    => 'bool',
-                  'title'   => __( 'News verlinken', 'fau' ),
-                  'label'   => __( 'Weitere Meldungen verlinken.', 'fau' ),               
-                  'default' => $defaultoptions['start_link_news_show'],
-		     'parent'  => 'newsbereich'
-              ),  
-		'start_link_news_cat' => array(
-                  'type'    => 'select',
-                  'title'   => __( 'News-Kategorie', 'fau' ),
-                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der News. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
-                  'liste'   => $currentcatliste,
-                  'default' => $defaultoptions['start_link_news_cat'],
-		     'parent'  => 'newsbereich'
-              ), 
-	        'start_link_news_linktitle' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Linktitel', 'fau' ),
-                  'label'   => __( 'Verlinkungstitel für weitere Meldungen.', 'fau' ),               
-                  'default' => $defaultoptions['start_link_news_linktitle'],
-		     'parent'  => 'newsbereich'
-              ),  
-	       
-	    'default_postthumb_always' => array(
+	        'website_type'=> array(
 		    'type'    => 'select',
-		    'title'   => __( 'Immer ein Artikelbild anzeigen', 'fau' ),
-		    'label'   => __( 'Immer ein Artikelbild zu einer Nachricht zeigen. Wenn kein Artikelbild definiert wurde, nehme stattdessen ein Ersatzbild.', 'fau' ),      
-		    'liste'   => array(1 => __('Ja', 'fau'), 0 => __('Nein', 'fau')),
-		    'default' => $defaultoptions['default_postthumb_always'],
-		    'parent'  => 'newsbereich'
-              ), 
-	        	
+		    'title'   => __( 'Typ', 'fau' ),
+		    'label'   => __( 'Bitte wählen Sie hier aus, um welcherart Webauftritt es sich handelt.', 'fau' ),
+		    'liste'   => array(
+				    0 => __('Fakultätsportal','fau'), 
+				    1 => __('Department, Lehrstuhl, Einrichtung','fau'),
+				    2 => __('Sonstige','fau') ),
+		    'default' => $defaultoptions['website_type'],
+		    'parent'  => 'webgroup'
+		),  
 	       
-	       
-	       
-              'sliderpars'  => array(
-                  'type'    => 'section',
-                  'title'   => __( 'Slider', 'fau' ),                      
-              ),
-              
-	     'start_header_count'=> array(
-                  'type'    => 'select',
-                  'title'   => __( 'Zahl der Slides', 'fau' ),
-                  'label'   => __( 'Anzahl der Slides von verlinkten Top-Artikeln', 'fau' ),
-		  'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
-                  'default' => $defaultoptions['start_header_count'],
-                   'parent'  => 'sliderpars'
-              ), 
 
-               
-              'slider-catid' => array(
-                  'type'    => 'select',
-                  'title'   => __( 'Kategorie', 'fau' ),
-                  'label'   => __( 'Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen.', 'fau' ),
-                  'liste'   => $currentcatliste,
-                  'default' => $defaultoptions['slider-catid'],
-                   'parent'  => 'sliderpars'
-              ), 
-             'topevents'  => array(
-                  'type'    => 'section',
-                  'title'   => __( 'Top Events', 'fau' ),                      
-              ), 
-	    'start_topevents_tag' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Schlagwort', 'fau' ),
-                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
-                  'default' => $defaultoptions['start_topevents_tag'],
-		  'parent'  => 'topevents'
-              ),  
-	       'start_topevents_max'=> array(
-                  'type'    => 'select',
-                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
-                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
-		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
-                  'default' => $defaultoptions['start_topevents_max'],
-                  'parent'  => 'topevents'
-              ),  
 	       
-    
-               
-               
+	       
+               'pubadresse'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Öffemtliche Adresse im Fußteil', 'fau' ),                      
+              ),
+              'contact_address_name' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Adressat', 'fau' ),
+                  'label'   => __( 'Erste Zeile der Adresse', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_name'],
+		  'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_name2' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Adressat (Zusatz)', 'fau' ),
+                  'label'   => __( 'Zweite Zeile der Adresse', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_name2'],
+		    'parent'  => 'pubadresse'
+              ),  
+	      'contact_address_street' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Strasse', 'fau' ),
+                  'label'   => __( 'Strasse inkl. Hausnummer', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_street'],
+		   'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_plz' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'PLZ', 'fau' ),
+                  'label'   => __( 'Postleitzahl', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_plz'],
+		    'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_ort' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Ort', 'fau' ),
+                  'label'   => __( 'Ortsname', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_ort'],
+		    'parent'  => 'pubadresse'
+              ),  
+	       'contact_address_country' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Land', 'fau' ),
+                  'label'   => __( 'Optionale Landesangabe', 'fau' ),               
+                  'default' => $defaultoptions['contact_address_country'],
+		  'parent'  => 'pubadresse'
+              ),  
+	     
+   
           )
-       ), 
+       ),
+       
        'socialmedia'   => array(
            'tabtitle'   => __('Social Media Footer', 'fau'),
            'fields' => array(
@@ -702,13 +650,9 @@ $setoptions = array(
 		    'label'   => __( 'Im Bühnenteil wird ein Titel großflächig hinterlegt. Dieser kann hier für Seiten zu Veranstaltungen hinterlegt werden.', 'fau' ),               
 		    'default' => $defaultoptions['title_hero_events'],
 		), 
-	              
-	      'breadcrumb_root'	 => array(
-		    'type'    => 'text',
-		    'title'   => __( 'Titel Startseite in Breadcrumb', 'fau' ),
-		    'label'   => __( 'Definiert, wie der Link zur Startseite in der Breadcrumb aussehen soll. Per Default sollte hier die offizielle URL stehen; bspw. <code>phil.fau.de</code>.', 'fau' ),               
-		    'default' => $defaultoptions['breadcrumb_root'],
-		), 
+	           
+	       
+	       
 
 	       
 	       
@@ -769,59 +713,120 @@ $setoptions = array(
 		), 
           )
        ),
-       'contact'   => array(
-           'tabtitle'   => __('Kontaktdaten', 'fau'),
+        'templates'   => array(
+           'tabtitle'   => __('Templates', 'fau'),
            'fields' => array(
-               'pubadresse'  => array(
+                            
+	       'newsbereich'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Öffemtliche Adresse im Fußteil', 'fau' ),                      
+                  'title'   => __( 'Startseite Fakultät Nachrichtenbereich', 'fau' ),                      
               ),
-              'contact_address_name' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Adressat', 'fau' ),
-                  'label'   => __( 'Erste Zeile der Adresse', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_name'],
-		  'parent'  => 'pubadresse'
+	       
+	       'start_max_newscontent'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der News (Gesamt)', 'fau' ),
+                  'label'   => __( 'Anzahl der News auf der Startseite unterhalb des Sliders', 'fau' ),
+		   'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
+                  'default' => $defaultoptions['start_max_newscontent'],
+		   'parent'  => 'newsbereich'
               ),  
-	       'contact_address_name2' => array(
+	        'start_prefix_tag_newscontent' => array(
                   'type'    => 'text',
-                  'title'   => __( 'Adressat (Zusatz)', 'fau' ),
-                  'label'   => __( 'Zweite Zeile der Adresse', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_name2'],
-		    'parent'  => 'pubadresse'
+                  'title'   => __( 'Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Angabe des Tag-Prefixes, mit dem News auf der Startseite gezeigt werden. Im Artikel wird dann dieser Tag plus eine Nummer vergeben um die Sortierung festzusetzen. Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2"', 'fau' ),               
+                  'default' => $defaultoptions['start_prefix_tag_newscontent'],
+		     'parent'  => 'newsbereich'
               ),  
-	      'contact_address_street' => array(
+	       
+	       
+	       'start_max_newspertag'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'News pro gleichem Sortierungs-Tag', 'fau' ),
+                  'label'   => __( 'Anzahl der Artikel mit dem vorgegebene Prefix-Tag (Reihenfolge).', 'fau' ),
+		   'liste'   => array(1 => 1, 2 => 2,3 => 3, 4 => 4, 5 => 5),
+                  'default' => $defaultoptions['start_max_newspertag'],
+		    'parent'  => 'newsbereich'
+              ),  
+	       'start_link_news_show' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'News verlinken', 'fau' ),
+                  'label'   => __( 'Weitere Meldungen verlinken.', 'fau' ),               
+                  'default' => $defaultoptions['start_link_news_show'],
+		     'parent'  => 'newsbereich'
+              ),  
+		'start_link_news_cat' => array(
+                  'type'    => 'select',
+                  'title'   => __( 'News-Kategorie', 'fau' ),
+                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der News. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
+                  'liste'   => $currentcatliste,
+                  'default' => $defaultoptions['start_link_news_cat'],
+		     'parent'  => 'newsbereich'
+              ), 
+	        'start_link_news_linktitle' => array(
                   'type'    => 'text',
-                  'title'   => __( 'Strasse', 'fau' ),
-                  'label'   => __( 'Strasse inkl. Hausnummer', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_street'],
-		   'parent'  => 'pubadresse'
+                  'title'   => __( 'Linktitel', 'fau' ),
+                  'label'   => __( 'Verlinkungstitel für weitere Meldungen.', 'fau' ),               
+                  'default' => $defaultoptions['start_link_news_linktitle'],
+		     'parent'  => 'newsbereich'
               ),  
-	       'contact_address_plz' => array(
+	       
+	    'default_postthumb_always' => array(
+		    'type'    => 'select',
+		    'title'   => __( 'Immer ein Artikelbild anzeigen', 'fau' ),
+		    'label'   => __( 'Immer ein Artikelbild zu einer Nachricht zeigen. Wenn kein Artikelbild definiert wurde, nehme stattdessen ein Ersatzbild.', 'fau' ),      
+		    'liste'   => array(1 => __('Ja', 'fau'), 0 => __('Nein', 'fau')),
+		    'default' => $defaultoptions['default_postthumb_always'],
+		    'parent'  => 'newsbereich'
+              ), 
+	        	
+	       
+	       
+	       
+              'sliderpars'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Startseite Fakultät Slider', 'fau' ),                      
+              ),
+              
+	     'start_header_count'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der Slides', 'fau' ),
+                  'label'   => __( 'Anzahl der Slides von verlinkten Top-Artikeln', 'fau' ),
+		  'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
+                  'default' => $defaultoptions['start_header_count'],
+                   'parent'  => 'sliderpars'
+              ), 
+
+               
+              'slider-catid' => array(
+                  'type'    => 'select',
+                  'title'   => __( 'Kategorie', 'fau' ),
+                  'label'   => __( 'Bitte wählen Sie die Kategorie der Artikel aus die im Slider erscheinen sollen.', 'fau' ),
+                  'liste'   => $currentcatliste,
+                  'default' => $defaultoptions['slider-catid'],
+                   'parent'  => 'sliderpars'
+              ), 
+             'topevents'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Startseite Fakultät Top Events', 'fau' ),                      
+              ), 
+	    'start_topevents_tag' => array(
                   'type'    => 'text',
-                  'title'   => __( 'PLZ', 'fau' ),
-                  'label'   => __( 'Postleitzahl', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_plz'],
-		    'parent'  => 'pubadresse'
+                  'title'   => __( 'Schlagwort', 'fau' ),
+                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
+                  'default' => $defaultoptions['start_topevents_tag'],
+		  'parent'  => 'topevents'
               ),  
-	       'contact_address_ort' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Ort', 'fau' ),
-                  'label'   => __( 'Ortsname', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_ort'],
-		    'parent'  => 'pubadresse'
+	       'start_topevents_max'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
+                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
+		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
+                  'default' => $defaultoptions['start_topevents_max'],
+                  'parent'  => 'topevents'
               ),  
-	       'contact_address_country' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Land', 'fau' ),
-                  'label'   => __( 'Optionale Landesangabe', 'fau' ),               
-                  'default' => $defaultoptions['contact_address_country'],
-		  'parent'  => 'pubadresse'
-              ),  
-	     
-   
+
           )
-       ),
+       ), 
        'advanced'   => array(
            'tabtitle'   => __('Erweitert', 'fau'),
            'fields' => array(
@@ -850,8 +855,7 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_activateads'],
 		  'parent'  => 'bedienung'
               ),   
-	       
-	      'advanced_activate_synonyms'  => array(
+	       'advanced_activate_synonyms'  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Synonyme', 'fau' ),
                   'label'   => __( 'Aktiviert die Verwaltung von Synonymen.', 'fau' ),                
@@ -865,8 +869,7 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_activate_glossary'],
 		  'parent'  => 'bedienung'
 		),  
-	       
-	     
+
 	       'advanced_post_active_subtitle'	=> array(
                   'type'    => 'bool',
                   'title'   => __( 'Untertitel (Beiträge)', 'fau' ),
@@ -875,21 +878,23 @@ $setoptions = array(
 		  'parent'  => 'bedienung'
               ),   
 	       
-	       	'advanced_reveal_pages_id'	=> array(
+	      'advanced_reveal_pages_id'	=> array(
                   'type'    => 'bool',
                   'title'   => __( 'Zeige Seiten-Ids', 'fau' ),
                   'label'   => __( 'In der Übersicht der Seiten werden die Ids angezeigt.', 'fau' ),                
                   'default' => $defaultoptions['advanced_reveal_pages_id'],
 		  'parent'  => 'bedienung'
-              ), 
+              ),    
+	       	       
+  
+	       
+	       
 	       
 	      'design'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Design', 'fau' ),                      
               ),
-	       
-	       
-	         'advanced_page_start_herojumplink' => array(
+	        'advanced_page_start_herojumplink' => array(
                   'type'    => 'bool',
                   'title'   => __( 'Sprunglink unter der Bühne', 'fau' ),
                   'label'   => __( 'Aktiviert die Schaltung eines Sprunglinks unterhalb der Bühne der Startseite, wenn das Browserfenster eine Größe zwischen 700px und 900px Höhe hat.', 'fau' ),                
@@ -897,15 +902,33 @@ $setoptions = array(
 		  'parent'  => 'design'
 		),  
 
-	       
-	       
-	      'galery_link_original'	  => array(
+		'galery_link_original'	  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Verlinke Galerybilder', 'fau' ),
                   'label'   => __( 'Bei der Anzeige einer Defaultgalerie unter der Bildunterschrift eine Verlinkung auf das Originalbild einschalten', 'fau' ),                
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
-              ),   
+		),   
+	       
+	        'breadcrumb'  => array(
+		    'type'    => 'section',
+		    'title'   => __( 'Breadcrumb', 'fau' ),                      
+		),
+		'breadcrumb_root'	 => array(
+		    'type'    => 'text',
+		    'title'   => __( 'Titel Startseite in Breadcrumb', 'fau' ),
+		    'label'   => __( 'Definiert, wie der Link zur Startseite in der Breadcrumb aussehen soll. Per Default sollte hier die offizielle URL stehen; bspw. <code>phil.fau.de</code>.', 'fau' ),               
+		    'default' => $defaultoptions['breadcrumb_root'],
+		    'parent'  => 'breadcrumb'
+		), 
+		'breadcrumb_withtitle'	  => array(
+		    'type'    => 'bool',
+		    'title'   => __( 'Website-Titel', 'fau' ),
+		    'label'   => __( 'Zeige den Website-Titel oberhalb der Breadcrumb', 'fau' ),                
+		    'default' => $defaultoptions['breadcrumb_withtitle'],
+		    'parent'  => 'breadcrumb'
+		),   
+	       
 	       'sidebaropt'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Erweiterte Einstellunge für Sidebars (von Seiten)', 'fau' ),                      
@@ -1122,7 +1145,7 @@ $setoptions = array(
                 ),	       
   
 	       
-	       
+
 	       
    
           )

@@ -51,7 +51,8 @@ function theme_options_do_page($tab = '') {
             $tab = $options['optionpage-tab-default'];
         }
         if (!isset($setoptions['fau_theme_options'][$tab])) {
-            echo "Invalid Tab-Option or undefined Option-Field $tab";            
+           // echo "Invalid Tab-Option or undefined Option-Field $tab";            
+	    $tab = array_keys($setoptions['fau_theme_options'])[0];
         }        
 
         

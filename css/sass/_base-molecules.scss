@@ -235,6 +235,7 @@
 }
 
 /* Breadcrumb */
+
 .breadcrumbs {
 	color: #fff;
 	padding: 10px 0;
@@ -467,7 +468,7 @@
 	border: 1px solid $colorStandardHellgrau;
 	margin: 10px 0;
 	padding: 10px;
-	overflow: hidden; 
+	overflow: hidden;
 	
 	@media(max-width: $breakMD) {
 		margin: 10px 15px;
@@ -1326,7 +1327,7 @@ ul.tagcloud {
 		.accordion-body {
 			display: none;
 			overflow: hidden;
-			 
+			    
 			.accordion-inner {
 				@extend .clearfix;
 				border: none;

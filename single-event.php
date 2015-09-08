@@ -73,7 +73,7 @@ get_header(); ?>
 
             <div class="row">
                 <div class="span8">
-                     
+		    <main>
                     <?php 
 		    $content = '';
 		    if (defined('EVENT_POST_TYPE') && get_post_type() == EVENT_POST_TYPE) {
@@ -88,7 +88,7 @@ get_header(); ?>
                     <div>
                     <?php the_content(); ?>
                     </div>
-                    
+                    </main>
                 </div>
                 
             </div>

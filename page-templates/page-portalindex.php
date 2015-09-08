@@ -13,7 +13,7 @@ get_header(); ?>
 
     <?php get_template_part('hero', 'small'); ?>
 
-    <section id="content" class="content-portal">
+    <div id="content" class="content-portal">
 	<div class="container">
 		
 	    <?php 
@@ -23,6 +23,7 @@ get_header(); ?>
 		
 	    <div class="row">
 		<div class="span12">
+		    <main>
 		    <?php 
 			$headline = get_post_meta( $post->ID, 'headline', true );				
 			if ( $headline) {
@@ -65,6 +66,7 @@ get_header(); ?>
 			
 			
 			?>
+		    </main>
 		</div>
 	    </div>
 		
@@ -75,7 +77,7 @@ get_header(); ?>
 
 	</div>
 	<?php get_template_part('footer', 'social'); ?>	
-    </section>
+    </div>
 <?php endwhile; ?>
 
 <?php 
