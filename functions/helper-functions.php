@@ -449,7 +449,6 @@ if ( ! function_exists( 'fau_form_link' ) ) :
 			    }
 			}
 			wpLink.close();
-			wpLink.textarea = $('html');//focus on document
 			title_val_container.focus();
 			$('body').off('click', '#wp-link-submit');
 			$('body').off('click', '#wp-link-cancel');

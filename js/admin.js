@@ -40,6 +40,7 @@ jQuery(document).ready(function($){
 
    
     if (($('#page_template').val() == 'page-templates/page-start.php')
+     || ($('#page_template').val() == 'page-templates/page-start-sub.php')
      || ($('#page_template').val() == 'page-templates/page-portalindex.php')
      || ($('#page_template').val() == 'page-templates/page-portal.php')) {
 	// show the meta box
@@ -78,12 +79,12 @@ jQuery(document).ready(function($){
 
     $('#page_template').live('change', function(){
 	if (($(this).val() == 'page-templates/page-start.php') 
+   	        || ($(this).val() == 'page-templates/page-start-sub.php')
 		|| ($(this).val() == 'page-templates/page-portal.php')
 		|| ($(this).val() == 'page-templates/page-portalindex.php')) {
 	    // show the meta box
 	    $('#fau_metabox_page_imagelinks').show();
-	    $('#fau_metabox_page_subnavmenu').hide();
-   
+	    $('#fau_metabox_page_subnavmenu').hide();   
 	    $('#fau_metabox_page_portalmenu').show();
 
 	    if (($(this).val() == 'page-templates/page-portal.php')

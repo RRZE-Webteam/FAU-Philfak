@@ -28,6 +28,11 @@ $defaultoptions = array(
     'menu_fallbackquote_excerpt_length'	=> 240,  
     'start_topevents_tag'	    => 'top',
     'start_topevents_max'	    => 1,
+    'start_topevents_active'	    => true,
+    
+    'default_startseite-bannerbild-image_src'	    => get_template_directory_uri().'/img/bannerbild-tafel-1260x182.jpg',
+    'startseite_banner_usedefault'  => false,
+
     'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
     'default_topevent_excerpt_length' => 100,
 
@@ -42,6 +47,11 @@ $defaultoptions = array(
     'slider-image-width'	    => 1260,
     'slider-image-height'	    => 350,    
     'slider-image-crop'		    => true,
+    
+    /* Hero Banner - Name: herobanner */
+    'default_startseite-bannerbild-image_width'	    => 1260,
+    'default_startseite-bannerbild-image_height'    => 182,
+    'default_startseite-bannerbild-image_crop'	    => true,
     
     /* Thumb for Main menu - Name: portalmenu-thumb */
     'default_mainmenuthumb_width'    => 370,
@@ -423,7 +433,7 @@ $default_header_logos = array(
 	    'thumbnail_url' => '%s/img/logo-fau.png',
 	    'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
     ),
-/*    'fak-med' => array(
+ /*   'fak-med' => array(
 	    'url'           => '%s/img/logo-fak-med.png',
 	    'thumbnail_url' => '%s/img/logo-fak-med.png',
 	    'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
@@ -481,7 +491,15 @@ $setoptions = array(
 		    'parent'  => 'webgroup'
 		),  
 	       
-
+		'startseite_banner_image' => array(
+		    'type'    => 'image',
+		    'maxwidth'	=> 1260,
+		    'maxheight'	=> 182,
+		    'title'   => __( 'Banner Startseite', 'fau' ),
+		    'label'   => __( 'Festes Banner für die Startseite (Template für Lehrstühle und Einrichtungen) im Format 1260x182 Pixel', 'fau' ),               
+		//    'default' => $defaultoptions['default_startseite-bannerbild-image_src'],
+		    'parent'  => 'webgroup'
+              ),  
 	       
 	       
                'pubadresse'  => array(
@@ -724,7 +742,7 @@ $setoptions = array(
                             
 	       'newsbereich'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Startseite Fakultät Nachrichtenbereich', 'fau' ),                      
+                  'title'   => __( 'Startseite Nachrichtenbereich', 'fau' ),                      
               ),
 	       
 	       'start_max_newscontent'=> array(
@@ -787,7 +805,34 @@ $setoptions = array(
 	       
 	       
 	       
-              'sliderpars'  => array(
+           
+             'topevents'  => array(
+                  'type'    => 'section',
+                  'title'   => __( 'Startseite Top Events', 'fau' ),                      
+              ), 
+	       'start_topevents_active' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Aktivieren', 'fau' ),
+                  'label'   => __( 'Anzeige der Top-Events auf der Startseite aktivieren', 'fau' ),               
+                  'default' => $defaultoptions['start_topevents_active'],
+		  'parent'  => 'topevents'
+              ),  
+	    'start_topevents_tag' => array(
+                  'type'    => 'text',
+                  'title'   => __( 'Schlagwort', 'fau' ),
+                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
+                  'default' => $defaultoptions['start_topevents_tag'],
+		  'parent'  => 'topevents'
+              ),  
+	       'start_topevents_max'=> array(
+                  'type'    => 'select',
+                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
+                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
+		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
+                  'default' => $defaultoptions['start_topevents_max'],
+                  'parent'  => 'topevents'
+              ),  
+	       'sliderpars'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Startseite Fakultät Slider', 'fau' ),                      
               ),
@@ -810,25 +855,6 @@ $setoptions = array(
                   'default' => $defaultoptions['slider-catid'],
                    'parent'  => 'sliderpars'
               ), 
-             'topevents'  => array(
-                  'type'    => 'section',
-                  'title'   => __( 'Startseite Fakultät Top Events', 'fau' ),                      
-              ), 
-	    'start_topevents_tag' => array(
-                  'type'    => 'text',
-                  'title'   => __( 'Schlagwort', 'fau' ),
-                  'label'   => __( 'Schlagwort mit dem Beiträge als ausgestattet sein müssen, damit sie als Top-Event angezeigt werden.', 'fau' ),               
-                  'default' => $defaultoptions['start_topevents_tag'],
-		  'parent'  => 'topevents'
-              ),  
-	       'start_topevents_max'=> array(
-                  'type'    => 'select',
-                  'title'   => __( 'Zahl der Top-Events', 'fau' ),
-                  'label'   => __( 'Wieviele Top-Events sollen maximal auf der Startseite angezeigt werden', 'fau' ),
-		  'liste'   => array(1 => 1,2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6),
-                  'default' => $defaultoptions['start_topevents_max'],
-                  'parent'  => 'topevents'
-              ),  
 
           )
        ), 
@@ -1149,7 +1175,13 @@ $setoptions = array(
 		  'parent' => 'dimensions',
                 ),	       
   
-	       
+	       'reset_options' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Reset', 'fau' ),
+                  'label'   => __( 'Setze alle Einstellungen und Konfigurationen zurück. Achtung: Dies setzt alle Voreinstellungen unwiederbringlich zurück!', 'fau' ),
+                  'default' => 0,
+		  'mark_option' => 1,
+              ),   
 
 	       
    

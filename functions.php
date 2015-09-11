@@ -62,8 +62,8 @@ function fau_setup() {
 	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
 	
 
-	register_nav_menu( 'quicklinks-3', __( 'Startseite: Bühne Spalte 1', 'fau' ) );
-	register_nav_menu( 'quicklinks-4', __( 'Startseite: Bühne Spalte 2', 'fau' ) );
+	register_nav_menu( 'quicklinks-3', __( 'Startseite Fakultät: Bühne Spalte 1', 'fau' ) );
+	register_nav_menu( 'quicklinks-4', __( 'Startseite Fakultät: Bühne Spalte 2', 'fau' ) );
 	
 	register_nav_menu( 'error-1', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 1', 'fau' ) );
 	register_nav_menu( 'error-2', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau' ) );
@@ -80,7 +80,10 @@ function fau_setup() {
 	/* Image Sizes for Slider, Name: hero */
 	add_image_size( 'hero', $options['slider-image-width'], $options['slider-image-height'], $options['slider-image-crop']);	// 1260:350
 	
+	/* Banner fuer Startseiten */
+	add_image_size( 'herobanner', $options['default_startseite-bannerbild-image_width'], $options['default_startseite-bannerbild-image_height'], $options['default_startseite-bannerbild-image_crop']);	// 1260:182
     
+	
 	/* Thumb for Main menu - Name: portalmenu-thumb */
 	add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
  
@@ -158,7 +161,6 @@ function fau_initoptions() {
     }    
     return $newoptions;
 }
-
 
 
 /**
@@ -254,7 +256,7 @@ function fau_addmetatags() {
 
     $output = "";
     $output .= '<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'" />'."\n";
-    $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
+  //  $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
     $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";    
     
     // $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">'."\n";    
@@ -1569,3 +1571,54 @@ if ($options['advanced_reveal_pages_id']) {
     add_filter( 'manage_pages_columns', 'revealid_add_id_column', 5 );
     add_action( 'manage_pages_custom_column', 'revealid_id_column_content', 5, 2 );
 }
+
+
+if ( ! function_exists( 'fau_get_image_attributs' ) ) :
+    function fau_get_image_attributs($id=0) {
+        $precopyright = __('Bild:','fau').' ';
+        if ($id==0) return;
+        
+        $meta = get_post_meta( $id );
+        if (!isset($meta)) {
+         return;
+        }
+        $result = array();
+	if (isset($meta['_wp_attachment_image_alt'][0])) {
+	    $result['alt'] = trim(strip_tags($meta['_wp_attachment_image_alt'][0]));
+	} else {
+	    $result['alt'] = "";
+	}       
+        if (isset($meta['_wp_attachment_metadata']) && is_array($meta['_wp_attachment_metadata'])) {        
+         $data = unserialize($meta['_wp_attachment_metadata'][0]);
+         if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['copyright'])) {
+                $result['copyright'] = trim(strip_tags($data['image_meta']['copyright']));
+         }
+	 if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['credit'])) {
+		$displayinfo = trim(strip_tags($data['image_meta']['credits']));
+	 }
+        }
+        $attachment = get_post($id);
+        $result['bildunterschrift'] = $result['beschreibung'] = $result['title'] = '';
+        if (isset($attachment) ) {
+	    if (isset($attachment->post_excerpt)) {
+		$result['bildunterschrift'] = trim(strip_tags( $attachment->post_excerpt ));
+	    }
+	    if (isset($attachment->post_content)) {
+		$result['beschreibung'] = trim(strip_tags( $attachment->post_content ));
+	    }        
+	    if (isset($attachment->post_title)) {
+		 $result['title'] = trim(strip_tags( $attachment->post_title )); 
+	    }   
+        }
+        
+	
+	
+        if ((empty($displayinfo)) && (!empty($result['copyright']))) $displayinfo = $precopyright.' '.$result['copyright'];	
+	if (empty($displayinfo)) $displayinfo = $result['beschreibung'];
+	if (empty($displayinfo)) $displayinfo = $result['bildunterschrift'];
+        if (empty($displayinfo)) $displayinfo = $result['alt'];
+        $result['credits'] = $displayinfo;
+        return $result;
+                
+    }
+endif;

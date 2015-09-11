@@ -48,14 +48,19 @@ global $options;
 			    <?php 
 			    
 			    $sliderimage = '';
+			    $copyright = '';
 			   // $imageid = get_post_meta( $hero->ID, 'fauval_sliderid', true );
 			    $imageid = get_post_meta( $hero->ID, 'fauval_slider_image', true );
 			    if (isset($imageid) && ($imageid>0)) {
 				$sliderimage = wp_get_attachment_image_src($imageid, 'hero'); 
+				$imgdata = fau_get_image_attributs($imageid);
+				$copyright = trim(strip_tags( $imgdata['credits'] ));
 			    } else {
 				$post_thumbnail_id = get_post_thumbnail_id( $hero->ID ); 
 				if ($post_thumbnail_id) {
 				    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id, 'hero' );
+				    $imgdata = fau_get_image_attributs($post_thumbnail_id);
+				    $copyright = trim(strip_tags( $imgdata['credits'] ));
 				}
 			    }
 
@@ -65,6 +70,9 @@ global $options;
 				$slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
 			    }
 			    echo $slidersrc."\n"; 
+			    if (!empty($copyright)) {
+				echo '<p class="credits">'.$copyright."</p>";
+			    }
 			    ?>
 			    <div class="hero-slide-text">
 				<div class="container">
@@ -106,9 +114,13 @@ global $options;
 	
 		<div class="container">
 			<div class="row">
-				<div role="presentation" class="span6">				    
-				    <h1><?php echo get_bloginfo( 'title' ) ?></h1>
-				    <?php if (null !== get_bloginfo( 'description' )) {
+				<div role="presentation" class="span6 infobar">				    
+				    <?php 
+				   $header_image = get_header_image();
+				    if (!empty( $header_image ) ){	
+					echo "<h1>". get_bloginfo( 'title' ). "</h1>\n";
+				    }
+				    if (null !== get_bloginfo( 'description' )) {
 					 echo '<p class="description">'.get_bloginfo( 'description' )."</p>";
 				    }
 				    ?>
@@ -210,58 +222,12 @@ global $options;
 				    </main>	
 				</div>
 				<div class="span4">
-					
-					<?php $topevent_posts = get_posts(array('tag' => $options['start_topevents_tag'], 'numberposts' => $options['start_topevents_max']));
-					 foreach($topevent_posts as $topevent): ?>
-						<div class="widget">
-							<?php 
-							$titel = get_post_meta( $topevent->ID, 'topevent_title', true );
-							if (strlen(trim($titel))<3) {
-							    $titel =  get_the_title($topevent->ID);
-							} 
-							$link = get_permalink($topevent->ID);
-							
-							?>
-							<h2 class="small"><a href="<?php echo $link; ?>"><?php echo $titel; ?></a></h2>
-							
-							<div class="row">
-							    <?php 
-							    
-								$imageid = get_post_meta( $topevent->ID, 'topevent_image', true );
-								$imagehtml = '';
-								if (isset($imageid) && ($imageid>0)) {
-								    $image = wp_get_attachment_image_src($imageid, 'topevent-thumb'); 					
-								    if (($image) && ($image[0])) {  
-									$imagehtml = '<img src="'.fau_esc_url($image[0]).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';	
-								    }								    
-								} 
-								if (empty($imagehtml)) {
-								   $imagehtml = '<img src="'.fau_esc_url($options['default_topevent_thumb_src']).'" width="'.$options['default_topevent_thumb_width'].'" height="'.$options['default_topevent_thumb_height'].'" alt="">';			    
-								}
-								
-								
-								
-								
-							    if (isset($imagehtml)) { ?>
-								<div class="span2">
-									<?php echo '<a href="'.$link.'">'.$imagehtml.'</a>'; ?>
-								</div>
-								<div class="span2">
-							    <?php } else { ?>
-								<div class="span4">
-							    <?php } 
-							    $desc = get_post_meta( $topevent->ID, 'topevent_description', true );
-							    if (strlen(trim($desc))<3) {
-								$desc =  fau_custom_excerpt($topevent->ID,$options['default_topevent_excerpt_length']);
-							    }  ?>   
-								    <div class="topevent-description"><?php echo $desc; ?></div>
-								   
-								</div>			
-							</div>
-						</div>
-					<?php endforeach; ?>
-					
-					<?php get_template_part('sidebar'); ?>
+					<?php
+					if ($options['start_topevents_active']) {
+					    get_template_part('sidebar', 'events'); 	
+					}				
+					get_template_part('sidebar');
+					?>
 				</div>
 			</div> <!-- /row -->
 			<?php  

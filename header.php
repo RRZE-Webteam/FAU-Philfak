@@ -14,8 +14,9 @@ global $options;
 ?><!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-	<title><?php wp_title( '-', true, 'right' ); ?></title>
-	<?php wp_head(); ?>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><?php wp_title( '-', true, 'right' ); ?></title>
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -58,28 +59,36 @@ global $options;
 		<header id="header">
 			<div class="container">
 		    
-				<?php $header_image = get_header_image();
-				if ( ! empty( $header_image ) ) {	
-				    echo '<div class="branding" id="logo" role="banner" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">';
-				    if ( ! is_front_page() ) { 
-					echo '<a itemprop="url" rel="home" href="'.fau_esc_url(home_url( '/' ) ).'">';	
-				    } 
-				    echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';
-				    if ( ! is_front_page() ) {  
-					echo "</a>"; 			    
-				    }
-				    echo "</div>\n";
-				} ?>
-				<a href="#" id="nav-toggle" class="hide-desktop">
-					<div></div>
-					<div></div>
-					<div></div>
-				</a>			
-				<?php
+			    <?php 
+
+			    $header_image = get_header_image();
+			    echo '<div class="branding" id="logo" role="banner" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">';
+			    echo '<h1>';
+			    if ( ! is_front_page() ) { 
+				echo '<a itemprop="url" rel="home" href="'.fau_esc_url(home_url( '/' ) ).'">';	
+			    } 
+
+			    if ( ! empty( $header_image ) ) {	
+				echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';	   
+			    } else {				 
+				echo get_bloginfo( 'title' );   
+			    } 
+			    if ( ! is_front_page() ) {  
+				echo "</a>"; 			    
+			    }
+			    echo '</h1>';
+			    echo "</div>\n";
+			    ?>
+			    <a href="#" id="nav-toggle" class="hide-desktop">
+				    <div></div>
+				    <div></div>
+				    <div></div>
+			    </a>			
+			    <?php
 			    if(has_nav_menu( 'main-menu' ) && class_exists('Walker_Main_Menu', false)) {
-					wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
+				wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '<ul role="navigation" aria-label="'.__("Navigation", "fau").'" id="nav">%3$s</ul>', 'depth' => 2, 'walker' => new Walker_Main_Menu) ); 
 			    } elseif(!has_nav_menu( 'main-menu' )) {
-					echo fau_main_menu_fallback(); 
+				echo fau_main_menu_fallback(); 
 			    } else {
 				// the class Walker_Main_Menu doesn't exist!
 			    }
