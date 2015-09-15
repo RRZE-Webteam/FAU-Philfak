@@ -70,7 +70,7 @@ global $options;
 				$slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
 			    }
 			    echo $slidersrc."\n"; 
-			    if (!empty($copyright)) {
+			   if (($options['advanced_display_hero_credits']==true) && (!empty($copyright))) {
 				echo '<p class="credits">'.$copyright."</p>";
 			    }
 			    ?>
@@ -96,7 +96,12 @@ global $options;
 						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
-		    <script type="text/javascript">
+		    
+		    </div>
+	    <?php endforeach; 
+              wp_reset_query();
+	      ?>
+		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 			$('#hero-slides').flexslider({
 				selector: '.hero-slide',
@@ -105,11 +110,6 @@ global $options;
 			});
 		    });
 		    </script>
-		    </div>
-	    <?php endforeach; 
-              wp_reset_query();
-	      ?>
-		
 		</div>
 	
 		<div class="container">

@@ -230,7 +230,8 @@ $defaultoptions = array(
     'index_glossary_listall'		=> true,
     
     'advanced_reveal_pages_id'		=> true,
-    
+    'advanced_images_info_credits'	=> 0,
+    'advanced_display_hero_credits'	=> true,   
     
 ); 
 
@@ -940,7 +941,26 @@ $setoptions = array(
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
 		),   
+		 'advanced_display_hero_credits'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Copyright-Hinweis', 'fau' ),
+                  'label'   => __( 'Auf der Startseite wird im Slider der Copyright-Hinweis des Bildes angezeigt, wenn vorhanden', 'fau' ),                
+                  'default' => $defaultoptions['advanced_display_hero_credits'],
+		  'parent'  => 'design'
+              ),  
 	       
+	          'advanced_images_info_credits' => array(
+		    'type'    => 'select',
+		    'title'   => __( 'Copyright-Info ermitteln', 'fau' ),
+		    'label'   => __( 'Definiert, ob die Copyright-Info eines Bildes sich aus dessen IPTC-Infos ermittelt oder durch die Texteingabe Beschreibung überschrieben werden kann.<br>'
+			    . 'Reihenfolge via IPTC: 1. IPTC-Copyright, 2. IPTC-Credit, 3. IPTC-Author, 4. Beschreibung, 5. IPTC-Caption, 6. Bildunterschrift. '
+			    . '<br>Durch diese Auswahl kann die Beschreibung priorisiert werden.', 'fau' ),      
+		    'liste'   => array('0' => __('IPTC-Feld Copyright hat Priorität', 'fau'), 
+					'1' => __('Eingabefeld Beschreibung überschreibt IPTC und andere vorangige Felder.', 'fau')),
+		    'default' => $defaultoptions['advanced_images_info_credits'],
+		    'parent'  => 'design'
+              ), 
+	              
 	        'breadcrumb'  => array(
 		    'type'    => 'section',
 		    'title'   => __( 'Breadcrumb', 'fau' ),                      

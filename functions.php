@@ -1573,52 +1573,129 @@ if ($options['advanced_reveal_pages_id']) {
 }
 
 
-if ( ! function_exists( 'fau_get_image_attributs' ) ) :
-    function fau_get_image_attributs($id=0) {
-        $precopyright = __('Bild:','fau').' ';
+
+function fau_get_image_attributs($id=0) {
+    global $options;
+
+        $precopyright = ''; // __('Bild:','fau').' ';
         if ($id==0) return;
         
         $meta = get_post_meta( $id );
         if (!isset($meta)) {
          return;
         }
+    
         $result = array();
 	if (isset($meta['_wp_attachment_image_alt'][0])) {
 	    $result['alt'] = trim(strip_tags($meta['_wp_attachment_image_alt'][0]));
 	} else {
 	    $result['alt'] = "";
-	}       
+	}   
+
         if (isset($meta['_wp_attachment_metadata']) && is_array($meta['_wp_attachment_metadata'])) {        
-         $data = unserialize($meta['_wp_attachment_metadata'][0]);
-         if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['copyright'])) {
-                $result['copyright'] = trim(strip_tags($data['image_meta']['copyright']));
-         }
-	 if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['credit'])) {
-		$displayinfo = trim(strip_tags($data['image_meta']['credits']));
-	 }
+	    $data = unserialize($meta['_wp_attachment_metadata'][0]);
+	    if (isset($data['image_meta']) && is_array($data['image_meta'])) {
+		if (isset($data['image_meta']['copyright'])) {
+		       $result['copyright'] = trim(strip_tags($data['image_meta']['copyright']));
+		}
+		if (isset($data['image_meta']['author'])) {
+		       $result['author'] = trim(strip_tags($data['image_meta']['author']));
+		} elseif (isset($data['image_meta']['credit'])) {
+		       $result['credit'] = trim(strip_tags($data['image_meta']['credit']));
+		}
+		if (isset($data['image_meta']['title'])) {
+		     $result['title'] = $data['image_meta']['title'];
+		}
+		if (isset($data['image_meta']['caption'])) {
+		     $result['caption'] = $data['image_meta']['caption'];
+		}
+	    }
+	    $result['orig_width'] = $data['width'];
+	    $result['orig_height'] = $data['height'];
+	    $result['orig_file'] = $data['file'];
+	    
         }
+	
         $attachment = get_post($id);
-        $result['bildunterschrift'] = $result['beschreibung'] = $result['title'] = '';
         if (isset($attachment) ) {
 	    if (isset($attachment->post_excerpt)) {
-		$result['bildunterschrift'] = trim(strip_tags( $attachment->post_excerpt ));
+		$result['excerpt'] = trim(strip_tags( $attachment->post_excerpt ));
 	    }
 	    if (isset($attachment->post_content)) {
-		$result['beschreibung'] = trim(strip_tags( $attachment->post_content ));
+		$result['description'] = trim(strip_tags( $attachment->post_content ));
 	    }        
-	    if (isset($attachment->post_title)) {
+	    if (isset($attachment->post_title) && (empty( $result['title']))) {
 		 $result['title'] = trim(strip_tags( $attachment->post_title )); 
 	    }   
-        }
-        
+        }      
+	$result['credits'] = '';
 	
+	if ($options['advanced_images_info_credits'] == 1) {
+	    
+	    if (!empty($result['description'])) {
+		$result['credits'] = $result['description'];
+	    } elseif (!empty($result['copyright'])) {
+		$result['credits'] = $precopyright.' '.$result['copyright'];	
+	    } elseif (!empty($result['author'])) {
+		$result['credits'] = $precopyright.' '.$result['author'];
+	    } elseif (!empty($result['credit'])) {
+		$result['credits'] = $precopyright.' '.$result['credit'];	
+   	    } else {
+		if (!empty($result['caption'])) {
+		    $result['credits'] = $result['caption'];
+		} elseif (!empty($result['excerpt'])) {
+		    $result['credits'] = $result['excerpt'];
+		} 
+	    } 
+	} else {
 	
-        if ((empty($displayinfo)) && (!empty($result['copyright']))) $displayinfo = $precopyright.' '.$result['copyright'];	
-	if (empty($displayinfo)) $displayinfo = $result['beschreibung'];
-	if (empty($displayinfo)) $displayinfo = $result['bildunterschrift'];
-        if (empty($displayinfo)) $displayinfo = $result['alt'];
-        $result['credits'] = $displayinfo;
+	    if (!empty($result['copyright'])) {
+		$result['credits'] = $precopyright.' '.$result['copyright'];		
+	    } elseif (!empty($result['author'])) {
+		$result['credits'] = $precopyright.' '.$result['author'];
+	    } elseif (!empty($result['credit'])) {
+		$result['credits'] = $precopyright.' '.$result['credit'];		
+		} else {
+		if (!empty($result['description'])) {
+		    $result['credits'] = $result['description'];
+		} elseif (!empty($result['caption'])) {
+		    $result['credits'] = $result['caption'];
+		} elseif (!empty($result['excerpt'])) {
+		    $result['credits'] = $result['excerpt'];
+		} 
+	    }   
+	}
         return $result;
                 
+}
+
+
+function fau_array2table($array, $table = true) {
+    $out = '';
+    $tableHeader = '';
+    foreach ($array as $key => $value) {
+	 $out .= '<tr>';
+	 $out .= "<th>$key</th>";
+        if (is_array($value)) {   
+            if (!isset($tableHeader)) {
+                $tableHeader =
+                    '<th>' .
+                    implode('</th><th>', array_keys($value)) .
+                    '</th>';
+            }
+            array_keys($value);
+	    $out .= "<td>";
+            $out .= fau_array2table($value, true);     
+	    $out .= "</td>";
+        } else {
+            $out .= "<td>$value</td>";
+        }
+	$out .= '</tr>';
     }
-endif;
+
+    if ($table) {
+        return '<table>' . $tableHeader . $out . '</table>';
+    } else {
+        return $out;
+    }
+}

@@ -31,7 +31,7 @@ global $options;
 				$image = '';
 			    }
 			    echo $image."\n"; 
-			    if (!empty($copyright)) {
+			    if (($options['advanced_display_hero_credits']==true) && (!empty($copyright))) {
 				echo '<p class="credits">'.$copyright."</p>";
 			    } 
 			    ?>
@@ -44,8 +44,12 @@ global $options;
 						if (!empty( $header_image ) ){	
 						    echo "<h1>". get_bloginfo( 'title' ). "</h1>\n";
 						}
-						if (null !== get_bloginfo( 'description' )) {
-						     echo '<p class="description">'.get_bloginfo( 'description' )."</p>";
+						$desc = trim(strip_tags(get_bloginfo( 'description' )));
+						if (!empty($desc)) {
+						    if (!empty( $header_image ) ){	
+							echo "<br>";
+						    }
+						     echo '<p class="description">'.$desc."</p>";
 						}
 						?>
 					    </div>

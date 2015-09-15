@@ -67,13 +67,19 @@ p {
 		padding: 4px 0 22px 0;
 	}
 	&.hinweis {
-	    font-size: 24px;
-	    line-height: 28px;
 	    margin: 0;
 	    padding: 22px 0;
 	    color: $colorPrimary;
+	    font-weight: bold;
+	    &:before {
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-exclamation-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
 	}
-	
 	&.attention {
 		display: block;
 		color: $colorNotice;
@@ -85,6 +91,70 @@ p {
 			@extend .fa;
 			@extend .fa-2x;
 			@extend .fa-exclamation-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
+	}
+	&.baustelle {
+		display: block;
+		color: $colorText;
+		padding: 10px 0;
+		margin: 20px 0;
+		font-weight: bold;
+		
+		&:before {
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-cogs;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
+	}
+	&.question {
+		display: block;
+		color: $colorText;
+		padding: 10px 0;
+		margin: 20px 0;
+		
+		&:before {
+			color: orange;
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-question-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
+	}
+	&.minus {
+		display: block;
+		color: $colorText;
+		padding: 10px 0;
+		margin: 20px 0;
+		
+		&:before {
+			color: red;
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-minus-circle;
+			padding-right: 8px;
+			font-weight: normal;
+			vertical-align: -4px;
+		}
+	}
+	&.plus {
+		display: block;
+		color: $colorText;
+		padding: 10px 0;
+		margin: 20px 0;
+		
+		&:before {
+			color: green;
+			@extend .fa;
+			@extend .fa-2x;
+			@extend .fa-plus-circle;
 			padding-right: 8px;
 			font-weight: normal;
 			vertical-align: -4px;
