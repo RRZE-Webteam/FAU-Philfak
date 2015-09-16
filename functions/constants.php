@@ -232,6 +232,7 @@ $defaultoptions = array(
     'advanced_reveal_pages_id'		=> true,
     'advanced_images_info_credits'	=> 0,
     'advanced_display_hero_credits'	=> true,   
+    'advanced_display_postthumb_credits'    => true,
     
 ); 
 
@@ -943,11 +944,18 @@ $setoptions = array(
 		),   
 		 'advanced_display_hero_credits'	  => array(
                   'type'    => 'bool',
-                  'title'   => __( 'Copyright-Hinweis', 'fau' ),
-                  'label'   => __( 'Auf der Startseite wird im Slider der Copyright-Hinweis des Bildes angezeigt, wenn vorhanden', 'fau' ),                
+                  'title'   => __( 'Copyright-Hinweis Startseite', 'fau' ),
+                  'label'   => __( 'Auf der Startseite wird im Slider bzw. im Banner der Copyright-Hinweis des Bildes angezeigt, wenn vorhanden', 'fau' ),                
                   'default' => $defaultoptions['advanced_display_hero_credits'],
 		  'parent'  => 'design'
               ),  
+	       'advanced_display_postthumb_credits'	  => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Copyright-Hinweis Beiträge', 'fau' ),
+                  'label'   => __( 'In Beiträgen wird das Artikelbild mit einem Copyright-Hinweis des Bildes versehen, wenn vorhanden', 'fau' ),                
+                  'default' => $defaultoptions['advanced_display_postthumb_credits'],
+		  'parent'  => 'design'
+              ), 
 	       
 	          'advanced_images_info_credits' => array(
 		    'type'    => 'select',
