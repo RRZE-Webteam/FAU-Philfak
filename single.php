@@ -42,12 +42,30 @@ get_header(); ?>
 									echo '<div class="post-image-caption">'.$bildunterschrift.'</div>';
 								    } else {
 									$imgdata = fau_get_image_attributs($post_thumbnail_id);
-									$info = trim(strip_tags( $imgdata['beschreibung'] ));		
-									if (isset($info) && (!empty($info))) {
-									    echo '<div class="post-image-caption">'. $imgdata['beschreibung'].'</div>';
-									} elseif (isset($imgdata['credits']) && (!empty($imgdata['credits']))  ) {
-									    echo '<div class="post-image-caption">'. $imgdata['credits'].'</div>';
+									$info = trim(strip_tags( $imgdata['excerpt'] ));		
+									$credits = '';
+									if ($options['advanced_display_postthumb_credits']==true) {
+									    $credits = trim(strip_tags(  $imgdata['credits']));    
 									}
+									
+									
+									if (  (!empty($info)) || (!empty($credits)) ) {
+									    echo '<div class="post-image-caption">';
+									    
+									    if (!empty($info)) {
+										echo $info;
+									    }
+									    
+									    if (!empty($credits)) {
+										if ((!empty($info)) && ($credits != $info)) {
+										    echo "<br>";
+										    echo $credits;
+										} elseif (empty($info)) {
+										    echo $credits;
+										}
+									    }
+									    echo "</div>\n"; 	    
+									} 
 									
 
 								    } 
