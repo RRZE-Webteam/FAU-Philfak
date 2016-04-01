@@ -26,8 +26,8 @@
 			}
 		});
                 
-             
-		
+                
+               
 	/*	
 		editor.addMenuItem('shortcode_person', {
 			text: 'Person einfügen',

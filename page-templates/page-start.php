@@ -70,7 +70,7 @@ global $options;
 				$slidersrc = '<img src="'.fau_esc_url($sliderimage[0]).'" width="'.$options['slider-image-width'].'" height="'.$options['slider-image-height'].'" alt="">';	
 			    }
 			    echo $slidersrc."\n"; 
-			   if (($options['advanced_display_hero_credits']==true) && (!empty($copyright))) {
+			    if (($options['advanced_display_hero_credits']==true) && (!empty($copyright))) {
 				echo '<p class="credits">'.$copyright."</p>";
 			    }
 			    ?>
@@ -96,12 +96,12 @@ global $options;
 						<br><p><?php echo $abstract; ?></p>
 				</div>
 			    </div>
-		    
+		  
 		    </div>
 	    <?php endforeach; 
               wp_reset_query();
 	      ?>
-		<script type="text/javascript">
+		  <script type="text/javascript">
 			jQuery(document).ready(function($) {
 			$('#hero-slides').flexslider({
 				selector: '.hero-slide',
@@ -251,12 +251,13 @@ global $options;
 			 
 			echo fau_get_ad('werbebanner_unten',true);
 			
-			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
-			 if ($logoliste) { ?>	
-			    <hr>
-			    <?php 
-			    fau_get_imagelinks($logoliste);
-			     
+			 $logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );			
+			 if ($logoliste) { 
+			    $logos = fau_get_imagelinks($logoliste, false);
+			    if ((isset($logos) && (!empty($logos)))) {
+				echo "<hr>\n";
+				echo $logos;
+			    }
 			 }
 			
 			 ?>

@@ -15,7 +15,6 @@ global $options;
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?php wp_title( '-', true, 'right' ); ?></title>
     <?php wp_head(); ?>
 </head>
 
@@ -35,13 +34,16 @@ global $options;
 		<section id="meta">
 			<div class="container">
 				<div class="pull-left">
-					<?php echo fau_get_toplinks(); ?>
+					<?php 
+					echo fau_get_toplinks(); 
+					?>
 				</div>
 				<div class="pull-right">
 					<?php if ( is_active_sidebar( 'language-switcher' ) ) : ?>
 						<?php dynamic_sidebar( 'language-switcher' ); ?>
 					<?php endif; ?>
-					<?php get_search_form();?>
+				    
+				    <?php get_template_part('header', 'searchform'); ?>
 				</div>
 			</div>
 		</section>
@@ -68,8 +70,13 @@ global $options;
 				echo '<a itemprop="url" rel="home" href="'.fau_esc_url(home_url( '/' ) ).'">';	
 			    } 
 
+
 			    if ( ! empty( $header_image ) ) {	
-				echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.get_bloginfo( 'title' ).'">';	   
+				echo '<img src="'.fau_esc_url( $header_image ).'"  alt="'.esc_attr(get_bloginfo( 'title' )).'">';	
+
+			//	echo '<img src="'.fau_esc_url( $header_image ).'" width="'.get_custom_header()->width.'" height="'.get_custom_header()->height.'" alt="'.esc_attr(get_bloginfo( 'title' )).'">';	
+				// echo '<img src="'.fau_esc_url( $header_image ).'" width="'.$options['default_logo_width'].'" height="'.$options['default_logo_height'].'" alt="'.esc_attr(get_bloginfo( 'title' )).'">';
+				
 			    } else {				 
 				echo get_bloginfo( 'title' );   
 			    } 
