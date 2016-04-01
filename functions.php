@@ -6,11 +6,11 @@
  */
 
 load_theme_textdomain( 'fau', get_template_directory() . '/languages' );
+require_once( get_template_directory() . '/functions/defaults.php' );
 require_once( get_template_directory() . '/functions/constants.php' );
 $options = fau_initoptions();
 require_once( get_template_directory() . '/functions/helper-functions.php' );
 require_once( get_template_directory() . '/functions/theme-options.php' );     
-require_once( get_template_directory() . '/functions/bootstrap.php');
 require_once( get_template_directory() . '/functions/shortcodes.php');
 require_once( get_template_directory() . '/functions/plugin-support.php' );
 require_once( get_template_directory() . '/functions/menu.php');
@@ -26,36 +26,11 @@ function fau_setup() {
 	
 
 	if ( ! isset( $content_width ) ) $content_width = $options['content-width'];
-	/*
-	 * This theme styles the visual editor to resemble the theme style,
-	 * specifically font, colors, icons, and column width.
-	 */
 	add_editor_style( array( 'css/editor-style.css' ) );
+	add_theme_support( 'html5');
+	add_theme_support('title-tag');
 
-	// Adds RSS feed links to <head> for posts and comments.
-	add_theme_support( 'automatic-feed-links' );
-
-	// Switches default core markup for search form, comment form, and comments
-	// to output valid HTML5.
-//	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
-
-	/*
-	 * This theme supports all available post formats by default.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-//	add_theme_support( 'post-formats', array(
-//		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
-//	) );
-
-	if ( ! function_exists( '_wp_render_title_tag' ) ) :
-	    function theme_slug_render_title() {
-	?>
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
-	<?php
-	    }
-	    add_action( 'wp_head', 'theme_slug_render_title' );
-	endif;
-	 
+	
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'meta', __( 'Meta-Navigation oben', 'fau' ) );
 	register_nav_menu( 'meta-footer', __( 'Meta-Navigation unten', 'fau' ) );
@@ -85,20 +60,24 @@ function fau_setup() {
     
 	
 	/* Thumb for Main menu - Name: portalmenu-thumb */
-	add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
- 
+	// add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
+	/*
+	 * Brauchen wir mit 1.4 nicht mehr. Auf den Portalindexseitemn im Content wird page-thumb verwendet. 
+	 * Im Flyout-Menu wird post verwendet.
+	 * 
+	 */
 	
 	/* Thumb for Posts in Lists - Name: post-thumb */
-	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2
+	add_image_size( 'post-thumb', $options['default_postthumb_width'], $options['default_postthumb_height'], $options['default_postthumb_crop']); // 3:2  220:147, false
 	
 	/* Thumb of Topevent in Sidebar - Name: topevent-thumb */
-	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); 
+	add_image_size( 'topevent-thumb', $options['default_topevent_thumb_width'], $options['default_topevent_thumb_height'], $options['default_topevent_thumb_crop']); // 140:90, true
 	
 	/* Thumb for Image Menus in Content - Name: page-thumb */
 	add_image_size( 'page-thumb', $options['default_submenuthumb_width'], $options['default_submenuthumb_height'], true); // 220:110
 	
 	/* Thumb for Posts, displayed in post/page single display - Name: post */
-	add_image_size( 'post', $options['default_post_width'], $options['default_post_height'], $options['default_post_crop']);
+	add_image_size( 'post', $options['default_post_width'], $options['default_post_height'], $options['default_post_crop']);  // 300:200  false
 	
 	/* Thumb for person-type; small for sidebar - Name: person-thumb */
 	add_image_size( 'person-thumb', $options['default_person_thumb_width' ], $options['default_person_thumb_height'], $options['default_person_thumb_crop'	]); // 60, 80, true
@@ -111,7 +90,7 @@ function fau_setup() {
 
 	
 	/* Thumb for Logos (used in carousel) - Name: logo-thumb */
-	add_image_size( 'logo-thumb', $options['default_logo_carousel_width'], $options['default_logo_carousel_height'], $options['default_logo_carousel_crop']);
+	add_image_size( 'logo-thumb', $options['default_logo_carousel_width'], $options['default_logo_carousel_height'], $options['default_logo_carousel_crop']);   // 140:110, true
 
 	/* 
 	 * Größen für Bildergalerien: 
@@ -136,20 +115,26 @@ function fau_setup() {
 	
 	
 	/* Remove something out of the head */
-	remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
-	remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed	
+	// remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
+	// remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed	
 	remove_action( 'wp_head', 'post_comments_feed_link ', 2 ); // Display the links to the general feeds: Post and Comment Feed
 	remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
 	remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-	remove_action( 'wp_head', 'index_rel_link' ); // index link
+	// remove_action( 'wp_head', 'index_rel_link' ); // index link
 	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
 	//remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0);
+
 	
 
 }
 add_action( 'after_setup_theme', 'fau_setup' );
 
+
+
+/*
+ * Get Options
+ */
 function fau_initoptions() {
    global $defaultoptions;
     
@@ -158,7 +143,7 @@ function fau_initoptions() {
         $newoptions = array_merge($defaultoptions,$oldoptions);	  
     } else {
         $newoptions = $defaultoptions;
-    }    
+    }       
     return $newoptions;
 }
 
@@ -174,8 +159,7 @@ function fau_register_scripts() {
     wp_register_script( 'fau-libs-jquery-flexslider', get_fau_template_uri() . '/js/libs/jquery.flexslider.js', array('jquery'), $options['js-version'], true );
 	// Flexslider für Startseite und für Galerien.  
     wp_register_script( 'fau-libs-jquery-hoverintent', get_fau_template_uri() . '/js/libs/jquery.hoverintent.js', array(), $options['js-version'], true );
-//	wp_register_script( 'fau-libs-jquery-fluidbox', get_fau_template_uri() . '/js/libs/jquery.fluidbox.js', array(), $options['js-version'], true );
-	// wird nirgends verwendet
+
     wp_register_script( 'fau-libs-jquery-fancybox', get_fau_template_uri() . '/js/libs/jquery.fancybox.js', array('jquery'), $options['js-version'], true );  
 	// Fuer bessere Lightboxen
     wp_register_script( 'fau-libs-jquery-caroufredsel', get_fau_template_uri() . '/js/libs/jquery.caroufredsel.js', array('jquery'), $options['js-version'], true );
@@ -191,7 +175,9 @@ function fau_custom_init() {
 }
 add_action( 'init', 'fau_custom_init' );
 	
-
+/*  
+ * Activates base scripts
+ */
 function fau_basescripts_styles() {
     global $options;
     global $usejslibs;
@@ -201,10 +187,6 @@ function fau_basescripts_styles() {
 
     wp_enqueue_script('fau-libs-jquery-hoverintent');
 	// wird für die Navigationen mit <nav> verwendet
-
-     // wp_enqueue_script('fau-libs-jquery-fluidbox');
-	// macht eine ALternative zu lightbox. http://terrymun.github.io/Fluidbox/ 
-	// Wird nicht verwendet?
 
     wp_enqueue_script('fau-libs-jquery-fancybox');
 	// wird für Bilder verwendet, die mit Lightbox vergrößert werden,
@@ -255,27 +237,31 @@ function fau_addmetatags() {
     global $options;
 
     $output = "";
-    $output .= '<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'" />'."\n";
-  //  $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
+    $output .= '<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'">'."\n";
     $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";    
-    
-    // $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">'."\n";    
 
     $output .= fau_get_rel_alternate();
             
     if ((isset( $options['google-site-verification'] )) && ( strlen(trim($options['google-site-verification']))>1 )) {
         $output .= '<meta name="google-site-verification" content="'.$options['google-site-verification'].'">'."\n";
     }
-	
-    if ((isset($options['favicon-file'])) && ($options['favicon-file_id']>0 )) {	 
-        $output .=  '<link rel="shortcut icon" href="'.$options['favicon-file'].'">'."\n";
-    } else {
-        $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/img/apple-touch-icon.png">'."\n";
-        $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/img/favicon.ico">'."\n";
+
+    if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() ) {
+	    $output .=  '<link rel="apple-touch-icon" href="'.get_fau_template_uri().'/img/apple-touch-icon.png">'."\n";
+	    $output .=  '<link rel="shortcut icon" href="'.get_fau_template_uri().'/img/favicon.ico">'."\n";	
     }
+    
+    
+    	// Adds RSS feed links to <head> for posts and comments.
+	// add_theme_support( 'automatic-feed-links' );
+	// Will post both: feed and comment feed; To use only main rss feed, i have to add it manually in head
+    
+    $title = sanitize_text_field(get_bloginfo( 'name' ));
+    $output .= '<link rel="alternate" type="application/rss+xml" title="'.$title.' - RSS 2.0 Feed" href="'.get_bloginfo( 'rss2_url').'">'."\n";
+    
+    
     echo $output;
 }
-
 add_action('wp_head', 'fau_addmetatags',1);
 
 
@@ -330,22 +316,72 @@ function fau_excerpt_length( $length ) {
     global $options;
     return $options['default_excerpt_length'];
 }
-add_filter( 'excerpt_length', 'fau_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'fau_excerpt_length' );
 
+
+
+/*
+ * Update Settings by options and defaults
+ */
+function fau_init_header_logos() {
+    global $options;
+    global $default_fau_orga_data;
+
+    $header_logos = array();
+    foreach($default_fau_orga_data as $name=>$value) {
+
+	if (strpos($name, '_') === 0) {
+	    if ((strpos($name, '_faculty') === 0) && (!empty($options['website_usefaculty'])) ) {	    
+		    $sub = $options['website_usefaculty'];
+		    if (isset($default_fau_orga_data[$name][$sub])) {
+			$header_logos[$sub]['url'] = $default_fau_orga_data[$name][$sub]['thumbnail'];
+			if (isset($default_fau_orga_data[$name][$sub]['url'])) {
+			    $header_logos[$sub]['thumbnail_url'] = $default_fau_orga_data[$name][$sub]['thumbnail'];
+			} else {
+			    $header_logos[$sub]['thumbnail_url'] = $default_fau_orga_data[$name][$sub]['url'];
+			}
+			$header_logos[$sub]['description'] = $default_fau_orga_data[$name][$sub]['title']; 
+		    }
+	    
+	    } else {
+		foreach($value as $sub=>$sval) {
+		    $header_logos[$sub]['url'] = $default_fau_orga_data[$name][$sub]['url'];
+		    if (isset($default_fau_orga_data[$name][$sub]['thumbnail'])) {
+			$header_logos[$sub]['thumbnail_url'] = $default_fau_orga_data[$name][$sub]['thumbnail'];
+		    } else {
+			$header_logos[$sub]['thumbnail_url'] = $default_fau_orga_data[$name][$sub]['url'];
+		    }
+		    $header_logos[$sub]['description'] = $default_fau_orga_data[$name][$sub]['title']; 
+		}
+	    }
+	} else {
+	    $header_logos[$name]['url'] = $default_fau_orga_data[$name]['url'];
+	    if (isset($default_fau_orga_data[$name]['thumbnail'])) {
+		$header_logos[$name]['thumbnail_url'] = $default_fau_orga_data[$name]['thumbnail'];
+	    } else {
+		$header_logos[$name]['thumbnail_url'] = $default_fau_orga_data[$name]['url'];
+	    }
+	    $header_logos[$name]['description'] = $default_fau_orga_data[$name]['title']; 
+	}
+     }
+     return $header_logos;
+} 
 
 
 /* Header Setup */
-function fau_custom_header_setup() {
-    global $default_header_logos;
+function fau_custom_header_setup() { 
     global $options;
 	$args = array(
-	    'default-image'          => $options['default_logo_src'],
+//	    'default-image'          => $options['default_logo_src'],
 	    'height'                 => $options['default_logo_height'],
 	    'width'                  => $options['default_logo_width'],
 	    'admin-head-callback'    => 'fau_admin_header_style',
+	    'header-text'			=> false,
+	    'flex-width'	    => true,
+	    'flex-height'	    => true,
 	);
 	add_theme_support( 'custom-header', $args );
-
+	$default_header_logos = fau_init_header_logos();
 	register_default_headers( $default_header_logos );
 }
 add_action( 'after_setup_theme', 'fau_custom_header_setup' );
@@ -405,14 +441,16 @@ function fau_sidebars_init() {
 }
 add_action( 'widgets_init', 'fau_sidebars_init' );
 
-
-
-
+/*
+ * Format Widgets
+ */
 add_filter( 'widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
 add_filter( 'widget_text', array( $wp_embed, 'autoembed'), 8 );
 
 
-
+/*
+ * Sorround embeddings with div class
+ */
 function add_video_embed_note($html, $url, $attr) {
 	return '<div class="oembed">'.$html.'</div>';
 }
@@ -430,8 +468,7 @@ function fau_protected_attribute ($classes, $item) {
 add_filter('page_css_class', 'fau_protected_attribute', 10, 3);
 
 
-function custom_error_pages()
-{
+function custom_error_pages() {
     global $wp_query;
  
     if(isset($_REQUEST['status']) && $_REQUEST['status'] == 403)
@@ -467,8 +504,7 @@ function custom_error_pages()
     }
 }
  
-function custom_error_title($title='',$sep='')
-{
+function custom_error_title($title='',$sep='') {
     if(isset($_REQUEST['status']) && $_REQUEST['status'] == 403)
         return "Forbidden ".$sep." ".get_bloginfo('name');
  
@@ -860,8 +896,11 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
 
 function fau_get_toplinks() {
     global $options;
+    global $defaultoptions;
     global $default_link_liste;
-    
+    global $default_fau_orga_data;
+    global $default_fau_orga_faculty;
+	    
     $uselist =  $default_link_liste['meta'];
     $result = '';
     
@@ -871,40 +910,116 @@ function fau_get_toplinks() {
 	$result .= "\n";
     }
     
-	// website_type: 0 = Fakultaetsportal; 1 = Lehrstuehle, Einrichtungen, etc unter Fakultaet; 2 = Sonstige
-	    
-    if ($options['website_type']==0) {
-	$options['default_display_fauhomelink'] = true;
-	$options['default_display_facultyhomelink'] = false;
-	$options['fauhome_useimg'] = false;
-    } elseif ($options['website_type']==1) {
-	$options['default_display_fauhomelink'] = true;
-	$options['default_display_facultyhomelink'] = true;	
-	$options['fauhome_useimg'] = true;
-    } else {
-	$options['default_display_fauhomelink'] = true;
-	$options['default_display_facultyhomelink'] = false;
-	$options['fauhome_useimg'] = true;
+
+	/* 
+	 * website_type: 
+	 *  0 = Fakultaetsportal oder zentrale Einrichtung
+	 *	=> Nur Link zur FAU, kein Link zur Fakultät
+	 *	   Link zur FAU als Text, da FAU-Logo bereits Teil des
+	 *         Fakultätslogos
+	 *  1 = Lehrstuhl oder eine andere Einrichtung die einer Fakultät zugeordnet ist 
+	 *	=> Link zur FAU und Link zur Fakultät, 
+	 *         Link zur FAU als Grafik, Link zur Fakultät als Text (lang oder kurz nach Wahl)
+	 *  2 = Sonstige Einrichtung, die nicht einer Fakultät zugeordnet sein muss
+	 *	=> Nur Link zur FAU, kein Link zur Fakultät
+	 *	   Link zur FAU als Grafik (das ist der Unterschied zur Option 0)
+	 *  3 = Koopertation mit Externen (neu ab 1.4)
+	 *	=> Kein Link zur FAU
+	 *  4 = FAU-Portal (neu ab 1.4, nur für zukunftigen Bedarf)
+	 *	=> Kein Link zur FAU, aktiviert 4 Spalten unter HERO
+	 * 
+	 * 'website_usefaculty' = ( nat | phil | med | tf | rw )
+	 *  Wenn gesetzt, wird davon ausgegangen, dass die Seite
+	 *  zu einer Fakultät gehört; Daher werden website_type-optionen auf
+	 *  0 und 2 reduziert. D.h.: Immer LInk zur FAU, keine Kooperationen.
+	 *  
+	 */
+    
+    $options['website_usefaculty'] = $defaultoptions['website_usefaculty'];
+    $isfaculty = false;
+    if ( (isset($options['website_usefaculty'])) && (in_array($options['website_usefaculty'],$default_fau_orga_faculty))) {
+	$isfaculty = true;
     }
+    
+    $linkhome = true;
+    $linkhomeimg = false;
+    $linkfaculty = false;
+
+    // Using if-then-else structure, due to better performance as switch 
+    if ($isfaculty) {
+	if ($options['website_type']==0) {
+	    $linkhomeimg = false;
+	    $linkfaculty = false;
+	} else {
+	    $linkhomeimg = true;
+	    $linkfaculty = true;
+	}
+    } else {
+	if ($options['website_type']==1) {
+	    // Option sollte eigentlich nicht moeglich sein. Aber zur
+	    // moglichen zukünftigen Nutzung eingebaut.
+	     $linkhomeimg = true;
+	} elseif ($options['website_type']==2) {
+	     $linkhomeimg = true;
+	} elseif ($options['website_type']==3) {
+	    $linkhome = false;
+        } elseif ($options['website_type']==4) {
+	    $linkhome = false;
+	}
+    }
+
+    if (isset($options['default_home_orga'])) {
+	$orga = $options['default_home_orga'];
+    } else {
+	$orga = 'fau';
+    }
+    $hometitle = $shorttitle = $homeurl = $linkimg = '';
+    if ((isset($default_fau_orga_data[$orga])) && is_array($default_fau_orga_data[$orga])) {
+	$hometitle = $default_fau_orga_data[$orga]['title'];
+	$shorttitle = $default_fau_orga_data[$orga]['shorttitle'];
+	$homeurl = $default_fau_orga_data[$orga]['homeurl'];
+	$linkimg = $default_fau_orga_data[$orga]['home_imgsrc'];
+    } else {
+	$linkhome = false;
+    }
+   
+    $facultytitle = $facultyshorttitle = $facultyurl = '';
+    if (($linkfaculty) && isset($default_fau_orga_data['_faculty'][$options['website_usefaculty']])) {
+	$orga =  $options['website_usefaculty'];
+	$facultytitle = $default_fau_orga_data['_faculty'][$orga]['title'];
+	$facultyshorttitle = $default_fau_orga_data['_faculty'][$orga]['shorttitle'];
+	$facultyurl = $default_fau_orga_data['_faculty'][$orga]['homeurl'];
+    } else {
+	$linkfaculty = false;
+    }
+
     
     
     $thislist = '';
-    if (($options['default_display_fauhomelink']==true) && isset($options['fauhome_url'])) {
+    
+    
+    if (($linkhome) && isset($homeurl)) {
 	$thislist .= '<li class="fauhome">';
-	$thislist .= '<a href="'.$options['fauhome_url'].'">';
+	$thislist .= '<a href="'.$homeurl.'">';
 	    			
-	if ($options['fauhome_useimg']) {
-	    $thislist .= '<img src="'.$options['fauhome_imgsrc'].'" alt="'.$options['fauhome_title'].'">'; 
+	if ($linkhomeimg) {
+	    $thislist .= '<img src="'.fau_esc_url($linkimg).'" alt="'.esc_attr($hometitle).'">'; 
 	} else {
-	    $thislist .= $options['fauhome_linktext']; 
+	    $thislist .= __('Zur','fau').' '.$shorttitle; 
 	}	
 	$thislist .= '</a>';
 	$thislist .= '</li>'."\n";	
     }
-    if (($options['default_display_facultyhomelink']==true) && isset($options['facultyhome_url'])) {
+    
+
+    if (($linkfaculty) && isset($facultyurl)) {
 	$thislist .= '<li class="facultyhome">';
-	$thislist .= '<a href="'.$options['facultyhome_url'].'">';
-	$thislist .= $options['facultyhome_title']; 
+	$thislist .= '<a href="'.$facultyurl.'">';
+	if ($options['default_faculty_useshorttitle']) {
+	    $thislist .= $facultyshorttitle; 
+	} else {
+	    $thislist .= $facultytitle; 
+	}
 	$thislist .= '</a>';
 	$thislist .= '</li>'."\n";	
     }
@@ -922,7 +1037,12 @@ function fau_get_toplinks() {
 		foreach ( (array) $menu_items as $key => $menu_item ) {
 		    $title = $menu_item->title;
 		    $url = $menu_item->url;
-		    $thislist .= '<li><a href="' . $url . '">' . $title . '</a></li>';
+		    $class_names = '';
+		    $classes[] = 'menu-item';
+		    $classes = empty( $menu_item->classes ) ? array() : (array) $menu_item->classes;
+		    $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ) ) ); 
+		    $class_names = ' class="' . esc_attr( $class_names ) . '"';
+		    $thislist .= '<li'.$class_names.'><a href="' . $url . '">' . $title . '</a></li>';
 		}
 	    } 
 	
@@ -947,7 +1067,7 @@ function fau_get_toplinks() {
        }   
     }
     if (isset($thislist)) {	
-	$result .= '<ul id="meta-nav">';
+	$result .= '<ul id="meta-nav" class="menu">';
 	$result .= $thislist;
 	$result .= '</ul>';	
 	$result .= "\n";	
@@ -987,7 +1107,7 @@ function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $w
 	$morestr = $options['default_excerpt_morestring'];
     }
     
-    $excerpt = get_post_field('post_excerpt',$id);
+    $excerpt = get_the_excerpt(); // get_post_field('post_excerpt',$id);
  
     if (mb_strlen(trim($excerpt))<5) {
 	$excerpt = get_post_field('post_content',$id);
@@ -996,7 +1116,6 @@ function fau_custom_excerpt($id = 0, $length = 0, $withp = true, $class = '', $w
     $excerpt = preg_replace('/\s+(https?:\/\/www\.youtube[\/a-z0-9\.\-\?&;=_]+)/i','',$excerpt);
     $excerpt = strip_shortcodes($excerpt);
     $excerpt = strip_tags($excerpt, $options['custom_excerpt_allowtags']); 
-
   
   if (mb_strlen($excerpt)<5) {
       $excerpt = '<!-- '.__( 'Kein Inhalt', 'fau' ).' -->';
@@ -1095,20 +1214,20 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 	$output .= "</h2>\n";  
 	
 	
-	 $categories = get_the_category();
-	    $separator = ', ';
-	    $thiscatstr = '';
-	    $typestr = '';
-	    if($categories){
-		$typestr .= '<span class="news-meta-categories"> ';
-		$typestr .= __('Kategorie', 'fau');
-		$typestr .= ': ';
-		foreach($categories as $category) {
-		    $thiscatstr .= '<a href="'.get_category_link( $category->term_id ).'">'.$category->cat_name.'</a>'.$separator;
-		}
-		$typestr .= trim($thiscatstr, $separator);
-		$typestr .= '</span> ';
+	$categories = get_the_category();
+	$separator = ', ';
+	$thiscatstr = '';
+	$typestr = '';
+	if($categories){
+	    $typestr .= '<span class="news-meta-categories"> ';
+	    $typestr .= __('Kategorie', 'fau');
+	    $typestr .= ': ';
+	    foreach($categories as $category) {
+		$thiscatstr .= '<a href="'.get_category_link( $category->term_id ).'">'.$category->cat_name.'</a>'.$separator;
 	    }
+	    $typestr .= trim($thiscatstr, $separator);
+	    $typestr .= '</span> ';
+	}
 	    
 	
 	if ($withdate) {
@@ -1180,14 +1299,75 @@ function fau_display_news_teaser($id = 0, $withdate = false) {
 
 /* 
  * Suchergebnisse 
+*/
+
+/* 
+ * Optionaler Suchfilter
  */
-function fau_display_search_resultitem() {
+function fau_searchfilter($query) {
+    global $options;
+    if ($query->is_search && !is_admin() ) {
+	if(isset($_GET['post_type'])) {
+	    $types = (array) $_GET['post_type'];
+	} else {
+	    $types = $options['search_post_types'];
+	  //  $types = array("person", "post", "page", "attachment");
+	  //  $types = array("attachment","person");
+	}
+	$allowed_types = get_post_types(array('public' => true, 'exclude_from_search' => false));
+	foreach($types as $type) {
+	    if( in_array( $type, $allowed_types ) ) { $filter_type[] = $type; }
+	}
+	if(count($filter_type)) {
+	    $query->set('post_type',$filter_type);
+	}	
+        $query->set('post_status', array('publish','inherit'));
+
+    }
+}
+add_filter("pre_get_posts","fau_searchfilter");
+
+/* 
+ * Keine Bilder bei der Suche ausgeben. Attachments und Posts/Pages sonst aber ja
+ */
+function fau_search_remove_images($where) {
+    global $wpdb;
+    if (!is_admin() ) {
+	$where.=' AND '.$wpdb->posts.'.post_mime_type NOT LIKE \'image/%\'';
+    }
+    return $where;
+}
+add_filter( 'posts_where' , 'fau_search_remove_images' );
+
+
+/*
+ * Sortierung
+ */
+add_filter('posts_orderby','fau_sort_custom',10,2);
+function fau_sort_custom( $orderby, $query ){
+    global $wpdb;
+
+    if(!is_admin() && is_search())
+    //    $orderby =  $wpdb->prefix."posts.post_type ASC, {$wpdb->prefix}posts.post_date DESC";
+	 $orderby =  $wpdb->prefix."posts.post_modified DESC";
+
+    return  $orderby;
+}
+
+
+/*
+ * Anzeige Einzelergebnisse
+ */
+function fau_display_search_resultitem($withsidebar = 1) {
     global $post;
     global $options;
     
     $output = '';
     $withthumb = $options['search_display_post_thumbnails'];
     $withcats =  $options['search_display_post_cats'];
+    $withtypenote = $options['search_display_typenote'];
+    $attachment = array();
+    
     if (isset($post) && isset($post->ID)) {
 	
 	$link = get_post_meta( $post->ID, 'external_link', true );
@@ -1198,17 +1378,25 @@ function fau_display_search_resultitem() {
 	    $link = fau_make_link_relative(get_permalink($post->ID));
 	}
 	
-	
-	$output .= '<article class="search-result">'."\n";
+	$type = get_post_type();
+	$typeclass = "res-".$type;
+	$output .= '<article class="search-result '.$typeclass.'">'."\n";
 	$output .= "\t<h3><a ";
 	if ($external==1) {
 	    $output .= 'class="ext-link" ';
 	}
-	 $output .= "href=\"".$link."\">".get_the_title()."</a></h3>\n";
-	$type = get_post_type();
+	$output .= "href=\"".$link."\">".get_the_title()."</a></h3>\n";
+	
+	$typeinfo = get_post_type_object( $type );
+	
+	
 	if ( $type == 'post') {
-	     $typestr = '<div class="search-meta">';
-
+	    $typestr = '<div class="search-meta">';
+	    if ($withtypenote == true) { 
+		$typestr .= '<span class="post-meta-news"> ';
+		$typestr .= __('Beitrag', 'fau'); 
+		$typestr .= '</span>';
+	    }
 	    $categories = get_the_category();
 	    $separator = ', ';
 	    $thiscatstr = '';
@@ -1244,55 +1432,153 @@ function fau_display_search_resultitem() {
 	    $typestr .= __('Veranstaltungshinweis', 'fau');
 	    $typestr .= '</span>';
 	    $typestr .= '</div>'."\n";
+	} elseif ($type == 'attachment') {    
+	    
+	    $attachment = wp_prepare_attachment_for_js($post->ID);
+	    $filesize = isset($attachment['filesizeHumanReadable']) ? $attachment['filesizeHumanReadable'] : '';
+	    $filesize = (isset($attachment['filesize']) && (!isset($filesize))) ? $attachment['filesize'] : $filesize;
+	    $filesize = (isset($attachment['filesizeInBytes']) && (!isset($filesize))) ? $attachment['filesizeInBytes']." Bytes" : $filesize;
+
+	    $filetype = wp_check_filetype( $attachment['url'] );
+	     
+	    $typestr = '<div class="search-meta">';
+	    $typestr .= '<span class="post-meta-attachment">';	    
+	    $typestr .= ' <span class="dateityp">'.$filetype['ext'].'</span> ';
+	    $typestr .= __('Datei', 'fau');	  
+	    $typestr .= '</span>';
+	    
+	    $typestr .= ' <span class="post-meta-date"> ';
+	    $typestr .= get_the_date();	   
+	    
+	    if (get_the_date() !=get_the_modified_date()) { 
+		$typestr .= ' ('.__('Erstellungsdatum', 'fau').')';
+		$typestr .= '</span>';	
+		$typestr .= ' <span class="post-meta-date"> ';
+		$typestr .= get_the_modified_date();	   
+		$typestr .= ' ('.__('Letzte Änderung', 'fau').')';		
+	    }
+	    $typestr .= '</span>';		
+
+	   
+	    $typestr .= ' <span class="download">';
+	    $typestr .= ' <a href="'.fau_esc_url($attachment['url']).'">'.__('Download','fau').'</a>'; 
+	    
+	    $typestr .= ' <span class="filesize">(<span class="unsichtbar">';
+	    $typestr .= __('Größe:', 'fau'). ' </span>'.$filesize; 
+	    $typestr .= ')</span>';	
+	    $typestr .= '</span>';
+	    
+	    $typestr .= '</div>'."\n";	    
+	} elseif ($withtypenote == true) { 
+	    $typestr = '<div class="search-meta">';
+	    if (($type == 'kontakt') || ($type == 'person') ) {		
+		$typestr .= '<span class="post-meta-kontakt"> ';
+		$typestr .= $typeinfo->labels->singular_name; 
+		$typestr .= '</span>';
+	    } else {
+		$typestr .= '<span class="post-meta-defaulttype"> ';
+		$typestr .= $typeinfo->labels->singular_name; 
+		$typestr .= '</span>';		
+	    }
+
+		$typestr .= ' <span class="post-meta-date"> ';
+		$typestr .= get_the_modified_date();	   
+		$typestr .= ' ('.__('Letzte Änderung', 'fau').')';
+		$typestr .= '</span>';
+	    
+	    
+	    $typestr .= '</div>'."\n";
 	} else  {
-	     $typestr = '';
+	    $typestr = '';
 	}
 
 	if (!empty($typestr)) { 
 	     $output .= "\t".$typestr."\n"; 
 	}
-	$output .= "\t".'<div class="row">'."\n";  
+	$output .= "\t";
 	
 	
-	if (($withthumb==true) && (has_post_thumbnail( $post->ID )) )  {
-	    $output .= "\t\t".'<div class="span3">'."\n"; 
-	    $output .= '<a href="'.$link.'" class="news-image';
-	    if ($external==1) {
-		$output .= ' ext-link';
+	if (($type == 'person') && (function_exists('fau_person'))) {
+		 $output .= fau_person(array("id"=> $post->ID, 'format' => 'kompakt' ));
+	 
+/*	}elseif (($type == 'standort') && (function_exists('fau_standort'))) {
+		 $output .= fau_standort(array("id"=> $post->ID));	 
+		 
+	*/	
+		 
+	} elseif ($type == 'attachment') {
+	     if ($withthumb==true)   {
+		$output .= '<div class="row">'."\n";  
+		$output .= "\t\t".'<div class="span1 span-small">'."\n"; 
+		$output .= '<img src="'.fau_esc_url($attachment['icon']).'" width="48" height="64" alt="">';
+		$output .= "\t\t".'</div>'."\n"; 
+		if ($withsidebar) {
+		    $output .= "\t\t".'<div class="span7">'."\n"; 
+		} else {
+		    $output .= "\t\t".'<div class="span11">'."\n"; 
+		}
 	    }
-	    $output .= '">';
+	    $output .= "\t\t".'<p><em>'."\n"; 
+	    $output .= "\t\t\t".$attachment['caption'];
+	    $output .= "\t\t".'</em></p>'."\n"; 
+	    $output .= "\t\t".'<p>'."\n"; 
+	    $output .= "\t\t\t".$attachment['description'];
+	    $output .= "\t\t".'</p>'."\n"; 
 
-	    $post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
-	    $imagehtml = '';
-	    if ($post_thumbnail_id) {
-		$sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
-		$imageurl = $sliderimage[0]; 	
-	    }
-	    if (!isset($imageurl) || (strlen(trim($imageurl)) <4 )) {
-		$imageurl = $options['default_postthumb_src'];
-	    }
-	    $output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_postthumb_width'].'" height="'.$options['default_postthumb_height'].'" alt="">';
-	    $output .= '</a>';
 	    
-	    $output .= "\t\t".'</div>'."\n"; 
-	    $output .= "\t\t".'<div class="span5">'."\n"; 
+	    if ($withthumb==true)   {
+		$output .= "\t</div> <!-- /row -->\n";
+	    }	
+		
+
 	} else {
-	    $output .= "\t\t".'<div class="span8">'."\n"; 
-	}
-	
-	
-	
-	$output .= "\t\t".'<p>'."\n"; 
-	$output .= fau_custom_excerpt($post->ID,$options['default_search_excerpt_length'],false,'',true,$options['search_display_excerpt_morestring']);	
-	if ($options['search_display_continue_arrow']) {
-	    $output .= '<a class="read-more-arrow';
-	    if ($external==1) {
-		$output .= ' ext-link';
+
+	    if (($withthumb==true) && (has_post_thumbnail( $post->ID )) )  {
+		$output .= '<div class="row">'."\n";  
+		$output .= "\t\t".'<div class="span3">'."\n"; 
+		$output .= '<a href="'.$link.'" class="news-image';
+		if ($external==1) {
+		    $output .= ' ext-link';
+		}
+		$output .= '">';
+
+		$post_thumbnail_id = get_post_thumbnail_id( $post->ID, 'post-thumb' ); 
+		$imagehtml = '';
+		if ($post_thumbnail_id) {
+		    $sliderimage = wp_get_attachment_image_src( $post_thumbnail_id,  'post-thumb');
+		    $imageurl = $sliderimage[0]; 	
+		}
+		if (!isset($imageurl) || (strlen(trim($imageurl)) <4 )) {
+		    $imageurl = $options['default_postthumb_src'];
+		}
+		$output .= '<img src="'.fau_esc_url($imageurl).'" width="'.$options['default_postthumb_width'].'" height="'.$options['default_postthumb_height'].'" alt="">';
+		$output .= '</a>';
+
+		$output .= "\t\t".'</div>'."\n"; 
+		if ($withsidebar) {
+		    $output .= "\t\t".'<div class="span6">'."\n"; 
+		} else {
+		    $output .= "\t\t".'<div class="span9">'."\n"; 
+		}
 	    }
-	    $output .= '" href="'.$link.'">›</a>'; 
+
+	    $output .= "\t\t".'<p>'."\n"; 
+	    $output .= fau_custom_excerpt($post->ID,$options['default_search_excerpt_length'],false,'',true,$options['search_display_excerpt_morestring']);	
+	    if ($options['search_display_continue_arrow']) {
+		$output .= '<a class="read-more-arrow';
+		if ($external==1) {
+		    $output .= ' ext-link';
+		}
+		$output .= '" href="'.$link.'">›</a>'; 
+	    }
+	    $output .= "\t\t\t".'</p>'."\n"; 
+	    if (($withthumb==true) && (has_post_thumbnail( $post->ID )) )  {
+		$output .= "\t</div> <!-- /row -->\n";
+	    }	
+	
 	}
-	$output .= "\t\t\t".'</p>'."\n"; 
-	$output .= "\t</div> <!-- /row -->\n";	
+	
+	
 	$output .= "</article>\n";
     } else {
 	$output .= "<!-- empty result -->\n";
@@ -1424,78 +1710,6 @@ add_filter( 'wp_link_query_args', 'fau_wp_link_query_args' );
 
 
 
- if ( ! function_exists( 'fau_get_person_index' ) ) :  
-    function fau_get_person_index($id=0) {
-     global $options;
-	$honorificPrefix = get_post_meta($id, 'fau_person_honorificPrefix', true);
-	$givenName = get_post_meta($id, 'fau_person_givenName', true);
-	$familyName = get_post_meta($id, 'fau_person_familyName', true);
-	$honorificSuffix = get_post_meta($id, 'fau_person_honorificSuffix', true);
-	$jobTitle = get_post_meta($id, 'fau_person_jobTitle', true);
-	$telephone = get_post_meta($id, 'fau_person_telephone', true);
-	$email = get_post_meta($id, 'fau_person_email', true);
-	$worksFor = get_post_meta($id, 'fau_person_worksFor', true);
-        $faxNumber = get_post_meta($id, 'fau_person_faxNumber', true);
-        $type = get_post_meta($id, 'fau_person_typ', true);
-
-	
-	$fullname = '';
-	if($honorificPrefix) 	$fullname .= '<span itemprop="honorificPrefix">'.$honorificPrefix.'</span> ';
-	if($givenName) 	$fullname .= '<span itemprop="givenName">'.$givenName.'</span> ';
-	if($familyName) 		$fullname .= '<span itemprop="familyName">'.$familyName.'</span>';
-	if($honorificSuffix) 	$fullname .= ' '.$honorificSuffix;
-	
-	if (empty($fullname)) {
-	    $fullname = get_the_title($id);
-	}
-     ?>
-     
-    <div class="person content-person" itemscope="" itemtype="http://schema.org/Person">
-	<div class="row">
-	    <div class="span1 span-small">		
-		<?php 
-		if (has_post_thumbnail()) {
-		    echo get_the_post_thumbnail($id, 'person-thumb-bigger'); 
-		} else {
-		    if ($type == 'realmale') {
-			$url = $options['plugin_fau_person_malethumb'];     
-		    } elseif ($type == 'realfemale') {
-			$url = $options['plugin_fau_person_femalethumb']; 
-		    } else {
-			$url = '';     
-		    }
-		    if ($url) {
-			echo '<img src="'.$url.'" width="90" height="120" alt="">';
-		    }
-		}
-		
-		?>
-	    </div>
-	    <div class="span3">
-		<h3><?php echo $fullname; ?></h3>
-		<ul class="person-info">
-		    <?php if ($jobTitle) { ?>
-		    <li class="person-info-position"><span class="screen-reader-text">Tätigkeit: </span><span itemprop="jobTitle"><?php echo $jobTitle; ?></span></li>
-		    <?php } ?>
-		     <?php if ($telephone) { ?>
-		    <li class="person-info-phone"><span class="screen-reader-text">Telefonnummer: </span><span itemprop="telephone"><?php echo $telephone; ?></span></li>
-		    <?php } ?>
-		
-		    <?php if ($email) { ?>
-		    <li class="person-info-email"><span class="screen-reader-text">E-Mail: </span><a itemprop="email" href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></li>
-		    <?php } ?>
-		</ul>
-	    </div>
-	    <div class="span3">
-		<div class="person-info-more"><a title="Weitere Informationen zu <?php echo $givenName; echo " ".$familyName;?> aufrufen" class="person-read-more" href="<?php the_permalink($id); ?>">Mehr ›</a></div>
-	    </div>
-	</div>
-    </div>
-    <?php 
-}
-endif;
-
-
 if ( ! function_exists( 'fau_comment' ) ) :
 /**
  * Template for comments and pingbacks.
@@ -1571,8 +1785,6 @@ if ($options['advanced_reveal_pages_id']) {
     add_filter( 'manage_pages_columns', 'revealid_add_id_column', 5 );
     add_action( 'manage_pages_custom_column', 'revealid_id_column_content', 5, 2 );
 }
-
-
 
 function fau_get_image_attributs($id=0) {
     global $options;
@@ -1699,3 +1911,53 @@ function fau_array2table($array, $table = true) {
         return $out;
     }
 }
+
+
+add_filter('the_content', 'remove_empty_p', 20, 1);
+function remove_empty_p($content){
+    $content = force_balance_tags($content);
+    return preg_replace('#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content);
+}
+
+add_filter('the_content', 'remove_accordion_bad_br', 20, 1);
+function remove_accordion_bad_br($content){
+   // $content = force_balance_tags($content);
+    return preg_replace('#<br\s*/*>\s*<div class="accordion#i', '<div class="accordion', $content);
+}
+
+add_filter('the_content', 'remove_bad_p', 20, 1);
+function remove_bad_p($content){
+   // $content = force_balance_tags($content);
+    $content = preg_replace('#<p><div #i', '<div ', $content);
+    return preg_replace('#</div></p>#i', '</div>', $content);
+}
+
+add_filter('wp_list_categories','categories_postcount_filter');
+function categories_postcount_filter ($variable) {
+   $variable = str_replace('(', '<span class="post_count">(', $variable);
+   $variable = str_replace(')', ')</span>', $variable);
+   return $variable;
+}
+
+
+
+/*
+ *  Filter to remove the Tinymce Emoji Plugin. 
+ */
+function fau_disable_emojis_tinymce( $plugins ) {
+    return array_diff( $plugins, array( 'wpemoji' ) );
+}
+/*
+ *  Disable Emoji 
+ */
+function fau_disable_emojis() {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    add_filter( 'tiny_mce_plugins', 'fau_disable_emojis_tinymce' );
+}
+add_action( 'init', 'fau_disable_emojis' );

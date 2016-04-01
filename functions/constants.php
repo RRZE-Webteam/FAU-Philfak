@@ -1,13 +1,24 @@
 <?php
 
 /* 
- * Default Constants and values for FAU THeme
+ * Default Constants and values 
  */
 $defaultoptions = array(
-    'js-version'		    => '1.0',
+    'js-version'		    => '1.4',
+	// Theme-Versionslinie
+    'website_type'			=> 1,
+	// website_type: 
+	//  0 = Fakultaetsportal; 1 = Lehrstuehle, Departents 
+	//  2 = Zentrale Einrichtungen, 3 = Kooperationen 
+    'website_usefaculty'		=> 'phil',
+	// phil, med, nat, rw, tf
+	// Setzt fest die Fakultät bei Wahl des Website-Types    
+    'default_home_orga'			=> 'fau',
+	// Muss in $default_fau_orga_data auf erster Ebene vorhanden sein.	
+    'default_faculty_useshorttitle'	=> false,   
     'optionpage-tab-default'	    => 'website',
     'content-width'		    => 770,
-    'src-fallback-slider-image'	    => get_template_directory_uri().'/img/slider-fallback.jpg',
+    'src-fallback-slider-image'	    => get_fau_template_uri().'/img/slider-fallback.jpg',
     'slider-category'		    => 'header',
     'slider-catid'		    => 1,
     
@@ -19,9 +30,11 @@ $defaultoptions = array(
     'start_link_news_cat'	    => 0,    
     'start_link_news_show'	    => 1,
     'start_link_news_linktitle'	    => __('Mehr Meldungen','fau'),
-    'start_link_videoportal_socialmedia'    => true,
-    'start_title_videoportal_socialmedia'   => __('Alle Videos','fau'),
-    'default_submenuthumb_src'	    =>  get_template_directory_uri().'/img/default-submenuthumb.png',
+    'start_link_videoportal_socialmedia'    => false,
+    'start_title_videoportal_socialmedia'   => __('Videoportal','fau'),
+    'start_title_videoportal_url'	    => 'http://video.fau.de',
+
+    'default_submenuthumb_src'	    =>  get_fau_template_uri().'/img/default-submenuthumb.png',
     'default_submenu_spalten'	    => 4,
     'default_submenu_entries'	    => 5,
     'menu_fallbackquote_show_excerpt'		=> 1,
@@ -30,10 +43,10 @@ $defaultoptions = array(
     'start_topevents_max'	    => 1,
     'start_topevents_active'	    => true,
     
-    'default_startseite-bannerbild-image_src'	    => get_template_directory_uri().'/img/bannerbild-tafel-1260x182.jpg',
+    'default_startseite-bannerbild-image_src'	    => get_fau_template_uri().'/img/bannerbild-tafel-1260x182.jpg',
     'startseite_banner_usedefault'  => false,
 
-    'default_topevent_thumb_src'    => get_template_directory_uri().'/img/default-topeventthumb.png',
+    'default_topevent_thumb_src'    => get_fau_template_uri().'/img/default-topeventthumb.png',
     'default_topevent_excerpt_length' => 100,
 
     /* Image Sizes */
@@ -53,11 +66,7 @@ $defaultoptions = array(
     'default_startseite-bannerbild-image_height'    => 182,
     'default_startseite-bannerbild-image_crop'	    => true,
     
-    /* Thumb for Main menu - Name: portalmenu-thumb */
-    'default_mainmenuthumb_width'    => 370,
-    'default_mainmenuthumb_height'   => 185,
-    'default_mainmenuthumb_crop'    => false,
-    
+   
     /* Thumb for Image Menus in Content - Name: page-thumb */
     'default_submenuthumb_width'    => 220,
     'default_submenuthumb_height'   => 110,    
@@ -66,6 +75,12 @@ $defaultoptions = array(
     'default_topevent_thumb_width'  => 140,
     'default_topevent_thumb_height' => 90,
     'default_topevent_thumb_crop'   => true,  
+
+    /* Thumb for Logos (used in carousel) - Name: logo-thumb */
+    'default_logo_carousel_width'	=> 140,
+    'default_logo_carousel_height'	=> 110,
+    'default_logo_carousel_crop'	=> true,   
+
     
     /* Thumb for Posts in Lists - Name: post-thumb */
     'default_postthumb_width'	    => 220,
@@ -92,10 +107,7 @@ $defaultoptions = array(
     'default_person_thumb_page_height'   => 300,
     'default_person_thumb_page_crop'	 => true,         
     
-    /* Thumb for Logos (used in carousel) - Name: logo-thumb */
-    'default_logo_carousel_width'	=> 140,
-    'default_logo_carousel_height'	=> 110,
-    'default_logo_carousel_crop'	=> true,      
+   
   
     /* Images for gallerys - Name: gallery-full */
     'default_gallery_full_width'	=> 940,
@@ -122,9 +134,7 @@ $defaultoptions = array(
     'default_gallery_grid4col_height'	=> 70,
     'default_gallery_grid4col_crop'		=> true,   
     
-    
-    'website_type'			=> 1,
-	// website_type: 0 = Fakultaetsportal; 1 = Lehrstuehle, Einrichtungen, etc unter Fakultaet; 2 = Sonstige
+   
     'breadcrumb_root'			=> __('Startseite', 'fau'),
     'breadcrumb_delimiter'		=> ' <span>/</span>',
     'breadcrumb_beforehtml'		=> '<span class="active">', // '<span class="current">'; // tag before the current crumb
@@ -132,21 +142,15 @@ $defaultoptions = array(
     'breadcrumb_uselastcat'		=> true,
     'breadcrumb_withtitle'		=> false,
     
-    'default_display_fauhomelink'	=> true,
-    'fauhome_url'			=> 'https://www.fau.de',
-    'fauhome_imgsrc'			=> get_template_directory_uri().'/img/logo-fau-37x16.png',
-    'fauhome_title'			=> __('Friedrich-Alexander-Universität (FAU)','fau'),
-    'fauhome_linktext'			=> __('Zur FAU Seite','fau'),
-    'fauhome_useimg'			=> true,
+
+    'default_logo_src'		    => get_fau_template_uri().'/img/logos/logo-default.png',
+    'default_logo_height'	    => 65,
+    'default_logo_width'	    => 240,
+
     
     
-    'default_display_facultyhomelink'   => true,
-    'facultyhome_url'			=> 'https://phil.fau.de',
-    'facultyhome_title'			=> __('Philosophische Fakultät und Fachbereich Theologie','fau'),
-       
-    
-    'socialmedia'		    => 1,
-    'active_socialmedia_footer'	    => array(1),  
+    'socialmedia'		    => 0,
+    'active_socialmedia_footer'	    => array(0),  
     'socialmedia_buttons_title'	    => __('FAUSocial','fau'),
     
     'menu_pretitle_portal'	    => __('Portal', 'fau'),
@@ -164,19 +168,15 @@ $defaultoptions = array(
     'google-site-verification'	    => '',
     'default_mainmenu_number'	    => 4,
    
-    'default_logo_src'		    => get_template_directory_uri().'/img/logo-fau.png',
-    'default_logo_height'	    => 65,
-    'default_logo_width'	    => 240,
-    
+
     'default_excerpt_morestring'    => '...',
-    'default_excerpt_length'	    => 300,
+    'default_excerpt_length'	    => 50,
     'default_anleser_excerpt_length'=> 300,
     'default_search_excerpt_length' => 300,
     
-    'default_postthumb_src'	    => get_template_directory_uri().'/img/default-postthumb.png',
+    'default_postthumb_src'	    => get_fau_template_uri().'/img/default-postthumb.png',
 
     'default_postthumb_always'	    => 1,
-
 
     'custom_excerpt_allowtags'	    => 'br',
     'url_banner-ad-notice'	    => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/werben/',
@@ -189,7 +189,7 @@ $defaultoptions = array(
     
     'advanced_beitragsoptionen'		=> true,
     'advanced_topevent'			=> true,
-    'advanced_activateads'		=> true,
+    'advanced_activateads'		=> false,
     'galery_link_original'		=> true,
     'advanced_page_start_herojumplink'	=> false,
 
@@ -217,14 +217,18 @@ $defaultoptions = array(
   
 
     'post_display_category_below'	=> true,
+    'post_display_tags_below'		=> true,
     'search_display_post_thumbnails'	=> true,
     'search_display_post_cats'		=> true,
     'search_display_continue_arrow'		=> true,
     'search_display_excerpt_morestring'		=> '...',
-    
+    'search_display_typenote'		=> true,
+    'search_post_types'			=> array("page", "post",  "person", "attachment"),
+    'search_allowfilter'		=> true,
+   
     'plugin_fau_person_headline'	=> true,
-    'plugin_fau_person_malethumb'	=> get_template_directory_uri().'/img/platzhalter-mann.png',
-    'plugin_fau_person_femalethumb'	=> get_template_directory_uri().'/img/platzhalter-frau.png',
+    'plugin_fau_person_malethumb'	=> get_fau_template_uri().'/img/platzhalter-mann.png',
+    'plugin_fau_person_femalethumb'	=> get_fau_template_uri().'/img/platzhalter-frau.png',
     
     'index_synonym_listall'		=> true,
     'index_glossary_listall'		=> true,
@@ -234,233 +238,11 @@ $defaultoptions = array(
     'advanced_display_hero_credits'	=> true,   
     'advanced_display_postthumb_credits'    => true,
     
-); 
-
-
-/*
- * Social Media 
- */
-$default_socialmedia_liste = array(
-    'delicious' => array(
-	'name' => 'Delicious',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'diaspora' => array(
-	'name' => 'Diaspora',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'facebook' => array(
-	'name' => 'Facebook',
-	'content'  => 'https://de-de.facebook.com/Uni.Erlangen.Nuernberg',
-	'active' => 1,
-    ),
-    'twitter' => array(
-	'name' => 'Twitter',
-	'content'  => 'https://twitter.com/UniFAU',
-	'active' => 1,
-    ),
-    'gplus' => array(
-	'name' => 'Google Plus',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'flattr' => array(
-	'name' => 'Flattr',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'flickr' => array(
-	'name' => 'Flickr',
-	'content'  => '',
-	'active' => 0,
-    ),
-  
-    'identica' => array(
-	'name' => 'Identica',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'itunes' => array(
-	'name' => 'iTunes',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'skype' => array(
-	'name' => 'Skype',
-	'content'  => '',
-	'active' => 0,
-    ),
     
-    'youtube' => array(
-	'name' => 'YouTube',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'xing' => array(
-	'name' => 'Xing',
-	'content'  => 'https://www.xing.com/net/alumnifau',
-	'active' => 1,
-    ),
-    'tumblr' => array(
-	'name' => 'Tumblr',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'github' => array(
-	'name' => 'GitHub',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'appnet' => array(
-	'name' => 'App.Net',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'feed' => array(
-	'name' => 'RSS Feed',
-	'content'  => get_bloginfo( 'rss2_url' ),
-	'active' => 1,
-    ),
-    'friendica' => array(
-	'name' => 'Friendica',
-	'content'  => '',
-	'active' => 0,
-    ),
-    'pinterest' => array(
-	'name' => 'Pinterest',
-	'content'  => 'http://www.pinterest.com/unifau/',
-	'active' => 0,
-    ),
-    'instagram' => array(
-	'name' => 'Instagram',
-	'content'  => 'https://instagram.com/uni_fau/',
-	'active' => 0,
-    ),
+
+    
 ); 
 
-
-/* 
- * Default Link List for Submenus , can be overwritten bei Menu  
- */
-$default_link_liste = array( 
-	
-	'centers' => array(    
-	    '_title'	=> __('Einrichtungen','fau'),
-	    'link1'  => array(
-		'name'	    => __('Universitätsbibliothek', 'fau' ),
-		'content'  => 'http://www.ub.fau.de/',
-	    ),
-	    'link2'  => array(
-		'name'	    => __('Rechenzentrum', 'fau' ),
-		'content'  => 'https://www.rrze.fau.de/',
-		'class'	    => 'rwfak',
-	    ),
-	    'link3'  => array(
-		'name'	    => __('Sprachenzentrum', 'fau' ),
-		'content'  => 'http://www.sz.uni-erlangen.de/',
-		'class'	    => 'medfak',
-	    ),
-	    'link4'  => array(
-		'name'	    => __('Graduiertenschule', 'fau' ),
-		'content'  => 'http://www.promotion.fau.de/',
-		'class'	    => 'natfak',
-	    ),
-	  
-	),
-	
-	'infos' => array(    
-	    '_title'	=> __('Informationen für','fau'),
-	  
-	    'link1'  => array(
-		'name'	    => __('Studierende', 'fau' ),
-		'content'  => 'https://www.fau.de/studium/',
-	    ),
-	  
-	    'link2'  => array(
-		'name'	    => __('Schülerinnen und Schüler', 'fau' ),
-		'content'  => 'https://www.fau.de/schulportal-der-fau/',
-	    ),	
-	    'link3'  => array(
-		'name'	    => __('Alumni', 'fau' ),
-		'content'  => 'https://www.fau.de/alumni/',
-	    ),	
-	    'link4'  => array(
-		'name'	    => __('Unternehmen', 'fau' ),
-		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
-	    ),	
-	    	
-	 
-	),
-	'meta' => array(
-	    'link1'  => array(
-		'name'	    => __('Mein Campus', 'fau' ),
-		'content'  => 'https://campus.fau.de/',
-	    ),
-	    'link2'  => array(
-		'name'	    => __('UnivIS', 'fau' ),
-		'content'  => 'http://univis.fau.de/',
-	    ),
-	    'link3'  => array(
-		'name'	    => __('Anfahrt und Lageplan', 'fau' ),
-		'content'  => 'http://karte.fau.de/',
-	    ),
-	   
-	),
-	'techmenu' => array(    
-	    'link1'  => array(
-		'name'	    => __('Stellenangebote', 'fau' ),
-		'content'  => 'https://www.fau.de/universitaet/stellen-praktika-und-jobs/',
-	    ),
-	    'link2'  => array(
-		'name'	    => __('Presse', 'fau' ),
-		'content'  => 'https://www.fau.de/presseportal-der-fau/',
-	    ),
-	    'link3'  => array(
-		'name'	    => __('Intranet', 'fau' ),
-		'content'  => 'https://www.fau.de/intranet/',
-	    ),	
-	    'link4'  => array(
-		'name'	    => __('Impressum', 'fau' ),
-		'content'  => 'https://www.fau.de/impressum/',
-	    ),	
-	),
-);
-
-
-$default_header_logos = array(
-    'fau' => array(
-	    'url'           => '%s/img/logo-fau.png',
-	    'thumbnail_url' => '%s/img/logo-fau.png',
-	    'description'   => _x( 'FAU', 'Offizielles FAU-Logo', 'fau' )
-    ),
- /*   'fak-med' => array(
-	    'url'           => '%s/img/logo-fak-med.png',
-	    'thumbnail_url' => '%s/img/logo-fak-med.png',
-	    'description'   => _x( 'FAKMED', 'Offizielles Logo der Medizin', 'fau' )
-    ),
-    'fak-nat' => array(
-	    'url'           => '%s/img/logo-fak-nat.png',
-	    'thumbnail_url' => '%s/img/logo-fak-nat.png',
-	    'description'   => _x( 'FAKNAT', 'Offizielles Logo der Naturwissenschaft', 'fau' )
-    ), */
-    'fak-phil' => array(
-	    'url'           => '%s/img/logo-fak-phil.png',
-	    'thumbnail_url' => '%s/img/logo-fak-phil.png',
-	    'description'   => _x( 'FAKPHIL', 'Offizielles Logo der Philosophischen Fakultät', 'fau' )
-    ),
-/*    'fak-rechtswiwi' => array(
-	    'url'           => '%s/img/logo-fak-rechtswiwi.png',
-	    'thumbnail_url' => '%s/img/logo-fak-rechtswiwi.png',
-	    'description'   => _x( 'FAKRECHTSWIWI', 'Offizielles Logo der Rechts- und Wirtschaftswissenschaftlichen Fakultät', 'fau' )
-    ),
-    'fak-tech' => array(
-	    'url'           => '%s/img/logo-fak-tech.png',
-	    'thumbnail_url' => '%s/img/logo-fak-tech.png',
-	    'description'   => _x( 'FAKTECH', 'Offizielles Logo der Technischen Fakultät', 'fau' )
-    ) */
-);
 
  $categories=get_categories(array('orderby' => 'name','order' => 'ASC'));
  foreach($categories as $category) {
@@ -487,11 +269,20 @@ $setoptions = array(
 		    'label'   => __( 'Bitte wählen Sie hier aus, um welcherart Webauftritt es sich handelt.', 'fau' ),
 		    'liste'   => array(
 				    0 => __('Fakultätsportal','fau'), 
-				    1 => __('Department, Lehrstuhl, Einrichtung','fau'),
-				    2 => __('Sonstige','fau') ),
+				    1 => __('Department, Lehrstuhl, Einrichtung','fau'),  
+				    2 => __('Zentrale Einrichtung','fau') ,
+				    3 => __('Website für uniübergreifende Kooperationen mit Externen','fau') ),
 		    'default' => $defaultoptions['website_type'],
 		    'parent'  => 'webgroup'
 		),  
+	    'default_faculty_useshorttitle' => array(
+		    'type'    => 'bool',
+		    'title'   => __( 'Fakultätslink', 'fau' ),
+		    'label'   => __( 'Textlink zur Fakultät verkürzen auf Abkürzung. <br>Diese Option ist nur bei Nutzung eines Fakultätsthemes aktiv.', 'fau' ), 
+		    'default' => $defaultoptions['default_faculty_useshorttitle'],
+		    'parent'  => 'webgroup'
+		),      
+	       
 	       
 		'startseite_banner_image' => array(
 		    'type'    => 'image',
@@ -506,7 +297,7 @@ $setoptions = array(
 	       
                'pubadresse'  => array(
                   'type'    => 'section',
-                  'title'   => __( 'Öffemtliche Adresse im Fußteil', 'fau' ),                      
+                  'title'   => __( 'Öffentliche Adresse im Fußteil', 'fau' ),                      
               ),
               'contact_address_name' => array(
                   'type'    => 'text',
@@ -604,7 +395,18 @@ $setoptions = array(
                   'title'   => __( 'Verlinkungstext Videoportal', 'fau' ),
                   'label'   => __( 'Text mit der auf das Videoportal im Social Media Fußteil verlinkt wird.', 'fau' ),               
                   'default' => $defaultoptions['start_title_videoportal_socialmedia'],
-              ),       
+              ), 
+	       
+	       'start_title_videoportal_url' => array(
+                  'type'    => 'url',
+                  'title'   => __( 'URL Videoportal', 'fau' ),
+                  'label'   => __( 'URL zum Videoportal. Diese sollte normalerweise auf <code>video.fau.de</code> bleiben. Manchmal nutzt man aber vielleicht ein anderes Portal, so dass man hier die URL ändern kann.', 'fau' ),               
+                  'default' => $defaultoptions['start_title_videoportal_url'],
+              ), 
+	       
+	       
+	       
+	       
           )
        ),
        'allgemeines'   => array(
@@ -697,45 +499,63 @@ $setoptions = array(
 	
 	       
 	       
-	      'suchergebnisse'  => array(
+		'suchergebnisse'  => array(
                   'type'    => 'section',
                   'title'   => __( 'Suchergebnisse', 'fau' ),                      
-              ),
+		),
 	       
-	       'search_display_post_thumbnails' => array(
+		'search_display_post_thumbnails' => array(
                   'type'    => 'bool',
                   'title'   => __( 'Zeige Thumbs', 'fau' ),
                   'label'   => __( 'Bei den Suchergebnisse Thumbnails anzeigen, wenn diese vorhanden sind', 'fau' ),                
                   'default' => $defaultoptions['search_display_post_thumbnails'],
 		  'parent'  => 'suchergebnisse'
-              ),   
-	      'search_display_post_cats'  => array(
+		),   
+		'search_display_post_cats'  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Zeige Kategorien', 'fau' ),
                   'label'   => __( 'Bei den Suchergebnisse Kategorien der Beiträge anzeigen', 'fau' ),                
                   'default' => $defaultoptions['search_display_post_cats'],
 		  'parent'  => 'suchergebnisse'
-              ),   
-	       'search_display_continue_arrow' => array(
+		),   
+		'search_display_continue_arrow' => array(
                   'type'    => 'bool',
                   'title'   => __( 'Weiterlesen-Pfeil', 'fau' ),
-                  'label'   => __( 'Zeige verlinkten Pfeil zum Weiterelesen.', 'fau' ),                
+                  'label'   => __( 'Zeige verlinkten Pfeil zum Weiterlesen.', 'fau' ),                
                   'default' => $defaultoptions['search_display_continue_arrow'],
 		  'parent'  => 'suchergebnisse'
-              ),   
-	       'default_search_excerpt_length' => array(
+		),   
+		'default_search_excerpt_length' => array(
                   'type'    => 'number',
                   'title'   => __( 'Länge Textauszug', 'fau' ),
-                  'label'   => __( 'Anzahl der maximalen Zeichen für den Textauszug bei der Ergebnissliste.', 'fau' ),                
+                  'label'   => __( 'Anzahl der maximalen Zeichen für den Textauszug bei der Ergebnisliste.', 'fau' ),                
                   'default' => $defaultoptions['default_search_excerpt_length'],
 		  'parent'  => 'suchergebnisse'
-              ),   
-	     'search_display_excerpt_morestring'=> array(
+		),   
+		'search_display_excerpt_morestring'=> array(
 		    'type'    => 'text',
 		    'title'   => __( 'Textabbruch', 'fau' ),
-		    'label'   => __( 'Falls der Textauszug nach der vorgegebenen Länger abgeschnitten werden muss, können hier Trennzeichen angegeben werden.', 'fau' ),               
+		    'label'   => __( 'Falls der Textauszug nach der vorgegebenen Länge abgeschnitten werden muss, können hier Trennzeichen angegeben werden.', 'fau' ),               
 		    'default' => $defaultoptions['search_display_excerpt_morestring'],
 		), 
+		'search_display_typenote' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Typ anzeigen', 'fau' ),
+                  'label'   => __( 'Zeige Inhaltstyp des Treffers an.', 'fau' ),                
+                  'default' => $defaultoptions['search_display_typenote'],
+		  'parent'  => 'suchergebnisse'
+		),    
+	       'search_allowfilter' => array(
+                  'type'    => 'bool',
+                  'title'   => __( 'Suche filterbar', 'fau' ),
+                  'label'   => __( 'Erlaubt es, Suchergebnisse nach der Art des Dokumenttypes (Seiten, Beiträge, etc.) zu filtern.', 'fau' ),                
+                  'default' => $defaultoptions['search_allowfilter'],
+		  'parent'  => 'suchergebnisse'
+		),    
+	       
+	          
+
+	       
           )
        ),
         'templates'   => array(
@@ -749,7 +569,7 @@ $setoptions = array(
 	       
 	       'start_max_newscontent'=> array(
                   'type'    => 'select',
-                  'title'   => __( 'Zahl der News (Gesamt)', 'fau' ),
+                  'title'   => __( 'Zahl der Artikel (Gesamt)', 'fau' ),
                   'label'   => __( 'Anzahl der News auf der Startseite unterhalb des Sliders', 'fau' ),
 		   'liste'   => array(2 => 2,3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7),
                   'default' => $defaultoptions['start_max_newscontent'],
@@ -757,8 +577,8 @@ $setoptions = array(
               ),  
 	        'start_prefix_tag_newscontent' => array(
                   'type'    => 'text',
-                  'title'   => __( 'Sortierungs-Tag', 'fau' ),
-                  'label'   => __( 'Angabe des Tag-Prefixes, mit dem News auf der Startseite gezeigt werden. Im Artikel wird dann dieser Tag plus eine Nummer vergeben um die Sortierung festzusetzen. Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2"', 'fau' ),               
+                  'title'   => __( 'Positionierungs-Tag', 'fau' ),
+                  'label'   => __( 'Angabe des Tag-Prefixes, mit der die Position von definierten Artikel auf der Startseite gesteuert werden kann. Im Artikel wird dann dieser Tag plus eine Nummer von 1 bis 3 vergeben um die Position festzusetzen. <br>Beispiel bei einem gewählten Tag-Prefix "Startseite": Erster Artikel mit Tag "Startseite1", Zweiter Artikel mit Tag "Startseite2". Wenn mehrere Artikel den Tag "Startseite1" haben und nur eines davon gezeigt werden soll, wird der jüngste Artikel mit dem Tag angezeigt.', 'fau' ),               
                   'default' => $defaultoptions['start_prefix_tag_newscontent'],
 		     'parent'  => 'newsbereich'
               ),  
@@ -766,23 +586,23 @@ $setoptions = array(
 	       
 	       'start_max_newspertag'=> array(
                   'type'    => 'select',
-                  'title'   => __( 'News pro gleichem Sortierungs-Tag', 'fau' ),
-                  'label'   => __( 'Anzahl der Artikel mit dem vorgegebene Prefix-Tag (Reihenfolge).', 'fau' ),
+                  'title'   => __( 'Artikel mit gleichem Positionierungs-Tag', 'fau' ),
+                  'label'   => __( 'Anzahl der Artikel mit dem gleichen Prefix-Tag (Positionierung), die angezeigt werden sollen. Normalerweise sollte hier nur 1 Artikel auf der ersten Position sein.', 'fau' ),
 		   'liste'   => array(1 => 1, 2 => 2,3 => 3, 4 => 4, 5 => 5),
                   'default' => $defaultoptions['start_max_newspertag'],
 		    'parent'  => 'newsbereich'
               ),  
 	       'start_link_news_show' => array(
                   'type'    => 'bool',
-                  'title'   => __( 'News verlinken', 'fau' ),
+                  'title'   => __( 'Artikel verlinken', 'fau' ),
                   'label'   => __( 'Weitere Meldungen verlinken.', 'fau' ),               
                   'default' => $defaultoptions['start_link_news_show'],
 		     'parent'  => 'newsbereich'
               ),  
 		'start_link_news_cat' => array(
                   'type'    => 'select',
-                  'title'   => __( 'News-Kategorie', 'fau' ),
-                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der News. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
+                  'title'   => __( 'Artikel-Kategorie', 'fau' ),
+                  'label'   => __( 'Unter den News erscheint ein Link auf eine Übersicht der Artikel. Hier wird die Kategorie dafür ausgewählt. Für den Fall, dass keine Artikel mit einem Prefix-Tag ausgestattet sind, wird diese Kategorie auch bei der Anzeige der ersten News verwendet.', 'fau' ),
                   'liste'   => $currentcatliste,
                   'default' => $defaultoptions['start_link_news_cat'],
 		     'parent'  => 'newsbereich'
@@ -942,7 +762,7 @@ $setoptions = array(
                   'default' => $defaultoptions['galery_link_original'],
 		  'parent'  => 'design'
 		),   
-		 'advanced_display_hero_credits'	  => array(
+	       'advanced_display_hero_credits'	  => array(
                   'type'    => 'bool',
                   'title'   => __( 'Copyright-Hinweis Startseite', 'fau' ),
                   'label'   => __( 'Auf der Startseite wird im Slider bzw. im Banner der Copyright-Hinweis des Bildes angezeigt, wenn vorhanden', 'fau' ),                
@@ -956,19 +776,16 @@ $setoptions = array(
                   'default' => $defaultoptions['advanced_display_postthumb_credits'],
 		  'parent'  => 'design'
               ), 
-	       
 	          'advanced_images_info_credits' => array(
 		    'type'    => 'select',
 		    'title'   => __( 'Copyright-Info ermitteln', 'fau' ),
-		    'label'   => __( 'Definiert, ob die Copyright-Info eines Bildes sich aus dessen IPTC-Infos ermittelt oder durch die Texteingabe Beschreibung überschrieben werden kann.<br>'
-			    . 'Reihenfolge via IPTC: 1. IPTC-Copyright, 2. IPTC-Credit, 3. IPTC-Author, 4. Beschreibung, 5. IPTC-Caption, 6. Bildunterschrift. '
-			    . '<br>Durch diese Auswahl kann die Beschreibung priorisiert werden.', 'fau' ),      
+		    'label'   => __( 'Definiert, ob die Copyright-Info eines Bildes sich aus dessen IPTC-Infos ermittelt oder durch die Texteingabe Beschreibung überschrieben werden kann.<br>Reihenfolge via IPTC: 1. IPTC-Copyright, 2. IPTC-Credit, 3. IPTC-Author, 4. Beschreibung, 5. IPTC-Caption, 6. Bildunterschrift. <br>Durch diese Auswahl kann die Beschreibung priorisiert werden.', 'fau' ),      
 		    'liste'   => array('0' => __('IPTC-Feld Copyright hat Priorität', 'fau'), 
 					'1' => __('Eingabefeld Beschreibung überschreibt IPTC und andere vorangige Felder.', 'fau')),
 		    'default' => $defaultoptions['advanced_images_info_credits'],
 		    'parent'  => 'design'
               ), 
-	              
+	       
 	        'breadcrumb'  => array(
 		    'type'    => 'section',
 		    'title'   => __( 'Breadcrumb', 'fau' ),                      
@@ -1009,15 +826,15 @@ $setoptions = array(
 	       
 	        'advanced_page_sidebar_useeditor_textabove'		  => array(
                   'type'    => 'bool',
-                  'title'   => __( 'WYSIWYG-Editor Text unten', 'fau' ),
-                  'label'   => __( 'Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sitebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
+                  'title'   => __( 'WYSIWYG-Editor Text oben', 'fau' ),
+                  'label'   => __( 'Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sidebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
                   'default' => $defaultoptions['advanced_page_sidebar_useeditor_textabove'],
 		  'parent'  => 'sidebaropt'
               ), 
 	    'advanced_page_sidebar_useeditor_textbelow'		  => array(
                   'type'    => 'bool',
                   'title'   => __( 'WYSIWYG-Editor Text unten', 'fau' ),
-                  'label'   => __('Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sitebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
+                  'label'   => __('Erlaubt die Nutzung des WYSWYG-Editors für die Eingabe von Text in der Sidebar. Dies schließt auch HTML-Tags mit Bildern und Links ein. Andernfalls ist nur ein Text mit Absätzen möglich.', 'fau' ),                
                   'default' => $defaultoptions['advanced_page_sidebar_useeditor_textbelow'],
 		  'parent'  => 'sidebaropt'
               ), 
@@ -1209,7 +1026,7 @@ $setoptions = array(
                   'label'   => __( 'Setze alle Einstellungen und Konfigurationen zurück. Achtung: Dies setzt alle Voreinstellungen unwiederbringlich zurück!', 'fau' ),
                   'default' => 0,
 		  'mark_option' => 1,
-              ),   
+              ),   	       
 
 	       
    

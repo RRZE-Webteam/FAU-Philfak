@@ -101,12 +101,28 @@ get_header(); ?>
 						$output .= '<span class="post-meta-date"> '.get_the_date('',$post->ID)."</span>\n";
 						$output .= '</div>'."\n";
 	
+						
+					$headline = get_post_meta( $post->ID, 'fauval_untertitel', true );				
+					if ( $headline) {
+					     echo '<h2 class="subtitle">'.$headline."</h2>\n";
+					}
 						echo $output;    
 						the_content();
 						
 						if ($options['post_display_category_below']) {
 						    $output = '<div class="meta-footer">'."\n";
 						    $output .= $typestr;
+						     
+						    if ($options['post_display_tags_below']) {
+							if(get_the_tag_list()) {
+							    $output .= '<span class="post-meta-tags"> ';
+							    $output .= __('Schlagworte', 'fau');
+							    $output .= ': ';
+							    $output .= get_the_tag_list('<ul><li>','</li><li>','</li></ul>');
+							    $output .= '</span> ';
+							}   
+						    }
+						    
 						    $output .= '</div>'."\n";
 						    echo $output;   
 						}
@@ -121,7 +137,8 @@ get_header(); ?>
 					    
 					    comments_template(); ?>
 					 </div>
-				    <?php } ?>
+				    <?php }
+				    ?>
 				</div>
 				
 				<?php get_template_part('sidebar', 'news'); ?>
@@ -131,7 +148,6 @@ get_header(); ?>
 	    	<?php get_template_part('footer', 'social'); ?>	
 	</div>
 	
-<?php endwhile; ?>
+<?php endwhile; 
 
-<?php 
 get_footer();

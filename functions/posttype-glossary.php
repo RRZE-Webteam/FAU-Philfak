@@ -236,8 +236,8 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 			$letter = remove_accents(get_the_title($post->ID));
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
-
-			if ($i == 0 || $letter != $current){
+			
+			if ($i == 0 || $letter != $current) {
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;
@@ -250,14 +250,17 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 			$accordion .= '  <div id="collapse-'.$post->ID.'-'.$i.'" class="accordion-body">'."\n";
 			$accordion .= '    <div class="accordion-inner">'."\n";
 
-			$content = apply_filters( 'the_content',  get_post_field('post_content',$post->ID) );
-			$content = str_replace( ']]>', ']]&gt;', $content );
+		//	$content = apply_filters( 'the_content',  get_post_field('post_content',$post->ID) );
+		//	$content = str_replace( ']]>', ']]&gt;', $content );
+			
+			
+			$content = get_post_field('post_content',$post->ID);			
 			if ( isset($content) && (mb_strlen($content) > 1)) {
 			    $desc = $content;
 			} else {
 			    $desc = get_post_meta( $post->ID, 'description', true );
 			}
-			$accordion .= $desc;
+			$accordion .= do_shortcode($desc);
 
 			$accordion .= '    </div>'."\n";
 			$accordion .= '  </div>'."\n";
@@ -352,7 +355,7 @@ if  ( (isset($options['advanced_activate_glossary'])) && ($options['advanced_act
 			$letter = mb_substr($letter, 0, 1);
 			$letter = mb_strtoupper($letter, 'UTF-8');
 
-			if ($i == 0 || $letter != $current)  {
+			if( $i == 0 || $letter != $current) {
 				$accordion .= '<h2 id="letter-'.$letter.'">'.$letter.'</h2>'."\n";
 				$current = $letter;
 				$letters[] = $letter;

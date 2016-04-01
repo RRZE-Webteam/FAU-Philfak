@@ -1,6 +1,6 @@
-FAU-Philfak 
-Wordpress-Theme für die Philosophische Fakultät und Fachbereich Theologie
-der Friedrich-Alexander-Universität (FAU)
+FAU-Philfak
+Wordpress-Theme für die Philosophische Fakultät der
+Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 ====================================================
  
 
@@ -15,6 +15,7 @@ DOWNLOADS
 AUTHOR 
 
    RRZE-Webteam , http://www.rrze.fau.de
+   vanbittern – Philipp Schmieder Medien, https://vanbittern.com
 
 
 CREDITS & COPYRIGHT
@@ -24,7 +25,8 @@ CREDITS & COPYRIGHT
 
 LIBRARIES & SOURCES
 
-* Font Awesome by Dave Gandy - http://fontawesome.io. 
+* Font Awesome 4.3 by Dave Gandy - http://fontawesome.io. 
+  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
 * Font JustVector
 * Font OpenSans
 * Font Roboto
@@ -38,10 +40,8 @@ OPTIONAL PLUGINS
 
 * FAU-Events (https://github.com/RRZE-Webteam/fau-events) 
 * CMS-Workflow (https://github.com/RRZE-Webteam/cms-workflow)
-* RRZE-Sitemap (https://github.com/RRZE-Webteam/rrze-sitemap)
 * RRZE-UnivIS (https://github.com/RRZE-Webteam/rrze-univis)
 * TinyMCE Advanced
-* CMS Tree Page View   
 * CMS-Search (https://github.com/RRZE-Webteam/cms-search)
 * MimeTypes Link Icons
 * WP External Link
@@ -55,7 +55,7 @@ OPTIONAL PLUGINS
 FEEDBACK & BUGS
 
 Please use github for submitting new features or bugs:
- https://github.com/RRZE-Webteam/FAU-Philfak/issues
+ https://github.com/RRZE-Webteam/FAU-Einrichtungen/issues
 
 or send an email to 
  webmaster@rrze.fau.de

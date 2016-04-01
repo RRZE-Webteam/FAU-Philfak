@@ -27,7 +27,7 @@ get_header(); ?>
 		    <?php 
 			$headline = get_post_meta( $post->ID, 'headline', true );				
 			if ( $headline) {
-			     echo "<h2>".$headline."</h2>\n";
+			      echo '<h2 class="subtitle">'.$headline."</h2>\n";  
 			} else {
 			    echo '<div class="page-nosubtitle">&nbsp;</div>';
 			}
@@ -53,16 +53,17 @@ get_header(); ?>
 			    $displayedicons = 1;
 			}
 
-			$logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );
+
+			$logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );			
 			if ($logoliste) { 
-			    if ($displayedicons==1) {
-				echo "<hr>\n";
+			    $logos = fau_get_imagelinks($logoliste, false);
+			    if ((isset($logos) && (!empty($logos)))) {
+				if ($displayedicons==1) {
+				    echo "<hr>\n";
+				}
+				echo $logos;
 			    }
-			    
-			    fau_get_imagelinks($logoliste);
-			     
-			}
-	      
+			 }
 			
 			
 			?>
