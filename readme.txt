@@ -55,7 +55,7 @@ OPTIONAL PLUGINS
 FEEDBACK & BUGS
 
 Please use github for submitting new features or bugs:
- https://github.com/RRZE-Webteam/FAU-Einrichtungen/issues
+ https://github.com/RRZE-Webteam/FAU-Philfak/issues
 
 or send an email to 
  webmaster@rrze.fau.de
