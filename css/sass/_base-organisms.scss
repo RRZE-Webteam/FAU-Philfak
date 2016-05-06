@@ -1077,7 +1077,8 @@ body.admin-bar #nav .nav-flyout {
 
 				&:hover, &:focus {
 					color: $colorPrimary;
-					
+					text-decoration: underline;
+
 					&:before {
 						background: $colorPrimary;
 					}
