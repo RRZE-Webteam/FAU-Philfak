@@ -25,7 +25,7 @@ CREDITS & COPYRIGHT
 
 LIBRARIES & SOURCES
 
-* Font Awesome 4.3 by Dave Gandy - http://fontawesome.io. 
+* Font Awesome 4.6 by Dave Gandy - http://fontawesome.io. 
   License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
 * Font JustVector
 * Font OpenSans
@@ -55,7 +55,7 @@ OPTIONAL PLUGINS
 FEEDBACK & BUGS
 
 Please use github for submitting new features or bugs:
- https://github.com/RRZE-Webteam/FAU-Einrichtungen/issues
+ https://github.com/RRZE-Webteam/FAU-Philfak/issues
 
 or send an email to 
  webmaster@rrze.fau.de
