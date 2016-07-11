@@ -52,6 +52,14 @@ function theme_options_do_page($tab = '') {
 		2 => __('Zentrale Einrichtung','fau') ,
 		3 => __('Website für uniübergreifende Kooperationen mit Externen','fau') );
     }
+    
+    if (isset($defaultoptions['website_allow_fauportal'])) {
+	$siteurl = get_site_url();
+	$siteurl = preg_replace("(^https?://)", "", $siteurl );
+	if (in_array($siteurl,$defaultoptions['website_allow_fauportal'])) {
+	    $setoptions['fau_theme_options']['website']['fields']['website_type']['liste']['-1'] =  __('Zentrales FAU-Portal','fau');
+	}
+    }
  ?>
 
 	<div class="wrap">            
@@ -73,17 +81,25 @@ function theme_options_do_page($tab = '') {
 	    $tab = array_keys($setoptions['fau_theme_options'])[0];
         }        
 
-        
-        echo "<h3 class=\"nav-tab-wrapper\">\n";
-        foreach($setoptions['fau_theme_options'] as $i => $value) {                
-             $tabtitel = $value['tabtitle'];             
-              echo "<a href=\"?page=theme_options&amp;tab=$i\" class=\"nav-tab ";
-              if ($tab==$i) {
-                  echo "nav-tab-active";
-              }
-              echo "\">$tabtitel</a>\n";
+        $myuserlvl = $options['admin_user_level'];
+	if (!$myuserlvl) {
+	    $myuserlvl = 0;
+	}
+	$askfieldlist = '';
+	
+        echo "<p class=\"nav-tab-wrapper\">\n";
+        foreach($setoptions['fau_theme_options'] as $i => $value) {        
+	    
+	    if ((isset($value['user_level']) && ($myuserlvl >= $value['user_level'])) || (!isset($value['user_level']))) { 	    
+		$tabtitel = $value['tabtitle'];             
+		 echo "<a href=\"?page=theme_options&amp;tab=$i\" class=\"nav-tab ";
+		 if ($tab==$i) {
+		     echo "nav-tab-active";
+		 }
+		 echo "\">$tabtitel</a>\n";	      
+	    }
         }
-        echo "</h3>\n";  ?>
+        echo "</p>\n";  ?>
          
                       
         <form method="post" action="options.php">
@@ -95,30 +111,47 @@ function theme_options_do_page($tab = '') {
 	<table>	
                 <?php
                     if (isset($setoptions['fau_theme_options'][$tab]['fields'])) {
+			$setsection = '';
                         foreach($setoptions['fau_theme_options'][$tab]['fields'] as $i => $value) {   
                             $name = $i;
 			    $mark_option =0;
+			    $userlvl = 0;
                             if (isset($value['title'])) $title = $value['title'];
                             if (isset($value['type'])) $type = $value['type'];
                             if (isset($value['label'])) $label = $value['label'];
                             if (isset($value['parent'])) $parent = $value['parent'];
                             if (isset($value['liste'])) $liste = $value['liste']; 
+			    if (isset($value['user_level'])) $userlvl = $value['user_level'];
 			    if (isset($value['mark_option']) && $value['mark_option']==1) $mark_option =1; 
 			     
 
                             if ($type == 'section') {
-                                if ((isset($setsection)) && ($setsection != "")) {
-                                    echo "\t\t\t</table>\n";   
-                                    echo "\t\t</td>\n";
-                                    echo "\t</tr>\n";
-                                }
-                                echo "\t<tr valign=\"top\">\n\t\t<th scope=\"row\">";
-                                echo $title;
-                                echo "</th>\n\t\t<td>";                                 
-				echo "\t\t\t<table class=\"suboptions\">\n";      
-                                $setsection = $name;
-                            } else {
-
+				
+				if ((($userlvl>0) && ($myuserlvl >= $userlvl)) || ($userlvl<1)) { 	 
+				
+				    if ((isset($setsection)) && ($setsection != "")) {
+					echo "\t\t\t</table>\n";   
+					echo "\t\t</td>\n";
+					echo "\t</tr>\n";
+				    }
+				    echo "\t<tr valign=\"top\">\n\t\t<th scope=\"row\">";
+				    echo $title;
+				    echo "</th>\n\t\t<td>";                                 
+				    echo "\t\t\t<table class=\"suboptions\">\n";      
+				    $setsection = $name;
+				    $setsectionusrlvl = $userlvl;
+				    
+				} elseif ($userlvl>0) {
+				    $setsectionusrlvl = $userlvl;
+				}
+				
+	
+			    
+                            } elseif (   (isset($setsection) && ($setsection != "") && ($myuserlvl >= $setsectionusrlvl))
+				    ||   ((!$setsection) && ($myuserlvl >= $userlvl)) ) {
+				  
+				$askfieldlist .= $name.",";
+				
                                echo "\t<tr valign=\"top\" class=\"option-".$name;
 			       if ($mark_option==1) {
 				   echo " mark-option";
@@ -555,6 +588,10 @@ function theme_options_do_page($tab = '') {
         </div>                                        
                     
         <p class="submit">
+	    <?php if (!empty($askfieldlist)) {
+		$askfieldlist = rtrim($askfieldlist,',');
+		echo '<input type="hidden" id="fau_theme_options[askfieldlist]" name="fau_theme_options[askfieldlist]" value="'.$askfieldlist.'">'; 
+	    } ?>
                 <input type="submit" class="button-primary" value="<?php _e( 'Update', 'fau' ); ?>" />
         </p>
 </form>               
@@ -587,82 +624,89 @@ function theme_options_validate( $input ) {
             return $output;          
         }
 
+	
+	
        if (isset($setoptions['fau_theme_options'][$tab]['fields'])) {
+	    $paralist = array();
+	    $paralist = explode(",",wp_filter_nohtml_kses($input['askfieldlist']));	    
+	    
+	   
             foreach($setoptions['fau_theme_options'][$tab]['fields'] as $i => $value) {   
                 $name = $i;
+		if (in_array($name,$paralist)) {
+		    $type = $value['type'];  
+		    $default = '';
+		    if (isset($value['default'])) {
+			$default = $value['default'];
+		    }
+		    if ($type != "section") {
+			if (isset($input[$name])) {
+			    if ($type=='bool') {
+				$output[$name]  = ( $input[$name] == 1 ? 1 : 0 );    
+			    } elseif ($type=='text') {
+				 $output[$name]  =  wp_filter_nohtml_kses( $input[$name] );
+			    } elseif ($type=='email') {
+				 $output[$name]  =  sanitize_email( $input[$name] );	     
+			    } elseif ($type=='textarea') {
+				 $output[$name]  =  $input[$name] ;     
+			    } elseif ($type=='html') {;    
+				$output[$name] = $input[$name];
+			    } elseif (($type=='imageurl') || ($type=='image')) {
+				 $output[$name]  =  esc_url( $input[$name] );
+				 if (isset($input[$name."_id"])) {
+				    $output[$name."_id"]  =  sanitize_key( $input[$name."_id"] );
+				 }
+			    } elseif (($type=='url') || ($type=='imgurl')) {
+				 $output[$name]  =  esc_url( $input[$name] ); 
+			    } elseif ($type=='file') {
+				$output[$name."_url"]  = wp_filter_nohtml_kses( $input[$name] ); 
+				if (isset($input[$name."_id"])) {
+				    $output[$name]  =   sanitize_key( $input[$name."_id"] );
+				}
+			    } elseif ($type=='number') {
+				$output[$name]  =  wp_filter_nohtml_kses( $input[$name] ); 
+			    } elseif (($type=='select') || ($type=='fontselect')) {                        
+				$output[$name]  =  wp_filter_nohtml_kses( $input[$name] ); 
+			    } elseif (($type=='bildchecklist') || ($type=='bilddirchecklist')) {                            
+				$output[$name]  = $input[$name];
+			    } elseif ($type=='multiselectlist') {   	    			   
+				$output[$name]  = $input[$name];    
+			    } elseif ($type=='urlchecklist') {   	    			   
+				$output[$name]  = $input[$name];
+			    } else {
+				$output[$name]  =  wp_filter_nohtml_kses( $input[$name] );
+			    }
+			} else {                        
+			    if ($type=='bool') {
+				$output[$name] =0;
+			    } elseif ($type=='text') {
+				$output[$name] = "";
+			    } elseif ($type=='textarea') {
+				$output[$name] = "";     
+			    } elseif ($type=='html') {
+				$output[$name] = "";    
+			    } elseif (($type=='imageurl') || ($type=='image')) {
+				$output[$name] = "";    
+				$output[$name."_id"] = 0;    
+			    } elseif (($type=='url') || ($type=='imgurl')) {
+				$output[$name] = "";
+			    } elseif ($type=='number') {
+				$output[$name] = 0;
+			    } elseif ($type=='file') {
+				$output[$name] = '';    
+				$output[$name."_url"] = '';    
+			    } elseif (($type=='select') || ($type=='fontselect')) {                        
+				$output[$name] = "";
+			    } elseif (($type=='bildchecklist') || ($type=='bilddirchecklist')) {   
+				 $output[$name] = '';   
+			    } elseif ($type=='multiselectlist') {
+				 $output[$name] = array();
+			    }
+			}
+		    }
 
-                $type = $value['type'];  
-                $default = '';
-                if (isset($value['default'])) {
-                    $default = $value['default'];
-                }
-                if ($type != "section") {
-                    if (isset($input[$name])) {
-                        if ($type=='bool') {
-                            $output[$name]  = ( $input[$name] == 1 ? 1 : 0 );    
-                        } elseif ($type=='text') {
-                             $output[$name]  =  wp_filter_nohtml_kses( $input[$name] );
-			} elseif ($type=='email') {
-                             $output[$name]  =  sanitize_email( $input[$name] );	     
-                        } elseif ($type=='textarea') {
-                             $output[$name]  =  $input[$name] ;     
-                        } elseif ($type=='html') {;    
-                            $output[$name] = $input[$name];
-			} elseif (($type=='imageurl') || ($type=='image')) {
-                             $output[$name]  =  esc_url( $input[$name] );
-                             if (isset($input[$name."_id"])) {
-                                $output[$name."_id"]  =  sanitize_key( $input[$name."_id"] );
-                             }
-                        } elseif (($type=='url') || ($type=='imgurl')) {
-                             $output[$name]  =  esc_url( $input[$name] ); 
-                        } elseif ($type=='file') {
-			    $output[$name."_url"]  = wp_filter_nohtml_kses( $input[$name] ); 
-                            if (isset($input[$name."_id"])) {
-                                $output[$name]  =   sanitize_key( $input[$name."_id"] );
-                            }
-                        } elseif ($type=='number') {
-                            $output[$name]  =  wp_filter_nohtml_kses( $input[$name] ); 
-                        } elseif (($type=='select') || ($type=='fontselect')) {                        
-                            $output[$name]  =  wp_filter_nohtml_kses( $input[$name] ); 
-                        } elseif (($type=='bildchecklist') || ($type=='bilddirchecklist')) {                            
-                            $output[$name]  = $input[$name];
-                        } elseif ($type=='multiselectlist') {   	    			   
-			    $output[$name]  = $input[$name];    
-			} elseif ($type=='urlchecklist') {   	    			   
-			    $output[$name]  = $input[$name];
-                        } else {
-                            $output[$name]  =  wp_filter_nohtml_kses( $input[$name] );
-                        }
-                    } else {                        
-                        if ($type=='bool') {
-                            $output[$name] =0;
-                        } elseif ($type=='text') {
-                            $output[$name] = "";
-                        } elseif ($type=='textarea') {
-                            $output[$name] = "";     
-                        } elseif ($type=='html') {
-                            $output[$name] = "";    
-			} elseif (($type=='imageurl') || ($type=='image')) {
-                            $output[$name] = "";    
-			    $output[$name."_id"] = 0;    
-                        } elseif (($type=='url') || ($type=='imgurl')) {
-                            $output[$name] = "";
-                        } elseif ($type=='number') {
-                            $output[$name] = 0;
-                        } elseif ($type=='file') {
-                            $output[$name] = '';    
-			    $output[$name."_url"] = '';    
-			} elseif (($type=='select') || ($type=='fontselect')) {                        
-                            $output[$name] = "";
-                        } elseif (($type=='bildchecklist') || ($type=='bilddirchecklist')) {   
-                             $output[$name] = '';   
-                        } elseif ($type=='multiselectlist') {
-                             $output[$name] = array();
-                        }
-                    }
-                }
-
-            }
+		}
+	    }
        }               
 
       

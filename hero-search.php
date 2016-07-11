@@ -30,8 +30,8 @@ global $options;
 					if ($options['search_allowfilter']) {
 					    echo '<div class="filter">';
 					    $query_types = get_query_var('post_type');
-					    $listtypes = $options['search_post_types'];                                         
-                                            $allowed_types = get_post_types(array('public' => true, 'exclude_from_search' => false));
+					    $listtypes = $options['search_post_types'];
+					     $allowed_types = get_post_types(array('public' => true, 'exclude_from_search' => false));
                                        
 					    foreach ($listtypes as $type) {                                                
                                                 if( in_array( $type, $allowed_types ) ) {

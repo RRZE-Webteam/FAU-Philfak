@@ -55,8 +55,8 @@ get_header(); ?>
 
 					get_template_part('sidebar', 'inline'); 
 					the_content(); ?>
-				    </main>
-				    <?php echo fau_get_ad('werbebanner_unten',true); ?>
+				    </main>    
+				  <?php  echo fau_get_ad('werbebanner_unten',true); ?>				  
 				</div>
 				
 			</div>
