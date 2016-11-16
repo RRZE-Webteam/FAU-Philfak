@@ -17,9 +17,9 @@ if (!class_exists('RRZE_Calendar')) {
 	    $bgcolorclass = '';
 	    $inline = '';
 	    if (isset($event->category)) {
-		if (!empty($event->category->bgcol)) {
+		if (isset($event->category->bgcol)) {
 		    $bgcolorclass = $event->category->bgcol;
-		} elseif (!empty($event->category->color)) {
+		} elseif (isset($event->category->color)) {
 		    $inline = 'style="background-color:' . $event->category->color.'"';
 		}
 	    }
