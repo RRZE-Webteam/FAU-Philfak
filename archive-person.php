@@ -35,7 +35,7 @@ get_header();
 
 					    while ( have_posts() ) { 
 						the_post();  
-						 echo FAU_Person_Shortcodes::fau_person(array("id"=> $post->ID, 'format' => 'kompakt', 'showlink' => 1, 'showlist' => 1 )); 				    
+						 echo FAU_Person_Shortcodes::fau_person(array("id"=> $post->ID, 'format' => 'kompakt', 'showlink' => 1)); 				    
 					    } ?>
 					    <nav class="navigation">
 						<div class="nav-previous"><?php previous_posts_link(__('<span class="meta-nav">&laquo;</span> Vorherige Einträge', 'fau')); ?></div>
