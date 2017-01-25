@@ -67,6 +67,11 @@ $show =false;
 		    'value'	    =>  date("Y-m-d"),
 		    'compare'   => 'NOT EXISTS',
 		),
+		array(
+		    'key'	    => 'topevent_date',
+		    'value'	    =>  date('1970-01-01'),
+		    'compare'   => '=',
+		)
 	    ),
 	),
 	'numberposts' => $options['start_topevents_max'],
