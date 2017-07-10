@@ -79,7 +79,6 @@ $show =false;
     $topevent_posts = get_posts($args);
 
 
-         // $topevent_posts = get_posts(array('tag' => $options['start_topevents_tag'], 'numberposts' => $options['start_topevents_max']));
     foreach($topevent_posts as $topevent) {  
 	    $topevent_date  = get_post_meta( $topevent->ID, 'topevent_date', true );
 	    $istopevent  = get_post_meta( $topevent->ID, 'topevent_active', true ); 
