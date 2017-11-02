@@ -49,8 +49,8 @@ table {
 	th, td {
 		padding-left: 15px;
 		padding-right: 15px;
-		font-size: 13px;
-		line-height: 18px;
+		@include px2rem($font-size-table);	    	
+		
 	}
 	
 	th {
@@ -60,6 +60,11 @@ table {
 		border-top: 1px solid $colorContentBorders;
 		border-bottom: 1px solid $colorContentBorders;
 		text-align: left;
+		
+
+	}
+	&.sorttable th.header {
+	    cursor: pointer;
 	}
 	
 	td {
@@ -91,12 +96,43 @@ table {
 	ul {
 		li {
 			color: $colorPrimary;
-			font-size: 13px;
-			line-height: 18px;
+			@include px2rem($font-size-table);	    
 			background-position: left 5px;
 		}
 	}
 	
+	&.nooddcolor {
+	    tr:nth-child(odd) td {
+		color:  $colorText;
+		background: transparent;
+		
+		ul {
+		    li {
+			color:  $colorText;
+		    }
+		}
+	    }
+	}
+	&.nobackground {
+	    border-top: none;
+	    border-bottom: none;
+	    th {
+		background: transparent;
+		border-top: none;
+		border-bottom: none;
+	    }
+	    tr {
+		border-left: none;
+		border-right: none;
+	    }
+	    tr:nth-child(odd) td {
+		background: transparent;
+		color: $colorText;
+		li {
+		    color: $colorText;
+		}
+	    }
+	}
 	
 }
 .sorttable {
@@ -107,3 +143,5 @@ table {
 		
 	    }
 	}
+
+	

@@ -50,11 +50,14 @@
 	    .branding, 
 	    .header-menu {
 		padding-left:  ($grid-gutter-width / 2);
-		padding-right: ($grid-gutter-width / 2);
+	    }
+	    .header-menu {
+		padding-right: 0;
 	    }
 	    
 	    .branding {
 		height: 75px;
+		padding-right: ($grid-gutter-width / 2);
 	    }
 	    .header-menu {
 		height: 37px;
@@ -157,6 +160,10 @@
 	}
 	.nologo &.branding {
 		padding: 0 0 3px 15px;
+				
+		h1 {
+		     margin: 0 0 7px 0;
+		}
 	 
 	}
 	img {
