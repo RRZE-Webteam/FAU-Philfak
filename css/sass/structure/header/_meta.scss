@@ -29,6 +29,19 @@
 	    top: $wordpress-adminbar-smallheight;
 	}
     }
+    
+    .fau-orga-breadcrumb {
+	display: none;
+	// an dieser STelle müssen die Anweisungen zur FAU ORGA Breadcrumb kommen.
+	// ggf. müssen auch Änderungen an der _branding.scss gemacht werden.
+	
+
+	
+	@media (min-width: $screen-sm ) {
+	    // ab 768px ..
+	}
+    }
+    
 }
 
 
@@ -38,6 +51,7 @@
 	@extend .col-sm-7;
     }
     padding: 1px 0;
+    min-height: 20px;
     
     .ext-link  {
 	    padding-right: 0 !important;
