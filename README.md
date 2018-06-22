@@ -1,12 +1,12 @@
 # FAU-Einrichtungen
 
-Wordpress-Theme für zentrale Einrichtungen der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
+Wordpress-Theme für die philosophische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
 Eine Dokumentation kann unter https://wordpress.rrze.fau.de  gefunden werden.
 
 ## Download 
 
-GITHub-Repo: https://github.com/RRZE-Webteam/FAU-Einrichtungen
+GITHub-Repo: https://github.com/RRZE-Webteam/FAU-Philfak
 
 
 ## Autor 
@@ -26,6 +26,7 @@ GNU General Public License (GPL) Version 2
 * fancyBox v2.1.5 fancyapps.com 
 * jQuery carouFredSel 6.2.1, https://dev7studios.com/
 * jQuery FlexSlider v2.3.0
+* Slick Slider v1.9
 * hoverIntent v1.8.0
 * Bootstrap 3.3.7, http://getbootstrap.com/
 
