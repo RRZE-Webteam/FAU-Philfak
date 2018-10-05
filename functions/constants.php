@@ -267,6 +267,8 @@ $defaultoptions = array(
     'advanced_topevent_thumblink_alt_posttitle'	=> __('"','fau'), 
 	// Alternativer Tag wird mit dem Tiotel des verlinkten Beitrags gefüllt. 
 	// Hier kann davor noch ein teil dahinter stehen.     
+    'advanced_display_portalmenu_thumb_credits'	=> false,
+	// Zeige bei optionalen Thumbnails im Hauptmenu auch die Creditinfo, wenn vorhanden
 ); 
 
 
@@ -408,7 +410,7 @@ function fau_get_searchable_fields() {
  }        
 /*--------------------------------------------------------------------*/
 /* Durch User änderbare Konfigurationen
- *   Ab 1.9.5 über CUstomizer, davor über Theme Options
+ *   Ab 1.9.5 über Customizer, davor über Theme Options
 /*--------------------------------------------------------------------*/
 $setoptions = array(
     'fau_theme_options'   => array(
@@ -1098,6 +1100,30 @@ $setoptions = array(
                   'default' => $defaultoptions['menu_aftertitle_portal'],
 		    'parent'  => 'topmenulinks'
 		),  
+	       'advanced_display_portalmenu_thumb_credits'	  => array(
+		    'type'    => 'toggle',
+		    'title'   => __( 'Zeige Credits der Menübildern', 'fau' ),
+		    'label'   => __( 'Falls im Hauptmenu bei den Portalseiten Bilder definiert wurden, die im Hauptmenu angezeigt werden sollen, kann hier definiert werden, ob bei deren Ausgabe die Copyright-Info mit ausgegeben werden soll.', 'fau' ),                
+		    'default' => $defaultoptions['advanced_display_portalmenu_thumb_credits'],
+		    'parent'  => 'topmenulinks'
+		), 
+	       
+	       
+                'contentmenus'  => array(
+		    'type'    => 'section',
+		    'title'   => __( 'Inhaltsmenüs', 'fau' ),                      
+		),
+                'default_submenu_entries' => array(
+                  'type'    => 'range-value',
+                  'title'   => __( 'Untermenüpunkte', 'fau' ),
+                  'label'   => __( 'Anzahl der anzuzeigenden Untermenüpunkte (Zweite Ebene).', 'fau' ),                
+                  'default' => $defaultoptions['default_submenu_entries'],
+		    'min'   => 0,
+		    'max'   => 10,
+		    'step'  => 1,
+		  'parent'  => 'contentmenus'
+		),   
+              
 	       
 	       'sidebaropt'  => array(
                   'type'    => 'section',
