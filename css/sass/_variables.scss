@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------------*/
 // Konstanten fuer das Design
 //-----------------------------------------------------------------------------------*/
-$version:  '1.10.24';
+$version:  '1.10.36';
     // Theme Version
     // First Digit:  Manual
     // Second Digit: Branch Version
@@ -197,7 +197,7 @@ $colorMetaLightest:		desaturate(lighten($colorDefault, 73%), 75%);
 $colorPasspartoutBackground:	$colorStandardHellgrau;
 
 // Social Bar Startseite
-$colorSocial:			$colorDefault;
+$colorSocial:			$colorPrimary; // $colorDefault;
 $colorSocialBackground:		$colorMetaBackground;
 
 
@@ -215,12 +215,17 @@ $font-size-base:		15;
 $font-size-meta:		13;
 $font-size-sidebar:		13;
 
+
+$font-size-small:		($font-size-base - 2);  
+$font-size-large:		($font-size-base + 4);  
+$font-size-larger:		($font-size-base + 8);  
+
 $font-size-footer:		13;
 $font-size-breadcrumb:		13;
 $font-size-herosearch:		16;
 $font-size-header-branding:	19;
 
-$font-size-hero-slider-title:   24;
+$font-size-hero-slider-title:   25;
 $font-size-hero-slider-text:	18;
 $font-size-hero-slider-copyright: 14;
 $font-size-textbuttons:		14;
