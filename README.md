@@ -1,4 +1,4 @@
-# FAU-Einrichtungen
+# FAU-Philfak
 
 Wordpress-Theme für die Philosophische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
