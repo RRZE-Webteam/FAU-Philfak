@@ -1,8 +1,7 @@
 # FAU-Philfak
 
-Wordpress-Theme für die philosophische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
+Wordpress-Theme für die Philosophische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
-Eine Dokumentation kann unter https://wordpress.rrze.fau.de  gefunden werden.
 
 ## Download 
 
@@ -36,9 +35,20 @@ Please use github for submitting new features or bugs:
 or send an email to 
  webmaster@rrze.fau.de
 
+## Dokumentation
+
+Eine Dokumentation des THemes und dessen Funktionen findet sich unter der Adresse
+https://wordpress.rrze.fau.de  
 
 
 ## Entwickler-Hinweise
+
+## Testportal
+
+Testseiten und Hinweise zur Neuentwicklung finden sich auf dem Testportal
+https://www.beta.wordpress.rrze.fau.de/ .
+Dort finden sich auch weitere Hinweise zur Entwicklung.
+
 
 ### SASS-Compiler
 
@@ -58,5 +68,17 @@ dagegen im Unterverzeichnis ```/css``` abfelegt.
     Eingabequelle:  ```/css/sass/```  
     Ausgabeort:     ```/css```
 
-Mit der Compiler-Option ```--style compressed``` soll im produktiven Betrieb die 
-erzeugte CSS-Datei komprimiert sein. Source-Map Dateien werden nicht benötigt. 
+Mit der Compiler-Option ```--style compressed``` sollen die im produktiven Betrieb  
+erzeugten CSS-Dateien komprimiert sein. Source-Map Dateien werden nicht benötigt.
+
+
+## Hinweis zu Vendor-Prefixes
+
+In den SASS-Dateien befinden sich teilweise noch Vendor-Prefixes. Diese wurde
+in älteren Versionen in das Theme eingestellt, als es noch keinen Autoprefixer
+gab.
+Diese Vendor-Prefixes sollen in den nächsten Versionen des Themes entfernt werden.
+Vendor-Prefixes sollen stattdessen -sofern sie noch benötigt werden- durch einen
+Autoprefixer auf das style.css ergänzt werden. Diese Funktion und die dazugehörigen
+Konfigurationsdateien sind jedoch (aktuell) nicht Teil des GitHub-Projektes.
+
