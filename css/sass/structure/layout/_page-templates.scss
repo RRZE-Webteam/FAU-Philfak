@@ -36,28 +36,18 @@
 
     @media (min-width: $screen-md) {
         // 992 - 
-        display: flex;   
-        flex-wrap: nowrap;
-        flex-direction: row;
-        align-items: flex-start;
-
-        .sidebar-inline,
-        .content-inline {
-             display: inline-block;
-
-        }
-        .content-inline {
-            width: 100%;
-
-            &.with-sidebar {
-                width: calc(100% - 237px);
+        display: inline-block;
+       
+            .sidebar-inline {
+                display: inline-block;
+                float: right;
+                width: 220px;
+                flex: none; 
             }
-        }
-        .sidebar-inline {
-            flex: 0 0 237px;
-            margin-right: 0px; 
-            margin-left: 15px;
-        }
+            .content-inline {
+                width: 100%;
+                display: block;
+            }
 
     }
     
