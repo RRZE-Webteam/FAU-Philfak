@@ -153,7 +153,9 @@
 	.button-portal {
 		@include inline-block;
 		color: $colorMainMenu;
-		background-color: $colorHover;
+		background-color: $colorHover; 
+
+		
 		padding: 13px 20px;
 		font-weight: bold;
 
@@ -184,7 +186,7 @@
 			&:hover,
 			&:focus {
 				text-decoration: none;
-				background-color: $colorHover;
+				background-color:  $colorHover;  
 			}
 		}
 	}
@@ -192,7 +194,6 @@
 	.level2 {
 		> li {
 			&.has-sub {
-				-webkit-column-break-inside: avoid;
 				page-break-inside: avoid;
 				break-inside: avoid;
 			}
@@ -354,17 +355,17 @@
 	span {
 		@include hideout();
 	}
-
-	&:before {
-		@extend .fa;
-		@extend .fa-bars;
-	}
-
-	&[aria-expanded=true]:before {
-		@extend .fa-close;
-	}
+}
+#mainnav-toggle:before {
+	@extend .fa;
+	@extend .fa-bars;
+}
+#mainnav-toggle[aria-expanded=true]:before {
+	@extend .fa-close;
 }
 
+
+	
 /* Very small device */
 @media (max-width: $screen-xs - 1) {
 	.no-js {
@@ -390,9 +391,17 @@
 		}
 
 		> li {
-			border-top: 1px solid #ccc;
+			border-top: 1px solid $colorOverlayDark; // #ccc;
 
 			&.level1 {
+				&:hover, &:focus {
+					border-top: 1px solid $colorHover;
+					+ li {
+						border-top: 1px solid $colorHover;
+					}
+				}
+			    
+			    
 				> a,
 				> [type=button] {
 					&[aria-expanded=true] {
