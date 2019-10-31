@@ -16,7 +16,7 @@ $defaultoptions = ['optiontable-version'		=> 59,
     'js-version'			=> '1.13',
 	// Theme-Versionslinie, wird überschrieben durch Style.css Version
     
-    'website_type'			=> 1,
+    'website_type'			=> 0,
 	// website_type: 
 	//  0 = Fakultaetsportal; 
 	//  1 = Lehrstuehle, Departents 
@@ -24,7 +24,7 @@ $defaultoptions = ['optiontable-version'		=> 59,
 	//  3 = Kooperationen 
 	// -1 = fau.de Portal (4 Spalter in Bühne, kein Link zur FAU. 
 
-    'website_usefaculty'		=> 'phil',
+    'website_usefaculty' => 'phil',
 	// phil, med, nat, rw, tf
 	// Setzt fest die Fakultät bei Wahl des Website-Types    
 
