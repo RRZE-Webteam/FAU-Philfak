@@ -7,20 +7,13 @@
  * @since FAU 1.0
  */
 
-get_header(); ?>
+get_header(); 
+while ( have_posts() ) : the_post(); 
 
-<?php while ( have_posts() ) : the_post(); ?>
-
-    <?php get_template_part('template-parts/hero', 'small'); ?>
+    get_template_part('template-parts/hero', 'small'); ?>
 
     <div id="content" class="content-portal">
-	<div class="container">
-		
-	    <?php 
-	       echo fau_get_ad('werbebanner_seitlich',false);
-	     ?>
-		
-		
+	<div class="container">	
 	    <div class="row">
 		<div class="col-xs-12">
 		    <main<?php echo fau_get_page_langcode($post->ID);?> id="droppoint">
@@ -29,11 +22,19 @@ get_header(); ?>
 			$headline = get_post_meta( $post->ID, 'headline', true );				
 			if (!fau_empty($headline)) {
 			      echo '<h2 class="subtitle">'.$headline."</h2>\n";  
-			}
-			
-			
-			get_template_part('template-parts/sidebar', 'inline'); 
-			the_content(); 
+			} ?>
+			<div class="inline-box">			    
+			    <?php get_template_part('template-parts/sidebar', 'inline');  
+			    if ($is_sidebar_active) {
+				echo '<div class="content-inline with-sidebar">';
+			    } else {
+				echo '<div class="content-inline">';
+			    }
+			    the_content(); 
+			    echo '</div>';
+			    ?>
+			</div>    
+			<?php 
 			$displayedicons = 0;
 			$menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
 			if ($menuslug) { 
@@ -65,15 +66,12 @@ get_header(); ?>
 			}
 			?>
 		    </main>
-		    
-		     <?php echo fau_get_ad('werbebanner_unten',false); ?>
 		</div>
 	    </div>
 
 	</div>
 	
     </div>
-<?php endwhile; ?>
-<?php get_template_part('template-parts/footer', 'social'); ?>	
-<?php 
+<?php endwhile; 
+get_template_part('template-parts/footer', 'social');
 get_footer();

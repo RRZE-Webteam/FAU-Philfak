@@ -14,12 +14,7 @@ get_header(); ?>
     <?php get_template_part('template-parts/hero', 'small'); ?>
 
     <div id="content" class="content-portal">
-	<div class="container">		
-	    <?php 
-	       echo fau_get_ad('werbebanner_seitlich',false);
-	     ?>
-		
-	   
+	<div class="container">			   
 	    <div class="row">
 		<div class="portalpage-content">
 		     <main<?php echo fau_get_page_langcode($post->ID);?> id="droppoint">
@@ -45,10 +40,8 @@ get_header(); ?>
 	    <?php  
 
 	    $menuslug = get_post_meta( $post->ID, 'portalmenu-slug', true );	
-	    if ($menuslug) { ?>	
-		<hr>
-		<?php 
-		
+	    if ($menuslug) { 	
+		echo "<hr>";
 		$nosub  = get_post_meta( $post->ID, 'fauval_portalmenu_nosub', true );
 		if ($nosub==1) {
 		    $displaysub =0;
@@ -71,8 +64,6 @@ get_header(); ?>
 		}
 	      
 	    ?>
-	    
-	    <?php echo fau_get_ad('werbebanner_unten',false); ?>
 	</div>
 	
 	
