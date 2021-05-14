@@ -1,9 +1,0 @@
-
-nbproject/project.properties
-/nbproject/private/
-nbproject/project.xml
-img/logos/Browse.plb
-node_modules
-.idea*
-.sass-cache*
-/package-lock.json
