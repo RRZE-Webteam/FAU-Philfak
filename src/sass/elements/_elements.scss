@@ -3,6 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 
 
+
 // Überschriften
 @import "headlines";
 
@@ -41,10 +42,17 @@
 // Screenreader Classes
 @import "accessibility";
 
-
+// Color Classes
+@import "color-classes";
 
 // General Classes
 @import "general-classes";
+
+// WordPress Required Classes
+@import "buttons";
+
+// Global Selectors
+@import "selectors";
 
 // WordPress Required Classes
 @import "wordpress";

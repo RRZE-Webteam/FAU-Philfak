@@ -8,13 +8,15 @@
  */
 
 get_header();
-get_template_part('template-parts/hero', 'sliderpage');
+get_template_part('template-parts/hero', 'sliderpage-slider');
 ?>
 
-	<div id="content">
-		<div class="container">
-			<div class="row">
-				<div class="startpage-blogroll">
+	<div id="content" class="start">
+		<div class="content-container">	   
+		    <div class="content-row">
+			<div class="portalpage-content">
+				    
+				    
 				    <main<?php echo fau_get_page_langcode($post->ID);?>>
 					<h1 class="screen-reader-text"><?php the_title(); ?></h1>
 					
@@ -69,11 +71,18 @@ get_template_part('template-parts/hero', 'sliderpage');
 						$query->the_post(); 
 						echo fau_display_news_teaser($post->ID);
 						 wp_reset_postdata();
+						 $number = 1;
 					    }
 					}
-					$showcatlink = get_theme_mod('start_link_news_show');
-					if (($showcatlink==true) && ($newscat>0)) {
-					    echo fau_get_category_links();
+					if ($number > 0) {
+					    $showcatlink = get_theme_mod('start_link_news_show');
+					    if (($showcatlink==true) && ($newscat>0)) {
+						echo fau_get_category_links();
+					    }
+					} else {
+					    echo '<div class="alert alert-warning">';
+					    echo __('Es konnten keine öffentlichen Beiträge gefunden werden.','fau');
+					   echo '</div>';
 					}
 					?>			    
 				    </main>	

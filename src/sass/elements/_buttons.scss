@@ -1,0 +1,15 @@
+/*-----------------------------------------------------------------------------------*/
+/* Buttons
+/*-----------------------------------------------------------------------------------*/
+button:not(.meta-links-trigger-button),
+input[type="button"],
+[role="button"] {
+    @include buttonstyle();
+}
+
+a.standard-btn,
+a.btn, 
+a[role="button"] {
+    @include defaultlinkstyle();
+    @include buttonstyle();
+}

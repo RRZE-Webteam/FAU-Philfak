@@ -13,10 +13,11 @@
     
 ?>
 
-    <div id="content">
-	<div class="container">
-	    <div class="row">
-		<div class="startpage-blogroll">
+    <div id="content" class="start-sub">   
+	<div class="content-container">	   
+	    <div class="content-row">
+		<div class="portalpage-content">
+		    
 		    <main<?php echo fau_get_page_langcode($post->ID);?>>	  
 			<h1 class="screen-reader-text"><?php the_title(); ?></h1>
 		    <?php 
@@ -78,12 +79,15 @@
 				    $query->the_post(); 
 				    echo fau_display_news_teaser($post->ID);
 				     wp_reset_postdata();
+				      $number = 1;
 				}
 			    }
-
-			    if (get_theme_mod('start_link_news_show')) {
-				echo fau_get_category_links();
-			    }
+			    if ($number > 0) {
+				if (get_theme_mod('start_link_news_show')) {
+				    echo fau_get_category_links();
+				}
+			    } 
+			    
 			}    
 			?>
 			</main>	

@@ -128,30 +128,30 @@ $default_link_liste = array(
 	    '_title'	=> __('Die FAU','fau'),
 	    'link1'  => array(
 		'name'	    => __('Alle Studiengänge', 'fau' ),
-		'content'  => 'https://www.fau.de.de/studium/vor-dem-studium/studiengaenge/alle-studiengaenge/',
+		'content'  => 'https://www.fau.de/education/studienangebot/alle-studiengaenge/',
 	    ),
 	    'link2'  => array(
 		'name'	    => __('Studium A-Z', 'fau' ),
-		'content'  => 'https://www.fau.de/studium/im-studium/studium-a-z/',
+		'content'  => 'https://www.fau.de/education/studienorganisation/studium-a-z/',
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Zahlen, Daten, Fakten', 'fau' ),
-		'content'  => 'https://www.fau.de/universitaet/kennzahlen-und-rankings/',
+		'content'  => 'https://www.fau.de/fau/willkommen-an-der-fau/kennzahlen-und-rankings/',
 	    ),	
 	    'link4'  => array(
-		'name'	    => __('Wissenschaftsschwerpunkte', 'fau' ),
-		'content'  => 'https://www.fau.de/forschung/forschungsprofil/forschungsprofil-und-wissenschaftsschwerpunkte-der-fau/',
+		'name'	    => __('Forschungsprofil', 'fau' ),
+		'content'  => 'https://www.fau.de/research/forschungsprofil/',
 	    ),	
 	    'link5'  => array(
 		'name'	    => __('Stiften und Fördern', 'fau' ),
-		'content'  => 'https://www.fau.de/universitaet/stiften-und-foerdern/',
+		'content'  => 'https://www.fau.de/outreach/stiften-und-foerdern/',
 	    ),	
 	),
 	'centers' => array(    
 	    '_title'	=> __('Einrichtungen','fau'),
 	    'link1'  => array(
 		'name'	    => __('Universitätsbibliothek', 'fau' ),
-		'content'  => 'https://www.ub.fau.de/',
+		'content'  => 'https://ub.fau.de/',
 	    ),
 	    'link2'  => array(
 		'name'	    => __('Rechenzentrum', 'fau' ),
@@ -159,12 +159,9 @@ $default_link_liste = array(
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Sprachenzentrum', 'fau' ),
-		'content'  => 'http://www.sz.uni-erlangen.de/',
+		'content'  => 'https://sz.fau.de/',
 	    ),
-	    'link4'  => array(
-		'name'	    => __('Graduiertenschule', 'fau' ),
-		'content'  => 'http://www.promotion.fau.de/',
-	    ),
+
 	  
 	),
 	
@@ -181,7 +178,7 @@ $default_link_liste = array(
 	    ),	
 	    'link4'  => array(
 		'name'	    => __('Unternehmen', 'fau' ),
-		'content'  => 'https://www.fau.de/patente-gruendung-wissenstransfer/service-fuer-unternehmen/',
+		'content'  => 'https://www.fau.de/outreach/fau-fuer-unternehmen-und-organisationen/',
 	    ),	
 
 	    	
@@ -198,7 +195,7 @@ $default_link_liste = array(
 	    ),
 	    'link3'  => array(
 		'name'	    => __('Stellenangebote', 'fau' ),
-		'content'  => 'https://jobs.fau.de/',
+		'content'  => 'https://www.jobs.fau.de/',
 	    ),
 	    'link4'  => array(
 		'name'	    => __('Lageplan', 'fau' ),
@@ -208,21 +205,18 @@ $default_link_liste = array(
 	),
 	'techmenu' => array(    
 	    'link1'  => array(
-		'name'	    => __('Stellenangebote', 'fau' ),
-		'content'  => 'https://www.jobs.fau.de/',
+		'name'	    => __('Impressum', 'fau' ),
+		'content'  => __('/impressum/', 'fau' ),
 	    ),
 	    'link2'  => array(
-		'name'	    => __('Presse', 'fau' ),
-		'content'  => 'https://www.fau.de/presseportal-der-fau/',
+		'name'	    => __('Datenschutz', 'fau' ),
+		'content'  => __('/datenschutz/', 'fau' ),
 	    ),
 	    'link3'  => array(
-		'name'	    => __('Intranet', 'fau' ),
-		'content'  => 'https://www.fau.de/intranet/',
+		'name'	    => __('Barrierefreiheit', 'fau' ),
+		'content'  => __('/barrierefreiheit/', 'fau' ),
 	    ),	
-	    'link4'  => array(
-		'name'	    => __('Impressum', 'fau' ),
-		'content'  => 'https://www.fau.de/impressum/',
-	    ),	
+	  
 	),
 );
 
@@ -233,10 +227,8 @@ $default_fau_orga_data = array(
 	    'shorttitle'	=> __('FAU', 'fau'),
 	    'homeurl'		=> 'https://www.fau.de',
 	    'homeurl_en'	=> 'https://www.fau.eu',
-	    'url'		=> '%s/img/logos/fau-logo-240x65.svg',
-	    'home_imgsrc'	=> get_fau_template_uri().'/img/logos/fau-37x16.gif',
-	    'data-imgmobile'	=> get_fau_template_uri().'/img/logos/fau-220x100.gif',
-	    'thumbnail'		=> '%s/img/logos/fau-logo-240x65.svg',
+	    'favion'
+
     ),
   
     '_faculty'	=> array(
@@ -245,40 +237,31 @@ $default_fau_orga_data = array(
 		'shorttitle'    => __('Med', 'fau'),
 		'homeurl'	    => 'https://med.fau.de',
 		'homeurl_en'	    => 'https://med.fau.eu',
-		'url'           => '%s/img/logos/logo-med.svg',
-		'thumbnail'	=> '%s/img/logos/logo-med.svg',
+
 	),
 	'nat' => array(
 		'title'	    => __('Naturwissenschaftliche Fakultät', 'fau'),
 		'shorttitle'    => __('Nat', 'fau'),
 		'homeurl'	    => 'https://nat.fau.de',
 		'homeurl_en'	    => 'https://nat.fau.eu',
-		'url'           => '%s/img/logos/logo-nat.svg',
-		'thumbnail'	=> '%s/img/logos/logo-nat.svg',
 	),
 	'phil' => array(
 		'title'	    => __('Philosophische Fakultät', 'fau'),
 		'shorttitle'    => __('Phil', 'fau'),
 		'homeurl'	    => 'https://phil.fau.de',
 		'homeurl_en'	    => 'https://phil.fau.eu',
-		'url'           => '%s/img/logos/logo-phil.svg',
-		'thumbnail'	=> '%s/img/logos/logo-phil.svg',
 	),
 	'rw' => array(
 		'title'	    => __('Rechts- und Wirtschaftswissenschaftliche Fakultät', 'fau'),
 		'shorttitle'    => __('RW', 'fau'),
 		'homeurl'	    => 'https://rw.fau.de',
 		'homeurl_en'	    => 'https://rw.fau.eu',
-		'url'           => '%s/img/logos/logo-rw.svg',
-		 'thumbnail'	=> '%s/img/logos/logo-rw.svg',
 	),
 	'tf' => array(
 		'title'	    => __('Technische Fakultät', 'fau'),
 		'shorttitle'    => __('TF', 'fau'),
 		'homeurl'	    => 'https://tf.fau.de',
 		'homeurl_en'	    => 'http://tf.fau.eu',
-		'url'           => '%s/img/logos/logo-tf.svg',
-		'thumbnail'	=> '%s/img/logos/logo-tf.svg',
 	)
     ),
     
@@ -287,15 +270,11 @@ $default_fau_orga_data = array(
 	    'shorttitle'    => __('FB WiSo', 'fau'),
 	    'homeurl'	    => 'https://wiso.rw.fau.de',
 	    'homeurl_en'    => 'https://wiso.rw.fau.eu',
-	    'url'           => '%s/img/logos/logo-rw-wiso.svg',
-	    'thumbnail'	    => '%s/img/logos/logo-rw-wiso.svg',
     ),
     'fb-jura' => array(
 	    'title'	    => __('Fachbereich Rechtswissenschaften', 'fau'),
 	    'shorttitle'    => __('FB WiSo', 'fau'),
 	    'homeurl'	    => 'https://jura.rw.fau.de',
-	    'url'           => '%s/img/logos/logo-rw-jura.svg',
-	    'thumbnail'	    => '%s/img/logos/logo-rw-jura.svg',
     ),
     
    
