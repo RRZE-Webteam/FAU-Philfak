@@ -28,8 +28,14 @@
 	    $hero_posts = get_posts($query); 
 	}
 	
-	if (count($hero_posts) > 0) { ?>
-<div id="hero" class="sliderpage">
+	$sliderclass = "sliderpage";
+	if ((has_nav_menu('quicklinks-3')) || (has_nav_menu('quicklinks-4'))) {
+	   $sliderclass .= " with-infobar";
+	}
+	
+	
+	if ($hero_posts && (count($hero_posts) > 0)) { ?>
+<div id="hero" class="<?php echo $sliderclass; ?>">
 	<section id="hero-slides" role="region" aria-roledescription="carousel"  aria-label="<?php echo __('Bedeutende Artikel','fau'); ?>">
 	   <div class="slick-slider featured-slider cf" id="mainslider">
 	       <?php
@@ -125,8 +131,8 @@
 					echo $link;
 					echo '">'.get_the_title($hero->ID).'</a></header>'."\n";					
 					?>
-				    </div>
-				</div>
+				 </div>
+			    </div>
 			    <?php
 				$maxlen = get_theme_mod("default_slider_excerpt_length");
 				if ($maxlen > 0) { ?>

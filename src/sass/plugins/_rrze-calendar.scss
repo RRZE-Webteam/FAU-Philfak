@@ -81,8 +81,8 @@
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-primary-dunkler); 
-	    color:  var(--color-primary-dunkler-kontrast); 
+	   background: var(--color-primary-ci-hell); 
+	    color:  var(--color-primary-ci-hell-kontrast); 
 	}
 	padding: 0.3rem;
 	width: 3rem;
@@ -122,7 +122,7 @@
 
 }
 
-
+.rrze-calendar .event-date.bgcol-default,
 .event-category-fau .event-date,
 .event-category-einrichtungen .event-date {
 	background: var(--color-zentral-ci-hell); 
@@ -130,63 +130,67 @@
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-zentral-dunkler); 
-	    color:  var(--color-zentral-dunkler-kontrast); 
+	   background: var(--color-zentral-ci-hell); 
+	    color:  var(--color-zentral-ci-hell-kontrast); 
 	}
 }
-
+.rrze-calendar .event-date.bgcol-tf,
 .event-category-techfak .event-date {
 	background: var(--color-tf-ci-hell); 
 	color:  var(--color-tf-ci-hell-kontrast); 
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-tf-dunkler); 
-	    color:  var(--color-tf-dunkler-kontrast); 
-	}
+	    background: var(--color-tf-ci-hell); 
+	color:  var(--color-tf-ci-hell-kontrast); 
+  }
 }
 
+.rrze-calendar .event-date.bgcol-rw,
 .event-category-rwfak .event-date {
 	background: var(--color-rw-ci-hell); 
 	color:  var(--color-rw-ci-hell-kontrast); 
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-rw-dunkler); 
-	    color:  var(--color-rw-dunkler-kontrast); 
+	   background: var(--color-rw-ci-hell); 
+	color:  var(--color-rw-ci-hell-kontrast); 
 	}
 }
 
+.rrze-calendar .event-date.bgcol-phil,
 .event-category-philfak .event-date {
 	background: var(--color-phil-ci-hell); 
 	color:  var(--color-phil-ci-hell-kontrast); 
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-phil-dunkler); 
-	    color:  var(--color-phil-dunkler-kontrast); 
+	   background: var(--color-phil-ci-hell); 
+	color:  var(--color-phil-ci-hell-kontrast); 
 	}
 }
 
+.rrze-calendar .event-date.bgcol-nat,
 .event-category-natfak .event-date {
 	background: var(--color-nat-ci-hell); 
 	color:  var(--color-nat-ci-hell-kontrast); 
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-nat-dunkler); 
-	    color:  var(--color-nat-dunkler-kontrast); 
+	    background: var(--color-nat-ci-hell); 
+	    color:  var(--color-nat-ci-hell-kontrast); 
 	}
 }
 
+.rrze-calendar .event-date.bgcol-med,
 .event-category-medfak .event-date {
 	background: var(--color-med-ci-hell); 
 	color:  var(--color-med-ci-hell-kontrast); 
 	
 	&:hover,
 	&:focus {
-	    background: var(--color-med-dunkler); 
-	    color:  var(--color-med-dunkler-kontrast); 
+	    background: var(--color-med-ci-hell); 
+	    color:  var(--color-med-ci-hell-kontrast); 
 	}
 }
 

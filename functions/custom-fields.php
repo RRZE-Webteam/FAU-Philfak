@@ -20,6 +20,8 @@ function fau_metabox_cf_setup() {
     add_action('save_post', 'fau_save_metabox_page_untertitel', 10, 2);
 
     add_action('save_post', 'fau_save_metabox_page_portalmenu', 10, 2);
+    
+    add_action('save_post', 'fau_save_metabox_page_portalmenu_oben', 10, 2);
 
     add_action('save_post', 'fau_save_metabox_page_sidebar', 10, 2);
 
@@ -51,7 +53,7 @@ function fau_add_metabox_page() {
         'fau_metabox_page_untertitel',			
         esc_html__( 'Untertitel', 'fau' ),		
         'fau_do_metabox_page_untertitel',		
-        'page','normal','high',
+        'page','normal','low',
 	array(
 	    '__block_editor_compatible_meta_box' => true,
 	)
@@ -60,9 +62,16 @@ function fau_add_metabox_page() {
 
     add_meta_box(
         'fau_metabox_page_portalmenu',			
-        esc_html__( 'Optionen für Portalseiten', 'fau' ),		
+        esc_html__( 'Portalmenu unten auf Portalseiten', 'fau' ),		
         'fau_do_metabox_page_portalmenu',		
-        'page','side','core'
+        'page','side','low'
+    );
+
+     add_meta_box(
+        'fau_metabox_page_portalmenu_oben',			
+        esc_html__( 'Portalmenu oben auf Portalseiten', 'fau' ),		
+        'fau_do_metabox_page_portalmenu_oben',		
+        'page','side','low'
     );
 
 
@@ -72,7 +81,7 @@ function fau_add_metabox_page() {
         'fau_metabox_page_sidebar',			
         esc_html__( 'Sidebar', 'fau' ),		
         'fau_do_metabox_page_sidebar',		
-        'page','normal','core'
+        'page','normal','low'
     );
 
     
@@ -80,7 +89,7 @@ function fau_add_metabox_page() {
         'fau_metabox_page_additional_attributes',			
         esc_html__( 'Seiten-Eigenschaften', 'fau' ),		
         'fau_do_metabox_page_additional_attributes',		
-        'page','side','core',
+        'page','side','low',
 	array(
 	    '__block_editor_compatible_meta_box' => true,
 	)
@@ -446,7 +455,7 @@ function fau_save_metabox_page_untertitel( $post_id, $post ) {
 	} 
 }
 
-/* Display Options for menuquotes on pages */
+/* Display Options for portalmenu unten on portal pages */
 function fau_do_metabox_page_portalmenu($object, $box) {    
     wp_nonce_field(basename(__FILE__), 'fau_metabox_page_portalmenu_nonce');
 
@@ -477,19 +486,26 @@ function fau_do_metabox_page_portalmenu($object, $box) {
         $thislist[$term->term_id] = $term->name;
     }
     
-    fau_form_select('fau_metabox_page_portalmenu_id', $thislist, $currentmenuid, __('Portalmenü', 'fau'), __('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.', 'fau'), 1, __('Kein Portalmenu zeigen', 'fau'));
+    fau_form_select('fau_metabox_page_portalmenu_id', $thislist, $currentmenuid, __('Portalmenü', 'fau').' '.__('unten', 'fau'), __('Bei einer Portalseite wird unter dem Inhalt ein Menu ausgegeben. Bitte wählen Sie hier das Menü aus der Liste. Sollte das Menü noch nicht existieren, kann ein Administrator es anlegen.', 'fau'), 1, __('Kein Portalmenu zeigen', 'fau'));
 
     $nothumbnails = get_post_meta($object->ID, 'fauval_portalmenu_thumbnailson', true) ? 1 : 0;
-    fau_form_onoff('fau_metabox_page_portalmenu_nothumbnails', $nothumbnails, __('Artikelbilder verstecken; Nur Überschriften zeigen.', 'fau'));
+    fau_form_onoff('fau_metabox_page_portalmenu_nothumbnails', $nothumbnails, __('Beitragsbilder', 'fau').' '.__('verbergen', 'fau'));
 
     $nofallbackthumbs = get_post_meta($object->ID, 'fauval_portalmenu_nofallbackthumb', true) ? 1 : 0;
-    fau_form_onoff('fau_metabox_page_portalmenu_nofallbackthumb', $nofallbackthumbs, __('Keine Ersatzbilder zeigen, wenn Artikelbilder nicht gesetzt sind.', 'fau'));
+    fau_form_onoff('fau_metabox_page_portalmenu_nofallbackthumb', $nofallbackthumbs, __('Kein Ersatzbild zeigen, wenn Beitragsbild nicht gesetzt ist.', 'fau'));
 
     $nosub = get_post_meta($object->ID, 'fauval_portalmenu_nosub', true) ? 1 : 0;
     fau_form_onoff('fau_metabox_page_portalmenu_nosub', $nosub, __('Unterpunkte verbergen.', 'fau'));
 
+    $skewed = get_post_meta($object->ID, 'fauval_portalmenu_skewed', true) ? 1 : 0;
+    fau_form_onoff('fau_metabox_page_portalmenu_skewed', $skewed, __('Beitragsbilder', 'fau').' '.__('anschrägen', 'fau'));  
     
-    }
+    $portaltype = get_post_meta($object->ID, 'fauval_portalmenu_type', true);
+    fau_form_select('fau_metabox_page_portalmenu_type', array(
+        1 => __('Format', 'fau').' 2:1',
+        2 => __('Format', 'fau').' 3:2',
+        3 => __('Format', 'fau').' 3:4'), $portaltype, __('Bildformat', 'fau'), '', 1);
+}
 
 /* Save the meta box's page metadata. */
 function fau_save_metabox_page_portalmenu($post_id, $post) {
@@ -546,11 +562,160 @@ function fau_save_metabox_page_portalmenu($post_id, $post) {
         delete_post_meta($post_id, 'fauval_portalmenu_nosub');
     }
 
+    $newval = !empty($_POST['fau_metabox_page_portalmenu_skewed']) ? 1 : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_skewed', true) ? 1 : 0;
 
+    if ($newval && !empty($oldval)) {
+        update_post_meta($post_id, 'fauval_portalmenu_skewed', $newval);
+    } elseif ($newval && empty($oldval)) {
+        add_post_meta($post_id, 'fauval_portalmenu_skewed', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_skewed');
+    }
 
+   $newval = isset($_POST['fau_metabox_page_portalmenu_type']) ? absint($_POST['fau_metabox_page_portalmenu_type']) : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_type', true);
 
+    if ($newval && $oldval) {
+        update_post_meta($post_id, 'fauval_portalmenu_type', $newval);
+    } elseif ($newval && !$oldval) {
+        add_post_meta($post_id, 'fauval_portalmenu_type', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_type');
+    }
 }
 
+
+
+
+/* Display Options for portalmenu oben on portal pages */
+function fau_do_metabox_page_portalmenu_oben($object, $box) {    
+    wp_nonce_field(basename(__FILE__), 'fau_metabox_page_portalmenu_oben_nonce');
+
+    if (!current_user_can('edit_page', $object->ID)) {
+        return;
+    }
+
+  
+    $currentmenu = get_post_meta($object->ID, 'portalmenu-slug_oben', true);
+    $currentmenuid = 0;
+    if ($currentmenu == sanitize_key($currentmenu)) {
+        $currentmenuid = $currentmenu;
+    } else {
+        $thisterm = get_term_by('name', $currentmenu, 'nav_menu');
+        if (!isset($thisterm)) {
+            $thisterm = get_term_by('slug', $currentmenu, 'nav_menu');
+        }
+        if ($thisterm !== false) {
+            $currentmenuid = $thisterm->term_id;
+        }
+    }
+
+    $thislist = array();
+    $menuliste = get_terms('nav_menu', array('orderby' => 'name', 'hide_empty' => true));
+    foreach ($menuliste as $term) {
+        $term_id = $term->term_id;
+        $term_name = $term->name;
+        $thislist[$term->term_id] = $term->name;
+    }
+    
+    fau_form_select('fau_metabox_page_portalmenu_id_oben', $thislist, $currentmenuid, __('Portalmenü', 'fau').' '.__('oben', 'fau'), '', 1, __('Kein Portalmenu zeigen', 'fau'));
+
+    $nothumbnails = get_post_meta($object->ID, 'fauval_portalmenu_thumbnailson_oben', true) ? 1 : 0;
+    fau_form_onoff('fau_metabox_page_portalmenu_nothumbnails_oben', $nothumbnails, __('Beitragsbilder', 'fau').' '.__('verbergen', 'fau'));
+
+    $nofallbackthumbs = get_post_meta($object->ID, 'fauval_portalmenu_nofallbackthumb_oben', true) ? 1 : 0;
+    fau_form_onoff('fau_metabox_page_portalmenu_nofallbackthumb_oben', $nofallbackthumbs, __('Keine Ersatzbild zeigen, wenn Beitragsbild nicht gesetzt ist.', 'fau'));
+
+    $nosub = get_post_meta($object->ID, 'fauval_portalmenu_nosub_oben', true) ? 1 : 0;
+    fau_form_onoff('fau_metabox_page_portalmenu_nosub_oben', $nosub, __('Unterpunkte verbergen.', 'fau'));
+
+    $skewed = get_post_meta($object->ID, 'fauval_portalmenu_skewed_oben', true) ? 1 : 0;
+    fau_form_onoff('fau_metabox_page_portalmenu_skewed_oben', $skewed, __('Beitragsbilder', 'fau').' '.__('anschrägen', 'fau'));  
+    
+    $portaltype = get_post_meta($object->ID, 'fauval_portalmenu_type_oben', true);
+    fau_form_select('fau_metabox_page_portalmenu_type_oben', array(
+        1 => __('Format', 'fau').' 2:1',
+        2 => __('Format', 'fau').' 3:2',
+        3 => __('Format', 'fau').' 3:4'), $portaltype, __('Bildformat', 'fau'), '', 1);
+}
+/* Save the meta box's page metadata portalmenu oben. */
+function fau_save_metabox_page_portalmenu_oben($post_id, $post) {
+    /* Verify the nonce before proceeding. */
+    if (!isset($_POST['fau_metabox_page_portalmenu_oben_nonce']) || !wp_verify_nonce($_POST['fau_metabox_page_portalmenu_oben_nonce'], basename(__FILE__))) {
+        return;
+    }
+
+    if ('page' != $_POST['post_type'] || !current_user_can('edit_page', $post_id)) {
+        return;
+    }
+
+    $newval = isset($_POST['fau_metabox_page_portalmenu_id_oben']) ? trim($_POST['fau_metabox_page_portalmenu_id_oben']) : '';
+    $oldval = get_post_meta($post_id, 'portalmenu-slug_oben', true);
+
+    if (!empty($newval) && !empty($oldval)) {
+        update_post_meta($post_id, 'portalmenu-slug_oben', $newval);
+    } elseif (!empty($newval) && empty($oldval)) {
+        add_post_meta($post_id, 'portalmenu-slug_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'portalmenu-slug_oben');
+    }
+
+    $newval = !empty($_POST['fau_metabox_page_portalmenu_nothumbnails_oben']) ? 1 : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_thumbnailson_oben', true) ? 1 : 0;
+
+    if ($newval && !empty($oldval)) {
+        update_post_meta($post_id, 'fauval_portalmenu_thumbnailson_oben', $newval);
+    } elseif ($newval && empty($oldval)) {
+        add_post_meta($post_id, 'fauval_portalmenu_thumbnailson_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_thumbnailson_oben');
+    }
+
+    $newval = !empty($_POST['fau_metabox_page_portalmenu_nofallbackthumb_oben']) ? 1 : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_nofallbackthumb_oben', true) ? 1 : 0;
+
+    if ($newval && !empty($oldval)) {
+        update_post_meta($post_id, 'fauval_portalmenu_nofallbackthumb_oben', $newval);
+    } elseif ($newval && empty($oldval)) {
+        add_post_meta($post_id, 'fauval_portalmenu_nofallbackthumb_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_nofallbackthumb_oben');
+    }
+
+    $newval = !empty($_POST['fau_metabox_page_portalmenu_nosub_oben']) ? 1 : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_nosub_oben', true) ? 1 : 0;
+
+    if ($newval && !empty($oldval)) {
+        update_post_meta($post_id, 'fauval_portalmenu_nosub_oben', $newval);
+    } elseif ($newval && empty($oldval)) {
+        add_post_meta($post_id, 'fauval_portalmenu_nosub_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_nosub_oben');
+    }
+
+    $newval = !empty($_POST['fau_metabox_page_portalmenu_skewed_oben']) ? 1 : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_skewed_oben', true) ? 1 : 0;
+
+    if ($newval && !empty($oldval)) {
+        update_post_meta($post_id, 'fauval_portalmenu_skewed_oben', $newval);
+    } elseif ($newval && empty($oldval)) {
+        add_post_meta($post_id, 'fauval_portalmenu_skewed_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_skewed_oben');
+    }
+
+   $newval = isset($_POST['fau_metabox_page_portalmenu_type_oben']) ? absint($_POST['fau_metabox_page_portalmenu_type_oben']) : 0;
+    $oldval = get_post_meta($post_id, 'fauval_portalmenu_type_oben', true);
+
+    if ($newval && $oldval) {
+        update_post_meta($post_id, 'fauval_portalmenu_type_oben', $newval);
+    } elseif ($newval && !$oldval) {
+        add_post_meta($post_id, 'fauval_portalmenu_type_oben', $newval, true);
+    } else {
+        delete_post_meta($post_id, 'fauval_portalmenu_type_oben');
+    }
+}
 
 /* 
  * Sidebar der Seiten  

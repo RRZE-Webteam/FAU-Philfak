@@ -10,7 +10,7 @@ $OPTIONS_NAME = 'fau_theme_options';
     // Name des Options-Array
 
 $defaultoptions = [
-    'optiontable-version'	=> 73,
+    'optiontable-version'	=> 75,
 	// zaehlt jedesmal hoch, wenn neue Optionen eingefuegt werden 
 	// oder Default Optionen geaendert werden. Vorhandene Defaultoptions 
 	// in der Options-Table werden nur dann geändert, wenn der Wert erhöht 
@@ -196,7 +196,6 @@ $defaultoptions = [
     'advanced_comments_notes_before'		=> __('Ihre E-Mail-Adresse wird nicht angezeigt. Verpflichtende Felder werden mit dem folgenden Zeichen markiert: <span class="required">*</span>', 'fau' ),
     'advanced_comments_disclaimer'			=> __('Hinweis: Die Kommentare wurden von Lesern geschrieben und spiegeln deren persönliche Meinung wieder. Sie müssen nicht die Meinung der Universität oder der Fakultät repräsentieren.', 'fau' ),
     'advanced_comments_avatar'			=> false,
-    'advanced_activate_quicklinks'			=> true,
     
     
     'post_display_category_below'			=> true,
@@ -228,12 +227,7 @@ $defaultoptions = [
     'advanced_blogroll_thumblink_alt_posttitle'	=> '"', 
 	// Alternativer Tag wird mit dem Tiotel des verlinkten Beitrags gefüllt. 
 	// Hier kann davor noch ein teil dahinter stehen. 
-    'advanced_contentmenu_thumblink_alt_pretitle'	=> __('Zur Seite "','fau'), 
-	// Alternativer Tag wird mit dem Tiotel des verlinkten Beitrags gefüllt. 
-	// Hier kann davor noch ein Vortitel stehen.
-    'advanced_contentmenu_thumblink_alt_posttitle'	=> __('"','fau'), 
-	// Alternativer Tag wird mit dem Tiotel des verlinkten Beitrags gefüllt. 
-	// Hier kann davor noch ein teil dahinter stehen. 
+
     'advanced_topevent_thumblink_alt_pretitle'	=> __('Zum Artikel "','fau'), 
 	// Alternativer Tag wird mit dem Tiotel des verlinkten Beitrags gefüllt. 
 	// Hier kann davor noch ein Vortitel stehen.
@@ -423,7 +417,7 @@ $setoptions = array(
 	       'website_logotitle' => array(
                   'type'    => 'text',
                   'title'   => __( 'Titel im Logo', 'fau' ),
-                  'label'   => __( 'Bei EInrichtungen der FAU wird der Titel neben dem FAU-Logo gezeigt. Ist der Titel zu lang um ihn optisch korrekt darzustellen, kann hiermmit ein kürzerer Titel angegeben werden. Wird dieser EIntrag leer gelassen, wird der Titel der Website verwendet.', 'fau' ),               
+                  'label'   => __( 'Bei Einrichtungen der FAU wird der Titel neben dem FAU-Logo gezeigt. Ist der Titel zu lang um ihn optisch korrekt darzustellen, kann hiermmit ein kürzerer Titel angegeben werden. Wird dieser EIntrag leer gelassen, wird der Titel der Website verwendet.', 'fau' ),               
                   'default' => '',
 		    'input_attrs' => array(
 			'maxlength' => 80,
@@ -528,7 +522,7 @@ $setoptions = array(
 		'advanced_display_postthumb_alt-from-desc'		  => array(
 		    'type'    => 'toggle',
 		    'title'   => __( 'Alternativtext Artikelbild', 'fau' ),
-		    'label'   => __( 'Bei der Darstellung des Artikelbildes wird das ALT-Attribut vom Inhalt der Bildbeschriebung gefüllt, wenn das ALT-Attribut leer ist.', 'fau' ),                
+		    'label'   => __( 'Bei der Darstellung des Artikelbildes wird das ALT-Attribut vom Inhalt der Bildbeschreibung gefüllt, wenn das ALT-Attribut leer ist.', 'fau' ),                
 		    'default' => $defaultoptions['advanced_display_postthumb_alt-from-desc'],
 		    'parent'  => 'postoptions'
 		), 
@@ -677,13 +671,7 @@ $setoptions = array(
 	//	), 
 	       
 	
-		'advanced_activate_quicklinks'	  => array(
-		    'type'    => 'toggle',
-		    'title'   => __( 'Quicklinks', 'fau' ),
-		    'label'   => __( 'Auf dem Template "Startseite Fakultät" werden unterhalb des Sliders die Quicklinks angezeigt. ', 'fau' ),                
-		    'default' => $defaultoptions['advanced_activate_quicklinks'],
-		    'parent'  => 'header'
-		),   
+	
 	       
 	       'advanced_header_template'	  => array(
 		    'type'    => 'select',

@@ -11,6 +11,7 @@ $farbfamilie: 'phil';
 // Define colors
 $colormap-misc: ("Text": #222, 
 		 "TextLight": #797676, 
+		 "TextLightKontrast": #5B5858,
 		 "MetaTextDefault": #444,
 		 "Notice": #a71c18, 
 		 "Alert": #c5ac94,
@@ -145,11 +146,14 @@ $colorCopyright: #fff;
 $colorCopyrightBackground: rgba(0, 0, 0, 0.6);
 
 // Buttons
-
-$color_button_text:	map-get($colormap-primary, "dunkler-kontrast");
-$color_button_bg:	map-get($colormap-primary, "dunkler");
+$color_button_text:		map-get($colormap-primary, "dunkler-kontrast");
+$color_button_bg:		map-get($colormap-primary, "dunkler");
 $color-button-hover-text:	map-get($colormap-primary, "dunkelste-kontrast");
-$color-button-hover-bg:	map-get($colormap-primary, "dunkelste");
+$color-button-hover-bg:		map-get($colormap-primary, "dunkelste");
+
+// Ghost-Button
+$color-ghostbutton-hover-text:	map-get($colormap-primary, "ci-hell-kontrast");
+$color-ghostbutton-hover-bg:	map-get($colormap-primary, "ci-hell");
 
 
 // Hinweis: Für SVG-Grafiken brauchen wir den HEX-Code direkt und können nicht Custom Properies nutzen!
@@ -219,11 +223,11 @@ $font-size-sidebar-events-month: 10;
 $font-size-sidebar-events-day: 20;
 
 $font-size-socialmedia-morelink: $font-size-sidebar;
-$font-size-nav-blockquote: ($font-size-base + 1);
-$font-size-nav-blockquote-cite: ($font-size-base - 1);
-$font-size-nav-introtext: $font-size-base;
-$font-size-nav-flyout-items: $font-size-base;
 $font-size-nav-mainlinks: $font-size-base;
+
+$font-size-nav-level2: $font-size-base;
+$font-size-nav-level3: ($font-size-base - 1);
+$font-size-nav-buttons:	($font-size-base + 2);
 
 $font-size-subnav-firstlevel: ($font-size-base - 1);
 $font-size-subnav-sublevel: ($font-size-base - 2);
@@ -294,8 +298,8 @@ $font-size-contentmenu-title: ($font-size-base + 2);
 $font-size-contentmenu-link: $font-size-base;
 
 $contentmenu-xxs-width: 182px;
-$contentmenu-default-width: 242px;
-$contentmenu-default-height: floor(math.div(240px, 3) * 2);
+$contentmenu-default-width: 302px;
+$contentmenu-default-height: floor(math.div(300px, 3) * 2);
 $contentmenu-xxs-maxheight: floor(math.div(180px, 3) * 2);
 
 $contentmenu-typ2-width: 300px;

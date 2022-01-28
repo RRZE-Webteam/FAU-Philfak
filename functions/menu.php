@@ -29,13 +29,7 @@ function fau_register_menus()
     register_nav_menu('main-menu', __('Haupt-Navigation', 'fau'));
     // Hauptnavigation
 
-    if ($website_type == -1) {
-        // Buehnennavigation Template Portal Startseite mit 4 Spalten
-        register_nav_menu('quicklinks-1', __('Startseite FAU Portal: Bühne Spalte 1', 'fau'));
-        register_nav_menu('quicklinks-2', __('Startseite FAU Portal: Bühne Spalte 2', 'fau'));
-        register_nav_menu('quicklinks-3', __('Startseite FAU Portal: Bühne Spalte 3', 'fau'));
-        register_nav_menu('quicklinks-4', __('Startseite FAU Portal: Bühne Spalte 4', 'fau'));
-    } else {
+    if ($website_type == 0) {
         // Buehnennavigation Template Portal Startseite mit 2 Spalten
         register_nav_menu('quicklinks-3', __('Startseite Fakultät: Bühne Spalte 1', 'fau'));
         register_nav_menu('quicklinks-4', __('Startseite Fakultät: Bühne Spalte 2', 'fau'));
@@ -45,13 +39,16 @@ function fau_register_menus()
     register_nav_menu($defaultoptions['socialmedia_menu_position'], $defaultoptions['socialmedia_menu_position_title']);
     // Social Media Menu (seit 1.9.5)
 
-    register_nav_menu('error-1', __('Fehler- und Suchseite: Vorschlagmenu Spalte 1', 'fau'));
-    // Fehler und Suchseite: Vorschlagmenu Spalte 1
-    register_nav_menu('error-2', __('Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau'));
+    register_nav_menu('error-helper', __('Fehler- und Suchseite: Vorschlagmenu', 'fau'));
+    // Fehler und Suchseite
+    // Mit V2. nur noch ein Menü, welches als Portalmenu angezeigt wird.
+    
+    
+//    register_nav_menu('error-2', __('Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau'));
     // Fehler und Suchseite: Vorschlagmenu Spalte 2
-    register_nav_menu('error-3', __('Fehler- und Suchseite: Vorschlagmenu Spalte 3', 'fau'));
+//    register_nav_menu('error-3', __('Fehler- und Suchseite: Vorschlagmenu Spalte 3', 'fau'));
     // Fehler und Suchseite: Vorschlagmenu Spalte 3
-    register_nav_menu('error-4', __('Fehler- und Suchseite: Vorschlagmenu Spalte 4', 'fau'));
+//    register_nav_menu('error-4', __('Fehler- und Suchseite: Vorschlagmenu Spalte 4', 'fau'));
     // Fehler und Suchseite: Vorschlagmenu Spalte 4
 
 }
@@ -199,15 +196,13 @@ function get_top_parent_page_id($id, $offset = false)
 /* Walker for main menu 
 /*-----------------------------------------------------------------------------------*/
 
-class Walker_Main_Menu_Plainview extends Walker_Nav_Menu
-{
+class Walker_Main_Menu_Plainview extends Walker_Nav_Menu {
     private $currentID;
     private $level = 1;
     private $count = array();
     private $element;
 
-    function start_lvl(&$output, $depth = 0, $args = array())
-    {
+    function start_lvl(&$output, $depth = 0, $args = array())  {
         $this->level++;
         $this->count[$this->level] = 0;
         if ($this->level == 2) {
@@ -217,8 +212,7 @@ class Walker_Main_Menu_Plainview extends Walker_Nav_Menu
         $output .= '<ul class="sub-menu level'.$this->level.'">';
     }
 
-    function end_lvl(&$output, $depth = 0, $args = array())
-    {
+    function end_lvl(&$output, $depth = 0, $args = array()) {
         if ($this->level == 2) {
             $output       .= '</ul>';
             $currenttitle = fau_get_the_title($this->currentID);
@@ -384,14 +378,14 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
     private $level = 1;
     private $count = array();
     private $element;
-    private $showsub = 1;
+    private $showsub = true;
 
     function __construct(
         $menu,
-        $showsub = 1,
+        $showsub = true,
         $maxsecondlevel = 6,
-        $noshowthumb = 0,
-        $nothumbnailfallback = 0,
+        $noshowthumb = false,
+        $nothumbnailfallback = false,
         $thumbnail = 'rwd-480-2-1'
     ) {
         $this->showsub             = $showsub;
@@ -401,37 +395,33 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
         $this->thumbnail           = $thumbnail;
     }
 
-    function __destruct()
-    {
+    function __destruct() {
         // $output .= '</ul> <!-- destruct -->';
     }
 
-    function start_lvl(&$output, $depth = 0, $args = array())
-    {
+    function start_lvl(&$output, $depth = 0, $args = array()) {
         $this->level++;
         $this->count[$this->level] = 0;
-        if ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1) {
+        if ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub) {
             $output .= '<ul class="sub-menu">';
         }
     }
 
-    function end_lvl(&$output, $depth = 0, $args = array())
-    {
-        if ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1) {
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+        if ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub) {
             $output .= '</ul>';
-        } elseif (($this->level == 2) && ($this->count[$this->level] == ($this->maxsecondlevel + 1)) && ($this->showsub == 1)) {
+        } elseif (($this->level == 2) && ($this->count[$this->level] == ($this->maxsecondlevel + 1)) && ($this->showsub)) {
             $output .= '<li class="more"><a href="'.$this->element->url.'">'.__('Mehr', 'fau').' ...</a></li>';
             $output .= '</ul>';
 
-        } elseif (($this->level == 2) && ($this->showsub == 1)) {
+        } elseif (($this->level == 2) && ($this->showsub)) {
             $output .= '</ul>';
         }
 
         $this->level--;
     }
 
-    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
-    {
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
         global $options;
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
 
@@ -447,7 +437,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
         $item_output = '';
         // Only show elements on the first level and only five on the second level, but only if showdescription == FALSE
         if ($this->level == 1 ||
-            ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1)) {
+            ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub)) {
             $class_names = $value = '';
             $externlink  = false;
             $classes     = empty($item->classes) ? array() : (array)$item->classes;
@@ -526,39 +516,43 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 
             if ($this->level == 1) {
                 if (!$this->nothumbnail) {
-                    $item_output .= '<div class="thumb" role="presentation" aria-hidden="true" tabindex="-1">';
-                    $item_output .= '<a tabindex="-1" ';
-
-                    if ($externlink) {
-                        $item_output .= 'data-wpel-link="internal" ';
-                    }
-                    $item_output .= 'class="image';
-                    if ($externlink) {
-                        $item_output .= ' ext-link';
-                    }
-                    $item_output       .= '" href="'.$targeturl.'">';
                     $post_thumbnail_id = get_post_thumbnail_id($item->object_id);
-                    $imagehtml         = '';
-                    $imageurl          = '';
+                    $imagehtmlout       = '';
+                    $imagehtml          = '';
+                    $imageurl           = '';
 
-
-                    $pretitle  = $options['advanced_contentmenu_thumblink_alt_pretitle'];
-                    $posttitle = $options['advanced_contentmenu_thumblink_alt_posttitle'];
-                    $alttext   = $pretitle.apply_filters('the_title', $item->title, $item->ID).$posttitle;
+                    $pretitle  = __('Zur Seite: ','fau');
+                    $alttext   = $pretitle.apply_filters('the_title', $item->title, $item->ID);
                     $alttext   = esc_html($alttext);
                     $altattr   = 'alt="'.$alttext.'"';
 
-
                     if ($post_thumbnail_id) {
                         $imagehtml   = fau_get_image_htmlcode($post_thumbnail_id, $this->thumbnail, $alttext);
-                        $item_output .= $imagehtml;
+                        $imagehtmlout .= $imagehtml;
                     }
                     if ((fau_empty($imagehtml)) && (!$this->nothumbnailfallback)) {
-
-                        $item_output .= fau_get_image_fallback_htmlcode('fallback_submenu_image', $alttext, 'fallback');
+                        $imagehtmlout .= fau_get_image_fallback_htmlcode('fallback_submenu_image', $alttext, 'fallback');
                     }
-                    $item_output .= '</a>';
-                    $item_output .= '</div>';
+
+                    if ($imagehtmlout != '') {
+                        $item_output .= '<div class="thumb" role="presentation" aria-hidden="true" tabindex="-1">';
+                        $item_output .= '<a tabindex="-1" ';
+
+                        if ($externlink) {
+                            $item_output .= 'data-wpel-link="internal" ';
+                        }
+                        $item_output .= 'class="image';
+                        if ($externlink) {
+                            $item_output .= ' ext-link';
+                        }
+                        $item_output       .= '" href="'.$targeturl.'">';
+
+                        $item_output .= $imagehtmlout;
+
+                        $item_output .= '</a>';
+                        $item_output .= '</div>';
+                    }
+
                 }
                 $item_output .= $args->link_before.'<span class="portaltop">';
                 $item_output .= $link;
@@ -576,7 +570,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
             $item_output .= $args->after;
 
 
-            if (!($this->showsub == 1) && ($this->level == 1)) {
+            if (!($this->showsub ) && ($this->level == 1)) {
                 $desc = get_post_meta($item->object_id, 'portal_description', true);
                 // Wird bei Bildlink definiert
                 if ($desc) {
@@ -591,7 +585,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
     {
 
         if ($this->level == 1 ||
-            ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub == 1)) {
+            ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub)) {
             $output .= "</li>";
 
         }

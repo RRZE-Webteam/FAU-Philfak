@@ -70,7 +70,7 @@ button.expand-all {
                 background: var(--color-ContentBorders);
                 color:  var(--color-Text);
                 @include border-radius(4px);
-		@include px2rem($font-size-content-toggle);
+		        @include px2rem($font-size-content-toggle);
                 text-decoration: none;
                 padding: 8px 35px 8px 10px;
                 position: relative;
@@ -86,16 +86,16 @@ button.expand-all {
                 &:hover,
                 &:focus {
                     background-color: var(--color-primary-ci-hell);
-		    color: var(--color-primary-ci-hell-kontrast); 
+                    color: var(--color-primary-ci-hell-kontrast);
                     text-decoration: none;
                 }
 
                 &.active,
                 &.active:hover,
-                    &.active:focus {
-                    background-color: var(--color-primary-ci-hell);
-                    color: var(--color-primary-ci-hell-kontrast); 
-
+                &.active:focus {
+                    background-color: var(--color-primary-dunkler);
+                    color: var(--color-primary-dunkler-kontrast);
+                    border-color: var(--color-primary-dunkler);
                     &:before {
                         @extend .fa-caret-up;
                         top: 8px;
@@ -240,19 +240,25 @@ button.expand-all {
 	 display: inherit;
      }
 }
+#content .accordion {
+    button.expand-all {
+	@include defaultlinkstyle();
+	@include buttonstyle();
+    }
+}
 /*-----------------------------------------------------------------------------------*/
 /* Alerts
 /*-----------------------------------------------------------------------------------*/
-.alert {
+#content .alert {
+    padding: 2%;
     h2 {
-	padding-top: 7px;
+	    padding-top: 7px;
     }
-     p {
-	
-	padding: 5px 0;  
+    p {
+        padding: 5px 0;
     }
     &.alert-danger p {
-	font-size: 1.1rem;
+	    font-size: 1.1rem;
     }
 }
 
@@ -261,14 +267,65 @@ button.expand-all {
 /* Timeline
 /*-----------------------------------------------------------------------------------*/
 
-#content [id^="timeline"] .issues li p:not(.wp-caption-text) {
-    @include px2rem($font-size-base);
+#content [id^="timeline"]  {
+    .issues li p:not(.wp-caption-text) {
+        @include px2rem($font-size-base);
+    }
+    .timeline-nav a,
+    ul.dates a,
+    a.next,
+    a.prev {
+        @include defaultlinkstyle();
+        text-decoration: none;
+        &:hover,
+        &:focus {
+            color: var(--color-submenu-hover-bg);
+            text-decoration: none;
+        }
+    }
+
 }
 
 
 /*-----------------------------------------------------------------------------------*/
 /* Buttons
 /*-----------------------------------------------------------------------------------*/
-.standard-btn {
+#content .standard-btn {
     @include defaultlinkstyle();
+    @include buttonstyle();
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* News
+/*-----------------------------------------------------------------------------------*/
+
+.rrze-elements-news {
+    .news-item {
+        a.read-more-link {
+            @include defaultlinkstyle();
+            @include ghostbutton();
+            display: block;
+            width: auto;
+            float: right;
+            margin: .6rem 0 0 1.8rem;
+        }
+    }
+}
+/*-----------------------------------------------------------------------------------*/
+/* Content Slider
+/*-----------------------------------------------------------------------------------*/
+#content .content-slider.flexslider {
+    margin: 1rem 3rem;
+    .flex-control-nav, 
+    .flex-direction-nav,
+    .flex-pauseplay {
+	a {
+	     @include defaultlinkstyle();
+		text-decoration: none;
+	}
+    }
+    .flex-pauseplay a {
+	width: 2rem;
+	height: 2rem;
+    }
 }

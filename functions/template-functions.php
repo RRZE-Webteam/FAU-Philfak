@@ -6,8 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Extends the default WordPress body classes
 /*-----------------------------------------------------------------------------------*/
-function fau_body_class($classes)
-{
+function fau_body_class($classes) {
     global $defaultoptions;
     global $default_fau_orga_data;
     global $default_fau_orga_faculty;
@@ -142,10 +141,7 @@ function fau_body_class($classes)
  //   }
 
 
-    if (false == get_theme_mod('advanced_activate_quicklinks')) {
-        $classes[] = 'no-quicklinks';
-    }
-
+ 
    
     if (is_active_sidebar('search-sidebar')) {
         $classes[] = 'with-search-sidebar';
@@ -623,7 +619,12 @@ function fau_display_news_teaser($id = 0, $withdate = false, $hstart = 2, $hidem
             $imagehtml = fau_get_image_htmlcode($post_thumbnail_id, 'rwd-480-3-2', $alttext, '', array('itemprop' => 'thumbnailUrl'));
             if (fau_empty($imagehtml)) {
                 $imagehtml = fau_get_image_fallback_htmlcode('post-thumb', $alttext, '',  array('itemprop' => 'thumbnailUrl'));
-		$usefallbackthumb = true;
+		$ownfallback = get_theme_mod('default_postthumb_image');
+		if ($ownfallback) {
+		    $usefallbackthumb = false;
+		} else {
+		    $usefallbackthumb = true;
+		}
             }
 	    
             $output .= '<div class="thumbnailregion';
@@ -713,7 +714,8 @@ function fau_custom_excerpt(
 	// remove most tags, but not those who are allowed
     
     if (mb_strlen($excerpt) < 5) {
-        $excerpt = '<!-- '.__('Kein Inhalt', 'fau').' -->';
+        $excerpt = '<!-- '.__('Kein Inhalt', 'fau').' -->';	
+	return $excerpt;
     }
 
     $needcontinue = 0;
@@ -988,15 +990,16 @@ function fau_get_category_links($cateid = 0) {
 /*-----------------------------------------------------------------------------------*/
 /* Default Linklisten
 /*-----------------------------------------------------------------------------------*/
-function fau_get_defaultlinks($list = 'faculty', $ulclass = '', $ulid = ''){
+function fau_get_defaultlinks($list = '', $ulclass = '', $ulid = ''){
     global $default_link_liste;
-
+    
+    $uselist = array();
     if (is_array($default_link_liste[$list])) {
         $uselist = $default_link_liste[$list];
     } else {
-        $uselist = $default_link_liste['faculty'];
+	return;
     }
-
+   
     $result = '';
     if (isset($uselist['_title'])) {
         $result .= '<p class="headline">'.$uselist['_title'].'</p>';
@@ -1719,10 +1722,8 @@ function fau_get_image_fallback_htmlcode($size = 'rwd-480-3-2', $alttext = '', $
     switch ($size) {
 
         case 'topevent_thumb':
-
             $width  = $defaultoptions['default_rwdimage_width'];
             $height = $defaultoptions['default_rwdimage_height'];
-
             $fallback = get_theme_mod('fallback_topevent_image');
             if ($fallback) {
                 $thisimage   = wp_get_attachment_image_src($fallback, 'rwd-480-3-2');
@@ -1736,7 +1737,6 @@ function fau_get_image_fallback_htmlcode($size = 'rwd-480-3-2', $alttext = '', $
             break;
 
         case 'post-thumb':
-
             $width    = $defaultoptions['default_rwdimage_width'];
             $height   = $defaultoptions['default_rwdimage_height'];
             $fallback = get_theme_mod('default_postthumb_image');
