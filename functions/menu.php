@@ -43,13 +43,6 @@ function fau_register_menus()
     // Fehler und Suchseite
     // Mit V2. nur noch ein Menü, welches als Portalmenu angezeigt wird.
     
-    
-//    register_nav_menu('error-2', __('Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau'));
-    // Fehler und Suchseite: Vorschlagmenu Spalte 2
-//    register_nav_menu('error-3', __('Fehler- und Suchseite: Vorschlagmenu Spalte 3', 'fau'));
-    // Fehler und Suchseite: Vorschlagmenu Spalte 3
-//    register_nav_menu('error-4', __('Fehler- und Suchseite: Vorschlagmenu Spalte 4', 'fau'));
-    // Fehler und Suchseite: Vorschlagmenu Spalte 4
 
 }
 
@@ -133,8 +126,7 @@ function fau_create_socialmedia_menu()
 /*-----------------------------------------------------------------------------------*/
 /* returns child items by parent
 /*-----------------------------------------------------------------------------------*/
-function add_has_children_to_nav_items($items)
-{
+function add_has_children_to_nav_items($items) {
     $parents = wp_list_pluck($items, 'menu_item_parent');
     $out     = array();
 
@@ -151,8 +143,7 @@ add_filter('wp_nav_menu_objects', 'add_has_children_to_nav_items');
 /*-----------------------------------------------------------------------------------*/
 /* get menu title
 /*-----------------------------------------------------------------------------------*/
-function fau_get_menu_name($location)
-{
+function fau_get_menu_name($location) {
     if (!has_nav_menu($location)) {
         return false;
     }
@@ -165,17 +156,15 @@ function fau_get_menu_name($location)
 /*-----------------------------------------------------------------------------------*/
 /*remove Menu Item IDs
 /*-----------------------------------------------------------------------------------*/
-add_filter('nav_menu_item_id', 'clear_nav_menu_item_id', 10, 3);
-function clear_nav_menu_item_id($id, $item, $args)
-{
+function clear_nav_menu_item_id($id, $item, $args) {
     return "";
 }
+add_filter('nav_menu_item_id', 'clear_nav_menu_item_id', 10, 3);
 
 /*-----------------------------------------------------------------------------------*/
 /* returns top parent id
 /*-----------------------------------------------------------------------------------*/
-function get_top_parent_page_id($id, $offset = false)
-{
+function get_top_parent_page_id($id, $offset = false) {
 
     $parents = get_post_ancestors($id);
     if (!$offset) {
@@ -217,17 +206,22 @@ class Walker_Main_Menu_Plainview extends Walker_Nav_Menu {
             $output       .= '</ul>';
             $currenttitle = fau_get_the_title($this->currentID);
             if (!empty($currenttitle)) {
-                $output   .= '<a href="'.get_permalink($this->currentID).'" class="button-portal">';
-                $pretitle = get_theme_mod('menu_pretitle_portal');
-                if (!fau_empty($pretitle)) {
-                    $output .= $pretitle.' ';
-                }
-                $output    .= $currenttitle;
-                $posttitle = get_theme_mod('menu_aftertitle_portal');
-                if (!fau_empty($posttitle)) {
-                    $output .= ' '.$posttitle;
-                }
-                $output .= '</a>';
+		$display_button = get_theme_mod('advanced_display_portalmenu_button');
+		$display_forceclick = get_theme_mod('advanced_display_portalmenu_forceclick');
+		
+		if (((isset($display_button)) && ($display_button==true)) || ($display_forceclick==true)) {
+		    $output   .= '<a href="'.get_permalink($this->currentID).'" class="button-portal">';
+		    $pretitle = get_theme_mod('menu_pretitle_portal');
+		    if (!fau_empty($pretitle)) {
+			$output .= $pretitle.' ';
+		    }
+		    $output    .= $currenttitle;
+		    $posttitle = get_theme_mod('menu_aftertitle_portal');
+		    if (!fau_empty($posttitle)) {
+			$output .= ' '.$posttitle;
+		    }
+		    $output .= '</a>';
+		}
             }
 
             $output .= '</div>';
@@ -380,14 +374,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
     private $element;
     private $showsub = true;
 
-    function __construct(
-        $menu,
-        $showsub = true,
-        $maxsecondlevel = 6,
-        $noshowthumb = false,
-        $nothumbnailfallback = false,
-        $thumbnail = 'rwd-480-2-1'
-    ) {
+    function __construct( $menu, $showsub = true, $maxsecondlevel = 6, $noshowthumb = false,$nothumbnailfallback = false, $thumbnail = 'rwd-480-2-1' ) {
         $this->showsub             = $showsub;
         $this->maxsecondlevel      = $maxsecondlevel;
         $this->nothumbnail         = $noshowthumb;
@@ -581,8 +568,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 
-    function end_el(&$output, $item, $depth = 0, $args = array())
-    {
+    function end_el(&$output, $item, $depth = 0, $args = array())  {
 
         if ($this->level == 1 ||
             ($this->level == 2 && $this->count[$this->level] <= $this->maxsecondlevel && $this->showsub)) {
