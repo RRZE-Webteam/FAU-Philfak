@@ -38,12 +38,22 @@ if ($menuslug) {
 	$shortcodeopt .= ' type="'.$type.'"';
     }
     
-    $skewed = get_post_meta($post->ID, 'fauval_portalmenu_skewed_oben', true);
-    if ($skewed) {
-	 $shortcodeopt .= ' skewed="true"';
+
+    $listview = get_post_meta($post->ID, 'fauval_portalmenu_listview_oben', true);
+    if ($listview) {
+        $shortcodeopt .= ' listview="true"';
     }
     
-    
+    $hoverzoom = get_post_meta($post->ID, 'fauval_portalmenu_hoverZoom_oben', true);
+    if ($hoverzoom) {
+        $shortcodeopt .= ' hoverzoom="true"';
+    }
+
+    $hoverblur = get_post_meta($post->ID, 'fauval_portalmenu_hoverBlur_oben', true);
+    if ($hoverblur) {
+        $shortcodeopt .= ' hoverblur="true"';
+    }
+
     echo do_shortcode('[portalmenu '.$shortcodeopt.']');
     echo '</div>';
   }

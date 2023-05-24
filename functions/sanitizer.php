@@ -8,16 +8,14 @@
 /*-----------------------------------------------------------------------------------*/
 /* Sanitize optional classes for hr shortcodes
 /*-----------------------------------------------------------------------------------*/
-function fau_sanitize_hr_shortcode( $fau_hr_styles ) {
-	
+function fau_sanitize_hr_shortcode( $fau_hr_styles ) {	
     if (isset($fau_hr_styles)) {
-	$fau_hr_styles  = esc_attr( trim($fau_hr_styles) );
+        $fau_hr_styles  = esc_attr( trim($fau_hr_styles) );
     }
     if (fau_empty($fau_hr_styles)) return;
 	
-	if ( ! in_array( $fau_hr_styles, array( 'big', 'line' ) ) ) {
+	if ( ! in_array( $fau_hr_styles, array( "nat", "tf", "rw", "med", "phil", "zentral", "fau"  ) ) ) {
 		$fau_hr_styles = '';
-		
 	}
 	return $fau_hr_styles;
 }
@@ -27,7 +25,10 @@ function fau_sanitize_hr_shortcode( $fau_hr_styles ) {
 /*-----------------------------------------------------------------------------------*/
 if ( ! function_exists( 'fau_san' ) ) :  
     function fau_san($s){
-	return filter_var(trim($s), FILTER_SANITIZE_STRING);
+        if (!empty($s)) {
+            return htmlspecialchars(trim($s));
+        }
+        return;
     }
 endif;    
 
@@ -36,10 +37,14 @@ endif;
 /* Empty function, which strips out empty chars
 /*-----------------------------------------------------------------------------------*/
 if ( ! function_exists( 'fau_empty' ) ) :  
-    function fau_empty($string){ 
-	 $string = trim($string); 
-	 if(!is_numeric($string)) return empty($string); 
-	 return FALSE; 
+    function fau_empty($string = ''){ 
+        if(!is_numeric($string)) {
+            if (!empty($string))
+                $string = trim($string); 
+            return empty($string); 
+        }
+        
+        return FALSE; 
     } 
 endif;    
 
@@ -103,3 +108,43 @@ function fau_columns_checkcolor($color = '') {
     }
     return $color;
 }
+
+/*--------------------------------------------------------------------*/
+/* Sanitize Sidebar html fileds
+/*--------------------------------------------------------------------*/
+ function fau_sanitize_html_field($dateinput)
+ {
+     $allowed_html = array(
+         'img' => array(
+             'title' => array(),
+             'src' => array(),
+             'alt' => array(),
+         ),
+         'a' => array(
+             'title' => array(),
+             'href' => array(),
+             'class' => array(),
+         ),
+         'br' => array(),
+         'hr' => array(
+              'class' => array(),
+          ),
+         'p' => array(),
+         'strong' => array(),
+         'em' => array(),
+         'ol' => array(),
+         'ul' => array(),
+         'li' => array(),
+         'dl' => array(),     'dd' => array(),           'dt' => array(),
+         'h3' => array(),    'h4' => array(),            'h5' => array(),            'h6' => array(),
+         'table' => array(),  'tr' => array(),  'td' => array(),   'tbody' => array(),  'thead' => array(),  'tfooter' => array(),
+     );
+
+
+     $value = wp_kses($dateinput, $allowed_html);
+
+     $value = preg_replace('/<\/p>[\s\t\n\r]+<p>/i', '</p><p>', $value);
+     $value = preg_replace('/<p>[\s\t\n\r]+<\/p>/i', '', $value);
+     $value = trim($value);
+     return $value;
+ }
