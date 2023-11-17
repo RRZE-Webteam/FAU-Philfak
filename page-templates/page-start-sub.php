@@ -6,8 +6,10 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
+global $defaultoptions;
 
 get_header();
+
 ?>
 <div id="content" class="start-sub">
     <div class="content-container">
@@ -19,7 +21,9 @@ get_header();
                         <?php the_title(); ?>
                     </h1>
                     <?php
+
                     the_content();
+                    
 
                     wp_reset_postdata();
                     wp_reset_query();

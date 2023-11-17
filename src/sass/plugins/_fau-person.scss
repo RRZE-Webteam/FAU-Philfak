@@ -5,39 +5,33 @@
 @use "sass:math";
 
 
-
-
 .fau-person,
 .person {
-    .contactlist a,
     .person-info a {
-		@include defaultlinkstyle();
-		text-decoration: none;
-		&:active,
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
+	@include defaultlinkstyle();
+	text-decoration: none;
+	
+	&:active,
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
     }
     .person-info-more a.standard-btn {
          @include ghostbutton();
     }
-    
-   // &.liste-person a {
-   //      @include styledcontentlink();
-   // }
-    
-    
+
     h3, h4, h5 {
 	a {
-	     text-decoration: none;
-	     &:hover, 
+	    text-decoration: none;
+	    &:hover, 
 	    &:focus {
-		    text-decoration: underline;
-		}
+		text-decoration: underline;
+		text-underline-offset: auto !important;
+		text-decoration-thickness: inherit !important;
+	    }
 	}
 	
-
     }
 	h3, h3 span {
 	    @include px2rem($font-size-h3-small);
@@ -63,33 +57,60 @@
 	    }
 	}
 	
-	
 	.archive & {
 	    .span6 {
 		width: calc(100% - 130px);	
 		
 		.person-info-description {
-		    padding-right: 10px;
+			padding-right: 10px;
 		}
+
 		.person-info-more {
-		    margin-right: 20px;
-		    text-align: right;
+			margin-right: 20px;
+			text-align: right;
 		}
+	    }  
+	} 
+
+	.fullname,
+	span[itemprop="honorificPrefix"], 
+	span[itemprop="honorificSuffix"] {
+	    overflow-wrap: break-word;
+	    white-space: normal;
+	}
+	
+	
+	.socialmedia {	    
+	    --icon-size: 1.5rem;
+	    --icon-color-hover: #fff;
+	    --icon-color: var(--color-Text, #222);
+	    
+	    
+	    li {
+		margin: 0.25rem 0.6rem 0.25rem 0 !important;
+		padding: 0px;
 	    }
 	    
-	} 
-        .fullname,
-        span[itemprop="honorificPrefix"], 
-        span[itemprop="honorificSuffix"] {
-            overflow-wrap: break-word;
-            white-space: normal;
-        }
+	    li, li a, li a::before {	
+		width: var(--icon-size) !important;
+		height: var(--icon-size) !important;
+		line-height: inherit !important;
+		font-size: inherit !important;
+		
+	    }
+	    li a::before {
+		background-size: inherit !important;
+		background-image: none !important;	
+	    }
+	    li a:hover::before,
+	    li a:focus::before {
+		background-color: var(--icon-color-hover) !important;
+	    }
+
+	}
 
 
 }
-
-
-
 
 .content-person {
 	margin: 0;
@@ -145,15 +166,11 @@
 	    }
 	}
 
-	
 	li {
-
-		background-position: left 5px;
+	    background-position: left 5px;
 	}
 	
-	
-	
-		
+
 	.accordion & {
 	    padding: 0;
 	    border: none;
@@ -203,7 +220,6 @@
 	}
 	
 
-	
 	.person-info-position {
 	    font-weight: bold;
 	}
@@ -225,31 +241,27 @@
 
 }
 
-
-
-
-
 .widget .person {
     ul.person-info ul {
-		margin: 0 0 10px 25px;
+	margin: 0 0 10px 25px;
     }   
     li.person-info-address,
     li.person-info-description,
     li.person-info-office {
-		display: block;
-		margin-top: 10px;
+	display: block;
+	margin-top: 10px;
     }
     li.person-info-address {
-		margin-bottom: 5px;
+	margin-bottom: 5px;
     }
     
     div[itemprop="contactPoint"] {
-		margin-top: 10px;
+	margin-top: 10px;
     }
     
     h2, h3 {
-		padding-top: 0;
-		margin-top: 0;
+	padding-top: 0;
+	margin-top: 0;
     }
     
 }
@@ -261,7 +273,6 @@
 .portalpage-content,
 .content-inline {
     .fau-person {
-	.contactlist,
 	p {
 	    a {
 		@include defaultlinkstyle();
@@ -348,7 +359,7 @@
 	width: calc(100% - 215px);
 	max-width: 150px;
 	
-	margin-right: ceil(math.div($grid-gutter-width, 2));    
+	margin-right: var(--width-gutter-half);    
 	padding: 0;
 	img {
 	    width: 100%;
@@ -382,9 +393,9 @@
 		padding: 0;
     }
     .connection {
-		h3 {
-			@include px2rem($font-size-h4);
-		}
+	h3 {
+		@include px2rem($font-size-h4);
+	}
     }
 }
 
@@ -413,32 +424,136 @@
 
 
 // Personen-Page - 
-//  Entweder via SHortcode format="page" oder bei AUfruf des Endpoints aus single-person.php
+//  Entweder via Shortcode format="page" oder bei AUfruf des Endpoints aus single-person.php
 .fau-person {
     .person-meta {
 	display: flex;	
+
 	.person-image {
-	    flex: 1 1 200px;
-	    order: 2;
-	    img {
+		flex: 1 1 200px;
+		order: 2;
+
+		img {
 			width: auto;
 		}
-	    
 	}
 
 	.person-info {
-	    order: 1;
-	    flex: 1 0 220px;
-	    margin-right: 10px;
+		order: 1;
+		flex: 1 0 220px;
+		margin-right: 10px;
 	}
-	
+    }
+    
+    tr.person-info, 
+    &.liste-person,
+    .contactlist {
+	li {
+	    line-height: 1.7rem;
+	}
+	a {
+	    --_icon-size: var(--icon-size, 1rem);
+	    --_icon-color: var(--icon-color, var(--color-Text));
+	    --_icon-color-hover: var(--icon-color-hover, var(--color-content-links-hover));
+	    --_icon-size-mask: var(--icon-size-mask, 100%);
+	    --_icon-mask-image: var(--icon-mask-image,'none');
+
+	    color: var(--color-content-links);	    
+	    text-decoration: none;
+	    
+	    &:hover,
+	    &focus {
+		color: var(--color-content-links-hover);
+		text-decoration: underline;
+	    }
+	    &::before {
+		@include unset-svg-background-image("important");
+
+		-webkit-mask-image: svg-bookmark();
+		mask-image: svg-bookmark();
+
+		-webkit-mask-size: var(--_icon-size-mask); 
+		mask-size: var(--_icon-size-mask); 
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center; 	    
+
+		background-color: var(--_icon-color);
+		width: var(--_icon-size);
+		height: var(--_icon-size);
+	    }
+	    &:focus::before, 
+	    &:hover::before {
+		background-color: var(--_icon-color-hover);
+	    }
+	}
+    
+	a[itemprop="telephone"]::before {
+	    mask-image: svg-icon-phone();
+	}
+	a[itemprop="email"]::before {
+	    mask-image: svg-icon-mail();
+	}
+	a[itemprop="faxNumber"]::before {
+	     mask-image: svg-icon-fax();
+	}
+	a[itemprop="telephone"].mobile::before {
+	     mask-image: svg-icon-mobile();
+	}
+	a[itemprop="url"]::before {
+	    mask-image: svg-icon-website();
+	}
+    }
+    &.liste-person {
+	li {
+	    line-height: 1.5;
+	}
+	span.fullname {
+	    white-space: nowrap;
+	}
+	span[itemprop="name"] {
+	    font-weight: bold;
+	}
+
+	a::before {
+	    margin-left: 0.2rem;
+	    margin-right: 0.2rem;
+	    position: relative;
+	    top: 0.2rem;
+	}
+    }
+    tr.person-info {
+	span.fullname {
+	    white-space: nowrap;
+	}
+	span[itemprop="name"] {
+	    font-weight: bold;
+	}
+	a[itemprop="telephone"],
+	a[itemprop="email"] {
+	    overflow-wrap: normal;
+	    word-wrap: normal;
+	    white-space: nowrap;
+	}
+	ul.socialmedia {
+	    --icon-size: 1.4rem;
+	    --icon-size-mask: 60%;
+	    @extend .socialmedia;
+	    
+	}
+    }
+    &.person-card {
+	.socialmedia li:first-child {
+	    margin-left: 0.6rem !important;
+	}
     }
 }
 
 .single-person .entry-content {
     width: 100%;
-    padding-left:  floor(math.div($grid-gutter-width, 2));
-    padding-right: ceil(math.div($grid-gutter-width, 2));
+    padding-left:  var(--width-gutter-half);
+    padding-right: var(--width-gutter-half);
     
     @media (min-width: $screen-sm) {
 	width: $container-sm;

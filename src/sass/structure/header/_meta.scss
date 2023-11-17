@@ -2,8 +2,7 @@
 /* Meta region in top   fauorg-home
 /*-----------------------------------------------------------------------------------*/
 
-#meta {
-	@include placeholder(#fff);
+#meta {	
 	background: var(--color-StandardHellgrau);
 	color: var(--color-MetaTextDefault);
 	z-index: 100;
@@ -14,19 +13,19 @@
 		@include px2rem($font-size-meta);
 	}
 
-	@media (min-width: $screen-sm) {
+	@media (min-width: $screen-md) {
 		z-index: 110; // Änderung notwendig, damit das Such-Flyout nicht unter dem #header liegt
 		height: auto;
 		padding: inherit;
 	}
 
     .header-row {
-        justify-content: space-between;
+        justify-content: start;
         align-items: center;
         min-height: 50px;
-	
-        padding: 4px 0;
-        @media (min-width: $screen-sm) {
+       // padding: 4px 0;
+
+        @media (min-width: $screen-md) {
             padding: 5px 0;
         }
 
@@ -42,16 +41,18 @@
 }
 
 .meta-widget {
-	display: inline-block;
-	margin: 5px 30px 5px 20px;
+    display: inline-block;
+    margin: 5px 30px 5px 20px;
     height: 1.875rem;
 }
 
 #headerwrapper {
-    position: sticky;
-    top: 0;
-    z-index: 150;
+ 
     transition: box-shadow 0.2s;
+
+
+    
+
 
     .admin-bar & {
         top: $wordpress-adminbar-bigheight;
@@ -63,12 +64,37 @@
 
     body:not([data-scroll='0']) & {
         background-color: var(--color-white);
-        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+        @include box-shadow(0 0 21px rgba(0, 0, 0, 0.11));
     }
     body.nav-toggled & {
         top: unset;
-        @media (min-width: $screen-sm) {
+        @media (min-width: $screen-md) {
             top: 0;
         }
     }
 }
+
+/* Default header state */
+
+.header-static {
+    position: static;
+    top: auto;
+    padding-top: 0;
+    z-index: 150;
+}
+
+/* Sticky header state */
+.header-sticky {
+    position: sticky;
+    top: 0;
+    padding-top: 0;
+    z-index: 150; /* Initial state, will be adjusted if admin bar is present */
+}
+
+/* Hidden header state */
+.header-hidden {
+    position: sticky;
+    top: -400px !important; /* Adjust as needed to fully hide the header */
+ 
+}
+

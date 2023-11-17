@@ -53,7 +53,7 @@
      --color-MetaHover: #{$colorMetaHover};
      --color-MetaText: #fff;
      --color-MetaBackgroundLight: #{$colorMetaLightest};
-     
+     --color-MobileFlyoutMenuBackground: #{$color-mainmenu-toplevel-bg};
      --color-FAU: #{$colorZUV};
      --color-content-headlines: #{$color-content-headlines};
      --color-links: #{$color-links};
@@ -100,7 +100,8 @@
     --color-submenu-sublevel-bg: #{$color-submenu-sublevel-bg};
     --color-submenu-currentpage-bg: #{$color-submenu-currentpage-bg};
     --color-submenu-currentpage-text: #{$color-submenu-currentpage-text};
-
+    --color-submenu-currentlevel-text-hover: #{$color-submenu-currentpage-text-hover};
+    
     --color-menulink-hover-text: #{$color-menulink-hover-text};
     --color-menulink-hover-bg: #{$color-menulink-hover-bg}; 
     
@@ -109,7 +110,7 @@
     --devider-height: #{$default-devider-height};
     --width-gutter: #{$fau-gutter-width};
     --width-gutter-half: #{$fau-gutter-halfwidth};
-    
+    --base-line-height: #{$base-line-height};
 
 }
 

@@ -54,7 +54,7 @@ $default_socialmedia_liste = array(
     ),
     'xing' => array(
         'name' => 'Xing',
-        'content'  => 'https://www.xing.com/net/alumnifau',
+        'content'  => 'https://www.xing.com/pages/friedrich-alexander-universitaterlangen-nurnberg',
         'active' => 1,
     ),
     'tumblr' => array(
@@ -225,7 +225,6 @@ $default_fau_page_langcodes = array(
 	"es" => __('Spanisch','fau'),
 	"fr" => __('Französisch','fau'),
 	"zh" => __('Chinesisch','fau'),
-	"ru" => __('Russisch','fau'),
     );
 
 $default_fau_page_menuuebenen = array(
