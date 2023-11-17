@@ -10,8 +10,7 @@ Wordpress-Theme für die Philosophische Fakultät der Friedrich-Alexander-Univer
 
 ## Download 
 
-GITHub-Repo: https://github.com/RRZE-Webteam/FAU-Philfak
-
+GitHub-Repo: https://github.com/RRZE-Webteam/FAU-Philfak
 
 ## Autor 
 RRZE-Webteam , http://www.rrze.fau.de
