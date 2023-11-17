@@ -6,7 +6,7 @@
  * @subpackage FAU
  * @since FAU 1.0
  */
-
+global $defaultoptions;
 get_header();
 
 ?>
@@ -21,6 +21,7 @@ get_header();
                         <?php the_title(); ?>
                     </h1>
                     <?php
+
                     the_content();
 
                     wp_reset_postdata();
