@@ -12,23 +12,41 @@
 	global $defaultoptions;
 	$i= 0;
 
-	$numberposts = get_theme_mod('start_header_count');
-	$catid =  get_theme_mod('slider-catid');
+	$numberposts = absint(get_theme_mod('start_header_count'));
+	$catid =  absint(get_theme_mod('slider-catid'));
 	$usejslibs['heroslider'] = true;
 
-	if (isset($catid) && $catid > 0) {
-	    $hero_posts = get_posts( array( 
-            'cat' => $catid, 
-            'posts_per_page' => $numberposts) 
-	    );
-	} else {							    
-	    $query = array(
-            'numberposts' => $numberposts
-	    );                   
-	    $hero_posts = get_posts($query); 
+    $numberposts = $numberposts ?: $defaultoptions['start_header_count'];
+    $catid = $catid ?: 0;
+
+    $args = array(
+        'post_type' => 'post',
+        'numberposts' => $numberposts
+    );
+    
+	if ($catid) {
+        $args = array_merge($args, array(
+            'cat' => $catid
+        ));
 	}
 		
-	
+    if (
+        class_exists('RRZE\Multilang\Helper') &&
+        method_exists('\RRZE\Multilang\Helper', 'isSingleMultilangMode') &&
+        \RRZE\Multilang\Helper::isSingleMultilangMode()
+    ) {
+        $locale = get_locale();
+        $args = array_merge($args, array(
+            'meta_query' => array(
+                array(
+                    'key' => '_rrze_multilang_single_locale',
+                    'value' => $locale,
+                )
+            )
+        ));
+    }
+
+    $hero_posts = get_posts($args);
 	
 	if ($hero_posts && (count($hero_posts) > 0)) { ?>
 <div id="hero" class="sliderpage">
