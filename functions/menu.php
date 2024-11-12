@@ -312,7 +312,7 @@ class Walker_Main_Menu_Plainview extends Walker_Nav_Menu {
 
         $atts           = array();
         $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = !empty($item->target) ? $item->target : '';
+   //     $atts['target'] = !empty($item->target) ? $item->target : '';
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
         $atts['href']   = !empty($item->url) ? $item->url : '';
     
@@ -529,7 +529,7 @@ class Walker_Main_Menu_Plainview_Small extends Walker_Nav_Menu {
 
         $atts           = array();
         $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = !empty($item->target) ? $item->target : '';
+ //       $atts['target'] = !empty($item->target) ? $item->target : '';
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
         $atts['href']   = !empty($item->url) ? $item->url : '';
     
@@ -751,7 +751,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 
             $atts           = array();
             $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-            $atts['target'] = !empty($item->target) ? $item->target : '';
+   //         $atts['target'] = !empty($item->target) ? $item->target : '';
             $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
             $atts['href']   = !empty($item->url) ? $item->url : '';
             $targeturl      = $atts['href'];
@@ -936,7 +936,7 @@ function fau_breadcrumb($lasttitle = '', $echo = true, $noNav = false) {
         $res .= '<nav aria-label="'.__('Breadcrumb', 'fau').'" class="breadcrumbs">';
     }
     if (get_theme_mod('breadcrumb_withtitle')) {
-        $res .= '<p class="breadcrumb_sitetitle" role="presentation">'.get_bloginfo('title', 'display' ).'</p>'."\n";
+        $res .= '<p class="breadcrumb_sitetitle" role="presentation">'.get_bloginfo('name', 'display' ).'</p>'."\n";
     }
 
     $res .= '<ol class="breadcrumblist" itemscope itemtype="https://schema.org/BreadcrumbList">';
