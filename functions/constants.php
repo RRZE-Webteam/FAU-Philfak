@@ -10,7 +10,7 @@ $OPTIONS_NAME = 'fau_theme_options';
 // Name des Options-Array
 
 $defaultoptions = [
-	'optiontable-version'           => 112,
+	'optiontable-version'           => 120,
 	// zaehlt jedesmal hoch, wenn neue Optionen eingefuegt werden 
 	// oder Default Optionen geaendert werden. Vorhandene Defaultoptions 
 	// in der Options-Table werden nur dann geändert, wenn der Wert erhöht 
@@ -22,7 +22,7 @@ $defaultoptions = [
 	// Ansonsten kann er manuell über 'gulp nodebug' auf false und
 	//  mit 'gulp debugmode' auf true gesetzt werden
 	// Oder hier von Hand :)
-	'js-version'                    => '2.6',
+	'js-version'                    => '2.7',
 	// Theme-Versionslinie, wird überschrieben durch Style.css Version
 	'website_type'                  => 1,
 	// website_type: 
@@ -56,7 +56,7 @@ $defaultoptions = [
 	'src-adminjs'                   => get_fau_template_uri() . '/js/fau-theme-admin.min.js',
 	'src-admin-customizer-js'		=> get_fau_template_uri() . '/js/fau-theme-customizer-range-value-control.min.js',
 	'src-admin-wplinkjs'            => get_fau_template_uri() . '/js/fau-theme-wplink.min.js',
-	'src-svglib_dir'                => get_template_directory() .  '/src/svglib/',
+	'src-svglib_dir'                => get_template_directory() .  '/img/svglib/',
 
 	'slider-autoplay'               => true,
 	'slider-animation'              => 'fade',
@@ -85,7 +85,7 @@ $defaultoptions = [
 	'fallback_submenu_image'		=> 0,
     'fallback_topevent_image'       => 0,
 	'start_topevents_max'			=> 1,
-	'start_topevents_active'		=> true,
+	'start_topevents_active'		=> false,
 	'topevent_hideimage'			=> false,
 	'topevents_templates'			=> array(1),
 	'default_topevent_excerpt_length'		=> 100,
@@ -96,10 +96,6 @@ $defaultoptions = [
 	/* Image Sizes */
 	'default_image_sizes' => [
 		'hero'	=> [
-            //	'width'	=> 1260,
-            //	'height'	=> 350,
-            // Update auf höhere Auflösung um bei größeren Darstellungen ein schärferes Bild zu haben
-            // https://github.com/RRZE-Webteam/FAU-Einrichtungen/issues/1319
            	'width'	=> 2048,
 			'height'	=> 512,
 			'crop'	=> true,
@@ -172,11 +168,11 @@ $defaultoptions = [
 	'menu_pretitle_portal'                      => __('Portal', 'fau'),
 	'menu_aftertitle_portal'                    => '',
 
-	'contact_address_name'                       => __('Friedrich-Alexander-Universität', 'fau'),
-	'contact_address_name2'                      => __('Erlangen-Nürnberg', 'fau'),
-	'contact_address_street'                     => __('Schlossplatz 4', 'fau'),
-	'contact_address_plz'                        => __('91054', 'fau'),
-	'contact_address_ort'                        => __('Erlangen', 'fau'),
+	'contact_address_name'                       => 'Friedrich-Alexander-Universität', 
+	'contact_address_name2'                      => 'Erlangen-Nürnberg', 
+	'contact_address_street'                     => 'Freyeslebenstraße 1', 
+	'contact_address_plz'                        => '91058',
+	'contact_address_ort'                        => 'Erlangen',
 
 	'contact_address_country'                   => '',
 	'google-site-verification'                  => '',
@@ -202,7 +198,7 @@ $defaultoptions = [
 
 	'advanced_post_active_subtitle'             => true,
 	'advanced_page_sidebar_titleabove'          => true,
-	'advanced_page_sidebar_titlebelow'          => true,
+	'advanced_page_sidebar_titlebelow'          => false,
 	'advanced_page_sidebar_useeditor_textabove'	=> false,
 	'advanced_page_sidebar_useeditor_textbelow'	=> false,
 
@@ -227,7 +223,7 @@ $defaultoptions = [
     // Erlaubt die Deaktivierung der Sucheingabe im Kopfteil der Website
 	'advanced_page_sidebar_personen_title'      => __('Kontakt', 'fau'),
 	'advanced_page_sidebar_linkblock1_number'	=> 3,
-	'advanced_page_sidebar_linkblock2_number'	=> 3,
+	'advanced_page_sidebar_linkblock2_number'	=> 0,
 	'advanced_page_sidebar_linkblock1_title'	=> __('Weitere Informationen', 'fau'),
 	'advanced_page_sidebar_linkblock2_title'	=> __('Sonstiges', 'fau'),
 	'advanced_page_sidebar_order_personlinks'	=> 0,
@@ -279,7 +275,7 @@ $defaultoptions = [
 	'advanced_header_template'                  => '',
 	// Anzeigeform des Heros    bei Index- und Kategorieseiten
 
-    'advanced_imagelink_display'            => true,
+    'advanced_imagelink_display'            => false,
     // Imagelink funktion insgesamt de/aktivieren
 	'advanced_imagelink_default_order'		=> 'asc',
 	// Default für die Order von Imagelinks
