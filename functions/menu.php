@@ -277,7 +277,7 @@ class Walker_Main_Menu_Plainview extends Walker_Nav_Menu {
         // get all those unused data filled up my html
         
         $classes = array();
-          if ($level < 2) {
+        if ($level < 2) {
             
             //	$classes[] = 'menu-item-' . $item->ID;
             $classes[] = 'level'.$level;
@@ -400,10 +400,8 @@ class Walker_Main_Menu_Plainview_Small extends Walker_Nav_Menu {
     private $element;
 
     function start_lvl(&$output, $depth = 0, $args = array())  {
-        $this->level++;
-    
+        $this->level++;    
         $this->count[$this->level] = 0;
-
         $child_count = 0;
         $children = get_posts(array(
             'post_type' => 'nav_menu_item',
@@ -493,9 +491,7 @@ class Walker_Main_Menu_Plainview_Small extends Walker_Nav_Menu {
         // get all those unused data filled up my html
         
         $classes = array();
-          if ($level < 2) {
-            
-            //	$classes[] = 'menu-item-' . $item->ID;
+        if ($level < 2) {
             $classes[] = 'level'.$level;
            
         }
@@ -530,10 +526,18 @@ class Walker_Main_Menu_Plainview_Small extends Walker_Nav_Menu {
         $atts           = array();
         $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
  //       $atts['target'] = !empty($item->target) ? $item->target : '';
+        // we dont want a11y breaking targets!!! keep this old shit away
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
         $atts['href']   = !empty($item->url) ? $item->url : '';
     
-        $item_classes  = empty($item->classes) ? array() : (array)$item->classes;
+        // in case that $item->classes was setuo wrong by another plugin, we
+        // add a check here
+        if (empty($item->classes) || (!is_array($item->classes))) {
+            $item_classes = [];
+        } else {
+             $item_classes  = (array)$item->classes;
+        }
+
         $item_classes  = fau_cleanup_menuclasses($item_classes);
         $item_class    = implode(' ', $item_classes);
         $atts['class'] = !empty($item_class) ? $item_class : '';
@@ -627,6 +631,14 @@ function fau_get_contentmenu($menu, $submenu = 1, $subentries = 0, $nothumbs = 0
         echo '<!-- invalid menu -->';
         return;
     }
+    $menu_items = wp_get_nav_menu_items($term->term_id);
+
+    if (empty($menu_items)) {
+        echo '<!-- empty menu -->';
+        return;
+    }
+    
+    
     $slug = $term->slug;
 
     if ($subentries == 0) {
@@ -659,6 +671,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
     private $showsub = true;
     private $listview = false;
     private $meganav = false;
+    private $level1_title = '';
 
     function __construct( $menu, $showsub = true, $maxsecondlevel = 0, $noshowthumb = false,$nothumbnailfallback = false, $thumbnail = 'rwd-480-2-1', $listview = false, $meganav = false ) {
         $this->showsub             = $showsub && !$listview;
@@ -676,8 +689,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
     }
 
     function __destruct() {
-        // $output .= '</ul> <!-- destruct -->';
-    }
+        }
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
         $this->level++;
@@ -697,7 +709,8 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
                     $output .= '</ul>';
                 } elseif ( ($this->count[$this->level] >= ($this->maxsecondlevel + 1)) ) {
                     $output .= '<li class="more">';
-                    $output .= '<a href="'.$this->element->url.'">'.__('Mehr', 'fau').' ...</a></li>';
+                    $output .= '<a href="' . esc_url($this->element->url) . '" aria-label="' . esc_attr(sprintf(__('Mehr über %s', 'fau'), $this->level1_title)) . '">';
+                    $output .= __('Mehr', 'fau') . ' ...</a></li>';
                     $output .= '</ul>';
                 } else {
                     $output .= '</ul>';
@@ -720,6 +733,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 
         if ($this->level == 1) {
             $this->element = $item;
+            $this->level1_title = strip_tags(apply_filters('the_title', $item->title, $item->ID));
         }
         $item_output = '';
         // Only show elements on the first level and only five on the second level, but only if showdescription == FALSE
@@ -737,7 +751,7 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
             $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
             $class_names = $class_names ? ' class="'.esc_attr($class_names).'"' : '';
             $iscurrent   = 0;
-            if (in_array("current_page_item", $item->classes)) {
+            if (isset($item->classes) && (in_array("current_page_item", $item->classes))) {
                 $iscurrent = 1;
             }
 
@@ -751,7 +765,6 @@ class Walker_Content_Menu extends Walker_Nav_Menu {
 
             $atts           = array();
             $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-   //         $atts['target'] = !empty($item->target) ? $item->target : '';
             $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
             $atts['href']   = !empty($item->url) ? $item->url : '';
             $targeturl      = $atts['href'];
@@ -1211,6 +1224,11 @@ function fau_get_page_subnav($id) {
 
 
     $pagelist = get_pages(array('child_of' => $parent_page));
+    if (empty($pagelist)) {
+        // No subpages avaible
+        return '';
+    }
+    
     $exclude  = '';
 
     foreach ($pagelist as $page) {
@@ -1239,8 +1257,7 @@ function fau_get_page_subnav($id) {
         $exclude_list .= ','.$exclude;
     }
 
-
-    $thismenu .= wp_list_pages(array(
+    $submenucontent = wp_list_pages(array(
         'child_of'    => $parent_page,
         'title_li'    => '',
         'echo'        => false,
@@ -1248,7 +1265,11 @@ function fau_get_page_subnav($id) {
         'exclude'     => $exclude_list, // $exclude,
         'walker'      => new Walker_SubNav()
     ));
-
+    if (empty($submenucontent)) {
+        // No pages to show
+        return '';
+    }
+    $thismenu .= $submenucontent;
     $thismenu .= '</ul>';
     $thismenu .= '</nav>';
 
