@@ -1,5 +1,5 @@
 === Theme Name: FAU-Philfak ===
-Version: 2.6.30
+Version: 2.6.32
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.2
